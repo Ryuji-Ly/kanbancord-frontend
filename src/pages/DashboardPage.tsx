@@ -52,6 +52,10 @@ export function DashboardPage() {
   const [selectedServerId, setSelectedServerId] = useState<string>('')
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState('')
+  const [messageType, setMessageType] = useState<'success' | 'error'>('error')
+
+  function setSuccess(text: string) { setMessage(text); setMessageType('success') }
+  function setError(text: string) { setMessage(text); setMessageType('error') }
 
   const isAuthenticated = useMemo(() => authToken.trim().length > 0, [authToken])
 
@@ -61,14 +65,16 @@ export function DashboardPage() {
     [manageableGuilds, botServerIds],
   )
 
-  /** Unified merged list: manageable guilds with botPresent flag */
+  /** Unified merged list: bot-present servers first, then invite-needed servers */
   const mergedServers = useMemo<MergedServer[]>(
     () =>
-      manageableGuilds.map((g) => ({
-        ...g,
-        botPresent: botServerIds.has(g.id),
-        inviteLink: botServerIds.has(g.id) ? undefined : buildBotInviteLink(g.id),
-      })),
+      [...manageableGuilds]
+        .map((g) => ({
+          ...g,
+          botPresent: botServerIds.has(g.id),
+          inviteLink: botServerIds.has(g.id) ? undefined : buildBotInviteLink(g.id),
+        }))
+        .sort((a, b) => Number(b.botPresent) - Number(a.botPresent)),
     [manageableGuilds, botServerIds],
   )
 
@@ -82,9 +88,13 @@ export function DashboardPage() {
       return
     }
 
+    // Capture state and consume both session flags synchronously before any
+    // async work — prevents StrictMode double-fire from replaying the code.
+    const expectedState = getExpectedOAuthState()
+    clearOAuthSessionState()
+
     if (error) {
-      setMessage(`Discord authorization failed: ${error}`)
-      clearOAuthSessionState()
+      setError(`Discord authorization failed: ${error}`)
       clearCallbackQuery()
       return
     }
@@ -93,10 +103,8 @@ export function DashboardPage() {
       return
     }
 
-    const expectedState = getExpectedOAuthState()
-    if (!state || !expectedState || state !== expectedState) {
-      setMessage('Invalid OAuth state. Please try again.')
-      clearOAuthSessionState()
+    if (!state || state !== expectedState) {
+      setError('Invalid OAuth state. Please try again.')
       clearCallbackQuery()
       return
     }
@@ -120,9 +128,12 @@ export function DashboardPage() {
       setSelectedServerId('')
       return
     }
+    // Wait for me to be confirmed before fetching guilds — avoids 403 race
+    // when a stale stored JWT is still being validated by loadMe
+    if (!me) return
 
     void loadGuilds(discordToken)
-  }, [discordToken, authToken])
+  }, [me, discordToken])
 
   async function completeDiscordExchange(code: string) {
     setLoading(true)
@@ -135,12 +146,11 @@ export function DashboardPage() {
         saveDiscordToken(data.discordAccessToken)
         setDiscordToken(data.discordAccessToken)
       }
-      setMessage('Logged in successfully.')
+      setSuccess('Logged in successfully.')
       clearCallbackQuery()
     } catch (error) {
-      setMessage(error instanceof Error ? error.message : 'OAuth login failed')
+      setError(error instanceof Error ? error.message : 'OAuth login failed')
     } finally {
-      clearOAuthSessionState()
       setLoading(false)
     }
   }
@@ -155,7 +165,7 @@ export function DashboardPage() {
       setAuthToken('')
       setDiscordToken('')
       setMe(null)
-      setMessage('Session expired. Please login again.')
+      setError('Session expired. Please login again.')
     }
   }
 
@@ -181,7 +191,7 @@ export function DashboardPage() {
         }
       }
     } catch (error) {
-      setMessage(error instanceof Error ? error.message : 'Failed to fetch servers')
+      setError(error instanceof Error ? error.message : 'Failed to fetch servers')
       setManageableGuilds([])
       setBotServerIds(new Set())
     } finally {
@@ -199,7 +209,7 @@ export function DashboardPage() {
     setManageableGuilds([])
     setBotServerIds(new Set())
     setSelectedServerId('')
-    setMessage('Logged out successfully.')
+    setSuccess('Logged out successfully.')
   }
 
   function onServerCardClick(server: MergedServer) {
@@ -283,7 +293,7 @@ export function DashboardPage() {
         </aside>
 
         <main className="kc-content">
-          {message && <p className="kc-banner">{message}</p>}
+          {message && <p className={`kc-banner${messageType === 'success' ? ' kc-banner--success' : ''}`}>{message}</p>}
 
           {!isAuthenticated && (
             <section className="kc-panel">

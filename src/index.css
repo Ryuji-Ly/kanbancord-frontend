@@ -9,6 +9,7 @@
   --kc-primary: #1867e3;
   --kc-primary-hover: #1551b9;
   --kc-danger-bg: #7f1d1d;
+  --kc-success-bg: #14532d;
 }
 
 * {
@@ -235,6 +236,10 @@ body {
   border-radius: 8px;
   padding: 10px 12px;
   font-size: 0.9rem;
+}
+
+.kc-banner--success {
+  background: var(--kc-success-bg);
 }
 
 .kc-panel {
