@@ -16,26 +16,28 @@ export function AuthActions({
   onLogout,
 }: AuthActionsProps) {
   return (
-    <>
-      <div>
-        <button type="button" onClick={onLogin} disabled={loading}>
+    <section className="kc-actions">
+      <div className="kc-row">
+        <button className="kc-btn kc-btn-primary" type="button" onClick={onLogin} disabled={loading}>
           Login with Discord
         </button>
       </div>
 
-      <p><strong>Authenticated:</strong> {isAuthenticated ? 'yes' : 'no'}</p>
+      <p className="kc-auth-chip">
+        <strong>Authenticated:</strong> {isAuthenticated ? 'yes' : 'no'}
+      </p>
 
-      <div>
-        <button type="button" onClick={onValidateToken} disabled={!isAuthenticated || loading}>
+      <div className="kc-row kc-row-wrap">
+        <button className="kc-btn" type="button" onClick={onValidateToken} disabled={!isAuthenticated || loading}>
           Validate Token (/api/me)
         </button>
-        <button type="button" onClick={onFetchServers} disabled={!isAuthenticated || loading}>
+        <button className="kc-btn" type="button" onClick={onFetchServers} disabled={!isAuthenticated || loading}>
           Fetch Servers (/api/me/servers)
         </button>
-        <button type="button" onClick={onLogout} disabled={loading}>
+        <button className="kc-btn kc-btn-ghost" type="button" onClick={onLogout} disabled={loading}>
           Logout
         </button>
       </div>
-    </>
+    </section>
   )
 }
