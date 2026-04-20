@@ -15,6 +15,7 @@ import {
 } from '../services/authService'
 import { fetchMyServers, fetchMe } from '../services/meService'
 import { fetchUserGuilds, filterManageableGuilds, guildIconUrl } from '../services/discordGuildsService'
+import { DISCORD_CLIENT_ID } from '../config/env'
 import type { DiscordGuild, MeResponse } from '../types/auth'
 
 type ApiServer = {
@@ -22,21 +23,54 @@ type ApiServer = {
   name: string
 }
 
-function guildInitial(name: string): string {
+type MergedServer = DiscordGuild & {
+  botPresent: boolean
+  inviteLink?: string
+}
+
+function serverInitial(name: string): string {
   return name.trim().charAt(0).toUpperCase() || '?'
+}
+
+function buildBotInviteLink(guildId: string): string {
+  const params = new URLSearchParams({
+    client_id: DISCORD_CLIENT_ID,
+    guild_id: guildId,
+    permissions: '412854119488',
+    scope: 'bot applications.commands',
+  })
+
+  return `https://discord.com/api/oauth2/authorize?${params.toString()}`
 }
 
 export function DashboardPage() {
   const [authToken, setAuthToken] = useState<string>(() => getStoredToken())
   const [discordToken, setDiscordToken] = useState<string>(() => getStoredDiscordToken())
   const [me, setMe] = useState<MeResponse | null>(null)
+  const [botServerIds, setBotServerIds] = useState<Set<string>>(new Set())
   const [manageableGuilds, setManageableGuilds] = useState<DiscordGuild[]>([])
-  const [botGuilds, setBotGuilds] = useState<DiscordGuild[]>([])
-  const [selectedGuildId, setSelectedGuildId] = useState<string>('')
+  const [selectedServerId, setSelectedServerId] = useState<string>('')
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState('')
 
   const isAuthenticated = useMemo(() => authToken.trim().length > 0, [authToken])
+
+  /** Servers the bot is in AND user can manage (sidebar list) */
+  const botServers = useMemo(
+    () => manageableGuilds.filter((g) => botServerIds.has(g.id)),
+    [manageableGuilds, botServerIds],
+  )
+
+  /** Unified merged list: manageable guilds with botPresent flag */
+  const mergedServers = useMemo<MergedServer[]>(
+    () =>
+      manageableGuilds.map((g) => ({
+        ...g,
+        botPresent: botServerIds.has(g.id),
+        inviteLink: botServerIds.has(g.id) ? undefined : buildBotInviteLink(g.id),
+      })),
+    [manageableGuilds, botServerIds],
+  )
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
@@ -82,8 +116,8 @@ export function DashboardPage() {
   useEffect(() => {
     if (!discordToken) {
       setManageableGuilds([])
-      setBotGuilds([])
-      setSelectedGuildId('')
+      setBotServerIds(new Set())
+      setSelectedServerId('')
       return
     }
 
@@ -134,20 +168,22 @@ export function DashboardPage() {
       const manageable = filterManageableGuilds(allGuilds)
       setManageableGuilds(manageable)
 
-      if (!selectedGuildId && manageable.length > 0) {
-        setSelectedGuildId(manageable[0].id)
-      }
-
       if (authToken) {
         const rawServers = await fetchMyServers(authToken)
         const serverList = Array.isArray(rawServers) ? (rawServers as ApiServer[]) : []
-        const botServerIds = new Set(serverList.map((server) => String(server.serverId)))
-        setBotGuilds(allGuilds.filter((guild) => botServerIds.has(guild.id)))
+        const ids = new Set(serverList.map((s) => String(s.serverId)))
+        setBotServerIds(ids)
+
+        // Pre-select first server the bot is in
+        const firstBot = manageable.find((g) => ids.has(g.id))
+        if (!selectedServerId && firstBot) {
+          setSelectedServerId(firstBot.id)
+        }
       }
     } catch (error) {
-      setMessage(error instanceof Error ? error.message : 'Failed to fetch guilds')
+      setMessage(error instanceof Error ? error.message : 'Failed to fetch servers')
       setManageableGuilds([])
-      setBotGuilds([])
+      setBotServerIds(new Set())
     } finally {
       setLoading(false)
     }
@@ -161,12 +197,20 @@ export function DashboardPage() {
     setDiscordToken('')
     setMe(null)
     setManageableGuilds([])
-    setBotGuilds([])
-    setSelectedGuildId('')
+    setBotServerIds(new Set())
+    setSelectedServerId('')
     setMessage('Logged out successfully.')
   }
 
-  const selectedGuild = manageableGuilds.find((guild) => guild.id === selectedGuildId) ?? null
+  function onServerCardClick(server: MergedServer) {
+    if (!server.botPresent && server.inviteLink) {
+      window.open(server.inviteLink, '_blank')
+    } else {
+      setSelectedServerId(server.id)
+    }
+  }
+
+  const selectedServer = botServers.find((s) => s.id === selectedServerId) ?? null
 
   return (
     <div className="kc-dashboard-root">
@@ -189,7 +233,7 @@ export function DashboardPage() {
               {me.avatarUrl ? (
                 <img src={me.avatarUrl} alt={me.username} className="kc-avatar" />
               ) : (
-                <span className="kc-avatar-fallback">{guildInitial(me.username)}</span>
+                <span className="kc-avatar-fallback">{serverInitial(me.username)}</span>
               )}
               <button className="kc-btn kc-btn-ghost" type="button" onClick={onLogout} disabled={loading}>
                 Logout
@@ -210,27 +254,27 @@ export function DashboardPage() {
 
       <div className="kc-dashboard-shell">
         <aside className="kc-sidebar">
-          <h2 className="kc-sidebar-title">Guilds</h2>
-          {!isAuthenticated && <p className="kc-muted">Login to load your servers.</p>}
-          {isAuthenticated && manageableGuilds.length === 0 && !loading && (
-            <p className="kc-muted">No manageable servers found.</p>
+          <h2 className="kc-sidebar-title">Servers</h2>
+          {!isAuthenticated && <p className="kc-muted">Login to see your servers.</p>}
+          {isAuthenticated && botServers.length === 0 && !loading && (
+            <p className="kc-muted">KanbanCord is not in any of your servers yet.</p>
           )}
           <ul className="kc-guild-rail">
-            {manageableGuilds.map((guild) => {
-              const icon = guildIconUrl(guild)
+            {botServers.map((server) => {
+              const icon = guildIconUrl(server)
               return (
-                <li key={guild.id}>
+                <li key={server.id}>
                   <button
-                    className={`kc-guild-pill ${selectedGuildId === guild.id ? 'is-active' : ''}`}
+                    className={`kc-guild-pill ${selectedServerId === server.id ? 'is-active' : ''}`}
                     type="button"
-                    onClick={() => setSelectedGuildId(guild.id)}
+                    onClick={() => setSelectedServerId(server.id)}
                   >
                     {icon ? (
-                      <img className="kc-guild-pill-icon" src={icon} alt={guild.name} />
+                      <img className="kc-guild-pill-icon" src={icon} alt={server.name} />
                     ) : (
-                      <span className="kc-guild-pill-fallback">{guildInitial(guild.name)}</span>
+                      <span className="kc-guild-pill-fallback">{serverInitial(server.name)}</span>
                     )}
-                    <span className="kc-guild-pill-text">{guild.name}</span>
+                    <span className="kc-guild-pill-text">{server.name}</span>
                   </button>
                 </li>
               )
@@ -245,61 +289,50 @@ export function DashboardPage() {
             <section className="kc-panel">
               <h2>Welcome</h2>
               <p className="kc-muted">
-                Login with Discord to load your servers and see where you can manage or invite the bot.
+                Login with Discord to load your servers and manage KanbanCord boards.
               </p>
             </section>
           )}
 
-          {isAuthenticated && selectedGuild && (
+          {isAuthenticated && selectedServer && (
             <section className="kc-panel">
-              <h2>{selectedGuild.name}</h2>
+              <h2>{selectedServer.name}</h2>
               <p className="kc-muted">Selected server overview.</p>
             </section>
           )}
 
           {isAuthenticated && (
             <section className="kc-panel">
-              <h2>Servers You Can Manage</h2>
-              {manageableGuilds.length === 0 ? (
-                <p className="kc-muted">No servers with manage/admin permissions.</p>
-              ) : (
-                <div className="kc-card-grid">
-                  {manageableGuilds.map((guild) => (
-                    <article key={guild.id} className="kc-card">
-                      <div className="kc-card-head">
-                        {guildIconUrl(guild) ? (
-                          <img src={guildIconUrl(guild) ?? ''} alt={guild.name} className="kc-card-icon" />
-                        ) : (
-                          <span className="kc-card-fallback">{guildInitial(guild.name)}</span>
-                        )}
-                        <h3>{guild.name}</h3>
-                      </div>
-                      <p>Manage Server / Admin available</p>
-                    </article>
-                  ))}
+              <h2>Your Servers</h2>
+              {loading ? (
+                <div className="kc-loading-state" aria-live="polite" aria-busy="true">
+                  <span className="kc-spinner" aria-hidden="true" />
+                  <span className="kc-muted">Loading your servers...</span>
                 </div>
-              )}
-            </section>
-          )}
-
-          {isAuthenticated && (
-            <section className="kc-panel">
-              <h2>Servers With Bot Present</h2>
-              {botGuilds.length === 0 ? (
-                <p className="kc-muted">Bot is not in any of your servers yet.</p>
+              ) : mergedServers.length === 0 ? (
+                <p className="kc-muted">No servers with manage permissions found.</p>
               ) : (
                 <div className="kc-card-grid">
-                  {botGuilds.map((guild) => (
-                    <article key={guild.id} className="kc-card">
+                  {mergedServers.map((server) => (
+                    <article
+                      key={server.id}
+                      className={`kc-card ${server.botPresent ? '' : 'kc-card-greyed'}`}
+                      onClick={() => onServerCardClick(server)}
+                      role="button"
+                      tabIndex={0}
+                      onKeyDown={(e) => e.key === 'Enter' && onServerCardClick(server)}
+                    >
                       <div className="kc-card-head">
-                        {guildIconUrl(guild) ? (
-                          <img src={guildIconUrl(guild) ?? ''} alt={guild.name} className="kc-card-icon" />
+                        {guildIconUrl(server) ? (
+                          <img src={guildIconUrl(server) ?? ''} alt={server.name} className="kc-card-icon" />
                         ) : (
-                          <span className="kc-card-fallback">{guildInitial(guild.name)}</span>
+                          <span className="kc-card-fallback">{serverInitial(server.name)}</span>
                         )}
-                        <h3>{guild.name}</h3>
+                        <h3>{server.name}</h3>
                       </div>
-                      <p>You and the bot are both in this server.</p>
+                      {!server.botPresent && (
+                        <p className="kc-invite-hint">Click to invite bot</p>
+                      )}
                     </article>
                   ))}
                 </div>

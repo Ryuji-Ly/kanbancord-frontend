@@ -48,6 +48,8 @@ npm run dev
 ```powershell
 $env:KANBANCORD_DISCORD_CLIENT_ID="your_discord_app_client_id"
 $env:KANBANCORD_DISCORD_CLIENT_SECRET="your_discord_app_client_secret"
+$env:KANBANCORD_JWT_SECRET="your_jwt_secret"
+$env:KANBANCORD_BOT_TOKEN="your_bot_token"
 ```
 
 ## How To Test Backend Communication
