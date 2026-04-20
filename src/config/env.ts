@@ -4,5 +4,6 @@ export const DISCORD_REDIRECT_URI = import.meta.env.VITE_DISCORD_REDIRECT_URI ??
 export const DISCORD_SCOPES = import.meta.env.VITE_DISCORD_SCOPES ?? 'identify guilds'
 
 export const TOKEN_STORAGE_KEY = 'kanbancord_access_token'
+export const DISCORD_TOKEN_STORAGE_KEY = 'kanbancord_discord_access_token'
 export const OAUTH_STATE_KEY = 'kanbancord_discord_oauth_state'
 export const OAUTH_IN_PROGRESS_KEY = 'kanbancord_discord_oauth_in_progress'

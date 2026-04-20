@@ -3,6 +3,7 @@ import {
   DISCORD_CLIENT_ID,
   DISCORD_REDIRECT_URI,
   DISCORD_SCOPES,
+  DISCORD_TOKEN_STORAGE_KEY,
   OAUTH_IN_PROGRESS_KEY,
   OAUTH_STATE_KEY,
   TOKEN_STORAGE_KEY,
@@ -19,6 +20,18 @@ export function saveToken(token: string): void {
 
 export function clearToken(): void {
   localStorage.removeItem(TOKEN_STORAGE_KEY)
+}
+
+export function getStoredDiscordToken(): string {
+  return localStorage.getItem(DISCORD_TOKEN_STORAGE_KEY) ?? ''
+}
+
+export function saveDiscordToken(token: string): void {
+  localStorage.setItem(DISCORD_TOKEN_STORAGE_KEY, token)
+}
+
+export function clearDiscordToken(): void {
+  localStorage.removeItem(DISCORD_TOKEN_STORAGE_KEY)
 }
 
 export function startDiscordLogin(setMessage: (value: string) => void): void {
