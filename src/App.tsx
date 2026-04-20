@@ -1,7 +1,7 @@
-import { AuthSmokeTestPage } from './pages/AuthSmokeTestPage'
+import { DashboardPage } from './pages/DashboardPage'
 
 function App() {
-  return <AuthSmokeTestPage />
+  return <DashboardPage />
 }
 
 export default App
