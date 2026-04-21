@@ -21,6 +21,7 @@ import type { DiscordGuild, MeResponse } from '../types/auth'
 type ApiServer = {
   serverId: string | number
   name: string
+  botPresent?: boolean
 }
 
 type MergedServer = DiscordGuild & {
@@ -181,7 +182,11 @@ export function DashboardPage() {
       if (authToken) {
         const rawServers = await fetchMyServers(authToken)
         const serverList = Array.isArray(rawServers) ? (rawServers as ApiServer[]) : []
-        const ids = new Set(serverList.map((s) => String(s.serverId)))
+        const ids = new Set(
+          serverList
+            .filter((s) => s.botPresent !== false)
+            .map((s) => String(s.serverId)),
+        )
         setBotServerIds(ids)
 
         // Pre-select first server the bot is in
