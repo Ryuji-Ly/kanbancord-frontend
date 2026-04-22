@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import { FiLock, FiX, FiPlus } from 'react-icons/fi'
 import {
   clearCallbackQuery,
   clearDiscordToken,
@@ -15,6 +16,15 @@ import {
 } from '../services/authService'
 import { fetchMyServers, fetchMe } from '../services/meService'
 import { fetchUserGuilds, filterManageableGuilds, guildIconUrl } from '../services/discordGuildsService'
+import {
+  fetchServerPermissions,
+  evaluatePermission,
+  groupPermissionsByGrantedTo,
+  updatePermissionState,
+  deletePermission,
+  KANBAN_PERM_INFO,
+  type PermissionEntry,
+} from '../services/permissionsService'
 import { DISCORD_CLIENT_ID } from '../config/env'
 import type { DiscordGuild, MeResponse } from '../types/auth'
 
@@ -22,6 +32,7 @@ type ApiServer = {
   serverId: string | number
   name: string
   botPresent?: boolean
+  ownerId?: string | number
 }
 
 type MergedServer = DiscordGuild & {
@@ -49,11 +60,15 @@ export function DashboardPage() {
   const [discordToken, setDiscordToken] = useState<string>(() => getStoredDiscordToken())
   const [me, setMe] = useState<MeResponse | null>(null)
   const [botServerIds, setBotServerIds] = useState<Set<string>>(new Set())
+  const [apiServers, setApiServers] = useState<ApiServer[]>([])
   const [manageableGuilds, setManageableGuilds] = useState<DiscordGuild[]>([])
   const [selectedServerId, setSelectedServerId] = useState<string>('')
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState('')
   const [messageType, setMessageType] = useState<'success' | 'error'>('error')
+  const [serverPermissions, setServerPermissions] = useState<PermissionEntry[] | null>(null)
+  const [canEditPermissions, setCanEditPermissions] = useState(false)
+  const [permissionsLoading, setPermissionsLoading] = useState(false)
 
   function setSuccess(text: string) { setMessage(text); setMessageType('success') }
   function setError(text: string) { setMessage(text); setMessageType('error') }
@@ -125,6 +140,7 @@ export function DashboardPage() {
   useEffect(() => {
     if (!discordToken) {
       setManageableGuilds([])
+      setApiServers([])
       setBotServerIds(new Set())
       setSelectedServerId('')
       return
@@ -135,6 +151,13 @@ export function DashboardPage() {
 
     void loadGuilds(discordToken)
   }, [me, discordToken])
+
+  useEffect(() => {
+    setServerPermissions(null)
+    setCanEditPermissions(false)
+    if (!selectedServerId || !authToken || !me) return
+    void loadServerPermissions(selectedServerId)
+  }, [selectedServerId, authToken, me])
 
   async function completeDiscordExchange(code: string) {
     setLoading(true)
@@ -182,6 +205,7 @@ export function DashboardPage() {
       if (authToken) {
         const rawServers = await fetchMyServers(authToken)
         const serverList = Array.isArray(rawServers) ? (rawServers as ApiServer[]) : []
+        setApiServers(serverList)
         const ids = new Set(
           serverList
             .filter((s) => s.botPresent !== false)
@@ -204,6 +228,54 @@ export function DashboardPage() {
     }
   }
 
+  async function loadServerPermissions(serverId: string) {
+    if (!authToken || !me) return
+    setPermissionsLoading(true)
+    try {
+      const apiServer = apiServers.find((s) => String(s.serverId) === serverId)
+      const isOwner = apiServer?.ownerId && String(apiServer.ownerId) === String(me.userId)
+      
+      if (isOwner) {
+        setCanEditPermissions(true)
+      } else {
+        const decision = await evaluatePermission(authToken, serverId, me.userId, 'MANAGE_SERVER_PERMISSIONS')
+        setCanEditPermissions(decision.allowed)
+      }
+      
+      if (isOwner || apiServer?.ownerId) {
+        const perms = await fetchServerPermissions(authToken, serverId, me.userId)
+        setServerPermissions(perms)
+      }
+    } catch (error) {
+      console.error('Failed to load permissions:', error)
+    } finally {
+      setPermissionsLoading(false)
+    }
+  }
+
+  async function handleTogglePermissionState(permissionId: number, currentState: 'ALLOW' | 'DENY') {
+    if (!authToken || !selectedServerId) return
+    const newState = currentState === 'ALLOW' ? 'DENY' : 'ALLOW'
+    try {
+      await updatePermissionState(authToken, selectedServerId, permissionId, newState)
+      await loadServerPermissions(selectedServerId)
+      setSuccess(`Permission state changed to ${newState}`)
+    } catch (error) {
+      setError(`Failed to update permission: ${error}`)
+    }
+  }
+
+  async function handleDeletePermission(permissionId: number) {
+    if (!authToken || !selectedServerId) return
+    try {
+      await deletePermission(authToken, selectedServerId, permissionId)
+      await loadServerPermissions(selectedServerId)
+      setSuccess('Permission removed')
+    } catch (error) {
+      setError(`Failed to delete permission: ${error}`)
+    }
+  }
+
   function onLogout() {
     clearToken()
     clearDiscordToken()
@@ -212,8 +284,11 @@ export function DashboardPage() {
     setDiscordToken('')
     setMe(null)
     setManageableGuilds([])
+    setApiServers([])
     setBotServerIds(new Set())
     setSelectedServerId('')
+    setServerPermissions(null)
+    setCanEditPermissions(false)
     setSuccess('Logged out successfully.')
   }
 
@@ -312,7 +387,71 @@ export function DashboardPage() {
           {isAuthenticated && selectedServer && (
             <section className="kc-panel">
               <h2>{selectedServer.name}</h2>
-              <p className="kc-muted">Selected server overview.</p>
+              <p className="kc-muted">Server overview and permissions.</p>
+              
+              {canEditPermissions && (
+                <div className="kc-server-perms-section">
+                  <h3>Permissions</h3>
+                  {permissionsLoading && (
+                    <div className="kc-loading-state" aria-live="polite" aria-busy="true">
+                      <span className="kc-spinner" aria-hidden="true" />
+                      <span className="kc-muted">Loading permissions...</span>
+                    </div>
+                  )}
+                  {!permissionsLoading && serverPermissions && (
+                    <div className="kc-perms-granted-to-list">
+                      {groupPermissionsByGrantedTo(serverPermissions).map((group) => (
+                        <div key={`${group.subjectType}:${group.subjectId}`} className="kc-perms-granted-to-row">
+                          <div className="kc-perms-granted-to-label">
+                            <span className="kc-muted">{group.subjectDisplay}</span>
+                          </div>
+                          <div className="kc-perms-granted-to-perms">
+                            {group.permissions.map((perm) => {
+                              const permName = KANBAN_PERM_INFO[perm.kanbanPermissionKey]?.name ?? perm.kanbanPermissionKey
+                              return (
+                                <div
+                                  key={perm.id}
+                                  className={`kc-perm-button kc-perm-button--${perm.state.toLowerCase()}${perm.isImmutable ? ' kc-perm-button--immutable' : ''}`}
+                                  title={`${permName} — ${perm.state}${perm.isImmutable ? ' (immutable)' : ''}`}
+                                  onClick={() => !perm.isImmutable && handleTogglePermissionState(perm.id, perm.state)}
+                                  role="button"
+                                  tabIndex={perm.isImmutable ? -1 : 0}
+                                  onKeyDown={(e) => {
+                                    if (!perm.isImmutable && (e.key === 'Enter' || e.key === ' ')) {
+                                      handleTogglePermissionState(perm.id, perm.state)
+                                    }
+                                  }}
+                                >
+                                  <span className="kc-perm-button-text">{permName}</span>
+                                  {perm.isImmutable
+                                    ? <FiLock className="kc-perm-lock" aria-hidden="true" />
+                                    : (
+                                      <button
+                                        className="kc-perm-button-remove"
+                                        onClick={(e) => {
+                                          e.stopPropagation()
+                                          handleDeletePermission(perm.id)
+                                        }}
+                                        title="Remove permission"
+                                        aria-label={`Remove ${permName}`}
+                                      >
+                                        <FiX aria-hidden="true" />
+                                      </button>
+                                    )
+                                  }
+                                </div>
+                              )
+                            })}
+                            <button className="kc-perm-button-add" title="Add permission" aria-label="Add permission">
+                              <FiPlus aria-hidden="true" />
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
             </section>
           )}
 
