@@ -72,15 +72,55 @@ export async function evaluatePermission(
 
 // Human-readable names for Discord permission bit values used by the bootstrap.
 export const DISCORD_FLAG_NAMES: Record<string, string> = {
+  '1': 'Create Invite',
+  '2': 'Kick Members',
+  '4': 'Ban Members',
   '8': 'Administrator',
   '16': 'Manage Channels',
   '32': 'Manage Server',
+  '64': 'Add Reactions',
   '128': 'View Audit Log',
+  '256': 'Priority Speaker',
+  '512': 'Video',
   '1024': 'View Channel',
   '2048': 'Send Messages',
+  '4096': 'Send TTS Messages',
   '8192': 'Manage Messages',
+  '16384': 'Embed Links',
+  '32768': 'Attach Files',
+  '65536': 'Read Message History',
+  '131072': 'Mention Everyone',
+  '262144': 'Use External Emojis',
+  '524288': 'View Server Insights',
+  '1048576': 'Connect',
+  '2097152': 'Speak',
+  '4194304': 'Mute Members',
+  '8388608': 'Deafen Members',
+  '16777216': 'Move Members',
+  '33554432': 'Use Voice Activity',
+  '67108864': 'Change Nickname',
+  '134217728': 'Manage Nicknames',
   '268435456': 'Manage Roles',
+  '536870912': 'Manage Webhooks',
+  '1073741824': 'Manage Expressions',
+  '2147483648': 'Use Application Commands',
+  '4294967296': 'Request to Speak',
+  '8589934592': 'Manage Events',
+  '17179869184': 'Manage Threads',
+  '34359738368': 'Create Public Threads',
+  '68719476736': 'Create Private Threads',
+  '137438953472': 'Use External Stickers',
+  '274877906944': 'Send Messages in Threads',
+  '549755813888': 'Use Embedded Activities',
   '1099511627776': 'Moderate Members',
+  '2199023255552': 'View Creator Monetization Analytics',
+  '4398046511104': 'Use Soundboard',
+  '8796093022208': 'Create Expressions',
+  '17592186044416': 'Create Events',
+  '35184372088832': 'Use External Sounds',
+  '70368744177664': 'Send Voice Messages',
+  '1125899906842624': 'Send Polls',
+  '2251799813685248': 'Use External Apps',
 }
 
 export type KanbanPermInfo = { name: string; category: string }
@@ -119,7 +159,7 @@ export const KANBAN_PERM_INFO: Record<string, KanbanPermInfo> = {
   REMOVE_LABEL_FROM_TASK: { name: 'Remove Labels from Tasks', category: 'LABEL' },
 }
 
-const CATEGORY_ORDER = ['SERVER', 'BOARD', 'COLUMN', 'TASK', 'COMMENT', 'LABEL']
+export const CATEGORY_ORDER = ['SERVER', 'BOARD', 'COLUMN', 'TASK', 'COMMENT', 'LABEL']
 
 export function groupPermissionsByCategory(
   entries: PermissionEntry[],
@@ -145,7 +185,7 @@ export type GrantedToGroup = {
 }
 
 // Importance order for Kanban permissions (higher index = less important)
-const KANBAN_PERM_IMPORTANCE: Record<string, number> = {
+export const KANBAN_PERM_IMPORTANCE: Record<string, number> = {
   ADMIN: 0,
   MANAGE_SERVER_PERMISSIONS: 1,
   VIEW_AUDIT_LOG: 2,
@@ -178,15 +218,57 @@ const KANBAN_PERM_IMPORTANCE: Record<string, number> = {
   VIEW_SERVER: 29,
 }
 
-// Discord permission importance (lower bit = higher importance in some cases, so we map explicitly)
-const DISCORD_PERM_IMPORTANCE: Record<string, number> = {
-  '8': 0,        // Administrator
-  '32': 1,       // Manage Guild
-  '16': 2,       // Manage Channels
-  '128': 3,      // View Audit Log
-  '8192': 4,     // Manage Messages
-  '2048': 5,     // Send Messages
-  '1024': 6,     // View Channel
+// Discord permission importance (lower number = shown first)
+export const DISCORD_PERM_IMPORTANCE: Record<string, number> = {
+  '8': 0,              // Administrator
+  '32': 1,             // Manage Server
+  '2': 2,              // Kick Members
+  '4': 3,              // Ban Members
+  '1099511627776': 4,  // Moderate Members
+  '268435456': 5,      // Manage Roles
+  '16': 6,             // Manage Channels
+  '128': 7,            // View Audit Log
+  '536870912': 8,      // Manage Webhooks
+  '1073741824': 9,     // Manage Expressions
+  '8589934592': 10,    // Manage Events
+  '8192': 11,          // Manage Messages
+  '17179869184': 12,   // Manage Threads
+  '4194304': 13,       // Mute Members
+  '8388608': 14,       // Deafen Members
+  '16777216': 15,      // Move Members
+  '134217728': 16,     // Manage Nicknames
+  '1024': 17,          // View Channel
+  '65536': 18,         // Read Message History
+  '2048': 19,          // Send Messages
+  '131072': 20,        // Mention Everyone
+  '64': 21,            // Add Reactions
+  '16384': 22,         // Embed Links
+  '32768': 23,         // Attach Files
+  '4096': 24,          // Send TTS Messages
+  '262144': 25,        // Use External Emojis
+  '137438953472': 26,  // Use External Stickers
+  '35184372088832': 27,// Use External Sounds
+  '274877906944': 28,  // Send Messages in Threads
+  '34359738368': 29,   // Create Public Threads
+  '68719476736': 30,   // Create Private Threads
+  '1048576': 31,       // Connect
+  '2097152': 32,       // Speak
+  '256': 33,           // Priority Speaker
+  '512': 34,           // Video
+  '33554432': 35,      // Use Voice Activity
+  '4294967296': 36,    // Request to Speak
+  '549755813888': 37,  // Use Embedded Activities
+  '4398046511104': 38, // Use Soundboard
+  '70368744177664': 39,// Send Voice Messages
+  '2147483648': 40,    // Use Application Commands
+  '1': 41,             // Create Invite
+  '67108864': 42,      // Change Nickname
+  '524288': 43,        // View Server Insights
+  '2199023255552': 44, // View Creator Monetization Analytics
+  '8796093022208': 45, // Create Expressions
+  '17592186044416': 46,// Create Events
+  '1125899906842624': 47, // Send Polls
+  '2251799813685248': 48, // Use External Apps
 }
 
 function getKanbanPermImportance(key: string): number {
@@ -197,7 +279,7 @@ function getDiscordPermImportance(discordId: string): number {
   return DISCORD_PERM_IMPORTANCE[discordId] ?? 999
 }
 
-export function groupPermissionsByGrantedTo(entries: PermissionEntry[]): GrantedToGroup[] {
+export function groupPermissionsByGrantedTo(entries: PermissionEntry[], lookups?: SubjectLookups): GrantedToGroup[] {
   const map = new Map<string, PermissionEntry[]>()
   const subjectMap = new Map<string, string>()
   
@@ -209,7 +291,7 @@ export function groupPermissionsByGrantedTo(entries: PermissionEntry[]): Granted
     
     // Store display name if not already stored
     if (!subjectMap.has(key)) {
-      subjectMap.set(key, getSubjectDisplay(entry.subjectType, entry.subjectId))
+      subjectMap.set(key, getSubjectDisplay(entry.subjectType, entry.subjectId, lookups))
     }
   }
   
@@ -246,9 +328,22 @@ export function groupPermissionsByGrantedTo(entries: PermissionEntry[]): Granted
   })
 }
 
-function getSubjectDisplay(subjectType: string, subjectId: string): string {
+export type SubjectLookups = {
+  roles?: Map<string, string>   // roleId (string) -> name
+  members?: Map<string, string> // userId (string) -> displayName
+}
+
+function getSubjectDisplay(subjectType: string, subjectId: string, lookups?: SubjectLookups): string {
   if (subjectType === 'DISCORD_PERMISSION') {
     return `Discord: ${DISCORD_FLAG_NAMES[subjectId] ?? `flag ${subjectId}`}`
+  }
+  if (subjectType === 'ROLE') {
+    const name = lookups?.roles?.get(subjectId)
+    return `Role: ${name ?? subjectId}`
+  }
+  if (subjectType === 'USER') {
+    const name = lookups?.members?.get(subjectId)
+    return `User: ${name ?? subjectId}`
   }
   return `${subjectType} #${subjectId}`
 }
@@ -306,8 +401,7 @@ export async function fetchPermissionCatalog(
   return response.json() as Promise<KanbanCatalogEntry[]>
 }
 
-export async function createPermission(
-  token: string,
+export async function createPermission(  token: string,
   serverId: string,
   userId: string,
   input: {
@@ -343,4 +437,48 @@ export async function createPermission(
     },
   )
   if (!response.ok) throw new Error(await parseError(response))
+}
+
+export type ServerRoleEntry = {
+  roleId: string
+  serverId: string
+  name: string
+  color: number | null
+  position: number | null
+}
+
+export type ServerMemberEntry = {
+  userId: string
+  serverId: string
+  nickname: string | null
+  displayName: string | null
+  username: string | null
+}
+
+export async function fetchServerRoles(
+  token: string,
+  serverId: string,
+  userId: string,
+): Promise<ServerRoleEntry[]> {
+  const params = new URLSearchParams({ userId })
+  const response = await fetch(
+    apiUrl(`/api/servers/${serverId}/roles?${params.toString()}`),
+    { headers: authHeaders(token) },
+  )
+  if (!response.ok) throw new Error(await parseError(response))
+  return response.json() as Promise<ServerRoleEntry[]>
+}
+
+export async function fetchServerMembers(
+  token: string,
+  serverId: string,
+  userId: string,
+): Promise<ServerMemberEntry[]> {
+  const params = new URLSearchParams({ userId })
+  const response = await fetch(
+    apiUrl(`/api/servers/${serverId}/members?${params.toString()}`),
+    { headers: authHeaders(token) },
+  )
+  if (!response.ok) throw new Error(await parseError(response))
+  return response.json() as Promise<ServerMemberEntry[]>
 }
