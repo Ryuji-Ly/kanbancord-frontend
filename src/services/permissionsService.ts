@@ -25,6 +25,14 @@ export type PermissionDecision = {
   sourcePermissionId?: number
 }
 
+export type KanbanCatalogEntry = {
+  permissionId: number
+  key: string
+  name: string
+  description: string
+  category: string
+}
+
 export async function fetchServerPermissions(
   token: string,
   serverId: string,
@@ -136,6 +144,59 @@ export type GrantedToGroup = {
   permissions: PermissionEntry[]
 }
 
+// Importance order for Kanban permissions (higher index = less important)
+const KANBAN_PERM_IMPORTANCE: Record<string, number> = {
+  ADMIN: 0,
+  MANAGE_SERVER_PERMISSIONS: 1,
+  VIEW_AUDIT_LOG: 2,
+  CREATE_BOARD: 3,
+  DELETE_BOARD: 4,
+  EDIT_BOARD_DETAILS: 5,
+  ARCHIVE_BOARD: 6,
+  EDIT_BOARD_PERMISSIONS: 7,
+  CREATE_COLUMN: 8,
+  EDIT_COLUMN: 9,
+  DELETE_COLUMN: 10,
+  MOVE_COLUMN: 11,
+  CREATE_TASK: 12,
+  EDIT_TASK: 13,
+  DELETE_TASK: 14,
+  MOVE_TASK: 15,
+  ARCHIVE_TASK: 16,
+  ASSIGN_TASK_OTHERS: 17,
+  ASSIGN_TASK_SELF: 18,
+  CREATE_TASK_COMMENT: 19,
+  EDIT_TASK_COMMENT: 20,
+  DELETE_TASK_COMMENT: 21,
+  CREATE_LABEL: 22,
+  EDIT_LABEL: 23,
+  DELETE_LABEL: 24,
+  APPLY_LABEL_TO_TASK: 25,
+  REMOVE_LABEL_FROM_TASK: 26,
+  VIEW_BOARD: 27,
+  VIEW_TASK: 28,
+  VIEW_SERVER: 29,
+}
+
+// Discord permission importance (lower bit = higher importance in some cases, so we map explicitly)
+const DISCORD_PERM_IMPORTANCE: Record<string, number> = {
+  '8': 0,        // Administrator
+  '32': 1,       // Manage Guild
+  '16': 2,       // Manage Channels
+  '128': 3,      // View Audit Log
+  '8192': 4,     // Manage Messages
+  '2048': 5,     // Send Messages
+  '1024': 6,     // View Channel
+}
+
+function getKanbanPermImportance(key: string): number {
+  return KANBAN_PERM_IMPORTANCE[key] ?? 999
+}
+
+function getDiscordPermImportance(discordId: string): number {
+  return DISCORD_PERM_IMPORTANCE[discordId] ?? 999
+}
+
 export function groupPermissionsByGrantedTo(entries: PermissionEntry[]): GrantedToGroup[] {
   const map = new Map<string, PermissionEntry[]>()
   const subjectMap = new Map<string, string>()
@@ -152,14 +213,36 @@ export function groupPermissionsByGrantedTo(entries: PermissionEntry[]): Granted
     }
   }
   
-  return Array.from(map.entries()).map(([key, permissions]) => {
+  const groups = Array.from(map.entries()).map(([key, permissions]) => {
     const [subjectType, subjectId] = key.split(':')
     return {
       subjectType,
       subjectId,
       subjectDisplay: subjectMap.get(key)!,
-      permissions: permissions.sort((a, b) => a.kanbanPermissionKey.localeCompare(b.kanbanPermissionKey)),
+      // Sort permissions by importance (more important first)
+      permissions: permissions.sort((a, b) => {
+        const importanceA = getKanbanPermImportance(a.kanbanPermissionKey)
+        const importanceB = getKanbanPermImportance(b.kanbanPermissionKey)
+        return importanceA - importanceB
+      }),
     }
+  })
+  
+  // Sort groups by Discord permission importance (more important first)
+  return groups.sort((a, b) => {
+    if (a.subjectType === 'DISCORD_PERMISSION' && b.subjectType === 'DISCORD_PERMISSION') {
+      const impA = getDiscordPermImportance(a.subjectId)
+      const impB = getDiscordPermImportance(b.subjectId)
+      return impA - impB
+    }
+    // Non-Discord permissions come after Discord permissions
+    if (a.subjectType === 'DISCORD_PERMISSION') return -1
+    if (b.subjectType === 'DISCORD_PERMISSION') return 1
+    // Sort other types by subject type, then by ID
+    if (a.subjectType !== b.subjectType) {
+      return a.subjectType.localeCompare(b.subjectType)
+    }
+    return a.subjectId.localeCompare(b.subjectId)
   })
 }
 
@@ -173,11 +256,13 @@ function getSubjectDisplay(subjectType: string, subjectId: string): string {
 export async function updatePermissionState(
   token: string,
   serverId: string,
+  userId: string,
   permissionId: number,
   newState: 'ALLOW' | 'DENY',
 ): Promise<void> {
+  const params = new URLSearchParams({ userId })
   const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/permissions/${permissionId}/state`),
+    apiUrl(`/api/servers/${serverId}/permissions/${permissionId}/state?${params.toString()}`),
     {
       method: 'PATCH',
       headers: {
@@ -193,13 +278,68 @@ export async function updatePermissionState(
 export async function deletePermission(
   token: string,
   serverId: string,
+  userId: string,
   permissionId: number,
 ): Promise<void> {
+  const params = new URLSearchParams({ userId })
   const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/permissions/${permissionId}`),
+    apiUrl(`/api/servers/${serverId}/permissions/${permissionId}?${params.toString()}`),
     {
       method: 'DELETE',
       headers: authHeaders(token),
+    },
+  )
+  if (!response.ok) throw new Error(await parseError(response))
+}
+
+export async function fetchPermissionCatalog(
+  token: string,
+  serverId: string,
+  userId: string,
+): Promise<KanbanCatalogEntry[]> {
+  const params = new URLSearchParams({ userId })
+  const response = await fetch(
+    apiUrl(`/api/servers/${serverId}/permissions/catalog?${params.toString()}`),
+    { headers: authHeaders(token) },
+  )
+  if (!response.ok) throw new Error(await parseError(response))
+  return response.json() as Promise<KanbanCatalogEntry[]>
+}
+
+export async function createPermission(
+  token: string,
+  serverId: string,
+  userId: string,
+  input: {
+    scopeType: 'SERVER' | 'BOARD'
+    scopeId: string
+    subjectType: string
+    subjectId: string
+    kanbanPermissionId: number
+    state: 'ALLOW' | 'DENY'
+    priority: number
+    isImmutable?: boolean
+  },
+): Promise<void> {
+  const params = new URLSearchParams({ userId })
+  const response = await fetch(
+    apiUrl(`/api/servers/${serverId}/permissions?${params.toString()}`),
+    {
+      method: 'POST',
+      headers: {
+        ...authHeaders(token),
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        scopeType: input.scopeType,
+        scopeId: input.scopeId,
+        subjectType: input.subjectType,
+        subjectId: input.subjectId,
+        kanbanPermissionId: input.kanbanPermissionId,
+        state: input.state,
+        priority: input.priority,
+        isImmutable: Boolean(input.isImmutable),
+      }),
     },
   )
   if (!response.ok) throw new Error(await parseError(response))

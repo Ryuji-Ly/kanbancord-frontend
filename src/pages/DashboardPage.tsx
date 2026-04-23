@@ -22,8 +22,11 @@ import {
   groupPermissionsByGrantedTo,
   updatePermissionState,
   deletePermission,
+  fetchPermissionCatalog,
+  createPermission,
   KANBAN_PERM_INFO,
   type PermissionEntry,
+  type KanbanCatalogEntry,
 } from '../services/permissionsService'
 import { DISCORD_CLIENT_ID } from '../config/env'
 import type { DiscordGuild, MeResponse } from '../types/auth'
@@ -38,6 +41,61 @@ type ApiServer = {
 type MergedServer = DiscordGuild & {
   botPresent: boolean
   inviteLink?: string
+}
+
+const PERMISSION_RANK_WEIGHT: Record<string, number> = {
+  ADMIN: 1000,
+  MANAGE_SERVER_PERMISSIONS: 800,
+  CREATE_BOARD: 600,
+  EDIT_BOARD_DETAILS: 600,
+  EDIT_BOARD_PERMISSIONS: 600,
+  ARCHIVE_BOARD: 600,
+  DELETE_BOARD: 600,
+  CREATE_COLUMN: 600,
+  EDIT_COLUMN: 600,
+  DELETE_COLUMN: 600,
+  MOVE_COLUMN: 600,
+  CREATE_LABEL: 600,
+  EDIT_LABEL: 600,
+  DELETE_LABEL: 600,
+  CREATE_TASK: 400,
+  EDIT_TASK: 400,
+  MOVE_TASK: 400,
+  DELETE_TASK: 400,
+  ARCHIVE_TASK: 400,
+  ASSIGN_TASK_SELF: 400,
+  ASSIGN_TASK_OTHERS: 400,
+  CREATE_TASK_COMMENT: 400,
+  EDIT_TASK_COMMENT: 400,
+  DELETE_TASK_COMMENT: 400,
+  APPLY_LABEL_TO_TASK: 400,
+  REMOVE_LABEL_FROM_TASK: 400,
+  VIEW_SERVER: 200,
+  VIEW_AUDIT_LOG: 200,
+  VIEW_BOARD: 200,
+  VIEW_TASK: 200,
+}
+
+const ACTOR_RANK_PROBES: Array<{ key: string; weight: number }> = [
+  { key: 'ADMIN', weight: 1000 },
+  { key: 'MANAGE_SERVER_PERMISSIONS', weight: 800 },
+  { key: 'CREATE_BOARD', weight: 600 },
+  { key: 'CREATE_TASK', weight: 400 },
+  { key: 'VIEW_SERVER', weight: 200 },
+]
+
+function permissionRankWeight(key: string): number {
+  return PERMISSION_RANK_WEIGHT[key] ?? 200
+}
+
+function groupHighestAllowedRankWeight(entries: PermissionEntry[]): number {
+  let best = 200
+  for (const entry of entries) {
+    if (entry.state !== 'ALLOW') continue
+    const weight = permissionRankWeight(entry.kanbanPermissionKey)
+    if (weight > best) best = weight
+  }
+  return best
 }
 
 function serverInitial(name: string): string {
@@ -66,12 +124,43 @@ export function DashboardPage() {
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState('')
   const [messageType, setMessageType] = useState<'success' | 'error'>('error')
+  const [toasts, setToasts] = useState<Array<{ id: number; text: string; type: 'success' | 'error' }>>([])
+  const [nextToastId, setNextToastId] = useState(0)
   const [serverPermissions, setServerPermissions] = useState<PermissionEntry[] | null>(null)
   const [canEditPermissions, setCanEditPermissions] = useState(false)
   const [permissionsLoading, setPermissionsLoading] = useState(false)
+  const [catalogEntries, setCatalogEntries] = useState<KanbanCatalogEntry[]>([])
+  const [catalogLoadedForServer, setCatalogLoadedForServer] = useState<string>('')
+  const [openAddGroupKey, setOpenAddGroupKey] = useState<string>('')
+  const [actorRankWeight, setActorRankWeight] = useState<number>(200)
+  const [newPermId, setNewPermId] = useState<number | ''>('')
+  const [newPermState, setNewPermState] = useState<'ALLOW' | 'DENY'>('ALLOW')
+  const [addSaving, setAddSaving] = useState(false)
 
   function setSuccess(text: string) { setMessage(text); setMessageType('success') }
   function setError(text: string) { setMessage(text); setMessageType('error') }
+
+  // Toast notification functions for less important messages
+  function showToast(text: string, type: 'success' | 'error' = 'success') {
+    const id = nextToastId
+    setNextToastId(id + 1)
+    setToasts((prev) => [...prev, { id, text, type }])
+    
+    // Auto-dismiss after 3 seconds for success, 5 seconds for error
+    const delay = type === 'success' ? 3000 : 5000
+    setTimeout(() => {
+      setToasts((prev) => prev.filter((t) => t.id !== id))
+    }, delay)
+  }
+
+  // Auto-dismiss notifications after a delay
+  useEffect(() => {
+    if (!message) return
+
+    const delay = messageType === 'success' ? 3000 : 5000
+    const timer = setTimeout(() => setMessage(''), delay)
+    return () => clearTimeout(timer)
+  }, [message, messageType])
 
   const isAuthenticated = useMemo(() => authToken.trim().length > 0, [authToken])
 
@@ -155,6 +244,10 @@ export function DashboardPage() {
   useEffect(() => {
     setServerPermissions(null)
     setCanEditPermissions(false)
+    setActorRankWeight(200)
+    setOpenAddGroupKey('')
+    setNewPermId('')
+    setNewPermState('ALLOW')
     if (!selectedServerId || !authToken || !me) return
     void loadServerPermissions(selectedServerId)
   }, [selectedServerId, authToken, me])
@@ -237,9 +330,18 @@ export function DashboardPage() {
       
       if (isOwner) {
         setCanEditPermissions(true)
+        setActorRankWeight(1000)
       } else {
         const decision = await evaluatePermission(authToken, serverId, me.userId, 'MANAGE_SERVER_PERMISSIONS')
         setCanEditPermissions(decision.allowed)
+
+        const rankDecisions = await Promise.all(
+          ACTOR_RANK_PROBES.map(async (probe) => {
+            const result = await evaluatePermission(authToken, serverId, me.userId, probe.key)
+            return result.allowed ? probe.weight : 0
+          }),
+        )
+        setActorRankWeight(Math.max(...rankDecisions, 200))
       }
       
       if (isOwner || apiServer?.ownerId) {
@@ -254,25 +356,97 @@ export function DashboardPage() {
   }
 
   async function handleTogglePermissionState(permissionId: number, currentState: 'ALLOW' | 'DENY') {
-    if (!authToken || !selectedServerId) return
+    if (!authToken || !selectedServerId || !me || !serverPermissions) return
     const newState = currentState === 'ALLOW' ? 'DENY' : 'ALLOW'
+    
+    // Optimistic update: change local state immediately
+    const prevPermissions = serverPermissions
+    setServerPermissions(
+      serverPermissions.map((p) =>
+        p.id === permissionId ? { ...p, state: newState } : p
+      )
+    )
+    
     try {
-      await updatePermissionState(authToken, selectedServerId, permissionId, newState)
-      await loadServerPermissions(selectedServerId)
-      setSuccess(`Permission state changed to ${newState}`)
+      await updatePermissionState(authToken, selectedServerId, me.userId, permissionId, newState)
+      showToast(`Permission state changed to ${newState}`, 'success')
     } catch (error) {
+      // Revert on failure
+      setServerPermissions(prevPermissions)
       setError(`Failed to update permission: ${error}`)
     }
   }
 
   async function handleDeletePermission(permissionId: number) {
-    if (!authToken || !selectedServerId) return
+    if (!authToken || !selectedServerId || !me || !serverPermissions) return
+    
+    // Optimistic update: remove from local state immediately
+    const prevPermissions = serverPermissions
+    setServerPermissions(serverPermissions.filter((p) => p.id !== permissionId))
+    
     try {
-      await deletePermission(authToken, selectedServerId, permissionId)
-      await loadServerPermissions(selectedServerId)
-      setSuccess('Permission removed')
+      await deletePermission(authToken, selectedServerId, me.userId, permissionId)
+      showToast('Permission removed', 'success')
     } catch (error) {
+      // Revert on failure
+      setServerPermissions(prevPermissions)
       setError(`Failed to delete permission: ${error}`)
+    }
+  }
+
+  async function ensureCatalogForServer(serverId: string): Promise<KanbanCatalogEntry[]> {
+    if (!authToken || !me) return []
+    if (catalogLoadedForServer === serverId && catalogEntries.length > 0) return catalogEntries
+
+    const entries = await fetchPermissionCatalog(authToken, serverId, me.userId)
+    setCatalogEntries(entries)
+    setCatalogLoadedForServer(serverId)
+    return entries
+  }
+
+  async function openAddPermission(subjectType: string, subjectId: string, existingKeys: string[]) {
+    if (!selectedServerId) return
+    try {
+      const entries = await ensureCatalogForServer(selectedServerId)
+      const available = entries.filter((c) => {
+        const actorCanGrant = actorRankWeight === 1000 || actorRankWeight > permissionRankWeight(c.key)
+        return !existingKeys.includes(c.key) && actorCanGrant
+      })
+      if (available.length === 0) {
+        showToast('No grantable permissions available for this target', 'error')
+        return
+      }
+      setOpenAddGroupKey(`${subjectType}:${subjectId}`)
+      setNewPermState('ALLOW')
+      setNewPermId(available.length > 0 ? available[0].permissionId : '')
+    } catch (error) {
+      setError(`Failed to load permission catalog: ${error}`)
+    }
+  }
+
+  async function handleAddPermission(subjectType: string, subjectId: string, defaultPriority: number) {
+    if (!authToken || !selectedServerId || !me || !newPermId) return
+
+    try {
+      setAddSaving(true)
+      await createPermission(authToken, selectedServerId, me.userId, {
+        scopeType: 'SERVER',
+        scopeId: selectedServerId,
+        subjectType,
+        subjectId,
+        kanbanPermissionId: Number(newPermId),
+        state: newPermState,
+        priority: defaultPriority,
+        isImmutable: false,
+      })
+      await loadServerPermissions(selectedServerId)
+      setOpenAddGroupKey('')
+      setNewPermId('')
+      showToast('Permission added', 'success')
+    } catch (error) {
+      setError(`Failed to add permission: ${error}`)
+    } finally {
+      setAddSaving(false)
     }
   }
 
@@ -408,22 +582,30 @@ export function DashboardPage() {
                           <div className="kc-perms-granted-to-perms">
                             {group.permissions.map((perm) => {
                               const permName = KANBAN_PERM_INFO[perm.kanbanPermissionKey]?.name ?? perm.kanbanPermissionKey
+                              const groupRank = groupHighestAllowedRankWeight(group.permissions)
+                              const targetGuarded =
+                                (group.subjectType === 'USER' || group.subjectType === 'ROLE')
+                                && actorRankWeight !== 1000
+                                && actorRankWeight <= groupRank
+                              const actorCanModifyKey =
+                                actorRankWeight === 1000 || actorRankWeight > permissionRankWeight(perm.kanbanPermissionKey)
+                              const isLocked = perm.isImmutable || targetGuarded || !actorCanModifyKey
                               return (
                                 <div
                                   key={perm.id}
-                                  className={`kc-perm-button kc-perm-button--${perm.state.toLowerCase()}${perm.isImmutable ? ' kc-perm-button--immutable' : ''}`}
-                                  title={`${permName} — ${perm.state}${perm.isImmutable ? ' (immutable)' : ''}`}
-                                  onClick={() => !perm.isImmutable && handleTogglePermissionState(perm.id, perm.state)}
+                                  className={`kc-perm-button kc-perm-button--${perm.state.toLowerCase()}${isLocked ? ` ${perm.isImmutable ? 'kc-perm-button--immutable' : 'kc-perm-button--locked'}` : ''}`}
+                                  title={`${permName} — ${perm.state}${isLocked ? ' (locked)' : ''}`}
+                                  onClick={() => !isLocked && handleTogglePermissionState(perm.id, perm.state)}
                                   role="button"
-                                  tabIndex={perm.isImmutable ? -1 : 0}
+                                  tabIndex={isLocked ? -1 : 0}
                                   onKeyDown={(e) => {
-                                    if (!perm.isImmutable && (e.key === 'Enter' || e.key === ' ')) {
+                                    if (!isLocked && (e.key === 'Enter' || e.key === ' ')) {
                                       handleTogglePermissionState(perm.id, perm.state)
                                     }
                                   }}
                                 >
                                   <span className="kc-perm-button-text">{permName}</span>
-                                  {perm.isImmutable
+                                  {isLocked
                                     ? <FiLock className="kc-perm-lock" aria-hidden="true" />
                                     : (
                                       <button
@@ -442,9 +624,75 @@ export function DashboardPage() {
                                 </div>
                               )
                             })}
-                            <button className="kc-perm-button-add" title="Add permission" aria-label="Add permission">
-                              <FiPlus aria-hidden="true" />
-                            </button>
+                            {openAddGroupKey === `${group.subjectType}:${group.subjectId}` && (
+                              <div className="kc-perm-add-editor">
+                                <select
+                                  className="kc-perm-add-select"
+                                  value={newPermId}
+                                  onChange={(e) => setNewPermId(e.target.value ? Number(e.target.value) : '')}
+                                >
+                                  {catalogEntries
+                                    .filter((c) => !group.permissions.some((p) => p.kanbanPermissionKey === c.key))
+                                    .map((c) => (
+                                      <option key={c.permissionId} value={c.permissionId}>
+                                        {c.name}
+                                      </option>
+                                    ))}
+                                </select>
+                                <select
+                                  className="kc-perm-add-state"
+                                  value={newPermState}
+                                  onChange={(e) => setNewPermState(e.target.value as 'ALLOW' | 'DENY')}
+                                >
+                                  <option value="ALLOW">ALLOW</option>
+                                  <option value="DENY">DENY</option>
+                                </select>
+                                <button
+                                  type="button"
+                                  className="kc-btn kc-btn-primary kc-perm-add-save"
+                                  disabled={addSaving || !newPermId}
+                                  onClick={() => handleAddPermission(
+                                    group.subjectType,
+                                    group.subjectId,
+                                    Math.max(...group.permissions.map((p) => p.priority), 100),
+                                  )}
+                                >
+                                  Add
+                                </button>
+                                <button
+                                  type="button"
+                                  className="kc-btn kc-btn-ghost kc-perm-add-cancel"
+                                  disabled={addSaving}
+                                  onClick={() => {
+                                    setOpenAddGroupKey('')
+                                    setNewPermId('')
+                                    setNewPermState('ALLOW')
+                                  }}
+                                >
+                                  Cancel
+                                </button>
+                              </div>
+                            )}
+                            {!(group.subjectType === 'DISCORD_PERMISSION' && String(group.subjectId) === '8') && (
+                              <button
+                                type="button"
+                                className="kc-perm-button-add"
+                                title="Add permission"
+                                aria-label="Add permission"
+                                disabled={
+                                  (group.subjectType === 'USER' || group.subjectType === 'ROLE')
+                                    && actorRankWeight !== 1000
+                                    && actorRankWeight <= groupHighestAllowedRankWeight(group.permissions)
+                                }
+                                onClick={() => openAddPermission(
+                                  group.subjectType,
+                                  group.subjectId,
+                                  group.permissions.map((p) => p.kanbanPermissionKey),
+                                )}
+                              >
+                                <FiPlus aria-hidden="true" />
+                              </button>
+                            )}
                           </div>
                         </div>
                       ))}
@@ -494,6 +742,15 @@ export function DashboardPage() {
             </section>
           )}
         </main>
+      </div>
+
+      {/* Toast notifications in bottom-right */}
+      <div className="kc-toast-container">
+        {toasts.map((toast) => (
+          <div key={toast.id} className={`kc-toast kc-toast--${toast.type}`}>
+            {toast.text}
+          </div>
+        ))}
       </div>
     </div>
   )

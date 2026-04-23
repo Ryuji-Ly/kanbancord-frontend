@@ -415,6 +415,12 @@ body {
   filter: grayscale(0.4);
 }
 
+.kc-perm-button--locked {
+  opacity: 0.45;
+  cursor: not-allowed;
+  filter: grayscale(0.4);
+}
+
 .kc-perm-button--allow {
   border-color: #4ade80;
   color: #86efac;
@@ -488,6 +494,46 @@ body {
   border-color: #94a3b8;
   color: #cbd5e1;
   background: rgba(148, 163, 184, 0.1);
+}
+
+.kc-perm-button-add:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  filter: grayscale(0.4);
+}
+
+.kc-perm-button-add:disabled:hover {
+  border-color: rgba(148, 163, 184, 0.5);
+  color: rgba(148, 163, 184, 0.7);
+  background: transparent;
+}
+
+.kc-perm-add-editor {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: 8px;
+  background: rgba(15, 23, 42, 0.35);
+}
+
+.kc-perm-add-select,
+.kc-perm-add-state {
+  height: 30px;
+  border-radius: 6px;
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  background: rgba(2, 6, 23, 0.6);
+  color: var(--kc-text);
+  font-size: 0.82rem;
+  padding: 0 8px;
+}
+
+.kc-perm-add-save,
+.kc-perm-add-cancel {
+  height: 30px;
+  padding: 0 10px;
+  font-size: 0.78rem;
 }
 
 .kc-perm-lock {
@@ -654,5 +700,54 @@ pre {
   .kc-btn {
     width: 100%;
     justify-content: center;
+  }
+}
+
+/* ── Toast Notifications (Bottom-right) ────────────────────── */
+
+.kc-toast-container {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 300px;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.kc-toast {
+  display: inline-block;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  animation: kc-toast-in 0.3s ease-out;
+  pointer-events: auto;
+  word-wrap: break-word;
+  max-width: 100%;
+}
+
+.kc-toast--success {
+  background: var(--kc-success-bg);
+  color: #bbf7d0;
+  border: 1px solid #4ade80;
+}
+
+.kc-toast--error {
+  background: var(--kc-danger-bg);
+  color: #fca5a5;
+  border: 1px solid #ef4444;
+}
+
+@keyframes kc-toast-in {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
