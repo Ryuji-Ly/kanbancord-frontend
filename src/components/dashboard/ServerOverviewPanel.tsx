@@ -2,9 +2,16 @@ import type { DiscordGuild } from '../../types/auth'
 import type { DeleteGroupTarget } from './types'
 import { PermissionsSection } from './permissions/PermissionsSection'
 import type { GrantedToGroup, KanbanCatalogEntry } from '../../services/permissionsService'
+import type { BoardEntry } from '../../services/boardsService'
+import type { BoardCapability } from './types'
+import { BoardsSection } from './boards/BoardsSection'
 
 type ServerOverviewPanelProps = {
   selectedServer: DiscordGuild | null
+  boards: BoardEntry[]
+  boardsLoading: boolean
+  canCreateBoard: boolean
+  boardCapabilities: Record<string, BoardCapability>
   canEditPermissions: boolean
   permissionsCollapsed: boolean
   permissionsLoading: boolean
@@ -29,10 +36,16 @@ type ServerOverviewPanelProps = {
   onSetNewPermState: (value: 'ALLOW' | 'DENY') => void
   onAddPermission: (subjectType: string, subjectId: string, defaultPriority: number) => void
   onCancelAddPermission: () => void
+  onOpenCreateBoard: () => void
+  onOpenBoardSettings: (board: BoardEntry) => void
 }
 
 export function ServerOverviewPanel({
   selectedServer,
+  boards,
+  boardsLoading,
+  canCreateBoard,
+  boardCapabilities,
   canEditPermissions,
   permissionsCollapsed,
   permissionsLoading,
@@ -57,6 +70,8 @@ export function ServerOverviewPanel({
   onSetNewPermState,
   onAddPermission,
   onCancelAddPermission,
+  onOpenCreateBoard,
+  onOpenBoardSettings,
 }: ServerOverviewPanelProps) {
   if (!selectedServer) return null
 
@@ -64,6 +79,15 @@ export function ServerOverviewPanel({
     <section className="kc-panel">
       <h2>{selectedServer.name}</h2>
       <p className="kc-muted">Server overview and permissions.</p>
+
+      <BoardsSection
+        boards={boards}
+        loading={boardsLoading}
+        canCreateBoard={canCreateBoard}
+        boardCapabilities={boardCapabilities}
+        onOpenCreate={onOpenCreateBoard}
+        onOpenSettings={onOpenBoardSettings}
+      />
 
       <PermissionsSection
         canEditPermissions={canEditPermissions}

@@ -1,4 +1,5 @@
 import type { DiscordGuild, MeResponse } from '../../types/auth'
+import type { BoardEntry } from '../../services/boardsService'
 import type { PermissionEntry } from '../../services/permissionsService'
 
 export type ApiServer = {
@@ -24,6 +25,18 @@ export type DeleteGroupTarget = {
   subjectId: string
   subjectDisplay: string
   permissions: PermissionEntry[]
+}
+
+export type BoardCapability = {
+  canEditDetails: boolean
+  canEditPermissions: boolean
+}
+
+export type BoardModalConfig = {
+  mode: 'create' | 'edit'
+  board: BoardEntry | null
+  canEditDetails: boolean
+  canEditPermissions: boolean
 }
 
 export type HeaderUser = MeResponse | null

@@ -5,6 +5,7 @@ import {
   type KanbanCatalogEntry,
   type PermissionEntry,
 } from '../../../services/permissionsService'
+import { permissionRankWeight } from '../permissionRank'
 
 type PermissionGroupRowProps = {
   group: GrantedToGroup
@@ -25,42 +26,6 @@ type PermissionGroupRowProps = {
   onSetNewPermState: (value: 'ALLOW' | 'DENY') => void
   onAddPermission: (subjectType: string, subjectId: string, defaultPriority: number) => void
   onCancelAddPermission: () => void
-}
-
-function permissionRankWeight(key: string): number {
-  const weightMap: Record<string, number> = {
-    ADMIN: 1000,
-    MANAGE_SERVER_PERMISSIONS: 800,
-    CREATE_BOARD: 600,
-    EDIT_BOARD_DETAILS: 600,
-    EDIT_BOARD_PERMISSIONS: 600,
-    ARCHIVE_BOARD: 600,
-    DELETE_BOARD: 600,
-    CREATE_COLUMN: 600,
-    EDIT_COLUMN: 600,
-    DELETE_COLUMN: 600,
-    MOVE_COLUMN: 600,
-    CREATE_LABEL: 600,
-    EDIT_LABEL: 600,
-    DELETE_LABEL: 600,
-    CREATE_TASK: 400,
-    EDIT_TASK: 400,
-    MOVE_TASK: 400,
-    DELETE_TASK: 400,
-    ARCHIVE_TASK: 400,
-    ASSIGN_TASK_SELF: 400,
-    ASSIGN_TASK_OTHERS: 400,
-    CREATE_TASK_COMMENT: 400,
-    EDIT_TASK_COMMENT: 400,
-    DELETE_TASK_COMMENT: 400,
-    APPLY_LABEL_TO_TASK: 400,
-    REMOVE_LABEL_FROM_TASK: 400,
-    VIEW_SERVER: 200,
-    VIEW_AUDIT_LOG: 200,
-    VIEW_BOARD: 200,
-    VIEW_TASK: 200,
-  }
-  return weightMap[key] ?? 200
 }
 
 function groupHighestAllowedRankWeight(entries: PermissionEntry[]): number {
