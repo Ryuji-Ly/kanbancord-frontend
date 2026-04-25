@@ -33,6 +33,8 @@ export type KanbanCatalogEntry = {
   category: string
 }
 
+export type PermissionScopeType = 'SERVER' | 'BOARD'
+
 export async function fetchServerPermissions(
   token: string,
   serverId: string,
@@ -56,12 +58,16 @@ export async function evaluatePermission(
   serverId: string,
   userId: string,
   permissionKey: string,
+  boardId?: string,
 ): Promise<PermissionDecision> {
   const params = new URLSearchParams({
     userId,
     targetUserId: userId,
     permissionKey,
   })
+  if (boardId) {
+    params.set('boardId', boardId)
+  }
   const response = await fetch(
     apiUrl(`/api/servers/${serverId}/permissions/evaluate?${params.toString()}`),
     { headers: authHeaders(token) },
@@ -160,6 +166,39 @@ export const KANBAN_PERM_INFO: Record<string, KanbanPermInfo> = {
 }
 
 export const CATEGORY_ORDER = ['SERVER', 'BOARD', 'COLUMN', 'TASK', 'COMMENT', 'LABEL']
+
+export const BOARD_SCOPE_PERMISSION_KEYS = new Set<string>([
+  'ADMIN',
+  'VIEW_BOARD',
+  'EDIT_BOARD_DETAILS',
+  'EDIT_BOARD_PERMISSIONS',
+  'ARCHIVE_BOARD',
+  'DELETE_BOARD',
+  'CREATE_COLUMN',
+  'EDIT_COLUMN',
+  'DELETE_COLUMN',
+  'MOVE_COLUMN',
+  'CREATE_TASK',
+  'VIEW_TASK',
+  'EDIT_TASK',
+  'MOVE_TASK',
+  'DELETE_TASK',
+  'ARCHIVE_TASK',
+  'ASSIGN_TASK_SELF',
+  'ASSIGN_TASK_OTHERS',
+  'CREATE_TASK_COMMENT',
+  'EDIT_TASK_COMMENT',
+  'DELETE_TASK_COMMENT',
+  'CREATE_LABEL',
+  'EDIT_LABEL',
+  'DELETE_LABEL',
+  'APPLY_LABEL_TO_TASK',
+  'REMOVE_LABEL_FROM_TASK',
+])
+
+export function isBoardScopePermissionKey(key: string): boolean {
+  return BOARD_SCOPE_PERMISSION_KEYS.has(key)
+}
 
 export function groupPermissionsByCategory(
   entries: PermissionEntry[],
@@ -401,11 +440,31 @@ export async function fetchPermissionCatalog(
   return response.json() as Promise<KanbanCatalogEntry[]>
 }
 
+export async function fetchScopedPermissions(
+  token: string,
+  serverId: string,
+  userId: string,
+  scopeType: PermissionScopeType,
+  scopeId: string,
+): Promise<PermissionEntry[]> {
+  const params = new URLSearchParams({
+    userId,
+    scopeType,
+    scopeId,
+  })
+  const response = await fetch(
+    apiUrl(`/api/servers/${serverId}/permissions?${params.toString()}`),
+    { headers: authHeaders(token) },
+  )
+  if (!response.ok) throw new Error(await parseError(response))
+  return response.json() as Promise<PermissionEntry[]>
+}
+
 export async function createPermission(  token: string,
   serverId: string,
   userId: string,
   input: {
-    scopeType: 'SERVER' | 'BOARD'
+    scopeType: PermissionScopeType
     scopeId: string
     subjectType: string
     subjectId: string

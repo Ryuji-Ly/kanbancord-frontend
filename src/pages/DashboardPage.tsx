@@ -17,6 +17,7 @@ import { fetchMyServers, fetchMe } from '../services/meService'
 import { fetchUserGuilds, filterManageableGuilds } from '../services/discordGuildsService'
 import {
   fetchServerPermissions,
+  fetchScopedPermissions,
   evaluatePermission,
   groupPermissionsByGrantedTo,
   updatePermissionState,
@@ -34,49 +35,30 @@ import {
   type ServerMemberEntry,
   type SubjectLookups,
 } from '../services/permissionsService'
+import { createBoard, fetchBoards, updateBoard, type BoardEntry } from '../services/boardsService'
 import { DISCORD_CLIENT_ID } from '../config/env'
 import type { DiscordGuild, MeResponse } from '../types/auth'
 import { AddEntryModal } from '../components/dashboard/AddEntryModal'
+import { BoardModal } from '../components/dashboard/boards/BoardModal'
+import {
+  buildInheritedBoardPermissionDrafts,
+  diffBoardPermissions,
+} from '../components/dashboard/boards/boardPermissionDraft'
 import { DashboardHeader } from '../components/dashboard/DashboardHeader'
 import { DeleteGroupModal } from '../components/dashboard/DeleteGroupModal'
+import { permissionRankWeight } from '../components/dashboard/permissionRank'
 import { ServerOverviewPanel } from '../components/dashboard/ServerOverviewPanel'
 import { ServersGridSection } from '../components/dashboard/ServersGridSection'
 import { SidebarServerRail } from '../components/dashboard/SidebarServerRail'
 import { ToastStack } from '../components/dashboard/ToastStack'
-import type { ApiServer, DeleteGroupTarget, MergedServer, ToastMessage } from '../components/dashboard/types'
-
-const PERMISSION_RANK_WEIGHT: Record<string, number> = {
-  ADMIN: 1000,
-  MANAGE_SERVER_PERMISSIONS: 800,
-  CREATE_BOARD: 600,
-  EDIT_BOARD_DETAILS: 600,
-  EDIT_BOARD_PERMISSIONS: 600,
-  ARCHIVE_BOARD: 600,
-  DELETE_BOARD: 600,
-  CREATE_COLUMN: 600,
-  EDIT_COLUMN: 600,
-  DELETE_COLUMN: 600,
-  MOVE_COLUMN: 600,
-  CREATE_LABEL: 600,
-  EDIT_LABEL: 600,
-  DELETE_LABEL: 600,
-  CREATE_TASK: 400,
-  EDIT_TASK: 400,
-  MOVE_TASK: 400,
-  DELETE_TASK: 400,
-  ARCHIVE_TASK: 400,
-  ASSIGN_TASK_SELF: 400,
-  ASSIGN_TASK_OTHERS: 400,
-  CREATE_TASK_COMMENT: 400,
-  EDIT_TASK_COMMENT: 400,
-  DELETE_TASK_COMMENT: 400,
-  APPLY_LABEL_TO_TASK: 400,
-  REMOVE_LABEL_FROM_TASK: 400,
-  VIEW_SERVER: 200,
-  VIEW_AUDIT_LOG: 200,
-  VIEW_BOARD: 200,
-  VIEW_TASK: 200,
-}
+import type {
+  ApiServer,
+  BoardCapability,
+  BoardModalConfig,
+  DeleteGroupTarget,
+  MergedServer,
+  ToastMessage,
+} from '../components/dashboard/types'
 
 const ACTOR_RANK_PROBES: Array<{ key: string; weight: number }> = [
   { key: 'ADMIN', weight: 1000 },
@@ -85,10 +67,6 @@ const ACTOR_RANK_PROBES: Array<{ key: string; weight: number }> = [
   { key: 'CREATE_TASK', weight: 400 },
   { key: 'VIEW_SERVER', weight: 200 },
 ]
-
-function permissionRankWeight(key: string): number {
-  return PERMISSION_RANK_WEIGHT[key] ?? 200
-}
 
 function buildBotInviteLink(guildId: string): string {
   const params = new URLSearchParams({
@@ -115,6 +93,10 @@ export function DashboardPage() {
   const [toasts, setToasts] = useState<ToastMessage[]>([])
   const [nextToastId, setNextToastId] = useState(0)
   const [serverPermissions, setServerPermissions] = useState<PermissionEntry[] | null>(null)
+  const [boards, setBoards] = useState<BoardEntry[]>([])
+  const [boardsLoading, setBoardsLoading] = useState(false)
+  const [canCreateBoard, setCanCreateBoard] = useState(false)
+  const [boardCapabilities, setBoardCapabilities] = useState<Record<string, BoardCapability>>({})
   const [canEditPermissions, setCanEditPermissions] = useState(false)
   const [permissionsLoading, setPermissionsLoading] = useState(false)
   const [permissionsCollapsed, setPermissionsCollapsed] = useState(true)
@@ -143,6 +125,10 @@ export function DashboardPage() {
   // ── Delete-group confirmation modal ──────────────────────────
   const [deleteGroupTarget, setDeleteGroupTarget] = useState<DeleteGroupTarget | null>(null)
   const [deleteGroupSaving, setDeleteGroupSaving] = useState(false)
+  const [boardModalConfig, setBoardModalConfig] = useState<BoardModalConfig | null>(null)
+  const [boardModalPermissions, setBoardModalPermissions] = useState<PermissionEntry[]>([])
+  const [boardModalLoading, setBoardModalLoading] = useState(false)
+  const [boardModalSaving, setBoardModalSaving] = useState(false)
 
   function setSuccess(text: string) { setMessage(text); setMessageType('success') }
   function setError(text: string) { setMessage(text); setMessageType('error') }
@@ -250,6 +236,14 @@ export function DashboardPage() {
 
   useEffect(() => {
     setServerPermissions(null)
+    setBoards([])
+    setBoardsLoading(false)
+    setCanCreateBoard(false)
+    setBoardCapabilities({})
+    setBoardModalConfig(null)
+    setBoardModalPermissions([])
+    setBoardModalLoading(false)
+    setBoardModalSaving(false)
     setCanEditPermissions(false)
     setPermissionsCollapsed(true)
     setExpandedPermissionGroups(new Set())
@@ -263,6 +257,7 @@ export function DashboardPage() {
     setServerMembers([])
     if (!selectedServerId || !authToken || !me) return
     void loadServerPermissions(selectedServerId)
+    void loadServerBoards(selectedServerId)
   }, [selectedServerId, authToken, me])
 
   async function completeDiscordExchange(code: string) {
@@ -374,6 +369,75 @@ export function DashboardPage() {
     } finally {
       setPermissionsLoading(false)
     }
+  }
+
+  async function loadServerBoards(serverId: string) {
+    if (!authToken || !me) return
+
+    setBoardsLoading(true)
+    try {
+      const createDecision = await evaluatePermission(authToken, serverId, me.userId, 'CREATE_BOARD')
+      setCanCreateBoard(createDecision.allowed)
+
+      const boardEntries = await fetchBoards(authToken, serverId, me.userId)
+      setBoards(boardEntries)
+
+      const capabilityEntries = await Promise.all(
+        boardEntries.map(async (board) => {
+          const boardId = String(board.boardId)
+          const [detailsDecision, permissionsDecision] = await Promise.all([
+            evaluatePermission(authToken, serverId, me.userId, 'EDIT_BOARD_DETAILS', boardId),
+            evaluatePermission(authToken, serverId, me.userId, 'EDIT_BOARD_PERMISSIONS', boardId),
+          ])
+          return [
+            boardId,
+            {
+              canEditDetails: detailsDecision.allowed,
+              canEditPermissions: permissionsDecision.allowed,
+            },
+          ] as const
+        }),
+      )
+
+      setBoardCapabilities(Object.fromEntries(capabilityEntries))
+    } catch (error) {
+      console.error('Failed to load boards:', error)
+      setBoards([])
+      setBoardCapabilities({})
+      setCanCreateBoard(false)
+    } finally {
+      setBoardsLoading(false)
+    }
+  }
+
+  async function reconcileBoardPermissions(
+    serverId: string,
+    boardId: string,
+    desiredPermissions: PermissionEntry[],
+  ) {
+    if (!authToken || !me) return
+
+    const existingPermissions = await fetchScopedPermissions(authToken, serverId, me.userId, 'BOARD', boardId)
+    const { toDelete, toToggle, toCreate } = diffBoardPermissions(existingPermissions, desiredPermissions)
+
+    await Promise.all([
+      ...toDelete.map((permission) => deletePermission(authToken, serverId, me.userId, permission.id)),
+      ...toToggle.map((permission) =>
+        updatePermissionState(authToken, serverId, me.userId, permission.permissionId, permission.newState),
+      ),
+      ...toCreate.map((permission) =>
+        createPermission(authToken, serverId, me.userId, {
+          scopeType: 'BOARD',
+          scopeId: boardId,
+          subjectType: permission.subjectType,
+          subjectId: permission.subjectId,
+          kanbanPermissionId: permission.kanbanPermissionId,
+          state: permission.state,
+          priority: permission.priority,
+          isImmutable: permission.isImmutable,
+        }),
+      ),
+    ])
   }
 
   async function handleTogglePermissionState(permissionId: number, currentState: 'ALLOW' | 'DENY') {
@@ -583,6 +647,131 @@ export function DashboardPage() {
     }
   }
 
+  async function openCreateBoardModal() {
+    if (!selectedServerId || !authToken || !me) return
+
+    try {
+      const [resolvedServerPermissions] = await Promise.all([
+        serverPermissions
+          ? Promise.resolve(serverPermissions)
+          : fetchServerPermissions(authToken, selectedServerId, me.userId).then((permissions) => {
+              setServerPermissions(permissions)
+              return permissions
+            }),
+        ensureCatalogForServer(selectedServerId),
+        serverRoles.length === 0
+          ? fetchServerRoles(authToken, selectedServerId, me.userId).then(setServerRoles)
+          : Promise.resolve(),
+        serverMembers.length === 0
+          ? fetchServerMembers(authToken, selectedServerId, me.userId).then(setServerMembers)
+          : Promise.resolve(),
+      ])
+      setBoardModalPermissions(buildInheritedBoardPermissionDrafts(resolvedServerPermissions))
+      setBoardModalConfig({
+        mode: 'create',
+        board: null,
+        canEditDetails: true,
+        canEditPermissions: true,
+      })
+    } catch (error) {
+      setError(`Failed to prepare board creation: ${error}`)
+    }
+  }
+
+  async function openBoardSettingsModal(board: BoardEntry) {
+    if (!authToken || !me || !selectedServerId) return
+
+    const capabilities = boardCapabilities[String(board.boardId)]
+    if (!capabilities || (!capabilities.canEditDetails && !capabilities.canEditPermissions)) {
+      return
+    }
+
+    setBoardModalLoading(true)
+    setBoardModalConfig({
+      mode: 'edit',
+      board,
+      canEditDetails: capabilities.canEditDetails,
+      canEditPermissions: capabilities.canEditPermissions,
+    })
+
+    try {
+      await Promise.all([
+        ensureCatalogForServer(selectedServerId),
+        serverRoles.length === 0
+          ? fetchServerRoles(authToken, selectedServerId, me.userId).then(setServerRoles)
+          : Promise.resolve(),
+        serverMembers.length === 0
+          ? fetchServerMembers(authToken, selectedServerId, me.userId).then(setServerMembers)
+          : Promise.resolve(),
+      ])
+
+      if (capabilities.canEditPermissions) {
+        const permissions = await fetchScopedPermissions(
+          authToken,
+          selectedServerId,
+          me.userId,
+          'BOARD',
+          String(board.boardId),
+        )
+        setBoardModalPermissions(permissions)
+      } else {
+        setBoardModalPermissions([])
+      }
+    } catch (error) {
+      setError(`Failed to load board configuration: ${error}`)
+      setBoardModalConfig(null)
+    } finally {
+      setBoardModalLoading(false)
+    }
+  }
+
+  async function handleSaveBoardModal(payload: {
+    name: string
+    description: string
+    permissions: PermissionEntry[]
+  }) {
+    if (!authToken || !me || !selectedServerId || !boardModalConfig) return
+
+    if (boardModalConfig.canEditDetails && !payload.name.trim()) {
+      setError('Board name is required')
+      return
+    }
+
+    setBoardModalSaving(true)
+    try {
+      if (boardModalConfig.mode === 'create') {
+        const created = await createBoard(authToken, selectedServerId, me.userId, {
+          name: payload.name,
+          description: payload.description,
+          createdBy: me.userId,
+        })
+        await reconcileBoardPermissions(selectedServerId, String(created.boardId), payload.permissions)
+        showToast('Board created', 'success')
+      } else if (boardModalConfig.board) {
+        const boardId = String(boardModalConfig.board.boardId)
+        if (boardModalConfig.canEditDetails) {
+          await updateBoard(authToken, selectedServerId, me.userId, boardId, {
+            name: payload.name,
+            description: payload.description,
+            createdBy: boardModalConfig.board.createdBy,
+          })
+        }
+        if (boardModalConfig.canEditPermissions) {
+          await reconcileBoardPermissions(selectedServerId, boardId, payload.permissions)
+        }
+        showToast('Board updated', 'success')
+      }
+
+      await Promise.all([loadServerBoards(selectedServerId), loadServerPermissions(selectedServerId)])
+      setBoardModalConfig(null)
+      setBoardModalPermissions([])
+    } catch (error) {
+      setError(`Failed to save board: ${error}`)
+    } finally {
+      setBoardModalSaving(false)
+    }
+  }
+
   function onLogout() {
     clearToken()
     clearDiscordToken()
@@ -595,6 +784,10 @@ export function DashboardPage() {
     setBotServerIds(new Set())
     setSelectedServerId('')
     setServerPermissions(null)
+    setBoards([])
+    setCanCreateBoard(false)
+    setBoardCapabilities({})
+    setBoardModalConfig(null)
     setCanEditPermissions(false)
     setSuccess('Logged out successfully.')
   }
@@ -735,6 +928,10 @@ export function DashboardPage() {
 
           <ServerOverviewPanel
             selectedServer={isAuthenticated ? selectedServer : null}
+            boards={boards}
+            boardsLoading={boardsLoading}
+            canCreateBoard={canCreateBoard}
+            boardCapabilities={boardCapabilities}
             canEditPermissions={canEditPermissions}
             permissionsCollapsed={permissionsCollapsed}
             permissionsLoading={permissionsLoading}
@@ -766,6 +963,12 @@ export function DashboardPage() {
               setOpenAddGroupKey('')
               setNewPermId('')
               setNewPermState('ALLOW')
+            }}
+            onOpenCreateBoard={() => {
+              void openCreateBoardModal()
+            }}
+            onOpenBoardSettings={(board) => {
+              void openBoardSettingsModal(board)
             }}
           />
 
@@ -808,6 +1011,32 @@ export function DashboardPage() {
         onCyclePermState={cycleModalPermState}
         onSave={() => {
           void handleSaveModal()
+        }}
+      />
+
+      <BoardModal
+        show={boardModalConfig !== null}
+        mode={boardModalConfig?.mode ?? 'create'}
+        board={boardModalConfig?.board ?? null}
+        initialName={boardModalConfig?.board?.name ?? ''}
+        initialDescription={boardModalConfig?.board?.description ?? ''}
+        initialPermissions={boardModalPermissions}
+        catalogEntries={catalogEntries}
+        serverRoles={serverRoles}
+        serverMembers={serverMembers}
+        actorRankWeight={actorRankWeight}
+        canEditDetails={boardModalConfig?.canEditDetails ?? false}
+        canEditPermissions={boardModalConfig?.canEditPermissions ?? false}
+        loading={boardModalLoading}
+        saving={boardModalSaving}
+        onClose={() => {
+          if (!boardModalSaving) {
+            setBoardModalConfig(null)
+            setBoardModalPermissions([])
+          }
+        }}
+        onSave={(payload) => {
+          void handleSaveBoardModal(payload)
         }}
       />
     </div>

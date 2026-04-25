@@ -9,6 +9,8 @@ import {
 
 type AddEntryModalProps = {
   show: boolean
+  title?: string
+  ariaLabel?: string
   loading: boolean
   saving: boolean
   modalSearch: string
@@ -29,6 +31,8 @@ type AddEntryModalProps = {
 
 export function AddEntryModal({
   show,
+  title = 'Add Permission Entry',
+  ariaLabel = 'Add Permission Entry',
   loading,
   saving,
   modalSearch,
@@ -53,12 +57,12 @@ export function AddEntryModal({
       className="kc-modal-overlay"
       role="dialog"
       aria-modal="true"
-      aria-label="Add Permission Entry"
+      aria-label={ariaLabel}
       onClick={onClose}
     >
       <div className="kc-modal" onClick={(e) => e.stopPropagation()}>
         <div className="kc-modal-header">
-          <h3 className="kc-modal-title">Add Permission Entry</h3>
+          <h3 className="kc-modal-title">{title}</h3>
           <button type="button" className="kc-modal-close" onClick={onClose} aria-label="Close modal">
             <FiX aria-hidden="true" />
           </button>
