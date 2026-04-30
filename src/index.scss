@@ -619,6 +619,27 @@ pre {
   min-width: 320px;
   min-height: 120px;
 
+  &--movable {
+    cursor: grab;
+  }
+
+  &--dragging {
+    opacity: 0.55;
+    border-color: rgba($kc-accent-cyan, 0.55);
+  }
+
+  &--drop-before {
+    box-shadow: inset 4px 0 0 rgba($kc-accent-cyan, 0.85);
+  }
+
+  &--drop-after {
+    box-shadow: inset -4px 0 0 rgba($kc-accent-cyan, 0.85);
+  }
+
+  &:active {
+    cursor: grabbing;
+  }
+
   h3 {
     margin: 0 0 6px;
     font-size: 1rem;
@@ -641,6 +662,10 @@ pre {
       text-overflow: ellipsis;
       white-space: nowrap;
     }
+  }
+
+  .kc-column-content {
+    cursor: default;
   }
 
   .kc-column-name-editable {
