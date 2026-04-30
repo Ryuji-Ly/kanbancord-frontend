@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import {
   clearCallbackQuery,
   clearDiscordToken,
@@ -35,7 +36,14 @@ import {
   type ServerMemberEntry,
   type SubjectLookups,
 } from '../services/permissionsService'
-import { createBoard, fetchBoards, updateBoard, type BoardEntry } from '../services/boardsService'
+import {
+  archiveBoard,
+  createBoard,
+  deleteBoard,
+  fetchBoards,
+  updateBoard,
+  type BoardEntry,
+} from '../services/boardsService'
 import { DISCORD_CLIENT_ID } from '../config/env'
 import type { DiscordGuild, MeResponse } from '../types/auth'
 import { AddEntryModal } from '../components/dashboard/AddEntryModal'
@@ -68,6 +76,26 @@ const ACTOR_RANK_PROBES: Array<{ key: string; weight: number }> = [
   { key: 'VIEW_SERVER', weight: 200 },
 ]
 
+const DASHBOARD_REFRESH_MS = 10_000
+
+type DashboardWarmCache = {
+  authToken: string
+  discordToken: string
+  me: MeResponse | null
+  manageableGuilds: DiscordGuild[]
+  apiServers: ApiServer[]
+  botServerIds: string[]
+  selectedServerId: string
+  serverPermissions: PermissionEntry[] | null
+  boards: BoardEntry[]
+  canCreateBoard: boolean
+  boardCapabilities: Record<string, BoardCapability>
+  canEditPermissions: boolean
+  actorRankWeight: number
+}
+
+let dashboardWarmCache: DashboardWarmCache | null = null
+
 function buildBotInviteLink(guildId: string): string {
   const params = new URLSearchParams({
     client_id: DISCORD_CLIENT_ID,
@@ -80,31 +108,32 @@ function buildBotInviteLink(guildId: string): string {
 }
 
 export function DashboardPage() {
+  const navigate = useNavigate()
   const [authToken, setAuthToken] = useState<string>(() => getStoredToken())
   const [discordToken, setDiscordToken] = useState<string>(() => getStoredDiscordToken())
-  const [me, setMe] = useState<MeResponse | null>(null)
-  const [botServerIds, setBotServerIds] = useState<Set<string>>(new Set())
-  const [apiServers, setApiServers] = useState<ApiServer[]>([])
-  const [manageableGuilds, setManageableGuilds] = useState<DiscordGuild[]>([])
-  const [selectedServerId, setSelectedServerId] = useState<string>('')
+  const [me, setMe] = useState<MeResponse | null>(() => dashboardWarmCache?.me ?? null)
+  const [botServerIds, setBotServerIds] = useState<Set<string>>(() => new Set(dashboardWarmCache?.botServerIds ?? []))
+  const [apiServers, setApiServers] = useState<ApiServer[]>(() => dashboardWarmCache?.apiServers ?? [])
+  const [manageableGuilds, setManageableGuilds] = useState<DiscordGuild[]>(() => dashboardWarmCache?.manageableGuilds ?? [])
+  const [selectedServerId, setSelectedServerId] = useState<string>(() => dashboardWarmCache?.selectedServerId ?? '')
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState('')
   const [messageType, setMessageType] = useState<'success' | 'error'>('error')
   const [toasts, setToasts] = useState<ToastMessage[]>([])
   const [nextToastId, setNextToastId] = useState(0)
-  const [serverPermissions, setServerPermissions] = useState<PermissionEntry[] | null>(null)
-  const [boards, setBoards] = useState<BoardEntry[]>([])
+  const [serverPermissions, setServerPermissions] = useState<PermissionEntry[] | null>(() => dashboardWarmCache?.serverPermissions ?? null)
+  const [boards, setBoards] = useState<BoardEntry[]>(() => dashboardWarmCache?.boards ?? [])
   const [boardsLoading, setBoardsLoading] = useState(false)
-  const [canCreateBoard, setCanCreateBoard] = useState(false)
-  const [boardCapabilities, setBoardCapabilities] = useState<Record<string, BoardCapability>>({})
-  const [canEditPermissions, setCanEditPermissions] = useState(false)
+  const [canCreateBoard, setCanCreateBoard] = useState(() => dashboardWarmCache?.canCreateBoard ?? false)
+  const [boardCapabilities, setBoardCapabilities] = useState<Record<string, BoardCapability>>(() => dashboardWarmCache?.boardCapabilities ?? {})
+  const [canEditPermissions, setCanEditPermissions] = useState(() => dashboardWarmCache?.canEditPermissions ?? false)
   const [permissionsLoading, setPermissionsLoading] = useState(false)
   const [permissionsCollapsed, setPermissionsCollapsed] = useState(true)
   const [expandedPermissionGroups, setExpandedPermissionGroups] = useState<Set<string>>(new Set())
   const [catalogEntries, setCatalogEntries] = useState<KanbanCatalogEntry[]>([])
   const [catalogLoadedForServer, setCatalogLoadedForServer] = useState<string>('')
   const [openAddGroupKey, setOpenAddGroupKey] = useState<string>('')
-  const [actorRankWeight, setActorRankWeight] = useState<number>(200)
+  const [actorRankWeight, setActorRankWeight] = useState<number>(() => dashboardWarmCache?.actorRankWeight ?? 200)
   const [newPermId, setNewPermId] = useState<number | ''>('')
   const [newPermState, setNewPermState] = useState<'ALLOW' | 'DENY'>('ALLOW')
   const [addSaving, setAddSaving] = useState(false)
@@ -129,6 +158,7 @@ export function DashboardPage() {
   const [boardModalPermissions, setBoardModalPermissions] = useState<PermissionEntry[]>([])
   const [boardModalLoading, setBoardModalLoading] = useState(false)
   const [boardModalSaving, setBoardModalSaving] = useState(false)
+  const prevSelectedServerIdRef = useRef<string>(selectedServerId)
 
   function setSuccess(text: string) { setMessage(text); setMessageType('success') }
   function setError(text: string) { setMessage(text); setMessageType('error') }
@@ -231,34 +261,105 @@ export function DashboardPage() {
     // when a stale stored JWT is still being validated by loadMe
     if (!me) return
 
-    void loadGuilds(discordToken)
+    const hasWarmGuildData =
+      dashboardWarmCache !== null &&
+      dashboardWarmCache.discordToken === discordToken &&
+      dashboardWarmCache.authToken === authToken &&
+      dashboardWarmCache.me?.userId === me.userId &&
+      dashboardWarmCache.manageableGuilds.length > 0
+
+    void loadGuilds(discordToken, { silent: hasWarmGuildData })
   }, [me, discordToken])
 
   useEffect(() => {
-    setServerPermissions(null)
-    setBoards([])
-    setBoardsLoading(false)
-    setCanCreateBoard(false)
-    setBoardCapabilities({})
-    setBoardModalConfig(null)
-    setBoardModalPermissions([])
-    setBoardModalLoading(false)
-    setBoardModalSaving(false)
-    setCanEditPermissions(false)
-    setPermissionsCollapsed(true)
-    setExpandedPermissionGroups(new Set())
-    setActorRankWeight(200)
-    setOpenAddGroupKey('')
-    setNewPermId('')
-    setNewPermState('ALLOW')
-    setPermFilter('')
-    setShowAddModal(false)
-    setServerRoles([])
-    setServerMembers([])
+    if (!discordToken || !authToken || !me) return
+
+    const timer = window.setInterval(() => {
+      void loadGuilds(discordToken, { silent: true })
+    }, DASHBOARD_REFRESH_MS)
+
+    return () => {
+      window.clearInterval(timer)
+    }
+  }, [discordToken, authToken, me])
+
+  useEffect(() => {
     if (!selectedServerId || !authToken || !me) return
-    void loadServerPermissions(selectedServerId)
-    void loadServerBoards(selectedServerId)
+
+    const serverChanged = prevSelectedServerIdRef.current !== selectedServerId
+    prevSelectedServerIdRef.current = selectedServerId
+
+    if (serverChanged) {
+      setServerPermissions(null)
+      setBoards([])
+      setBoardsLoading(false)
+      setCanCreateBoard(false)
+      setBoardCapabilities({})
+      setBoardModalConfig(null)
+      setBoardModalPermissions([])
+      setBoardModalLoading(false)
+      setBoardModalSaving(false)
+      setCanEditPermissions(false)
+      setPermissionsCollapsed(true)
+      setExpandedPermissionGroups(new Set())
+      setActorRankWeight(200)
+      setOpenAddGroupKey('')
+      setNewPermId('')
+      setNewPermState('ALLOW')
+      setPermFilter('')
+      setShowAddModal(false)
+      setServerRoles([])
+      setServerMembers([])
+    }
+
+    void loadServerPermissions(selectedServerId, { silent: !serverChanged })
+    void loadServerBoards(selectedServerId, { silent: !serverChanged })
   }, [selectedServerId, authToken, me])
+
+  useEffect(() => {
+    if (!selectedServerId || !authToken || !me) return
+
+    const timer = window.setInterval(() => {
+      void loadServerPermissions(selectedServerId, { silent: true })
+      void loadServerBoards(selectedServerId, { silent: true })
+    }, DASHBOARD_REFRESH_MS)
+
+    return () => {
+      window.clearInterval(timer)
+    }
+  }, [selectedServerId, authToken, me, apiServers])
+
+  useEffect(() => {
+    dashboardWarmCache = {
+      authToken,
+      discordToken,
+      me,
+      manageableGuilds,
+      apiServers,
+      botServerIds: Array.from(botServerIds),
+      selectedServerId,
+      serverPermissions,
+      boards,
+      canCreateBoard,
+      boardCapabilities,
+      canEditPermissions,
+      actorRankWeight,
+    }
+  }, [
+    authToken,
+    discordToken,
+    me,
+    manageableGuilds,
+    apiServers,
+    botServerIds,
+    selectedServerId,
+    serverPermissions,
+    boards,
+    canCreateBoard,
+    boardCapabilities,
+    canEditPermissions,
+    actorRankWeight,
+  ])
 
   async function completeDiscordExchange(code: string) {
     setLoading(true)
@@ -294,9 +395,11 @@ export function DashboardPage() {
     }
   }
 
-  async function loadGuilds(token: string) {
-    setLoading(true)
-    setMessage('')
+  async function loadGuilds(token: string, options: { silent?: boolean } = {}) {
+    if (!options.silent) {
+      setLoading(true)
+      setMessage('')
+    }
 
     try {
       const allGuilds = await fetchUserGuilds(token)
@@ -325,13 +428,17 @@ export function DashboardPage() {
       setManageableGuilds([])
       setBotServerIds(new Set())
     } finally {
-      setLoading(false)
+      if (!options.silent) {
+        setLoading(false)
+      }
     }
   }
 
-  async function loadServerPermissions(serverId: string) {
+  async function loadServerPermissions(serverId: string, options: { silent?: boolean } = {}) {
     if (!authToken || !me) return
-    setPermissionsLoading(true)
+    if (!options.silent) {
+      setPermissionsLoading(true)
+    }
     try {
       const apiServer = apiServers.find((s) => String(s.serverId) === serverId)
       const isOwner = apiServer?.ownerId && String(apiServer.ownerId) === String(me.userId)
@@ -367,14 +474,18 @@ export function DashboardPage() {
     } catch (error) {
       console.error('Failed to load permissions:', error)
     } finally {
-      setPermissionsLoading(false)
+      if (!options.silent) {
+        setPermissionsLoading(false)
+      }
     }
   }
 
-  async function loadServerBoards(serverId: string) {
+  async function loadServerBoards(serverId: string, options: { silent?: boolean } = {}) {
     if (!authToken || !me) return
 
-    setBoardsLoading(true)
+    if (!options.silent) {
+      setBoardsLoading(true)
+    }
     try {
       const createDecision = await evaluatePermission(authToken, serverId, me.userId, 'CREATE_BOARD')
       setCanCreateBoard(createDecision.allowed)
@@ -385,15 +496,19 @@ export function DashboardPage() {
       const capabilityEntries = await Promise.all(
         boardEntries.map(async (board) => {
           const boardId = String(board.boardId)
-          const [detailsDecision, permissionsDecision] = await Promise.all([
+          const [detailsDecision, permissionsDecision, archiveDecision, deleteDecision] = await Promise.all([
             evaluatePermission(authToken, serverId, me.userId, 'EDIT_BOARD_DETAILS', boardId),
             evaluatePermission(authToken, serverId, me.userId, 'EDIT_BOARD_PERMISSIONS', boardId),
+            evaluatePermission(authToken, serverId, me.userId, 'ARCHIVE_BOARD', boardId),
+            evaluatePermission(authToken, serverId, me.userId, 'DELETE_BOARD', boardId),
           ])
           return [
             boardId,
             {
               canEditDetails: detailsDecision.allowed,
               canEditPermissions: permissionsDecision.allowed,
+              canArchive: archiveDecision.allowed,
+              canDelete: deleteDecision.allowed,
             },
           ] as const
         }),
@@ -406,7 +521,9 @@ export function DashboardPage() {
       setBoardCapabilities({})
       setCanCreateBoard(false)
     } finally {
-      setBoardsLoading(false)
+      if (!options.silent) {
+        setBoardsLoading(false)
+      }
     }
   }
 
@@ -672,6 +789,8 @@ export function DashboardPage() {
         board: null,
         canEditDetails: true,
         canEditPermissions: true,
+        canArchive: false,
+        canDelete: false,
       })
     } catch (error) {
       setError(`Failed to prepare board creation: ${error}`)
@@ -682,7 +801,13 @@ export function DashboardPage() {
     if (!authToken || !me || !selectedServerId) return
 
     const capabilities = boardCapabilities[String(board.boardId)]
-    if (!capabilities || (!capabilities.canEditDetails && !capabilities.canEditPermissions)) {
+    if (
+      !capabilities ||
+      (!capabilities.canEditDetails &&
+        !capabilities.canEditPermissions &&
+        !capabilities.canArchive &&
+        !capabilities.canDelete)
+    ) {
       return
     }
 
@@ -692,6 +817,8 @@ export function DashboardPage() {
       board,
       canEditDetails: capabilities.canEditDetails,
       canEditPermissions: capabilities.canEditPermissions,
+      canArchive: capabilities.canArchive,
+      canDelete: capabilities.canDelete,
     })
 
     try {
@@ -705,15 +832,19 @@ export function DashboardPage() {
           : Promise.resolve(),
       ])
 
-      if (capabilities.canEditPermissions) {
-        const permissions = await fetchScopedPermissions(
-          authToken,
-          selectedServerId,
-          me.userId,
-          'BOARD',
-          String(board.boardId),
-        )
-        setBoardModalPermissions(permissions)
+      if (capabilities.canEditPermissions || board.isArchived) {
+        try {
+          const permissions = await fetchScopedPermissions(
+            authToken,
+            selectedServerId,
+            me.userId,
+            'BOARD',
+            String(board.boardId),
+          )
+          setBoardModalPermissions(permissions)
+        } catch {
+          setBoardModalPermissions([])
+        }
       } else {
         setBoardModalPermissions([])
       }
@@ -729,6 +860,7 @@ export function DashboardPage() {
     name: string
     description: string
     permissions: PermissionEntry[]
+    columnNames: string[]
   }) {
     if (!authToken || !me || !selectedServerId || !boardModalConfig) return
 
@@ -744,6 +876,7 @@ export function DashboardPage() {
           name: payload.name,
           description: payload.description,
           createdBy: me.userId,
+          columnNames: payload.columnNames,
         })
         await reconcileBoardPermissions(selectedServerId, String(created.boardId), payload.permissions)
         showToast('Board created', 'success')
@@ -772,7 +905,55 @@ export function DashboardPage() {
     }
   }
 
+  async function handleArchiveBoardModalAction(archived: boolean) {
+    if (!authToken || !me || !selectedServerId || !boardModalConfig?.board) return
+
+    setBoardModalSaving(true)
+    try {
+      await archiveBoard(
+        authToken,
+        selectedServerId,
+        me.userId,
+        String(boardModalConfig.board.boardId),
+        archived,
+      )
+      await loadServerBoards(selectedServerId)
+      setBoardModalConfig(null)
+      setBoardModalPermissions([])
+      showToast(archived ? 'Board archived' : 'Board restored', 'success')
+    } catch (error) {
+      setError(`Failed to ${archived ? 'archive' : 'restore'} board: ${error}`)
+    } finally {
+      setBoardModalSaving(false)
+    }
+  }
+
+  async function handleDeleteBoardModalAction() {
+    if (!authToken || !me || !selectedServerId || !boardModalConfig?.board) return
+
+    setBoardModalSaving(true)
+    try {
+      await deleteBoard(authToken, selectedServerId, me.userId, String(boardModalConfig.board.boardId))
+      await loadServerBoards(selectedServerId)
+      setBoardModalConfig(null)
+      setBoardModalPermissions([])
+      showToast('Board deleted', 'success')
+    } catch (error) {
+      setError(`Failed to delete board: ${error}`)
+    } finally {
+      setBoardModalSaving(false)
+    }
+  }
+
+  function openBoardPage(board: BoardEntry) {
+    if (!selectedServerId) {
+      return
+    }
+    navigate(`/boards/${board.boardId}?serverId=${encodeURIComponent(selectedServerId)}`)
+  }
+
   function onLogout() {
+    dashboardWarmCache = null
     clearToken()
     clearDiscordToken()
     clearCallbackQuery()
@@ -897,6 +1078,9 @@ export function DashboardPage() {
         isAuthenticated={isAuthenticated}
         me={me}
         loading={loading}
+        onBrandClick={() => {
+          navigate('/')
+        }}
         onLogout={onLogout}
         onLogin={() => {
           setMessage('')
@@ -967,6 +1151,7 @@ export function DashboardPage() {
             onOpenCreateBoard={() => {
               void openCreateBoardModal()
             }}
+            onOpenBoard={openBoardPage}
             onOpenBoardSettings={(board) => {
               void openBoardSettingsModal(board)
             }}
@@ -1027,6 +1212,8 @@ export function DashboardPage() {
         actorRankWeight={actorRankWeight}
         canEditDetails={boardModalConfig?.canEditDetails ?? false}
         canEditPermissions={boardModalConfig?.canEditPermissions ?? false}
+        canArchive={boardModalConfig?.canArchive ?? false}
+        canDelete={boardModalConfig?.canDelete ?? false}
         loading={boardModalLoading}
         saving={boardModalSaving}
         onClose={() => {
@@ -1037,6 +1224,12 @@ export function DashboardPage() {
         }}
         onSave={(payload) => {
           void handleSaveBoardModal(payload)
+        }}
+        onArchive={(archived) => {
+          void handleArchiveBoardModalAction(archived)
+        }}
+        onDelete={() => {
+          void handleDeleteBoardModalAction()
         }}
       />
     </div>

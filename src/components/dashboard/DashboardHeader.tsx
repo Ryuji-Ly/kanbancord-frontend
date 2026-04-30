@@ -6,22 +6,39 @@ type DashboardHeaderProps = {
   loading: boolean
   onLogout: () => void
   onLogin: () => void
+  subtitle?: string
+  onBrandClick?: () => void
 }
 
 function serverInitial(name: string): string {
   return name.trim().charAt(0).toUpperCase() || '?'
 }
 
-export function DashboardHeader({ isAuthenticated, me, loading, onLogout, onLogin }: DashboardHeaderProps) {
+export function DashboardHeader({
+  isAuthenticated,
+  me,
+  loading,
+  onLogout,
+  onLogin,
+  subtitle = 'Dashboard',
+  onBrandClick,
+}: DashboardHeaderProps) {
   return (
     <header className="kc-topbar">
-      <div className="kc-brand-block">
+      <button
+        type="button"
+        className="kc-brand-block kc-brand-block-btn"
+        onClick={() => {
+          onBrandClick?.()
+        }}
+        aria-label="Go to dashboard"
+      >
         <img src="/images/kanbancord.png" alt="KanbanCord" className="kc-logo" />
         <div>
           <h1 className="kc-title">KanbanCord</h1>
-          <p className="kc-subtitle">Dashboard</p>
+          <p className="kc-subtitle">{subtitle}</p>
         </div>
-      </div>
+      </button>
 
       <div className="kc-user-block">
         {isAuthenticated && me ? (

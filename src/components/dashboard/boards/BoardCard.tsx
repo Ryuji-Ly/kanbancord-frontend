@@ -4,12 +4,24 @@ import type { BoardEntry } from '../../../services/boardsService'
 type BoardCardProps = {
   board: BoardEntry
   canConfigure: boolean
+  onOpenBoard: (board: BoardEntry) => void
   onOpenSettings: (board: BoardEntry) => void
 }
 
-export function BoardCard({ board, canConfigure, onOpenSettings }: BoardCardProps) {
+export function BoardCard({ board, canConfigure, onOpenBoard, onOpenSettings }: BoardCardProps) {
   return (
-    <article className="kc-board-card">
+    <article
+      className="kc-board-card kc-board-card--clickable"
+      role="button"
+      tabIndex={0}
+      onClick={() => onOpenBoard(board)}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault()
+          onOpenBoard(board)
+        }
+      }}
+    >
       <div className="kc-board-card-head">
         <div>
           <h4 className="kc-board-card-title">{board.name}</h4>
@@ -21,7 +33,10 @@ export function BoardCard({ board, canConfigure, onOpenSettings }: BoardCardProp
             className="kc-btn kc-btn-ghost kc-board-card-settings"
             aria-label={`Configure ${board.name}`}
             title={`Configure ${board.name}`}
-            onClick={() => onOpenSettings(board)}
+            onClick={(e) => {
+              e.stopPropagation()
+              onOpenSettings(board)
+            }}
           >
             <FiSettings aria-hidden="true" />
           </button>

@@ -30,6 +30,8 @@ export type DeleteGroupTarget = {
 export type BoardCapability = {
   canEditDetails: boolean
   canEditPermissions: boolean
+  canArchive: boolean
+  canDelete: boolean
 }
 
 export type BoardModalConfig = {
@@ -37,6 +39,8 @@ export type BoardModalConfig = {
   board: BoardEntry | null
   canEditDetails: boolean
   canEditPermissions: boolean
+  canArchive: boolean
+  canDelete: boolean
 }
 
 export type HeaderUser = MeResponse | null

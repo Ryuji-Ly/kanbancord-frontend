@@ -37,6 +37,7 @@ type ServerOverviewPanelProps = {
   onAddPermission: (subjectType: string, subjectId: string, defaultPriority: number) => void
   onCancelAddPermission: () => void
   onOpenCreateBoard: () => void
+  onOpenBoard: (board: BoardEntry) => void
   onOpenBoardSettings: (board: BoardEntry) => void
 }
 
@@ -71,6 +72,7 @@ export function ServerOverviewPanel({
   onAddPermission,
   onCancelAddPermission,
   onOpenCreateBoard,
+  onOpenBoard,
   onOpenBoardSettings,
 }: ServerOverviewPanelProps) {
   if (!selectedServer) return null
@@ -86,6 +88,7 @@ export function ServerOverviewPanel({
         canCreateBoard={canCreateBoard}
         boardCapabilities={boardCapabilities}
         onOpenCreate={onOpenCreateBoard}
+        onOpenBoard={onOpenBoard}
         onOpenSettings={onOpenBoardSettings}
       />
 
