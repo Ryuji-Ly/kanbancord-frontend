@@ -57,6 +57,11 @@ export async function updateColumn(
   columnId: number,
   name: string,
   userId: string,
+  options?: {
+    position?: number | null
+    color?: string | null
+    wipLimit?: number | null
+  },
 ): Promise<BoardColumnEntry> {
   const params = new URLSearchParams({ userId })
   const response = await fetch(
@@ -64,7 +69,13 @@ export async function updateColumn(
     {
       method: 'PUT',
       headers: { ...authHeaders(token), 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, boardId: Number(boardId) }),
+      body: JSON.stringify({
+        name,
+        boardId: Number(boardId),
+        position: options?.position ?? undefined,
+        color: options?.color ?? undefined,
+        wipLimit: options?.wipLimit ?? undefined,
+      }),
     },
   )
   if (!response.ok) throw new Error(await parseError(response))

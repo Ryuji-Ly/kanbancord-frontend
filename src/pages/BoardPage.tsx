@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from 'react'
+﻿import { useEffect, useState, type DragEvent } from 'react'
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { getStoredToken } from '../services/authService'
 import { fetchMe } from '../services/meService'
@@ -16,6 +16,97 @@ import { ToastStack } from '../components/dashboard/ToastStack'
 import type { HeaderUser, ToastMessage } from '../components/dashboard/types'
 
 type LoadState = 'idle' | 'loading' | 'error' | 'ready'
+type ColumnDropEdge = 'before' | 'after'
+type ColumnDropIntent = { targetColumnId: number; edge: ColumnDropEdge }
+
+function isColumnDragExcludedTarget(target: EventTarget | null): boolean {
+  return target instanceof HTMLElement && target.closest('[data-no-column-drag="true"]') !== null
+}
+
+function resolveColumnDropIntent(
+  row: HTMLElement,
+  entries: BoardColumnEntry[],
+  draggedColumnId: number,
+  clientX: number,
+): ColumnDropIntent | null {
+  const draggableEntries = entries.filter((entry) => entry.columnId !== draggedColumnId)
+  if (draggableEntries.length === 0) return null
+
+  const positionedEntries = draggableEntries
+    .map((entry) => {
+      const element = row.querySelector<HTMLElement>(`.kc-board-column-card[data-column-id="${entry.columnId}"]`)
+      if (!element) return null
+      return { entry, rect: element.getBoundingClientRect() }
+    })
+    .filter((item): item is { entry: BoardColumnEntry; rect: DOMRect } => item !== null)
+
+  if (positionedEntries.length === 0) return null
+
+  const firstEntry = positionedEntries[0]
+  const lastEntry = positionedEntries[positionedEntries.length - 1]
+
+  if (clientX <= firstEntry.rect.left) {
+    return { targetColumnId: firstEntry.entry.columnId, edge: 'before' }
+  }
+
+  if (clientX >= lastEntry.rect.right) {
+    return { targetColumnId: lastEntry.entry.columnId, edge: 'after' }
+  }
+
+  for (let index = 0; index < positionedEntries.length; index += 1) {
+    const current = positionedEntries[index]
+    const middle = current.rect.left + current.rect.width / 2
+
+    if (clientX >= current.rect.left && clientX <= current.rect.right) {
+      return {
+        targetColumnId: current.entry.columnId,
+        edge: clientX < middle ? 'before' : 'after',
+      }
+    }
+
+    if (index < positionedEntries.length - 1) {
+      const next = positionedEntries[index + 1]
+      if (clientX > current.rect.right && clientX < next.rect.left) {
+        const gapMiddle = current.rect.right + (next.rect.left - current.rect.right) / 2
+        return clientX < gapMiddle
+          ? { targetColumnId: current.entry.columnId, edge: 'after' }
+          : { targetColumnId: next.entry.columnId, edge: 'before' }
+      }
+    }
+  }
+
+  return null
+}
+
+function normalizeColumnPositions(entries: BoardColumnEntry[]): BoardColumnEntry[] {
+  return entries.map((entry, index) => ({
+    ...entry,
+    position: index + 1,
+  }))
+}
+
+function reorderColumns(
+  entries: BoardColumnEntry[],
+  draggedColumnId: number,
+  targetColumnId: number,
+  edge: ColumnDropEdge,
+): BoardColumnEntry[] {
+  const draggedIndex = entries.findIndex((entry) => entry.columnId === draggedColumnId)
+  const targetIndex = entries.findIndex((entry) => entry.columnId === targetColumnId)
+
+  if (draggedIndex < 0 || targetIndex < 0) return entries
+
+  const reordered = [...entries]
+  const [draggedEntry] = reordered.splice(draggedIndex, 1)
+  let insertIndex = targetIndex + (edge === 'after' ? 1 : 0)
+
+  if (draggedIndex < insertIndex) {
+    insertIndex -= 1
+  }
+
+  reordered.splice(insertIndex, 0, draggedEntry)
+  return normalizeColumnPositions(reordered)
+}
 
 export function BoardPage() {
   const { boardId = '' } = useParams()
@@ -34,6 +125,7 @@ export function BoardPage() {
   const [canEditColumn, setCanEditColumn] = useState(false)
   const [canCreateColumn, setCanCreateColumn] = useState(false)
   const [canDeleteColumn, setCanDeleteColumn] = useState(false)
+  const [canMoveColumn, setCanMoveColumn] = useState(false)
 
   // Inline rename
   const [editingColumnId, setEditingColumnId] = useState<number | null>(null)
@@ -52,11 +144,17 @@ export function BoardPage() {
   const [deleting, setDeleting] = useState(false)
   const [toasts, setToasts] = useState<ToastMessage[]>([])
   const [nextToastId, setNextToastId] = useState(0)
+  const [draggedColumnId, setDraggedColumnId] = useState<number | null>(null)
+  const [dragOverColumnId, setDragOverColumnId] = useState<number | null>(null)
+  const [dragOverEdge, setDragOverEdge] = useState<ColumnDropEdge>('after')
+  const [movingColumns, setMovingColumns] = useState(false)
+  const [suppressEditUntil, setSuppressEditUntil] = useState(0)
 
   const isBoardArchived = Boolean(board?.isArchived)
   const canEditColumnsOnPage = canEditColumn && !isBoardArchived
   const canCreateColumnsOnPage = canCreateColumn && !isBoardArchived
   const canDeleteColumnsOnPage = canDeleteColumn && !isBoardArchived
+  const canMoveColumnsOnPage = canEditColumn && canMoveColumn && !isBoardArchived
 
   function showToast(text: string, type: 'success' | 'error' = 'success') {
     const id = nextToastId
@@ -85,12 +183,13 @@ export function BoardPage() {
         const meResponse = await fetchMe(token)
         setMe(meResponse)
         const userId = String(meResponse.userId)
-        const [boardData, columnData, editPerm, createPerm, deletePerm] = await Promise.all([
+        const [boardData, columnData, editPerm, createPerm, deletePerm, movePerm] = await Promise.all([
           fetchBoardById(token, serverId, userId, boardId),
           fetchBoardColumns(token, serverId, boardId, userId),
           evaluatePermission(token, serverId, userId, 'EDIT_COLUMN', boardId),
           evaluatePermission(token, serverId, userId, 'CREATE_COLUMN', boardId),
           evaluatePermission(token, serverId, userId, 'DELETE_COLUMN', boardId),
+          evaluatePermission(token, serverId, userId, 'MOVE_COLUMN', boardId),
         ])
 
         if (cancelled) return
@@ -99,6 +198,7 @@ export function BoardPage() {
         setCanEditColumn(editPerm.allowed && !boardData.isArchived)
         setCanCreateColumn(createPerm.allowed && !boardData.isArchived)
         setCanDeleteColumn(deletePerm.allowed && !boardData.isArchived)
+        setCanMoveColumn(movePerm.allowed && !boardData.isArchived)
         setState('ready')
       } catch (err) {
         if (cancelled) return
@@ -153,7 +253,7 @@ export function BoardPage() {
       columnId: optimisticId,
       name: trimmed,
       boardId: Number(boardId),
-      position: columns.length,
+      position: columns.length + 1,
       color: null,
       wipLimit: null,
       createdAt: new Date().toISOString(),
@@ -193,9 +293,142 @@ export function BoardPage() {
     }
   }
 
+  async function persistColumnOrder(
+    nextColumns: BoardColumnEntry[],
+    previousColumns: BoardColumnEntry[],
+  ) {
+    if (!me) {
+      setColumns(previousColumns)
+      return
+    }
+
+    const token = getStoredToken()
+    if (!token) {
+      setColumns(previousColumns)
+      return
+    }
+
+    setMovingColumns(true)
+    try {
+      const updatedColumns = await Promise.all(
+        nextColumns.map((column, index) =>
+          updateColumn(token, serverId, boardId, column.columnId, column.name, String(me.userId), {
+            position: index + 1,
+            color: column.color,
+            wipLimit: column.wipLimit,
+          }),
+        ),
+      )
+
+      setColumns(
+        [...updatedColumns].sort((left, right) => Number(left.position ?? 0) - Number(right.position ?? 0)),
+      )
+      showToast('Columns reordered', 'success')
+    } catch {
+      setColumns(previousColumns)
+      showToast('Failed to reorder columns', 'error')
+    } finally {
+      setMovingColumns(false)
+    }
+  }
+
+  function handleColumnDragStart(event: DragEvent<HTMLElement>, columnId: number) {
+    if (isColumnDragExcludedTarget(event.target)) {
+      event.preventDefault()
+      clearColumnDragState()
+      return
+    }
+
+    event.dataTransfer.effectAllowed = 'move'
+    event.dataTransfer.setData('text/plain', String(columnId))
+    setDraggedColumnId(columnId)
+    setDragOverColumnId(columnId)
+    setDragOverEdge('after')
+    setOpenMenuColumnId(null)
+    setEditingColumnId(null)
+    setSuppressEditUntil(Date.now() + 250)
+  }
+
+  async function handleColumnDrop(targetColumnId: number) {
+    if (!canMoveColumnsOnPage || !draggedColumnId || movingColumns) return
+
+    const previousColumns = columns
+    const nextColumns = reorderColumns(previousColumns, draggedColumnId, targetColumnId, dragOverEdge)
+
+    setDraggedColumnId(null)
+    setDragOverColumnId(null)
+    setDragOverEdge('after')
+
+    const changed = nextColumns.some(
+      (column, index) => column.columnId !== previousColumns[index]?.columnId,
+    )
+
+    if (!changed) return
+
+    setColumns(nextColumns)
+    await persistColumnOrder(nextColumns, previousColumns)
+  }
+
+  function handleBoardRowDragOver(event: DragEvent<HTMLElement>) {
+    if (!canMoveColumnsOnPage || !draggedColumnId) return
+
+    event.preventDefault()
+    event.dataTransfer.dropEffect = 'move'
+
+    const intent = resolveColumnDropIntent(
+      event.currentTarget,
+      columns,
+      draggedColumnId,
+      event.clientX,
+    )
+
+    if (!intent) {
+      setDragOverColumnId(null)
+      return
+    }
+
+    setDragOverColumnId(intent.targetColumnId)
+    setDragOverEdge(intent.edge)
+  }
+
+  async function handleBoardRowDrop(event: DragEvent<HTMLElement>) {
+    if (!canMoveColumnsOnPage || !draggedColumnId) return
+
+    event.preventDefault()
+
+    const intent = resolveColumnDropIntent(
+      event.currentTarget,
+      columns,
+      draggedColumnId,
+      event.clientX,
+    )
+
+    if (!intent) {
+      clearColumnDragState()
+      return
+    }
+
+    setDragOverColumnId(intent.targetColumnId)
+    setDragOverEdge(intent.edge)
+    await handleColumnDrop(intent.targetColumnId)
+  }
+
+  function clearColumnDragState() {
+    setDraggedColumnId(null)
+    setDragOverColumnId(null)
+    setDragOverEdge('after')
+    setSuppressEditUntil(Date.now() + 250)
+  }
+
   return (
     <>
-      <div className="kc-dashboard-root">
+      <div
+        className="kc-dashboard-root"
+        onDragOver={handleBoardRowDragOver}
+        onDrop={(event) => {
+          void handleBoardRowDrop(event)
+        }}
+      >
       <DashboardHeader
         isAuthenticated={Boolean(me)}
         me={me}
@@ -234,7 +467,10 @@ export function BoardPage() {
         )}
 
         {state === 'ready' && board && (
-          <section className="kc-board-page-columns" aria-label="Board columns">
+          <section
+            className="kc-board-page-columns"
+            aria-label="Board columns"
+          >
             {openMenuColumnId !== null && (
               <div
                 className="kc-column-menu-backdrop"
@@ -246,11 +482,52 @@ export function BoardPage() {
               <p className="kc-muted">No columns found on this board.</p>
             )}
 
-            {columns.map((column) => (
-              <article key={column.columnId} className="kc-panel kc-board-column-card">
+            {columns.map((column, index) => {
+              const dragOverIndex = columns.findIndex((entry) => entry.columnId === dragOverColumnId)
+              const hasActiveDropTarget = draggedColumnId !== null && dragOverIndex >= 0
+              const isPrimaryBefore =
+                hasActiveDropTarget &&
+                dragOverIndex === index &&
+                dragOverEdge === 'before' &&
+                draggedColumnId !== column.columnId
+              const isPrimaryAfter =
+                hasActiveDropTarget &&
+                dragOverIndex === index &&
+                dragOverEdge === 'after' &&
+                draggedColumnId !== column.columnId
+              const isNeighborBefore =
+                hasActiveDropTarget &&
+                dragOverIndex === index - 1 &&
+                dragOverEdge === 'after' &&
+                draggedColumnId !== column.columnId
+              const isNeighborAfter =
+                hasActiveDropTarget &&
+                dragOverIndex === index + 1 &&
+                dragOverEdge === 'before' &&
+                draggedColumnId !== column.columnId
+
+              return (
+                <article
+                  key={column.columnId}
+                  data-column-id={column.columnId}
+                  className={[
+                    'kc-panel',
+                    'kc-board-column-card',
+                    canMoveColumnsOnPage ? 'kc-board-column-card--movable' : '',
+                    draggedColumnId === column.columnId ? 'kc-board-column-card--dragging' : '',
+                    isPrimaryBefore || isNeighborBefore ? 'kc-board-column-card--drop-before' : '',
+                    isPrimaryAfter || isNeighborAfter ? 'kc-board-column-card--drop-after' : '',
+                  ]
+                    .filter(Boolean)
+                    .join(' ')}
+                  draggable={canMoveColumnsOnPage && !movingColumns && editingColumnId !== column.columnId}
+                  onDragStart={(event) => handleColumnDragStart(event, column.columnId)}
+                  onDragEnd={clearColumnDragState}
+                >
                 <div className="kc-column-header">
                   {canEditColumnsOnPage && editingColumnId === column.columnId ? (
                     <input
+                      data-no-column-drag="true"
                       className="kc-column-name-input"
                       value={editingColumnName}
                       autoFocus
@@ -266,6 +543,7 @@ export function BoardPage() {
                       className={canEditColumnsOnPage ? 'kc-column-name-editable' : undefined}
                       onClick={() => {
                         if (!canEditColumnsOnPage) return
+                        if (Date.now() < suppressEditUntil) return
                         setEditingColumnId(column.columnId)
                         setEditingColumnName(column.name)
                       }}
@@ -275,7 +553,7 @@ export function BoardPage() {
                   )}
 
                   {canDeleteColumnsOnPage && (
-                    <div className="kc-column-menu-wrap">
+                    <div className="kc-column-menu-wrap" data-no-column-drag="true">
                       <button
                         className="kc-column-menu-btn"
                         aria-label="Column options"
@@ -310,13 +588,19 @@ export function BoardPage() {
                   )}
                 </div>
 
-                <p className="kc-muted">Tasks and interactions coming next.</p>
+                <div className="kc-column-content" data-no-column-drag="true">
+                  <p className="kc-muted">Tasks and interactions coming next.</p>
+                </div>
               </article>
-            ))}
+              )
+            })}
 
             {canCreateColumnsOnPage &&
               (addingColumn ? (
-                <div className="kc-panel kc-board-column-card">
+                <div
+                  className="kc-panel kc-board-column-card"
+                  data-no-column-drag="true"
+                >
                   <div className="kc-column-header">
                     <input
                       className="kc-column-name-input"
@@ -338,6 +622,7 @@ export function BoardPage() {
               ) : (
                 <button
                   className="kc-board-add-column-btn"
+                  data-no-column-drag="true"
                   onClick={() => setAddingColumn(true)}
                 >
                   + Add new column
