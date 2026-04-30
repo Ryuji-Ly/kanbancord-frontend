@@ -5,6 +5,7 @@ import { PermissionGroupRow } from './PermissionGroupRow'
 
 type PermissionsSectionProps = {
   canEditPermissions: boolean
+  helperText?: string
   permissionsCollapsed: boolean
   permissionsLoading: boolean
   permFilter: string
@@ -32,6 +33,7 @@ type PermissionsSectionProps = {
 
 export function PermissionsSection({
   canEditPermissions,
+  helperText,
   permissionsCollapsed,
   permissionsLoading,
   permFilter,
@@ -71,6 +73,7 @@ export function PermissionsSection({
           {permissionsCollapsed ? 'Expand' : 'Collapse'}
         </button>
       </div>
+      {helperText && <p className="kc-perms-helper kc-muted">{helperText}</p>}
       {!permissionsCollapsed && permissionsLoading && (
         <div className="kc-loading-state" aria-live="polite" aria-busy="true">
           <span className="kc-spinner" aria-hidden="true" />

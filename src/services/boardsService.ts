@@ -48,6 +48,7 @@ export async function createBoard(
     name: string
     description: string
     createdBy?: string
+    columnNames?: string[]
   },
 ): Promise<BoardEntry> {
   const params = new URLSearchParams({ userId })
@@ -64,6 +65,7 @@ export async function createBoard(
         name: input.name,
         description: input.description,
         createdBy: input.createdBy,
+        columnNames: input.columnNames,
       }),
     },
   )
@@ -101,4 +103,55 @@ export async function updateBoard(
   )
   if (!response.ok) throw new Error(await parseError(response))
   return response.json() as Promise<BoardEntry>
+}
+
+export async function fetchBoardById(
+  token: string,
+  serverId: string,
+  userId: string,
+  boardId: string,
+): Promise<BoardEntry> {
+  const params = new URLSearchParams({ userId })
+  const response = await fetch(
+    apiUrl(`/api/servers/${serverId}/boards/${boardId}?${params.toString()}`),
+    { headers: authHeaders(token) },
+  )
+  if (!response.ok) throw new Error(await parseError(response))
+  return response.json() as Promise<BoardEntry>
+}
+
+export async function archiveBoard(
+  token: string,
+  serverId: string,
+  userId: string,
+  boardId: string,
+  archived: boolean,
+): Promise<BoardEntry> {
+  const params = new URLSearchParams({ userId, archived: String(archived) })
+  const response = await fetch(
+    apiUrl(`/api/servers/${serverId}/boards/${boardId}/archive?${params.toString()}`),
+    {
+      method: 'PATCH',
+      headers: authHeaders(token),
+    },
+  )
+  if (!response.ok) throw new Error(await parseError(response))
+  return response.json() as Promise<BoardEntry>
+}
+
+export async function deleteBoard(
+  token: string,
+  serverId: string,
+  userId: string,
+  boardId: string,
+): Promise<void> {
+  const params = new URLSearchParams({ userId })
+  const response = await fetch(
+    apiUrl(`/api/servers/${serverId}/boards/${boardId}?${params.toString()}`),
+    {
+      method: 'DELETE',
+      headers: authHeaders(token),
+    },
+  )
+  if (!response.ok) throw new Error(await parseError(response))
 }
