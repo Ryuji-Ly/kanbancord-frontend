@@ -1,4 +1,4 @@
-﻿import { useEffect, useRef, useState, type CSSProperties, type DragEvent } from 'react'
+﻿import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties, type DragEvent } from 'react'
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { getStoredToken } from '../services/authService'
 import { fetchMe } from '../services/meService'
@@ -258,6 +258,113 @@ function resolveTaskDropTargetFromBoard(
       clientY,
     ),
   }
+}
+
+function TaskTitle({ title }: { title: string }) {
+  const titleRef = useRef<HTMLSpanElement | null>(null)
+  const [displayTitle, setDisplayTitle] = useState(title)
+
+  useEffect(() => {
+    setDisplayTitle(title)
+  }, [title])
+
+  useLayoutEffect(() => {
+    const element = titleRef.current
+    if (!element) return
+
+    const card = element.closest('.kc-column-task-card')
+    if (!(card instanceof HTMLElement)) return
+
+    const priorityTag = card.querySelector('.kc-column-task-priority')
+    const resizeObserver = new ResizeObserver(() => {
+      window.requestAnimationFrame(clampTitle)
+    })
+
+    let frameId = 0
+
+    function clampTitle() {
+      const currentElement = titleRef.current
+      if (!currentElement) return
+      const titleElement = currentElement
+
+      const computedStyles = window.getComputedStyle(titleElement)
+      const lineHeight = Number.parseFloat(computedStyles.lineHeight)
+      if (!Number.isFinite(lineHeight) || lineHeight <= 0) return
+
+      const maxHeight = lineHeight * 2
+      const range = document.createRange()
+
+      function countRenderedLines() {
+        const rects = Array.from(range.getClientRects())
+        const lineTops: number[] = []
+
+        for (const rect of rects) {
+          const matchesExistingLine = lineTops.some((top) => Math.abs(top - rect.top) < 1)
+          if (!matchesExistingLine) {
+            lineTops.push(rect.top)
+          }
+        }
+
+        return lineTops.length
+      }
+
+      function fitsWithinClamp(text: string) {
+        titleElement.textContent = text
+        range.selectNodeContents(titleElement)
+        return titleElement.scrollHeight <= maxHeight + 1 && countRenderedLines() <= 2
+      }
+
+      if (fitsWithinClamp(title)) {
+        setDisplayTitle((current) => (current === title ? current : title))
+        range.detach()
+        return
+      }
+
+      let low = 0
+      let high = title.length
+      let bestFit = '\u2026'
+
+      while (low <= high) {
+        const mid = Math.floor((low + high) / 2)
+        const candidate = `${title.slice(0, mid).trimEnd()}\u2026`
+
+        if (fitsWithinClamp(candidate)) {
+          bestFit = candidate
+          low = mid + 1
+        } else {
+          high = mid - 1
+        }
+      }
+
+      while (bestFit.length > 1 && !fitsWithinClamp(bestFit)) {
+        const trimmed = bestFit.slice(0, -1).replace(/\u2026$/, '').trimEnd()
+        bestFit = `${trimmed}\u2026`
+      }
+
+      setDisplayTitle((current) => (current === bestFit ? current : bestFit))
+      range.detach()
+    }
+
+    frameId = window.requestAnimationFrame(clampTitle)
+    resizeObserver.observe(card)
+    resizeObserver.observe(element)
+    if (priorityTag instanceof HTMLElement) {
+      resizeObserver.observe(priorityTag)
+    }
+
+    return () => {
+      if (frameId) {
+        window.cancelAnimationFrame(frameId)
+      }
+      resizeObserver.disconnect()
+    }
+  }, [title])
+
+  return (
+    <span ref={titleRef} className="kc-column-task-title">
+      {displayTitle}
+    </span>
+  )
 }
 
 export function BoardPage() {
@@ -1226,10 +1333,10 @@ export function BoardPage() {
                         >
                           {!isTaskSkeleton && (
                             <>
-                              <span className="kc-column-task-title">{task.title}</span>
                               {task.priority && (
                                 <span className="kc-column-task-priority">{task.priority}</span>
                               )}
+                              <TaskTitle title={task.title} />
                             </>
                           )}
                         </li>
