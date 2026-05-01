@@ -1,4 +1,4 @@
-﻿import { useEffect, useState, type CSSProperties, type DragEvent } from 'react'
+﻿import { useEffect, useRef, useState, type CSSProperties, type DragEvent } from 'react'
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { getStoredToken } from '../services/authService'
 import { fetchMe } from '../services/meService'
@@ -22,8 +22,6 @@ import { ToastStack } from '../components/dashboard/ToastStack'
 import type { HeaderUser, ToastMessage } from '../components/dashboard/types'
 
 type LoadState = 'idle' | 'loading' | 'error' | 'ready'
-type ColumnDropEdge = 'before' | 'after'
-type ColumnDropIntent = { targetColumnId: number; edge: ColumnDropEdge }
 type TaskDropEdge = 'before' | 'after'
 type TaskDropIntent = {
   columnId: number
@@ -48,14 +46,14 @@ function isColumnDragExcludedTarget(target: EventTarget | null): boolean {
   return target instanceof HTMLElement && target.closest('[data-no-column-drag="true"]') !== null
 }
 
-function resolveColumnDropIntent(
+function resolveColumnDropIndex(
   row: HTMLElement,
   entries: BoardColumnEntry[],
   draggedColumnId: number,
   clientX: number,
-): ColumnDropIntent | null {
+): number {
   const draggableEntries = entries.filter((entry) => entry.columnId !== draggedColumnId)
-  if (draggableEntries.length === 0) return null
+  if (draggableEntries.length === 0) return 0
 
   const positionedEntries = draggableEntries
     .map((entry) => {
@@ -65,42 +63,18 @@ function resolveColumnDropIntent(
     })
     .filter((item): item is { entry: BoardColumnEntry; rect: DOMRect } => item !== null)
 
-  if (positionedEntries.length === 0) return null
-
-  const firstEntry = positionedEntries[0]
-  const lastEntry = positionedEntries[positionedEntries.length - 1]
-
-  if (clientX <= firstEntry.rect.left) {
-    return { targetColumnId: firstEntry.entry.columnId, edge: 'before' }
-  }
-
-  if (clientX >= lastEntry.rect.right) {
-    return { targetColumnId: lastEntry.entry.columnId, edge: 'after' }
-  }
+  if (positionedEntries.length === 0) return 0
 
   for (let index = 0; index < positionedEntries.length; index += 1) {
     const current = positionedEntries[index]
     const middle = current.rect.left + current.rect.width / 2
 
-    if (clientX >= current.rect.left && clientX <= current.rect.right) {
-      return {
-        targetColumnId: current.entry.columnId,
-        edge: clientX < middle ? 'before' : 'after',
-      }
-    }
-
-    if (index < positionedEntries.length - 1) {
-      const next = positionedEntries[index + 1]
-      if (clientX > current.rect.right && clientX < next.rect.left) {
-        const gapMiddle = current.rect.right + (next.rect.left - current.rect.right) / 2
-        return clientX < gapMiddle
-          ? { targetColumnId: current.entry.columnId, edge: 'after' }
-          : { targetColumnId: next.entry.columnId, edge: 'before' }
-      }
+    if (clientX < middle) {
+      return index
     }
   }
 
-  return null
+  return positionedEntries.length
 }
 
 function normalizeColumnPositions(entries: BoardColumnEntry[]): BoardColumnEntry[] {
@@ -110,26 +84,20 @@ function normalizeColumnPositions(entries: BoardColumnEntry[]): BoardColumnEntry
   }))
 }
 
-function reorderColumns(
+function reorderColumnsByIndex(
   entries: BoardColumnEntry[],
   draggedColumnId: number,
-  targetColumnId: number,
-  edge: ColumnDropEdge,
+  dropIndex: number,
 ): BoardColumnEntry[] {
   const draggedIndex = entries.findIndex((entry) => entry.columnId === draggedColumnId)
-  const targetIndex = entries.findIndex((entry) => entry.columnId === targetColumnId)
+  if (draggedIndex < 0) return entries
 
-  if (draggedIndex < 0 || targetIndex < 0) return entries
+  const withoutDragged = entries.filter((entry) => entry.columnId !== draggedColumnId)
+  const boundedDropIndex = Math.max(0, Math.min(dropIndex, withoutDragged.length))
 
-  const reordered = [...entries]
-  const [draggedEntry] = reordered.splice(draggedIndex, 1)
-  let insertIndex = targetIndex + (edge === 'after' ? 1 : 0)
-
-  if (draggedIndex < insertIndex) {
-    insertIndex -= 1
-  }
-
-  reordered.splice(insertIndex, 0, draggedEntry)
+  const draggedEntry = entries[draggedIndex]
+  const reordered = [...withoutDragged]
+  reordered.splice(boundedDropIndex, 0, draggedEntry)
   return normalizeColumnPositions(reordered)
 }
 
@@ -371,8 +339,7 @@ export function BoardPage() {
   const [toasts, setToasts] = useState<ToastMessage[]>([])
   const [nextToastId, setNextToastId] = useState(0)
   const [draggedColumnId, setDraggedColumnId] = useState<number | null>(null)
-  const [dragOverColumnId, setDragOverColumnId] = useState<number | null>(null)
-  const [dragOverEdge, setDragOverEdge] = useState<ColumnDropEdge>('after')
+  const [columnDropIndex, setColumnDropIndex] = useState<number | null>(null)
   const [movingColumns, setMovingColumns] = useState(false)
   const [draggedTaskId, setDraggedTaskId] = useState<number | null>(null)
   const [dragOverTaskId, setDragOverTaskId] = useState<number | null>(null)
@@ -384,6 +351,9 @@ export function BoardPage() {
   const [taskDraft, setTaskDraft] = useState<TaskDraft>(EMPTY_TASK_DRAFT)
   const [taskModalError, setTaskModalError] = useState('')
   const [creatingTask, setCreatingTask] = useState(false)
+  const columnDragImageRef = useRef<HTMLElement | null>(null)
+  const columnDragOffsetRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 })
+  const transparentDragImageRef = useRef<HTMLImageElement | null>(null)
 
   const isBoardArchived = Boolean(board?.isArchived)
   const canEditColumnsOnPage = canEditColumn && !isBoardArchived
@@ -582,6 +552,30 @@ export function BoardPage() {
     }
   }
 
+  function cleanupColumnDragImage() {
+    if (columnDragImageRef.current) {
+      columnDragImageRef.current.remove()
+      columnDragImageRef.current = null
+    }
+  }
+
+  function getTransparentDragImage(): HTMLImageElement {
+    if (!transparentDragImageRef.current) {
+      const image = new Image()
+      image.src =
+        'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=='
+      transparentDragImageRef.current = image
+    }
+    return transparentDragImageRef.current
+  }
+
+  function updateColumnDragImagePosition(clientX: number, clientY: number) {
+    if (!columnDragImageRef.current) return
+
+    columnDragImageRef.current.style.left = `${clientX - columnDragOffsetRef.current.x}px`
+    columnDragImageRef.current.style.top = `${clientY - columnDragOffsetRef.current.y}px`
+  }
+
   function handleColumnDragStart(event: DragEvent<HTMLElement>, columnId: number) {
     if (isColumnDragExcludedTarget(event.target)) {
       event.preventDefault()
@@ -591,23 +585,53 @@ export function BoardPage() {
 
     event.dataTransfer.effectAllowed = 'move'
     event.dataTransfer.setData('text/plain', String(columnId))
+
+    const transparentImage = getTransparentDragImage()
+    event.dataTransfer.setDragImage(transparentImage, 0, 0)
+
+    const source = event.currentTarget
+    const rect = source.getBoundingClientRect()
+    const clone = source.cloneNode(true) as HTMLElement
+    clone.style.position = 'fixed'
+    clone.style.top = '0'
+    clone.style.left = '0'
+    clone.style.width = `${rect.width}px`
+    clone.style.minWidth = `${rect.width}px`
+    clone.style.maxWidth = `${rect.width}px`
+    clone.style.height = `${rect.height}px`
+    clone.style.pointerEvents = 'none'
+    clone.style.margin = '0'
+    clone.style.opacity = '0.5'
+    clone.style.boxSizing = 'border-box'
+    clone.style.border = '1px solid rgba(148, 163, 184, 0.18)'
+    clone.style.boxShadow = '0 8px 20px rgba(0, 0, 0, 0.35)'
+    clone.style.zIndex = '2000'
+
+    cleanupColumnDragImage()
+    document.body.appendChild(clone)
+    columnDragImageRef.current = clone
+
+    const offsetX = Math.max(0, Math.min(event.clientX - rect.left, rect.width))
+    const offsetY = Math.max(0, Math.min(event.clientY - rect.top, rect.height))
+    columnDragOffsetRef.current = { x: offsetX, y: offsetY }
+    updateColumnDragImagePosition(event.clientX, event.clientY)
+
     setDraggedColumnId(columnId)
-    setDragOverColumnId(columnId)
-    setDragOverEdge('after')
+    setColumnDropIndex(Math.max(0, columns.findIndex((entry) => entry.columnId === columnId)))
     setOpenMenuColumnId(null)
     setEditingColumnId(null)
     setSuppressEditUntil(Date.now() + 250)
   }
 
-  async function handleColumnDrop(targetColumnId: number) {
+  async function handleColumnDrop(dropIndex: number) {
     if (!canMoveColumnsOnPage || !draggedColumnId || movingColumns) return
 
     const previousColumns = columns
-    const nextColumns = reorderColumns(previousColumns, draggedColumnId, targetColumnId, dragOverEdge)
+    const nextColumns = reorderColumnsByIndex(previousColumns, draggedColumnId, dropIndex)
 
     setDraggedColumnId(null)
-    setDragOverColumnId(null)
-    setDragOverEdge('after')
+    setColumnDropIndex(null)
+    cleanupColumnDragImage()
 
     const changed = nextColumns.some(
       (column, index) => column.columnId !== previousColumns[index]?.columnId,
@@ -620,6 +644,10 @@ export function BoardPage() {
   }
 
   function handleBoardRowDragOver(event: DragEvent<HTMLElement>) {
+    if (draggedColumnId !== null) {
+      updateColumnDragImagePosition(event.clientX, event.clientY)
+    }
+
     if (canMoveTasksOnPage && draggedTaskId !== null) {
       event.preventDefault()
       event.dataTransfer.dropEffect = 'move'
@@ -650,20 +678,13 @@ export function BoardPage() {
     event.preventDefault()
     event.dataTransfer.dropEffect = 'move'
 
-    const intent = resolveColumnDropIntent(
+    const nextDropIndex = resolveColumnDropIndex(
       event.currentTarget,
       columns,
       draggedColumnId,
       event.clientX,
     )
-
-    if (!intent) {
-      setDragOverColumnId(null)
-      return
-    }
-
-    setDragOverColumnId(intent.targetColumnId)
-    setDragOverEdge(intent.edge)
+    setColumnDropIndex(nextDropIndex)
   }
 
   async function handleBoardRowDrop(event: DragEvent<HTMLElement>) {
@@ -719,28 +740,21 @@ export function BoardPage() {
 
     event.preventDefault()
 
-    const intent = resolveColumnDropIntent(
+    const nextDropIndex = resolveColumnDropIndex(
       event.currentTarget,
       columns,
       draggedColumnId,
       event.clientX,
     )
 
-    if (!intent) {
-      clearColumnDragState()
-      return
-    }
-
-    setDragOverColumnId(intent.targetColumnId)
-    setDragOverEdge(intent.edge)
-    await handleColumnDrop(intent.targetColumnId)
+    await handleColumnDrop(nextDropIndex)
   }
 
   function clearColumnDragState() {
     setDraggedColumnId(null)
-    setDragOverColumnId(null)
-    setDragOverEdge('after')
+    setColumnDropIndex(null)
     setSuppressEditUntil(Date.now() + 250)
+    cleanupColumnDragImage()
   }
 
   function openCreateTaskModal(column: BoardColumnEntry) {
@@ -1037,35 +1051,34 @@ export function BoardPage() {
               <p className="kc-muted">No columns found on this board.</p>
             )}
 
-            {columns.map((column, index) => {
+            {(() => {
+              const currentDraggedIndex =
+                draggedColumnId !== null
+                  ? columns.findIndex((entry) => entry.columnId === draggedColumnId)
+                  : -1
+              const previewDropIndex =
+                draggedColumnId !== null
+                  ? Math.max(
+                      0,
+                      Math.min(
+                        columnDropIndex ?? Math.max(currentDraggedIndex, 0),
+                        Math.max(columns.length - 1, 0),
+                      ),
+                    )
+                  : 0
+              const columnsForRender =
+                draggedColumnId !== null && currentDraggedIndex >= 0
+                  ? reorderColumnsByIndex(columns, draggedColumnId, previewDropIndex)
+                  : columns
+
+              return columnsForRender.map((column) => {
               const columnTasks = getColumnTasks(column.columnId)
-              const dragOverIndex = columns.findIndex((entry) => entry.columnId === dragOverColumnId)
-              const hasActiveDropTarget = draggedColumnId !== null && dragOverIndex >= 0
-              const isPrimaryBefore =
-                hasActiveDropTarget &&
-                dragOverIndex === index &&
-                dragOverEdge === 'before' &&
-                draggedColumnId !== column.columnId
-              const isPrimaryAfter =
-                hasActiveDropTarget &&
-                dragOverIndex === index &&
-                dragOverEdge === 'after' &&
-                draggedColumnId !== column.columnId
-              const isNeighborBefore =
-                hasActiveDropTarget &&
-                dragOverIndex === index - 1 &&
-                dragOverEdge === 'after' &&
-                draggedColumnId !== column.columnId
-              const isNeighborAfter =
-                hasActiveDropTarget &&
-                dragOverIndex === index + 1 &&
-                dragOverEdge === 'before' &&
-                draggedColumnId !== column.columnId
               const columnStyle = {
                 '--kc-column-accent': column.color ?? '#60a5fa',
               } as CSSProperties
               const isTaskDropzoneActive = draggedTaskId !== null && dragOverTaskColumnId === column.columnId
               const isTaskDropAtEnd = isTaskDropzoneActive && dragOverTaskId === null
+                const isColumnSkeleton = draggedColumnId !== null && draggedColumnId === column.columnId
 
               return (
                 <article
@@ -1076,9 +1089,7 @@ export function BoardPage() {
                     'kc-panel',
                     'kc-board-column-card',
                     canMoveColumnsOnPage ? 'kc-board-column-card--movable' : '',
-                    draggedColumnId === column.columnId ? 'kc-board-column-card--dragging' : '',
-                    isPrimaryBefore || isNeighborBefore ? 'kc-board-column-card--drop-before' : '',
-                    isPrimaryAfter || isNeighborAfter ? 'kc-board-column-card--drop-after' : '',
+                      isColumnSkeleton ? 'kc-board-column-card--drag-skeleton' : '',
                   ]
                     .filter(Boolean)
                     .join(' ')}
@@ -1225,7 +1236,8 @@ export function BoardPage() {
                 </div>
               </article>
               )
-            })}
+              })
+            })()}
 
             {canCreateColumnsOnPage &&
               (addingColumn ? (
