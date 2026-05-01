@@ -553,6 +553,17 @@ pre {
   opacity: 0.55;
   border-color: rgba(165, 243, 252, 0.55);
 }
+.kc-board-column-card--drag-skeleton {
+  opacity: 1;
+  border: 1px solid rgba(96, 165, 250, 0.18);
+  background: rgba(96, 165, 250, 0.14);
+  box-shadow: none;
+}
+.kc-board-column-card--drag-skeleton .kc-column-header,
+.kc-board-column-card--drag-skeleton .kc-column-content {
+  visibility: hidden;
+  pointer-events: none;
+}
 .kc-board-column-card--drop-before {
   box-shadow: inset 4px 0 0 rgba(165, 243, 252, 0.85);
 }
