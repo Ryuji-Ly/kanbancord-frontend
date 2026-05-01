@@ -22,12 +22,7 @@ import { ToastStack } from '../components/dashboard/ToastStack'
 import type { HeaderUser, ToastMessage } from '../components/dashboard/types'
 
 type LoadState = 'idle' | 'loading' | 'error' | 'ready'
-type TaskDropEdge = 'before' | 'after'
-type TaskDropIntent = {
-  columnId: number
-  targetTaskId: number | null
-  edge: TaskDropEdge
-}
+type TaskDropTarget = { columnId: number; dropIndex: number }
 type TaskDraft = {
   title: string
   description: string
@@ -127,8 +122,7 @@ function moveTaskLocally(
   taskGroups: Record<number, TaskEntry[]>,
   draggedTaskId: number,
   targetColumnId: number,
-  targetTaskId: number | null,
-  edge: TaskDropEdge,
+  dropIndex: number,
 ): Record<number, TaskEntry[]> {
   let draggedTask: TaskEntry | null = null
   let sourceColumnId: number | null = null
@@ -159,13 +153,7 @@ function moveTaskLocally(
       ? sourceTasks
       : [...(nextGroups[targetColumnId] ?? [])]
 
-  let insertIndex = targetTasks.length
-  if (targetTaskId !== null) {
-    const targetIndex = targetTasks.findIndex((entry) => entry.taskId === targetTaskId)
-    if (targetIndex >= 0) {
-      insertIndex = targetIndex + (edge === 'after' ? 1 : 0)
-    }
-  }
+  const insertIndex = Math.max(0, Math.min(dropIndex, targetTasks.length))
 
   targetTasks.splice(insertIndex, 0, {
     ...draggedTask,
@@ -177,13 +165,12 @@ function moveTaskLocally(
   return nextGroups
 }
 
-function resolveTaskDropIntent(
+function resolveTaskDropIndex(
   dropzone: HTMLElement,
-  columnId: number,
   entries: TaskEntry[],
   draggedTaskId: number,
   clientY: number,
-): TaskDropIntent {
+): number {
   const candidates = entries.filter((entry) => entry.taskId !== draggedTaskId)
   const positionedTasks = candidates
     .map((entry) => {
@@ -193,45 +180,18 @@ function resolveTaskDropIntent(
     })
     .filter((item): item is { entry: TaskEntry; rect: DOMRect } => item !== null)
 
-  if (positionedTasks.length === 0) {
-    return { columnId, targetTaskId: null, edge: 'after' }
-  }
-
-  const firstTask = positionedTasks[0]
-  const lastTask = positionedTasks[positionedTasks.length - 1]
-
-  if (clientY <= firstTask.rect.top) {
-    return { columnId, targetTaskId: firstTask.entry.taskId, edge: 'before' }
-  }
-
-  if (clientY >= lastTask.rect.bottom) {
-    return { columnId, targetTaskId: lastTask.entry.taskId, edge: 'after' }
-  }
+  if (positionedTasks.length === 0) return 0
 
   for (let index = 0; index < positionedTasks.length; index += 1) {
     const current = positionedTasks[index]
     const middle = current.rect.top + current.rect.height / 2
 
-    if (clientY >= current.rect.top && clientY <= current.rect.bottom) {
-      return {
-        columnId,
-        targetTaskId: current.entry.taskId,
-        edge: clientY < middle ? 'before' : 'after',
-      }
-    }
-
-    if (index < positionedTasks.length - 1) {
-      const next = positionedTasks[index + 1]
-      if (clientY > current.rect.bottom && clientY < next.rect.top) {
-        const gapMiddle = current.rect.bottom + (next.rect.top - current.rect.bottom) / 2
-        return clientY < gapMiddle
-          ? { columnId, targetTaskId: current.entry.taskId, edge: 'after' }
-          : { columnId, targetTaskId: next.entry.taskId, edge: 'before' }
-      }
+    if (clientY < middle) {
+      return index
     }
   }
 
-  return { columnId, targetTaskId: lastTask.entry.taskId, edge: 'after' }
+  return positionedTasks.length
 }
 
 function resolveTaskTargetColumnId(
@@ -273,14 +233,14 @@ function resolveTaskTargetColumnId(
   return null
 }
 
-function resolveTaskDropIntentFromBoard(
+function resolveTaskDropTargetFromBoard(
   row: HTMLElement,
   columns: BoardColumnEntry[],
   tasksByColumn: Record<number, TaskEntry[]>,
   draggedTaskId: number,
   clientX: number,
   clientY: number,
-): TaskDropIntent | null {
+): TaskDropTarget | null {
   const targetColumnId = resolveTaskTargetColumnId(row, columns, clientX)
   if (targetColumnId === null) return null
 
@@ -289,13 +249,15 @@ function resolveTaskDropIntentFromBoard(
   )
   if (!targetColumnElement) return null
 
-  return resolveTaskDropIntent(
-    targetColumnElement,
-    targetColumnId,
-    tasksByColumn[targetColumnId] ?? [],
-    draggedTaskId,
-    clientY,
-  )
+  return {
+    columnId: targetColumnId,
+    dropIndex: resolveTaskDropIndex(
+      targetColumnElement,
+      tasksByColumn[targetColumnId] ?? [],
+      draggedTaskId,
+      clientY,
+    ),
+  }
 }
 
 export function BoardPage() {
@@ -342,9 +304,9 @@ export function BoardPage() {
   const [columnDropIndex, setColumnDropIndex] = useState<number | null>(null)
   const [movingColumns, setMovingColumns] = useState(false)
   const [draggedTaskId, setDraggedTaskId] = useState<number | null>(null)
-  const [dragOverTaskId, setDragOverTaskId] = useState<number | null>(null)
-  const [dragOverTaskColumnId, setDragOverTaskColumnId] = useState<number | null>(null)
-  const [dragOverTaskEdge, setDragOverTaskEdge] = useState<TaskDropEdge>('after')
+  const [taskDropColumnId, setTaskDropColumnId] = useState<number | null>(null)
+  const [taskDropIndex, setTaskDropIndex] = useState<number | null>(null)
+  const [draggedTaskHeight, setDraggedTaskHeight] = useState<number | null>(null)
   const [movingTasks, setMovingTasks] = useState(false)
   const [suppressEditUntil, setSuppressEditUntil] = useState(0)
   const [taskModalColumn, setTaskModalColumn] = useState<BoardColumnEntry | null>(null)
@@ -354,6 +316,8 @@ export function BoardPage() {
   const columnDragImageRef = useRef<HTMLElement | null>(null)
   const columnDragOffsetRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 })
   const transparentDragImageRef = useRef<HTMLImageElement | null>(null)
+  const taskDragImageRef = useRef<HTMLElement | null>(null)
+  const taskDragOffsetRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 })
 
   const isBoardArchived = Boolean(board?.isArchived)
   const canEditColumnsOnPage = canEditColumn && !isBoardArchived
@@ -576,6 +540,20 @@ export function BoardPage() {
     columnDragImageRef.current.style.top = `${clientY - columnDragOffsetRef.current.y}px`
   }
 
+  function cleanupTaskDragImage() {
+    if (taskDragImageRef.current) {
+      taskDragImageRef.current.remove()
+      taskDragImageRef.current = null
+    }
+  }
+
+  function updateTaskDragImagePosition(clientX: number, clientY: number) {
+    if (!taskDragImageRef.current) return
+
+    taskDragImageRef.current.style.left = `${clientX - taskDragOffsetRef.current.x}px`
+    taskDragImageRef.current.style.top = `${clientY - taskDragOffsetRef.current.y}px`
+  }
+
   function handleColumnDragStart(event: DragEvent<HTMLElement>, columnId: number) {
     if (isColumnDragExcludedTarget(event.target)) {
       event.preventDefault()
@@ -647,12 +625,15 @@ export function BoardPage() {
     if (draggedColumnId !== null) {
       updateColumnDragImagePosition(event.clientX, event.clientY)
     }
+    if (draggedTaskId !== null) {
+      updateTaskDragImagePosition(event.clientX, event.clientY)
+    }
 
     if (canMoveTasksOnPage && draggedTaskId !== null) {
       event.preventDefault()
       event.dataTransfer.dropEffect = 'move'
 
-      const intent = resolveTaskDropIntentFromBoard(
+      const target = resolveTaskDropTargetFromBoard(
         event.currentTarget,
         columns,
         tasksByColumn,
@@ -661,15 +642,14 @@ export function BoardPage() {
         event.clientY,
       )
 
-      if (!intent) {
-        setDragOverTaskId(null)
-        setDragOverTaskColumnId(null)
+      if (!target) {
+        setTaskDropColumnId(null)
+        setTaskDropIndex(null)
         return
       }
 
-      setDragOverTaskId(intent.targetTaskId)
-      setDragOverTaskColumnId(intent.columnId)
-      setDragOverTaskEdge(intent.edge)
+      setTaskDropColumnId(target.columnId)
+      setTaskDropIndex(target.dropIndex)
       return
     }
 
@@ -691,7 +671,7 @@ export function BoardPage() {
     if (canMoveTasksOnPage && draggedTaskId !== null && !movingTasks) {
       event.preventDefault()
 
-      const intent = resolveTaskDropIntentFromBoard(
+      const target = resolveTaskDropTargetFromBoard(
         event.currentTarget,
         columns,
         tasksByColumn,
@@ -700,7 +680,7 @@ export function BoardPage() {
         event.clientY,
       )
 
-      if (!intent) {
+      if (!target) {
         clearTaskDragState()
         return
       }
@@ -717,21 +697,20 @@ export function BoardPage() {
       const nextTaskGroups = moveTaskLocally(
         previousTaskGroups,
         draggedTaskId,
-        intent.columnId,
-        intent.targetTaskId,
-        intent.edge,
+        target.columnId,
+        target.dropIndex,
       )
 
       clearTaskDragState()
 
       const sourceColumnId = draggedTask.columnId
       const changed = JSON.stringify(nextTaskGroups[sourceColumnId] ?? []) !== JSON.stringify(previousTaskGroups[sourceColumnId] ?? [])
-        || JSON.stringify(nextTaskGroups[intent.columnId] ?? []) !== JSON.stringify(previousTaskGroups[intent.columnId] ?? [])
+        || JSON.stringify(nextTaskGroups[target.columnId] ?? []) !== JSON.stringify(previousTaskGroups[target.columnId] ?? [])
 
       if (!changed) return
 
       setTasksByColumn(nextTaskGroups)
-      const affectedColumnIds = Array.from(new Set([sourceColumnId, intent.columnId]))
+      const affectedColumnIds = Array.from(new Set([sourceColumnId, target.columnId]))
       await persistTaskMove(nextTaskGroups, previousTaskGroups, affectedColumnIds)
       return
     }
@@ -855,9 +834,10 @@ export function BoardPage() {
 
   function clearTaskDragState() {
     setDraggedTaskId(null)
-    setDragOverTaskId(null)
-    setDragOverTaskColumnId(null)
-    setDragOverTaskEdge('after')
+    setTaskDropColumnId(null)
+    setTaskDropIndex(null)
+    setDraggedTaskHeight(null)
+    cleanupTaskDragImage()
   }
 
   function handleTaskDragStart(event: DragEvent<HTMLElement>, taskId: number) {
@@ -870,6 +850,48 @@ export function BoardPage() {
     event.stopPropagation()
     event.dataTransfer.effectAllowed = 'move'
     event.dataTransfer.setData('text/plain', String(taskId))
+
+    const transparentImage = getTransparentDragImage()
+    event.dataTransfer.setDragImage(transparentImage, 0, 0)
+
+    const source = event.currentTarget
+    const rect = source.getBoundingClientRect()
+    const clone = source.cloneNode(true) as HTMLElement
+    clone.style.position = 'fixed'
+    clone.style.top = '0'
+    clone.style.left = '0'
+    clone.style.width = `${rect.width}px`
+    clone.style.minWidth = `${rect.width}px`
+    clone.style.maxWidth = `${rect.width}px`
+    clone.style.height = `${rect.height}px`
+    clone.style.pointerEvents = 'none'
+    clone.style.margin = '0'
+    clone.style.opacity = '0.5'
+    clone.style.boxSizing = 'border-box'
+    clone.style.border = '1px solid rgba(148, 163, 184, 0.18)'
+    clone.style.boxShadow = '0 8px 20px rgba(0, 0, 0, 0.35)'
+    clone.style.zIndex = '2000'
+
+    cleanupTaskDragImage()
+    document.body.appendChild(clone)
+    taskDragImageRef.current = clone
+
+    const offsetX = Math.max(0, Math.min(event.clientX - rect.left, rect.width))
+    const offsetY = Math.max(0, Math.min(event.clientY - rect.top, rect.height))
+    taskDragOffsetRef.current = { x: offsetX, y: offsetY }
+    updateTaskDragImagePosition(event.clientX, event.clientY)
+
+    const sourceColumnId = Object.entries(tasksByColumn).find(([, entries]) =>
+      entries.some((entry) => entry.taskId === taskId),
+    )
+    if (sourceColumnId) {
+      const columnId = Number(sourceColumnId[0])
+      const sourceIndex = (tasksByColumn[columnId] ?? []).findIndex((entry) => entry.taskId === taskId)
+      setTaskDropColumnId(columnId)
+      setTaskDropIndex(Math.max(0, sourceIndex))
+    }
+
+    setDraggedTaskHeight(rect.height)
     setDraggedTaskId(taskId)
     setSuppressEditUntil(Date.now() + 250)
   }
@@ -880,18 +902,17 @@ export function BoardPage() {
     event.preventDefault()
     event.stopPropagation()
     event.dataTransfer.dropEffect = 'move'
+    updateTaskDragImagePosition(event.clientX, event.clientY)
 
-    const intent = resolveTaskDropIntent(
+    const dropIndex = resolveTaskDropIndex(
       event.currentTarget,
-      columnId,
       getColumnTasks(columnId),
       draggedTaskId,
       event.clientY,
     )
 
-    setDragOverTaskId(intent.targetTaskId)
-    setDragOverTaskColumnId(intent.columnId)
-    setDragOverTaskEdge(intent.edge)
+    setTaskDropColumnId(columnId)
+    setTaskDropIndex(dropIndex)
   }
 
   async function persistTaskMove(
@@ -958,9 +979,8 @@ export function BoardPage() {
       return
     }
 
-    const intent = resolveTaskDropIntent(
+    const dropIndex = resolveTaskDropIndex(
       event.currentTarget,
-      columnId,
       getColumnTasks(columnId),
       draggedTaskId,
       event.clientY,
@@ -969,21 +989,20 @@ export function BoardPage() {
     const nextTaskGroups = moveTaskLocally(
       previousTaskGroups,
       draggedTaskId,
-      intent.columnId,
-      intent.targetTaskId,
-      intent.edge,
+      columnId,
+      dropIndex,
     )
 
     clearTaskDragState()
 
     const sourceColumnId = draggedTask.columnId
     const changed = JSON.stringify(nextTaskGroups[sourceColumnId] ?? []) !== JSON.stringify(previousTaskGroups[sourceColumnId] ?? [])
-      || JSON.stringify(nextTaskGroups[intent.columnId] ?? []) !== JSON.stringify(previousTaskGroups[intent.columnId] ?? [])
+      || JSON.stringify(nextTaskGroups[columnId] ?? []) !== JSON.stringify(previousTaskGroups[columnId] ?? [])
 
     if (!changed) return
 
     setTasksByColumn(nextTaskGroups)
-    const affectedColumnIds = Array.from(new Set([sourceColumnId, intent.columnId]))
+    const affectedColumnIds = Array.from(new Set([sourceColumnId, columnId]))
     await persistTaskMove(nextTaskGroups, previousTaskGroups, affectedColumnIds)
   }
 
@@ -1072,12 +1091,17 @@ export function BoardPage() {
                   : columns
 
               return columnsForRender.map((column) => {
-              const columnTasks = getColumnTasks(column.columnId)
+              const previewTaskGroups =
+                draggedTaskId !== null && taskDropColumnId !== null && taskDropIndex !== null
+                  ? moveTaskLocally(tasksByColumn, draggedTaskId, taskDropColumnId, taskDropIndex)
+                  : null
+              const columnTasks = previewTaskGroups
+                ? previewTaskGroups[column.columnId] ?? []
+                : getColumnTasks(column.columnId)
               const columnStyle = {
                 '--kc-column-accent': column.color ?? '#60a5fa',
               } as CSSProperties
-              const isTaskDropzoneActive = draggedTaskId !== null && dragOverTaskColumnId === column.columnId
-              const isTaskDropAtEnd = isTaskDropzoneActive && dragOverTaskId === null
+              const isTaskDropzoneActive = draggedTaskId !== null && taskDropColumnId === column.columnId
                 const isColumnSkeleton = draggedColumnId !== null && draggedColumnId === column.columnId
 
               return (
@@ -1165,7 +1189,7 @@ export function BoardPage() {
                   <div
                     className={[
                       'kc-column-task-dropzone',
-                      isTaskDropAtEnd ? 'kc-column-task-dropzone--active' : '',
+                      isTaskDropzoneActive ? 'kc-column-task-dropzone--active' : '',
                     ]
                       .filter(Boolean)
                       .join(' ')}
@@ -1178,29 +1202,17 @@ export function BoardPage() {
                   {columnTasks.length > 0 ? (
                     <ul className="kc-column-task-list">
                       {columnTasks.map((task) => {
-                        const isDropBefore =
-                          draggedTaskId !== null &&
-                          dragOverTaskColumnId === column.columnId &&
-                          dragOverTaskId === task.taskId &&
-                          dragOverTaskEdge === 'before' &&
-                          draggedTaskId !== task.taskId
-                        const isDropAfter =
-                          draggedTaskId !== null &&
-                          dragOverTaskColumnId === column.columnId &&
-                          dragOverTaskId === task.taskId &&
-                          dragOverTaskEdge === 'after' &&
-                          draggedTaskId !== task.taskId
+                        const isTaskSkeleton = draggedTaskId !== null && draggedTaskId === task.taskId
 
                         return (
                         <li
                           key={task.taskId}
                           data-task-id={task.taskId}
+                          style={isTaskSkeleton && draggedTaskHeight ? { height: `${draggedTaskHeight}px` } : undefined}
                           className={[
                             'kc-column-task-card',
                             canMoveTasksOnPage ? 'kc-column-task-card--movable' : '',
-                            draggedTaskId === task.taskId ? 'kc-column-task-card--dragging' : '',
-                            isDropBefore ? 'kc-column-task-card--drop-before' : '',
-                            isDropAfter ? 'kc-column-task-card--drop-after' : '',
+                            isTaskSkeleton ? 'kc-column-task-card--drag-skeleton' : '',
                           ]
                             .filter(Boolean)
                             .join(' ')}
@@ -1212,9 +1224,13 @@ export function BoardPage() {
                             clearTaskDragState()
                           }}
                         >
-                          <span className="kc-column-task-title">{task.title}</span>
-                          {task.priority && (
-                            <span className="kc-column-task-priority">{task.priority}</span>
+                          {!isTaskSkeleton && (
+                            <>
+                              <span className="kc-column-task-title">{task.title}</span>
+                              {task.priority && (
+                                <span className="kc-column-task-priority">{task.priority}</span>
+                              )}
+                            </>
                           )}
                         </li>
                         )
