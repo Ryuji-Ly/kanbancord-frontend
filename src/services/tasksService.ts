@@ -124,3 +124,17 @@ export async function updateTask(
   if (!response.ok) throw new Error(await parseError(response))
   return response.json() as Promise<TaskEntry>
 }
+export async function deleteTask(
+  token: string,
+  serverId: string,
+  boardId: string,
+  taskId: number,
+  userId: string,
+): Promise<void> {
+  const params = new URLSearchParams({ userId })
+  const response = await fetch(
+    apiUrl(`/api/servers/${serverId}/boards/${boardId}/tasks/${taskId}?${params.toString()}`),
+    { method: 'DELETE', headers: authHeaders(token) },
+  )
+  if (!response.ok) throw new Error(await parseError(response))
+}

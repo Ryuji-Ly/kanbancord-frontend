@@ -1,4 +1,7 @@
-﻿import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties, type DragEvent } from 'react'
+﻿import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties, type DragEvent, type ComponentPropsWithoutRef } from 'react'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+import rehypeRaw from 'rehype-raw'
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { getStoredToken } from '../services/authService'
 import { fetchMe } from '../services/meService'
@@ -12,10 +15,19 @@ import {
 } from '../services/boardColumnsService'
 import {
   createTask,
+  deleteTask,
   fetchBoardTasks,
   updateTask,
   type TaskEntry,
 } from '../services/tasksService'
+import {
+  createTaskComment,
+  deleteTaskComment,
+  fetchTaskComments,
+  updateTaskComment,
+  type TaskCommentEditor,
+  type TaskCommentEntry,
+} from '../services/taskCommentsService'
 import { evaluatePermission } from '../services/permissionsService'
 import { DashboardHeader } from '../components/dashboard/DashboardHeader'
 import { ToastStack } from '../components/dashboard/ToastStack'
@@ -29,12 +41,63 @@ type TaskDraft = {
   priority: string
   dueDate: string
 }
+type TaskCommentDraft = {
+  content: string
+}
 
 const EMPTY_TASK_DRAFT: TaskDraft = {
   title: '',
   description: '',
   priority: '',
   dueDate: '',
+}
+
+const EMPTY_TASK_COMMENT_DRAFT: TaskCommentDraft = {
+  content: '',
+}
+
+function resolveCommentAuthorName(comment: TaskCommentEntry): string {
+  return comment.authorGlobalName?.trim() || comment.authorUsername
+}
+
+function resolveEditorLabel(editor: TaskCommentEditor): string {
+  return editor.globalName?.trim() || editor.username
+}
+
+function formatCommentTimestamp(value: string | null): string {
+  if (!value) return ''
+  const parsed = new Date(value)
+  return Number.isNaN(parsed.getTime()) ? '' : parsed.toLocaleString()
+}
+
+function toggleTaskListItemByIndex(markdown: string, itemIndex: number, checked: boolean): string {
+  if (itemIndex < 0) return markdown
+
+  const lines = markdown.split(/\r?\n/)
+  let seen = -1
+  const taskRegex = /^(\s*(?:>\s*)*(?:[-*+]|\d+[.)])\s+\[)( |x|X)(\](?:\s.*)?)$/
+
+  for (let index = 0; index < lines.length; index += 1) {
+    const line = lines[index]
+    const match = line.match(taskRegex)
+    if (!match) continue
+
+    seen += 1
+    if (seen !== itemIndex) continue
+
+    const [, prefix, , suffix] = match
+    lines[index] = `${prefix}${checked ? 'x' : ' '}${suffix}`
+    return lines.join('\n')
+  }
+
+  return markdown
+}
+
+function sortCommentsByCreatedAt(entries: TaskCommentEntry[]): TaskCommentEntry[] {
+  return [...entries].sort(
+    (left, right) =>
+      new Date(left.createdAt).getTime() - new Date(right.createdAt).getTime(),
+  )
 }
 
 function isColumnDragExcludedTarget(target: EventTarget | null): boolean {
@@ -387,7 +450,11 @@ export function BoardPage() {
   const [canMoveColumn, setCanMoveColumn] = useState(false)
   const [canCreateTask, setCanCreateTask] = useState(false)
   const [canEditTask, setCanEditTask] = useState(false)
+  const [canDeleteTask, setCanDeleteTask] = useState(false)
   const [canMoveTask, setCanMoveTask] = useState(false)
+  const [canCreateTaskComment, setCanCreateTaskComment] = useState(false)
+  const [canEditTaskComment, setCanEditTaskComment] = useState(false)
+  const [canDeleteTaskComment, setCanDeleteTaskComment] = useState(false)
   const [tasksByColumn, setTasksByColumn] = useState<Record<number, TaskEntry[]>>({})
 
   // Inline rename
@@ -420,11 +487,36 @@ export function BoardPage() {
   const [taskDraft, setTaskDraft] = useState<TaskDraft>(EMPTY_TASK_DRAFT)
   const [taskModalError, setTaskModalError] = useState('')
   const [creatingTask, setCreatingTask] = useState(false)
+  const [selectedTask, setSelectedTask] = useState<TaskEntry | null>(null)
+  const [taskPanelDraft, setTaskPanelDraft] = useState<TaskDraft>(EMPTY_TASK_DRAFT)
+  const [taskPanelError, setTaskPanelError] = useState('')
+  const [savingTask, setSavingTask] = useState(false)
+  const [editingDescription, setEditingDescription] = useState(false)
+  const [taskPanelExpanded, setTaskPanelExpanded] = useState(false)
+  const [togglingTaskChecklist, setTogglingTaskChecklist] = useState(false)
+  const [deleteTargetTask, setDeleteTargetTask] = useState<TaskEntry | null>(null)
+  const [deleteTaskError, setDeleteTaskError] = useState('')
+  const [deletingTask, setDeletingTask] = useState(false)
+  const [taskComments, setTaskComments] = useState<TaskCommentEntry[]>([])
+  const [taskCommentsState, setTaskCommentsState] = useState<LoadState>('idle')
+  const [taskCommentsError, setTaskCommentsError] = useState('')
+  const [showCommentComposer, setShowCommentComposer] = useState(false)
+  const [taskCommentDraft, setTaskCommentDraft] = useState<TaskCommentDraft>(EMPTY_TASK_COMMENT_DRAFT)
+  const [creatingComment, setCreatingComment] = useState(false)
+  const [editingCommentId, setEditingCommentId] = useState<number | null>(null)
+  const [editingCommentContent, setEditingCommentContent] = useState('')
+  const [savingComment, setSavingComment] = useState(false)
+  const [openCommentMenuId, setOpenCommentMenuId] = useState<number | null>(null)
+  const [deleteTargetComment, setDeleteTargetComment] = useState<TaskCommentEntry | null>(null)
+  const [deleteCommentError, setDeleteCommentError] = useState('')
+  const [deletingComment, setDeletingComment] = useState(false)
+  const [togglingCommentChecklistIds, setTogglingCommentChecklistIds] = useState<Set<number>>(new Set())
   const columnDragImageRef = useRef<HTMLElement | null>(null)
   const columnDragOffsetRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 })
   const transparentDragImageRef = useRef<HTMLImageElement | null>(null)
   const taskDragImageRef = useRef<HTMLElement | null>(null)
   const taskDragOffsetRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 })
+  const taskPanelRef = useRef<HTMLElement | null>(null)
 
   const isBoardArchived = Boolean(board?.isArchived)
   const canEditColumnsOnPage = canEditColumn && !isBoardArchived
@@ -433,6 +525,73 @@ export function BoardPage() {
   const canMoveColumnsOnPage = canEditColumn && canMoveColumn && !isBoardArchived
   const canCreateTasksOnPage = canCreateTask && !isBoardArchived
   const canMoveTasksOnPage = canEditTask && canMoveTask && !isBoardArchived
+
+  // Close panel when clicking anywhere outside it or a task card
+  useEffect(() => {
+    if (!selectedTask) return
+    function handleOutsideClick(e: MouseEvent) {
+      const target = e.target as Element
+      if (
+        target.closest('.kc-task-panel') ||
+        target.closest('[data-task-id]') ||
+        target.closest('.kc-modal-overlay')
+      ) return
+      setSelectedTask(null)
+      setTaskPanelDraft(EMPTY_TASK_DRAFT)
+      setTaskPanelError('')
+    }
+    document.addEventListener('mousedown', handleOutsideClick)
+    return () => document.removeEventListener('mousedown', handleOutsideClick)
+  }, [selectedTask])
+
+  useEffect(() => {
+    if (!selectedTask || !me) {
+      setTaskComments([])
+      setTaskCommentsState('idle')
+      setTaskCommentsError('')
+      return
+    }
+
+    const currentTask = selectedTask
+    const currentUser = me
+
+    const token = getStoredToken()
+    if (!token) return
+
+    let cancelled = false
+
+    async function loadTaskComments() {
+      setTaskCommentsState('loading')
+      setTaskCommentsError('')
+      try {
+        const comments = await fetchTaskComments(
+          token,
+          serverId,
+          boardId,
+          currentTask.taskId,
+          String(currentUser.userId),
+        )
+        if (cancelled) return
+        setTaskComments(
+          [...comments].sort(
+            (left, right) =>
+              new Date(left.createdAt).getTime() - new Date(right.createdAt).getTime(),
+          ),
+        )
+        setTaskCommentsState('ready')
+      } catch (err) {
+        if (cancelled) return
+        setTaskCommentsError(String(err))
+        setTaskCommentsState('error')
+      }
+    }
+
+    void loadTaskComments()
+
+    return () => {
+      cancelled = true
+    }
+  }, [selectedTask, me, serverId, boardId])
 
   function showToast(text: string, type: 'success' | 'error' = 'success') {
     const id = nextToastId
@@ -461,7 +620,7 @@ export function BoardPage() {
         const meResponse = await fetchMe(token)
         setMe(meResponse)
         const userId = String(meResponse.userId)
-        const [boardData, columnData, taskData, editPerm, createPerm, deletePerm, movePerm, createTaskPerm, editTaskPerm, moveTaskPerm] = await Promise.all([
+        const [boardData, columnData, taskData, editPerm, createPerm, deletePerm, movePerm, createTaskPerm, editTaskPerm, deleteTaskPerm, moveTaskPerm, createTaskCommentPerm, editTaskCommentPerm, deleteTaskCommentPerm] = await Promise.all([
           fetchBoardById(token, serverId, userId, boardId),
           fetchBoardColumns(token, serverId, boardId, userId),
           fetchBoardTasks(token, serverId, boardId, userId),
@@ -471,7 +630,11 @@ export function BoardPage() {
           evaluatePermission(token, serverId, userId, 'MOVE_COLUMN', boardId),
           evaluatePermission(token, serverId, userId, 'CREATE_TASK', boardId),
           evaluatePermission(token, serverId, userId, 'EDIT_TASK', boardId),
+          evaluatePermission(token, serverId, userId, 'DELETE_TASK', boardId),
           evaluatePermission(token, serverId, userId, 'MOVE_TASK', boardId),
+          evaluatePermission(token, serverId, userId, 'CREATE_TASK_COMMENT', boardId),
+          evaluatePermission(token, serverId, userId, 'EDIT_TASK_COMMENT', boardId),
+          evaluatePermission(token, serverId, userId, 'DELETE_TASK_COMMENT', boardId),
         ])
 
         if (cancelled) return
@@ -484,7 +647,11 @@ export function BoardPage() {
         setCanMoveColumn(movePerm.allowed && !boardData.isArchived)
         setCanCreateTask(createTaskPerm.allowed && !boardData.isArchived)
         setCanEditTask(editTaskPerm.allowed && !boardData.isArchived)
+        setCanDeleteTask(deleteTaskPerm.allowed && !boardData.isArchived)
         setCanMoveTask(moveTaskPerm.allowed && !boardData.isArchived)
+        setCanCreateTaskComment(createTaskCommentPerm.allowed && !boardData.isArchived)
+        setCanEditTaskComment(editTaskCommentPerm.allowed && !boardData.isArchived)
+        setCanDeleteTaskComment(deleteTaskCommentPerm.allowed && !boardData.isArchived)
         setState('ready')
       } catch (err) {
         if (cancelled) return
@@ -841,6 +1008,374 @@ export function BoardPage() {
     setColumnDropIndex(null)
     setSuppressEditUntil(Date.now() + 250)
     cleanupColumnDragImage()
+  }
+
+  function openTaskPanel(task: TaskEntry) {
+    setSelectedTask(task)
+    setTaskPanelDraft({
+      title: task.title ?? '',
+      description: task.description ?? '',
+      priority: task.priority ?? '',
+      dueDate: task.dueDate ? task.dueDate.slice(0, 16) : '',
+    })
+    setTaskPanelError('')
+    setEditingDescription(false)
+    setTaskPanelExpanded(false)
+  }
+
+  function closeTaskPanel() {
+    setSelectedTask(null)
+    setTaskPanelDraft(EMPTY_TASK_DRAFT)
+    setTaskPanelError('')
+    setTaskComments([])
+    setTaskCommentsState('idle')
+    setTaskCommentsError('')
+    setShowCommentComposer(false)
+    setTaskCommentDraft(EMPTY_TASK_COMMENT_DRAFT)
+    setEditingCommentId(null)
+    setEditingCommentContent('')
+    setOpenCommentMenuId(null)
+    setDeleteTargetComment(null)
+    setDeleteCommentError('')
+    setEditingDescription(false)
+    setTaskPanelExpanded(false)
+  }
+
+  function canEditComment(_comment: TaskCommentEntry): boolean {
+    return canEditTaskComment
+  }
+
+  function canDeleteComment(_comment: TaskCommentEntry): boolean {
+    return canDeleteTaskComment
+  }
+
+  function getCommentEditLabel(comment: TaskCommentEntry): string {
+    const created = comment.createdAt ? new Date(comment.createdAt).getTime() : 0
+    const updated = comment.updatedAt ? new Date(comment.updatedAt).getTime() : 0
+    if (!updated || updated <= created) return ''
+
+    const uniqueEditors = Array.from(
+      new Map((comment.editedByUsers ?? []).map((editor) => [editor.userId, editor])).values(),
+    )
+    const nonAuthorEditors = uniqueEditors.filter((editor) => editor.userId !== comment.userId)
+
+    if (nonAuthorEditors.length === 0) {
+      return '(edited)'
+    }
+
+    const labelEditors = uniqueEditors.length > 0 ? uniqueEditors : nonAuthorEditors
+    return `(edited by: ${labelEditors.map(resolveEditorLabel).join(', ')})`
+  }
+
+  function createMarkdownComponents(options: {
+    editable: boolean
+    onToggle?: (itemIndex: number, checked: boolean) => void
+  }) {
+    return {
+      input: (props: ComponentPropsWithoutRef<'input'>) => {
+        if (props.type !== 'checkbox') {
+          return <input {...props} />
+        }
+
+        return (
+          <input
+            {...props}
+            type="checkbox"
+            disabled={!options.editable}
+            onClick={(event) => event.stopPropagation()}
+            onChange={(event) => {
+              event.stopPropagation()
+              const target = event.currentTarget
+              const markdownRoot = target.closest('.kc-markdown')
+              const taskListCheckboxes = markdownRoot
+                ? Array.from(markdownRoot.querySelectorAll<HTMLInputElement>('input[type="checkbox"]'))
+                : []
+              const domItemIndex = taskListCheckboxes.indexOf(target)
+              if (domItemIndex < 0) return
+              options.onToggle?.(domItemIndex, event.currentTarget.checked)
+            }}
+          />
+        )
+      },
+    }
+  }
+
+  async function handleToggleTaskDescriptionChecklist(itemIndex: number, checked: boolean) {
+    if (!selectedTask || !me || !canEditTask || isBoardArchived) return
+    if (togglingTaskChecklist) return
+    const token = getStoredToken()
+    if (!token) return
+
+    const previousDescription = taskPanelDraft.description ?? ''
+    const nextDescription = toggleTaskListItemByIndex(previousDescription, itemIndex, checked)
+    if (nextDescription === previousDescription) return
+
+    setTaskPanelDraft((prev) => ({ ...prev, description: nextDescription }))
+    setTaskPanelError('')
+    setTogglingTaskChecklist(true)
+    setSavingTask(true)
+
+    try {
+      const updated = await updateTask(
+        token,
+        serverId,
+        boardId,
+        selectedTask.taskId,
+        String(me.userId),
+        {
+          title: taskPanelDraft.title.trim() || selectedTask.title,
+          description: nextDescription.trim() || null,
+          columnId: selectedTask.columnId,
+          position: selectedTask.position,
+          priority: taskPanelDraft.priority.trim() || null,
+          dueDate: taskPanelDraft.dueDate || null,
+        },
+      )
+
+      setTasksByColumn((prev) => ({
+        ...prev,
+        [updated.columnId]: sortTasks(
+          (prev[updated.columnId] ?? []).map((t) =>
+            t.taskId === updated.taskId ? updated : t,
+          ),
+        ),
+      }))
+      setSelectedTask(updated)
+      setTaskPanelDraft((prev) => ({
+        ...prev,
+        description: updated.description ?? '',
+      }))
+    } catch (err) {
+      setTaskPanelDraft((prev) => ({ ...prev, description: previousDescription }))
+      setTaskPanelError(String(err))
+    } finally {
+      setSavingTask(false)
+      setTogglingTaskChecklist(false)
+    }
+  }
+
+  async function handleToggleCommentChecklist(commentId: number, itemIndex: number, checked: boolean) {
+    if (!selectedTask || !me || !canEditTaskComment || isBoardArchived) return
+    if (togglingCommentChecklistIds.has(commentId)) return
+    const token = getStoredToken()
+    if (!token) return
+
+    const targetComment = taskComments.find((comment) => comment.commentId === commentId)
+    if (!targetComment) return
+
+    const previousContent = targetComment.content ?? ''
+    const nextContent = toggleTaskListItemByIndex(previousContent, itemIndex, checked)
+    if (nextContent === previousContent) return
+
+    setTaskComments((prev) =>
+      prev.map((comment) =>
+        comment.commentId === commentId
+          ? { ...comment, content: nextContent }
+          : comment,
+      ),
+    )
+    setTaskCommentsError('')
+    setTogglingCommentChecklistIds((prev) => {
+      const next = new Set(prev)
+      next.add(commentId)
+      return next
+    })
+
+    try {
+      const updated = await updateTaskComment(
+        token,
+        serverId,
+        boardId,
+        selectedTask.taskId,
+        commentId,
+        String(me.userId),
+        nextContent,
+      )
+      setTaskComments((prev) =>
+        sortCommentsByCreatedAt(
+          prev.map((comment) =>
+            comment.commentId === commentId ? updated : comment,
+          ),
+        ),
+      )
+    } catch (err) {
+      setTaskComments((prev) =>
+        prev.map((comment) =>
+          comment.commentId === commentId
+            ? { ...comment, content: previousContent }
+            : comment,
+        ),
+      )
+      setTaskCommentsError(String(err))
+    } finally {
+      setTogglingCommentChecklistIds((prev) => {
+        const next = new Set(prev)
+        next.delete(commentId)
+        return next
+      })
+    }
+  }
+
+  async function handleCreateComment() {
+    if (!selectedTask || !me) return
+    const content = taskCommentDraft.content.trim()
+    if (!content) return
+    const token = getStoredToken()
+    if (!token) return
+
+    setCreatingComment(true)
+    setTaskCommentsError('')
+    try {
+      const created = await createTaskComment(
+        token,
+        serverId,
+        boardId,
+        selectedTask.taskId,
+        String(me.userId),
+        content,
+      )
+      setTaskComments((prev) =>
+        sortCommentsByCreatedAt([...prev, created]),
+      )
+      setTaskCommentDraft(EMPTY_TASK_COMMENT_DRAFT)
+      setShowCommentComposer(false)
+    } catch (err) {
+      setTaskCommentsError(String(err))
+    } finally {
+      setCreatingComment(false)
+    }
+  }
+
+  async function handleSaveEditedComment() {
+    if (!selectedTask || !me || editingCommentId === null) return
+    const content = editingCommentContent.trim()
+    if (!content) return
+    const token = getStoredToken()
+    if (!token) return
+
+    setSavingComment(true)
+    setTaskCommentsError('')
+    try {
+      const updated = await updateTaskComment(
+        token,
+        serverId,
+        boardId,
+        selectedTask.taskId,
+        editingCommentId,
+        String(me.userId),
+        content,
+      )
+      setTaskComments((prev) =>
+        sortCommentsByCreatedAt(
+          prev.map((comment) =>
+            comment.commentId === editingCommentId ? updated : comment,
+          ),
+        ),
+      )
+      setEditingCommentId(null)
+      setEditingCommentContent('')
+      setOpenCommentMenuId(null)
+    } catch (err) {
+      setTaskCommentsError(String(err))
+    } finally {
+      setSavingComment(false)
+    }
+  }
+
+  async function handleDeleteComment() {
+    if (!selectedTask || !deleteTargetComment || !me) return
+    const token = getStoredToken()
+    if (!token) return
+
+    setDeletingComment(true)
+    setDeleteCommentError('')
+    try {
+      await deleteTaskComment(
+        token,
+        serverId,
+        boardId,
+        selectedTask.taskId,
+        deleteTargetComment.commentId,
+        String(me.userId),
+      )
+      setTaskComments((prev) =>
+        prev.filter((comment) => comment.commentId !== deleteTargetComment.commentId),
+      )
+      setDeleteTargetComment(null)
+      setOpenCommentMenuId(null)
+    } catch (err) {
+      setDeleteCommentError(String(err))
+    } finally {
+      setDeletingComment(false)
+    }
+  }
+
+  async function handleSaveTask() {
+    if (!selectedTask || !me) return
+    const title = taskPanelDraft.title.trim()
+    if (!title) {
+      setTaskPanelError('Task title is required.')
+      return
+    }
+    const token = getStoredToken()
+    if (!token) return
+    setSavingTask(true)
+    setTaskPanelError('')
+    try {
+      const updated = await updateTask(
+        token,
+        serverId,
+        boardId,
+        selectedTask.taskId,
+        String(me.userId),
+        {
+          title,
+          description: taskPanelDraft.description.trim() || null,
+          columnId: selectedTask.columnId,
+          position: selectedTask.position,
+          priority: taskPanelDraft.priority.trim() || null,
+          dueDate: taskPanelDraft.dueDate || null,
+        },
+      )
+      setTasksByColumn((prev) => ({
+        ...prev,
+        [updated.columnId]: sortTasks(
+          (prev[updated.columnId] ?? []).map((t) =>
+            t.taskId === updated.taskId ? updated : t,
+          ),
+        ),
+      }))
+      setSelectedTask(updated)
+      showToast('Task updated', 'success')
+    } catch (err) {
+      setTaskPanelError(String(err))
+    } finally {
+      setSavingTask(false)
+    }
+  }
+
+  async function handleDeleteTask() {
+    if (!deleteTargetTask || !me) return
+    const token = getStoredToken()
+    if (!token) return
+    setDeletingTask(true)
+    setDeleteTaskError('')
+    try {
+      await deleteTask(token, serverId, boardId, deleteTargetTask.taskId, String(me.userId))
+      setTasksByColumn((prev) => ({
+        ...prev,
+        [deleteTargetTask.columnId]: (prev[deleteTargetTask.columnId] ?? []).filter(
+          (t) => t.taskId !== deleteTargetTask.taskId,
+        ),
+      }))
+      setDeleteTargetTask(null)
+      closeTaskPanel()
+      showToast('Task deleted', 'success')
+    } catch (err) {
+      setDeleteTaskError(String(err))
+    } finally {
+      setDeletingTask(false)
+    }
   }
 
   function openCreateTaskModal(column: BoardColumnEntry) {
@@ -1320,6 +1855,7 @@ export function BoardPage() {
                             'kc-column-task-card',
                             canMoveTasksOnPage ? 'kc-column-task-card--movable' : '',
                             isTaskSkeleton ? 'kc-column-task-card--drag-skeleton' : '',
+                            selectedTask?.taskId === task.taskId ? 'kc-column-task-card--selected' : '',
                           ]
                             .filter(Boolean)
                             .join(' ')}
@@ -1329,6 +1865,11 @@ export function BoardPage() {
                           onDragEnd={(event) => {
                             event.stopPropagation()
                             clearTaskDragState()
+                          }}
+                          onClick={() => {
+                            if (Date.now() < suppressEditUntil) return
+                            if (isTaskSkeleton) return
+                            openTaskPanel(task)
                           }}
                         >
                           {!isTaskSkeleton && (
@@ -1365,7 +1906,7 @@ export function BoardPage() {
             {canCreateColumnsOnPage &&
               (addingColumn ? (
                 <div
-                  className="kc-panel kc-board-column-card"
+                  className="kc-panel kc-board-column-card kc-board-column-card--add-draft"
                   data-no-column-drag="true"
                 >
                   <div className="kc-column-header">
@@ -1398,6 +1939,419 @@ export function BoardPage() {
           </section>
         )}
       </main>
+
+      {selectedTask && (
+        <aside
+          ref={(el) => { taskPanelRef.current = el }}
+          className={`kc-task-panel${taskPanelExpanded ? ' kc-task-panel--expanded' : ''}`}
+          aria-label="Task details"
+          tabIndex={-1}
+          onClick={(e) => e.stopPropagation()}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' && e.target === e.currentTarget && canEditTask && !isBoardArchived) {
+              void handleSaveTask()
+            }
+          }}
+        >
+          <div className="kc-task-panel-header">
+            <h3 className="kc-task-panel-title">Task details</h3>
+            <div className="kc-task-panel-header-actions">
+              <button
+                type="button"
+                className="kc-modal-close"
+                aria-label={taskPanelExpanded ? 'Collapse task panel' : 'Expand task panel'}
+                title={taskPanelExpanded ? 'Collapse' : 'Expand'}
+                onClick={() => setTaskPanelExpanded((prev) => !prev)}
+              >
+                {taskPanelExpanded ? '⊡' : '⊞'}
+              </button>
+              <button
+                type="button"
+                className="kc-modal-close"
+                aria-label="Close task panel"
+                onClick={closeTaskPanel}
+              >
+                ×
+              </button>
+            </div>
+          </div>
+
+          <div
+            className="kc-task-panel-body"
+            onClick={(e) => {
+              const t = e.target as Element
+              if (!t.closest('input, textarea, button, select, a, [role="button"]')) {
+                setTaskPanelExpanded((prev) => !prev)
+              }
+            }}
+          >
+            {taskPanelError && <p className="kc-banner">{taskPanelError}</p>}
+
+            {canEditTask && !isBoardArchived ? (
+              <>
+                <label className="kc-field">
+                  <span className="kc-field-label">Title</span>
+                  <input
+                    className="kc-input"
+                    value={taskPanelDraft.title}
+                    maxLength={200}
+                    onChange={(e) =>
+                      setTaskPanelDraft((prev) => ({ ...prev, title: e.target.value }))
+                    }
+                    onKeyDown={(e) => { if (e.key === 'Enter') void handleSaveTask() }}
+                  />
+                </label>
+
+                <div className="kc-task-modal-grid">
+                  <label className="kc-field">
+                    <span className="kc-field-label">Priority</span>
+                    <input
+                      className="kc-input"
+                      value={taskPanelDraft.priority}
+                      maxLength={20}
+                      placeholder="Optional"
+                      onChange={(e) =>
+                        setTaskPanelDraft((prev) => ({ ...prev, priority: e.target.value }))
+                      }
+                      onKeyDown={(e) => { if (e.key === 'Enter') void handleSaveTask() }}
+                    />
+                  </label>
+
+                  <label className="kc-field">
+                    <span className="kc-field-label">Due Date</span>
+                    <input
+                      className="kc-input"
+                      type="datetime-local"
+                      value={taskPanelDraft.dueDate}
+                      onChange={(e) =>
+                        setTaskPanelDraft((prev) => ({ ...prev, dueDate: e.target.value }))
+                      }
+                      onKeyDown={(e) => { if (e.key === 'Enter') void handleSaveTask() }}
+                    />
+                  </label>
+                </div>
+
+                  <div className="kc-field">
+                    <span className="kc-field-label">Description</span>
+                    {editingDescription ? (
+                      <textarea
+                        className="kc-textarea"
+                        autoFocus
+                        value={taskPanelDraft.description}
+                        onChange={(e) =>
+                          setTaskPanelDraft((prev) => ({ ...prev, description: e.target.value }))
+                        }
+                        onBlur={() => setEditingDescription(false)}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Escape') {
+                            e.preventDefault()
+                            setEditingDescription(false)
+                          }
+                        }}
+                      />
+                    ) : (
+                      <div
+                        className={`kc-task-description-preview kc-markdown${!taskPanelDraft.description ? ' kc-task-description-preview--empty' : ''}`}
+                        role="button"
+                        tabIndex={0}
+                        onClick={(e) => { e.stopPropagation(); setEditingDescription(true) }}
+                        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setEditingDescription(true) }}
+                        title="Click to edit description"
+                      >
+                        {taskPanelDraft.description
+                          ? (
+                            <ReactMarkdown
+                              remarkPlugins={[remarkGfm]}
+                              rehypePlugins={[rehypeRaw]}
+                              components={createMarkdownComponents({
+                                editable: canEditTask && !isBoardArchived && !togglingTaskChecklist,
+                                onToggle: (itemIndex, checked) => {
+                                  void handleToggleTaskDescriptionChecklist(itemIndex, checked)
+                                },
+                              })}
+                            >
+                              {taskPanelDraft.description}
+                            </ReactMarkdown>
+                            )
+                          : <span className="kc-task-description-preview__placeholder">Click to add a description…</span>
+                        }
+                      </div>
+                    )}
+                  </div>
+              </>
+            ) : (
+              <>
+                <div className="kc-task-panel-field">
+                  <span className="kc-field-label">Title</span>
+                  <p className="kc-task-panel-value">{selectedTask.title}</p>
+                </div>
+                  {(selectedTask.priority || selectedTask.dueDate) && (
+                    <div className="kc-task-modal-grid">
+                      {selectedTask.priority && (
+                        <div className="kc-task-panel-field">
+                          <span className="kc-field-label">Priority</span>
+                          <p className="kc-task-panel-value">{selectedTask.priority}</p>
+                        </div>
+                      )}
+                      {selectedTask.dueDate && (
+                        <div className="kc-task-panel-field">
+                          <span className="kc-field-label">Due Date</span>
+                          <p className="kc-task-panel-value">{new Date(selectedTask.dueDate).toLocaleString()}</p>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                  {selectedTask.description && (
+                  <div className="kc-task-panel-field">
+                    <span className="kc-field-label">Description</span>
+                    <div className="kc-task-panel-value kc-task-panel-value--description kc-markdown">
+                        <ReactMarkdown
+                          remarkPlugins={[remarkGfm]}
+                          rehypePlugins={[rehypeRaw]}
+                          components={createMarkdownComponents({ editable: false })}
+                        >
+                          {selectedTask.description}
+                        </ReactMarkdown>
+                    </div>
+                  </div>
+                )}
+              </>
+            )}
+
+            <section className="kc-task-comments" aria-label="Task comments">
+              <div className="kc-task-comments-header">
+                <h4>Comments</h4>
+                {canCreateTaskComment && (
+                  <button
+                    type="button"
+                    className="kc-btn kc-btn-ghost"
+                    onClick={() => {
+                      setShowCommentComposer((prev) => !prev)
+                      setTaskCommentsError('')
+                      setOpenCommentMenuId(null)
+                    }}
+                  >
+                    {showCommentComposer ? 'Cancel' : 'New comment'}
+                  </button>
+                )}
+              </div>
+
+              {taskCommentsState === 'loading' && <p className="kc-muted">Loading comments...</p>}
+              {taskCommentsError && <p className="kc-banner">{taskCommentsError}</p>}
+
+              {showCommentComposer && canCreateTaskComment && (
+                <div className="kc-task-comment-compose">
+                  <textarea
+                    className="kc-textarea"
+                    value={taskCommentDraft.content}
+                    placeholder="Write a comment..."
+                    onChange={(event) =>
+                      setTaskCommentDraft({ content: event.target.value })
+                    }
+                    onKeyDown={(event) => {
+                      if (event.key === 'Enter' && !event.shiftKey) {
+                        event.preventDefault()
+                        void handleCreateComment()
+                      }
+                    }}
+                  />
+                  <div className="kc-task-comment-compose-actions">
+                    <button
+                      type="button"
+                      className="kc-btn kc-btn-primary"
+                      disabled={creatingComment || !taskCommentDraft.content.trim()}
+                      onClick={() => void handleCreateComment()}
+                    >
+                      {creatingComment ? 'Posting...' : 'Post comment'}
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {taskCommentsState === 'ready' && taskComments.length === 0 && (
+                <p className="kc-muted">No comments yet.</p>
+              )}
+
+              {taskComments.length > 0 && (
+                <ul className="kc-task-comments-list">
+                  {taskComments.map((comment) => {
+                    const isEditingThisComment = editingCommentId === comment.commentId
+                    const canEditThisComment = canEditComment(comment)
+                    const canDeleteThisComment = canDeleteComment(comment)
+                    const showCommentActions = canEditThisComment || canDeleteThisComment
+                    const editLabel = getCommentEditLabel(comment)
+                    const authorName = resolveCommentAuthorName(comment)
+
+                    return (
+                      <li key={comment.commentId} className="kc-task-comment-item">
+                        <div className="kc-task-comment-avatar" aria-hidden="true">
+                          {comment.authorAvatarUrl ? (
+                            <img src={comment.authorAvatarUrl} alt="" />
+                          ) : (
+                            <span>{authorName.slice(0, 1).toUpperCase()}</span>
+                          )}
+                        </div>
+
+                        <div className="kc-task-comment-main">
+                          <div className="kc-task-comment-meta">
+                            <strong>{authorName}</strong>
+                            <span>{formatCommentTimestamp(comment.createdAt)}</span>
+                            {editLabel && <small>{editLabel}</small>}
+                          </div>
+
+                          {isEditingThisComment ? (
+                            <div className="kc-task-comment-edit">
+                              <textarea
+                                className="kc-textarea"
+                                value={editingCommentContent}
+                                onChange={(event) => setEditingCommentContent(event.target.value)}
+                                onKeyDown={(event) => {
+                                  if (event.key === 'Enter' && !event.shiftKey) {
+                                    event.preventDefault()
+                                    void handleSaveEditedComment()
+                                  }
+                                }}
+                              />
+                              <div className="kc-task-comment-edit-actions">
+                                <button
+                                  type="button"
+                                  className="kc-btn kc-btn-ghost"
+                                  onClick={() => {
+                                    setEditingCommentId(null)
+                                    setEditingCommentContent('')
+                                  }}
+                                  disabled={savingComment}
+                                >
+                                  Cancel
+                                </button>
+                                <button
+                                  type="button"
+                                  className="kc-btn kc-btn-primary"
+                                  onClick={() => void handleSaveEditedComment()}
+                                  disabled={savingComment || !editingCommentContent.trim()}
+                                >
+                                  {savingComment ? 'Saving...' : 'Save'}
+                                </button>
+                              </div>
+                            </div>
+                          ) : (
+                            <div className="kc-task-comment-content kc-markdown">
+                              <ReactMarkdown
+                                remarkPlugins={[remarkGfm]}
+                                rehypePlugins={[rehypeRaw]}
+                                components={createMarkdownComponents({
+                                  editable: canEditComment(comment) && !isBoardArchived && !togglingCommentChecklistIds.has(comment.commentId),
+                                  onToggle: (itemIndex, checked) => {
+                                    void handleToggleCommentChecklist(comment.commentId, itemIndex, checked)
+                                  },
+                                })}
+                              >
+                                {comment.content}
+                              </ReactMarkdown>
+                            </div>
+                          )}
+                        </div>
+
+                        {showCommentActions && (
+                          <div className="kc-task-comment-menu-wrap">
+                            <button
+                              type="button"
+                              className="kc-column-menu-btn"
+                              aria-label="Comment options"
+                              aria-expanded={openCommentMenuId === comment.commentId}
+                              onClick={() =>
+                                setOpenCommentMenuId((prev) =>
+                                  prev === comment.commentId ? null : comment.commentId,
+                                )
+                              }
+                            >
+                              {'\u22EF'}
+                            </button>
+                            {openCommentMenuId === comment.commentId && (
+                              <ul className="kc-column-menu-dropdown" role="menu">
+                                {canEditThisComment && (
+                                  <li role="none">
+                                    <button
+                                      type="button"
+                                      role="menuitem"
+                                      className="kc-column-menu-item"
+                                      onClick={() => {
+                                        setEditingCommentId(comment.commentId)
+                                        setEditingCommentContent(comment.content)
+                                        setOpenCommentMenuId(null)
+                                      }}
+                                    >
+                                      Edit comment
+                                    </button>
+                                  </li>
+                                )}
+                                {canDeleteThisComment && (
+                                  <li role="none">
+                                    <button
+                                      type="button"
+                                      role="menuitem"
+                                      className="kc-column-menu-item kc-column-menu-item--danger"
+                                      onClick={() => {
+                                        setDeleteTargetComment(comment)
+                                        setDeleteCommentError('')
+                                        setOpenCommentMenuId(null)
+                                      }}
+                                    >
+                                      Delete comment
+                                    </button>
+                                  </li>
+                                )}
+                              </ul>
+                            )}
+                          </div>
+                        )}
+                      </li>
+                    )
+                  })}
+                </ul>
+              )}
+            </section>
+          </div>
+
+          {(canEditTask || canDeleteTask) && !isBoardArchived && (
+            <div className="kc-task-panel-footer">
+              {canDeleteTask && (
+                <button
+                  type="button"
+                  className="kc-btn kc-btn-danger"
+                  onClick={() => {
+                    setDeleteTargetTask(selectedTask)
+                    setDeleteTaskError('')
+                  }}
+                  disabled={savingTask}
+                >
+                  Delete
+                </button>
+              )}
+              {canEditTask && (
+                <div className="kc-task-panel-footer-actions">
+                  <button
+                    type="button"
+                    className="kc-btn kc-btn-ghost"
+                    onClick={closeTaskPanel}
+                    disabled={savingTask}
+                  >
+                    Discard
+                  </button>
+                  <button
+                    type="button"
+                    className="kc-btn kc-btn-primary"
+                    onClick={() => void handleSaveTask()}
+                    disabled={savingTask}
+                  >
+                    {savingTask ? 'Saving...' : 'Save'}
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
+        </aside>
+      )}
 
       {taskModalColumn && (
         <div
@@ -1446,17 +2400,6 @@ export function BoardPage() {
                 />
               </label>
 
-              <label className="kc-field">
-                <span className="kc-field-label">Description</span>
-                <textarea
-                  className="kc-textarea"
-                  value={taskDraft.description}
-                  onChange={(event) =>
-                    setTaskDraft((prev) => ({ ...prev, description: event.target.value }))
-                  }
-                />
-              </label>
-
               <div className="kc-task-modal-grid">
                 <label className="kc-field">
                   <span className="kc-field-label">Priority</span>
@@ -1483,6 +2426,17 @@ export function BoardPage() {
                   />
                 </label>
               </div>
+
+              <label className="kc-field">
+                <span className="kc-field-label">Description</span>
+                <textarea
+                  className="kc-textarea"
+                  value={taskDraft.description}
+                  onChange={(event) =>
+                    setTaskDraft((prev) => ({ ...prev, description: event.target.value }))
+                  }
+                />
+              </label>
             </div>
             <div className="kc-task-modal-actions">
               <button
@@ -1500,6 +2454,100 @@ export function BoardPage() {
                 disabled={creatingTask}
               >
                 {creatingTask ? 'Creating...' : 'Create task'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {deleteTargetTask && (
+        <div
+          className="kc-modal-overlay"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Confirm Delete Task"
+          onClick={() => {
+            if (!deletingTask) {
+              setDeleteTargetTask(null)
+              setDeleteTaskError('')
+            }
+          }}
+        >
+          <div className="kc-modal kc-modal--confirm" onClick={(e) => e.stopPropagation()}>
+            <div className="kc-modal-header">
+              <h3 className="kc-modal-title">Delete Task</h3>
+            </div>
+            <div className="kc-modal-body">
+              <p className="kc-modal-confirm-desc">
+                Delete <strong>{deleteTargetTask.title}</strong>? This cannot be undone.
+              </p>
+              {deleteTaskError && <p className="kc-banner">{deleteTaskError}</p>}
+            </div>
+            <div className="kc-modal-footer">
+              <button
+                type="button"
+                className="kc-btn kc-btn-ghost"
+                onClick={() => {
+                  setDeleteTargetTask(null)
+                  setDeleteTaskError('')
+                }}
+                disabled={deletingTask}
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                className="kc-btn kc-btn-danger"
+                onClick={() => void handleDeleteTask()}
+                disabled={deletingTask}
+              >
+                {deletingTask ? 'Deleting...' : 'Delete'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {deleteTargetComment && (
+        <div
+          className="kc-modal-overlay"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Confirm Delete Comment"
+          onClick={() => {
+            if (!deletingComment) {
+              setDeleteTargetComment(null)
+              setDeleteCommentError('')
+            }
+          }}
+        >
+          <div className="kc-modal kc-modal--confirm" onClick={(event) => event.stopPropagation()}>
+            <div className="kc-modal-header">
+              <h3 className="kc-modal-title">Delete Comment</h3>
+            </div>
+            <div className="kc-modal-body">
+              <p className="kc-modal-confirm-desc">Delete this comment? This cannot be undone.</p>
+              {deleteCommentError && <p className="kc-banner">{deleteCommentError}</p>}
+            </div>
+            <div className="kc-modal-footer">
+              <button
+                type="button"
+                className="kc-btn kc-btn-ghost"
+                onClick={() => {
+                  setDeleteTargetComment(null)
+                  setDeleteCommentError('')
+                }}
+                disabled={deletingComment}
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                className="kc-btn kc-btn-danger"
+                onClick={() => void handleDeleteComment()}
+                disabled={deletingComment}
+              >
+                {deletingComment ? 'Deleting...' : 'Delete'}
               </button>
             </div>
           </div>
