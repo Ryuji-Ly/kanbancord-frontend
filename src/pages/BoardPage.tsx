@@ -1,4 +1,4 @@
-﻿import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties, type DragEvent, type ComponentPropsWithoutRef } from 'react'
+﻿import { useDeferredValue, useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties, type DragEvent, type ComponentPropsWithoutRef } from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
@@ -21,6 +21,16 @@ import {
   type TaskEntry,
 } from '../services/tasksService'
 import {
+  createTaskAssignment,
+  deleteTaskAssignment,
+  fetchBoardTaskAssignments,
+  type TaskAssignmentEntry,
+} from '../services/taskAssignmentsService'
+import {
+  fetchServerMembers,
+  type ServerMemberEntry,
+} from '../services/serverMembersService'
+import {
   createTaskComment,
   deleteTaskComment,
   fetchTaskComments,
@@ -28,12 +38,14 @@ import {
   type TaskCommentEditor,
   type TaskCommentEntry,
 } from '../services/taskCommentsService'
-import { evaluatePermission } from '../services/permissionsService'
+import { evaluatePermissions } from '../services/permissionsService'
+import { boardTopic, connectRealtimeChannel, type RealtimeEvent } from '../services/realtimeService'
 import { DashboardHeader } from '../components/dashboard/DashboardHeader'
 import { ToastStack } from '../components/dashboard/ToastStack'
 import type { HeaderUser, ToastMessage } from '../components/dashboard/types'
 
 type LoadState = 'idle' | 'loading' | 'error' | 'ready'
+type ActiveHeaderUser = NonNullable<HeaderUser>
 type TaskDropTarget = { columnId: number; dropIndex: number }
 type TaskDraft = {
   title: string
@@ -43,6 +55,14 @@ type TaskDraft = {
 }
 type TaskCommentDraft = {
   content: string
+}
+
+type AssigneeMember = {
+  userId: string
+  username: string
+  displayName: string
+  nickname: string | null
+  avatarUrl: string | null
 }
 
 const EMPTY_TASK_DRAFT: TaskDraft = {
@@ -56,12 +76,33 @@ const EMPTY_TASK_COMMENT_DRAFT: TaskCommentDraft = {
   content: '',
 }
 
+const BOARD_PERMISSION_KEYS = [
+  'EDIT_COLUMN',
+  'CREATE_COLUMN',
+  'DELETE_COLUMN',
+  'MOVE_COLUMN',
+  'CREATE_TASK',
+  'EDIT_TASK',
+  'DELETE_TASK',
+  'MOVE_TASK',
+  'ASSIGN_TASK_SELF',
+  'ASSIGN_TASK_OTHERS',
+  'CREATE_TASK_COMMENT',
+  'EDIT_TASK_COMMENT',
+  'DELETE_TASK_COMMENT',
+]
+
 function resolveCommentAuthorName(comment: TaskCommentEntry): string {
   return comment.authorGlobalName?.trim() || comment.authorUsername
 }
 
 function resolveEditorLabel(editor: TaskCommentEditor): string {
   return editor.globalName?.trim() || editor.username
+}
+
+function resolveAssigneeDisplayName(user: Pick<AssigneeMember, 'displayName' | 'username'>): string {
+  const display = user.displayName?.trim()
+  return display || user.username
 }
 
 function formatCommentTimestamp(value: string | null): string {
@@ -430,6 +471,56 @@ function TaskTitle({ title }: { title: string }) {
   )
 }
 
+function AssigneeAvatar({
+  assignee,
+  className,
+  loading = 'eager',
+}: {
+  assignee: Pick<AssigneeMember, 'avatarUrl' | 'displayName' | 'username'>
+  className: string
+  loading?: ComponentPropsWithoutRef<'img'>['loading']
+}) {
+  const label = resolveAssigneeDisplayName(assignee)
+
+  return (
+    <span className={className} aria-hidden="true" title={label}>
+      {assignee.avatarUrl ? (
+        <img src={assignee.avatarUrl} alt="" loading={loading} decoding="async" />
+      ) : (
+        <span>{label.slice(0, 1).toUpperCase()}</span>
+      )}
+    </span>
+  )
+}
+
+function TaskCardAssigneeStack({ assignees }: { assignees: AssigneeMember[] }) {
+  if (assignees.length === 0) return null
+
+  const visibleAssignees = assignees.slice(0, 4)
+  const hiddenCount = assignees.length - visibleAssignees.length
+
+  return (
+    <div className="kc-column-task-assignees" aria-label={`Assigned to ${assignees.map(resolveAssigneeDisplayName).join(', ')}`}>
+      {visibleAssignees.map((assignee) => (
+        <AssigneeAvatar
+          key={assignee.userId}
+          assignee={assignee}
+          className="kc-column-task-assignee"
+          loading="lazy"
+        />
+      ))}
+      {hiddenCount > 0 ? (
+        <span
+          className="kc-column-task-assignee kc-column-task-assignee--count"
+          aria-label={`${hiddenCount} more assignees`}
+        >
+          +{hiddenCount}
+        </span>
+      ) : null}
+    </div>
+  )
+}
+
 export function BoardPage() {
   const { boardId = '' } = useParams()
   const [searchParams] = useSearchParams()
@@ -452,6 +543,8 @@ export function BoardPage() {
   const [canEditTask, setCanEditTask] = useState(false)
   const [canDeleteTask, setCanDeleteTask] = useState(false)
   const [canMoveTask, setCanMoveTask] = useState(false)
+  const [canAssignTaskSelf, setCanAssignTaskSelf] = useState(false)
+  const [canAssignTaskOthers, setCanAssignTaskOthers] = useState(false)
   const [canCreateTaskComment, setCanCreateTaskComment] = useState(false)
   const [canEditTaskComment, setCanEditTaskComment] = useState(false)
   const [canDeleteTaskComment, setCanDeleteTaskComment] = useState(false)
@@ -487,10 +580,13 @@ export function BoardPage() {
   const [taskDraft, setTaskDraft] = useState<TaskDraft>(EMPTY_TASK_DRAFT)
   const [taskModalError, setTaskModalError] = useState('')
   const [creatingTask, setCreatingTask] = useState(false)
+  const [taskDraftAssigneeIds, setTaskDraftAssigneeIds] = useState<string[]>([])
+  const [taskAssigneeQuery, setTaskAssigneeQuery] = useState('')
   const [selectedTask, setSelectedTask] = useState<TaskEntry | null>(null)
   const [taskPanelDraft, setTaskPanelDraft] = useState<TaskDraft>(EMPTY_TASK_DRAFT)
   const [taskPanelError, setTaskPanelError] = useState('')
   const [savingTask, setSavingTask] = useState(false)
+  const [taskPanelAssigneeQuery, setTaskPanelAssigneeQuery] = useState('')
   const [editingDescription, setEditingDescription] = useState(false)
   const [taskPanelExpanded, setTaskPanelExpanded] = useState(false)
   const [togglingTaskChecklist, setTogglingTaskChecklist] = useState(false)
@@ -511,6 +607,12 @@ export function BoardPage() {
   const [deleteCommentError, setDeleteCommentError] = useState('')
   const [deletingComment, setDeletingComment] = useState(false)
   const [togglingCommentChecklistIds, setTogglingCommentChecklistIds] = useState<Set<number>>(new Set())
+  const [serverMembers, setServerMembers] = useState<ServerMemberEntry[]>([])
+  const [taskAssignments, setTaskAssignments] = useState<TaskAssignmentEntry[]>([])
+  const serverMembersLoadKeyRef = useRef('')
+  const boardRealtimeRefreshTimerRef = useRef<number | null>(null)
+  const latestSelectedTaskRef = useRef<TaskEntry | null>(null)
+  const latestMeRef = useRef<HeaderUser>(me)
   const columnDragImageRef = useRef<HTMLElement | null>(null)
   const columnDragOffsetRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 })
   const transparentDragImageRef = useRef<HTMLImageElement | null>(null)
@@ -525,6 +627,128 @@ export function BoardPage() {
   const canMoveColumnsOnPage = canEditColumn && canMoveColumn && !isBoardArchived
   const canCreateTasksOnPage = canCreateTask && !isBoardArchived
   const canMoveTasksOnPage = canEditTask && canMoveTask && !isBoardArchived
+  const canAssignInTaskModal = (canAssignTaskSelf || canAssignTaskOthers) && !isBoardArchived
+
+  const availableAssigneeMembers: AssigneeMember[] = useMemo(
+    () =>
+      serverMembers.map((member) => ({
+        userId: String(member.userId),
+        username: member.username,
+        displayName: member.displayName,
+        nickname: member.nickname,
+        avatarUrl: member.avatarUrl,
+      })),
+    [serverMembers],
+  )
+
+  const assigneeMembersByUserId = useMemo(() => {
+    const next = new Map<string, AssigneeMember>()
+
+    availableAssigneeMembers.forEach((member) => {
+      next.set(member.userId, member)
+    })
+
+    if (me) {
+      next.set(String(me.userId), {
+        userId: String(me.userId),
+        username: me.username,
+        displayName: me.globalName || me.username,
+        nickname: null,
+        avatarUrl: me.avatarUrl ?? null,
+      })
+    }
+
+    return next
+  }, [availableAssigneeMembers, me])
+
+  function resolveAssigneeMember(userId: string): AssigneeMember {
+    const known = assigneeMembersByUserId.get(userId)
+    if (known) return known
+
+    return {
+      userId,
+      username: userId,
+      displayName: userId,
+      nickname: null,
+      avatarUrl: null,
+    }
+  }
+
+  const deferredTaskAssigneeQuery = useDeferredValue(taskAssigneeQuery)
+  const deferredTaskPanelAssigneeQuery = useDeferredValue(taskPanelAssigneeQuery)
+
+  const selectedDraftAssignees = taskDraftAssigneeIds
+    .map((id) => resolveAssigneeMember(id))
+
+  const selectedTaskAssignees = useMemo(() => {
+    if (!selectedTask) return []
+
+    return taskAssignments
+      .filter((assignment) => assignment.taskId === selectedTask.taskId)
+      .map((assignment) => resolveAssigneeMember(String(assignment.userId)))
+  }, [selectedTask, taskAssignments, assigneeMembersByUserId])
+
+  const taskAssigneeIds = useMemo(
+    () => new Set(selectedTaskAssignees.map((assignee) => assignee.userId)),
+    [selectedTaskAssignees],
+  )
+
+  const taskAssigneesByTaskId = useMemo(
+    () =>
+      taskAssignments.reduce<Record<number, AssigneeMember[]>>((groups, assignment) => {
+        const taskId = assignment.taskId
+        const assignee = resolveAssigneeMember(String(assignment.userId))
+        const existing = groups[taskId] ?? []
+        groups[taskId] = [...existing, assignee]
+        return groups
+      }, {}),
+    [taskAssignments, assigneeMembersByUserId],
+  )
+
+  const filteredTaskPanelAssigneeMembers = useMemo(() => availableAssigneeMembers.filter((member) => {
+    if (taskAssigneeIds.has(member.userId)) return false
+    if (!canAssignTaskOthers) return false
+
+    const query = deferredTaskPanelAssigneeQuery.trim().toLowerCase()
+    if (!query) return true
+
+    return [
+      member.username,
+      member.displayName,
+      member.nickname ?? '',
+      member.userId,
+    ].some((value) => value.toLowerCase().includes(query))
+  }).slice(0, 50), [availableAssigneeMembers, canAssignTaskOthers, deferredTaskPanelAssigneeQuery, taskAssigneeIds])
+
+  function canManageTaskAssignee(targetUserId: string): boolean {
+    if (isBoardArchived || !me) return false
+    if (canAssignTaskOthers) return true
+    if (canAssignTaskSelf && String(me.userId) === targetUserId) return true
+    return false
+  }
+
+  const filteredAssigneeMembers = useMemo(() => availableAssigneeMembers.filter((member) => {
+    if (taskDraftAssigneeIds.includes(member.userId)) return false
+    if (!canAssignTaskOthers) return false
+
+    const query = deferredTaskAssigneeQuery.trim().toLowerCase()
+    if (!query) return true
+
+    return [
+      member.username,
+      member.displayName,
+      member.nickname ?? '',
+      member.userId,
+    ].some((value) => value.toLowerCase().includes(query))
+  }).slice(0, 50), [availableAssigneeMembers, canAssignTaskOthers, deferredTaskAssigneeQuery, taskDraftAssigneeIds])
+
+  useEffect(() => {
+    latestSelectedTaskRef.current = selectedTask
+  }, [selectedTask])
+
+  useEffect(() => {
+    latestMeRef.current = me
+  }, [me])
 
   // Close panel when clicking anywhere outside it or a task card
   useEffect(() => {
@@ -543,6 +767,40 @@ export function BoardPage() {
     document.addEventListener('mousedown', handleOutsideClick)
     return () => document.removeEventListener('mousedown', handleOutsideClick)
   }, [selectedTask])
+
+  useEffect(() => {
+    if (!me || (!canAssignInTaskModal && !selectedTask)) {
+      setServerMembers([])
+      return
+    }
+
+    const currentMe = me
+    const token = getStoredToken()
+    if (!token) return
+
+    const loadKey = `${serverId}:${String(currentMe.userId)}`
+    if (serverMembersLoadKeyRef.current === loadKey) return
+    serverMembersLoadKeyRef.current = loadKey
+
+    let cancelled = false
+
+    async function loadMembersAndProfiles() {
+      try {
+        const members = await fetchServerMembers(token, serverId, String(currentMe.userId))
+        if (cancelled) return
+        setServerMembers(members)
+      } catch {
+        if (cancelled) return
+        setServerMembers([])
+      }
+    }
+
+    void loadMembersAndProfiles()
+
+    return () => {
+      cancelled = true
+    }
+  }, [me, canAssignInTaskModal, serverId, Boolean(selectedTask)])
 
   useEffect(() => {
     if (!selectedTask || !me) {
@@ -564,25 +822,15 @@ export function BoardPage() {
       setTaskCommentsState('loading')
       setTaskCommentsError('')
       try {
-        const comments = await fetchTaskComments(
-          token,
-          serverId,
-          boardId,
-          currentTask.taskId,
-          String(currentUser.userId),
-        )
+        const comments = await fetchTaskCommentsForTask(token, currentUser, currentTask)
         if (cancelled) return
-        setTaskComments(
-          [...comments].sort(
-            (left, right) =>
-              new Date(left.createdAt).getTime() - new Date(right.createdAt).getTime(),
-          ),
-        )
+        setTaskComments(comments)
         setTaskCommentsState('ready')
       } catch (err) {
         if (cancelled) return
-        setTaskCommentsError(String(err))
+        setTaskComments([])
         setTaskCommentsState('error')
+        setTaskCommentsError(`Failed to load comments: ${err}`)
       }
     }
 
@@ -599,7 +847,7 @@ export function BoardPage() {
     setToasts((prev) => [...prev, { id, text, type }])
     const delay = type === 'success' ? 3000 : 5000
     setTimeout(() => {
-      setToasts((prev) => prev.filter((t) => t.id !== id))
+      setToasts((prev) => prev.filter((toast) => toast.id !== id))
     }, delay)
   }
 
@@ -619,39 +867,10 @@ export function BoardPage() {
       try {
         const meResponse = await fetchMe(token)
         setMe(meResponse)
-        const userId = String(meResponse.userId)
-        const [boardData, columnData, taskData, editPerm, createPerm, deletePerm, movePerm, createTaskPerm, editTaskPerm, deleteTaskPerm, moveTaskPerm, createTaskCommentPerm, editTaskCommentPerm, deleteTaskCommentPerm] = await Promise.all([
-          fetchBoardById(token, serverId, userId, boardId),
-          fetchBoardColumns(token, serverId, boardId, userId),
-          fetchBoardTasks(token, serverId, boardId, userId),
-          evaluatePermission(token, serverId, userId, 'EDIT_COLUMN', boardId),
-          evaluatePermission(token, serverId, userId, 'CREATE_COLUMN', boardId),
-          evaluatePermission(token, serverId, userId, 'DELETE_COLUMN', boardId),
-          evaluatePermission(token, serverId, userId, 'MOVE_COLUMN', boardId),
-          evaluatePermission(token, serverId, userId, 'CREATE_TASK', boardId),
-          evaluatePermission(token, serverId, userId, 'EDIT_TASK', boardId),
-          evaluatePermission(token, serverId, userId, 'DELETE_TASK', boardId),
-          evaluatePermission(token, serverId, userId, 'MOVE_TASK', boardId),
-          evaluatePermission(token, serverId, userId, 'CREATE_TASK_COMMENT', boardId),
-          evaluatePermission(token, serverId, userId, 'EDIT_TASK_COMMENT', boardId),
-          evaluatePermission(token, serverId, userId, 'DELETE_TASK_COMMENT', boardId),
-        ])
+        const snapshot = await fetchBoardSnapshot(token, String(meResponse.userId))
 
         if (cancelled) return
-        setBoard(boardData)
-        setColumns(columnData)
-        setTasksByColumn(groupTasksByColumn(taskData))
-        setCanEditColumn(editPerm.allowed && !boardData.isArchived)
-        setCanCreateColumn(createPerm.allowed && !boardData.isArchived)
-        setCanDeleteColumn(deletePerm.allowed && !boardData.isArchived)
-        setCanMoveColumn(movePerm.allowed && !boardData.isArchived)
-        setCanCreateTask(createTaskPerm.allowed && !boardData.isArchived)
-        setCanEditTask(editTaskPerm.allowed && !boardData.isArchived)
-        setCanDeleteTask(deleteTaskPerm.allowed && !boardData.isArchived)
-        setCanMoveTask(moveTaskPerm.allowed && !boardData.isArchived)
-        setCanCreateTaskComment(createTaskCommentPerm.allowed && !boardData.isArchived)
-        setCanEditTaskComment(editTaskCommentPerm.allowed && !boardData.isArchived)
-        setCanDeleteTaskComment(deleteTaskCommentPerm.allowed && !boardData.isArchived)
+        applyBoardSnapshot(snapshot)
         setState('ready')
       } catch (err) {
         if (cancelled) return
@@ -667,16 +886,147 @@ export function BoardPage() {
     }
   }, [boardId, serverId])
 
+  useEffect(() => {
+    const token = getStoredToken()
+    if (!token || !boardId || !serverId || !me) return
+
+    const disconnect = connectRealtimeChannel({
+      token,
+      destination: boardTopic(serverId, boardId),
+      onEvent: (event) => {
+        scheduleRealtimeBoardRefresh(event)
+      },
+      onError: (value) => {
+        console.error('Board realtime error:', value)
+      },
+    })
+
+    return () => {
+      if (boardRealtimeRefreshTimerRef.current !== null) {
+        window.clearTimeout(boardRealtimeRefreshTimerRef.current)
+        boardRealtimeRefreshTimerRef.current = null
+      }
+      disconnect()
+    }
+  }, [boardId, serverId, me])
+
+  async function fetchBoardSnapshot(token: string, userId: string) {
+    const [boardData, columnData, taskData, taskAssignmentData, permissionMap] = await Promise.all([
+      fetchBoardById(token, serverId, userId, boardId),
+      fetchBoardColumns(token, serverId, boardId, userId),
+      fetchBoardTasks(token, serverId, boardId, userId),
+      fetchBoardTaskAssignments(token, serverId, boardId, userId),
+      evaluatePermissions(token, serverId, userId, BOARD_PERMISSION_KEYS, boardId),
+    ])
+
+    return {
+      boardData,
+      columnData,
+      taskData,
+      taskAssignmentData,
+      permissionMap,
+    }
+  }
+
+  function applyBoardSnapshot(snapshot: Awaited<ReturnType<typeof fetchBoardSnapshot>>) {
+    setBoard(snapshot.boardData)
+    setColumns(snapshot.columnData)
+    setTasksByColumn(groupTasksByColumn(snapshot.taskData))
+    setTaskAssignments(snapshot.taskAssignmentData)
+    setCanEditColumn(Boolean(snapshot.permissionMap.EDIT_COLUMN?.allowed) && !snapshot.boardData.isArchived)
+    setCanCreateColumn(Boolean(snapshot.permissionMap.CREATE_COLUMN?.allowed) && !snapshot.boardData.isArchived)
+    setCanDeleteColumn(Boolean(snapshot.permissionMap.DELETE_COLUMN?.allowed) && !snapshot.boardData.isArchived)
+    setCanMoveColumn(Boolean(snapshot.permissionMap.MOVE_COLUMN?.allowed) && !snapshot.boardData.isArchived)
+    setCanCreateTask(Boolean(snapshot.permissionMap.CREATE_TASK?.allowed) && !snapshot.boardData.isArchived)
+    setCanEditTask(Boolean(snapshot.permissionMap.EDIT_TASK?.allowed) && !snapshot.boardData.isArchived)
+    setCanDeleteTask(Boolean(snapshot.permissionMap.DELETE_TASK?.allowed) && !snapshot.boardData.isArchived)
+    setCanMoveTask(Boolean(snapshot.permissionMap.MOVE_TASK?.allowed) && !snapshot.boardData.isArchived)
+    setCanAssignTaskSelf(Boolean(snapshot.permissionMap.ASSIGN_TASK_SELF?.allowed) && !snapshot.boardData.isArchived)
+    setCanAssignTaskOthers(Boolean(snapshot.permissionMap.ASSIGN_TASK_OTHERS?.allowed) && !snapshot.boardData.isArchived)
+    setCanCreateTaskComment(Boolean(snapshot.permissionMap.CREATE_TASK_COMMENT?.allowed) && !snapshot.boardData.isArchived)
+    setCanEditTaskComment(Boolean(snapshot.permissionMap.EDIT_TASK_COMMENT?.allowed) && !snapshot.boardData.isArchived)
+    setCanDeleteTaskComment(Boolean(snapshot.permissionMap.DELETE_TASK_COMMENT?.allowed) && !snapshot.boardData.isArchived)
+    setSelectedTask((current) => {
+      if (!current) return current
+      return snapshot.taskData.find((entry) => entry.taskId === current.taskId) ?? null
+    })
+  }
+
+  async function refreshBoardSnapshot(token: string, currentUser: ActiveHeaderUser) {
+    try {
+      const snapshot = await fetchBoardSnapshot(token, String(currentUser.userId))
+      applyBoardSnapshot(snapshot)
+      setState('ready')
+    } catch (err) {
+      console.error('Failed to refresh board snapshot:', err)
+    }
+  }
+
+  async function fetchTaskCommentsForTask(
+    token: string,
+    currentUser: ActiveHeaderUser,
+    currentTask: TaskEntry,
+  ): Promise<TaskCommentEntry[]> {
+    const comments = await fetchTaskComments(
+      token,
+      serverId,
+      boardId,
+      currentTask.taskId,
+      String(currentUser.userId),
+    )
+
+    return sortCommentsByCreatedAt(comments)
+  }
+
+  function scheduleRealtimeBoardRefresh(event: RealtimeEvent) {
+    const token = getStoredToken()
+    const currentUser = latestMeRef.current
+    if (!token || !currentUser) return
+
+    if (boardRealtimeRefreshTimerRef.current !== null) {
+      window.clearTimeout(boardRealtimeRefreshTimerRef.current)
+    }
+
+    boardRealtimeRefreshTimerRef.current = window.setTimeout(() => {
+      boardRealtimeRefreshTimerRef.current = null
+      void refreshBoardSnapshot(token, currentUser)
+
+      if (event.entityType === 'TASK_COMMENT' && latestSelectedTaskRef.current) {
+        const task = latestSelectedTaskRef.current
+        void fetchTaskCommentsForTask(token, currentUser, task)
+          .then((comments) => {
+            if (latestSelectedTaskRef.current?.taskId !== task.taskId) return
+            setTaskComments(comments)
+            setTaskCommentsState('ready')
+            setTaskCommentsError('')
+          })
+          .catch((err) => {
+            console.error('Failed to refresh task comments:', err)
+          })
+      }
+    }, 150)
+  }
+
   async function saveColumnName(column: BoardColumnEntry) {
     const trimmed = editingColumnName.trim()
     setEditingColumnId(null)
     if (!trimmed || trimmed === column.name || !me) return
+
     const token = getStoredToken()
     if (!token) return
+
     const previousColumns = columns
-    setColumns((cols) =>
-      cols.map((c) => (c.columnId === column.columnId ? { ...c, name: trimmed } : c)),
+    setColumns((current) =>
+      current.map((entry) =>
+        entry.columnId === column.columnId
+          ? {
+              ...entry,
+              name: trimmed,
+            }
+          : entry,
+      ),
     )
+
     try {
       const updated = await updateColumn(
         token,
@@ -685,8 +1035,15 @@ export function BoardPage() {
         column.columnId,
         trimmed,
         String(me.userId),
+        {
+          position: column.position,
+          color: column.color,
+          wipLimit: column.wipLimit,
+        },
       )
-      setColumns((cols) => cols.map((c) => (c.columnId === updated.columnId ? updated : c)))
+      setColumns((current) =>
+        current.map((entry) => (entry.columnId === updated.columnId ? updated : entry)),
+      )
       showToast('Column updated', 'success')
     } catch {
       setColumns(previousColumns)
@@ -1019,6 +1376,7 @@ export function BoardPage() {
       dueDate: task.dueDate ? task.dueDate.slice(0, 16) : '',
     })
     setTaskPanelError('')
+    setTaskPanelAssigneeQuery('')
     setEditingDescription(false)
     setTaskPanelExpanded(false)
   }
@@ -1037,6 +1395,7 @@ export function BoardPage() {
     setOpenCommentMenuId(null)
     setDeleteTargetComment(null)
     setDeleteCommentError('')
+    setTaskPanelAssigneeQuery('')
     setEditingDescription(false)
     setTaskPanelExpanded(false)
   }
@@ -1310,6 +1669,62 @@ export function BoardPage() {
     }
   }
 
+  async function handleAddTaskAssignee(targetUserId: string) {
+    if (!selectedTask || !me || !canManageTaskAssignee(targetUserId)) return
+    if (
+      taskAssignments.some(
+        (assignment) =>
+          assignment.taskId === selectedTask.taskId && String(assignment.userId) === targetUserId,
+      )
+    ) {
+      return
+    }
+
+    const token = getStoredToken()
+    if (!token) return
+
+    try {
+      const created = await createTaskAssignment(
+        token,
+        serverId,
+        boardId,
+        selectedTask.taskId,
+        String(me.userId),
+        targetUserId,
+      )
+      setTaskAssignments((prev) => [...prev, created])
+    } catch (err) {
+      setTaskPanelError(String(err))
+    }
+  }
+
+  async function handleRemoveTaskAssignee(targetUserId: string) {
+    if (!selectedTask || !me || !canManageTaskAssignee(targetUserId)) return
+
+    const targetAssignment = taskAssignments.find(
+      (assignment) =>
+        assignment.taskId === selectedTask.taskId && String(assignment.userId) === targetUserId,
+    )
+    if (!targetAssignment) return
+
+    const token = getStoredToken()
+    if (!token) return
+
+    try {
+      await deleteTaskAssignment(
+        token,
+        serverId,
+        boardId,
+        selectedTask.taskId,
+        targetAssignment.id,
+        String(me.userId),
+      )
+      setTaskAssignments((prev) => prev.filter((assignment) => assignment.id !== targetAssignment.id))
+    } catch (err) {
+      setTaskPanelError(String(err))
+    }
+  }
+
   async function handleSaveTask() {
     if (!selectedTask || !me) return
     const title = taskPanelDraft.title.trim()
@@ -1382,12 +1797,20 @@ export function BoardPage() {
     if (!canCreateTasksOnPage) return
     setTaskModalColumn(column)
     setTaskDraft({ ...EMPTY_TASK_DRAFT })
+    if (canAssignTaskSelf && !canAssignTaskOthers && me) {
+      setTaskDraftAssigneeIds([String(me.userId)])
+    } else {
+      setTaskDraftAssigneeIds([])
+    }
+    setTaskAssigneeQuery('')
     setTaskModalError('')
   }
 
   function closeCreateTaskModal() {
     setTaskModalColumn(null)
     setTaskDraft({ ...EMPTY_TASK_DRAFT })
+    setTaskDraftAssigneeIds([])
+    setTaskAssigneeQuery('')
     setTaskModalError('')
   }
 
@@ -1451,6 +1874,25 @@ export function BoardPage() {
         priority: taskDraft.priority.trim() || null,
         dueDate: taskDraft.dueDate || null,
       })
+
+      if (canAssignInTaskModal && taskDraftAssigneeIds.length > 0) {
+        try {
+          await Promise.all(
+            taskDraftAssigneeIds.map((assigneeUserId) =>
+              createTaskAssignment(
+                token,
+                serverId,
+                boardId,
+                created.taskId,
+                String(me.userId),
+                assigneeUserId,
+              ),
+            ),
+          )
+        } catch {
+          showToast('Task created, but assigning members failed', 'error')
+        }
+      }
 
       setTasksByColumn((prev) => ({
         ...prev,
@@ -1845,6 +2287,7 @@ export function BoardPage() {
                     <ul className="kc-column-task-list">
                       {columnTasks.map((task) => {
                         const isTaskSkeleton = draggedTaskId !== null && draggedTaskId === task.taskId
+                        const taskAssignees = taskAssigneesByTaskId[task.taskId] ?? []
 
                         return (
                         <li
@@ -1878,6 +2321,7 @@ export function BoardPage() {
                                 <span className="kc-column-task-priority">{task.priority}</span>
                               )}
                               <TaskTitle title={task.title} />
+                              <TaskCardAssigneeStack assignees={taskAssignees} />
                             </>
                           )}
                         </li>
@@ -2116,6 +2560,92 @@ export function BoardPage() {
                   </div>
                 )}
               </>
+            )}
+
+            {(selectedTaskAssignees.length > 0 || canAssignTaskSelf || canAssignTaskOthers) && (
+              <div className="kc-task-panel-field">
+                <span className="kc-field-label">Assignees</span>
+                <div className="kc-task-assignee-chip-list">
+                  {selectedTaskAssignees.map((assignee) => (
+                    <span key={assignee.userId} className="kc-task-assignee-chip">
+                      <span className="kc-task-assignee-chip-avatar" aria-hidden="true">
+                        {assignee.avatarUrl ? (
+                          <img src={assignee.avatarUrl} alt="" />
+                        ) : (
+                          <span>{resolveAssigneeDisplayName(assignee).slice(0, 1).toUpperCase()}</span>
+                        )}
+                      </span>
+                      <span className="kc-task-assignee-chip-label">{resolveAssigneeDisplayName(assignee)}</span>
+                      {canManageTaskAssignee(assignee.userId) && (
+                        <button
+                          type="button"
+                          className="kc-task-assignee-chip-remove"
+                          aria-label={`Remove ${resolveAssigneeDisplayName(assignee)}`}
+                          onClick={() => {
+                            void handleRemoveTaskAssignee(assignee.userId)
+                          }}
+                        >
+                          ×
+                        </button>
+                      )}
+                    </span>
+                  ))}
+
+                  {canAssignTaskOthers && (
+                    <input
+                      className="kc-task-assignee-input"
+                      value={taskPanelAssigneeQuery}
+                      placeholder="Search user"
+                      onChange={(event) => setTaskPanelAssigneeQuery(event.target.value)}
+                    />
+                  )}
+
+                  {canAssignTaskSelf && !canAssignTaskOthers && me && !taskAssigneeIds.has(String(me.userId)) && (
+                    <button
+                      type="button"
+                      className="kc-btn kc-btn-ghost"
+                      onClick={() => {
+                        void handleAddTaskAssignee(String(me.userId))
+                      }}
+                    >
+                      Assign yourself
+                    </button>
+                  )}
+                </div>
+
+                {canAssignTaskOthers && taskPanelAssigneeQuery.trim() && filteredTaskPanelAssigneeMembers.length > 0 && (
+                  <ul className="kc-task-assignee-results" role="listbox">
+                    {filteredTaskPanelAssigneeMembers.map((member) => (
+                      <li key={member.userId}>
+                        <button
+                          type="button"
+                          className="kc-task-assignee-result"
+                          onClick={() => {
+                            void handleAddTaskAssignee(member.userId)
+                            setTaskPanelAssigneeQuery('')
+                          }}
+                        >
+                          <span className="kc-task-assignee-chip-avatar" aria-hidden="true">
+                            {member.avatarUrl ? (
+                              <img src={member.avatarUrl} alt="" />
+                            ) : (
+                              <span>{resolveAssigneeDisplayName(member).slice(0, 1).toUpperCase()}</span>
+                            )}
+                          </span>
+                          <span className="kc-task-assignee-result-main">
+                            <strong>{resolveAssigneeDisplayName(member)}</strong>
+                            <small>@{member.username}</small>
+                          </span>
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+
+                {selectedTaskAssignees.length === 0 && (
+                  <p className="kc-task-panel-value">No assignees yet.</p>
+                )}
+              </div>
             )}
 
             <section className="kc-task-comments" aria-label="Task comments">
@@ -2437,6 +2967,81 @@ export function BoardPage() {
                   }
                 />
               </label>
+
+              {canAssignInTaskModal && (
+                <div className="kc-field">
+                  <span className="kc-field-label">Assignees</span>
+                  <div className="kc-task-assignee-picker">
+                    <div className="kc-task-assignee-chip-list">
+                      {selectedDraftAssignees.map((assignee) => {
+                        const canRemove = canAssignTaskOthers
+                        return (
+                          <span key={assignee.userId} className="kc-task-assignee-chip">
+                            <span className="kc-task-assignee-chip-avatar" aria-hidden="true">
+                              {assignee.avatarUrl ? (
+                                <img src={assignee.avatarUrl} alt="" />
+                              ) : (
+                                <span>{resolveAssigneeDisplayName(assignee).slice(0, 1).toUpperCase()}</span>
+                              )}
+                            </span>
+                            <span className="kc-task-assignee-chip-label">{resolveAssigneeDisplayName(assignee)}</span>
+                            {canRemove && (
+                              <button
+                                type="button"
+                                className="kc-task-assignee-chip-remove"
+                                aria-label={`Remove ${resolveAssigneeDisplayName(assignee)}`}
+                                onClick={() => {
+                                  setTaskDraftAssigneeIds((prev) => prev.filter((id) => id !== assignee.userId))
+                                }}
+                              >
+                                ×
+                              </button>
+                            )}
+                          </span>
+                        )
+                      })}
+
+                      {canAssignTaskOthers && (
+                        <input
+                          className="kc-task-assignee-input"
+                          value={taskAssigneeQuery}
+                          placeholder="Search user"
+                          onChange={(event) => setTaskAssigneeQuery(event.target.value)}
+                        />
+                      )}
+                    </div>
+
+                    {canAssignTaskOthers && taskAssigneeQuery.trim() && filteredAssigneeMembers.length > 0 && (
+                      <ul className="kc-task-assignee-results" role="listbox">
+                        {filteredAssigneeMembers.map((member) => (
+                          <li key={member.userId}>
+                            <button
+                              type="button"
+                              className="kc-task-assignee-result"
+                              onClick={() => {
+                                setTaskDraftAssigneeIds((prev) => [...prev, member.userId])
+                                setTaskAssigneeQuery('')
+                              }}
+                            >
+                              <span className="kc-task-assignee-chip-avatar" aria-hidden="true">
+                                {member.avatarUrl ? (
+                                  <img src={member.avatarUrl} alt="" />
+                                ) : (
+                                  <span>{resolveAssigneeDisplayName(member).slice(0, 1).toUpperCase()}</span>
+                                )}
+                              </span>
+                              <span className="kc-task-assignee-result-main">
+                                <strong>{resolveAssigneeDisplayName(member)}</strong>
+                                <small>@{member.username}</small>
+                              </span>
+                            </button>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                </div>
+              )}
             </div>
             <div className="kc-task-modal-actions">
               <button
