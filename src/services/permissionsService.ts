@@ -25,6 +25,8 @@ export type PermissionDecision = {
   sourcePermissionId?: number
 }
 
+export type PermissionDecisionMap = Record<string, PermissionDecision>
+
 export type KanbanCatalogEntry = {
   permissionId: number
   key: string
@@ -74,6 +76,31 @@ export async function evaluatePermission(
   )
   if (!response.ok) throw new Error(await parseError(response))
   return response.json() as Promise<PermissionDecision>
+}
+
+export async function evaluatePermissions(
+  token: string,
+  serverId: string,
+  userId: string,
+  permissionKeys: string[],
+  boardId?: string,
+): Promise<PermissionDecisionMap> {
+  const params = new URLSearchParams({
+    userId,
+    targetUserId: userId,
+  })
+  for (const permissionKey of permissionKeys) {
+    params.append('permissionKey', permissionKey)
+  }
+  if (boardId) {
+    params.set('boardId', boardId)
+  }
+  const response = await fetch(
+    apiUrl(`/api/servers/${serverId}/permissions/evaluate-batch?${params.toString()}`),
+    { headers: authHeaders(token) },
+  )
+  if (!response.ok) throw new Error(await parseError(response))
+  return response.json() as Promise<PermissionDecisionMap>
 }
 
 // Human-readable names for Discord permission bit values used by the bootstrap.

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useDeferredValue, useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
   clearCallbackQuery,
@@ -19,7 +19,6 @@ import { fetchUserGuilds, filterManageableGuilds } from '../services/discordGuil
 import {
   fetchServerPermissions,
   fetchScopedPermissions,
-  evaluatePermission,
   groupPermissionsByGrantedTo,
   updatePermissionState,
   deletePermission,
@@ -27,6 +26,7 @@ import {
   createPermission,
   fetchServerRoles,
   fetchServerMembers,
+  evaluatePermissions,
   KANBAN_PERM_INFO,
   DISCORD_FLAG_NAMES,
   DISCORD_PERM_IMPORTANCE,
@@ -44,6 +44,7 @@ import {
   updateBoard,
   type BoardEntry,
 } from '../services/boardsService'
+import { connectRealtimeChannel, serverTopic } from '../services/realtimeService'
 import { DISCORD_CLIENT_ID } from '../config/env'
 import type { DiscordGuild, MeResponse } from '../types/auth'
 import { AddEntryModal } from '../components/dashboard/AddEntryModal'
@@ -75,8 +76,6 @@ const ACTOR_RANK_PROBES: Array<{ key: string; weight: number }> = [
   { key: 'CREATE_TASK', weight: 400 },
   { key: 'VIEW_SERVER', weight: 200 },
 ]
-
-const DASHBOARD_REFRESH_MS = 10_000
 
 type DashboardWarmCache = {
   authToken: string
@@ -159,6 +158,8 @@ export function DashboardPage() {
   const [boardModalLoading, setBoardModalLoading] = useState(false)
   const [boardModalSaving, setBoardModalSaving] = useState(false)
   const prevSelectedServerIdRef = useRef<string>(selectedServerId)
+  const serverRealtimeRefreshTimerRef = useRef<number | null>(null)
+  const deferredModalSearch = useDeferredValue(modalSearch)
 
   function setSuccess(text: string) { setMessage(text); setMessageType('success') }
   function setError(text: string) { setMessage(text); setMessageType('error') }
@@ -274,14 +275,16 @@ export function DashboardPage() {
   useEffect(() => {
     if (!discordToken || !authToken || !me) return
 
+    // Increase polling interval to 10 minutes (600000 ms)
     const timer = window.setInterval(() => {
-      void loadGuilds(discordToken, { silent: true })
-    }, DASHBOARD_REFRESH_MS)
+      void loadGuilds(discordToken, { silent: true });
+    }, 600000);
 
     return () => {
-      window.clearInterval(timer)
-    }
-  }, [discordToken, authToken, me])
+      window.clearInterval(timer);
+    };
+  }, [discordToken, authToken, me]);
+
 
   useEffect(() => {
     if (!selectedServerId || !authToken || !me) return
@@ -319,15 +322,25 @@ export function DashboardPage() {
   useEffect(() => {
     if (!selectedServerId || !authToken || !me) return
 
-    const timer = window.setInterval(() => {
-      void loadServerPermissions(selectedServerId, { silent: true })
-      void loadServerBoards(selectedServerId, { silent: true })
-    }, DASHBOARD_REFRESH_MS)
+    const disconnect = connectRealtimeChannel({
+      token: authToken,
+      destination: serverTopic(selectedServerId),
+      onEvent: () => {
+        scheduleRealtimeServerRefresh(selectedServerId)
+      },
+      onError: (value) => {
+        console.error('Dashboard realtime error:', value)
+      },
+    })
 
     return () => {
-      window.clearInterval(timer)
+      if (serverRealtimeRefreshTimerRef.current !== null) {
+        window.clearTimeout(serverRealtimeRefreshTimerRef.current)
+        serverRealtimeRefreshTimerRef.current = null
+      }
+      disconnect()
     }
-  }, [selectedServerId, authToken, me, apiServers])
+  }, [selectedServerId, authToken, me])
 
   useEffect(() => {
     dashboardWarmCache = {
@@ -447,14 +460,15 @@ export function DashboardPage() {
         setCanEditPermissions(true)
         setActorRankWeight(1000)
       } else {
-        const decision = await evaluatePermission(authToken, serverId, me.userId, 'MANAGE_SERVER_PERMISSIONS')
+        const decisionMap = await evaluatePermissions(authToken, serverId, me.userId, [
+          'MANAGE_SERVER_PERMISSIONS',
+          ...ACTOR_RANK_PROBES.map((probe) => probe.key),
+        ])
+        const decision = decisionMap.MANAGE_SERVER_PERMISSIONS ?? { allowed: false }
         setCanEditPermissions(decision.allowed)
 
-        const rankDecisions = await Promise.all(
-          ACTOR_RANK_PROBES.map(async (probe) => {
-            const result = await evaluatePermission(authToken, serverId, me.userId, probe.key)
-            return result.allowed ? probe.weight : 0
-          }),
+        const rankDecisions = ACTOR_RANK_PROBES.map((probe) =>
+          decisionMap[probe.key]?.allowed ? probe.weight : 0,
         )
         setActorRankWeight(Math.max(...rankDecisions, 200))
       }
@@ -487,32 +501,32 @@ export function DashboardPage() {
       setBoardsLoading(true)
     }
     try {
-      const createDecision = await evaluatePermission(authToken, serverId, me.userId, 'CREATE_BOARD')
-      setCanCreateBoard(createDecision.allowed)
-
       const boardEntries = await fetchBoards(authToken, serverId, me.userId)
       setBoards(boardEntries)
 
       const capabilityEntries = await Promise.all(
         boardEntries.map(async (board) => {
           const boardId = String(board.boardId)
-          const [detailsDecision, permissionsDecision, archiveDecision, deleteDecision] = await Promise.all([
-            evaluatePermission(authToken, serverId, me.userId, 'EDIT_BOARD_DETAILS', boardId),
-            evaluatePermission(authToken, serverId, me.userId, 'EDIT_BOARD_PERMISSIONS', boardId),
-            evaluatePermission(authToken, serverId, me.userId, 'ARCHIVE_BOARD', boardId),
-            evaluatePermission(authToken, serverId, me.userId, 'DELETE_BOARD', boardId),
-          ])
+          const decisionMap = await evaluatePermissions(authToken, serverId, me.userId, [
+            'EDIT_BOARD_DETAILS',
+            'EDIT_BOARD_PERMISSIONS',
+            'ARCHIVE_BOARD',
+            'DELETE_BOARD',
+          ], boardId)
           return [
             boardId,
             {
-              canEditDetails: detailsDecision.allowed,
-              canEditPermissions: permissionsDecision.allowed,
-              canArchive: archiveDecision.allowed,
-              canDelete: deleteDecision.allowed,
+              canEditDetails: decisionMap.EDIT_BOARD_DETAILS?.allowed ?? false,
+              canEditPermissions: decisionMap.EDIT_BOARD_PERMISSIONS?.allowed ?? false,
+              canArchive: decisionMap.ARCHIVE_BOARD?.allowed ?? false,
+              canDelete: decisionMap.DELETE_BOARD?.allowed ?? false,
             },
           ] as const
         }),
       )
+
+      const createDecisionMap = await evaluatePermissions(authToken, serverId, me.userId, ['CREATE_BOARD'])
+      setCanCreateBoard(createDecisionMap.CREATE_BOARD?.allowed ?? false)
 
       setBoardCapabilities(Object.fromEntries(capabilityEntries))
     } catch (error) {
@@ -525,6 +539,20 @@ export function DashboardPage() {
         setBoardsLoading(false)
       }
     }
+  }
+
+  function scheduleRealtimeServerRefresh(serverId: string) {
+    if (!authToken || !me) return
+
+    if (serverRealtimeRefreshTimerRef.current !== null) {
+      window.clearTimeout(serverRealtimeRefreshTimerRef.current)
+    }
+
+    serverRealtimeRefreshTimerRef.current = window.setTimeout(() => {
+      serverRealtimeRefreshTimerRef.current = null
+      void loadServerPermissions(serverId, { silent: true })
+      void loadServerBoards(serverId, { silent: true })
+    }, 150)
   }
 
   async function reconcileBoardPermissions(
@@ -1025,10 +1053,9 @@ export function DashboardPage() {
   }, [modalSearch, serverRoles, existingSubjectIds])
 
   const filteredMembers = useMemo(() => {
-    const q = modalSearch.toLowerCase()
+    const q = deferredModalSearch.toLowerCase()
     const available = serverMembers.filter((m) => !existingSubjectIds.USER.has(m.userId))
-    if (!q) return available
-    return available.filter((m) => {
+    const filtered = !q ? available : available.filter((m) => {
       const display = m.displayName ?? m.nickname ?? `User #${m.userId}`
       return (
         display.toLowerCase().includes(q) ||
@@ -1036,7 +1063,8 @@ export function DashboardPage() {
         m.userId.includes(q)
       )
     })
-  }, [modalSearch, serverMembers, existingSubjectIds])
+    return filtered.slice(0, 50)
+  }, [deferredModalSearch, serverMembers, existingSubjectIds])
 
   const grantableCatalogEntries = useMemo(() => {
     if (!modalSubjectType || !modalSubjectId) return []
