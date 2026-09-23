@@ -12,23 +12,6 @@ export type TaskAssignmentEntry = {
   assignedAt: string
 }
 
-export async function fetchTaskAssignments(
-  token: string,
-  serverId: string,
-  boardId: string,
-  taskId: number,
-  userId: string,
-): Promise<TaskAssignmentEntry[]> {
-  const params = new URLSearchParams({ userId })
-  const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/boards/${boardId}/tasks/${taskId}/assignments?${params.toString()}`),
-    { headers: authHeaders(token) },
-  )
-
-  if (!response.ok) throw new Error(await parseError(response))
-  return response.json() as Promise<TaskAssignmentEntry[]>
-}
-
 export async function fetchBoardTaskAssignments(
   token: string,
   serverId: string,

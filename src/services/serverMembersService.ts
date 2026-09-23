@@ -15,13 +15,6 @@ export type ServerMemberEntry = {
   joinedAt: string
 }
 
-export type ServerUserEntry = {
-  userId: string
-  username: string
-  globalName: string | null
-  avatarUrl: string | null
-}
-
 export async function fetchServerMembers(
   token: string,
   serverId: string,
@@ -35,20 +28,4 @@ export async function fetchServerMembers(
 
   if (!response.ok) throw new Error(await parseError(response))
   return response.json() as Promise<ServerMemberEntry[]>
-}
-
-export async function fetchServerUserById(
-  token: string,
-  serverId: string,
-  targetUserId: string,
-  userId: string,
-): Promise<ServerUserEntry> {
-  const params = new URLSearchParams({ userId })
-  const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/users/${targetUserId}?${params.toString()}`),
-    { headers: authHeaders(token) },
-  )
-
-  if (!response.ok) throw new Error(await parseError(response))
-  return response.json() as Promise<ServerUserEntry>
 }
