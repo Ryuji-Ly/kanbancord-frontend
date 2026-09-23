@@ -7,16 +7,61 @@ import {
 
 const TEMP_SCOPE_ID = '__draft_board__'
 
+/**
+ * Boards inherit the server's rules. Drafts start as one entry per server rule (subject + permission),
+ * marked with the inherited state; an entry only becomes a stored board override when its state
+ * differs from what it inherits. When a server has conflicting rules for the same subject and
+ * permission, DENY wins, matching the API's resolution.
+ */
 export function buildInheritedBoardPermissionDrafts(serverPermissions: PermissionEntry[]): PermissionEntry[] {
-  return serverPermissions
-    .filter((permission) => permission.scopeType === 'SERVER')
-    .filter((permission) => isBoardScopePermissionKey(permission.kanbanPermissionKey))
-    .map((permission, index) => ({
-      ...permission,
-      id: -(index + 1),
-      scopeType: 'BOARD',
-      scopeId: TEMP_SCOPE_ID,
-    }))
+  const inherited = new Map<string, PermissionEntry>()
+  for (const permission of serverPermissions) {
+    if (permission.scopeType !== 'SERVER' || !isBoardScopePermissionKey(permission.kanbanPermissionKey)) {
+      continue
+    }
+    const key = boardPermissionKey(permission)
+    const existing = inherited.get(key)
+    if (!existing || permission.state === 'DENY') {
+      inherited.set(key, permission)
+    }
+  }
+
+  return [...inherited.values()].map((permission, index) => ({
+    ...permission,
+    id: -(index + 1),
+    scopeType: 'BOARD',
+    scopeId: TEMP_SCOPE_ID,
+    isImmutable: false,
+    inheritedState: permission.state,
+  }))
+}
+
+/**
+ * Inherited server rules with the board's stored overrides applied on top, plus board-only rules.
+ */
+export function mergeBoardPermissionDrafts(
+  serverPermissions: PermissionEntry[],
+  boardPermissions: PermissionEntry[],
+): PermissionEntry[] {
+  const drafts = buildInheritedBoardPermissionDrafts(serverPermissions)
+  const byKey = new Map(drafts.map((draft) => [boardPermissionKey(draft), draft]))
+
+  for (const override of boardPermissions) {
+    const inherited = byKey.get(boardPermissionKey(override))
+    if (inherited) {
+      inherited.state = override.state
+    } else {
+      drafts.push({ ...override })
+    }
+  }
+  return drafts
+}
+
+/** The entries that must be stored as board rules: board-only rules and changed inherited ones. */
+export function boardPermissionOverrides(desiredPermissions: PermissionEntry[]): PermissionEntry[] {
+  return desiredPermissions.filter(
+    (permission) => permission.inheritedState === undefined || permission.state !== permission.inheritedState,
+  )
 }
 
 export function cloneBoardPermissionDrafts(permissions: PermissionEntry[]): PermissionEntry[] {
@@ -39,11 +84,14 @@ export function toggleDraftPermissionState(
   )
 }
 
+/** Inherited entries cannot be removed (they would still apply); only board-only entries can. */
 export function removeDraftPermission(
   permissions: PermissionEntry[],
   permissionId: number,
 ): PermissionEntry[] {
-  return permissions.filter((permission) => permission.id !== permissionId)
+  return permissions.filter(
+    (permission) => permission.id !== permissionId || permission.inheritedState !== undefined,
+  )
 }
 
 export function addDraftPermissions(
