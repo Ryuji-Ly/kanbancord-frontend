@@ -99,7 +99,7 @@ export function PermissionGroupRow({
         }
       }}
     >
-      {canEditPermissions && !group.permissions.every((p) => p.isImmutable) && (
+      {canEditPermissions && !group.permissions.every((p) => p.isImmutable || p.inheritedState !== undefined) && (
         <button
           type="button"
           className="kc-perms-group-delete-btn"
@@ -144,12 +144,18 @@ export function PermissionGroupRow({
             {group.permissions.map((perm) => {
               const permName = KANBAN_PERM_INFO[perm.kanbanPermissionKey]?.name ?? perm.kanbanPermissionKey
               const isLocked = perm.isImmutable
+              const isInherited = perm.inheritedState !== undefined
+              const inheritanceNote = !isInherited
+                ? ''
+                : perm.state === perm.inheritedState
+                  ? ' (inherited from server)'
+                  : ` (overrides server: ${perm.inheritedState})`
 
               return (
                 <div
                   key={perm.id}
                   className={`kc-perm-button kc-perm-button--${perm.state.toLowerCase()}${isLocked ? ` ${perm.isImmutable ? 'kc-perm-button--immutable' : 'kc-perm-button--locked'}` : ''}`}
-                  title={`${permName} — ${perm.state}${isLocked ? ' (locked)' : ''}`}
+                  title={`${permName} — ${perm.state}${isLocked ? ' (locked)' : ''}${inheritanceNote}`}
                   onClick={(e) => {
                     e.stopPropagation()
                     if (!isLocked) {
@@ -168,7 +174,7 @@ export function PermissionGroupRow({
                   <span className="kc-perm-button-text">{permName}</span>
                   {isLocked ? (
                     <FiLock className="kc-perm-lock" aria-hidden="true" />
-                  ) : (
+                  ) : isInherited ? null : (
                     <button
                       className="kc-perm-button-remove"
                       onClick={(e) => {

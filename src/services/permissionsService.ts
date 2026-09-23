@@ -15,6 +15,11 @@ export type PermissionEntry = {
   state: 'ALLOW' | 'DENY'
   priority: number
   isImmutable: boolean
+  /**
+   * Board permission drafts only: the state inherited from the matching server rule. Present when the
+   * entry mirrors a server rule; the entry is then a board override only if its state differs.
+   */
+  inheritedState?: 'ALLOW' | 'DENY'
 }
 
 export type PermissionDecision = {
@@ -171,8 +176,8 @@ export const KANBAN_PERM_INFO: Record<string, KanbanPermInfo> = {
 
 export const CATEGORY_ORDER = ['SERVER', 'BOARD', 'COLUMN', 'TASK', 'COMMENT', 'LABEL']
 
+// Must match KanbanPermissionCatalog.isBoardScopeAllowed (ADMIN is server-scope only).
 export const BOARD_SCOPE_PERMISSION_KEYS = new Set<string>([
-  'ADMIN',
   'VIEW_BOARD',
   'EDIT_BOARD_DETAILS',
   'EDIT_BOARD_PERMISSIONS',
