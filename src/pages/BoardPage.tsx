@@ -1,7 +1,6 @@
 ﻿import { useDeferredValue, useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties, type DragEvent, type ComponentPropsWithoutRef } from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
-import rehypeRaw from 'rehype-raw'
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { getStoredToken } from '../services/authService'
 import { fetchMe } from '../services/meService'
@@ -2506,7 +2505,6 @@ export function BoardPage() {
                           ? (
                             <ReactMarkdown
                               remarkPlugins={[remarkGfm]}
-                              rehypePlugins={[rehypeRaw]}
                               components={createMarkdownComponents({
                                 editable: canEditTask && !isBoardArchived && !togglingTaskChecklist,
                                 onToggle: (itemIndex, checked) => {
@@ -2551,7 +2549,6 @@ export function BoardPage() {
                     <div className="kc-task-panel-value kc-task-panel-value--description kc-markdown">
                         <ReactMarkdown
                           remarkPlugins={[remarkGfm]}
-                          rehypePlugins={[rehypeRaw]}
                           components={createMarkdownComponents({ editable: false })}
                         >
                           {selectedTask.description}
@@ -2768,7 +2765,6 @@ export function BoardPage() {
                             <div className="kc-task-comment-content kc-markdown">
                               <ReactMarkdown
                                 remarkPlugins={[remarkGfm]}
-                                rehypePlugins={[rehypeRaw]}
                                 components={createMarkdownComponents({
                                   editable: canEditComment(comment) && !isBoardArchived && !togglingCommentChecklistIds.has(comment.commentId),
                                   onToggle: (itemIndex, checked) => {
