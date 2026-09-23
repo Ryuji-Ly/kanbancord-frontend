@@ -50,7 +50,9 @@ import type { DiscordGuild, MeResponse } from '../types/auth'
 import { AddEntryModal } from '../components/dashboard/AddEntryModal'
 import { BoardModal } from '../components/dashboard/boards/BoardModal'
 import {
+  boardPermissionOverrides,
   buildInheritedBoardPermissionDrafts,
+  mergeBoardPermissionDrafts,
   diffBoardPermissions,
 } from '../components/dashboard/boards/boardPermissionDraft'
 import { DashboardHeader } from '../components/dashboard/DashboardHeader'
@@ -562,8 +564,13 @@ export function DashboardPage() {
   ) {
     if (!authToken || !me) return
 
+    // Boards inherit server rules; only entries that differ from what they inherit are stored.
+    // Stored board rules that no longer differ (including legacy copies) are removed.
     const existingPermissions = await fetchScopedPermissions(authToken, serverId, me.userId, 'BOARD', boardId)
-    const { toDelete, toToggle, toCreate } = diffBoardPermissions(existingPermissions, desiredPermissions)
+    const { toDelete, toToggle, toCreate } = diffBoardPermissions(
+      existingPermissions,
+      boardPermissionOverrides(desiredPermissions),
+    )
 
     await Promise.all([
       ...toDelete.map((permission) => deletePermission(authToken, serverId, me.userId, permission.id)),
@@ -579,7 +586,7 @@ export function DashboardPage() {
           kanbanPermissionId: permission.kanbanPermissionId,
           state: permission.state,
           priority: permission.priority,
-          isImmutable: permission.isImmutable,
+          isImmutable: false,
         }),
       ),
     ])
@@ -862,14 +869,13 @@ export function DashboardPage() {
 
       if (capabilities.canEditPermissions || board.isArchived) {
         try {
-          const permissions = await fetchScopedPermissions(
-            authToken,
-            selectedServerId,
-            me.userId,
-            'BOARD',
-            String(board.boardId),
-          )
-          setBoardModalPermissions(permissions)
+          const [resolvedServerPermissions, boardPermissions] = await Promise.all([
+            serverPermissions
+              ? Promise.resolve(serverPermissions)
+              : fetchServerPermissions(authToken, selectedServerId, me.userId),
+            fetchScopedPermissions(authToken, selectedServerId, me.userId, 'BOARD', String(board.boardId)),
+          ])
+          setBoardModalPermissions(mergeBoardPermissionDrafts(resolvedServerPermissions, boardPermissions))
         } catch {
           setBoardModalPermissions([])
         }
