@@ -55,29 +55,6 @@ export async function fetchServerPermissions(
   return response.json() as Promise<PermissionEntry[]>
 }
 
-export async function evaluatePermission(
-  token: string,
-  serverId: string,
-  userId: string,
-  permissionKey: string,
-  boardId?: string,
-): Promise<PermissionDecision> {
-  const params = new URLSearchParams({
-    userId,
-    targetUserId: userId,
-    permissionKey,
-  })
-  if (boardId) {
-    params.set('boardId', boardId)
-  }
-  const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/permissions/evaluate?${params.toString()}`),
-    { headers: authHeaders(token) },
-  )
-  if (!response.ok) throw new Error(await parseError(response))
-  return response.json() as Promise<PermissionDecision>
-}
-
 export async function evaluatePermissions(
   token: string,
   serverId: string,
@@ -225,22 +202,6 @@ export const BOARD_SCOPE_PERMISSION_KEYS = new Set<string>([
 
 export function isBoardScopePermissionKey(key: string): boolean {
   return BOARD_SCOPE_PERMISSION_KEYS.has(key)
-}
-
-export function groupPermissionsByCategory(
-  entries: PermissionEntry[],
-): Array<{ category: string; entries: PermissionEntry[] }> {
-  const map = new Map<string, PermissionEntry[]>()
-  for (const entry of entries) {
-    const cat = KANBAN_PERM_INFO[entry.kanbanPermissionKey]?.category ?? 'OTHER'
-    const group = map.get(cat) ?? []
-    group.push(entry)
-    map.set(cat, group)
-  }
-  return CATEGORY_ORDER.filter((c) => map.has(c)).map((c) => ({
-    category: c,
-    entries: map.get(c)!,
-  }))
 }
 
 export type GrantedToGroup = {
