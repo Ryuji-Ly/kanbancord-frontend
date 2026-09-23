@@ -605,7 +605,12 @@ export function BoardModal({
         onClose={() => setDeleteGroupTarget(null)}
         onConfirm={() => {
           if (!deleteGroupTarget) return
-          const ids = new Set(deleteGroupTarget.permissions.map((permission) => permission.id))
+          // Inherited entries stay (they would still apply); only board-only entries are removed.
+          const ids = new Set(
+            deleteGroupTarget.permissions
+              .filter((permission) => permission.inheritedState === undefined)
+              .map((permission) => permission.id),
+          )
           setDraftPermissions((prev) => prev.filter((permission) => !ids.has(permission.id)))
           setDeleteGroupTarget(null)
         }}

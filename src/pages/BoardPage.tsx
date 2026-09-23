@@ -1,7 +1,6 @@
 ﻿import { useDeferredValue, useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties, type DragEvent, type ComponentPropsWithoutRef } from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
-import rehypeRaw from 'rehype-raw'
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { getStoredToken } from '../services/authService'
 import { fetchMe } from '../services/meService'
@@ -529,6 +528,7 @@ export function BoardPage() {
   const serverId = searchParams.get('serverId') ?? ''
 
   const [state, setState] = useState<LoadState>('idle')
+  const boardReady = state === 'ready'
   const [error, setError] = useState('')
   const [board, setBoard] = useState<BoardEntry | null>(null)
   const [columns, setColumns] = useState<BoardColumnEntry[]>([])
@@ -888,7 +888,9 @@ export function BoardPage() {
 
   useEffect(() => {
     const token = getStoredToken()
-    if (!token || !boardId || !serverId || !me) return
+    // Only subscribe once the board has loaded: a board the user cannot view would otherwise be
+    // re-subscribed (and refused) every few seconds.
+    if (!token || !boardId || !serverId || !me || !boardReady) return
 
     const disconnect = connectRealtimeChannel({
       token,
@@ -908,7 +910,7 @@ export function BoardPage() {
       }
       disconnect()
     }
-  }, [boardId, serverId, me])
+  }, [boardId, serverId, me, boardReady])
 
   async function fetchBoardSnapshot(token: string, userId: string) {
     const [boardData, columnData, taskData, taskAssignmentData, permissionMap] = await Promise.all([
@@ -1400,12 +1402,18 @@ export function BoardPage() {
     setTaskPanelExpanded(false)
   }
 
-  function canEditComment(_comment: TaskCommentEntry): boolean {
-    return canEditTaskComment
+  // Mirrors the API: authors manage their own comments with the permission to comment at all;
+  // EDIT/DELETE_TASK_COMMENT are moderation permissions for other people's comments.
+  function isOwnComment(comment: TaskCommentEntry): boolean {
+    return me !== null && String(comment.userId) === String(me.userId)
   }
 
-  function canDeleteComment(_comment: TaskCommentEntry): boolean {
-    return canDeleteTaskComment
+  function canEditComment(comment: TaskCommentEntry): boolean {
+    return isOwnComment(comment) ? canCreateTaskComment : canEditTaskComment
+  }
+
+  function canDeleteComment(comment: TaskCommentEntry): boolean {
+    return isOwnComment(comment) ? canCreateTaskComment : canDeleteTaskComment
   }
 
   function getCommentEditLabel(comment: TaskCommentEntry): string {
@@ -2506,7 +2514,6 @@ export function BoardPage() {
                           ? (
                             <ReactMarkdown
                               remarkPlugins={[remarkGfm]}
-                              rehypePlugins={[rehypeRaw]}
                               components={createMarkdownComponents({
                                 editable: canEditTask && !isBoardArchived && !togglingTaskChecklist,
                                 onToggle: (itemIndex, checked) => {
@@ -2551,7 +2558,6 @@ export function BoardPage() {
                     <div className="kc-task-panel-value kc-task-panel-value--description kc-markdown">
                         <ReactMarkdown
                           remarkPlugins={[remarkGfm]}
-                          rehypePlugins={[rehypeRaw]}
                           components={createMarkdownComponents({ editable: false })}
                         >
                           {selectedTask.description}
@@ -2768,7 +2774,6 @@ export function BoardPage() {
                             <div className="kc-task-comment-content kc-markdown">
                               <ReactMarkdown
                                 remarkPlugins={[remarkGfm]}
-                                rehypePlugins={[rehypeRaw]}
                                 components={createMarkdownComponents({
                                   editable: canEditComment(comment) && !isBoardArchived && !togglingCommentChecklistIds.has(comment.commentId),
                                   onToggle: (itemIndex, checked) => {
