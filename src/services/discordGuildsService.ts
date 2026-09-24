@@ -1,6 +1,6 @@
+import { parseError } from '../api/http'
+import { apiFetch } from '../api/session'
 import type { DiscordGuild } from '../types/auth'
-
-const DISCORD_API = 'https://discord.com/api/v10'
 
 // Permission bits
 const ADMINISTRATOR = BigInt(0x8)
@@ -11,17 +11,12 @@ function canManageServer(permissions: string): boolean {
   return (bits & ADMINISTRATOR) !== 0n || (bits & MANAGE_GUILD) !== 0n
 }
 
-export async function fetchUserGuilds(discordToken: string): Promise<DiscordGuild[]> {
-  const response = await fetch(`${DISCORD_API}/users/@me/guilds`, {
-    headers: {
-      Authorization: `Bearer ${discordToken}`,
-    },
-  })
-
+/** The user's Discord servers. The API fetches them with the Discord token it keeps for the user. */
+export async function fetchUserGuilds(): Promise<DiscordGuild[]> {
+  const response = await apiFetch('/api/me/guilds')
   if (!response.ok) {
-    throw new Error(`Failed to fetch Discord guilds (${response.status})`)
+    throw new Error(await parseError(response))
   }
-
   return response.json() as Promise<DiscordGuild[]>
 }
 

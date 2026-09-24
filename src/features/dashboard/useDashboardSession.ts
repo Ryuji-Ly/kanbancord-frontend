@@ -1,17 +1,11 @@
 import { useCallback, useEffect, useState } from 'react'
-import { useQueryClient } from '@tanstack/react-query'
+import { signOut, useSession } from '../../api/session'
 import {
   clearCallbackQuery,
-  clearDiscordToken,
   clearOAuthSessionState,
-  clearToken,
   exchangeDiscordCode,
   getExpectedOAuthState,
-  getStoredDiscordToken,
-  getStoredToken,
   isOAuthInProgress,
-  saveDiscordToken,
-  saveToken,
   startDiscordLogin,
 } from '../../services/authService'
 import { useMe } from '../session/sessionQueries'
@@ -58,36 +52,27 @@ function readOAuthCallback(): OAuthCallback {
 }
 
 /**
- * Sign-in state for the dashboard: the stored tokens, finishing a Discord login when returning from
- * Discord, the signed-in user, logging out, and a short-lived status banner.
+ * Sign-in state for the dashboard: finishing a Discord login when returning from Discord, the
+ * signed-in user, logging out, and a short-lived status banner.
  */
 export function useDashboardSession() {
-  const queryClient = useQueryClient()
+  const session = useSession()
   const [callback] = useState(readOAuthCallback)
-  const [authToken, setAuthToken] = useState(getStoredToken)
-  const [discordToken, setDiscordToken] = useState(getStoredDiscordToken)
   const [exchanging, setExchanging] = useState(() => Boolean(callback && 'code' in callback))
   const [banner, setBanner] = useState<Banner | null>(() =>
     callback && 'error' in callback ? { text: callback.error, type: 'error' } : null,
   )
 
-  const meQuery = useMe(authToken)
-  // A stored token the API no longer accepts: treat the user as signed out.
-  const sessionExpired = Boolean(authToken) && meQuery.isError
-  const isAuthenticated = Boolean(authToken) && !sessionExpired
+  const meQuery = useMe()
+  const isAuthenticated = session.status === 'signedIn'
+  const sessionExpired = session.status === 'signedOut' && session.reason === 'expired'
 
   useEffect(() => {
     if (!callback || !('code' in callback) || exchangedCodes.has(callback.code)) return
     exchangedCodes.add(callback.code)
 
     exchangeDiscordCode(callback.code)
-      .then((data) => {
-        saveToken(data.accessToken)
-        setAuthToken(data.accessToken)
-        if (data.discordAccessToken) {
-          saveDiscordToken(data.discordAccessToken)
-          setDiscordToken(data.discordAccessToken)
-        }
+      .then(() => {
         setBanner({ text: 'Logged in successfully.', type: 'success' })
         clearCallbackQuery()
       })
@@ -96,13 +81,6 @@ export function useDashboardSession() {
       })
       .finally(() => setExchanging(false))
   }, [callback])
-
-  useEffect(() => {
-    if (sessionExpired) {
-      clearToken()
-      clearDiscordToken()
-    }
-  }, [sessionExpired])
 
   // Success messages disappear after 3 seconds, errors after 5.
   useEffect(() => {
@@ -121,23 +99,17 @@ export function useDashboardSession() {
   }
 
   function logout() {
-    clearToken()
-    clearDiscordToken()
     clearCallbackQuery()
     saveSelectedServerId('')
-    queryClient.clear()
-    setAuthToken('')
-    setDiscordToken('')
-    setBanner({ text: 'Logged out successfully.', type: 'success' })
+    void signOut().then(() => setBanner({ text: 'Logged out successfully.', type: 'success' }))
   }
 
   return {
-    authToken,
-    discordToken,
-    me: isAuthenticated ? (meQuery.data ?? null) : null,
+    // Signed in: the freshly loaded user, or the one the session was issued for until it loads.
+    me: isAuthenticated ? (meQuery.data ?? session.user) : null,
     isAuthenticated,
-    exchanging,
-    banner: sessionExpired ? { text: 'Session expired. Please login again.', type: 'error' as const } : banner,
+    exchanging: exchanging || session.status === 'loading',
+    banner: sessionExpired && !banner ? { text: 'Session expired. Please login again.', type: 'error' as const } : banner,
     showBanner,
     login,
     logout,

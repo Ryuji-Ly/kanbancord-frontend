@@ -1,4 +1,5 @@
 import { QueryClient } from '@tanstack/react-query'
+import { SignedOutError } from './session'
 
 /** Client errors (the API's `{"status":4xx}` body, or `Request failed (4xx)`) will not change on retry. */
 function isClientError(error: unknown): boolean {
@@ -13,7 +14,8 @@ export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       refetchOnWindowFocus: false,
-      retry: (failureCount, error) => failureCount < 1 && !isClientError(error),
+      retry: (failureCount, error) =>
+        failureCount < 1 && !isClientError(error) && !(error instanceof SignedOutError),
     },
   },
 })

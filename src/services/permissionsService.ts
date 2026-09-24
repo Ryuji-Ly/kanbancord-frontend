@@ -1,8 +1,5 @@
-import { apiUrl, parseError } from '../api/http'
-
-function authHeaders(token: string): HeadersInit {
-  return { Authorization: `Bearer ${token}` }
-}
+import { parseError } from '../api/http'
+import { apiFetch } from '../api/session'
 
 export type PermissionEntry = {
   id: number
@@ -43,17 +40,13 @@ export type KanbanCatalogEntry = {
 export type PermissionScopeType = 'SERVER' | 'BOARD'
 
 export async function fetchServerPermissions(
-  token: string,
   serverId: string,
 ): Promise<PermissionEntry[]> {
   const params = new URLSearchParams({
     scopeType: 'SERVER',
     scopeId: serverId,
   })
-  const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/permissions?${params.toString()}`),
-    { headers: authHeaders(token) },
-  )
+  const response = await apiFetch(`/api/servers/${serverId}/permissions?${params.toString()}`)
   if (!response.ok) throw new Error(await parseError(response))
   return response.json() as Promise<PermissionEntry[]>
 }
@@ -64,16 +57,13 @@ export type ServerAccess = {
   boards: Record<string, Record<string, boolean>>
 }
 
-export async function fetchMyAccess(token: string, serverId: string): Promise<ServerAccess> {
-  const response = await fetch(apiUrl(`/api/servers/${serverId}/permissions/mine`), {
-    headers: authHeaders(token),
-  })
+export async function fetchMyAccess(serverId: string): Promise<ServerAccess> {
+  const response = await apiFetch(`/api/servers/${serverId}/permissions/mine`)
   if (!response.ok) throw new Error(await parseError(response))
   return response.json() as Promise<ServerAccess>
 }
 
 export async function evaluatePermissions(
-  token: string,
   serverId: string,
   permissionKeys: string[],
   boardId?: string,
@@ -86,10 +76,7 @@ export async function evaluatePermissions(
   if (boardId) {
     params.set('boardId', boardId)
   }
-  const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/permissions/evaluate-batch?${params.toString()}`),
-    { headers: authHeaders(token) },
-  )
+  const response = await apiFetch(`/api/servers/${serverId}/permissions/evaluate-batch?${params.toString()}`)
   if (!response.ok) throw new Error(await parseError(response))
   return response.json() as Promise<PermissionDecisionMap>
 }
@@ -390,54 +377,39 @@ function getSubjectDisplay(subjectType: string, subjectId: string, lookups?: Sub
 }
 
 export async function updatePermissionState(
-  token: string,
   serverId: string,
   permissionId: number,
   newState: 'ALLOW' | 'DENY',
 ): Promise<void> {
-  const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/permissions/${permissionId}/state`),
-    {
-      method: 'PATCH',
-      headers: {
-        ...authHeaders(token),
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ state: newState }),
+  const response = await apiFetch(`/api/servers/${serverId}/permissions/${permissionId}/state`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
     },
-  )
+    body: JSON.stringify({ state: newState }),
+  })
   if (!response.ok) throw new Error(await parseError(response))
 }
 
 export async function deletePermission(
-  token: string,
   serverId: string,
   permissionId: number,
 ): Promise<void> {
-  const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/permissions/${permissionId}`),
-    {
-      method: 'DELETE',
-      headers: authHeaders(token),
-    },
-  )
+  const response = await apiFetch(`/api/servers/${serverId}/permissions/${permissionId}`, {
+    method: 'DELETE',
+  })
   if (!response.ok) throw new Error(await parseError(response))
 }
 
 export async function fetchPermissionCatalog(
-  token: string,
   serverId: string,
 ): Promise<KanbanCatalogEntry[]> {
-  const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/permissions/catalog`),
-    { headers: authHeaders(token) },
-  )
+  const response = await apiFetch(`/api/servers/${serverId}/permissions/catalog`)
   if (!response.ok) throw new Error(await parseError(response))
   return response.json() as Promise<KanbanCatalogEntry[]>
 }
 
 export async function fetchScopedPermissions(
-  token: string,
   serverId: string,
   scopeType: PermissionScopeType,
   scopeId: string,
@@ -446,15 +418,12 @@ export async function fetchScopedPermissions(
     scopeType,
     scopeId,
   })
-  const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/permissions?${params.toString()}`),
-    { headers: authHeaders(token) },
-  )
+  const response = await apiFetch(`/api/servers/${serverId}/permissions?${params.toString()}`)
   if (!response.ok) throw new Error(await parseError(response))
   return response.json() as Promise<PermissionEntry[]>
 }
 
-export async function createPermission(  token: string,
+export async function createPermission(
   serverId: string,
   input: {
     scopeType: PermissionScopeType
@@ -467,26 +436,22 @@ export async function createPermission(  token: string,
     isImmutable?: boolean
   },
 ): Promise<void> {
-  const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/permissions`),
-    {
-      method: 'POST',
-      headers: {
-        ...authHeaders(token),
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        scopeType: input.scopeType,
-        scopeId: input.scopeId,
-        subjectType: input.subjectType,
-        subjectId: input.subjectId,
-        kanbanPermissionId: input.kanbanPermissionId,
-        state: input.state,
-        priority: input.priority,
-        isImmutable: Boolean(input.isImmutable),
-      }),
+  const response = await apiFetch(`/api/servers/${serverId}/permissions`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
     },
-  )
+    body: JSON.stringify({
+      scopeType: input.scopeType,
+      scopeId: input.scopeId,
+      subjectType: input.subjectType,
+      subjectId: input.subjectId,
+      kanbanPermissionId: input.kanbanPermissionId,
+      state: input.state,
+      priority: input.priority,
+      isImmutable: Boolean(input.isImmutable),
+    }),
+  })
   if (!response.ok) throw new Error(await parseError(response))
 }
 
@@ -507,25 +472,17 @@ export type ServerMemberEntry = {
 }
 
 export async function fetchServerRoles(
-  token: string,
   serverId: string,
 ): Promise<ServerRoleEntry[]> {
-  const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/roles`),
-    { headers: authHeaders(token) },
-  )
+  const response = await apiFetch(`/api/servers/${serverId}/roles`)
   if (!response.ok) throw new Error(await parseError(response))
   return response.json() as Promise<ServerRoleEntry[]>
 }
 
 export async function fetchServerMembers(
-  token: string,
   serverId: string,
 ): Promise<ServerMemberEntry[]> {
-  const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/members`),
-    { headers: authHeaders(token) },
-  )
+  const response = await apiFetch(`/api/servers/${serverId}/members`)
   if (!response.ok) throw new Error(await parseError(response))
   return response.json() as Promise<ServerMemberEntry[]>
 }

@@ -9,7 +9,7 @@ import {
   type PermissionEntry,
 } from '../../services/permissionsService'
 import { boardPermissionOverrides, diffBoardPermissions } from '../../components/dashboard/boards/boardPermissionDraft'
-import { requireToken, serverKeys } from '../server/serverQueries'
+import { serverKeys } from '../server/serverQueries'
 
 type RuleState = 'ALLOW' | 'DENY'
 
@@ -34,15 +34,14 @@ export type BoardSave = {
  * that differ from what they inherit are stored; stored rules that no longer differ are removed.
  */
 async function reconcileBoardPermissions(serverId: string, boardId: string, desired: PermissionEntry[]) {
-  const token = requireToken()
-  const existing = await fetchScopedPermissions(token, serverId, 'BOARD', boardId)
+  const existing = await fetchScopedPermissions(serverId, 'BOARD', boardId)
   const { toDelete, toToggle, toCreate } = diffBoardPermissions(existing, boardPermissionOverrides(desired))
 
   await Promise.all([
-    ...toDelete.map((permission) => deletePermission(token, serverId, permission.id)),
-    ...toToggle.map((permission) => updatePermissionState(token, serverId, permission.permissionId, permission.newState)),
+    ...toDelete.map((permission) => deletePermission(serverId, permission.id)),
+    ...toToggle.map((permission) => updatePermissionState(serverId, permission.permissionId, permission.newState)),
     ...toCreate.map((permission) =>
-      createPermission(token, serverId, {
+      createPermission(serverId, {
         scopeType: 'BOARD',
         scopeId: boardId,
         subjectType: permission.subjectType,
@@ -67,7 +66,7 @@ export function useServerMutations(serverId: string) {
 
   const setRuleState = useMutation({
     mutationFn: ({ permissionId, state }: { permissionId: number; state: RuleState }) =>
-      updatePermissionState(requireToken(), serverId, permissionId, state),
+      updatePermissionState(serverId, permissionId, state),
     onMutate: ({ permissionId, state }) =>
       rules.apply((current) => current.map((rule) => (rule.id === permissionId ? { ...rule, state } : rule))),
     onError: (_error, _variables, context) => rules.rollback(context),
@@ -75,7 +74,7 @@ export function useServerMutations(serverId: string) {
   })
 
   const removeRule = useMutation({
-    mutationFn: (permissionId: number) => deletePermission(requireToken(), serverId, permissionId),
+    mutationFn: (permissionId: number) => deletePermission(serverId, permissionId),
     onMutate: (permissionId) => rules.apply((current) => current.filter((rule) => rule.id !== permissionId)),
     onError: (_error, _variables, context) => rules.rollback(context),
     ...settle,
@@ -83,7 +82,7 @@ export function useServerMutations(serverId: string) {
 
   const removeRules = useMutation({
     mutationFn: (permissionIds: number[]) =>
-      Promise.all(permissionIds.map((id) => deletePermission(requireToken(), serverId, id))),
+      Promise.all(permissionIds.map((id) => deletePermission(serverId, id))),
     ...settle,
   })
 
@@ -91,7 +90,7 @@ export function useServerMutations(serverId: string) {
     mutationFn: (newRules: NewServerRule[]) =>
       Promise.all(
         newRules.map((rule) =>
-          createPermission(requireToken(), serverId, {
+          createPermission(serverId, {
             scopeType: 'SERVER',
             scopeId: serverId,
             ...rule,
@@ -104,13 +103,12 @@ export function useServerMutations(serverId: string) {
 
   const saveBoard = useMutation({
     mutationFn: async ({ boardId, details, permissions }: BoardSave) => {
-      const token = requireToken()
       let savedBoardId = boardId
       if (!savedBoardId) {
         if (!details) throw new Error('A new board needs a name.')
-        savedBoardId = String((await createBoard(token, serverId, details)).boardId)
+        savedBoardId = String((await createBoard(serverId, details)).boardId)
       } else if (details) {
-        await updateBoard(token, serverId, savedBoardId, { name: details.name, description: details.description })
+        await updateBoard(serverId, savedBoardId, { name: details.name, description: details.description })
       }
       if (permissions) {
         await reconcileBoardPermissions(serverId, savedBoardId, permissions)
@@ -121,12 +119,12 @@ export function useServerMutations(serverId: string) {
 
   const setBoardArchived = useMutation({
     mutationFn: ({ boardId, archived }: { boardId: string; archived: boolean }) =>
-      archiveBoard(requireToken(), serverId, boardId, archived),
+      archiveBoard(serverId, boardId, archived),
     ...settle,
   })
 
   const removeBoard = useMutation({
-    mutationFn: (boardId: string) => deleteBoard(requireToken(), serverId, boardId),
+    mutationFn: (boardId: string) => deleteBoard(serverId, boardId),
     ...settle,
   })
 

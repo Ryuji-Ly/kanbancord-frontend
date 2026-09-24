@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
-import { getStoredToken } from '../../services/authService'
 import { fetchBoards } from '../../services/boardsService'
 import {
   fetchMyAccess,
@@ -22,17 +21,11 @@ export const serverKeys = {
   catalog: (serverId: string) => ['server', serverId, 'catalog'] as const,
 }
 
-export function requireToken(): string {
-  const token = getStoredToken()
-  if (!token) throw new Error('You are not signed in.')
-  return token
-}
-
 /** The server's boards the caller can view. */
 export function useServerBoards(serverId: string) {
   return useQuery({
     queryKey: serverKeys.boards(serverId),
-    queryFn: () => fetchBoards(requireToken(), serverId),
+    queryFn: () => fetchBoards(serverId),
     enabled: Boolean(serverId),
   })
 }
@@ -41,7 +34,7 @@ export function useServerBoards(serverId: string) {
 export function useServerAccess(serverId: string) {
   return useQuery({
     queryKey: serverKeys.access(serverId),
-    queryFn: () => fetchMyAccess(requireToken(), serverId),
+    queryFn: () => fetchMyAccess(serverId),
     enabled: Boolean(serverId),
   })
 }
@@ -50,7 +43,7 @@ export function useServerAccess(serverId: string) {
 export function useServerPermissions(serverId: string) {
   return useQuery({
     queryKey: serverKeys.permissions(serverId),
-    queryFn: () => fetchServerPermissions(requireToken(), serverId),
+    queryFn: () => fetchServerPermissions(serverId),
     enabled: Boolean(serverId),
   })
 }
@@ -58,7 +51,7 @@ export function useServerPermissions(serverId: string) {
 export function useServerRoles(serverId: string, enabled = true) {
   return useQuery({
     queryKey: serverKeys.roles(serverId),
-    queryFn: () => fetchServerRoles(requireToken(), serverId),
+    queryFn: () => fetchServerRoles(serverId),
     enabled: enabled && Boolean(serverId),
     staleTime: 5 * 60_000,
   })
@@ -67,7 +60,7 @@ export function useServerRoles(serverId: string, enabled = true) {
 export function useServerMembers(serverId: string, enabled = true) {
   return useQuery({
     queryKey: serverKeys.members(serverId),
-    queryFn: () => fetchServerMembers(requireToken(), serverId),
+    queryFn: () => fetchServerMembers(serverId),
     enabled: enabled && Boolean(serverId),
     staleTime: 5 * 60_000,
   })
@@ -77,7 +70,7 @@ export function useServerMembers(serverId: string, enabled = true) {
 export function useServerCatalog(serverId: string, enabled = true) {
   return useQuery({
     queryKey: serverKeys.catalog(serverId),
-    queryFn: () => fetchPermissionCatalog(requireToken(), serverId),
+    queryFn: () => fetchPermissionCatalog(serverId),
     enabled: enabled && Boolean(serverId),
     staleTime: Number.POSITIVE_INFINITY,
   })
@@ -91,12 +84,10 @@ export function useServerRealtime(serverId: string, active: boolean) {
   const queryClient = useQueryClient()
 
   useEffect(() => {
-    const token = getStoredToken()
-    if (!token || !active || !serverId) return
+    if (!active || !serverId) return
 
     let timer: number | null = null
     const disconnect = connectRealtimeChannel({
-      token,
       destination: serverTopic(serverId),
       onEvent: () => {
         if (timer !== null) window.clearTimeout(timer)
@@ -104,6 +95,10 @@ export function useServerRealtime(serverId: string, active: boolean) {
           timer = null
           void queryClient.invalidateQueries({ queryKey: serverKeys.all(serverId) })
         }, REFRESH_DEBOUNCE_MS)
+      },
+      // Lost access to the server: drop what is cached so the workspace shows the refusal instead.
+      onRevoked: () => {
+        void queryClient.resetQueries({ queryKey: serverKeys.all(serverId) })
       },
       onError: (value) => {
         console.error('Dashboard realtime error:', value)
