@@ -15,6 +15,7 @@ import type { DiscordGuild } from '../../types/auth'
 import { AddEntryModal } from '../../components/dashboard/AddEntryModal'
 import { BoardModal } from '../../components/dashboard/boards/BoardModal'
 import { BoardSettingsDialog } from '../boardSettings/BoardSettingsDialog'
+import { AuditLogSection } from '../audit/AuditLogSection'
 import { buildInheritedBoardPermissionDrafts } from '../../components/dashboard/boards/boardPermissionDraft'
 import { DeleteGroupModal } from '../../components/dashboard/DeleteGroupModal'
 import { permissionRankWeight } from '../../components/dashboard/permissionRank'
@@ -411,6 +412,10 @@ export function ServerWorkspace({ serverId, server, showError, showToast }: Serv
         onOpenBoard={(board) => navigate(`/boards/${board.boardId}?serverId=${encodeURIComponent(serverId)}`)}
         onOpenBoardSettings={openBoardSettings}
       />
+
+      {access?.server.VIEW_AUDIT_LOG && (
+        <AuditLogSection serverId={serverId} boards={boardsQuery.data ?? []} members={serverMembers} roles={serverRoles} />
+      )}
 
       <DeleteGroupModal
         target={deleteGroupTarget}

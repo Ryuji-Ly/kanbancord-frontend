@@ -2566,3 +2566,161 @@ pre {
     text-align: left;
   }
 }
+
+// ── Board settings: wide on desktop ───────────────────────────────────────────
+// .kc-modal comes later in this file and would otherwise cap the width at 560px.
+.kc-modal.kc-board-modal {
+  max-width: min(1120px, 94vw);
+}
+
+@media (min-width: 1000px) {
+  .kc-board-modal-body {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+
+    > * {
+      grid-column: 1 / -1;
+    }
+
+    > .kc-board-modal-section--half {
+      grid-column: auto;
+    }
+  }
+}
+
+// ── Audit log ─────────────────────────────────────────────────────────────────
+.kc-audit-panel {
+  margin-top: 16px;
+}
+
+.kc-audit-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.kc-audit-filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+  margin: 12px 0;
+}
+
+.kc-audit-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.kc-audit-row {
+  display: flex;
+  gap: 10px;
+  padding: 10px 4px;
+  border-top: 1px solid rgba(148, 163, 184, 0.14);
+
+  &:first-child {
+    border-top: none;
+  }
+}
+
+.kc-audit-avatar {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba($kc-accent-purple, 0.32);
+  color: #f8fafc;
+  font-size: 0.75rem;
+  font-weight: 700;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.kc-audit-main {
+  min-width: 0;
+  flex: 1;
+}
+
+.kc-audit-summary {
+  margin: 0;
+  color: #e2e8f0;
+  font-size: 0.88rem;
+  overflow-wrap: anywhere;
+
+  strong {
+    color: #f8fafc;
+  }
+}
+
+.kc-audit-board {
+  color: var(--kc-muted);
+}
+
+.kc-audit-meta {
+  margin: 2px 0 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--kc-muted);
+  font-size: 0.76rem;
+}
+
+.kc-audit-details-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  border: none;
+  background: transparent;
+  color: #a5b4fc;
+  font-size: 0.76rem;
+  cursor: pointer;
+  padding: 0;
+}
+
+.kc-audit-fields {
+  margin: 6px 0 0;
+  display: grid;
+  gap: 4px;
+}
+
+.kc-audit-field {
+  display: grid;
+  grid-template-columns: minmax(80px, 140px) 1fr;
+  gap: 8px;
+  font-size: 0.8rem;
+
+  dt {
+    color: var(--kc-muted);
+  }
+
+  dd {
+    margin: 0;
+    color: #e2e8f0;
+    overflow-wrap: anywhere;
+  }
+}
+
+.kc-audit-from {
+  color: #fca5a5;
+  text-decoration: line-through;
+}
+
+.kc-audit-to {
+  color: #86efac;
+}
+
+.kc-audit-more {
+  margin-top: 10px;
+  width: 100%;
+}

@@ -20,3 +20,12 @@ export function readableError(error: unknown, fallback: string): string {
   }
   return text || fallback
 }
+
+/**
+ * A time the server recorded, such as when something was created. The API sends these in UTC
+ * without a zone, which `new Date` would read as local time. Due dates are not recorded times but
+ * the user's own wall-clock times, and must not go through this.
+ */
+export function parseServerTime(value: string): Date {
+  return new Date(/[zZ]|[+-]\d\d:?\d\d$/.test(value) ? value : `${value}Z`)
+}
