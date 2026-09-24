@@ -55,7 +55,7 @@ export function PrioritiesSettings({ priorities, tasks, canManage, mutations }: 
   }
 
   return (
-    <section className="kc-board-modal-section">
+    <section className="kc-board-modal-section kc-board-modal-section--half">
       <div className="kc-board-modal-section-head">
         <h4>Priorities</h4>
         <p className="kc-muted">

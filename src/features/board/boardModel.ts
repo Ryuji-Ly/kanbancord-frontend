@@ -1,3 +1,4 @@
+import { parseServerTime } from '../../api/http'
 import type { BoardSnapshot, LabelEntry } from '../../services/boardsService'
 import type { BoardColumnEntry } from '../../services/boardColumnsService'
 import type { ServerMemberEntry } from '../../services/serverMembersService'
@@ -400,7 +401,7 @@ function resolveEditorLabel(editor: TaskCommentEditor): string {
 
 export function formatCommentTimestamp(value: string | null): string {
   if (!value) return ''
-  const parsed = new Date(value)
+  const parsed = parseServerTime(value)
   return Number.isNaN(parsed.getTime()) ? '' : parsed.toLocaleString()
 }
 
