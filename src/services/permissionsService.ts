@@ -58,6 +58,20 @@ export async function fetchServerPermissions(
   return response.json() as Promise<PermissionEntry[]>
 }
 
+/** Every server-scope key, and the board-scope keys of each board the caller can view, with whether each is allowed. */
+export type ServerAccess = {
+  server: Record<string, boolean>
+  boards: Record<string, Record<string, boolean>>
+}
+
+export async function fetchMyAccess(token: string, serverId: string): Promise<ServerAccess> {
+  const response = await fetch(apiUrl(`/api/servers/${serverId}/permissions/mine`), {
+    headers: authHeaders(token),
+  })
+  if (!response.ok) throw new Error(await parseError(response))
+  return response.json() as Promise<ServerAccess>
+}
+
 export async function evaluatePermissions(
   token: string,
   serverId: string,
