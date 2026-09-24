@@ -35,10 +35,8 @@ export async function fetchTaskComments(
   serverId: string,
   boardId: string,
   taskId: number,
-  userId: string,
 ): Promise<TaskCommentEntry[]> {
   const params = new URLSearchParams({
-    userId,
     activeOnly: 'true',
     size: '200',
     sort: 'createdAt,asc',
@@ -57,12 +55,10 @@ export async function createTaskComment(
   serverId: string,
   boardId: string,
   taskId: number,
-  userId: string,
   content: string,
 ): Promise<TaskCommentEntry> {
-  const params = new URLSearchParams({ userId })
   const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/boards/${boardId}/tasks/${taskId}/comments?${params.toString()}`),
+    apiUrl(`/api/servers/${serverId}/boards/${boardId}/tasks/${taskId}/comments`),
     {
       method: 'POST',
       headers: { ...authHeaders(token), 'Content-Type': 'application/json' },
@@ -82,12 +78,10 @@ export async function updateTaskComment(
   boardId: string,
   taskId: number,
   commentId: number,
-  userId: string,
   content: string,
 ): Promise<TaskCommentEntry> {
-  const params = new URLSearchParams({ userId })
   const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/boards/${boardId}/tasks/${taskId}/comments/${commentId}?${params.toString()}`),
+    apiUrl(`/api/servers/${serverId}/boards/${boardId}/tasks/${taskId}/comments/${commentId}`),
     {
       method: 'PUT',
       headers: { ...authHeaders(token), 'Content-Type': 'application/json' },
@@ -107,11 +101,9 @@ export async function deleteTaskComment(
   boardId: string,
   taskId: number,
   commentId: number,
-  userId: string,
 ): Promise<void> {
-  const params = new URLSearchParams({ userId })
   const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/boards/${boardId}/tasks/${taskId}/comments/${commentId}?${params.toString()}`),
+    apiUrl(`/api/servers/${serverId}/boards/${boardId}/tasks/${taskId}/comments/${commentId}`),
     { method: 'DELETE', headers: authHeaders(token) },
   )
   if (!response.ok) throw new Error(await parseError(response))

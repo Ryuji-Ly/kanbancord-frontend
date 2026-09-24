@@ -462,7 +462,7 @@ export function DashboardPage() {
         setCanEditPermissions(true)
         setActorRankWeight(1000)
       } else {
-        const decisionMap = await evaluatePermissions(authToken, serverId, me.userId, [
+        const decisionMap = await evaluatePermissions(authToken, serverId, [
           'MANAGE_SERVER_PERMISSIONS',
           ...ACTOR_RANK_PROBES.map((probe) => probe.key),
         ])
@@ -477,12 +477,12 @@ export function DashboardPage() {
       
       if (isOwner || apiServer?.ownerId) {
         const [perms] = await Promise.all([
-          fetchServerPermissions(authToken, serverId, me.userId),
+          fetchServerPermissions(authToken, serverId),
           serverRoles.length === 0
-            ? fetchServerRoles(authToken, serverId, me.userId).then(setServerRoles)
+            ? fetchServerRoles(authToken, serverId).then(setServerRoles)
             : Promise.resolve(),
           serverMembers.length === 0
-            ? fetchServerMembers(authToken, serverId, me.userId).then(setServerMembers)
+            ? fetchServerMembers(authToken, serverId).then(setServerMembers)
             : Promise.resolve(),
         ])
         setServerPermissions(perms)
@@ -503,13 +503,13 @@ export function DashboardPage() {
       setBoardsLoading(true)
     }
     try {
-      const boardEntries = await fetchBoards(authToken, serverId, me.userId)
+      const boardEntries = await fetchBoards(authToken, serverId)
       setBoards(boardEntries)
 
       const capabilityEntries = await Promise.all(
         boardEntries.map(async (board) => {
           const boardId = String(board.boardId)
-          const decisionMap = await evaluatePermissions(authToken, serverId, me.userId, [
+          const decisionMap = await evaluatePermissions(authToken, serverId, [
             'EDIT_BOARD_DETAILS',
             'EDIT_BOARD_PERMISSIONS',
             'ARCHIVE_BOARD',
@@ -527,7 +527,7 @@ export function DashboardPage() {
         }),
       )
 
-      const createDecisionMap = await evaluatePermissions(authToken, serverId, me.userId, ['CREATE_BOARD'])
+      const createDecisionMap = await evaluatePermissions(authToken, serverId, ['CREATE_BOARD'])
       setCanCreateBoard(createDecisionMap.CREATE_BOARD?.allowed ?? false)
 
       setBoardCapabilities(Object.fromEntries(capabilityEntries))
@@ -566,19 +566,19 @@ export function DashboardPage() {
 
     // Boards inherit server rules; only entries that differ from what they inherit are stored.
     // Stored board rules that no longer differ (including legacy copies) are removed.
-    const existingPermissions = await fetchScopedPermissions(authToken, serverId, me.userId, 'BOARD', boardId)
+    const existingPermissions = await fetchScopedPermissions(authToken, serverId, 'BOARD', boardId)
     const { toDelete, toToggle, toCreate } = diffBoardPermissions(
       existingPermissions,
       boardPermissionOverrides(desiredPermissions),
     )
 
     await Promise.all([
-      ...toDelete.map((permission) => deletePermission(authToken, serverId, me.userId, permission.id)),
+      ...toDelete.map((permission) => deletePermission(authToken, serverId, permission.id)),
       ...toToggle.map((permission) =>
-        updatePermissionState(authToken, serverId, me.userId, permission.permissionId, permission.newState),
+        updatePermissionState(authToken, serverId, permission.permissionId, permission.newState),
       ),
       ...toCreate.map((permission) =>
-        createPermission(authToken, serverId, me.userId, {
+        createPermission(authToken, serverId, {
           scopeType: 'BOARD',
           scopeId: boardId,
           subjectType: permission.subjectType,
@@ -605,7 +605,7 @@ export function DashboardPage() {
     )
     
     try {
-      await updatePermissionState(authToken, selectedServerId, me.userId, permissionId, newState)
+      await updatePermissionState(authToken, selectedServerId, permissionId, newState)
       showToast(`Permission state changed to ${newState}`, 'success')
     } catch (error) {
       // Revert on failure
@@ -622,7 +622,7 @@ export function DashboardPage() {
     setServerPermissions(serverPermissions.filter((p) => p.id !== permissionId))
     
     try {
-      await deletePermission(authToken, selectedServerId, me.userId, permissionId)
+      await deletePermission(authToken, selectedServerId, permissionId)
       showToast('Permission removed', 'success')
     } catch (error) {
       // Revert on failure
@@ -637,7 +637,7 @@ export function DashboardPage() {
     try {
       await Promise.all(
         deleteGroupTarget.permissions.map((p) =>
-          deletePermission(authToken, selectedServerId!, me!.userId, p.id),
+          deletePermission(authToken, selectedServerId!, p.id),
         ),
       )
       await loadServerPermissions(selectedServerId)
@@ -653,7 +653,7 @@ export function DashboardPage() {
   async function ensureCatalogForServer(serverId: string): Promise<KanbanCatalogEntry[]> {    if (!authToken || !me) return []
     if (catalogLoadedForServer === serverId && catalogEntries.length > 0) return catalogEntries
 
-    const entries = await fetchPermissionCatalog(authToken, serverId, me.userId)
+    const entries = await fetchPermissionCatalog(authToken, serverId)
     setCatalogEntries(entries)
     setCatalogLoadedForServer(serverId)
     return entries
@@ -674,10 +674,10 @@ export function DashboardPage() {
       await Promise.all([
         ensureCatalogForServer(selectedServerId),
         serverRoles.length === 0
-          ? fetchServerRoles(authToken, selectedServerId, me.userId).then(setServerRoles)
+          ? fetchServerRoles(authToken, selectedServerId).then(setServerRoles)
           : Promise.resolve(),
         serverMembers.length === 0
-          ? fetchServerMembers(authToken, selectedServerId, me.userId).then(setServerMembers)
+          ? fetchServerMembers(authToken, selectedServerId).then(setServerMembers)
           : Promise.resolve(),
       ])
     } catch (err) {
@@ -731,7 +731,7 @@ export function DashboardPage() {
     try {
       await Promise.all(
         entries.map(([permIdStr, state]) =>
-          createPermission(authToken, selectedServerId, me.userId, {
+          createPermission(authToken, selectedServerId, {
             scopeType: 'SERVER',
             scopeId: selectedServerId,
             subjectType: modalSubjectType,
@@ -778,7 +778,7 @@ export function DashboardPage() {
 
     try {
       setAddSaving(true)
-      await createPermission(authToken, selectedServerId, me.userId, {
+      await createPermission(authToken, selectedServerId, {
         scopeType: 'SERVER',
         scopeId: selectedServerId,
         subjectType,
@@ -806,16 +806,16 @@ export function DashboardPage() {
       const [resolvedServerPermissions] = await Promise.all([
         serverPermissions
           ? Promise.resolve(serverPermissions)
-          : fetchServerPermissions(authToken, selectedServerId, me.userId).then((permissions) => {
+          : fetchServerPermissions(authToken, selectedServerId).then((permissions) => {
               setServerPermissions(permissions)
               return permissions
             }),
         ensureCatalogForServer(selectedServerId),
         serverRoles.length === 0
-          ? fetchServerRoles(authToken, selectedServerId, me.userId).then(setServerRoles)
+          ? fetchServerRoles(authToken, selectedServerId).then(setServerRoles)
           : Promise.resolve(),
         serverMembers.length === 0
-          ? fetchServerMembers(authToken, selectedServerId, me.userId).then(setServerMembers)
+          ? fetchServerMembers(authToken, selectedServerId).then(setServerMembers)
           : Promise.resolve(),
       ])
       setBoardModalPermissions(buildInheritedBoardPermissionDrafts(resolvedServerPermissions))
@@ -860,10 +860,10 @@ export function DashboardPage() {
       await Promise.all([
         ensureCatalogForServer(selectedServerId),
         serverRoles.length === 0
-          ? fetchServerRoles(authToken, selectedServerId, me.userId).then(setServerRoles)
+          ? fetchServerRoles(authToken, selectedServerId).then(setServerRoles)
           : Promise.resolve(),
         serverMembers.length === 0
-          ? fetchServerMembers(authToken, selectedServerId, me.userId).then(setServerMembers)
+          ? fetchServerMembers(authToken, selectedServerId).then(setServerMembers)
           : Promise.resolve(),
       ])
 
@@ -872,8 +872,8 @@ export function DashboardPage() {
           const [resolvedServerPermissions, boardPermissions] = await Promise.all([
             serverPermissions
               ? Promise.resolve(serverPermissions)
-              : fetchServerPermissions(authToken, selectedServerId, me.userId),
-            fetchScopedPermissions(authToken, selectedServerId, me.userId, 'BOARD', String(board.boardId)),
+              : fetchServerPermissions(authToken, selectedServerId),
+            fetchScopedPermissions(authToken, selectedServerId, 'BOARD', String(board.boardId)),
           ])
           setBoardModalPermissions(mergeBoardPermissionDrafts(resolvedServerPermissions, boardPermissions))
         } catch {
@@ -906,10 +906,9 @@ export function DashboardPage() {
     setBoardModalSaving(true)
     try {
       if (boardModalConfig.mode === 'create') {
-        const created = await createBoard(authToken, selectedServerId, me.userId, {
+        const created = await createBoard(authToken, selectedServerId, {
           name: payload.name,
           description: payload.description,
-          createdBy: me.userId,
           columnNames: payload.columnNames,
         })
         await reconcileBoardPermissions(selectedServerId, String(created.boardId), payload.permissions)
@@ -917,10 +916,9 @@ export function DashboardPage() {
       } else if (boardModalConfig.board) {
         const boardId = String(boardModalConfig.board.boardId)
         if (boardModalConfig.canEditDetails) {
-          await updateBoard(authToken, selectedServerId, me.userId, boardId, {
+          await updateBoard(authToken, selectedServerId, boardId, {
             name: payload.name,
             description: payload.description,
-            createdBy: boardModalConfig.board.createdBy,
           })
         }
         if (boardModalConfig.canEditPermissions) {
@@ -947,7 +945,6 @@ export function DashboardPage() {
       await archiveBoard(
         authToken,
         selectedServerId,
-        me.userId,
         String(boardModalConfig.board.boardId),
         archived,
       )
@@ -967,7 +964,7 @@ export function DashboardPage() {
 
     setBoardModalSaving(true)
     try {
-      await deleteBoard(authToken, selectedServerId, me.userId, String(boardModalConfig.board.boardId))
+      await deleteBoard(authToken, selectedServerId, String(boardModalConfig.board.boardId))
       await loadServerBoards(selectedServerId)
       setBoardModalConfig(null)
       setBoardModalPermissions([])

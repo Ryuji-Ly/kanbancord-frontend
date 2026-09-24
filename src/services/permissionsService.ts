@@ -45,10 +45,8 @@ export type PermissionScopeType = 'SERVER' | 'BOARD'
 export async function fetchServerPermissions(
   token: string,
   serverId: string,
-  userId: string,
 ): Promise<PermissionEntry[]> {
   const params = new URLSearchParams({
-    userId,
     scopeType: 'SERVER',
     scopeId: serverId,
   })
@@ -63,13 +61,10 @@ export async function fetchServerPermissions(
 export async function evaluatePermissions(
   token: string,
   serverId: string,
-  userId: string,
   permissionKeys: string[],
   boardId?: string,
 ): Promise<PermissionDecisionMap> {
   const params = new URLSearchParams({
-    userId,
-    targetUserId: userId,
   })
   for (const permissionKey of permissionKeys) {
     params.append('permissionKey', permissionKey)
@@ -383,13 +378,11 @@ function getSubjectDisplay(subjectType: string, subjectId: string, lookups?: Sub
 export async function updatePermissionState(
   token: string,
   serverId: string,
-  userId: string,
   permissionId: number,
   newState: 'ALLOW' | 'DENY',
 ): Promise<void> {
-  const params = new URLSearchParams({ userId })
   const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/permissions/${permissionId}/state?${params.toString()}`),
+    apiUrl(`/api/servers/${serverId}/permissions/${permissionId}/state`),
     {
       method: 'PATCH',
       headers: {
@@ -405,12 +398,10 @@ export async function updatePermissionState(
 export async function deletePermission(
   token: string,
   serverId: string,
-  userId: string,
   permissionId: number,
 ): Promise<void> {
-  const params = new URLSearchParams({ userId })
   const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/permissions/${permissionId}?${params.toString()}`),
+    apiUrl(`/api/servers/${serverId}/permissions/${permissionId}`),
     {
       method: 'DELETE',
       headers: authHeaders(token),
@@ -422,11 +413,9 @@ export async function deletePermission(
 export async function fetchPermissionCatalog(
   token: string,
   serverId: string,
-  userId: string,
 ): Promise<KanbanCatalogEntry[]> {
-  const params = new URLSearchParams({ userId })
   const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/permissions/catalog?${params.toString()}`),
+    apiUrl(`/api/servers/${serverId}/permissions/catalog`),
     { headers: authHeaders(token) },
   )
   if (!response.ok) throw new Error(await parseError(response))
@@ -436,12 +425,10 @@ export async function fetchPermissionCatalog(
 export async function fetchScopedPermissions(
   token: string,
   serverId: string,
-  userId: string,
   scopeType: PermissionScopeType,
   scopeId: string,
 ): Promise<PermissionEntry[]> {
   const params = new URLSearchParams({
-    userId,
     scopeType,
     scopeId,
   })
@@ -455,7 +442,6 @@ export async function fetchScopedPermissions(
 
 export async function createPermission(  token: string,
   serverId: string,
-  userId: string,
   input: {
     scopeType: PermissionScopeType
     scopeId: string
@@ -467,9 +453,8 @@ export async function createPermission(  token: string,
     isImmutable?: boolean
   },
 ): Promise<void> {
-  const params = new URLSearchParams({ userId })
   const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/permissions?${params.toString()}`),
+    apiUrl(`/api/servers/${serverId}/permissions`),
     {
       method: 'POST',
       headers: {
@@ -510,11 +495,9 @@ export type ServerMemberEntry = {
 export async function fetchServerRoles(
   token: string,
   serverId: string,
-  userId: string,
 ): Promise<ServerRoleEntry[]> {
-  const params = new URLSearchParams({ userId })
   const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/roles?${params.toString()}`),
+    apiUrl(`/api/servers/${serverId}/roles`),
     { headers: authHeaders(token) },
   )
   if (!response.ok) throw new Error(await parseError(response))
@@ -524,11 +507,9 @@ export async function fetchServerRoles(
 export async function fetchServerMembers(
   token: string,
   serverId: string,
-  userId: string,
 ): Promise<ServerMemberEntry[]> {
-  const params = new URLSearchParams({ userId })
   const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/members?${params.toString()}`),
+    apiUrl(`/api/servers/${serverId}/members`),
     { headers: authHeaders(token) },
   )
   if (!response.ok) throw new Error(await parseError(response))

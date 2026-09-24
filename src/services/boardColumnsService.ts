@@ -19,11 +19,9 @@ export async function fetchBoardColumns(
   token: string,
   serverId: string,
   boardId: string,
-  userId: string,
 ): Promise<BoardColumnEntry[]> {
-  const params = new URLSearchParams({ userId })
   const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/boards/${boardId}/columns?${params.toString()}`),
+    apiUrl(`/api/servers/${serverId}/boards/${boardId}/columns`),
     { headers: authHeaders(token) },
   )
   if (!response.ok) throw new Error(await parseError(response))
@@ -35,11 +33,9 @@ export async function createColumn(
   serverId: string,
   boardId: string,
   name: string,
-  userId: string,
 ): Promise<BoardColumnEntry> {
-  const params = new URLSearchParams({ userId })
   const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/boards/${boardId}/columns?${params.toString()}`),
+    apiUrl(`/api/servers/${serverId}/boards/${boardId}/columns`),
     {
       method: 'POST',
       headers: { ...authHeaders(token), 'Content-Type': 'application/json' },
@@ -56,16 +52,14 @@ export async function updateColumn(
   boardId: string,
   columnId: number,
   name: string,
-  userId: string,
   options?: {
     position?: number | null
     color?: string | null
     wipLimit?: number | null
   },
 ): Promise<BoardColumnEntry> {
-  const params = new URLSearchParams({ userId })
   const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/boards/${boardId}/columns/${columnId}?${params.toString()}`),
+    apiUrl(`/api/servers/${serverId}/boards/${boardId}/columns/${columnId}`),
     {
       method: 'PUT',
       headers: { ...authHeaders(token), 'Content-Type': 'application/json' },
@@ -87,11 +81,9 @@ export async function deleteColumn(
   serverId: string,
   boardId: string,
   columnId: number,
-  userId: string,
 ): Promise<void> {
-  const params = new URLSearchParams({ userId })
   const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/boards/${boardId}/columns/${columnId}?${params.toString()}`),
+    apiUrl(`/api/servers/${serverId}/boards/${boardId}/columns/${columnId}`),
     {
       method: 'DELETE',
       headers: authHeaders(token),

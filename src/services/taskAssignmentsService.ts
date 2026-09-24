@@ -16,11 +16,9 @@ export async function fetchBoardTaskAssignments(
   token: string,
   serverId: string,
   boardId: string,
-  userId: string,
 ): Promise<TaskAssignmentEntry[]> {
-  const params = new URLSearchParams({ userId })
   const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/boards/${boardId}/task-assignments?${params.toString()}`),
+    apiUrl(`/api/servers/${serverId}/boards/${boardId}/task-assignments`),
     { headers: authHeaders(token) },
   )
 
@@ -33,19 +31,16 @@ export async function createTaskAssignment(
   serverId: string,
   boardId: string,
   taskId: number,
-  userId: string,
   targetUserId: string,
 ): Promise<TaskAssignmentEntry> {
-  const params = new URLSearchParams({ userId })
   const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/boards/${boardId}/tasks/${taskId}/assignments?${params.toString()}`),
+    apiUrl(`/api/servers/${serverId}/boards/${boardId}/tasks/${taskId}/assignments`),
     {
       method: 'POST',
       headers: { ...authHeaders(token), 'Content-Type': 'application/json' },
       body: JSON.stringify({
         taskId,
         userId: targetUserId,
-        assignedBy: userId,
       }),
     },
   )
@@ -60,11 +55,9 @@ export async function deleteTaskAssignment(
   boardId: string,
   taskId: number,
   assignmentId: number,
-  userId: string,
 ): Promise<void> {
-  const params = new URLSearchParams({ userId })
   const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/boards/${boardId}/tasks/${taskId}/assignments/${assignmentId}?${params.toString()}`),
+    apiUrl(`/api/servers/${serverId}/boards/${boardId}/tasks/${taskId}/assignments/${assignmentId}`),
     { method: 'DELETE', headers: authHeaders(token) },
   )
 
