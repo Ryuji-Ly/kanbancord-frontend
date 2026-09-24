@@ -5,14 +5,43 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 permissions:
   contents: read
-  packages: write
 
 jobs:
-  build:
+  check:
     runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Type-checks and bundles, the same as the image build.
+      - name: Type-check and build
+        run: npm run build
+
+  build:
+    # Only publish images for main; pull requests just run the checks.
+    if: github.event_name != 'pull_request'
+    needs: check
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
 
     steps:
       - name: Checkout repository
