@@ -44,7 +44,6 @@ import { ToastStack } from '../components/dashboard/ToastStack'
 import type { HeaderUser, ToastMessage } from '../components/dashboard/types'
 
 type LoadState = 'idle' | 'loading' | 'error' | 'ready'
-type ActiveHeaderUser = NonNullable<HeaderUser>
 type TaskDropTarget = { columnId: number; dropIndex: number }
 type TaskDraft = {
   title: string
@@ -786,7 +785,7 @@ export function BoardPage() {
 
     async function loadMembersAndProfiles() {
       try {
-        const members = await fetchServerMembers(token, serverId, String(currentMe.userId))
+        const members = await fetchServerMembers(token, serverId)
         if (cancelled) return
         setServerMembers(members)
       } catch {
@@ -811,7 +810,6 @@ export function BoardPage() {
     }
 
     const currentTask = selectedTask
-    const currentUser = me
 
     const token = getStoredToken()
     if (!token) return
@@ -822,7 +820,7 @@ export function BoardPage() {
       setTaskCommentsState('loading')
       setTaskCommentsError('')
       try {
-        const comments = await fetchTaskCommentsForTask(token, currentUser, currentTask)
+        const comments = await fetchTaskCommentsForTask(token, currentTask)
         if (cancelled) return
         setTaskComments(comments)
         setTaskCommentsState('ready')
@@ -867,7 +865,7 @@ export function BoardPage() {
       try {
         const meResponse = await fetchMe(token)
         setMe(meResponse)
-        const snapshot = await fetchBoardSnapshot(token, String(meResponse.userId))
+        const snapshot = await fetchBoardSnapshot(token)
 
         if (cancelled) return
         applyBoardSnapshot(snapshot)
@@ -912,13 +910,13 @@ export function BoardPage() {
     }
   }, [boardId, serverId, me, boardReady])
 
-  async function fetchBoardSnapshot(token: string, userId: string) {
+  async function fetchBoardSnapshot(token: string) {
     const [boardData, columnData, taskData, taskAssignmentData, permissionMap] = await Promise.all([
-      fetchBoardById(token, serverId, userId, boardId),
-      fetchBoardColumns(token, serverId, boardId, userId),
-      fetchBoardTasks(token, serverId, boardId, userId),
-      fetchBoardTaskAssignments(token, serverId, boardId, userId),
-      evaluatePermissions(token, serverId, userId, BOARD_PERMISSION_KEYS, boardId),
+      fetchBoardById(token, serverId, boardId),
+      fetchBoardColumns(token, serverId, boardId),
+      fetchBoardTasks(token, serverId, boardId),
+      fetchBoardTaskAssignments(token, serverId, boardId),
+      evaluatePermissions(token, serverId, BOARD_PERMISSION_KEYS, boardId),
     ])
 
     return {
@@ -954,9 +952,9 @@ export function BoardPage() {
     })
   }
 
-  async function refreshBoardSnapshot(token: string, currentUser: ActiveHeaderUser) {
+  async function refreshBoardSnapshot(token: string) {
     try {
-      const snapshot = await fetchBoardSnapshot(token, String(currentUser.userId))
+      const snapshot = await fetchBoardSnapshot(token)
       applyBoardSnapshot(snapshot)
       setState('ready')
     } catch (err) {
@@ -966,7 +964,6 @@ export function BoardPage() {
 
   async function fetchTaskCommentsForTask(
     token: string,
-    currentUser: ActiveHeaderUser,
     currentTask: TaskEntry,
   ): Promise<TaskCommentEntry[]> {
     const comments = await fetchTaskComments(
@@ -974,7 +971,6 @@ export function BoardPage() {
       serverId,
       boardId,
       currentTask.taskId,
-      String(currentUser.userId),
     )
 
     return sortCommentsByCreatedAt(comments)
@@ -991,11 +987,11 @@ export function BoardPage() {
 
     boardRealtimeRefreshTimerRef.current = window.setTimeout(() => {
       boardRealtimeRefreshTimerRef.current = null
-      void refreshBoardSnapshot(token, currentUser)
+      void refreshBoardSnapshot(token)
 
       if (event.entityType === 'TASK_COMMENT' && latestSelectedTaskRef.current) {
         const task = latestSelectedTaskRef.current
-        void fetchTaskCommentsForTask(token, currentUser, task)
+        void fetchTaskCommentsForTask(token, task)
           .then((comments) => {
             if (latestSelectedTaskRef.current?.taskId !== task.taskId) return
             setTaskComments(comments)
@@ -1036,7 +1032,6 @@ export function BoardPage() {
         boardId,
         column.columnId,
         trimmed,
-        String(me.userId),
         {
           position: column.position,
           color: column.color,
@@ -1073,7 +1068,7 @@ export function BoardPage() {
     }
     setColumns((cols) => [...cols, optimisticColumn])
     try {
-      const created = await createColumn(token, serverId, boardId, trimmed, String(me.userId))
+      const created = await createColumn(token, serverId, boardId, trimmed)
       setColumns((cols) => cols.map((c) => (c.columnId === optimisticId ? created : c)))
       showToast('Column created', 'success')
     } catch {
@@ -1094,7 +1089,6 @@ export function BoardPage() {
         serverId,
         boardId,
         deleteTargetColumn.columnId,
-        String(me.userId),
       )
       setColumns((cols) => cols.filter((c) => c.columnId !== deleteTargetColumn.columnId))
       setTasksByColumn((prev) => {
@@ -1129,7 +1123,7 @@ export function BoardPage() {
     try {
       const updatedColumns = await Promise.all(
         nextColumns.map((column, index) =>
-          updateColumn(token, serverId, boardId, column.columnId, column.name, String(me.userId), {
+          updateColumn(token, serverId, boardId, column.columnId, column.name, {
             position: index + 1,
             color: column.color,
             wipLimit: column.wipLimit,
@@ -1488,7 +1482,6 @@ export function BoardPage() {
         serverId,
         boardId,
         selectedTask.taskId,
-        String(me.userId),
         {
           title: taskPanelDraft.title.trim() || selectedTask.title,
           description: nextDescription.trim() || null,
@@ -1555,7 +1548,6 @@ export function BoardPage() {
         boardId,
         selectedTask.taskId,
         commentId,
-        String(me.userId),
         nextContent,
       )
       setTaskComments((prev) =>
@@ -1598,7 +1590,6 @@ export function BoardPage() {
         serverId,
         boardId,
         selectedTask.taskId,
-        String(me.userId),
         content,
       )
       setTaskComments((prev) =>
@@ -1629,7 +1620,6 @@ export function BoardPage() {
         boardId,
         selectedTask.taskId,
         editingCommentId,
-        String(me.userId),
         content,
       )
       setTaskComments((prev) =>
@@ -1663,7 +1653,6 @@ export function BoardPage() {
         boardId,
         selectedTask.taskId,
         deleteTargetComment.commentId,
-        String(me.userId),
       )
       setTaskComments((prev) =>
         prev.filter((comment) => comment.commentId !== deleteTargetComment.commentId),
@@ -1697,7 +1686,6 @@ export function BoardPage() {
         serverId,
         boardId,
         selectedTask.taskId,
-        String(me.userId),
         targetUserId,
       )
       setTaskAssignments((prev) => [...prev, created])
@@ -1725,7 +1713,6 @@ export function BoardPage() {
         boardId,
         selectedTask.taskId,
         targetAssignment.id,
-        String(me.userId),
       )
       setTaskAssignments((prev) => prev.filter((assignment) => assignment.id !== targetAssignment.id))
     } catch (err) {
@@ -1750,7 +1737,6 @@ export function BoardPage() {
         serverId,
         boardId,
         selectedTask.taskId,
-        String(me.userId),
         {
           title,
           description: taskPanelDraft.description.trim() || null,
@@ -1784,7 +1770,7 @@ export function BoardPage() {
     setDeletingTask(true)
     setDeleteTaskError('')
     try {
-      await deleteTask(token, serverId, boardId, deleteTargetTask.taskId, String(me.userId))
+      await deleteTask(token, serverId, boardId, deleteTargetTask.taskId)
       setTasksByColumn((prev) => ({
         ...prev,
         [deleteTargetTask.columnId]: (prev[deleteTargetTask.columnId] ?? []).filter(
@@ -1874,7 +1860,7 @@ export function BoardPage() {
     }))
 
     try {
-      const created = await createTask(token, serverId, boardId, String(me.userId), {
+      const created = await createTask(token, serverId, boardId, {
         title,
         description: taskDraft.description.trim() || null,
         columnId,
@@ -1892,7 +1878,6 @@ export function BoardPage() {
                 serverId,
                 boardId,
                 created.taskId,
-                String(me.userId),
                 assigneeUserId,
               ),
             ),
@@ -2028,7 +2013,7 @@ export function BoardPage() {
       const updatedTasks = await Promise.all(
         affectedColumnIds.flatMap((columnId) =>
           (nextTaskGroups[columnId] ?? []).map((task, index) =>
-            updateTask(token, serverId, boardId, task.taskId, String(me.userId), {
+            updateTask(token, serverId, boardId, task.taskId, {
               title: task.title,
               description: task.description,
               columnId,
