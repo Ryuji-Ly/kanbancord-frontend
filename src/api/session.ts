@@ -157,6 +157,11 @@ export async function signOut(): Promise<void> {
   }
 }
 
+/** Calls `listener` with the new state whenever the session changes. Returns a function that stops it. */
+export function onSessionChange(listener: (state: SessionState) => void): () => void {
+  return subscribe(() => listener(state))
+}
+
 function subscribe(listener: () => void) {
   listeners.add(listener)
   return () => {

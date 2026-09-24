@@ -7,7 +7,7 @@ import {
   fetchServerPermissions,
   fetchServerRoles,
 } from '../../services/permissionsService'
-import { connectRealtimeChannel, serverTopic } from '../../services/realtimeService'
+import { serverTopic, subscribeRealtime, type RealtimeEvent } from '../../services/realtimeService'
 import { fetchServerMembers } from '../../services/serverMembersService'
 
 /** Everything cached for one server shares the prefix, so one invalidation refreshes all of it. */
@@ -79,7 +79,11 @@ export function useServerCatalog(serverId: string, enabled = true) {
 /** How long to wait for more events before refetching, so a burst of changes causes one refresh. */
 const REFRESH_DEBOUNCE_MS = 150
 
-/** Any change announced on the server's topic marks everything cached for the server as stale. */
+/**
+ * Any change announced on the server's topic marks everything cached for the server as stale. A
+ * change to the server itself synced from Discord (name, icon, the bot leaving) also refreshes the
+ * list of servers.
+ */
 export function useServerRealtime(serverId: string, active: boolean) {
   const queryClient = useQueryClient()
 
@@ -87,9 +91,9 @@ export function useServerRealtime(serverId: string, active: boolean) {
     if (!active || !serverId) return
 
     let timer: number | null = null
-    const disconnect = connectRealtimeChannel({
-      destination: serverTopic(serverId),
-      onEvent: () => {
+    const unsubscribe = subscribeRealtime<RealtimeEvent>(serverTopic(serverId), {
+      onEvent: (event) => {
+        if (event.entityType === 'SERVER') void queryClient.invalidateQueries({ queryKey: ['me', 'servers'] })
         if (timer !== null) window.clearTimeout(timer)
         timer = window.setTimeout(() => {
           timer = null
@@ -100,14 +104,11 @@ export function useServerRealtime(serverId: string, active: boolean) {
       onRevoked: () => {
         void queryClient.resetQueries({ queryKey: serverKeys.all(serverId) })
       },
-      onError: (value) => {
-        console.error('Dashboard realtime error:', value)
-      },
     })
 
     return () => {
       if (timer !== null) window.clearTimeout(timer)
-      disconnect()
+      unsubscribe()
     }
   }, [serverId, active, queryClient])
 }
