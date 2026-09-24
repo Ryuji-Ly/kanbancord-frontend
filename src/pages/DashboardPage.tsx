@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { useNavigate } from 'react-router-dom'
+import { readableError } from '../api/http'
 import { fetchMyServers } from '../services/meService'
 import { fetchUserGuilds, filterManageableGuilds } from '../services/discordGuildsService'
 import { DashboardHeader } from '../components/dashboard/DashboardHeader'
@@ -27,20 +28,21 @@ export function DashboardPage() {
   const { toasts, showToast } = useToasts()
   const [chosenServerId, setChosenServerId] = useState(loadSelectedServerId)
 
+  const userId = session.me ? String(session.me.userId) : ''
   const guildsQuery = useQuery({
-    queryKey: ['discord', 'guilds', session.discordToken],
-    queryFn: async () => filterManageableGuilds(await fetchUserGuilds(session.discordToken)),
-    enabled: Boolean(session.discordToken && session.me),
+    queryKey: ['discord', 'guilds', userId],
+    queryFn: async () => filterManageableGuilds(await fetchUserGuilds()),
+    enabled: Boolean(userId),
     staleTime: 5 * 60_000,
     refetchInterval: GUILD_REFRESH_MS,
   })
   const myServersQuery = useQuery({
-    queryKey: ['me', 'servers', session.authToken],
+    queryKey: ['me', 'servers', userId],
     queryFn: async () => {
-      const servers = await fetchMyServers(session.authToken)
+      const servers = await fetchMyServers()
       return Array.isArray(servers) ? (servers as ApiServer[]) : []
     },
-    enabled: Boolean(session.me),
+    enabled: Boolean(userId),
   })
 
   const guilds = useMemo(() => guildsQuery.data ?? [], [guildsQuery.data])
@@ -63,8 +65,8 @@ export function DashboardPage() {
   }
 
   const loadError = guildsQuery.error ?? myServersQuery.error
-  const banner = session.banner ?? (loadError ? { text: loadError.message || 'Failed to fetch servers', type: 'error' as const } : null)
-  const loading = session.exchanging || (Boolean(session.me) && (guildsQuery.isPending || myServersQuery.isPending))
+  const banner = session.banner ?? (loadError ? { text: readableError(loadError, 'Failed to fetch servers'), type: 'error' as const } : null)
+  const loading = session.exchanging || (Boolean(userId) && (guildsQuery.isPending || myServersQuery.isPending))
 
   return (
     <div className="kc-dashboard-root">
@@ -89,7 +91,7 @@ export function DashboardPage() {
         <main className="kc-content">
           {banner && <p className={`kc-banner${banner.type === 'success' ? ' kc-banner--success' : ''}`}>{banner.text}</p>}
 
-          {!session.isAuthenticated && (
+          {!session.isAuthenticated && !session.exchanging && (
             <section className="kc-panel">
               <h2>Welcome</h2>
               <p className="kc-muted">Login with Discord to load your servers and manage KanbanCord boards.</p>

@@ -1,8 +1,5 @@
-import { apiUrl, parseError } from '../api/http'
-
-function authHeaders(token: string): HeadersInit {
-  return { Authorization: `Bearer ${token}` }
-}
+import { parseError } from '../api/http'
+import { apiFetch } from '../api/session'
 
 export type ServerMemberEntry = {
   id: number
@@ -16,13 +13,9 @@ export type ServerMemberEntry = {
 }
 
 export async function fetchServerMembers(
-  token: string,
   serverId: string,
 ): Promise<ServerMemberEntry[]> {
-  const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/members`),
-    { headers: authHeaders(token) },
-  )
+  const response = await apiFetch(`/api/servers/${serverId}/members`)
 
   if (!response.ok) throw new Error(await parseError(response))
   return response.json() as Promise<ServerMemberEntry[]>

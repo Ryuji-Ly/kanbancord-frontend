@@ -24,7 +24,6 @@ import { permissionRankWeight } from '../../components/dashboard/permissionRank'
 import { ServerOverviewPanel } from '../../components/dashboard/ServerOverviewPanel'
 import type { BoardModalConfig, DeleteGroupTarget } from '../../components/dashboard/types'
 import {
-  requireToken,
   serverKeys,
   useServerAccess,
   useServerBoards,
@@ -285,7 +284,7 @@ export function ServerWorkspace({ serverId, server, showError, showToast }: Serv
   function loadServerRules() {
     return queryClient.ensureQueryData({
       queryKey: serverKeys.permissions(serverId),
-      queryFn: () => fetchServerPermissions(requireToken(), serverId),
+      queryFn: () => fetchServerPermissions(serverId),
     })
   }
 
@@ -329,7 +328,7 @@ export function ServerWorkspace({ serverId, server, showError, showToast }: Serv
       try {
         const [serverRules, boardRules] = await Promise.all([
           loadServerRules(),
-          fetchScopedPermissions(requireToken(), serverId, 'BOARD', String(board.boardId)),
+          fetchScopedPermissions(serverId, 'BOARD', String(board.boardId)),
         ])
         permissions = mergeBoardPermissionDrafts(serverRules, boardRules)
       } catch {
