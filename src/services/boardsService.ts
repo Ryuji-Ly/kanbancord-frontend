@@ -97,7 +97,16 @@ export type LabelEntry = {
   labelId: number
   boardId: number
   name: string
+  color: string
+}
+
+/** A priority level of a board. Position 1 is the most urgent. */
+export type PriorityEntry = {
+  priorityId: number
+  boardId: number
+  name: string
   color: string | null
+  position: number
 }
 
 export type TaskLabelEntry = {
@@ -115,6 +124,8 @@ export type BoardSnapshot = {
   labels: LabelEntry[]
   /** Which labels are on which tasks. */
   taskLabels: TaskLabelEntry[]
+  /** The board's priority levels, most urgent first. */
+  priorities: PriorityEntry[]
   permissions: PermissionDecisionMap
 }
 

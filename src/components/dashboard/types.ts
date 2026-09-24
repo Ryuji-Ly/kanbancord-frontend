@@ -32,6 +32,8 @@ export type BoardCapability = {
   canEditPermissions: boolean
   canArchive: boolean
   canDelete: boolean
+  /** May change the board's labels or priority levels. */
+  canManageCatalog: boolean
 }
 
 export type BoardModalConfig = {

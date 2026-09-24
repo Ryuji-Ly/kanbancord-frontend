@@ -1,8 +1,11 @@
 import { useState } from 'react'
 import type { BoardColumnEntry } from '../../../services/boardColumnsService'
+import type { LabelEntry, PriorityEntry } from '../../../services/boardsService'
 import type { MeResponse } from '../../../types/auth'
 import { EMPTY_TASK_DRAFT, resolveAssignee, type AssigneeMember, type TaskDraft } from '../boardModel'
 import { AssigneePicker } from './AssigneePicker'
+import { LabelPicker } from './LabelPicker'
+import { PriorityPicker } from './PriorityPicker'
 
 type CreateTaskModalProps = {
   column: BoardColumnEntry
@@ -11,10 +14,17 @@ type CreateTaskModalProps = {
   canAssignOthers: boolean
   members: AssigneeMember[]
   directory: Map<string, AssigneeMember>
+  priorities: PriorityEntry[]
+  labels: LabelEntry[]
+  canApplyLabels: boolean
+  canCreateLabels: boolean
+  canCreatePriorities: boolean
   creating: boolean
   error: string
   onClose: () => void
-  onCreate: (draft: TaskDraft, assigneeIds: string[]) => void
+  onCreate: (draft: TaskDraft, assigneeIds: string[], labelIds: number[]) => void
+  onCreateLabel: (name: string) => Promise<LabelEntry>
+  onCreatePriority: (name: string) => Promise<PriorityEntry>
 }
 
 export function CreateTaskModal({
@@ -24,16 +34,24 @@ export function CreateTaskModal({
   canAssignOthers,
   members,
   directory,
+  priorities,
+  labels,
+  canApplyLabels,
+  canCreateLabels,
+  canCreatePriorities,
   creating,
   error,
   onClose,
   onCreate,
+  onCreateLabel,
+  onCreatePriority,
 }: CreateTaskModalProps) {
   const [draft, setDraft] = useState<TaskDraft>(EMPTY_TASK_DRAFT)
   // Someone who may only assign themselves starts out assigned.
   const [assigneeIds, setAssigneeIds] = useState<string[]>(() =>
     canAssignSelf && !canAssignOthers && me ? [String(me.userId)] : [],
   )
+  const [labelIds, setLabelIds] = useState<number[]>([])
   const [validationError, setValidationError] = useState('')
   const canAssign = canAssignSelf || canAssignOthers
 
@@ -47,7 +65,7 @@ export function CreateTaskModal({
       return
     }
     setValidationError('')
-    onCreate(draft, canAssign ? assigneeIds : [])
+    onCreate(draft, canAssign ? assigneeIds : [], canApplyLabels ? labelIds : [])
   }
 
   const shownError = validationError || error
@@ -79,16 +97,16 @@ export function CreateTaskModal({
           </label>
 
           <div className="kc-task-modal-grid">
-            <label className="kc-field">
+            <div className="kc-field">
               <span className="kc-field-label">Priority</span>
-              <input
-                className="kc-input"
-                value={draft.priority}
-                maxLength={20}
-                placeholder="Optional"
-                onChange={(event) => setDraft((prev) => ({ ...prev, priority: event.target.value }))}
+              <PriorityPicker
+                priorities={priorities}
+                value={draft.priorityId}
+                canCreate={canCreatePriorities}
+                onChange={(priorityId) => setDraft((prev) => ({ ...prev, priorityId }))}
+                onCreate={onCreatePriority}
               />
-            </label>
+            </div>
 
             <label className="kc-field">
               <span className="kc-field-label">Due Date</span>
@@ -100,6 +118,22 @@ export function CreateTaskModal({
               />
             </label>
           </div>
+
+          {canApplyLabels && (
+            <div className="kc-field">
+              <span className="kc-field-label">Labels</span>
+              <LabelPicker
+                labels={labels}
+                selectedIds={labelIds}
+                canApply
+                canRemove
+                canCreate={canCreateLabels}
+                onAdd={(labelId) => setLabelIds((prev) => (prev.includes(labelId) ? prev : [...prev, labelId]))}
+                onRemove={(labelId) => setLabelIds((prev) => prev.filter((id) => id !== labelId))}
+                onCreate={onCreateLabel}
+              />
+            </div>
+          )}
 
           <label className="kc-field">
             <span className="kc-field-label">Description</span>

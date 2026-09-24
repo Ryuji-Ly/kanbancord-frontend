@@ -12,7 +12,8 @@ export type TaskEntry = {
   title: string
   description: string | null
   position: number | null
-  priority: string | null
+  /** One of the board's priority levels, or null for none. */
+  priorityId: number | null
   dueDate: string | null
   isArchived: boolean
   metadata: Record<string, unknown> | null
@@ -53,7 +54,7 @@ export async function createTask(
     description?: string | null
     columnId: number
     position?: number | null
-    priority?: string | null
+    priorityId?: number | null
     dueDate?: string | null
   },
 ): Promise<TaskEntry> {
@@ -66,7 +67,7 @@ export async function createTask(
       boardId: Number(boardId),
       columnId: input.columnId,
       position: input.position ?? undefined,
-      priority: input.priority ?? undefined,
+      priorityId: input.priorityId ?? null,
       dueDate: input.dueDate ?? undefined,
     }),
   })
@@ -83,7 +84,7 @@ export async function updateTask(
     description?: string | null
     columnId: number
     position?: number | null
-    priority?: string | null
+    priorityId?: number | null
     dueDate?: string | null
   },
 ): Promise<TaskEntry> {
@@ -96,7 +97,7 @@ export async function updateTask(
       boardId: Number(boardId),
       columnId: input.columnId,
       position: input.position ?? undefined,
-      priority: input.priority ?? undefined,
+      priorityId: input.priorityId ?? null,
       dueDate: input.dueDate ?? undefined,
     }),
   })
