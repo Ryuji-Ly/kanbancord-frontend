@@ -1,4 +1,4 @@
-import type { BoardSnapshot } from '../../services/boardsService'
+import type { BoardSnapshot, LabelEntry } from '../../services/boardsService'
 import type { BoardColumnEntry } from '../../services/boardColumnsService'
 import type { ServerMemberEntry } from '../../services/serverMembersService'
 import type { TaskCommentEditor, TaskCommentEntry } from '../../services/taskCommentsService'
@@ -10,14 +10,15 @@ import type { MeResponse } from '../../types/auth'
 export type TaskDraft = {
   title: string
   description: string
-  priority: string
+  /** One of the board's priority levels, or null for none. */
+  priorityId: number | null
   dueDate: string
 }
 
 export const EMPTY_TASK_DRAFT: TaskDraft = {
   title: '',
   description: '',
-  priority: '',
+  priorityId: null,
   dueDate: '',
 }
 
@@ -46,6 +47,10 @@ export type BoardAbilities = {
   comment: boolean
   moderateCommentEdits: boolean
   moderateCommentDeletes: boolean
+  applyLabel: boolean
+  removeLabel: boolean
+  createLabel: boolean
+  managePriorities: boolean
 }
 
 export function boardAbilities(snapshot: BoardSnapshot | undefined): BoardAbilities {
@@ -65,7 +70,86 @@ export function boardAbilities(snapshot: BoardSnapshot | undefined): BoardAbilit
     comment: can('CREATE_TASK_COMMENT'),
     moderateCommentEdits: can('EDIT_TASK_COMMENT'),
     moderateCommentDeletes: can('DELETE_TASK_COMMENT'),
+    applyLabel: can('APPLY_LABEL_TO_TASK'),
+    removeLabel: can('REMOVE_LABEL_FROM_TASK'),
+    createLabel: can('CREATE_LABEL'),
+    managePriorities: can('MANAGE_PRIORITIES'),
   }
+}
+
+/**
+ * What the user may change in the board settings. Unlike {@link boardAbilities} this is not switched
+ * off for an archived board: it still has to be restorable, deletable and viewable.
+ */
+export type BoardSettingsAccess = {
+  editDetails: boolean
+  editPermissions: boolean
+  archive: boolean
+  delete: boolean
+  createLabel: boolean
+  editLabel: boolean
+  deleteLabel: boolean
+  managePriorities: boolean
+}
+
+export function boardSettingsAccess(permissions: Record<string, { allowed: boolean } | boolean> | undefined): BoardSettingsAccess {
+  const can = (key: string) => {
+    const decision = permissions?.[key]
+    return typeof decision === 'boolean' ? decision : Boolean(decision?.allowed)
+  }
+  return {
+    editDetails: can('EDIT_BOARD_DETAILS'),
+    editPermissions: can('EDIT_BOARD_PERMISSIONS'),
+    archive: can('ARCHIVE_BOARD'),
+    delete: can('DELETE_BOARD'),
+    createLabel: can('CREATE_LABEL'),
+    editLabel: can('EDIT_LABEL'),
+    deleteLabel: can('DELETE_LABEL'),
+    managePriorities: can('MANAGE_PRIORITIES'),
+  }
+}
+
+/** Whether the settings would show the user anything they may change. */
+export function hasAnySetting(access: BoardSettingsAccess): boolean {
+  return Object.values(access).some(Boolean)
+}
+
+// ── Labels and priorities ────────────────────────────────────────────────────
+
+/** Colours given to new labels in turn; any colour can be picked afterwards. */
+export const LABEL_PALETTE = [
+  '#2563eb', '#16a34a', '#db2777', '#9333ea', '#ea580c', '#0891b2', '#ca8a04', '#4f46e5', '#dc2626', '#0d9488',
+]
+
+/** The palette colour used least on the board, so labels created in a row get different colours. */
+export function nextLabelColor(labels: Pick<LabelEntry, 'color'>[]): string {
+  const used = new Map<string, number>()
+  for (const label of labels) used.set(label.color.toLowerCase(), (used.get(label.color.toLowerCase()) ?? 0) + 1)
+  return LABEL_PALETTE.reduce((best, color) => ((used.get(color) ?? 0) < (used.get(best) ?? 0) ? color : best))
+}
+
+/** The labels on each task, in the board's label order. */
+export function labelsByTask(snapshot: BoardSnapshot | undefined): Map<number, { label: LabelEntry; taskLabelId: number }[]> {
+  const labels = new Map((snapshot?.labels ?? []).map((label) => [label.labelId, label]))
+  const byTask = new Map<number, { label: LabelEntry; taskLabelId: number }[]>()
+  for (const taskLabel of snapshot?.taskLabels ?? []) {
+    const label = labels.get(taskLabel.labelId)
+    if (!label) continue
+    const list = byTask.get(taskLabel.taskId) ?? []
+    list.push({ label, taskLabelId: taskLabel.id })
+    byTask.set(taskLabel.taskId, list)
+  }
+  const order = new Map((snapshot?.labels ?? []).map((label, index) => [label.labelId, index]))
+  byTask.forEach((list) => list.sort((a, b) => (order.get(a.label.labelId) ?? 0) - (order.get(b.label.labelId) ?? 0)))
+  return byTask
+}
+
+/** Black or white, whichever reads better on the colour. */
+export function readableTextColor(background: string | null): string {
+  const hex = (background ?? '').replace('#', '')
+  if (!/^[0-9a-f]{6}$/i.test(hex)) return '#ffffff'
+  const [r, g, b] = [0, 2, 4].map((offset) => Number.parseInt(hex.slice(offset, offset + 2), 16))
+  return (r * 299 + g * 587 + b * 114) / 1000 > 150 ? '#111827' : '#ffffff'
 }
 
 // ── Ordering ─────────────────────────────────────────────────────────────────
@@ -295,7 +379,7 @@ export function draftFromTask(task: TaskEntry): TaskDraft {
   return {
     title: task.title ?? '',
     description: task.description ?? '',
-    priority: task.priority ?? '',
+    priorityId: task.priorityId ?? null,
     dueDate: task.dueDate ? task.dueDate.slice(0, 16) : '',
   }
 }

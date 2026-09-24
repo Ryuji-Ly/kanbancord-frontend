@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import { FiSettings } from 'react-icons/fi'
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { readableError } from '../api/http'
 import { signOut, useSession } from '../api/session'
@@ -10,7 +11,11 @@ import { useToasts } from '../hooks/useToasts'
 import {
   assigneeDirectory,
   boardAbilities,
+  boardSettingsAccess,
   groupTasksByColumn,
+  hasAnySetting,
+  labelsByTask,
+  nextLabelColor,
   resolveAssignee,
   sortColumns,
   toAssigneeMembers,
@@ -19,6 +24,7 @@ import {
 } from '../features/board/boardModel'
 import {
   taskFieldsFromDraft,
+  useBoardCatalogMutations,
   useBoardMutations,
   useBoardSnapshot,
   type TaskFields,
@@ -31,6 +37,7 @@ import { AddColumn } from '../features/board/components/AddColumn'
 import { BoardColumn } from '../features/board/components/BoardColumn'
 import { ConfirmDialog } from '../features/board/components/ConfirmDialog'
 import { CreateTaskModal } from '../features/board/components/CreateTaskModal'
+import { BoardSettingsDialog } from '../features/boardSettings/BoardSettingsDialog'
 import { TaskPanel } from '../features/board/components/TaskPanel'
 
 export function BoardPage() {
@@ -45,6 +52,8 @@ export function BoardPage() {
   const meQuery = useMe()
   const snapshotQuery = useBoardSnapshot(serverId, boardId)
   const mutations = useBoardMutations(serverId, boardId)
+  const catalogMutations = useBoardCatalogMutations(serverId, boardId)
+  const [showSettings, setShowSettings] = useState(false)
   const { toasts, showToast } = useToasts()
 
   const me = meQuery.data ?? null
@@ -53,6 +62,12 @@ export function BoardPage() {
   const abilities = useMemo(() => boardAbilities(snapshot), [snapshot])
   const columns = useMemo(() => sortColumns(snapshot?.columns ?? []), [snapshot])
   const tasksByColumn = useMemo(() => groupTasksByColumn(snapshot?.tasks ?? []), [snapshot])
+  const labelsByTaskId = useMemo(() => labelsByTask(snapshot), [snapshot])
+  const prioritiesById = useMemo(
+    () => new Map((snapshot?.priorities ?? []).map((level) => [level.priorityId, level])),
+    [snapshot],
+  )
+  const canOpenSettings = hasAnySetting(boardSettingsAccess(snapshot?.permissions))
   const ready = Boolean(snapshot && me)
 
   useBoardRealtime(serverId, boardId, ready, setRevokedReason)
@@ -147,7 +162,16 @@ export function BoardPage() {
     })
   }
 
-  function createTask(draft: TaskDraft, assigneeIds: string[]) {
+  // Labels and priority levels typed into a task that do not exist yet are added to the board.
+  function createLabel(name: string) {
+    return catalogMutations.addLabel.mutateAsync({ name, color: nextLabelColor(snapshot?.labels ?? []) })
+  }
+
+  function createPriority(name: string) {
+    return catalogMutations.addPriority.mutateAsync({ name })
+  }
+
+  function createTask(draft: TaskDraft, assigneeIds: string[], labelIds: number[]) {
     if (!createInColumn || !me) return
     const columnTasks = tasksByColumn[createInColumn.columnId] ?? []
     const position = columnTasks.reduce((max, task) => Math.max(max, Number(task.position ?? 0)), 0) + 1
@@ -158,12 +182,13 @@ export function BoardPage() {
         position,
         fields: taskFieldsFromDraft(draft),
         assigneeIds,
+        labelIds,
         optimisticId: -Date.now(),
         createdBy: me.userId,
       },
       {
-        onSuccess: ({ assignmentFailed }) => {
-          if (assignmentFailed) showToast('Task created, but assigning members failed', 'error')
+        onSuccess: ({ extrasFailed }) => {
+          if (extrasFailed) showToast('Task created, but some assignees or labels could not be added', 'error')
           setCreateInColumn(null)
           showToast('Task created', 'success')
         },
@@ -239,6 +264,17 @@ export function BoardPage() {
         <div className="kc-board-subbar" role="banner" aria-label="Board title bar">
           <h2>{board?.name ?? 'Board'}</h2>
           {board?.isArchived && <span className="kc-board-archived-badge">Archived</span>}
+          {ready && canOpenSettings && (
+            <button
+              type="button"
+              className="kc-icon-btn kc-board-settings-btn"
+              aria-label="Board settings"
+              title="Board settings"
+              onClick={() => setShowSettings(true)}
+            >
+              <FiSettings aria-hidden="true" />
+            </button>
+          )}
         </div>
 
         <main className="kc-content kc-board-page">
@@ -273,6 +309,8 @@ export function BoardPage() {
                   column={column}
                   tasks={drag.tasksForRender[column.columnId] ?? []}
                   assigneesByTaskId={assigneesByTaskId}
+                  labelsByTaskId={labelsByTaskId}
+                  prioritiesById={prioritiesById}
                   selectedTaskId={selectedTaskId}
                   canEdit={abilities.editColumn}
                   canDelete={abilities.deleteColumn}
@@ -324,6 +362,9 @@ export function BoardPage() {
             abilities={abilities}
             assignees={assigneesByTaskId[selectedTask.taskId] ?? []}
             members={members}
+            priorities={snapshot?.priorities ?? []}
+            labels={snapshot?.labels ?? []}
+            taskLabels={labelsByTaskId.get(selectedTask.taskId) ?? []}
             saving={mutations.editTask.isPending}
             onClose={() => setSelectedTaskId(null)}
             onSave={(fields) => saveTask(selectedTask, fields)}
@@ -333,6 +374,12 @@ export function BoardPage() {
             }}
             onAssign={(userId) => assign(selectedTask, userId)}
             onUnassign={(assignee) => unassign(selectedTask, assignee)}
+            onAddLabel={(labelId) => mutations.labelTask.mutateAsync({ taskId: selectedTask.taskId, labelId })}
+            onRemoveLabel={(taskLabelId) =>
+              mutations.unlabelTask.mutateAsync({ taskId: selectedTask.taskId, taskLabelId })
+            }
+            onCreateLabel={createLabel}
+            onCreatePriority={createPriority}
           />
         )}
 
@@ -344,10 +391,28 @@ export function BoardPage() {
             canAssignOthers={abilities.assignOthers}
             members={members}
             directory={directory}
+            priorities={snapshot?.priorities ?? []}
+            labels={snapshot?.labels ?? []}
+            canApplyLabels={abilities.applyLabel}
+            canCreateLabels={abilities.createLabel}
+            canCreatePriorities={abilities.managePriorities}
+            onCreateLabel={createLabel}
+            onCreatePriority={createPriority}
             creating={mutations.addTask.isPending}
             error={createTaskError}
             onClose={() => setCreateInColumn(null)}
             onCreate={createTask}
+          />
+        )}
+
+        {showSettings && (
+          <BoardSettingsDialog
+            serverId={serverId}
+            boardId={boardId}
+            onClose={() => setShowSettings(false)}
+            onDeleted={() => navigate('/')}
+            showToast={showToast}
+            showError={(text) => showToast(text, 'error')}
           />
         )}
 
