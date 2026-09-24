@@ -20,10 +20,10 @@ import {
   taskFieldsFromDraft,
   useBoardMutations,
   useBoardSnapshot,
-  useMe,
-  useServerMembers,
   type TaskFields,
 } from '../features/board/boardQueries'
+import { useServerMembers } from '../features/server/serverQueries'
+import { useMe } from '../features/session/sessionQueries'
 import { useBoardDragAndDrop } from '../features/board/useBoardDragAndDrop'
 import { useBoardRealtime } from '../features/board/useBoardRealtime'
 import { AddColumn } from '../features/board/components/AddColumn'
@@ -37,9 +37,10 @@ export function BoardPage() {
   const [searchParams] = useSearchParams()
   const navigate = useNavigate()
   const serverId = searchParams.get('serverId') ?? ''
-  const hasContext = Boolean(getStoredToken() && boardId && serverId)
+  const token = getStoredToken()
+  const hasContext = Boolean(token && boardId && serverId)
 
-  const meQuery = useMe()
+  const meQuery = useMe(token)
   const snapshotQuery = useBoardSnapshot(serverId, boardId)
   const mutations = useBoardMutations(serverId, boardId)
   const { toasts, showToast } = useToasts()
