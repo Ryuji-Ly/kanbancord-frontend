@@ -18,11 +18,9 @@ export type ServerMemberEntry = {
 export async function fetchServerMembers(
   token: string,
   serverId: string,
-  userId: string,
 ): Promise<ServerMemberEntry[]> {
-  const params = new URLSearchParams({ userId })
   const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/members?${params.toString()}`),
+    apiUrl(`/api/servers/${serverId}/members`),
     { headers: authHeaders(token) },
   )
 

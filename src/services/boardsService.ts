@@ -22,10 +22,9 @@ type SpringPage<T> = {
 export async function fetchBoards(
   token: string,
   serverId: string,
-  userId: string,
   archived?: boolean,
 ): Promise<BoardEntry[]> {
-  const params = new URLSearchParams({ userId })
+  const params = new URLSearchParams()
   if (archived !== undefined) {
     params.set('archived', String(archived))
   }
@@ -43,17 +42,14 @@ export async function fetchBoards(
 export async function createBoard(
   token: string,
   serverId: string,
-  userId: string,
   input: {
     name: string
     description: string
-    createdBy?: string
     columnNames?: string[]
   },
 ): Promise<BoardEntry> {
-  const params = new URLSearchParams({ userId })
   const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/boards?${params.toString()}`),
+    apiUrl(`/api/servers/${serverId}/boards`),
     {
       method: 'POST',
       headers: {
@@ -64,7 +60,6 @@ export async function createBoard(
         serverId,
         name: input.name,
         description: input.description,
-        createdBy: input.createdBy,
         columnNames: input.columnNames,
       }),
     },
@@ -76,17 +71,14 @@ export async function createBoard(
 export async function updateBoard(
   token: string,
   serverId: string,
-  userId: string,
   boardId: string,
   input: {
     name: string
     description: string
-    createdBy?: string | null
   },
 ): Promise<BoardEntry> {
-  const params = new URLSearchParams({ userId })
   const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/boards/${boardId}?${params.toString()}`),
+    apiUrl(`/api/servers/${serverId}/boards/${boardId}`),
     {
       method: 'PUT',
       headers: {
@@ -97,7 +89,6 @@ export async function updateBoard(
         serverId,
         name: input.name,
         description: input.description,
-        createdBy: input.createdBy ?? undefined,
       }),
     },
   )
@@ -108,12 +99,10 @@ export async function updateBoard(
 export async function fetchBoardById(
   token: string,
   serverId: string,
-  userId: string,
   boardId: string,
 ): Promise<BoardEntry> {
-  const params = new URLSearchParams({ userId })
   const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/boards/${boardId}?${params.toString()}`),
+    apiUrl(`/api/servers/${serverId}/boards/${boardId}`),
     { headers: authHeaders(token) },
   )
   if (!response.ok) throw new Error(await parseError(response))
@@ -123,11 +112,10 @@ export async function fetchBoardById(
 export async function archiveBoard(
   token: string,
   serverId: string,
-  userId: string,
   boardId: string,
   archived: boolean,
 ): Promise<BoardEntry> {
-  const params = new URLSearchParams({ userId, archived: String(archived) })
+  const params = new URLSearchParams({ archived: String(archived) })
   const response = await fetch(
     apiUrl(`/api/servers/${serverId}/boards/${boardId}/archive?${params.toString()}`),
     {
@@ -142,12 +130,10 @@ export async function archiveBoard(
 export async function deleteBoard(
   token: string,
   serverId: string,
-  userId: string,
   boardId: string,
 ): Promise<void> {
-  const params = new URLSearchParams({ userId })
   const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/boards/${boardId}?${params.toString()}`),
+    apiUrl(`/api/servers/${serverId}/boards/${boardId}`),
     {
       method: 'DELETE',
       headers: authHeaders(token),
