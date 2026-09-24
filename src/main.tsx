@@ -5,6 +5,9 @@ import { QueryClientProvider } from '@tanstack/react-query'
 import './index.scss'
 import App from './App.tsx'
 import { queryClient } from './api/queryClient'
+import { removeLegacyTokens } from './services/authService'
+
+removeLegacyTokens()
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

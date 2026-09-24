@@ -1,12 +1,9 @@
-import { apiUrl, parseError } from '../api/http'
+import { parseError } from '../api/http'
+import { apiFetch } from '../api/session'
 import type { BoardColumnEntry } from './boardColumnsService'
 import type { PermissionDecisionMap } from './permissionsService'
 import type { TaskAssignmentEntry } from './taskAssignmentsService'
 import type { TaskEntry } from './tasksService'
-
-function authHeaders(token: string): HeadersInit {
-  return { Authorization: `Bearer ${token}` }
-}
 
 export type BoardEntry = {
   boardId: number
@@ -24,7 +21,6 @@ type SpringPage<T> = {
 }
 
 export async function fetchBoards(
-  token: string,
   serverId: string,
   archived?: boolean,
 ): Promise<BoardEntry[]> {
@@ -33,10 +29,7 @@ export async function fetchBoards(
     params.set('archived', String(archived))
   }
 
-  const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/boards?${params.toString()}`),
-    { headers: authHeaders(token) },
-  )
+  const response = await apiFetch(`/api/servers/${serverId}/boards?${params.toString()}`)
   if (!response.ok) throw new Error(await parseError(response))
 
   const data = (await response.json()) as SpringPage<BoardEntry>
@@ -44,7 +37,6 @@ export async function fetchBoards(
 }
 
 export async function createBoard(
-  token: string,
   serverId: string,
   input: {
     name: string
@@ -52,28 +44,23 @@ export async function createBoard(
     columnNames?: string[]
   },
 ): Promise<BoardEntry> {
-  const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/boards`),
-    {
-      method: 'POST',
-      headers: {
-        ...authHeaders(token),
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        serverId,
-        name: input.name,
-        description: input.description,
-        columnNames: input.columnNames,
-      }),
+  const response = await apiFetch(`/api/servers/${serverId}/boards`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
     },
-  )
+    body: JSON.stringify({
+      serverId,
+      name: input.name,
+      description: input.description,
+      columnNames: input.columnNames,
+    }),
+  })
   if (!response.ok) throw new Error(await parseError(response))
   return response.json() as Promise<BoardEntry>
 }
 
 export async function updateBoard(
-  token: string,
   serverId: string,
   boardId: string,
   input: {
@@ -81,34 +68,26 @@ export async function updateBoard(
     description: string
   },
 ): Promise<BoardEntry> {
-  const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/boards/${boardId}`),
-    {
-      method: 'PUT',
-      headers: {
-        ...authHeaders(token),
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        serverId,
-        name: input.name,
-        description: input.description,
-      }),
+  const response = await apiFetch(`/api/servers/${serverId}/boards/${boardId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
     },
-  )
+    body: JSON.stringify({
+      serverId,
+      name: input.name,
+      description: input.description,
+    }),
+  })
   if (!response.ok) throw new Error(await parseError(response))
   return response.json() as Promise<BoardEntry>
 }
 
 export async function fetchBoardById(
-  token: string,
   serverId: string,
   boardId: string,
 ): Promise<BoardEntry> {
-  const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/boards/${boardId}`),
-    { headers: authHeaders(token) },
-  )
+  const response = await apiFetch(`/api/servers/${serverId}/boards/${boardId}`)
   if (!response.ok) throw new Error(await parseError(response))
   return response.json() as Promise<BoardEntry>
 }
@@ -123,47 +102,33 @@ export type BoardSnapshot = {
 }
 
 export async function fetchBoardSnapshot(
-  token: string,
   serverId: string,
   boardId: string,
 ): Promise<BoardSnapshot> {
-  const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/boards/${boardId}/snapshot`),
-    { headers: authHeaders(token) },
-  )
+  const response = await apiFetch(`/api/servers/${serverId}/boards/${boardId}/snapshot`)
   if (!response.ok) throw new Error(await parseError(response))
   return response.json() as Promise<BoardSnapshot>
 }
 
 export async function archiveBoard(
-  token: string,
   serverId: string,
   boardId: string,
   archived: boolean,
 ): Promise<BoardEntry> {
   const params = new URLSearchParams({ archived: String(archived) })
-  const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/boards/${boardId}/archive?${params.toString()}`),
-    {
-      method: 'PATCH',
-      headers: authHeaders(token),
-    },
-  )
+  const response = await apiFetch(`/api/servers/${serverId}/boards/${boardId}/archive?${params.toString()}`, {
+    method: 'PATCH',
+  })
   if (!response.ok) throw new Error(await parseError(response))
   return response.json() as Promise<BoardEntry>
 }
 
 export async function deleteBoard(
-  token: string,
   serverId: string,
   boardId: string,
 ): Promise<void> {
-  const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/boards/${boardId}`),
-    {
-      method: 'DELETE',
-      headers: authHeaders(token),
-    },
-  )
+  const response = await apiFetch(`/api/servers/${serverId}/boards/${boardId}`, {
+    method: 'DELETE',
+  })
   if (!response.ok) throw new Error(await parseError(response))
 }

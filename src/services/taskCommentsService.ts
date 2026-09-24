@@ -1,8 +1,5 @@
-import { apiUrl, parseError } from '../api/http'
-
-function authHeaders(token: string): HeadersInit {
-  return { Authorization: `Bearer ${token}` }
-}
+import { parseError } from '../api/http'
+import { apiFetch } from '../api/session'
 
 type SpringPage<T> = {
   content: T[]
@@ -31,7 +28,6 @@ export type TaskCommentEntry = {
 }
 
 export async function fetchTaskComments(
-  token: string,
   serverId: string,
   boardId: string,
   taskId: number,
@@ -41,70 +37,57 @@ export async function fetchTaskComments(
     size: '200',
     sort: 'createdAt,asc',
   })
-  const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/boards/${boardId}/tasks/${taskId}/comments?${params.toString()}`),
-    { headers: authHeaders(token) },
-  )
+  const response = await apiFetch(`/api/servers/${serverId}/boards/${boardId}/tasks/${taskId}/comments?${params.toString()}`)
   if (!response.ok) throw new Error(await parseError(response))
   const data = (await response.json()) as SpringPage<TaskCommentEntry>
   return Array.isArray(data.content) ? data.content : []
 }
 
 export async function createTaskComment(
-  token: string,
   serverId: string,
   boardId: string,
   taskId: number,
   content: string,
 ): Promise<TaskCommentEntry> {
-  const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/boards/${boardId}/tasks/${taskId}/comments`),
-    {
-      method: 'POST',
-      headers: { ...authHeaders(token), 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        taskId,
-        content,
-      }),
-    },
-  )
+  const response = await apiFetch(`/api/servers/${serverId}/boards/${boardId}/tasks/${taskId}/comments`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      taskId,
+      content,
+    }),
+  })
   if (!response.ok) throw new Error(await parseError(response))
   return response.json() as Promise<TaskCommentEntry>
 }
 
 export async function updateTaskComment(
-  token: string,
   serverId: string,
   boardId: string,
   taskId: number,
   commentId: number,
   content: string,
 ): Promise<TaskCommentEntry> {
-  const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/boards/${boardId}/tasks/${taskId}/comments/${commentId}`),
-    {
-      method: 'PUT',
-      headers: { ...authHeaders(token), 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        taskId,
-        content,
-      }),
-    },
-  )
+  const response = await apiFetch(`/api/servers/${serverId}/boards/${boardId}/tasks/${taskId}/comments/${commentId}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      taskId,
+      content,
+    }),
+  })
   if (!response.ok) throw new Error(await parseError(response))
   return response.json() as Promise<TaskCommentEntry>
 }
 
 export async function deleteTaskComment(
-  token: string,
   serverId: string,
   boardId: string,
   taskId: number,
   commentId: number,
 ): Promise<void> {
-  const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/boards/${boardId}/tasks/${taskId}/comments/${commentId}`),
-    { method: 'DELETE', headers: authHeaders(token) },
+  const response = await apiFetch(`/api/servers/${serverId}/boards/${boardId}/tasks/${taskId}/comments/${commentId}`,
+    { method: 'DELETE' },
   )
   if (!response.ok) throw new Error(await parseError(response))
 }

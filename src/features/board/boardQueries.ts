@@ -1,6 +1,5 @@
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { useOptimisticCache } from '../../api/useOptimisticCache'
-import { getStoredToken } from '../../services/authService'
 import { fetchBoardSnapshot, type BoardSnapshot } from '../../services/boardsService'
 import { createColumn, deleteColumn, moveColumn, updateColumn, type BoardColumnEntry } from '../../services/boardColumnsService'
 import { createTaskAssignment, deleteTaskAssignment } from '../../services/taskAssignmentsService'
@@ -24,26 +23,20 @@ export const boardKeys = {
     ['board', serverId, boardId, 'comments', taskId] as const,
 }
 
-function requireToken(): string {
-  const token = getStoredToken()
-  if (!token) throw new Error('You are not signed in.')
-  return token
-}
-
 // ── Queries ──────────────────────────────────────────────────────────────────
 
 export function useBoardSnapshot(serverId: string, boardId: string) {
   return useQuery({
     queryKey: boardKeys.snapshot(serverId, boardId),
-    queryFn: () => fetchBoardSnapshot(requireToken(), serverId, boardId),
-    enabled: Boolean(serverId && boardId && getStoredToken()),
+    queryFn: () => fetchBoardSnapshot(serverId, boardId),
+    enabled: Boolean(serverId && boardId),
   })
 }
 
 export function useTaskComments(serverId: string, boardId: string, taskId: number | null) {
   return useQuery({
     queryKey: boardKeys.comments(serverId, boardId, taskId ?? -1),
-    queryFn: () => fetchTaskComments(requireToken(), serverId, boardId, taskId as number),
+    queryFn: () => fetchTaskComments(serverId, boardId, taskId as number),
     enabled: taskId !== null,
     select: sortCommentsByCreatedAt,
   })
@@ -86,7 +79,7 @@ export function useBoardMutations(serverId: string, boardId: string) {
   const renameColumn = useMutation({
     // No position: sending one would also require MOVE_COLUMN.
     mutationFn: ({ column, name }: { column: BoardColumnEntry; name: string }) =>
-      updateColumn(requireToken(), serverId, boardId, column.columnId, name, {
+      updateColumn(serverId, boardId, column.columnId, name, {
         color: column.color,
         wipLimit: column.wipLimit,
       }),
@@ -97,7 +90,7 @@ export function useBoardMutations(serverId: string, boardId: string) {
 
   const addColumn = useMutation({
     mutationFn: ({ name }: { name: string; optimisticId: number }) =>
-      createColumn(requireToken(), serverId, boardId, name),
+      createColumn(serverId, boardId, name),
     onMutate: ({ name, optimisticId }) =>
       board.apply((snapshot) => ({
         ...snapshot,
@@ -122,7 +115,7 @@ export function useBoardMutations(serverId: string, boardId: string) {
   })
 
   const removeColumn = useMutation({
-    mutationFn: (column: BoardColumnEntry) => deleteColumn(requireToken(), serverId, boardId, column.columnId),
+    mutationFn: (column: BoardColumnEntry) => deleteColumn(serverId, boardId, column.columnId),
     onSuccess: (_result, column) =>
       board.set((snapshot) => ({
         ...snapshot,
@@ -134,7 +127,7 @@ export function useBoardMutations(serverId: string, boardId: string) {
 
   const reorderColumn = useMutation({
     mutationFn: ({ columnId, index }: { columnId: number; index: number }) =>
-      moveColumn(requireToken(), serverId, boardId, columnId, index),
+      moveColumn(serverId, boardId, columnId, index),
     onMutate: ({ columnId, index }) => board.apply((snapshot) => snapshotWithColumnMoved(snapshot, columnId, index)),
     onError: (_error, _variables, context) => board.rollback(context),
     ...settle,
@@ -142,7 +135,7 @@ export function useBoardMutations(serverId: string, boardId: string) {
 
   const relocateTask = useMutation({
     mutationFn: ({ taskId, columnId, index }: { taskId: number; columnId: number; index: number }) =>
-      moveTask(requireToken(), serverId, boardId, taskId, columnId, index),
+      moveTask(serverId, boardId, taskId, columnId, index),
     onMutate: ({ taskId, columnId, index }) =>
       board.apply((snapshot) => snapshotWithTaskMoved(snapshot, taskId, columnId, index)),
     onError: (_error, _variables, context) => board.rollback(context),
@@ -159,14 +152,13 @@ export function useBoardMutations(serverId: string, boardId: string) {
       optimisticId: number
       createdBy: string
     }) => {
-      const token = requireToken()
-      const created = await createTask(token, serverId, boardId, {
+      const created = await createTask(serverId, boardId, {
         ...input.fields,
         columnId: input.columnId,
         position: input.position,
       })
       const assigned = await Promise.allSettled(
-        input.assigneeIds.map((userId) => createTaskAssignment(token, serverId, boardId, created.taskId, userId)),
+        input.assigneeIds.map((userId) => createTaskAssignment(serverId, boardId, created.taskId, userId)),
       )
       return { created, assignmentFailed: assigned.some((result) => result.status === 'rejected') }
     },
@@ -196,7 +188,7 @@ export function useBoardMutations(serverId: string, boardId: string) {
 
   const editTask = useMutation({
     mutationFn: ({ task, fields }: { task: TaskEntry; fields: TaskFields }) =>
-      updateTask(requireToken(), serverId, boardId, task.taskId, {
+      updateTask(serverId, boardId, task.taskId, {
         ...fields,
         columnId: task.columnId,
         position: task.position,
@@ -208,7 +200,7 @@ export function useBoardMutations(serverId: string, boardId: string) {
   })
 
   const removeTask = useMutation({
-    mutationFn: (task: TaskEntry) => deleteTask(requireToken(), serverId, boardId, task.taskId),
+    mutationFn: (task: TaskEntry) => deleteTask(serverId, boardId, task.taskId),
     onSuccess: (_result, task) =>
       board.set((snapshot) => ({
         ...snapshot,
@@ -220,7 +212,7 @@ export function useBoardMutations(serverId: string, boardId: string) {
 
   const assign = useMutation({
     mutationFn: ({ taskId, userId }: { taskId: number; userId: string }) =>
-      createTaskAssignment(requireToken(), serverId, boardId, taskId, userId),
+      createTaskAssignment(serverId, boardId, taskId, userId),
     onSuccess: (created) =>
       board.set((snapshot) => ({ ...snapshot, assignments: [...snapshot.assignments, created] })),
     ...settle,
@@ -228,7 +220,7 @@ export function useBoardMutations(serverId: string, boardId: string) {
 
   const unassign = useMutation({
     mutationFn: ({ taskId, assignmentId }: { taskId: number; assignmentId: number }) =>
-      deleteTaskAssignment(requireToken(), serverId, boardId, taskId, assignmentId),
+      deleteTaskAssignment(serverId, boardId, taskId, assignmentId),
     onMutate: ({ assignmentId }) =>
       board.apply((snapshot) => ({
         ...snapshot,
@@ -263,14 +255,14 @@ export function useCommentMutations(serverId: string, boardId: string, taskId: n
   }
 
   const create = useMutation({
-    mutationFn: (content: string) => createTaskComment(requireToken(), serverId, boardId, currentTaskId(), content),
+    mutationFn: (content: string) => createTaskComment(serverId, boardId, currentTaskId(), content),
     onSuccess: (created) => comments.set((current) => [...current, created]),
     ...settle,
   })
 
   const edit = useMutation({
     mutationFn: ({ commentId, content }: { commentId: number; content: string }) =>
-      updateTaskComment(requireToken(), serverId, boardId, currentTaskId(), commentId, content),
+      updateTaskComment(serverId, boardId, currentTaskId(), commentId, content),
     onMutate: ({ commentId, content }) =>
       comments.apply((current) =>
         current.map((comment) => (comment.commentId === commentId ? { ...comment, content } : comment)),
@@ -284,7 +276,7 @@ export function useCommentMutations(serverId: string, boardId: string, taskId: n
   })
 
   const remove = useMutation({
-    mutationFn: (commentId: number) => deleteTaskComment(requireToken(), serverId, boardId, currentTaskId(), commentId),
+    mutationFn: (commentId: number) => deleteTaskComment(serverId, boardId, currentTaskId(), commentId),
     onSuccess: (_result, commentId) =>
       comments.set((current) => current.filter((comment) => comment.commentId !== commentId)),
     ...settle,

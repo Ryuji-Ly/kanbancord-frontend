@@ -1,37 +1,21 @@
-import { apiUrl, parseError } from '../api/http'
+import { signInWithDiscordCode } from '../api/session'
 import {
   DISCORD_CLIENT_ID,
   DISCORD_REDIRECT_URI,
   DISCORD_SCOPES,
-  DISCORD_TOKEN_STORAGE_KEY,
+  LEGACY_TOKEN_STORAGE_KEYS,
   OAUTH_IN_PROGRESS_KEY,
   OAUTH_STATE_KEY,
-  TOKEN_STORAGE_KEY,
 } from '../config/env'
-import type { AuthResponse } from '../types/auth'
+import type { MeResponse } from '../types/auth'
 
-export function getStoredToken(): string {
-  return localStorage.getItem(TOKEN_STORAGE_KEY) ?? ''
-}
-
-export function saveToken(token: string): void {
-  localStorage.setItem(TOKEN_STORAGE_KEY, token)
-}
-
-export function clearToken(): void {
-  localStorage.removeItem(TOKEN_STORAGE_KEY)
-}
-
-export function getStoredDiscordToken(): string {
-  return localStorage.getItem(DISCORD_TOKEN_STORAGE_KEY) ?? ''
-}
-
-export function saveDiscordToken(token: string): void {
-  localStorage.setItem(DISCORD_TOKEN_STORAGE_KEY, token)
-}
-
-export function clearDiscordToken(): void {
-  localStorage.removeItem(DISCORD_TOKEN_STORAGE_KEY)
+/** Tokens earlier versions kept in localStorage; the session no longer uses them, so remove any left behind. */
+export function removeLegacyTokens(): void {
+  try {
+    LEGACY_TOKEN_STORAGE_KEYS.forEach((key) => localStorage.removeItem(key))
+  } catch {
+    // Storage may be unavailable, in which case there is nothing to remove.
+  }
 }
 
 export function startDiscordLogin(setMessage: (value: string) => void): void {
@@ -73,21 +57,6 @@ export function clearCallbackQuery(): void {
   window.history.replaceState({}, document.title, window.location.pathname)
 }
 
-export async function exchangeDiscordCode(code: string): Promise<AuthResponse> {
-  const response = await fetch(apiUrl('/api/auth/discord/exchange'), {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      code,
-      redirectUri: DISCORD_REDIRECT_URI,
-    }),
-  })
-
-  if (!response.ok) {
-    throw new Error(await parseError(response))
-  }
-
-  return response.json() as Promise<AuthResponse>
+export function exchangeDiscordCode(code: string): Promise<MeResponse> {
+  return signInWithDiscordCode(code, DISCORD_REDIRECT_URI)
 }
