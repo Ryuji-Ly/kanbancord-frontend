@@ -1,0 +1,140 @@
+import { useState } from 'react'
+import type { BoardColumnEntry } from '../../../services/boardColumnsService'
+import type { MeResponse } from '../../../types/auth'
+import { EMPTY_TASK_DRAFT, resolveAssignee, type AssigneeMember, type TaskDraft } from '../boardModel'
+import { AssigneePicker } from './AssigneePicker'
+
+type CreateTaskModalProps = {
+  column: BoardColumnEntry
+  me: MeResponse | null
+  canAssignSelf: boolean
+  canAssignOthers: boolean
+  members: AssigneeMember[]
+  directory: Map<string, AssigneeMember>
+  creating: boolean
+  error: string
+  onClose: () => void
+  onCreate: (draft: TaskDraft, assigneeIds: string[]) => void
+}
+
+export function CreateTaskModal({
+  column,
+  me,
+  canAssignSelf,
+  canAssignOthers,
+  members,
+  directory,
+  creating,
+  error,
+  onClose,
+  onCreate,
+}: CreateTaskModalProps) {
+  const [draft, setDraft] = useState<TaskDraft>(EMPTY_TASK_DRAFT)
+  // Someone who may only assign themselves starts out assigned.
+  const [assigneeIds, setAssigneeIds] = useState<string[]>(() =>
+    canAssignSelf && !canAssignOthers && me ? [String(me.userId)] : [],
+  )
+  const [validationError, setValidationError] = useState('')
+  const canAssign = canAssignSelf || canAssignOthers
+
+  function close() {
+    if (!creating) onClose()
+  }
+
+  function submit() {
+    if (!draft.title.trim()) {
+      setValidationError('Task title is required.')
+      return
+    }
+    setValidationError('')
+    onCreate(draft, canAssign ? assigneeIds : [])
+  }
+
+  const shownError = validationError || error
+
+  return (
+    <div className="kc-modal-overlay" role="dialog" aria-modal="true" aria-label="Create Task" onClick={close}>
+      <div className="kc-modal kc-task-modal" onClick={(event) => event.stopPropagation()}>
+        <div className="kc-modal-header">
+          <h3 className="kc-modal-title">Create task</h3>
+          <button type="button" className="kc-modal-close" aria-label="Close create task modal" onClick={close}>
+            ×
+          </button>
+        </div>
+        <div className="kc-modal-body kc-task-modal-body">
+          <p className="kc-muted">
+            New tasks in <strong>{column.name}</strong> are added to the end of the column.
+          </p>
+          {shownError && <p className="kc-banner">{shownError}</p>}
+
+          <label className="kc-field">
+            <span className="kc-field-label">Title</span>
+            <input
+              className="kc-input"
+              value={draft.title}
+              maxLength={200}
+              autoFocus
+              onChange={(event) => setDraft((prev) => ({ ...prev, title: event.target.value }))}
+            />
+          </label>
+
+          <div className="kc-task-modal-grid">
+            <label className="kc-field">
+              <span className="kc-field-label">Priority</span>
+              <input
+                className="kc-input"
+                value={draft.priority}
+                maxLength={20}
+                placeholder="Optional"
+                onChange={(event) => setDraft((prev) => ({ ...prev, priority: event.target.value }))}
+              />
+            </label>
+
+            <label className="kc-field">
+              <span className="kc-field-label">Due Date</span>
+              <input
+                className="kc-input"
+                type="datetime-local"
+                value={draft.dueDate}
+                onChange={(event) => setDraft((prev) => ({ ...prev, dueDate: event.target.value }))}
+              />
+            </label>
+          </div>
+
+          <label className="kc-field">
+            <span className="kc-field-label">Description</span>
+            <textarea
+              className="kc-textarea"
+              value={draft.description}
+              onChange={(event) => setDraft((prev) => ({ ...prev, description: event.target.value }))}
+            />
+          </label>
+
+          {canAssign && (
+            <div className="kc-field">
+              <span className="kc-field-label">Assignees</span>
+              <div className="kc-task-assignee-picker">
+                <AssigneePicker
+                  assignees={assigneeIds.map((id) => resolveAssignee(directory, id))}
+                  candidates={members}
+                  searchable={canAssignOthers}
+                  canRemove={() => canAssignOthers}
+                  onRemove={(assignee) => setAssigneeIds((prev) => prev.filter((id) => id !== assignee.userId))}
+                  onPick={(member) => setAssigneeIds((prev) => [...prev, member.userId])}
+                />
+              </div>
+            </div>
+          )}
+        </div>
+        <div className="kc-task-modal-actions">
+          <button type="button" className="kc-btn kc-btn-ghost" onClick={close} disabled={creating}>
+            Cancel
+          </button>
+          <button type="button" className="kc-btn kc-btn-primary" onClick={submit} disabled={creating}>
+            {creating ? 'Creating...' : 'Create task'}
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
