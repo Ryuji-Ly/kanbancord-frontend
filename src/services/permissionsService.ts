@@ -168,6 +168,7 @@ export const KANBAN_PERM_INFO: Record<string, KanbanPermInfo> = {
   DELETE_LABEL: { name: 'Delete Labels', category: 'LABEL' },
   APPLY_LABEL_TO_TASK: { name: 'Apply Labels to Tasks', category: 'LABEL' },
   REMOVE_LABEL_FROM_TASK: { name: 'Remove Labels from Tasks', category: 'LABEL' },
+  MANAGE_PRIORITIES: { name: 'Manage Priorities', category: 'LABEL' },
 }
 
 export const CATEGORY_ORDER = ['SERVER', 'BOARD', 'COLUMN', 'TASK', 'COMMENT', 'LABEL']
@@ -241,6 +242,7 @@ export const KANBAN_PERM_IMPORTANCE: Record<string, number> = {
   DELETE_LABEL: 24,
   APPLY_LABEL_TO_TASK: 25,
   REMOVE_LABEL_FROM_TASK: 26,
+  MANAGE_PRIORITIES: 26.5,
   VIEW_BOARD: 27,
   VIEW_TASK: 28,
   VIEW_SERVER: 29,

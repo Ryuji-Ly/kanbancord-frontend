@@ -1,9 +1,12 @@
 import { useState } from 'react'
+import type { LabelEntry, PriorityEntry } from '../../../services/boardsService'
 import type { TaskEntry } from '../../../services/tasksService'
 import type { MeResponse } from '../../../types/auth'
 import { taskFieldsFromDraft, type TaskFields } from '../boardQueries'
 import { draftFromTask, toggleTaskListItemByIndex, type AssigneeMember, type BoardAbilities, type TaskDraft } from '../boardModel'
 import { AssigneePicker } from './AssigneePicker'
+import { LabelChip, LabelPicker } from './LabelPicker'
+import { PriorityBadge, PriorityPicker } from './PriorityPicker'
 import { Markdown } from './Markdown'
 import { TaskComments } from './TaskComments'
 
@@ -15,12 +18,21 @@ type TaskPanelProps = {
   abilities: BoardAbilities
   assignees: AssigneeMember[]
   members: AssigneeMember[]
+  priorities: PriorityEntry[]
+  /** Every label of the board. */
+  labels: LabelEntry[]
+  /** The labels on this task. */
+  taskLabels: { label: LabelEntry; taskLabelId: number }[]
   saving: boolean
   onClose: () => void
   onSave: (fields: TaskFields) => Promise<unknown>
   onRequestDelete: () => void
   onAssign: (userId: string) => Promise<unknown>
   onUnassign: (assignee: AssigneeMember) => Promise<unknown>
+  onAddLabel: (labelId: number) => Promise<unknown>
+  onRemoveLabel: (taskLabelId: number) => Promise<unknown>
+  onCreateLabel: (name: string) => Promise<LabelEntry>
+  onCreatePriority: (name: string) => Promise<PriorityEntry>
 }
 
 /**
@@ -35,12 +47,19 @@ export function TaskPanel({
   abilities,
   assignees,
   members,
+  priorities,
+  labels,
+  taskLabels,
   saving,
   onClose,
   onSave,
   onRequestDelete,
   onAssign,
   onUnassign,
+  onAddLabel,
+  onRemoveLabel,
+  onCreateLabel,
+  onCreatePriority,
 }: TaskPanelProps) {
   const [draft, setDraft] = useState<TaskDraft>(() => draftFromTask(task))
   const [error, setError] = useState('')
@@ -49,6 +68,7 @@ export function TaskPanel({
   const [togglingChecklist, setTogglingChecklist] = useState(false)
 
   const assigneeIds = new Set(assignees.map((assignee) => assignee.userId))
+  const priority = priorities.find((level) => level.priorityId === task.priorityId) ?? null
   const canManageAssignee = (userId: string) =>
     me !== null && (abilities.assignOthers || (abilities.assignSelf && String(me.userId) === userId))
 
@@ -148,17 +168,16 @@ export function TaskPanel({
             </label>
 
             <div className="kc-task-modal-grid">
-              <label className="kc-field">
+              <div className="kc-field">
                 <span className="kc-field-label">Priority</span>
-                <input
-                  className="kc-input"
-                  value={draft.priority}
-                  maxLength={20}
-                  placeholder="Optional"
-                  onChange={(event) => setDraft((prev) => ({ ...prev, priority: event.target.value }))}
-                  onKeyDown={saveOnEnter}
+                <PriorityPicker
+                  priorities={priorities}
+                  value={draft.priorityId}
+                  canCreate={abilities.managePriorities}
+                  onChange={(priorityId) => setDraft((prev) => ({ ...prev, priorityId }))}
+                  onCreate={onCreatePriority}
                 />
-              </label>
+              </div>
 
               <label className="kc-field">
                 <span className="kc-field-label">Due Date</span>
@@ -222,12 +241,14 @@ export function TaskPanel({
               <span className="kc-field-label">Title</span>
               <p className="kc-task-panel-value">{task.title}</p>
             </div>
-            {(task.priority || task.dueDate) && (
+            {(priority || task.dueDate) && (
               <div className="kc-task-modal-grid">
-                {task.priority && (
+                {priority && (
                   <div className="kc-task-panel-field">
                     <span className="kc-field-label">Priority</span>
-                    <p className="kc-task-panel-value">{task.priority}</p>
+                    <p className="kc-task-panel-value">
+                      <PriorityBadge priority={priority} />
+                    </p>
                   </div>
                 )}
                 {task.dueDate && (
@@ -247,6 +268,33 @@ export function TaskPanel({
               </div>
             )}
           </>
+        )}
+
+        {(taskLabels.length > 0 || abilities.applyLabel) && (
+          <div className="kc-task-panel-field">
+            <span className="kc-field-label">Labels</span>
+            {abilities.applyLabel || abilities.removeLabel ? (
+              <LabelPicker
+                labels={labels}
+                selectedIds={taskLabels.map((entry) => entry.label.labelId)}
+                canApply={abilities.applyLabel}
+                canRemove={abilities.removeLabel}
+                canCreate={abilities.createLabel}
+                onAdd={(labelId) => reportError(onAddLabel(labelId))}
+                onRemove={(labelId) => {
+                  const entry = taskLabels.find((candidate) => candidate.label.labelId === labelId)
+                  if (entry) reportError(onRemoveLabel(entry.taskLabelId))
+                }}
+                onCreate={onCreateLabel}
+              />
+            ) : (
+              <div className="kc-label-row">
+                {taskLabels.map((entry) => (
+                  <LabelChip key={entry.taskLabelId} label={entry.label} />
+                ))}
+              </div>
+            )}
+          </div>
         )}
 
         {(assignees.length > 0 || abilities.assignSelf || abilities.assignOthers) && (

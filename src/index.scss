@@ -2370,3 +2370,199 @@ pre {
     margin: 0.75em 0;
   }
 }
+
+// ── Labels and priorities ─────────────────────────────────────────────────────
+.kc-btn-small {
+  padding: 5px 10px;
+  font-size: 0.8rem;
+}
+
+.kc-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #4b5563;
+  border-radius: 8px;
+  background: #111827;
+  color: #e5e7eb;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    border-color: var(--kc-accent-outline-strong);
+    color: #f5f3ff;
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+}
+
+.kc-board-settings-btn {
+  margin-left: auto;
+  width: 34px;
+  height: 34px;
+  font-size: 1.05rem;
+}
+
+.kc-field-error {
+  margin: 4px 0 0;
+  color: #fca5a5;
+  font-size: 0.8rem;
+}
+
+.kc-label-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.kc-label-chip,
+.kc-priority-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  max-width: 100%;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.kc-label-chip-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 180px;
+}
+
+.kc-label-chip-remove {
+  border: none;
+  background: transparent;
+  color: inherit;
+  opacity: 0.75;
+  font-size: 0.95rem;
+  line-height: 1;
+  padding: 0;
+  cursor: pointer;
+
+  &:hover { opacity: 1; }
+}
+
+// Pickers open their options over the content below instead of pushing it down.
+.kc-picker {
+  position: relative;
+
+  .kc-task-assignee-results {
+    position: absolute;
+    z-index: 30;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+  }
+}
+
+.kc-priority-picker-field {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.kc-priority-picker-input {
+  width: 100%;
+  cursor: pointer;
+}
+
+.kc-priority-picker-current {
+  position: absolute;
+  left: 10px;
+  pointer-events: none;
+}
+
+.kc-task-assignee-result--selected {
+  background: rgba($kc-accent-purple, 0.2);
+}
+
+.kc-column-task-labels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 6px;
+}
+
+.kc-column-task-label {
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 1px 7px;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  line-height: 1.4;
+
+  &--more {
+    background: rgba(148, 163, 184, 0.2);
+    color: #cbd5e1;
+  }
+}
+
+.kc-settings-list {
+  list-style: none;
+  margin: 0 0 10px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.kc-settings-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.kc-settings-add {
+  margin-top: 4px;
+}
+
+.kc-settings-name {
+  flex: 1 1 160px;
+  min-width: 0;
+}
+
+.kc-settings-usage {
+  flex: none;
+  min-width: 56px;
+  font-size: 0.78rem;
+  text-align: right;
+}
+
+.kc-settings-order {
+  display: inline-flex;
+  gap: 4px;
+}
+
+.kc-color-input {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  padding: 2px;
+  border: 1px solid var(--kc-border);
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .kc-settings-row {
+    flex-wrap: wrap;
+  }
+
+  .kc-settings-usage {
+    text-align: left;
+  }
+}

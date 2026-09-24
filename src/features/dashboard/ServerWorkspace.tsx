@@ -6,7 +6,6 @@ import {
   DISCORD_FLAG_NAMES,
   DISCORD_PERM_IMPORTANCE,
   KANBAN_PERM_INFO,
-  fetchScopedPermissions,
   fetchServerPermissions,
   groupPermissionsByGrantedTo,
   type PermissionEntry,
@@ -15,10 +14,8 @@ import {
 import type { DiscordGuild } from '../../types/auth'
 import { AddEntryModal } from '../../components/dashboard/AddEntryModal'
 import { BoardModal } from '../../components/dashboard/boards/BoardModal'
-import {
-  buildInheritedBoardPermissionDrafts,
-  mergeBoardPermissionDrafts,
-} from '../../components/dashboard/boards/boardPermissionDraft'
+import { BoardSettingsDialog } from '../boardSettings/BoardSettingsDialog'
+import { buildInheritedBoardPermissionDrafts } from '../../components/dashboard/boards/boardPermissionDraft'
 import { DeleteGroupModal } from '../../components/dashboard/DeleteGroupModal'
 import { permissionRankWeight } from '../../components/dashboard/permissionRank'
 import { ServerOverviewPanel } from '../../components/dashboard/ServerOverviewPanel'
@@ -308,36 +305,12 @@ export function ServerWorkspace({ serverId, server, showError, showToast }: Serv
     }
   }
 
-  async function openBoardSettings(board: BoardEntry) {
-    const boardCapability = capabilities[String(board.boardId)]
-    if (
-      !boardCapability ||
-      (!boardCapability.canEditDetails &&
-        !boardCapability.canEditPermissions &&
-        !boardCapability.canArchive &&
-        !boardCapability.canDelete)
-    ) {
-      return
-    }
+  // An existing board's settings open in the same dialog as on the board page.
+  const [settingsBoardId, setSettingsBoardId] = useState<string | null>(null)
 
-    const config: BoardModalConfig = { mode: 'edit', board, ...boardCapability }
-    setBoardEditor({ config, permissions: [], loading: true })
-
-    let permissions: PermissionEntry[] = []
-    if (boardCapability.canEditPermissions || board.isArchived) {
-      try {
-        const [serverRules, boardRules] = await Promise.all([
-          loadServerRules(),
-          fetchScopedPermissions(serverId, 'BOARD', String(board.boardId)),
-        ])
-        permissions = mergeBoardPermissionDrafts(serverRules, boardRules)
-      } catch {
-        permissions = []
-      }
-    }
-    setBoardEditor((current) =>
-      current?.config.board?.boardId === board.boardId ? { config, permissions, loading: false } : current,
-    )
+  function openBoardSettings(board: BoardEntry) {
+    const capability = capabilities[String(board.boardId)]
+    if (capability && Object.values(capability).some(Boolean)) setSettingsBoardId(String(board.boardId))
   }
 
   function closeBoardEditor() {
@@ -436,7 +409,7 @@ export function ServerWorkspace({ serverId, server, showError, showToast }: Serv
         onCancelAddPermission={cancelInlineAdd}
         onOpenCreateBoard={() => void openCreateBoard()}
         onOpenBoard={(board) => navigate(`/boards/${board.boardId}?serverId=${encodeURIComponent(serverId)}`)}
-        onOpenBoardSettings={(board) => void openBoardSettings(board)}
+        onOpenBoardSettings={openBoardSettings}
       />
 
       <DeleteGroupModal
@@ -472,6 +445,18 @@ export function ServerWorkspace({ serverId, server, showError, showToast }: Serv
         onCyclePermState={cyclePermState}
         onSave={saveAddModal}
       />
+
+      {settingsBoardId && (
+        <BoardSettingsDialog
+          key={settingsBoardId}
+          serverId={serverId}
+          boardId={settingsBoardId}
+          onClose={() => setSettingsBoardId(null)}
+          onDeleted={() => setSettingsBoardId(null)}
+          showToast={showToast}
+          showError={showError}
+        />
+      )}
 
       {boardEditor && (
         <BoardModal

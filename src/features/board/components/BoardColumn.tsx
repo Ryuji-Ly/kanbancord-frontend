@@ -1,5 +1,6 @@
 import { useState, type CSSProperties, type DragEvent } from 'react'
 import type { BoardColumnEntry } from '../../../services/boardColumnsService'
+import type { LabelEntry, PriorityEntry } from '../../../services/boardsService'
 import type { TaskEntry } from '../../../services/tasksService'
 import type { AssigneeMember } from '../boardModel'
 import { TaskCard } from './TaskCard'
@@ -8,6 +9,8 @@ type BoardColumnProps = {
   column: BoardColumnEntry
   tasks: TaskEntry[]
   assigneesByTaskId: Record<number, AssigneeMember[]>
+  labelsByTaskId: Map<number, { label: LabelEntry }[]>
+  prioritiesById: Map<number, PriorityEntry>
   selectedTaskId: number | null
   canEdit: boolean
   canDelete: boolean
@@ -38,6 +41,8 @@ export function BoardColumn({
   column,
   tasks,
   assigneesByTaskId,
+  labelsByTaskId,
+  prioritiesById,
   selectedTaskId,
   canEdit,
   canDelete,
@@ -157,6 +162,8 @@ export function BoardColumn({
                   key={task.taskId}
                   task={task}
                   assignees={assigneesByTaskId[task.taskId] ?? []}
+                  priority={task.priorityId === null ? null : (prioritiesById.get(task.priorityId) ?? null)}
+                  labels={(labelsByTaskId.get(task.taskId) ?? []).map((entry) => entry.label)}
                   movable={canMoveTasks}
                   draggable={canMoveTasks}
                   selected={selectedTaskId === task.taskId}

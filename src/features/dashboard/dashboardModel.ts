@@ -51,6 +51,9 @@ export function boardCapabilities(access: ServerAccess | undefined): Record<stri
         canEditPermissions: Boolean(keys.EDIT_BOARD_PERMISSIONS),
         canArchive: Boolean(keys.ARCHIVE_BOARD),
         canDelete: Boolean(keys.DELETE_BOARD),
+        canManageCatalog: Boolean(
+          keys.CREATE_LABEL || keys.EDIT_LABEL || keys.DELETE_LABEL || keys.MANAGE_PRIORITIES,
+        ),
       },
     ]),
   )

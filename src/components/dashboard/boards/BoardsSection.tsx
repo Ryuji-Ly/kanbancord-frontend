@@ -10,6 +10,7 @@ type BoardCapability = {
   canEditPermissions: boolean
   canArchive: boolean
   canDelete: boolean
+  canManageCatalog: boolean
 }
 
 type BoardsSectionProps = {
@@ -102,6 +103,7 @@ export function BoardsSection({
               canEditPermissions: false,
               canArchive: false,
               canDelete: false,
+              canManageCatalog: false,
             }
             return (
               <BoardCard
@@ -112,7 +114,8 @@ export function BoardsSection({
                   capability.canEditDetails ||
                   capability.canEditPermissions ||
                   capability.canArchive ||
-                  capability.canDelete
+                  capability.canDelete ||
+                  capability.canManageCatalog
                 }
                 onOpenSettings={onOpenSettings}
               />
