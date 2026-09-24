@@ -93,11 +93,28 @@ export async function fetchBoardById(
 }
 
 /** Everything the board page shows, and what the caller may do on the board. */
+export type LabelEntry = {
+  labelId: number
+  boardId: number
+  name: string
+  color: string | null
+}
+
+export type TaskLabelEntry = {
+  id: number
+  taskId: number
+  labelId: number
+  addedAt: string
+}
+
 export type BoardSnapshot = {
   board: BoardEntry
   columns: BoardColumnEntry[]
   tasks: TaskEntry[]
   assignments: TaskAssignmentEntry[]
+  labels: LabelEntry[]
+  /** Which labels are on which tasks. */
+  taskLabels: TaskLabelEntry[]
   permissions: PermissionDecisionMap
 }
 
