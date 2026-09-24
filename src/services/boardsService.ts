@@ -1,4 +1,8 @@
 import { apiUrl, parseError } from '../api/http'
+import type { BoardColumnEntry } from './boardColumnsService'
+import type { PermissionDecisionMap } from './permissionsService'
+import type { TaskAssignmentEntry } from './taskAssignmentsService'
+import type { TaskEntry } from './tasksService'
 
 function authHeaders(token: string): HeadersInit {
   return { Authorization: `Bearer ${token}` }
@@ -107,6 +111,28 @@ export async function fetchBoardById(
   )
   if (!response.ok) throw new Error(await parseError(response))
   return response.json() as Promise<BoardEntry>
+}
+
+/** Everything the board page shows, and what the caller may do on the board. */
+export type BoardSnapshot = {
+  board: BoardEntry
+  columns: BoardColumnEntry[]
+  tasks: TaskEntry[]
+  assignments: TaskAssignmentEntry[]
+  permissions: PermissionDecisionMap
+}
+
+export async function fetchBoardSnapshot(
+  token: string,
+  serverId: string,
+  boardId: string,
+): Promise<BoardSnapshot> {
+  const response = await fetch(
+    apiUrl(`/api/servers/${serverId}/boards/${boardId}/snapshot`),
+    { headers: authHeaders(token) },
+  )
+  if (!response.ok) throw new Error(await parseError(response))
+  return response.json() as Promise<BoardSnapshot>
 }
 
 export async function archiveBoard(

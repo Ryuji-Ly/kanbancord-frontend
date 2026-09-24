@@ -76,6 +76,26 @@ export async function updateColumn(
   return response.json() as Promise<BoardColumnEntry>
 }
 
+/** Puts a column at `index` (0-based) on its board; the server renumbers the others. */
+export async function moveColumn(
+  token: string,
+  serverId: string,
+  boardId: string,
+  columnId: number,
+  index: number,
+): Promise<BoardColumnEntry> {
+  const response = await fetch(
+    apiUrl(`/api/servers/${serverId}/boards/${boardId}/columns/${columnId}/move`),
+    {
+      method: 'POST',
+      headers: { ...authHeaders(token), 'Content-Type': 'application/json' },
+      body: JSON.stringify({ index }),
+    },
+  )
+  if (!response.ok) throw new Error(await parseError(response))
+  return response.json() as Promise<BoardColumnEntry>
+}
+
 export async function deleteColumn(
   token: string,
   serverId: string,
