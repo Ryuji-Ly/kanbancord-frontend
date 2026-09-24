@@ -1,9 +1,8 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
+import { useOptimisticCache } from '../../api/useOptimisticCache'
 import { getStoredToken } from '../../services/authService'
-import { fetchMe } from '../../services/meService'
 import { fetchBoardSnapshot, type BoardSnapshot } from '../../services/boardsService'
 import { createColumn, deleteColumn, moveColumn, updateColumn, type BoardColumnEntry } from '../../services/boardColumnsService'
-import { fetchServerMembers } from '../../services/serverMembersService'
 import { createTaskAssignment, deleteTaskAssignment } from '../../services/taskAssignmentsService'
 import {
   createTaskComment,
@@ -25,9 +24,6 @@ export const boardKeys = {
     ['board', serverId, boardId, 'comments', taskId] as const,
 }
 
-const meKey = ['me'] as const
-const serverMembersKey = (serverId: string) => ['server', serverId, 'members'] as const
-
 function requireToken(): string {
   const token = getStoredToken()
   if (!token) throw new Error('You are not signed in.')
@@ -36,24 +32,11 @@ function requireToken(): string {
 
 // ── Queries ──────────────────────────────────────────────────────────────────
 
-export function useMe() {
-  return useQuery({ queryKey: meKey, queryFn: () => fetchMe(requireToken()), staleTime: 5 * 60_000 })
-}
-
 export function useBoardSnapshot(serverId: string, boardId: string) {
   return useQuery({
     queryKey: boardKeys.snapshot(serverId, boardId),
     queryFn: () => fetchBoardSnapshot(requireToken(), serverId, boardId),
     enabled: Boolean(serverId && boardId && getStoredToken()),
-  })
-}
-
-export function useServerMembers(serverId: string, enabled: boolean) {
-  return useQuery({
-    queryKey: serverMembersKey(serverId),
-    queryFn: () => fetchServerMembers(requireToken(), serverId),
-    enabled: enabled && Boolean(serverId),
-    staleTime: 5 * 60_000,
   })
 }
 
@@ -67,33 +50,6 @@ export function useTaskComments(serverId: string, boardId: string, taskId: numbe
 }
 
 // ── Optimistic updates ───────────────────────────────────────────────────────
-
-type Rollback<T> = { previous: T | undefined }
-
-/**
- * Applies a change to cached data before the server confirms it, restores the previous data if the
- * request fails, and refetches afterwards so the cache ends up as the server has it.
- */
-function useOptimistic<T>(queryKey: readonly unknown[]) {
-  const queryClient = useQueryClient()
-  return {
-    async apply(update: (current: T) => T): Promise<Rollback<T>> {
-      await queryClient.cancelQueries({ queryKey })
-      const previous = queryClient.getQueryData<T>(queryKey)
-      if (previous !== undefined) queryClient.setQueryData<T>(queryKey, update(previous))
-      return { previous }
-    },
-    rollback(context: Rollback<T> | undefined) {
-      if (context?.previous !== undefined) queryClient.setQueryData<T>(queryKey, context.previous)
-    },
-    set(update: (current: T) => T) {
-      queryClient.setQueryData<T>(queryKey, (current) => (current === undefined ? current : update(current)))
-    },
-    refresh() {
-      return queryClient.invalidateQueries({ queryKey })
-    },
-  }
-}
 
 /** Replaces the task with id `taskId` (by default the task's own id, or a temporary one being confirmed). */
 function replaceTask(snapshot: BoardSnapshot, task: TaskEntry, taskId = task.taskId): BoardSnapshot {
@@ -124,7 +80,7 @@ export function taskFieldsFromDraft(draft: TaskDraft, fallbackTitle = ''): TaskF
 // ── Board mutations ──────────────────────────────────────────────────────────
 
 export function useBoardMutations(serverId: string, boardId: string) {
-  const board = useOptimistic<BoardSnapshot>(boardKeys.snapshot(serverId, boardId))
+  const board = useOptimisticCache<BoardSnapshot>(boardKeys.snapshot(serverId, boardId))
   const settle = { onSettled: () => board.refresh() }
 
   const renameColumn = useMutation({
@@ -299,7 +255,7 @@ export function useBoardMutations(serverId: string, boardId: string) {
 // ── Comment mutations ────────────────────────────────────────────────────────
 
 export function useCommentMutations(serverId: string, boardId: string, taskId: number | null) {
-  const comments = useOptimistic<TaskCommentEntry[]>(boardKeys.comments(serverId, boardId, taskId ?? -1))
+  const comments = useOptimisticCache<TaskCommentEntry[]>(boardKeys.comments(serverId, boardId, taskId ?? -1))
   const settle = { onSettled: () => comments.refresh() }
   const currentTaskId = () => {
     if (taskId === null) throw new Error('No task is selected.')
