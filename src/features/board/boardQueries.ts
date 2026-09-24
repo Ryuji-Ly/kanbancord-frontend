@@ -3,6 +3,8 @@ import { useOptimisticCache } from '../../api/useOptimisticCache'
 import { fetchBoardSnapshot, type BoardSnapshot } from '../../services/boardsService'
 import { createColumn, deleteColumn, moveColumn, updateColumn, type BoardColumnEntry } from '../../services/boardColumnsService'
 import { createTaskAssignment, deleteTaskAssignment } from '../../services/taskAssignmentsService'
+import { addTaskLabel, createLabel, deleteLabel, removeTaskLabel, updateLabel } from '../../services/labelsService'
+import { createPriority, deletePriority, movePriority, updatePriority } from '../../services/prioritiesService'
 import {
   createTaskComment,
   deleteTaskComment,
@@ -57,7 +59,7 @@ function replaceColumn(snapshot: BoardSnapshot, column: BoardColumnEntry, column
 export type TaskFields = {
   title: string
   description: string | null
-  priority: string | null
+  priorityId: number | null
   dueDate: string | null
 }
 
@@ -65,7 +67,7 @@ export function taskFieldsFromDraft(draft: TaskDraft, fallbackTitle = ''): TaskF
   return {
     title: draft.title.trim() || fallbackTitle,
     description: draft.description.trim() || null,
-    priority: draft.priority.trim() || null,
+    priorityId: draft.priorityId,
     dueDate: draft.dueDate || null,
   }
 }
@@ -143,12 +145,16 @@ export function useBoardMutations(serverId: string, boardId: string) {
   })
 
   const addTask = useMutation({
-    /** Creates the task, then assigns the chosen members; a failed assignment does not undo the task. */
+    /**
+     * Creates the task, then assigns the chosen members and applies the chosen labels. A failed
+     * assignment or label does not undo the task.
+     */
     mutationFn: async (input: {
       columnId: number
       position: number
       fields: TaskFields
       assigneeIds: string[]
+      labelIds: number[]
       optimisticId: number
       createdBy: string
     }) => {
@@ -157,10 +163,11 @@ export function useBoardMutations(serverId: string, boardId: string) {
         columnId: input.columnId,
         position: input.position,
       })
-      const assigned = await Promise.allSettled(
-        input.assigneeIds.map((userId) => createTaskAssignment(serverId, boardId, created.taskId, userId)),
-      )
-      return { created, assignmentFailed: assigned.some((result) => result.status === 'rejected') }
+      const extras = await Promise.allSettled([
+        ...input.assigneeIds.map((userId) => createTaskAssignment(serverId, boardId, created.taskId, userId)),
+        ...input.labelIds.map((labelId) => addTaskLabel(serverId, boardId, created.taskId, labelId)),
+      ])
+      return { created, extrasFailed: extras.some((result) => result.status === 'rejected') }
     },
     onMutate: (input) =>
       board.apply((snapshot) => {
@@ -218,6 +225,25 @@ export function useBoardMutations(serverId: string, boardId: string) {
     ...settle,
   })
 
+  const labelTask = useMutation({
+    mutationFn: ({ taskId, labelId }: { taskId: number; labelId: number }) =>
+      addTaskLabel(serverId, boardId, taskId, labelId),
+    onSuccess: (created) => board.set((snapshot) => ({ ...snapshot, taskLabels: [...snapshot.taskLabels, created] })),
+    ...settle,
+  })
+
+  const unlabelTask = useMutation({
+    mutationFn: ({ taskId, taskLabelId }: { taskId: number; taskLabelId: number }) =>
+      removeTaskLabel(serverId, boardId, taskId, taskLabelId),
+    onMutate: ({ taskLabelId }) =>
+      board.apply((snapshot) => ({
+        ...snapshot,
+        taskLabels: snapshot.taskLabels.filter((taskLabel) => taskLabel.id !== taskLabelId),
+      })),
+    onError: (_error, _variables, context) => board.rollback(context),
+    ...settle,
+  })
+
   const unassign = useMutation({
     mutationFn: ({ taskId, assignmentId }: { taskId: number; assignmentId: number }) =>
       deleteTaskAssignment(serverId, boardId, taskId, assignmentId),
@@ -238,6 +264,8 @@ export function useBoardMutations(serverId: string, boardId: string) {
     relocateTask,
     addTask,
     editTask,
+    labelTask,
+    unlabelTask,
     removeTask,
     assign,
     unassign,
@@ -283,4 +311,92 @@ export function useCommentMutations(serverId: string, boardId: string, taskId: n
   })
 
   return { create, edit, remove }
+}
+
+// ── Labels and priority levels of the board ──────────────────────────────────
+
+/**
+ * Managing the board's labels and priority levels, from the board settings or inline while editing
+ * a task. Each change updates the cached board at once; the server's copy follows.
+ */
+export function useBoardCatalogMutations(serverId: string, boardId: string) {
+  const board = useOptimisticCache<BoardSnapshot>(boardKeys.snapshot(serverId, boardId))
+  const settle = { onSettled: () => board.refresh() }
+
+  const addLabel = useMutation({
+    mutationFn: (input: { name: string; color: string }) => createLabel(serverId, boardId, input),
+    onSuccess: (created) => board.set((snapshot) => ({ ...snapshot, labels: [...snapshot.labels, created] })),
+    ...settle,
+  })
+
+  const editLabel = useMutation({
+    mutationFn: ({ labelId, ...input }: { labelId: number; name: string; color: string }) =>
+      updateLabel(serverId, boardId, labelId, input),
+    onSuccess: (updated) =>
+      board.set((snapshot) => ({
+        ...snapshot,
+        labels: snapshot.labels.map((label) => (label.labelId === updated.labelId ? updated : label)),
+      })),
+    ...settle,
+  })
+
+  const removeLabel = useMutation({
+    mutationFn: (labelId: number) => deleteLabel(serverId, boardId, labelId),
+    onSuccess: (_result, labelId) =>
+      board.set((snapshot) => ({
+        ...snapshot,
+        labels: snapshot.labels.filter((label) => label.labelId !== labelId),
+        taskLabels: snapshot.taskLabels.filter((taskLabel) => taskLabel.labelId !== labelId),
+      })),
+    ...settle,
+  })
+
+  const addPriority = useMutation({
+    mutationFn: (input: { name: string; color?: string }) => createPriority(serverId, boardId, input),
+    onSuccess: (created) =>
+      board.set((snapshot) => ({ ...snapshot, priorities: [...snapshot.priorities, created] })),
+    ...settle,
+  })
+
+  const editPriority = useMutation({
+    mutationFn: ({ priorityId, ...input }: { priorityId: number; name: string; color: string }) =>
+      updatePriority(serverId, boardId, priorityId, input),
+    onSuccess: (updated) =>
+      board.set((snapshot) => ({
+        ...snapshot,
+        priorities: snapshot.priorities.map((level) => (level.priorityId === updated.priorityId ? updated : level)),
+      })),
+    ...settle,
+  })
+
+  const reorderPriority = useMutation({
+    mutationFn: ({ priorityId, index }: { priorityId: number; index: number }) =>
+      movePriority(serverId, boardId, priorityId, index),
+    onMutate: ({ priorityId, index }) =>
+      board.apply((snapshot) => {
+        const moving = snapshot.priorities.find((level) => level.priorityId === priorityId)
+        if (!moving) return snapshot
+        const rest = snapshot.priorities.filter((level) => level.priorityId !== priorityId)
+        rest.splice(index, 0, moving)
+        return { ...snapshot, priorities: rest.map((level, i) => ({ ...level, position: i + 1 })) }
+      }),
+    onSuccess: (ordered) => board.set((snapshot) => ({ ...snapshot, priorities: ordered })),
+    onError: (_error, _variables, context) => board.rollback(context),
+    ...settle,
+  })
+
+  const removePriority = useMutation({
+    mutationFn: (priorityId: number) => deletePriority(serverId, boardId, priorityId),
+    onSuccess: (_result, priorityId) =>
+      board.set((snapshot) => ({
+        ...snapshot,
+        priorities: snapshot.priorities
+          .filter((level) => level.priorityId !== priorityId)
+          .map((level, i) => ({ ...level, position: i + 1 })),
+        tasks: snapshot.tasks.map((task) => (task.priorityId === priorityId ? { ...task, priorityId: null } : task)),
+      })),
+    ...settle,
+  })
+
+  return { addLabel, editLabel, removeLabel, addPriority, editPriority, reorderPriority, removePriority }
 }

@@ -1,6 +1,7 @@
 import { useLayoutEffect, useRef, useState, type ComponentPropsWithoutRef, type DragEvent } from 'react'
+import type { LabelEntry, PriorityEntry } from '../../../services/boardsService'
 import type { TaskEntry } from '../../../services/tasksService'
-import { resolveAssigneeDisplayName, type AssigneeMember } from '../boardModel'
+import { readableTextColor, resolveAssigneeDisplayName, type AssigneeMember } from '../boardModel'
 
 /**
  * The task title, cut to two lines with an ellipsis (CSS line clamping cannot share a line with the
@@ -140,8 +141,33 @@ function TaskCardAssigneeStack({ assignees }: { assignees: AssigneeMember[] }) {
   )
 }
 
+/** Labels shown on a card before the rest are summed up as "+N". */
+const MAX_CARD_LABELS = 3
+
+function TaskCardLabels({ labels }: { labels: LabelEntry[] }) {
+  if (labels.length === 0) return null
+  const shown = labels.slice(0, MAX_CARD_LABELS)
+  const hidden = labels.length - shown.length
+  return (
+    <div className="kc-column-task-labels" aria-label={`Labels: ${labels.map((label) => label.name).join(', ')}`}>
+      {shown.map((label) => (
+        <span
+          key={label.labelId}
+          className="kc-column-task-label"
+          style={{ background: label.color, color: readableTextColor(label.color) }}
+        >
+          {label.name}
+        </span>
+      ))}
+      {hidden > 0 && <span className="kc-column-task-label kc-column-task-label--more">+{hidden}</span>}
+    </div>
+  )
+}
+
 type TaskCardProps = {
   task: TaskEntry
+  priority: PriorityEntry | null
+  labels: LabelEntry[]
   assignees: AssigneeMember[]
   movable: boolean
   draggable: boolean
@@ -155,6 +181,8 @@ type TaskCardProps = {
 
 export function TaskCard({
   task,
+  priority,
+  labels,
   assignees,
   movable,
   draggable,
@@ -190,7 +218,16 @@ export function TaskCard({
     >
       {!isPlaceholder && (
         <>
-          {task.priority && <span className="kc-column-task-priority">{task.priority}</span>}
+          <TaskCardLabels labels={labels} />
+          {priority && (
+            <span
+              className="kc-column-task-priority"
+              title={`Priority: ${priority.name}`}
+              style={{ background: priority.color ?? undefined, color: readableTextColor(priority.color) }}
+            >
+              {priority.name}
+            </span>
+          )}
           <TaskTitle key={task.title} title={task.title} />
           <TaskCardAssigneeStack assignees={assignees} />
         </>

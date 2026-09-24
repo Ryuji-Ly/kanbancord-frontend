@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useState, type ReactNode } from 'react'
 import { AddEntryModal } from '../AddEntryModal'
 import { DeleteGroupModal } from '../DeleteGroupModal'
 import { PermissionsSection } from '../permissions/PermissionsSection'
@@ -48,6 +48,8 @@ type BoardModalProps = {
   onSave: (payload: { name: string; description: string; permissions: PermissionEntry[]; columnNames: string[] }) => void
   onArchive: (archived: boolean) => void
   onDelete: () => void
+  /** Further sections shown when editing, before the archive and delete actions. */
+  children?: ReactNode
 }
 
 /**
@@ -75,6 +77,7 @@ export function BoardModal({
   onSave,
   onArchive,
   onDelete,
+  children,
 }: BoardModalProps) {
   const isArchivedMode = mode === 'edit' && Boolean(board?.isArchived)
   const canEditDetailsInModal = canEditDetails && !isArchivedMode
@@ -521,6 +524,8 @@ export function BoardModal({
                   </section>
                 )}
 
+                {mode === 'edit' && children}
+
                 {mode === 'edit' && board && (canArchive || canDelete) && (
                   <section className="kc-board-modal-section">
                     <div className="kc-board-modal-section-head">
@@ -555,7 +560,8 @@ export function BoardModal({
             )}
           </div>
 
-          {!isArchivedMode && (
+          {/* Labels and priorities save as they change; Save is for details and permissions. */}
+          {!isArchivedMode && (mode === 'create' || canEditDetailsInModal || canEditPermissionsInModal) && (
             <div className="kc-modal-footer">
               <button type="button" className="kc-btn kc-btn-ghost" onClick={onClose} disabled={saving}>
                 Cancel
