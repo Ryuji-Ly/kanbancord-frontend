@@ -4,25 +4,24 @@ import remarkGfm from 'remark-gfm'
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { getStoredToken } from '../services/authService'
 import { fetchMe } from '../services/meService'
-import { fetchBoardById, type BoardEntry } from '../services/boardsService'
+import { fetchBoardSnapshot as fetchBoardSnapshotData, type BoardEntry } from '../services/boardsService'
 import {
-  fetchBoardColumns,
   createColumn,
   updateColumn,
   deleteColumn,
+  moveColumn,
   type BoardColumnEntry,
 } from '../services/boardColumnsService'
 import {
   createTask,
   deleteTask,
-  fetchBoardTasks,
+  moveTask,
   updateTask,
   type TaskEntry,
 } from '../services/tasksService'
 import {
   createTaskAssignment,
   deleteTaskAssignment,
-  fetchBoardTaskAssignments,
   type TaskAssignmentEntry,
 } from '../services/taskAssignmentsService'
 import {
@@ -37,7 +36,6 @@ import {
   type TaskCommentEditor,
   type TaskCommentEntry,
 } from '../services/taskCommentsService'
-import { evaluatePermissions } from '../services/permissionsService'
 import { boardTopic, connectRealtimeChannel, type RealtimeEvent } from '../services/realtimeService'
 import { DashboardHeader } from '../components/dashboard/DashboardHeader'
 import { ToastStack } from '../components/dashboard/ToastStack'
@@ -73,22 +71,6 @@ const EMPTY_TASK_DRAFT: TaskDraft = {
 const EMPTY_TASK_COMMENT_DRAFT: TaskCommentDraft = {
   content: '',
 }
-
-const BOARD_PERMISSION_KEYS = [
-  'EDIT_COLUMN',
-  'CREATE_COLUMN',
-  'DELETE_COLUMN',
-  'MOVE_COLUMN',
-  'CREATE_TASK',
-  'EDIT_TASK',
-  'DELETE_TASK',
-  'MOVE_TASK',
-  'ASSIGN_TASK_SELF',
-  'ASSIGN_TASK_OTHERS',
-  'CREATE_TASK_COMMENT',
-  'EDIT_TASK_COMMENT',
-  'DELETE_TASK_COMMENT',
-]
 
 function resolveCommentAuthorName(comment: TaskCommentEntry): string {
   return comment.authorGlobalName?.trim() || comment.authorUsername
@@ -911,20 +893,14 @@ export function BoardPage() {
   }, [boardId, serverId, me, boardReady])
 
   async function fetchBoardSnapshot(token: string) {
-    const [boardData, columnData, taskData, taskAssignmentData, permissionMap] = await Promise.all([
-      fetchBoardById(token, serverId, boardId),
-      fetchBoardColumns(token, serverId, boardId),
-      fetchBoardTasks(token, serverId, boardId),
-      fetchBoardTaskAssignments(token, serverId, boardId),
-      evaluatePermissions(token, serverId, BOARD_PERMISSION_KEYS, boardId),
-    ])
+    const snapshot = await fetchBoardSnapshotData(token, serverId, boardId)
 
     return {
-      boardData,
-      columnData,
-      taskData,
-      taskAssignmentData,
-      permissionMap,
+      boardData: snapshot.board,
+      columnData: snapshot.columns,
+      taskData: snapshot.tasks,
+      taskAssignmentData: snapshot.assignments,
+      permissionMap: snapshot.permissions,
     }
   }
 
@@ -1105,6 +1081,7 @@ export function BoardPage() {
   }
 
   async function persistColumnOrder(
+    columnId: number,
     nextColumns: BoardColumnEntry[],
     previousColumns: BoardColumnEntry[],
   ) {
@@ -1121,19 +1098,11 @@ export function BoardPage() {
 
     setMovingColumns(true)
     try {
-      const updatedColumns = await Promise.all(
-        nextColumns.map((column, index) =>
-          updateColumn(token, serverId, boardId, column.columnId, column.name, {
-            position: index + 1,
-            color: column.color,
-            wipLimit: column.wipLimit,
-          }),
-        ),
-      )
+      // One request; the server renumbers every column the same way.
+      const index = nextColumns.findIndex((column) => column.columnId === columnId)
+      await moveColumn(token, serverId, boardId, columnId, index)
 
-      setColumns(
-        [...updatedColumns].sort((left, right) => Number(left.position ?? 0) - Number(right.position ?? 0)),
-      )
+      setColumns(nextColumns.map((column, position) => ({ ...column, position: position + 1 })))
       showToast('Columns reordered', 'success')
     } catch {
       setColumns(previousColumns)
@@ -1245,7 +1214,7 @@ export function BoardPage() {
     if (!changed) return
 
     setColumns(nextColumns)
-    await persistColumnOrder(nextColumns, previousColumns)
+    await persistColumnOrder(draggedColumnId, nextColumns, previousColumns)
   }
 
   function handleBoardRowDragOver(event: DragEvent<HTMLElement>) {
@@ -1338,7 +1307,8 @@ export function BoardPage() {
 
       setTasksByColumn(nextTaskGroups)
       const affectedColumnIds = Array.from(new Set([sourceColumnId, target.columnId]))
-      await persistTaskMove(nextTaskGroups, previousTaskGroups, affectedColumnIds)
+      const movedColumnId = target.columnId
+      await persistTaskMove(draggedTask.taskId, movedColumnId, nextTaskGroups, previousTaskGroups, affectedColumnIds)
       return
     }
 
@@ -1993,6 +1963,8 @@ export function BoardPage() {
   }
 
   async function persistTaskMove(
+    taskId: number,
+    columnId: number,
     nextTaskGroups: Record<number, TaskEntry[]>,
     previousTaskGroups: Record<number, TaskEntry[]>,
     affectedColumnIds: number[],
@@ -2010,28 +1982,19 @@ export function BoardPage() {
 
     setMovingTasks(true)
     try {
-      const updatedTasks = await Promise.all(
-        affectedColumnIds.flatMap((columnId) =>
-          (nextTaskGroups[columnId] ?? []).map((task, index) =>
-            updateTask(token, serverId, boardId, task.taskId, {
-              title: task.title,
-              description: task.description,
-              columnId,
-              position: index + 1,
-              priority: task.priority,
-              dueDate: task.dueDate,
-            }),
-          ),
-        ),
-      )
+      // One request; the server renumbers the affected columns the same way.
+      const index = (nextTaskGroups[columnId] ?? []).findIndex((task) => task.taskId === taskId)
+      await moveTask(token, serverId, boardId, taskId, columnId, index)
 
-      const mergedGroups = { ...nextTaskGroups }
-      for (const columnId of affectedColumnIds) {
-        mergedGroups[columnId] = sortTasks(
-          updatedTasks.filter((task) => task.columnId === columnId),
-        )
+      const renumbered = { ...nextTaskGroups }
+      for (const affectedColumnId of affectedColumnIds) {
+        renumbered[affectedColumnId] = (nextTaskGroups[affectedColumnId] ?? []).map((task, position) => ({
+          ...task,
+          columnId: affectedColumnId,
+          position: position + 1,
+        }))
       }
-      setTasksByColumn(mergedGroups)
+      setTasksByColumn(renumbered)
       showToast('Tasks reordered', 'success')
     } catch {
       setTasksByColumn(previousTaskGroups)
@@ -2080,7 +2043,7 @@ export function BoardPage() {
 
     setTasksByColumn(nextTaskGroups)
     const affectedColumnIds = Array.from(new Set([sourceColumnId, columnId]))
-    await persistTaskMove(nextTaskGroups, previousTaskGroups, affectedColumnIds)
+    await persistTaskMove(draggedTask.taskId, columnId, nextTaskGroups, previousTaskGroups, affectedColumnIds)
   }
 
   const deleteTaskCount = deleteTargetColumn ? getColumnTasks(deleteTargetColumn.columnId).length : 0
