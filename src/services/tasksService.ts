@@ -1,8 +1,5 @@
-import { apiUrl, parseError } from '../api/http'
-
-function authHeaders(token: string): HeadersInit {
-  return { Authorization: `Bearer ${token}` }
-}
+import { parseError } from '../api/http'
+import { apiFetch } from '../api/session'
 
 type SpringPage<T> = {
   content: T[]
@@ -26,7 +23,6 @@ export type TaskEntry = {
 }
 
 export async function fetchBoardTasks(
-  token: string,
   serverId: string,
   boardId: string,
   options?: {
@@ -42,10 +38,7 @@ export async function fetchBoardTasks(
     params.set('columnId', String(options.columnId))
   }
 
-  const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/boards/${boardId}/tasks?${params.toString()}`),
-    { headers: authHeaders(token) },
-  )
+  const response = await apiFetch(`/api/servers/${serverId}/boards/${boardId}/tasks?${params.toString()}`)
   if (!response.ok) throw new Error(await parseError(response))
 
   const data = (await response.json()) as SpringPage<TaskEntry>
@@ -53,7 +46,6 @@ export async function fetchBoardTasks(
 }
 
 export async function createTask(
-  token: string,
   serverId: string,
   boardId: string,
   input: {
@@ -65,28 +57,24 @@ export async function createTask(
     dueDate?: string | null
   },
 ): Promise<TaskEntry> {
-  const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/boards/${boardId}/tasks`),
-    {
-      method: 'POST',
-      headers: { ...authHeaders(token), 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        title: input.title,
-        description: input.description ?? undefined,
-        boardId: Number(boardId),
-        columnId: input.columnId,
-        position: input.position ?? undefined,
-        priority: input.priority ?? undefined,
-        dueDate: input.dueDate ?? undefined,
-      }),
-    },
-  )
+  const response = await apiFetch(`/api/servers/${serverId}/boards/${boardId}/tasks`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      title: input.title,
+      description: input.description ?? undefined,
+      boardId: Number(boardId),
+      columnId: input.columnId,
+      position: input.position ?? undefined,
+      priority: input.priority ?? undefined,
+      dueDate: input.dueDate ?? undefined,
+    }),
+  })
   if (!response.ok) throw new Error(await parseError(response))
   return response.json() as Promise<TaskEntry>
 }
 
 export async function updateTask(
-  token: string,
   serverId: string,
   boardId: string,
   taskId: number,
@@ -99,55 +87,46 @@ export async function updateTask(
     dueDate?: string | null
   },
 ): Promise<TaskEntry> {
-  const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/boards/${boardId}/tasks/${taskId}`),
-    {
-      method: 'PUT',
-      headers: { ...authHeaders(token), 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        title: input.title,
-        description: input.description ?? undefined,
-        boardId: Number(boardId),
-        columnId: input.columnId,
-        position: input.position ?? undefined,
-        priority: input.priority ?? undefined,
-        dueDate: input.dueDate ?? undefined,
-      }),
-    },
-  )
+  const response = await apiFetch(`/api/servers/${serverId}/boards/${boardId}/tasks/${taskId}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      title: input.title,
+      description: input.description ?? undefined,
+      boardId: Number(boardId),
+      columnId: input.columnId,
+      position: input.position ?? undefined,
+      priority: input.priority ?? undefined,
+      dueDate: input.dueDate ?? undefined,
+    }),
+  })
   if (!response.ok) throw new Error(await parseError(response))
   return response.json() as Promise<TaskEntry>
 }
 /** Puts a task at `index` (0-based) of a column; the server renumbers the affected columns. */
 export async function moveTask(
-  token: string,
   serverId: string,
   boardId: string,
   taskId: number,
   columnId: number,
   index: number,
 ): Promise<TaskEntry> {
-  const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/boards/${boardId}/tasks/${taskId}/move`),
-    {
-      method: 'POST',
-      headers: { ...authHeaders(token), 'Content-Type': 'application/json' },
-      body: JSON.stringify({ columnId, index }),
-    },
-  )
+  const response = await apiFetch(`/api/servers/${serverId}/boards/${boardId}/tasks/${taskId}/move`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ columnId, index }),
+  })
   if (!response.ok) throw new Error(await parseError(response))
   return response.json() as Promise<TaskEntry>
 }
 
 export async function deleteTask(
-  token: string,
   serverId: string,
   boardId: string,
   taskId: number,
 ): Promise<void> {
-  const response = await fetch(
-    apiUrl(`/api/servers/${serverId}/boards/${boardId}/tasks/${taskId}`),
-    { method: 'DELETE', headers: authHeaders(token) },
+  const response = await apiFetch(`/api/servers/${serverId}/boards/${boardId}/tasks/${taskId}`,
+    { method: 'DELETE' },
   )
   if (!response.ok) throw new Error(await parseError(response))
 }

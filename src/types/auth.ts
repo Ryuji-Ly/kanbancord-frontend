@@ -1,14 +1,11 @@
+/** A signed-in session's access token, as returned when signing in or refreshing. */
 export type AuthResponse = {
   accessToken: string
-  tokenType?: string
-  expiresInSeconds?: number
-  discordAccessToken?: string
-  user?: {
-    userId: string
-    username: string
-    globalName?: string
-    avatarUrl?: string
-  }
+  tokenType: string
+  /** Seconds until the access token expires. */
+  expiresIn: number
+  sessionId: string
+  user: MeResponse
 }
 
 export type MeResponse = {

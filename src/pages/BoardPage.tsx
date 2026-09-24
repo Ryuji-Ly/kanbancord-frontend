@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
-import { getStoredToken } from '../services/authService'
+import { readableError } from '../api/http'
+import { signOut, useSession } from '../api/session'
 import type { BoardColumnEntry } from '../services/boardColumnsService'
 import type { TaskEntry } from '../services/tasksService'
 import { DashboardHeader } from '../components/dashboard/DashboardHeader'
@@ -37,10 +38,11 @@ export function BoardPage() {
   const [searchParams] = useSearchParams()
   const navigate = useNavigate()
   const serverId = searchParams.get('serverId') ?? ''
-  const token = getStoredToken()
-  const hasContext = Boolean(token && boardId && serverId)
+  const session = useSession()
+  const hasContext = Boolean(boardId && serverId)
+  const [revokedReason, setRevokedReason] = useState<'ACCESS_LOST' | 'BOARD_DELETED' | null>(null)
 
-  const meQuery = useMe(token)
+  const meQuery = useMe()
   const snapshotQuery = useBoardSnapshot(serverId, boardId)
   const mutations = useBoardMutations(serverId, boardId)
   const { toasts, showToast } = useToasts()
@@ -53,7 +55,7 @@ export function BoardPage() {
   const tasksByColumn = useMemo(() => groupTasksByColumn(snapshot?.tasks ?? []), [snapshot])
   const ready = Boolean(snapshot && me)
 
-  useBoardRealtime(serverId, boardId, ready)
+  useBoardRealtime(serverId, boardId, ready, setRevokedReason)
 
   const [openMenuColumnId, setOpenMenuColumnId] = useState<number | null>(null)
   const [deleteTargetColumn, setDeleteTargetColumn] = useState<BoardColumnEntry | null>(null)
@@ -209,9 +211,15 @@ export function BoardPage() {
 
   const loadError = !hasContext
     ? 'Missing board context. Please open a board from the dashboard.'
-    : snapshotQuery.isError || meQuery.isError
-      ? `Failed to load board: ${snapshotQuery.error ?? meQuery.error}`
-      : ''
+    : session.status === 'signedOut'
+      ? 'You are signed out. Sign in from the dashboard to open this board.'
+      : revokedReason === 'BOARD_DELETED'
+        ? 'This board was deleted.'
+        : revokedReason === 'ACCESS_LOST'
+          ? 'You no longer have access to this board.'
+          : snapshotQuery.isError || meQuery.isError
+            ? `Failed to load board: ${readableError(snapshotQuery.error ?? meQuery.error, 'unknown error')}`
+            : ''
   const loading = hasContext && !loadError && !ready
   const deleteColumnTaskCount = deleteTargetColumn ? (tasksByColumn[deleteTargetColumn.columnId] ?? []).length : 0
 
@@ -224,7 +232,7 @@ export function BoardPage() {
           loading={loading}
           subtitle="Board"
           onBrandClick={() => navigate('/')}
-          onLogout={() => navigate('/')}
+          onLogout={() => void signOut().finally(() => navigate('/'))}
           onLogin={() => navigate('/')}
         />
 

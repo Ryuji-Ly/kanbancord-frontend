@@ -1,16 +1,9 @@
-import { apiUrl, parseError } from '../api/http'
+import { parseError } from '../api/http'
+import { apiFetch } from '../api/session'
 import type { MeResponse } from '../types/auth'
 
-function authHeaders(token: string): HeadersInit {
-  return {
-    Authorization: `Bearer ${token}`,
-  }
-}
-
-export async function fetchMe(token: string): Promise<MeResponse> {
-  const response = await fetch(apiUrl('/api/me'), {
-    headers: authHeaders(token),
-  })
+export async function fetchMe(): Promise<MeResponse> {
+  const response = await apiFetch('/api/me')
 
   if (!response.ok) {
     throw new Error(await parseError(response))
@@ -19,10 +12,8 @@ export async function fetchMe(token: string): Promise<MeResponse> {
   return response.json() as Promise<MeResponse>
 }
 
-export async function fetchMyServers(token: string): Promise<unknown> {
-  const response = await fetch(apiUrl('/api/me/servers'), {
-    headers: authHeaders(token),
-  })
+export async function fetchMyServers(): Promise<unknown> {
+  const response = await apiFetch('/api/me/servers')
 
   if (!response.ok) {
     throw new Error(await parseError(response))
