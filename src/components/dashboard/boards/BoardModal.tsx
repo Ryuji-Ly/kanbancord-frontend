@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { AddEntryModal } from '../AddEntryModal'
 import { DeleteGroupModal } from '../DeleteGroupModal'
 import { PermissionsSection } from '../permissions/PermissionsSection'
@@ -50,6 +50,10 @@ type BoardModalProps = {
   onDelete: () => void
 }
 
+/**
+ * Render with a `key` that changes whenever it should start over (another board, or its data finished
+ * loading): the form is initialised from the props when the modal mounts.
+ */
 export function BoardModal({
   show,
   mode,
@@ -95,29 +99,6 @@ export function BoardModal({
   const [deleteGroupTarget, setDeleteGroupTarget] = useState<GrantedToGroup | null>(null)
   const [showArchiveConfirm, setShowArchiveConfirm] = useState(false)
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
-
-  useEffect(() => {
-    if (!show) return
-    setName(initialName)
-    setDescription(initialDescription)
-    setDraftPermissions(cloneBoardPermissionDrafts(initialPermissions))
-    setPermissionsCollapsed(false)
-    setExpandedPermissionGroups(new Set())
-    setPermFilter('')
-    setOpenAddGroupKey('')
-    setNewPermId('')
-    setNewPermState('ALLOW')
-    setCreateColumnsText(DEFAULT_CREATE_COLUMNS_TEXT)
-    setShowAddEntryModal(false)
-    setModalSearch('')
-    setModalSubjectType(null)
-    setModalSubjectId(null)
-    setModalSubjectDisplay(null)
-    setModalPermStates({})
-    setDeleteGroupTarget(null)
-    setShowArchiveConfirm(false)
-    setShowDeleteConfirm(false)
-  }, [show, initialName, initialDescription, initialPermissions])
 
   const boardCatalog = useMemo(() => boardPermissionCatalogEntries(catalogEntries), [catalogEntries])
   const roleMap = useMemo(() => new Map(serverRoles.map((role) => [role.roleId, role.name])), [serverRoles])
