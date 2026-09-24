@@ -118,6 +118,27 @@ export async function updateTask(
   if (!response.ok) throw new Error(await parseError(response))
   return response.json() as Promise<TaskEntry>
 }
+/** Puts a task at `index` (0-based) of a column; the server renumbers the affected columns. */
+export async function moveTask(
+  token: string,
+  serverId: string,
+  boardId: string,
+  taskId: number,
+  columnId: number,
+  index: number,
+): Promise<TaskEntry> {
+  const response = await fetch(
+    apiUrl(`/api/servers/${serverId}/boards/${boardId}/tasks/${taskId}/move`),
+    {
+      method: 'POST',
+      headers: { ...authHeaders(token), 'Content-Type': 'application/json' },
+      body: JSON.stringify({ columnId, index }),
+    },
+  )
+  if (!response.ok) throw new Error(await parseError(response))
+  return response.json() as Promise<TaskEntry>
+}
+
 export async function deleteTask(
   token: string,
   serverId: string,
