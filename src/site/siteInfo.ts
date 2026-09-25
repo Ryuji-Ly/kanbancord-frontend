@@ -6,7 +6,7 @@ export const SITE = {
   name: 'KanbanCord',
   url: 'https://kanbancord.com',
   /** The person responsible for KanbanCord and its data (the "controller" in privacy law). */
-  operator: 'Yong-Hoon Kim',
+  operator: 'Ryuji Ly',
   /** The country whose law applies, and where the operator is based. */
   country: 'Belgium',
   /** For privacy and legal requests. */
