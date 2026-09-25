@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import type { BoardColumnEntry } from '../../../services/boardColumnsService'
 import type { LabelEntry, PriorityEntry } from '../../../services/boardsService'
+import type { ServerFeatures } from '../../../services/featuresService'
 import type { MeResponse } from '../../../types/auth'
 import { EMPTY_TASK_DRAFT, resolveAssignee, type AssigneeMember, type TaskDraft } from '../boardModel'
 import { AssigneePicker } from './AssigneePicker'
@@ -19,6 +20,7 @@ type CreateTaskModalProps = {
   canApplyLabels: boolean
   canCreateLabels: boolean
   canCreatePriorities: boolean
+  features: ServerFeatures
   creating: boolean
   error: string
   onClose: () => void
@@ -39,6 +41,7 @@ export function CreateTaskModal({
   canApplyLabels,
   canCreateLabels,
   canCreatePriorities,
+  features,
   creating,
   error,
   onClose,
@@ -96,28 +99,34 @@ export function CreateTaskModal({
             />
           </label>
 
-          <div className="kc-task-modal-grid">
-            <div className="kc-field">
-              <span className="kc-field-label">Priority</span>
-              <PriorityPicker
-                priorities={priorities}
-                value={draft.priorityId}
-                canCreate={canCreatePriorities}
-                onChange={(priorityId) => setDraft((prev) => ({ ...prev, priorityId }))}
-                onCreate={onCreatePriority}
-              />
-            </div>
+          {(features.PRIORITIES || features.DUE_DATES) && (
+            <div className="kc-task-modal-grid">
+              {features.PRIORITIES && (
+                <div className="kc-field">
+                  <span className="kc-field-label">Priority</span>
+                  <PriorityPicker
+                    priorities={priorities}
+                    value={draft.priorityId}
+                    canCreate={canCreatePriorities}
+                    onChange={(priorityId) => setDraft((prev) => ({ ...prev, priorityId }))}
+                    onCreate={onCreatePriority}
+                  />
+                </div>
+              )}
 
-            <label className="kc-field">
-              <span className="kc-field-label">Due Date</span>
-              <input
-                className="kc-input"
-                type="datetime-local"
-                value={draft.dueDate}
-                onChange={(event) => setDraft((prev) => ({ ...prev, dueDate: event.target.value }))}
-              />
-            </label>
-          </div>
+              {features.DUE_DATES && (
+                <label className="kc-field">
+                  <span className="kc-field-label">Due Date</span>
+                  <input
+                    className="kc-input"
+                    type="datetime-local"
+                    value={draft.dueDate}
+                    onChange={(event) => setDraft((prev) => ({ ...prev, dueDate: event.target.value }))}
+                  />
+                </label>
+              )}
+            </div>
+          )}
 
           {canApplyLabels && (
             <div className="kc-field">
