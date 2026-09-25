@@ -2,7 +2,12 @@ import { useMutation, useQuery } from '@tanstack/react-query'
 import { useOptimisticCache } from '../../api/useOptimisticCache'
 import { fetchBoardSnapshot, type BoardSnapshot } from '../../services/boardsService'
 import { createColumn, deleteColumn, moveColumn, updateColumn, type BoardColumnEntry } from '../../services/boardColumnsService'
-import { createTaskAssignment, deleteTaskAssignment } from '../../services/taskAssignmentsService'
+import {
+  assignTaskRole,
+  createTaskAssignment,
+  deleteTaskAssignment,
+  unassignTaskRole,
+} from '../../services/taskAssignmentsService'
 import { addTaskLabel, createLabel, deleteLabel, removeTaskLabel, updateLabel } from '../../services/labelsService'
 import { createPriority, deletePriority, movePriority, updatePriority } from '../../services/prioritiesService'
 import {
@@ -154,6 +159,7 @@ export function useBoardMutations(serverId: string, boardId: string) {
       position: number
       fields: TaskFields
       assigneeIds: string[]
+      roleIds: string[]
       labelIds: number[]
       optimisticId: number
       createdBy: string
@@ -165,6 +171,7 @@ export function useBoardMutations(serverId: string, boardId: string) {
       })
       const extras = await Promise.allSettled([
         ...input.assigneeIds.map((userId) => createTaskAssignment(serverId, boardId, created.taskId, userId)),
+        ...input.roleIds.map((roleId) => assignTaskRole(serverId, boardId, created.taskId, roleId)),
         ...input.labelIds.map((labelId) => addTaskLabel(serverId, boardId, created.taskId, labelId)),
       ])
       return { created, extrasFailed: extras.some((result) => result.status === 'rejected') }
@@ -225,6 +232,26 @@ export function useBoardMutations(serverId: string, boardId: string) {
     ...settle,
   })
 
+  const assignRole = useMutation({
+    mutationFn: ({ taskId, roleId }: { taskId: number; roleId: string }) =>
+      assignTaskRole(serverId, boardId, taskId, roleId),
+    onSuccess: (created) =>
+      board.set((snapshot) => ({ ...snapshot, roleAssignments: [...snapshot.roleAssignments, created] })),
+    ...settle,
+  })
+
+  const unassignRole = useMutation({
+    mutationFn: ({ taskId, assignmentId }: { taskId: number; assignmentId: number }) =>
+      unassignTaskRole(serverId, boardId, taskId, assignmentId),
+    onMutate: ({ assignmentId }) =>
+      board.apply((snapshot) => ({
+        ...snapshot,
+        roleAssignments: snapshot.roleAssignments.filter((assignment) => assignment.id !== assignmentId),
+      })),
+    onError: (_error, _variables, context) => board.rollback(context),
+    ...settle,
+  })
+
   const labelTask = useMutation({
     mutationFn: ({ taskId, labelId }: { taskId: number; labelId: number }) =>
       addTaskLabel(serverId, boardId, taskId, labelId),
@@ -266,6 +293,8 @@ export function useBoardMutations(serverId: string, boardId: string) {
     editTask,
     labelTask,
     unlabelTask,
+    assignRole,
+    unassignRole,
     removeTask,
     assign,
     unassign,
