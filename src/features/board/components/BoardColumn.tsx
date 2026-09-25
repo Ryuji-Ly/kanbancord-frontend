@@ -82,7 +82,7 @@ export function BoardColumn({
   return (
     <article
       data-column-id={column.columnId}
-      style={{ '--kc-column-accent': column.color ?? '#60a5fa' } as CSSProperties}
+      style={{ '--kc-column-accent': column.color ?? 'var(--kc-info)' } as CSSProperties}
       className={[
         'kc-panel',
         'kc-board-column-card',
