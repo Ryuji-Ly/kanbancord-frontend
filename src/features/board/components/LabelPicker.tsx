@@ -2,10 +2,23 @@ import { useMemo, useState } from 'react'
 import type { LabelEntry } from '../../../services/boardsService'
 import { readableTextColor } from '../boardModel'
 
-/** A label in its own colour. */
-export function LabelChip({ label, onRemove }: { label: Pick<LabelEntry, 'name' | 'color'>; onRemove?: () => void }) {
+/** How many label patterns there are; a label's pattern follows from its id, the same everywhere. */
+export const LABEL_PATTERNS = 6
+
+/** A label in its own colour, with its pattern when patterns are switched on. */
+export function LabelChip({
+  label,
+  onRemove,
+}: {
+  label: Pick<LabelEntry, 'name' | 'color'> & { labelId?: number }
+  onRemove?: () => void
+}) {
   return (
-    <span className="kc-label-chip" style={{ background: label.color, color: readableTextColor(label.color) }}>
+    <span
+      className="kc-label-chip"
+      data-pattern={label.labelId === undefined ? undefined : label.labelId % LABEL_PATTERNS}
+      style={{ backgroundColor: label.color, color: readableTextColor(label.color) }}
+    >
       <span className="kc-label-chip-name">{label.name}</span>
       {onRemove && (
         <button type="button" className="kc-label-chip-remove" aria-label={`Remove label ${label.name}`} onClick={onRemove}>

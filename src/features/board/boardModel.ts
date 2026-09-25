@@ -99,6 +99,34 @@ export function boardAbilities(snapshot: BoardSnapshot | undefined): BoardAbilit
 }
 
 /**
+ * The abilities with the user's own simple view applied: features they chose to hide are treated as
+ * off, for them only. The server's settings still decide what is on at all.
+ */
+export function withSimpleView(
+  abilities: BoardAbilities,
+  hidden: Partial<Record<FeatureKey, boolean>> | undefined,
+): BoardAbilities {
+  if (!hidden || !Object.values(hidden).some(Boolean)) return abilities
+  const features = { ...abilities.features }
+  for (const [key, isHidden] of Object.entries(hidden)) {
+    if (isHidden) features[key as FeatureKey] = false
+  }
+  return {
+    ...abilities,
+    features,
+    assignSelf: abilities.assignSelf && features.ASSIGNEES,
+    assignOthers: abilities.assignOthers && features.ASSIGNEES,
+    comment: abilities.comment && features.COMMENTS,
+    moderateCommentEdits: abilities.moderateCommentEdits && features.COMMENTS,
+    moderateCommentDeletes: abilities.moderateCommentDeletes && features.COMMENTS,
+    applyLabel: abilities.applyLabel && features.LABELS,
+    removeLabel: abilities.removeLabel && features.LABELS,
+    createLabel: abilities.createLabel && features.LABELS,
+    managePriorities: abilities.managePriorities && features.PRIORITIES,
+  }
+}
+
+/**
  * What the user may change in the board settings. Unlike {@link boardAbilities} this is not switched
  * off for an archived board: it still has to be restorable, deletable and viewable.
  */

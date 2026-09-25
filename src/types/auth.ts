@@ -13,6 +13,8 @@ export type MeResponse = {
   username: string
   globalName?: string
   avatarUrl?: string
+  /** Theme, accessibility and simple view settings; interpreted by features/preferences. */
+  preferences?: Record<string, unknown> | null
 }
 
 export type DiscordGuild = {
