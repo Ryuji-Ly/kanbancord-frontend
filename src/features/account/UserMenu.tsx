@@ -6,6 +6,7 @@ import { AppearanceSettings } from '../preferences/AppearanceSettings'
 import { SimpleViewSettings } from '../preferences/SimpleViewSettings'
 import { usePreferences, useSavePreferences } from '../preferences/usePreferences'
 import { ServerSettingsDialog } from '../serverSettings/ServerSettingsDialog'
+import { MyNotificationsSettings } from '../notifications/MyNotificationsSettings'
 import { SessionsSettings } from './SessionsSettings'
 
 type UserMenuProps = {
@@ -126,7 +127,10 @@ export function UserMenu({ me, onLogout }: UserMenuProps) {
           serverName={name}
           title="Settings"
           onClose={() => setDialog(null)}
-          sections={[{ key: 'sessions', label: 'Sessions', content: <SessionsSettings /> }]}
+          sections={[
+            { key: 'notifications', label: 'Notifications', content: <MyNotificationsSettings /> },
+            { key: 'sessions', label: 'Sessions', content: <SessionsSettings /> },
+          ]}
         />
       )}
     </div>
