@@ -1,5 +1,6 @@
 import { parseServerTime } from '../../api/http'
 import type { AuditEntry } from '../../services/auditLogService'
+import { FEATURES } from '../../services/featuresService'
 import { DISCORD_FLAG_NAMES, KANBAN_PERM_INFO } from '../../services/permissionsService'
 
 /** The kinds of change the log can be filtered by, and the entity types each covers. */
@@ -12,6 +13,7 @@ export const AUDIT_CATEGORIES: { key: string; label: string; entityTypes: string
   { key: 'labels', label: 'Labels', entityTypes: ['LABEL', 'TASK_LABEL'] },
   { key: 'priorities', label: 'Priorities', entityTypes: ['PRIORITY'] },
   { key: 'permissions', label: 'Permissions', entityTypes: ['PERMISSION'] },
+  { key: 'settings', label: 'Server settings', entityTypes: ['SETTINGS'] },
 ]
 
 /** Names for people and roles, to describe assignments and permission rules. */
@@ -44,6 +46,8 @@ const HIDDEN_FIELDS = new Set([
 ])
 /** Fields holding the id of something else; shown as "#id". */
 const ID_FIELDS = new Set(['priorityId'])
+
+const FEATURE_NAMES: Record<string, string> = Object.fromEntries(FEATURES.map((feature) => [feature.key, feature.label]))
 
 const FIELD_NAMES: Record<string, string> = {
   columnId: 'column',
@@ -144,6 +148,17 @@ export function describeAuditEntry(entry: AuditEntry, lookups: AuditLookups): Au
         return { summary: `reordered ${named('task')} in ${column}`, fields }
       }
       break
+    }
+    case 'SERVER_FEATURES_UPDATED': {
+      const turned = (on: boolean) =>
+        Object.entries(entry.changes ?? {})
+          .filter(([key, change]) => !key.startsWith('_') && record(change)?.to === on)
+          .map(([key]) => FEATURE_NAMES[key] ?? key)
+      const parts = [
+        turned(true).length > 0 ? `turned on ${turned(true).join(', ')}` : '',
+        turned(false).length > 0 ? `turned off ${turned(false).join(', ')}` : '',
+      ].filter(Boolean)
+      return { summary: parts.length > 0 ? parts.join(' and ') : 'changed the server features', fields: [] }
     }
     case 'COLUMN_MOVED':
       return { summary: `reordered ${named('column')}`, fields }

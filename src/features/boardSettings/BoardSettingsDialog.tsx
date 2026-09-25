@@ -37,8 +37,9 @@ export function BoardSettingsDialog({ serverId, boardId, onClose, onDeleted, sho
   const queryClient = useQueryClient()
   const snapshotQuery = useBoardSnapshot(serverId, boardId)
   const snapshot = snapshotQuery.data
-  const access = boardSettingsAccess(snapshot?.permissions)
-  const showPermissions = access.editPermissions || Boolean(snapshot?.board.isArchived)
+  const access = boardSettingsAccess(snapshot?.permissions, snapshot?.features)
+  const showPermissions =
+    access.editPermissions || (Boolean(snapshot?.features.PERMISSIONS) && Boolean(snapshot?.board.isArchived))
 
   const serverAccess = useServerAccess(serverId)
   const serverRules = useServerPermissions(serverId)

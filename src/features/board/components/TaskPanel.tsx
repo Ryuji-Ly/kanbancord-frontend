@@ -68,7 +68,9 @@ export function TaskPanel({
   const [togglingChecklist, setTogglingChecklist] = useState(false)
 
   const assigneeIds = new Set(assignees.map((assignee) => assignee.userId))
-  const priority = priorities.find((level) => level.priorityId === task.priorityId) ?? null
+  const features = abilities.features
+  const priority = features.PRIORITIES ? (priorities.find((level) => level.priorityId === task.priorityId) ?? null) : null
+  const shownDueDate = features.DUE_DATES ? task.dueDate : null
   const canManageAssignee = (userId: string) =>
     me !== null && (abilities.assignOthers || (abilities.assignSelf && String(me.userId) === userId))
 
@@ -167,29 +169,35 @@ export function TaskPanel({
               />
             </label>
 
-            <div className="kc-task-modal-grid">
-              <div className="kc-field">
-                <span className="kc-field-label">Priority</span>
-                <PriorityPicker
-                  priorities={priorities}
-                  value={draft.priorityId}
-                  canCreate={abilities.managePriorities}
-                  onChange={(priorityId) => setDraft((prev) => ({ ...prev, priorityId }))}
-                  onCreate={onCreatePriority}
-                />
-              </div>
+            {(features.PRIORITIES || features.DUE_DATES) && (
+              <div className="kc-task-modal-grid">
+                {features.PRIORITIES && (
+                  <div className="kc-field">
+                    <span className="kc-field-label">Priority</span>
+                    <PriorityPicker
+                      priorities={priorities}
+                      value={draft.priorityId}
+                      canCreate={abilities.managePriorities}
+                      onChange={(priorityId) => setDraft((prev) => ({ ...prev, priorityId }))}
+                      onCreate={onCreatePriority}
+                    />
+                  </div>
+                )}
 
-              <label className="kc-field">
-                <span className="kc-field-label">Due Date</span>
-                <input
-                  className="kc-input"
-                  type="datetime-local"
-                  value={draft.dueDate}
-                  onChange={(event) => setDraft((prev) => ({ ...prev, dueDate: event.target.value }))}
-                  onKeyDown={saveOnEnter}
-                />
-              </label>
-            </div>
+                {features.DUE_DATES && (
+                  <label className="kc-field">
+                    <span className="kc-field-label">Due Date</span>
+                    <input
+                      className="kc-input"
+                      type="datetime-local"
+                      value={draft.dueDate}
+                      onChange={(event) => setDraft((prev) => ({ ...prev, dueDate: event.target.value }))}
+                      onKeyDown={saveOnEnter}
+                    />
+                  </label>
+                )}
+              </div>
+            )}
 
             <div className="kc-field">
               <span className="kc-field-label">Description</span>
@@ -241,7 +249,7 @@ export function TaskPanel({
               <span className="kc-field-label">Title</span>
               <p className="kc-task-panel-value">{task.title}</p>
             </div>
-            {(priority || task.dueDate) && (
+            {(priority || shownDueDate) && (
               <div className="kc-task-modal-grid">
                 {priority && (
                   <div className="kc-task-panel-field">
@@ -251,10 +259,10 @@ export function TaskPanel({
                     </p>
                   </div>
                 )}
-                {task.dueDate && (
+                {shownDueDate && (
                   <div className="kc-task-panel-field">
                     <span className="kc-field-label">Due Date</span>
-                    <p className="kc-task-panel-value">{new Date(task.dueDate).toLocaleString()}</p>
+                    <p className="kc-task-panel-value">{new Date(shownDueDate).toLocaleString()}</p>
                   </div>
                 )}
               </div>
@@ -326,7 +334,9 @@ export function TaskPanel({
           </div>
         )}
 
-        <TaskComments serverId={serverId} boardId={boardId} taskId={task.taskId} me={me} abilities={abilities} />
+        {features.COMMENTS && (
+          <TaskComments serverId={serverId} boardId={boardId} taskId={task.taskId} me={me} abilities={abilities} />
+        )}
       </div>
 
       {(abilities.editTask || abilities.deleteTask) && (

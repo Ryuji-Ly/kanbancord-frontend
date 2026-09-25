@@ -1,6 +1,7 @@
 import { parseError } from '../api/http'
 import { apiFetch } from '../api/session'
 import type { BoardColumnEntry } from './boardColumnsService'
+import type { ServerFeatures } from './featuresService'
 import type { PermissionDecisionMap } from './permissionsService'
 import type { TaskAssignmentEntry } from './taskAssignmentsService'
 import type { TaskEntry } from './tasksService'
@@ -127,6 +128,8 @@ export type BoardSnapshot = {
   /** The board's priority levels, most urgent first. */
   priorities: PriorityEntry[]
   permissions: PermissionDecisionMap
+  /** Which optional features the server has on; the lists of features that are off are empty. */
+  features: ServerFeatures
 }
 
 export async function fetchBoardSnapshot(

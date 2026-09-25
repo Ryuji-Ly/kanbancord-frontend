@@ -13,8 +13,11 @@ import { boardKeys } from './boardQueries'
 /** How long to wait for more events before refetching, so a burst of changes causes one refresh. */
 const REFRESH_DEBOUNCE_MS = 150
 
-/** Server-wide changes that can change what the user may do on the board, or who is listed on it. */
-const ACCESS_ENTITIES = new Set(['PERMISSION', 'ROLE', 'MEMBER', 'SERVER'])
+/**
+ * Server-wide changes that can change what the user may do or see on the board, or who is listed
+ * on it. SETTINGS covers the server's optional features.
+ */
+const ACCESS_ENTITIES = new Set(['PERMISSION', 'ROLE', 'MEMBER', 'SERVER', 'SETTINGS'])
 
 /**
  * Keeps the board's cached data current: any change announced on the board's topic marks everything

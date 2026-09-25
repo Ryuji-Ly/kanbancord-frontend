@@ -1,4 +1,5 @@
 import { DISCORD_CLIENT_ID } from '../../config/env'
+import { NO_FEATURES, type ServerFeatures } from '../../services/featuresService'
 import type { ServerAccess } from '../../services/permissionsService'
 import type { DiscordGuild } from '../../types/auth'
 import type { ApiServer, BoardCapability, MergedServer } from '../../components/dashboard/types'
@@ -42,18 +43,22 @@ export function actorRankWeight(access: ServerAccess | undefined): number {
   return Math.max(200, ...RANK_PROBES.filter((probe) => access?.server[probe.key]).map((probe) => probe.weight))
 }
 
-export function boardCapabilities(access: ServerAccess | undefined): Record<string, BoardCapability> {
+/** What the user may change on each board, leaving out features the server has switched off. */
+export function boardCapabilities(
+  access: ServerAccess | undefined,
+  features: ServerFeatures = NO_FEATURES,
+): Record<string, BoardCapability> {
   return Object.fromEntries(
     Object.entries(access?.boards ?? {}).map(([boardId, keys]) => [
       boardId,
       {
         canEditDetails: Boolean(keys.EDIT_BOARD_DETAILS),
-        canEditPermissions: Boolean(keys.EDIT_BOARD_PERMISSIONS),
+        canEditPermissions: features.PERMISSIONS && Boolean(keys.EDIT_BOARD_PERMISSIONS),
         canArchive: Boolean(keys.ARCHIVE_BOARD),
         canDelete: Boolean(keys.DELETE_BOARD),
-        canManageCatalog: Boolean(
-          keys.CREATE_LABEL || keys.EDIT_LABEL || keys.DELETE_LABEL || keys.MANAGE_PRIORITIES,
-        ),
+        canManageCatalog:
+          (features.LABELS && Boolean(keys.CREATE_LABEL || keys.EDIT_LABEL || keys.DELETE_LABEL)) ||
+          (features.PRIORITIES && Boolean(keys.MANAGE_PRIORITIES)),
       },
     ]),
   )
