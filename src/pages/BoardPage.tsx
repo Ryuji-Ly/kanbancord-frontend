@@ -405,6 +405,8 @@ export function BoardPage() {
 
         {createInColumn && (
           <CreateTaskModal
+            serverId={serverId}
+            boardId={boardId}
             column={createInColumn}
             me={me}
             canAssignSelf={abilities.assignSelf}

@@ -5,12 +5,17 @@ import type { ServerFeatures } from '../../../services/featuresService'
 import type { ServerRoleEntry } from '../../../services/permissionsService'
 import type { MeResponse } from '../../../types/auth'
 import { EMPTY_TASK_DRAFT, resolveAssignee, type AssigneeMember, type TaskDraft } from '../boardModel'
+import { hasPendingUploads } from '../../../services/mediaService'
 import { AssigneePicker } from './AssigneePicker'
 import { LabelPicker } from './LabelPicker'
+import { MarkdownEditor } from './MarkdownEditor'
 import { PriorityPicker } from './PriorityPicker'
 import { RolePicker } from './RolePicker'
 
 type CreateTaskModalProps = {
+  /** The board, for uploading images and videos into the description. */
+  serverId: string
+  boardId: string
   column: BoardColumnEntry
   me: MeResponse | null
   canAssignSelf: boolean
@@ -34,6 +39,8 @@ type CreateTaskModalProps = {
 }
 
 export function CreateTaskModal({
+  serverId,
+  boardId,
   column,
   me,
   canAssignSelf,
@@ -150,14 +157,14 @@ export function CreateTaskModal({
             </div>
           )}
 
-          <label className="kc-field">
+          <div className="kc-field">
             <span className="kc-field-label">Description</span>
-            <textarea
-              className="kc-textarea"
+            <MarkdownEditor
               value={draft.description}
-              onChange={(event) => setDraft((prev) => ({ ...prev, description: event.target.value }))}
+              onChange={(description) => setDraft((prev) => ({ ...prev, description }))}
+              upload={{ serverId, boardId }}
             />
-          </label>
+          </div>
 
           {canAssign && (
             <div className="kc-field">
@@ -192,7 +199,12 @@ export function CreateTaskModal({
           <button type="button" className="kc-btn kc-btn-ghost" onClick={close} disabled={creating}>
             Cancel
           </button>
-          <button type="button" className="kc-btn kc-btn-primary" onClick={submit} disabled={creating}>
+          <button
+            type="button"
+            className="kc-btn kc-btn-primary"
+            onClick={submit}
+            disabled={creating || hasPendingUploads(draft.description)}
+          >
             {creating ? 'Creating...' : 'Create task'}
           </button>
         </div>
