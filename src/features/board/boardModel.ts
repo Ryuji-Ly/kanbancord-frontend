@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react'
 import { parseServerTime } from '../../api/http'
 import type { BoardSnapshot, LabelEntry } from '../../services/boardsService'
 import { NO_FEATURES, type FeatureKey, type ServerFeatures } from '../../services/featuresService'
@@ -540,4 +541,9 @@ export function searchMembers(members: AssigneeMember[], query: string, exclude:
         ),
     )
     .slice(0, 50)
+}
+
+/** The style that gives a priority its colour: a flag and outline in it, on a faint tint of it. */
+export function priorityStyle(color: string | null | undefined): CSSProperties {
+  return { '--kc-priority-color': color ?? 'var(--kc-neutral-tag)' } as CSSProperties
 }
