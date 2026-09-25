@@ -1,4 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
+import { filtersFromParams, isFiltering, matchesFilters, paramsWithFilters, type BoardFilters } from '../features/board/boardFilters'
+import { BoardFilterBar } from '../features/board/components/BoardFilterBar'
 import { FiSettings } from 'react-icons/fi'
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { readableError } from '../api/http'
@@ -45,7 +47,7 @@ import { TaskPanel } from '../features/board/components/TaskPanel'
 
 export function BoardPage() {
   const { boardId = '' } = useParams()
-  const [searchParams] = useSearchParams()
+  const [searchParams, setSearchParams] = useSearchParams()
   const navigate = useNavigate()
   const serverId = searchParams.get('serverId') ?? ''
   const session = useSession()
@@ -111,6 +113,27 @@ export function BoardPage() {
     }
     return groups
   }, [snapshot, directory, shown.ASSIGNEES])
+
+  // Search and filters, kept in the address so a filtered board can be shared.
+  const filters = useMemo(() => filtersFromParams(searchParams), [searchParams])
+  const filtering = isFiltering(filters)
+  const setFilters = (next: BoardFilters) => setSearchParams(paramsWithFilters(searchParams, next), { replace: true })
+  const peopleOnBoard = useMemo(() => {
+    const unique = new Map<string, AssigneeMember>()
+    Object.values(assigneesByTaskId).flat().forEach((person) => unique.set(person.userId, person))
+    return [...unique.values()].sort((a, b) => (a.nickname ?? a.displayName).localeCompare(b.nickname ?? b.displayName))
+  }, [assigneesByTaskId])
+  const taskMatches = useMemo(() => {
+    const facts = {
+      assigneeIds: (taskId: number) => (assigneesByTaskId[taskId] ?? []).map((person) => person.userId),
+      labelIds: (taskId: number) => (labelsByTaskId.get(taskId) ?? []).map((entry: { label: { labelId: number } }) => entry.label.labelId),
+      myId: me ? String(me.userId) : null,
+      now: new Date(),
+    }
+    return (task: TaskEntry) => matchesFilters(task, filters, facts)
+  }, [filters, assigneesByTaskId, labelsByTaskId, me])
+  const totalTaskCount = snapshot?.tasks.length ?? 0
+  const shownTaskCount = filtering ? (snapshot?.tasks ?? []).filter(taskMatches).length : totalTaskCount
 
   const drag = useBoardDragAndDrop({
     columns,
@@ -310,6 +333,20 @@ export function BoardPage() {
             </p>
           )}
 
+          {ready && board && totalTaskCount > 0 && (
+            <BoardFilterBar
+              filters={filters}
+              onChange={setFilters}
+              features={shown}
+              people={peopleOnBoard}
+              labels={snapshot?.labels ?? []}
+              priorities={snapshot?.priorities ?? []}
+              shownCount={shownTaskCount}
+              totalCount={totalTaskCount}
+              canMoveTasks={abilities.moveTask}
+            />
+          )}
+
           {ready && board && (
             <section className="kc-board-page-columns" aria-label="Board columns">
               {openMenuColumnId !== null && (
@@ -324,7 +361,9 @@ export function BoardPage() {
                 <BoardColumn
                   key={column.columnId}
                   column={column}
-                  tasks={drag.tasksForRender[column.columnId] ?? []}
+                  tasks={filtering
+                    ? (drag.tasksForRender[column.columnId] ?? []).filter(taskMatches)
+                    : (drag.tasksForRender[column.columnId] ?? [])}
                   assigneesByTaskId={assigneesByTaskId}
                   labelsByTaskId={labelsByTaskId}
                   prioritiesById={prioritiesById}
@@ -334,7 +373,8 @@ export function BoardPage() {
                   canDelete={abilities.deleteColumn}
                   canMove={abilities.moveColumn}
                   canCreateTask={abilities.createTask}
-                  canMoveTasks={abilities.moveTask}
+                  // With some tasks hidden, a drop position would be ambiguous: dragging waits for no filters.
+                  canMoveTasks={abilities.moveTask && !filtering}
                   menuOpen={openMenuColumnId === column.columnId}
                   isDragPlaceholder={drag.draggedColumnId === column.columnId}
                   draggedTaskId={drag.draggedTaskId}
