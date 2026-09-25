@@ -1,5 +1,6 @@
 import { parseServerTime } from '../../api/http'
 import type { BoardSnapshot, LabelEntry } from '../../services/boardsService'
+import { NO_FEATURES, type FeatureKey, type ServerFeatures } from '../../services/featuresService'
 import type { BoardColumnEntry } from '../../services/boardColumnsService'
 import type { ServerMemberEntry } from '../../services/serverMembersService'
 import type { TaskCommentEditor, TaskCommentEntry } from '../../services/taskCommentsService'
@@ -52,12 +53,30 @@ export type BoardAbilities = {
   removeLabel: boolean
   createLabel: boolean
   managePriorities: boolean
+  /** Which optional features to show at all; off in simple mode unless the server switched them on. */
+  features: ServerFeatures
+}
+
+/** Permissions that belong to an optional feature; while the feature is off they grant nothing. */
+const FEATURE_OF: Record<string, FeatureKey> = {
+  ASSIGN_TASK_SELF: 'ASSIGNEES',
+  ASSIGN_TASK_OTHERS: 'ASSIGNEES',
+  CREATE_TASK_COMMENT: 'COMMENTS',
+  EDIT_TASK_COMMENT: 'COMMENTS',
+  DELETE_TASK_COMMENT: 'COMMENTS',
+  APPLY_LABEL_TO_TASK: 'LABELS',
+  REMOVE_LABEL_FROM_TASK: 'LABELS',
+  CREATE_LABEL: 'LABELS',
+  MANAGE_PRIORITIES: 'PRIORITIES',
 }
 
 export function boardAbilities(snapshot: BoardSnapshot | undefined): BoardAbilities {
   const archived = !snapshot || snapshot.board.isArchived
-  const can = (key: string) => !archived && Boolean(snapshot?.permissions[key]?.allowed)
+  const features = snapshot?.features ?? NO_FEATURES
+  const allowed = (key: string) => !archived && Boolean(snapshot?.permissions[key]?.allowed)
+  const can = (key: string) => allowed(key) && (FEATURE_OF[key] === undefined || features[FEATURE_OF[key]])
   return {
+    features,
     editColumn: can('EDIT_COLUMN'),
     createColumn: can('CREATE_COLUMN'),
     deleteColumn: can('DELETE_COLUMN'),
@@ -93,20 +112,23 @@ export type BoardSettingsAccess = {
   managePriorities: boolean
 }
 
-export function boardSettingsAccess(permissions: Record<string, { allowed: boolean } | boolean> | undefined): BoardSettingsAccess {
+export function boardSettingsAccess(
+  permissions: Record<string, { allowed: boolean } | boolean> | undefined,
+  features: ServerFeatures = NO_FEATURES,
+): BoardSettingsAccess {
   const can = (key: string) => {
     const decision = permissions?.[key]
     return typeof decision === 'boolean' ? decision : Boolean(decision?.allowed)
   }
   return {
     editDetails: can('EDIT_BOARD_DETAILS'),
-    editPermissions: can('EDIT_BOARD_PERMISSIONS'),
+    editPermissions: features.PERMISSIONS && can('EDIT_BOARD_PERMISSIONS'),
     archive: can('ARCHIVE_BOARD'),
     delete: can('DELETE_BOARD'),
-    createLabel: can('CREATE_LABEL'),
-    editLabel: can('EDIT_LABEL'),
-    deleteLabel: can('DELETE_LABEL'),
-    managePriorities: can('MANAGE_PRIORITIES'),
+    createLabel: features.LABELS && can('CREATE_LABEL'),
+    editLabel: features.LABELS && can('EDIT_LABEL'),
+    deleteLabel: features.LABELS && can('DELETE_LABEL'),
+    managePriorities: features.PRIORITIES && can('MANAGE_PRIORITIES'),
   }
 }
 

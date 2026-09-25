@@ -16,6 +16,8 @@ import { AddEntryModal } from '../../components/dashboard/AddEntryModal'
 import { BoardModal } from '../../components/dashboard/boards/BoardModal'
 import { BoardSettingsDialog } from '../boardSettings/BoardSettingsDialog'
 import { AuditLogSection } from '../audit/AuditLogSection'
+import { FeaturesSettings } from '../serverSettings/FeaturesSettings'
+import { NO_FEATURES } from '../../services/featuresService'
 import { ServerSettingsDialog, type ServerSettingsSection } from '../serverSettings/ServerSettingsDialog'
 import { PermissionsSection } from '../../components/dashboard/permissions/PermissionsSection'
 import { buildInheritedBoardPermissionDrafts } from '../../components/dashboard/boards/boardPermissionDraft'
@@ -30,6 +32,7 @@ import {
   useServerCatalog,
   useServerMembers,
   useServerPermissions,
+  useServerFeatures,
   useServerRealtime,
   useServerRoles,
 } from '../server/serverQueries'
@@ -72,6 +75,7 @@ export function ServerWorkspace({ serverId, server, showError, showToast }: Serv
   const membersQuery = useServerMembers(serverId)
   const catalogQuery = useServerCatalog(serverId)
   const mutations = useServerMutations(serverId)
+  const featuresQuery = useServerFeatures(serverId)
   useServerRealtime(serverId, true)
 
   const serverPermissions = permissionsQuery.data
@@ -80,7 +84,8 @@ export function ServerWorkspace({ serverId, server, showError, showToast }: Serv
   const catalogEntries = useMemo(() => catalogQuery.data ?? [], [catalogQuery.data])
   const access = accessQuery.data
   const rankWeight = actorRankWeight(access)
-  const capabilities = useMemo(() => boardCapabilities(access), [access])
+  const features = featuresQuery.data ?? NO_FEATURES
+  const capabilities = useMemo(() => boardCapabilities(access, featuresQuery.data), [access, featuresQuery.data])
 
   // ── Permission list ─────────────────────────────────────────────────────
   const [showSettings, setShowSettings] = useState(false)
@@ -296,7 +301,7 @@ export function ServerWorkspace({ serverId, server, showError, showToast }: Serv
           mode: 'create',
           board: null,
           canEditDetails: true,
-          canEditPermissions: true,
+          canEditPermissions: features.PERMISSIONS,
           canArchive: false,
           canDelete: false,
         },
@@ -380,7 +385,14 @@ export function ServerWorkspace({ serverId, server, showError, showToast }: Serv
 
   // The server settings list only the sections the user may open.
   const settingsSections: ServerSettingsSection[] = []
-  if (access?.server.MANAGE_SERVER_PERMISSIONS) {
+  if (access?.server.MANAGE_SERVER_PERMISSIONS && featuresQuery.data) {
+    settingsSections.push({
+      key: 'features',
+      label: 'Features',
+      content: <FeaturesSettings serverId={serverId} features={featuresQuery.data} />,
+    })
+  }
+  if (access?.server.MANAGE_SERVER_PERMISSIONS && features.PERMISSIONS) {
     settingsSections.push({
       key: 'permissions',
       label: 'Permissions',

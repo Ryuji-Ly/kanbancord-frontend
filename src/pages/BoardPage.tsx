@@ -67,7 +67,7 @@ export function BoardPage() {
     () => new Map((snapshot?.priorities ?? []).map((level) => [level.priorityId, level])),
     [snapshot],
   )
-  const canOpenSettings = hasAnySetting(boardSettingsAccess(snapshot?.permissions))
+  const canOpenSettings = hasAnySetting(boardSettingsAccess(snapshot?.permissions, snapshot?.features))
   const ready = Boolean(snapshot && me)
 
   useBoardRealtime(serverId, boardId, ready, setRevokedReason)
@@ -396,6 +396,7 @@ export function BoardPage() {
             canApplyLabels={abilities.applyLabel}
             canCreateLabels={abilities.createLabel}
             canCreatePriorities={abilities.managePriorities}
+            features={abilities.features}
             onCreateLabel={createLabel}
             onCreatePriority={createPriority}
             creating={mutations.addTask.isPending}
