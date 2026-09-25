@@ -1,6 +1,8 @@
 import { useLayoutEffect, useRef, useState, type ComponentPropsWithoutRef, type DragEvent } from 'react'
 import type { LabelEntry, PriorityEntry } from '../../../services/boardsService'
+import type { ServerRoleEntry } from '../../../services/permissionsService'
 import type { TaskEntry } from '../../../services/tasksService'
+import { RoleChip } from './RolePicker'
 import { readableTextColor, resolveAssigneeDisplayName, type AssigneeMember } from '../boardModel'
 
 /**
@@ -118,8 +120,8 @@ export function AssigneeAvatar({
   )
 }
 
-function TaskCardAssigneeStack({ assignees }: { assignees: AssigneeMember[] }) {
-  if (assignees.length === 0) return null
+function TaskCardAssigneeStack({ assignees, roles }: { assignees: AssigneeMember[]; roles: ServerRoleEntry[] }) {
+  if (assignees.length === 0 && roles.length === 0) return null
 
   const visibleAssignees = assignees.slice(0, 4)
   const hiddenCount = assignees.length - visibleAssignees.length
@@ -137,6 +139,14 @@ function TaskCardAssigneeStack({ assignees }: { assignees: AssigneeMember[] }) {
           +{hiddenCount}
         </span>
       ) : null}
+      {roles.length > 0 && (
+        <span className="kc-column-task-roles" aria-label={`Roles: ${roles.map((role) => role.name).join(', ')}`}>
+          {roles.slice(0, 2).map((role) => (
+            <RoleChip key={role.roleId} role={role} />
+          ))}
+          {roles.length > 2 && <span className="kc-muted">+{roles.length - 2}</span>}
+        </span>
+      )}
     </div>
   )
 }
@@ -169,6 +179,7 @@ type TaskCardProps = {
   priority: PriorityEntry | null
   labels: LabelEntry[]
   assignees: AssigneeMember[]
+  roles: ServerRoleEntry[]
   movable: boolean
   draggable: boolean
   selected: boolean
@@ -184,6 +195,7 @@ export function TaskCard({
   priority,
   labels,
   assignees,
+  roles,
   movable,
   draggable,
   selected,
@@ -229,7 +241,7 @@ export function TaskCard({
             </span>
           )}
           <TaskTitle key={task.title} title={task.title} />
-          <TaskCardAssigneeStack assignees={assignees} />
+          <TaskCardAssigneeStack assignees={assignees} roles={roles} />
         </>
       )}
     </li>

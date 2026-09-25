@@ -125,6 +125,15 @@ export function describeAuditEntry(entry: AuditEntry, lookups: AuditLookups): Au
         fields,
       }
     }
+    case 'TASK_ROLE_ASSIGNED':
+    case 'TASK_ROLE_UNASSIGNED': {
+      const role = `role ${lookups.roles.get(String(snapshot?.roleId ?? '')) ?? `#${snapshot?.roleId ?? '?'}`}`
+      const onTask = `task #${snapshot?.taskId ?? '?'}`
+      return {
+        summary: entry.action === 'TASK_ROLE_ASSIGNED' ? `assigned ${role} to ${onTask}` : `unassigned ${role} from ${onTask}`,
+        fields,
+      }
+    }
     case 'TASK_LABEL_ADDED':
       return { summary: `added a label to task #${snapshot?.taskId ?? '?'}`, fields }
     case 'TASK_LABEL_REMOVED':
