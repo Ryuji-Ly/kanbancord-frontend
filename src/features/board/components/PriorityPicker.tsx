@@ -4,9 +4,11 @@ import { readableTextColor } from '../boardModel'
 
 /** A priority level in its own colour. */
 export function PriorityBadge({ priority, className = '' }: { priority: Pick<PriorityEntry, 'name' | 'color'>; className?: string }) {
-  const color = priority.color ?? '#64748b'
   return (
-    <span className={`kc-priority-badge ${className}`} style={{ background: color, color: readableTextColor(color) }}>
+    <span
+      className={`kc-priority-badge ${className}`}
+      style={{ background: priority.color ?? 'var(--kc-neutral-tag)', color: readableTextColor(priority.color) }}
+    >
       {priority.name}
     </span>
   )

@@ -34,8 +34,8 @@ function createGhost(event: DragEvent<HTMLElement>): Ghost {
     margin: '0',
     opacity: '0.5',
     boxSizing: 'border-box',
-    border: '1px solid rgba(148, 163, 184, 0.18)',
-    boxShadow: '0 8px 20px rgba(0, 0, 0, 0.35)',
+    border: '1px solid color-mix(in srgb, var(--kc-subtle) 18%, transparent)',
+    boxShadow: '0 8px 20px color-mix(in srgb, var(--kc-shadow) 35%, transparent)',
     zIndex: '2000',
   })
   document.body.appendChild(clone)

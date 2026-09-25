@@ -140,7 +140,10 @@ export function hasAnySetting(access: BoardSettingsAccess): boolean {
 
 // ── Labels and priorities ────────────────────────────────────────────────────
 
-/** Colours given to new labels in turn; any colour can be picked afterwards. */
+/**
+ * Colours given to new labels in turn; any colour can be picked afterwards. These are saved with the
+ * label, so they are content rather than part of the theme.
+ */
 export const LABEL_PALETTE = [
   '#2563eb', '#16a34a', '#db2777', '#9333ea', '#ea580c', '#0891b2', '#ca8a04', '#4f46e5', '#dc2626', '#0d9488',
 ]
@@ -192,9 +195,9 @@ export function rolesByTask(
 /** Black or white, whichever reads better on the colour. */
 export function readableTextColor(background: string | null): string {
   const hex = (background ?? '').replace('#', '')
-  if (!/^[0-9a-f]{6}$/i.test(hex)) return '#ffffff'
+  if (!/^[0-9a-f]{6}$/i.test(hex)) return 'var(--kc-text-on-dark)'
   const [r, g, b] = [0, 2, 4].map((offset) => Number.parseInt(hex.slice(offset, offset + 2), 16))
-  return (r * 299 + g * 587 + b * 114) / 1000 > 150 ? '#111827' : '#ffffff'
+  return (r * 299 + g * 587 + b * 114) / 1000 > 150 ? 'var(--kc-text-on-light)' : 'var(--kc-text-on-dark)'
 }
 
 // ── Ordering ─────────────────────────────────────────────────────────────────
