@@ -3868,3 +3868,59 @@ html[data-kc-reduce-motion="on"] {
   background: color-mix(in srgb, var(--kc-ink) 45%, transparent);
   font-size: 0.92em;
 }
+// ── Board search and filters ──────────────────────────────────────────────────
+.kc-board-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+
+  > .kc-input {
+    width: auto;
+    min-width: 140px;
+    max-width: 220px;
+  }
+}
+
+.kc-board-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 1 1 220px;
+  max-width: 360px;
+
+  svg {
+    position: absolute;
+    left: 10px;
+    color: var(--kc-muted);
+    pointer-events: none;
+  }
+
+  .kc-input {
+    padding-left: 32px;
+  }
+}
+
+.kc-board-filter-count {
+  font-size: 0.82rem;
+}
+
+.kc-board-filter-clear {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+}
+
+@media (max-width: 720px) {
+  .kc-board-filters > .kc-input {
+    flex: 1 1 45%;
+    max-width: none;
+  }
+
+  .kc-board-search {
+    flex-basis: 100%;
+    max-width: none;
+  }
+}
