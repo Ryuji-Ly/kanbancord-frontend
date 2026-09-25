@@ -106,6 +106,16 @@ export function PrivacyPage() {
           ).
         </li>
         <li>
+          <strong>Ko-fi and PayPal</strong>, only if you choose to donate. They handle the payment and share your name,
+          any message you leave, and the amount with us; we never see your payment details, and we do not link donations
+          to your Discord account (
+          <a href="https://more.ko-fi.com/privacy" target="_blank" rel="noopener noreferrer">Ko-fi</a>,{' '}
+          <a href="https://www.paypal.com/myaccount/privacy/privacyhub" target="_blank" rel="noopener noreferrer">
+            PayPal
+          </a>
+          ). We keep donation records as long as tax rules require.
+        </li>
+        <li>
           <strong>Oracle Cloud</strong>, where {SITE.name}'s servers and database run (
           <a href="https://www.oracle.com/legal/privacy/" target="_blank" rel="noopener noreferrer">privacy policy</a>).
         </li>

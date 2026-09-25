@@ -16,6 +16,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://kanbancord.com/support</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
     <loc>https://kanbancord.com/privacy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>

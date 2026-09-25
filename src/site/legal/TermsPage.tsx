@@ -37,6 +37,15 @@ export function TermsPage() {
         reasonably can, so you can take your data.
       </p>
 
+      <h2>Donations</h2>
+      <p>
+        You can support {SITE.name} with a voluntary donation through Ko-fi (see <Link to="/support">Support</Link>). A
+        donation is a gift towards the project's costs, not a payment for the service: it gives you no features, limits,
+        roles, support or other benefits, and it does not create any obligation for us. Donations are not refundable as
+        a rule, but if you donated by mistake, contact us and we will do what we reasonably can. Ko-fi's and PayPal's own
+        terms apply to the payment.
+      </p>
+
       <h2>Servers and their administrators</h2>
       <p>
         Whoever adds the bot to a server, and that server's administrators, decide how {SITE.name} is used there: who may

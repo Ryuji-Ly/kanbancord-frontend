@@ -2,13 +2,14 @@ import { Link } from 'react-router-dom'
 import { buildBotInviteLink } from '../features/dashboard/dashboardModel'
 import { SITE } from './siteInfo'
 
-/** The footer on every page but the board itself: about, help and the legal documents. */
+/** The footer on every page but the board itself: about, help, donations and the legal documents. */
 export function SiteFooter() {
   return (
     <footer className="kc-site-footer">
       <nav aria-label="Site">
         <Link to="/about">About</Link>
         <Link to="/faq">FAQ</Link>
+        <Link to="/support">Support</Link>
         <Link to="/privacy">Privacy Policy</Link>
         <Link to="/terms">Terms of Service</Link>
         <a href={buildBotInviteLink()} target="_blank" rel="noopener noreferrer">
