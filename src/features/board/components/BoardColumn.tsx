@@ -1,6 +1,7 @@
 import { useState, type CSSProperties, type DragEvent } from 'react'
 import type { BoardColumnEntry } from '../../../services/boardColumnsService'
 import type { LabelEntry, PriorityEntry } from '../../../services/boardsService'
+import type { ServerRoleEntry } from '../../../services/permissionsService'
 import type { TaskEntry } from '../../../services/tasksService'
 import type { AssigneeMember } from '../boardModel'
 import { TaskCard } from './TaskCard'
@@ -11,6 +12,7 @@ type BoardColumnProps = {
   assigneesByTaskId: Record<number, AssigneeMember[]>
   labelsByTaskId: Map<number, { label: LabelEntry }[]>
   prioritiesById: Map<number, PriorityEntry>
+  rolesByTaskId: Map<number, { role: ServerRoleEntry }[]>
   selectedTaskId: number | null
   canEdit: boolean
   canDelete: boolean
@@ -43,6 +45,7 @@ export function BoardColumn({
   assigneesByTaskId,
   labelsByTaskId,
   prioritiesById,
+  rolesByTaskId,
   selectedTaskId,
   canEdit,
   canDelete,
@@ -164,6 +167,7 @@ export function BoardColumn({
                   assignees={assigneesByTaskId[task.taskId] ?? []}
                   priority={task.priorityId === null ? null : (prioritiesById.get(task.priorityId) ?? null)}
                   labels={(labelsByTaskId.get(task.taskId) ?? []).map((entry) => entry.label)}
+                  roles={(rolesByTaskId.get(task.taskId) ?? []).map((entry) => entry.role)}
                   movable={canMoveTasks}
                   draggable={canMoveTasks}
                   selected={selectedTaskId === task.taskId}

@@ -3,7 +3,7 @@ import { apiFetch } from '../api/session'
 import type { BoardColumnEntry } from './boardColumnsService'
 import type { ServerFeatures } from './featuresService'
 import type { PermissionDecisionMap } from './permissionsService'
-import type { TaskAssignmentEntry } from './taskAssignmentsService'
+import type { TaskAssignmentEntry, TaskRoleAssignmentEntry } from './taskAssignmentsService'
 import type { TaskEntry } from './tasksService'
 
 export type BoardEntry = {
@@ -122,6 +122,8 @@ export type BoardSnapshot = {
   columns: BoardColumnEntry[]
   tasks: TaskEntry[]
   assignments: TaskAssignmentEntry[]
+  /** Discord roles assigned to tasks. */
+  roleAssignments: TaskRoleAssignmentEntry[]
   labels: LabelEntry[]
   /** Which labels are on which tasks. */
   taskLabels: TaskLabelEntry[]

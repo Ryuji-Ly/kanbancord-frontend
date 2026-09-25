@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import type { LabelEntry, PriorityEntry } from '../../../services/boardsService'
+import type { ServerRoleEntry } from '../../../services/permissionsService'
 import type { TaskEntry } from '../../../services/tasksService'
 import type { MeResponse } from '../../../types/auth'
 import { taskFieldsFromDraft, type TaskFields } from '../boardQueries'
@@ -7,6 +8,7 @@ import { draftFromTask, toggleTaskListItemByIndex, type AssigneeMember, type Boa
 import { AssigneePicker } from './AssigneePicker'
 import { LabelChip, LabelPicker } from './LabelPicker'
 import { PriorityBadge, PriorityPicker } from './PriorityPicker'
+import { RolePicker } from './RolePicker'
 import { Markdown } from './Markdown'
 import { TaskComments } from './TaskComments'
 
@@ -23,12 +25,17 @@ type TaskPanelProps = {
   labels: LabelEntry[]
   /** The labels on this task. */
   taskLabels: { label: LabelEntry; taskLabelId: number }[]
+  /** The server's roles, and those assigned to this task. */
+  roles: ServerRoleEntry[]
+  taskRoles: { role: ServerRoleEntry; assignmentId: number }[]
   saving: boolean
   onClose: () => void
   onSave: (fields: TaskFields) => Promise<unknown>
   onRequestDelete: () => void
   onAssign: (userId: string) => Promise<unknown>
   onUnassign: (assignee: AssigneeMember) => Promise<unknown>
+  onAssignRole: (roleId: string) => Promise<unknown>
+  onUnassignRole: (assignmentId: number) => Promise<unknown>
   onAddLabel: (labelId: number) => Promise<unknown>
   onRemoveLabel: (taskLabelId: number) => Promise<unknown>
   onCreateLabel: (name: string) => Promise<LabelEntry>
@@ -50,12 +57,16 @@ export function TaskPanel({
   priorities,
   labels,
   taskLabels,
+  roles,
+  taskRoles,
   saving,
   onClose,
   onSave,
   onRequestDelete,
   onAssign,
   onUnassign,
+  onAssignRole,
+  onUnassignRole,
   onAddLabel,
   onRemoveLabel,
   onCreateLabel,
@@ -331,6 +342,22 @@ export function TaskPanel({
               }
             />
             {assignees.length === 0 && <p className="kc-task-panel-value">No assignees yet.</p>}
+          </div>
+        )}
+
+        {(taskRoles.length > 0 || (abilities.assignOthers && roles.length > 0)) && (
+          <div className="kc-task-panel-field">
+            <span className="kc-field-label">Roles</span>
+            <RolePicker
+              roles={roles}
+              selectedIds={taskRoles.map((entry) => entry.role.roleId)}
+              editable={abilities.assignOthers}
+              onAdd={(roleId) => reportError(onAssignRole(roleId))}
+              onRemove={(roleId) => {
+                const entry = taskRoles.find((candidate) => candidate.role.roleId === roleId)
+                if (entry) reportError(onUnassignRole(entry.assignmentId))
+              }}
+            />
           </div>
         )}
 
