@@ -12,6 +12,7 @@ export const SITE = {
   /** For privacy and legal requests. */
   email: 'privacy@kanbancord.com',
   donationUrl: 'https://ko-fi.com/ryujily',
+  supportServerUrl: 'https://discord.gg/SDr4ujFPGR',
   /** When the Privacy Policy and Terms of Service last changed. */
   legalUpdated: '25 September 2026',
 }
