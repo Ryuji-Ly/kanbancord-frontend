@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useQueryClient } from '@tanstack/react-query'
 import { useSession } from '../../api/session'
 import { subscribeRealtime, USER_QUEUE, type UserRealtimeEvent } from '../../services/realtimeService'
+import { notificationKeys } from '../notifications/notificationQueries'
 
 /**
  * Keeps what belongs to the signed-in user current in every tab and on every device: profile and
@@ -25,6 +26,9 @@ export function useUserRealtime() {
             break
           case 'SESSIONS_CHANGED':
             void queryClient.invalidateQueries({ queryKey: ['sessions'] })
+            break
+          case 'NOTIFICATION_SETTINGS_CHANGED':
+            void queryClient.invalidateQueries({ queryKey: notificationKeys.mine })
             break
         }
       },
