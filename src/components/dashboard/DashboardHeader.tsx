@@ -1,3 +1,4 @@
+import { UserMenu } from '../../features/account/UserMenu'
 import type { HeaderUser } from './types'
 
 type DashboardHeaderProps = {
@@ -8,10 +9,6 @@ type DashboardHeaderProps = {
   onLogin: () => void
   subtitle?: string
   onBrandClick?: () => void
-}
-
-function serverInitial(name: string): string {
-  return name.trim().charAt(0).toUpperCase() || '?'
 }
 
 export function DashboardHeader({
@@ -42,20 +39,7 @@ export function DashboardHeader({
 
       <div className="kc-user-block">
         {isAuthenticated && me ? (
-          <>
-            <div className="kc-user-meta">
-              <span className="kc-user-name">{me.globalName || me.username}</span>
-              <span className="kc-user-handle">@{me.username}</span>
-            </div>
-            {me.avatarUrl ? (
-              <img src={me.avatarUrl} alt={me.username} className="kc-avatar" />
-            ) : (
-              <span className="kc-avatar-fallback">{serverInitial(me.username)}</span>
-            )}
-            <button className="kc-btn kc-btn-ghost" type="button" onClick={onLogout} disabled={loading}>
-              Logout
-            </button>
-          </>
+          <UserMenu me={me} onLogout={onLogout} />
         ) : (
           <button
             className="kc-btn kc-btn-primary"

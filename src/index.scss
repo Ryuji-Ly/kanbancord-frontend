@@ -26,8 +26,8 @@
   --kc-text-soft:        #e2e8f0;
   --kc-text-dim:         #cbd5e1;
   --kc-muted:            #d1d5db;
-  --kc-subtle:           #94a3b8;
-  --kc-faint:            #475569;
+  --kc-subtle:           #c5cdd8;  // lightest that still reads at 4.5:1 on every surface
+  --kc-faint:            #94a3b8;  // placeholders; at least 3:1
 
   // Brand and accents
   --kc-primary:          #1867e3;
@@ -835,7 +835,8 @@ pre {
     padding: 10px 12px;
     border: 1px solid color-mix(in srgb, var(--kc-column-accent, var(--kc-info)) 42%, transparent);
     border-radius: 10px;
-    background: color-mix(in srgb, var(--kc-column-accent, var(--kc-info)) 16%, color-mix(in srgb, var(--kc-ink) 92%, transparent));
+    // A solid base: mixing into an already translucent colour renders wrongly in Chromium.
+    background: color-mix(in srgb, var(--kc-column-accent, var(--kc-info)) 16%, var(--kc-panel));
     color: var(--kc-column-accent, var(--kc-info));
     font-size: 0.92rem;
     font-weight: 700;
@@ -844,7 +845,7 @@ pre {
     transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
 
     &:hover {
-      background: color-mix(in srgb, var(--kc-column-accent, var(--kc-info)) 22%, color-mix(in srgb, var(--kc-ink) 95%, transparent));
+      background: color-mix(in srgb, var(--kc-column-accent, var(--kc-info)) 22%, var(--kc-panel));
       border-color: color-mix(in srgb, var(--kc-column-accent, var(--kc-info)) 60%, transparent);
       transform: translateY(-1px);
     }
@@ -962,7 +963,7 @@ pre {
     background: color-mix(in srgb, var(--kc-accent) 4%, transparent);
     border: 2px dashed color-mix(in srgb, var(--kc-accent) 25%, transparent);
     border-radius: 12px;
-    color: color-mix(in srgb, var(--kc-accent) 60%, transparent);
+    color: var(--kc-accent);
     font-size: 0.9rem;
     font-weight: 600;
     cursor: pointer;
@@ -2991,4 +2992,300 @@ pre {
   gap: 4px;
   margin-left: 8px;
   min-width: 0;
+}
+
+// ── User menu ─────────────────────────────────────────────────────────────────
+.kc-user-menu {
+  position: relative;
+}
+
+.kc-user-menu-button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 8px 4px 12px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--kc-text);
+  cursor: pointer;
+
+  &:hover,
+  &[aria-expanded="true"] {
+    background: color-mix(in srgb, var(--kc-accent) 12%, transparent);
+    border-color: var(--kc-accent-outline);
+  }
+
+  &:focus-visible {
+    @include accent-focus;
+  }
+}
+
+.kc-user-menu-list {
+  position: absolute;
+  z-index: 60;
+  top: calc(100% + 6px);
+  right: 0;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  padding: 6px;
+  border: 1px solid var(--kc-border);
+  border-radius: 10px;
+  background: var(--kc-nav);
+  box-shadow: 0 12px 30px color-mix(in srgb, var(--kc-shadow) 45%, transparent);
+
+  button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 10px;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--kc-text-soft);
+    font-size: 0.92rem;
+    text-align: left;
+    cursor: pointer;
+
+    &:hover,
+    &:focus-visible {
+      background: color-mix(in srgb, var(--kc-accent) 16%, transparent);
+      color: var(--kc-text-strong);
+      outline: none;
+    }
+  }
+}
+
+.kc-user-menu-danger {
+  color: var(--kc-danger-text) !important;
+}
+
+.kc-session-current {
+  color: var(--kc-success-text);
+  font-weight: 600;
+}
+
+.kc-link-btn {
+  border: none;
+  background: none;
+  padding: 0;
+  color: var(--kc-link);
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+// ── Preferences: appearance ───────────────────────────────────────────────────
+.kc-appearance {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.kc-appearance-section h4 {
+  margin: 0 0 8px;
+}
+
+.kc-theme-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 10px;
+}
+
+.kc-theme-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px;
+  border: 2px solid var(--kc-border);
+  border-radius: 10px;
+  background: var(--kc-card);
+  color: var(--kc-text);
+  text-align: left;
+  cursor: pointer;
+
+  .kc-muted {
+    font-size: 0.78rem;
+  }
+
+  &:hover {
+    border-color: var(--kc-accent-outline-strong);
+  }
+
+  &--selected {
+    border-color: var(--kc-accent);
+  }
+
+  &:focus-visible {
+    @include accent-focus;
+  }
+}
+
+.kc-theme-preview {
+  display: flex;
+  height: 54px;
+  padding: 8px;
+  border-radius: 6px;
+}
+
+.kc-theme-preview-panel {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  padding: 6px;
+  border-radius: 4px;
+
+  span {
+    width: 16px;
+    height: 16px;
+    border-radius: 999px;
+  }
+}
+
+.kc-core-colors {
+  list-style: none;
+  margin: 8px 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 10px;
+}
+
+.kc-core-color {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  .kc-muted {
+    font-size: 0.78rem;
+  }
+}
+
+.kc-appearance-advanced-toggle {
+  font-size: 0.9rem;
+}
+
+.kc-advanced-colors {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.kc-advanced-group {
+  h5 {
+    margin: 0 0 6px;
+    color: var(--kc-muted);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 6px;
+  }
+}
+
+.kc-advanced-color {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  code {
+    color: var(--kc-text-soft);
+    font-size: 0.8rem;
+  }
+}
+
+.kc-segmented {
+  display: inline-flex;
+  flex-wrap: wrap;
+  border: 1px solid var(--kc-border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.kc-segment {
+  padding: 7px 12px;
+  border: none;
+  border-left: 1px solid var(--kc-border);
+  background: transparent;
+  color: var(--kc-text-soft);
+  cursor: pointer;
+
+  &:first-child {
+    border-left: none;
+  }
+
+  &--on {
+    background: var(--kc-primary);
+    color: var(--kc-on-primary);
+  }
+}
+
+// ── Accessibility aids ────────────────────────────────────────────────────────
+// Patterns: each label gets one of six, drawn in the label's text colour over its fill.
+html[data-kc-label-patterns] :is(.kc-label-chip, .kc-column-task-label)[data-pattern] {
+  --kc-pattern-ink: color-mix(in srgb, currentColor 32%, transparent);
+}
+
+html[data-kc-label-patterns] :is(.kc-label-chip, .kc-column-task-label) {
+  &[data-pattern="0"] { background-image: repeating-linear-gradient(45deg, var(--kc-pattern-ink) 0 2px, transparent 2px 6px); }
+  &[data-pattern="1"] { background-image: repeating-linear-gradient(-45deg, var(--kc-pattern-ink) 0 2px, transparent 2px 6px); }
+  &[data-pattern="2"] { background-image: repeating-linear-gradient(90deg, var(--kc-pattern-ink) 0 2px, transparent 2px 6px); }
+  &[data-pattern="3"] { background-image: repeating-linear-gradient(0deg, var(--kc-pattern-ink) 0 2px, transparent 2px 5px); }
+  &[data-pattern="4"] { background-image: radial-gradient(var(--kc-pattern-ink) 1.2px, transparent 1.4px); background-size: 6px 6px; }
+  &[data-pattern="5"] {
+    background-image:
+      repeating-linear-gradient(45deg, var(--kc-pattern-ink) 0 1px, transparent 1px 6px),
+      repeating-linear-gradient(-45deg, var(--kc-pattern-ink) 0 1px, transparent 1px 6px);
+  }
+}
+
+// Priority ranks: "P1" before the name.
+.kc-priority-rank {
+  display: none;
+  margin-right: 5px;
+  font-weight: 800;
+}
+
+html[data-kc-priority-ranks] .kc-priority-rank {
+  display: inline;
+}
+
+// Colour correction for colours people chose; the filters are SVG matrices added by preferencesModel.
+@each $filter in (protanopia, deuteranopia, tritanopia) {
+  html[data-kc-color-filter="#{$filter}"]
+    :is(.kc-label-chip, .kc-column-task-label, .kc-priority-badge, .kc-column-task-priority, .kc-role-chip) {
+    filter: url("#kc-filter-#{$filter}");
+  }
+}
+
+// Reduced motion: always, or when the device asks for it and the user left it to the device.
+@mixin no-motion {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+html[data-kc-reduce-motion="on"] {
+  @include no-motion;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-kc-reduce-motion="system"] {
+    @include no-motion;
+  }
 }

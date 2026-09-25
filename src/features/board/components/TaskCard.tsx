@@ -2,6 +2,7 @@ import { useLayoutEffect, useRef, useState, type ComponentPropsWithoutRef, type 
 import type { LabelEntry, PriorityEntry } from '../../../services/boardsService'
 import type { ServerRoleEntry } from '../../../services/permissionsService'
 import type { TaskEntry } from '../../../services/tasksService'
+import { LABEL_PATTERNS } from './LabelPicker'
 import { RoleChip } from './RolePicker'
 import { readableTextColor, resolveAssigneeDisplayName, type AssigneeMember } from '../boardModel'
 
@@ -164,7 +165,8 @@ function TaskCardLabels({ labels }: { labels: LabelEntry[] }) {
         <span
           key={label.labelId}
           className="kc-column-task-label"
-          style={{ background: label.color, color: readableTextColor(label.color) }}
+          data-pattern={label.labelId % LABEL_PATTERNS}
+          style={{ backgroundColor: label.color, color: readableTextColor(label.color) }}
         >
           {label.name}
         </span>
@@ -237,6 +239,7 @@ export function TaskCard({
               title={`Priority: ${priority.name}`}
               style={{ background: priority.color ?? undefined, color: readableTextColor(priority.color) }}
             >
+              <span className="kc-priority-rank">P{priority.position}</span>
               {priority.name}
             </span>
           )}
