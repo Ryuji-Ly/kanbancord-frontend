@@ -775,10 +775,8 @@ pre {
     display: inline-flex;
     align-items: center;
     margin: 1px 0 0 6px;
-    border-radius: 999px;
-    padding: 2px 6px;
-    background: color-mix(in srgb, var(--kc-column-accent, var(--kc-info)) 16%, transparent);
-    color: var(--kc-column-accent, var(--kc-info));
+    gap: 3px;
+    padding: 1px 6px;
     font-size: 0.68rem;
     font-weight: 700;
     line-height: 1.1;
@@ -2450,6 +2448,8 @@ pre {
   gap: 6px;
 }
 
+// Labels are solid, square-cornered tags; priorities are outlined pills with a flag. The two differ
+// in shape, fill and icon, not only in colour.
 .kc-label-chip,
 .kc-priority-badge {
   display: inline-flex;
@@ -2457,11 +2457,30 @@ pre {
   gap: 4px;
   max-width: 100%;
   padding: 2px 8px;
-  border-radius: 999px;
   font-size: 0.76rem;
   font-weight: 700;
   line-height: 1.4;
   white-space: nowrap;
+}
+
+.kc-label-chip {
+  border-radius: 4px;
+}
+
+.kc-priority-badge,
+.kc-board-column-card .kc-column-task-priority {
+  border: 1px solid color-mix(in srgb, var(--kc-priority-color) 70%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--kc-priority-color) 14%, var(--kc-panel));
+  color: var(--kc-text-strong);
+}
+
+.kc-priority-flag {
+  flex: none;
+  width: 0.95em;
+  height: 0.95em;
+  color: var(--kc-priority-color);
+  fill: currentColor;
 }
 
 .kc-label-chip-name {
@@ -2530,7 +2549,7 @@ pre {
   text-overflow: ellipsis;
   white-space: nowrap;
   padding: 1px 7px;
-  border-radius: 999px;
+  border-radius: 3px;
   font-size: 0.68rem;
   font-weight: 700;
   line-height: 1.4;
@@ -3288,4 +3307,50 @@ html[data-kc-reduce-motion="on"] {
   html[data-kc-reduce-motion="system"] {
     @include no-motion;
   }
+}
+
+// ── Board settings: section list on the left ──────────────────────────────────
+// Every section stays on the right; the list only scrolls to one.
+.kc-board-modal-layout {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+
+  > .kc-modal-body {
+    min-width: 0;
+  }
+}
+
+.kc-section-nav {
+  flex: 0 0 190px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 14px 10px;
+  background: color-mix(in srgb, var(--kc-ink) 55%, transparent);
+  border-right: 1px solid var(--kc-border);
+  overflow-y: auto;
+}
+
+@media (max-width: 720px) {
+  .kc-board-modal-layout {
+    flex-direction: column;
+  }
+
+  .kc-section-nav {
+    flex: none;
+    flex-direction: row;
+    padding: 8px;
+    border-right: none;
+    border-bottom: 1px solid var(--kc-border);
+    overflow-x: auto;
+
+    .kc-server-settings-tab {
+      white-space: nowrap;
+    }
+  }
+}
+
+.kc-board-modal-body > section {
+  scroll-margin-top: 14px;
 }

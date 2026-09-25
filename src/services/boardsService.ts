@@ -130,8 +130,13 @@ export type BoardSnapshot = {
   /** The board's priority levels, most urgent first. */
   priorities: PriorityEntry[]
   permissions: PermissionDecisionMap
-  /** Which optional features the server has on; the lists of features that are off are empty. */
+  /**
+   * Which optional features are on for this board: on for the server and not switched off by the
+   * board. The lists of features that are off are empty.
+   */
   features: ServerFeatures
+  /** Which optional features the server has on; a board can only switch off what is on here. */
+  serverFeatures: ServerFeatures
 }
 
 export async function fetchBoardSnapshot(
