@@ -3354,3 +3354,60 @@ html[data-kc-reduce-motion="on"] {
 .kc-board-modal-body > section {
   scroll-margin-top: 14px;
 }
+
+// ── Images and videos in descriptions ─────────────────────────────────────────
+.kc-markdown-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-radius: 10px;
+
+  &--dragging {
+    outline: 2px dashed var(--kc-accent);
+    outline-offset: 3px;
+  }
+}
+
+.kc-markdown-editor-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.kc-markdown-editor-add {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  font-size: 0.82rem;
+}
+
+.kc-markdown-editor-hint {
+  font-size: 0.78rem;
+}
+
+.kc-markdown-editor-error {
+  margin: 0;
+  color: var(--kc-danger);
+  font-size: 0.82rem;
+}
+
+.kc-markdown .kc-markdown-media {
+  display: block;
+  max-width: 100%;
+  max-height: 420px;
+  margin: 6px 0;
+  border-radius: 8px;
+  border: 1px solid var(--kc-border);
+  background: color-mix(in srgb, var(--kc-ink) 40%, transparent);
+}
+
+.kc-markdown-uploading {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--kc-accent) 12%, transparent);
+  color: var(--kc-text-dim);
+  font-size: 0.85rem;
+}
