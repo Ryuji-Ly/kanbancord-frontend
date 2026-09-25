@@ -1,4 +1,5 @@
-import { useMemo, useState, type ReactNode } from 'react'
+import { useMemo, useRef, useState, type ReactNode } from 'react'
+import { SectionNav } from '../../SectionNav'
 import { AddEntryModal } from '../AddEntryModal'
 import { DeleteGroupModal } from '../DeleteGroupModal'
 import { PermissionsSection } from '../permissions/PermissionsSection'
@@ -83,6 +84,7 @@ export function BoardModal({
   const canEditDetailsInModal = canEditDetails && !isArchivedMode
   const canEditPermissionsInModal = canEditPermissions && !isArchivedMode
 
+  const bodyRef = useRef<HTMLDivElement | null>(null)
   const [name, setName] = useState(initialName)
   const [description, setDescription] = useState(initialDescription)
   const [draftPermissions, setDraftPermissions] = useState<PermissionEntry[]>(() => cloneBoardPermissionDrafts(initialPermissions))
@@ -338,7 +340,9 @@ export function BoardModal({
             </button>
           </div>
 
-          <div className="kc-modal-body kc-board-modal-body">
+          <div className="kc-board-modal-layout">
+          {mode === 'edit' && !loading && <SectionNav containerRef={bodyRef} label="Board settings sections" />}
+          <div className="kc-modal-body kc-board-modal-body" ref={bodyRef}>
             {loading ? (
               <div className="kc-loading-state" aria-live="polite" aria-busy="true">
                 <span className="kc-spinner" aria-hidden="true" />
@@ -558,6 +562,7 @@ export function BoardModal({
                 )}
               </>
             )}
+          </div>
           </div>
 
           {/* Labels and priorities save as they change; Save is for details and permissions. */}

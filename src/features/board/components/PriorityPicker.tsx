@@ -1,8 +1,12 @@
 import { useState } from 'react'
 import type { PriorityEntry } from '../../../services/boardsService'
-import { readableTextColor } from '../boardModel'
+import { FiFlag } from 'react-icons/fi'
+import { priorityStyle } from '../boardModel'
 
-/** A priority level in its own colour. */
+/**
+ * A priority level: an outlined pill with a flag, so it reads differently from labels, which are
+ * solid, square-cornered tags.
+ */
 export function PriorityBadge({
   priority,
   className = '',
@@ -13,8 +17,9 @@ export function PriorityBadge({
   return (
     <span
       className={`kc-priority-badge ${className}`}
-      style={{ background: priority.color ?? 'var(--kc-neutral-tag)', color: readableTextColor(priority.color) }}
+      style={priorityStyle(priority.color)}
     >
+      <FiFlag className="kc-priority-flag" aria-hidden="true" />
       {priority.position !== undefined && <span className="kc-priority-rank">P{priority.position}</span>}
       {priority.name}
     </span>
