@@ -16,6 +16,8 @@ import { AddEntryModal } from '../../components/dashboard/AddEntryModal'
 import { BoardModal } from '../../components/dashboard/boards/BoardModal'
 import { BoardSettingsDialog } from '../boardSettings/BoardSettingsDialog'
 import { AuditLogSection } from '../audit/AuditLogSection'
+import { ServerSettingsDialog, type ServerSettingsSection } from '../serverSettings/ServerSettingsDialog'
+import { PermissionsSection } from '../../components/dashboard/permissions/PermissionsSection'
 import { buildInheritedBoardPermissionDrafts } from '../../components/dashboard/boards/boardPermissionDraft'
 import { DeleteGroupModal } from '../../components/dashboard/DeleteGroupModal'
 import { permissionRankWeight } from '../../components/dashboard/permissionRank'
@@ -81,7 +83,7 @@ export function ServerWorkspace({ serverId, server, showError, showToast }: Serv
   const capabilities = useMemo(() => boardCapabilities(access), [access])
 
   // ── Permission list ─────────────────────────────────────────────────────
-  const [permissionsCollapsed, setPermissionsCollapsed] = useState(true)
+  const [showSettings, setShowSettings] = useState(false)
   const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set())
   const [permFilter, setPermFilter] = useState('')
   const [openAddGroupKey, setOpenAddGroupKey] = useState('')
@@ -376,6 +378,51 @@ export function ServerWorkspace({ serverId, server, showError, showToast }: Serv
   const boardSaving =
     mutations.saveBoard.isPending || mutations.setBoardArchived.isPending || mutations.removeBoard.isPending
 
+  // The server settings list only the sections the user may open.
+  const settingsSections: ServerSettingsSection[] = []
+  if (access?.server.MANAGE_SERVER_PERMISSIONS) {
+    settingsSections.push({
+      key: 'permissions',
+      label: 'Permissions',
+      content: (
+        <PermissionsSection
+          canEditPermissions
+          collapsible={false}
+          permissionsCollapsed={false}
+          permissionsLoading={permissionsQuery.isPending}
+          permFilter={permFilter}
+          filteredGroups={filteredGroups}
+          expandedPermissionGroups={expandedGroups}
+          actorRankWeight={rankWeight}
+          openAddGroupKey={openAddGroupKey}
+          newPermId={newPermId}
+          newPermState={newPermState}
+          addSaving={mutations.addRules.isPending}
+          catalogEntries={catalogEntries}
+          onToggleCollapsed={() => undefined}
+          onPermFilterChange={setPermFilter}
+          onOpenNewEntryModal={openAddModal}
+          onToggleGroupExpansion={toggleGroup}
+          onRequestDeleteGroup={setDeleteGroupTarget}
+          onOpenAddPermission={openInlineAdd}
+          onTogglePermissionState={toggleRuleState}
+          onDeletePermission={removeRule}
+          onSetNewPermId={setNewPermId}
+          onSetNewPermState={setNewPermState}
+          onAddPermission={addInline}
+          onCancelAddPermission={cancelInlineAdd}
+        />
+      ),
+    })
+  }
+  if (access?.server.VIEW_AUDIT_LOG) {
+    settingsSections.push({
+      key: 'audit',
+      label: 'Audit log',
+      content: <AuditLogSection serverId={serverId} boards={boardsQuery.data ?? []} members={serverMembers} roles={serverRoles} />,
+    })
+  }
+
   return (
     <>
       <ServerOverviewPanel
@@ -384,37 +431,14 @@ export function ServerWorkspace({ serverId, server, showError, showToast }: Serv
         boardsLoading={boardsQuery.isPending}
         canCreateBoard={Boolean(access?.server.CREATE_BOARD)}
         boardCapabilities={capabilities}
-        canEditPermissions={Boolean(access?.server.MANAGE_SERVER_PERMISSIONS)}
-        permissionsCollapsed={permissionsCollapsed}
-        permissionsLoading={permissionsQuery.isPending}
-        permFilter={permFilter}
-        filteredGroups={filteredGroups}
-        expandedPermissionGroups={expandedGroups}
-        actorRankWeight={rankWeight}
-        openAddGroupKey={openAddGroupKey}
-        newPermId={newPermId}
-        newPermState={newPermState}
-        addSaving={mutations.addRules.isPending}
-        catalogEntries={catalogEntries}
-        onToggleCollapsed={() => setPermissionsCollapsed((prev) => !prev)}
-        onPermFilterChange={setPermFilter}
-        onOpenNewEntryModal={openAddModal}
-        onToggleGroupExpansion={toggleGroup}
-        onRequestDeleteGroup={setDeleteGroupTarget}
-        onOpenAddPermission={openInlineAdd}
-        onTogglePermissionState={toggleRuleState}
-        onDeletePermission={removeRule}
-        onSetNewPermId={setNewPermId}
-        onSetNewPermState={setNewPermState}
-        onAddPermission={addInline}
-        onCancelAddPermission={cancelInlineAdd}
+        onOpenSettings={settingsSections.length > 0 ? () => setShowSettings(true) : undefined}
         onOpenCreateBoard={() => void openCreateBoard()}
         onOpenBoard={(board) => navigate(`/boards/${board.boardId}?serverId=${encodeURIComponent(serverId)}`)}
         onOpenBoardSettings={openBoardSettings}
       />
 
-      {access?.server.VIEW_AUDIT_LOG && (
-        <AuditLogSection serverId={serverId} boards={boardsQuery.data ?? []} members={serverMembers} roles={serverRoles} />
+      {showSettings && settingsSections.length > 0 && (
+        <ServerSettingsDialog serverName={server.name} sections={settingsSections} onClose={() => setShowSettings(false)} />
       )}
 
       <DeleteGroupModal
