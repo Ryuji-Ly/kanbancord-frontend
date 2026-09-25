@@ -4,7 +4,7 @@ import { apiFetch } from '../api/session'
 /** One recorded change. `changes` is `{created: {...}}`, `{deleted: {...}}` or `{field: {from, to}}` plus `_subject`. */
 export type AuditEntry = {
   logId: number
-  serverId: number
+  serverId: string
   boardId: number | null
   boardName: string | null
   userId: string | null
