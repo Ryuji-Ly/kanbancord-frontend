@@ -11,6 +11,7 @@ export const SITE = {
   country: 'Belgium',
   /** For privacy and legal requests. */
   email: 'privacy@kanbancord.com',
+  donationUrl: 'https://ko-fi.com/ryujily',
   /** When the Privacy Policy and Terms of Service last changed. */
   legalUpdated: '25 September 2026',
 }
