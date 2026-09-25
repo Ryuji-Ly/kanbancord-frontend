@@ -6,7 +6,7 @@ type SpringPage<T> = {
 }
 
 export type TaskCommentEditor = {
-  userId: number
+  userId: string
   username: string
   globalName: string | null
   avatarUrl: string | null
@@ -15,7 +15,7 @@ export type TaskCommentEditor = {
 export type TaskCommentEntry = {
   commentId: number
   taskId: number
-  userId: number
+  userId: string
   authorUsername: string
   authorGlobalName: string | null
   authorAvatarUrl: string | null
