@@ -89,7 +89,11 @@ export function BoardPage() {
   const [deleteColumnError, setDeleteColumnError] = useState('')
   const [createInColumn, setCreateInColumn] = useState<BoardColumnEntry | null>(null)
   const [createTaskError, setCreateTaskError] = useState('')
-  const [selectedTaskId, setSelectedTaskId] = useState<number | null>(null)
+  // A link can open a task straight away (`&task=<id>`), as links from Discord do.
+  const [selectedTaskId, setSelectedTaskId] = useState<number | null>(() => {
+    const linked = Number(searchParams.get('task'))
+    return Number.isInteger(linked) && linked > 0 ? linked : null
+  })
   const [deleteTargetTask, setDeleteTargetTask] = useState<TaskEntry | null>(null)
   const [deleteTaskError, setDeleteTaskError] = useState('')
 
