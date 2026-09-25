@@ -10,6 +10,9 @@ export function SiteFooter() {
         <Link to="/about">About</Link>
         <Link to="/faq">FAQ</Link>
         <Link to="/support">Support</Link>
+        <a href={SITE.supportServerUrl} target="_blank" rel="noopener noreferrer">
+          Support server
+        </a>
         <Link to="/privacy">Privacy Policy</Link>
         <Link to="/terms">Terms of Service</Link>
         <a href={buildBotInviteLink()} target="_blank" rel="noopener noreferrer">

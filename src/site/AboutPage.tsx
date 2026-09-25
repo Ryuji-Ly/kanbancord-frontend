@@ -30,7 +30,11 @@ export function AboutPage() {
       <p>
         {SITE.name} is built and run by {SITE.operator}. It is free, has no ads, and does not sell or track your data (see
         the <Link to="/privacy">Privacy Policy</Link>). Found a problem or have an idea? Use <code>/report</code> in Discord.
-        If you would like to help with its costs, see <Link to="/support">Support</Link>.
+        Questions, or want to hear about new features? Join the{' '}
+        <a href={SITE.supportServerUrl} target="_blank" rel="noopener noreferrer">
+          support server
+        </a>
+        . If you would like to help with its costs, see <Link to="/support">Support</Link>.
       </p>
 
       <h2>Get started</h2>
