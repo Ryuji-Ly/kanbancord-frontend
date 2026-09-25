@@ -138,8 +138,12 @@ export function PrivacyPage() {
         harm others.
       </p>
       <p>
-        You can also complain to the data protection authority in the country where you live or work, or in{' '}
-        {SITE.country}.
+        You can also complain to the data protection authority in the country where you live or work, or to the Belgian
+        Data Protection Authority (
+        <a href="https://www.dataprotectionauthority.be" target="_blank" rel="noopener noreferrer">
+          dataprotectionauthority.be
+        </a>
+        ).
       </p>
 
       <h2>Cookies and browser storage</h2>

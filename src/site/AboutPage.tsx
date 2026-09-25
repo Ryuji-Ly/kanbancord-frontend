@@ -6,19 +6,24 @@ export function AboutPage() {
   return (
     <PublicLayout
       title="About"
-      description="KanbanCord brings kanban boards to Discord servers: plan work on the website, and keep up with it in Discord."
+      description="KanbanCord is a kanban board that lives in your Discord server: run it entirely with the bot, and use the website for the big picture and fine-tuning."
       path="/about"
     >
       <h1>About {SITE.name}</h1>
       <p>
-        {SITE.name} gives Discord servers kanban boards. Plan work on the website: boards, columns and tasks, with
-        labels, priorities, due dates, assignees, comments, images and videos. Keep up with it in Discord: look things up
-        and make changes with slash commands, and get updates in your channels or by direct message.
+        {SITE.name} is a kanban board that lives in your Discord server. The idea is simple: your community already talks
+        in Discord, so planning should happen there too. Create boards and columns, add tasks, move them along, assign
+        people, set labels, priorities and due dates, and discuss them in comments, all with the bot's slash commands,
+        without leaving the chat. Updates arrive in the channels you choose and, for your own tasks, by direct message.
       </p>
       <p>
-        It follows your server's Discord roles and permissions, so the right people see and change the right boards
-        without setting up anything twice. Communities, study groups, game projects and small teams all use it the same
-        way: where they already talk.
+        Most people never need anything else. The website is there when you want the whole board at a glance, or to
+        fine-tune things: detailed permissions per board and per person, the labels and priority levels a board offers,
+        which features a server uses, exactly which updates you are told about, and the audit log of every change.
+      </p>
+      <p>
+        It follows your server's Discord roles and permissions from the start, so the right people see and change the right
+        boards without setting anything up twice.
       </p>
 
       <h2>Made by one person</h2>
@@ -30,8 +35,12 @@ export function AboutPage() {
       <h2>Get started</h2>
       <ol>
         <li>Add the bot to your server.</li>
-        <li>Sign in on the website with Discord and pick the server.</li>
-        <li>Create a board. Everything else follows from there.</li>
+        <li>
+          Create a board with <code>/board create</code>, then add tasks with <code>/task create</code>.
+        </li>
+        <li>
+          Run <code>/help</code> to see everything the bot can do.
+        </li>
       </ol>
       <p>
         Questions? See the <Link to="/faq">FAQ</Link>.

@@ -4,19 +4,19 @@ import { usePageMeta } from './usePageMeta'
 
 const FEATURES = [
   {
+    icon: FiCommand,
+    title: 'Everything from Discord',
+    text: 'Create boards and tasks, move and assign them, set due dates and comment with slash commands. No need to leave the chat.',
+  },
+  {
     icon: FiLayout,
-    title: 'Boards for every project',
+    title: 'Real kanban boards',
     text: 'Columns and tasks with labels, priorities, due dates, assignees, comments, checklists, images and videos.',
   },
   {
     icon: FiShield,
     title: 'Your Discord permissions',
-    text: 'Access follows your server roles out of the box, and can be fine-tuned per board and per person.',
-  },
-  {
-    icon: FiCommand,
-    title: 'Work from Discord',
-    text: 'Look up boards and tasks, create, move and assign them with slash commands, without leaving the chat.',
+    text: 'Access follows your server roles out of the box, and can be fine-tuned per board and per person on the website.',
   },
   {
     icon: FiBell,
@@ -25,8 +25,8 @@ const FEATURES = [
   },
   {
     icon: FiZap,
-    title: 'Live for everyone',
-    text: 'Changes appear for everyone at once, on the website and in Discord.',
+    title: 'The big picture, when you want it',
+    text: 'The website shows whole boards at a glance and holds the fine-tuning, with every change live for everyone.',
   },
   {
     icon: FiEye,
@@ -39,7 +39,7 @@ const FEATURES = [
 export function LandingPage({ onLogin }: { onLogin: () => void }) {
   usePageMeta(
     'Kanban boards for Discord',
-    'Kanban boards for Discord servers: plan tasks on the website, follow your server roles and permissions, and keep up in Discord with slash commands and notifications.',
+    'A kanban board that lives in your Discord server: create, move and assign tasks with slash commands, get updates in your channels, and use the website for the big picture.',
     '/',
   )
 
@@ -47,10 +47,10 @@ export function LandingPage({ onLogin }: { onLogin: () => void }) {
     <div className="kc-landing">
       <section className="kc-landing-hero">
         <img src="/images/kanbancord.png" alt="" width={88} height={88} />
-        <h1>Kanban boards for your Discord server</h1>
+        <h1>A kanban board that lives in your Discord server</h1>
         <p>
-          Plan work on the website, and keep up with it where your community already talks: slash commands, channel
-          updates and direct messages.
+          Plan and track work where your community already talks. Create, move and assign tasks with slash commands, and
+          get updates in your channels. The website is there when you want the whole picture.
         </p>
         <div className="kc-landing-actions">
           <a className="kc-btn kc-btn-primary" href={buildBotInviteLink()} target="_blank" rel="noopener noreferrer">
@@ -80,10 +80,10 @@ export function LandingPage({ onLogin }: { onLogin: () => void }) {
             <strong>Add the bot</strong> to your server.
           </li>
           <li>
-            <strong>Sign in</strong> here with Discord and pick the server.
+            <strong>Create a board</strong> with <code>/board create</code>.
           </li>
           <li>
-            <strong>Create a board</strong>, and invite your team to use it.
+            <strong>Add tasks</strong> with <code>/task create</code>, and run <code>/help</code> to see the rest.
           </li>
         </ol>
       </section>
