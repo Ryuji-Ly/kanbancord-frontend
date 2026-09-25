@@ -16,6 +16,7 @@ import {
   hasAnySetting,
   labelsByTask,
   nextLabelColor,
+  rolesByTask,
   resolveAssignee,
   sortColumns,
   toAssigneeMembers,
@@ -29,7 +30,7 @@ import {
   useBoardSnapshot,
   type TaskFields,
 } from '../features/board/boardQueries'
-import { useServerMembers } from '../features/server/serverQueries'
+import { useServerMembers, useServerRoles } from '../features/server/serverQueries'
 import { useMe } from '../features/session/sessionQueries'
 import { useBoardDragAndDrop } from '../features/board/useBoardDragAndDrop'
 import { useBoardRealtime } from '../features/board/useBoardRealtime'
@@ -66,6 +67,12 @@ export function BoardPage() {
   const prioritiesById = useMemo(
     () => new Map((snapshot?.priorities ?? []).map((level) => [level.priorityId, level])),
     [snapshot],
+  )
+  const rolesQuery = useServerRoles(serverId, Boolean(snapshot?.features.ASSIGNEES))
+  const roles = useMemo(() => rolesQuery.data ?? [], [rolesQuery.data])
+  const rolesByTaskId = useMemo(
+    () => rolesByTask(snapshot, new Map(roles.map((role) => [String(role.roleId), role]))),
+    [snapshot, roles],
   )
   const canOpenSettings = hasAnySetting(boardSettingsAccess(snapshot?.permissions, snapshot?.features))
   const ready = Boolean(snapshot && me)
@@ -171,7 +178,7 @@ export function BoardPage() {
     return catalogMutations.addPriority.mutateAsync({ name })
   }
 
-  function createTask(draft: TaskDraft, assigneeIds: string[], labelIds: number[]) {
+  function createTask(draft: TaskDraft, assigneeIds: string[], roleIds: string[], labelIds: number[]) {
     if (!createInColumn || !me) return
     const columnTasks = tasksByColumn[createInColumn.columnId] ?? []
     const position = columnTasks.reduce((max, task) => Math.max(max, Number(task.position ?? 0)), 0) + 1
@@ -182,6 +189,7 @@ export function BoardPage() {
         position,
         fields: taskFieldsFromDraft(draft),
         assigneeIds,
+        roleIds,
         labelIds,
         optimisticId: -Date.now(),
         createdBy: me.userId,
@@ -311,6 +319,7 @@ export function BoardPage() {
                   assigneesByTaskId={assigneesByTaskId}
                   labelsByTaskId={labelsByTaskId}
                   prioritiesById={prioritiesById}
+                  rolesByTaskId={rolesByTaskId}
                   selectedTaskId={selectedTaskId}
                   canEdit={abilities.editColumn}
                   canDelete={abilities.deleteColumn}
@@ -365,6 +374,8 @@ export function BoardPage() {
             priorities={snapshot?.priorities ?? []}
             labels={snapshot?.labels ?? []}
             taskLabels={labelsByTaskId.get(selectedTask.taskId) ?? []}
+            roles={roles}
+            taskRoles={rolesByTaskId.get(selectedTask.taskId) ?? []}
             saving={mutations.editTask.isPending}
             onClose={() => setSelectedTaskId(null)}
             onSave={(fields) => saveTask(selectedTask, fields)}
@@ -374,6 +385,10 @@ export function BoardPage() {
             }}
             onAssign={(userId) => assign(selectedTask, userId)}
             onUnassign={(assignee) => unassign(selectedTask, assignee)}
+            onAssignRole={(roleId) => mutations.assignRole.mutateAsync({ taskId: selectedTask.taskId, roleId })}
+            onUnassignRole={(assignmentId) =>
+              mutations.unassignRole.mutateAsync({ taskId: selectedTask.taskId, assignmentId })
+            }
             onAddLabel={(labelId) => mutations.labelTask.mutateAsync({ taskId: selectedTask.taskId, labelId })}
             onRemoveLabel={(taskLabelId) =>
               mutations.unlabelTask.mutateAsync({ taskId: selectedTask.taskId, taskLabelId })
@@ -397,6 +412,7 @@ export function BoardPage() {
             canCreateLabels={abilities.createLabel}
             canCreatePriorities={abilities.managePriorities}
             features={abilities.features}
+            roles={roles}
             onCreateLabel={createLabel}
             onCreatePriority={createPriority}
             creating={mutations.addTask.isPending}

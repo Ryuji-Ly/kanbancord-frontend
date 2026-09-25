@@ -2,6 +2,7 @@ import { parseServerTime } from '../../api/http'
 import type { BoardSnapshot, LabelEntry } from '../../services/boardsService'
 import { NO_FEATURES, type FeatureKey, type ServerFeatures } from '../../services/featuresService'
 import type { BoardColumnEntry } from '../../services/boardColumnsService'
+import type { ServerRoleEntry } from '../../services/permissionsService'
 import type { ServerMemberEntry } from '../../services/serverMembersService'
 import type { TaskCommentEditor, TaskCommentEntry } from '../../services/taskCommentsService'
 import type { TaskEntry } from '../../services/tasksService'
@@ -164,6 +165,27 @@ export function labelsByTask(snapshot: BoardSnapshot | undefined): Map<number, {
   }
   const order = new Map((snapshot?.labels ?? []).map((label, index) => [label.labelId, index]))
   byTask.forEach((list) => list.sort((a, b) => (order.get(a.label.labelId) ?? 0) - (order.get(b.label.labelId) ?? 0)))
+  return byTask
+}
+
+/** A Discord role colour (a 24-bit number, 0 for none) as a CSS colour, or null for none. */
+export function roleColor(color: number | null | undefined): string | null {
+  return color ? `#${color.toString(16).padStart(6, '0')}` : null
+}
+
+/** The roles assigned to each task, with the assignment id needed to remove them. */
+export function rolesByTask(
+  snapshot: BoardSnapshot | undefined,
+  roles: Map<string, ServerRoleEntry>,
+): Map<number, { role: ServerRoleEntry; assignmentId: number }[]> {
+  const byTask = new Map<number, { role: ServerRoleEntry; assignmentId: number }[]>()
+  for (const assignment of snapshot?.roleAssignments ?? []) {
+    const role = roles.get(String(assignment.roleId))
+    if (!role) continue
+    const list = byTask.get(assignment.taskId) ?? []
+    list.push({ role, assignmentId: assignment.id })
+    byTask.set(assignment.taskId, list)
+  }
   return byTask
 }
 

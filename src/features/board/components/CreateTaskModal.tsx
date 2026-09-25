@@ -2,11 +2,13 @@ import { useState } from 'react'
 import type { BoardColumnEntry } from '../../../services/boardColumnsService'
 import type { LabelEntry, PriorityEntry } from '../../../services/boardsService'
 import type { ServerFeatures } from '../../../services/featuresService'
+import type { ServerRoleEntry } from '../../../services/permissionsService'
 import type { MeResponse } from '../../../types/auth'
 import { EMPTY_TASK_DRAFT, resolveAssignee, type AssigneeMember, type TaskDraft } from '../boardModel'
 import { AssigneePicker } from './AssigneePicker'
 import { LabelPicker } from './LabelPicker'
 import { PriorityPicker } from './PriorityPicker'
+import { RolePicker } from './RolePicker'
 
 type CreateTaskModalProps = {
   column: BoardColumnEntry
@@ -21,10 +23,12 @@ type CreateTaskModalProps = {
   canCreateLabels: boolean
   canCreatePriorities: boolean
   features: ServerFeatures
+  /** The server's roles, which can be assigned with ASSIGN_TASK_OTHERS. */
+  roles: ServerRoleEntry[]
   creating: boolean
   error: string
   onClose: () => void
-  onCreate: (draft: TaskDraft, assigneeIds: string[], labelIds: number[]) => void
+  onCreate: (draft: TaskDraft, assigneeIds: string[], roleIds: string[], labelIds: number[]) => void
   onCreateLabel: (name: string) => Promise<LabelEntry>
   onCreatePriority: (name: string) => Promise<PriorityEntry>
 }
@@ -42,6 +46,7 @@ export function CreateTaskModal({
   canCreateLabels,
   canCreatePriorities,
   features,
+  roles,
   creating,
   error,
   onClose,
@@ -55,6 +60,7 @@ export function CreateTaskModal({
     canAssignSelf && !canAssignOthers && me ? [String(me.userId)] : [],
   )
   const [labelIds, setLabelIds] = useState<number[]>([])
+  const [roleIds, setRoleIds] = useState<string[]>([])
   const [validationError, setValidationError] = useState('')
   const canAssign = canAssignSelf || canAssignOthers
 
@@ -68,7 +74,7 @@ export function CreateTaskModal({
       return
     }
     setValidationError('')
-    onCreate(draft, canAssign ? assigneeIds : [], canApplyLabels ? labelIds : [])
+    onCreate(draft, canAssign ? assigneeIds : [], canAssignOthers ? roleIds : [], canApplyLabels ? labelIds : [])
   }
 
   const shownError = validationError || error
@@ -166,6 +172,19 @@ export function CreateTaskModal({
                   onPick={(member) => setAssigneeIds((prev) => [...prev, member.userId])}
                 />
               </div>
+            </div>
+          )}
+
+          {canAssignOthers && roles.length > 0 && (
+            <div className="kc-field">
+              <span className="kc-field-label">Roles</span>
+              <RolePicker
+                roles={roles}
+                selectedIds={roleIds}
+                editable
+                onAdd={(roleId) => setRoleIds((prev) => (prev.includes(roleId) ? prev : [...prev, roleId]))}
+                onRemove={(roleId) => setRoleIds((prev) => prev.filter((id) => id !== roleId))}
+              />
             </div>
           )}
         </div>
