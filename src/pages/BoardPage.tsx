@@ -304,6 +304,18 @@ export function BoardPage() {
         <div className="kc-board-subbar" role="banner" aria-label="Board title bar">
           <h2>{board?.name ?? 'Board'}</h2>
           {board?.isArchived && <span className="kc-board-archived-badge">Archived</span>}
+          {ready && board && totalTaskCount > 0 && (
+            <BoardFilterBar
+              filters={filters}
+              onChange={setFilters}
+              features={shown}
+              people={peopleOnBoard}
+              labels={snapshot?.labels ?? []}
+              priorities={snapshot?.priorities ?? []}
+              shownCount={shownTaskCount}
+              totalCount={totalTaskCount}
+            />
+          )}
           {ready && canOpenSettings && (
             <button
               type="button"
@@ -331,20 +343,6 @@ export function BoardPage() {
             <p className="kc-banner kc-banner--success">
               This board is archived. All columns and tasks are view-only until the board is restored.
             </p>
-          )}
-
-          {ready && board && totalTaskCount > 0 && (
-            <BoardFilterBar
-              filters={filters}
-              onChange={setFilters}
-              features={shown}
-              people={peopleOnBoard}
-              labels={snapshot?.labels ?? []}
-              priorities={snapshot?.priorities ?? []}
-              shownCount={shownTaskCount}
-              totalCount={totalTaskCount}
-              canMoveTasks={abilities.moveTask}
-            />
           )}
 
           {ready && board && (
