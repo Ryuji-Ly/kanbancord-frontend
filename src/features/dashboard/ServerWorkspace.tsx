@@ -1,4 +1,5 @@
 import { useDeferredValue, useMemo, useState } from 'react'
+import { ServerNotificationsSettings } from '../notifications/ServerNotificationsSettings'
 import { useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from 'react-router-dom'
 import type { BoardEntry } from '../../services/boardsService'
@@ -390,6 +391,13 @@ export function ServerWorkspace({ serverId, server, showError, showToast }: Serv
       key: 'features',
       label: 'Features',
       content: <FeaturesSettings serverId={serverId} features={featuresQuery.data} />,
+    })
+  }
+  if (access?.server.MANAGE_SERVER_PERMISSIONS) {
+    settingsSections.push({
+      key: 'notifications',
+      label: 'Notifications',
+      content: <ServerNotificationsSettings serverId={serverId} boards={boardsQuery.data ?? []} />,
     })
   }
   if (access?.server.MANAGE_SERVER_PERMISSIONS && features.PERMISSIONS) {
