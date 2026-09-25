@@ -13,7 +13,7 @@ export const AUDIT_CATEGORIES: { key: string; label: string; entityTypes: string
   { key: 'labels', label: 'Labels', entityTypes: ['LABEL', 'TASK_LABEL'] },
   { key: 'priorities', label: 'Priorities', entityTypes: ['PRIORITY'] },
   { key: 'permissions', label: 'Permissions', entityTypes: ['PERMISSION'] },
-  { key: 'settings', label: 'Server settings', entityTypes: ['SETTINGS'] },
+  { key: 'settings', label: 'Settings', entityTypes: ['SETTINGS'] },
 ]
 
 /** Names for people and roles, to describe assignments and permission rules. */
@@ -158,7 +158,8 @@ export function describeAuditEntry(entry: AuditEntry, lookups: AuditLookups): Au
       }
       break
     }
-    case 'SERVER_FEATURES_UPDATED': {
+    case 'SERVER_FEATURES_UPDATED':
+    case 'BOARD_FEATURES_UPDATED': {
       const turned = (on: boolean) =>
         Object.entries(entry.changes ?? {})
           .filter(([key, change]) => !key.startsWith('_') && record(change)?.to === on)
@@ -167,7 +168,11 @@ export function describeAuditEntry(entry: AuditEntry, lookups: AuditLookups): Au
         turned(true).length > 0 ? `turned on ${turned(true).join(', ')}` : '',
         turned(false).length > 0 ? `turned off ${turned(false).join(', ')}` : '',
       ].filter(Boolean)
-      return { summary: parts.length > 0 ? parts.join(' and ') : 'changed the server features', fields: [] }
+      if (entry.action === 'SERVER_FEATURES_UPDATED') {
+        return { summary: parts.length > 0 ? parts.join(' and ') : 'changed the server features', fields: [] }
+      }
+      const board = entry.boardName ? `board "${entry.boardName}"` : `board #${entry.boardId ?? '?'}`
+      return { summary: parts.length > 0 ? `${parts.join(' and ')} on ${board}` : `changed the features of ${board}`, fields: [] }
     }
     case 'COLUMN_MOVED':
       return { summary: `reordered ${named('column')}`, fields }

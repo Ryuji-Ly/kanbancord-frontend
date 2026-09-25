@@ -4,7 +4,8 @@ import type { ServerRoleEntry } from '../../../services/permissionsService'
 import type { TaskEntry } from '../../../services/tasksService'
 import { LABEL_PATTERNS } from './LabelPicker'
 import { RoleChip } from './RolePicker'
-import { readableTextColor, resolveAssigneeDisplayName, type AssigneeMember } from '../boardModel'
+import { FiFlag } from 'react-icons/fi'
+import { priorityStyle, readableTextColor, resolveAssigneeDisplayName, type AssigneeMember } from '../boardModel'
 
 /**
  * The task title, cut to two lines with an ellipsis (CSS line clamping cannot share a line with the
@@ -237,8 +238,9 @@ export function TaskCard({
             <span
               className="kc-column-task-priority"
               title={`Priority: ${priority.name}`}
-              style={{ background: priority.color ?? undefined, color: readableTextColor(priority.color) }}
+              style={priorityStyle(priority.color)}
             >
+              <FiFlag className="kc-priority-flag" aria-hidden="true" />
               <span className="kc-priority-rank">P{priority.position}</span>
               {priority.name}
             </span>
