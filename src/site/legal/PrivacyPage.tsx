@@ -16,8 +16,8 @@ export function PrivacyPage() {
 
       <p>
         This policy explains what personal data {SITE.name} (the website at {SITE.url} and the {SITE.name} Discord bot)
-        collects, why, and what you can do about it. {SITE.name} is run by {SITE.operator}, based in {SITE.country}, who is
-        responsible for your data (the "controller"). Questions or requests: {mail}.
+        collects, why, and what you can do about it. {SITE.name} is a personal, non-commercial project run by{' '}
+        {SITE.operator}, based in {SITE.country}, who is responsible for your data (the "controller"). Questions or requests: {mail}.
       </p>
 
       <h2>What we collect</h2>
