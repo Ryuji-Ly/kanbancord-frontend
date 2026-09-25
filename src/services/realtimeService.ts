@@ -16,10 +16,10 @@ export type RealtimeEvent = {
   /** What changed: BOARD, BOARD_COLUMN, TASK, LABEL, PERMISSION, ROLE, MEMBER, SERVER, ... */
   entityType: string
   scopeType: string
-  serverId: number
+  serverId: string
   boardId: number | null
   entityId: number | null
-  actorUserId: number | null
+  actorUserId: string | null
   occurredAt: string
   payload?: unknown
 }
@@ -36,7 +36,7 @@ export type RealtimeRevocation = {
   type: 'SUBSCRIPTION_REVOKED'
   reason: 'ACCESS_LOST' | 'BOARD_DELETED'
   destination: string
-  serverId: number
+  serverId: string
   boardId: number | null
 }
 
