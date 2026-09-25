@@ -8,6 +8,7 @@ import { DashboardPage } from './pages/DashboardPage'
 import { BoardPage } from './pages/BoardPage'
 import { AboutPage } from './site/AboutPage'
 import { FaqPage } from './site/FaqPage'
+import { SupportPage } from './site/SupportPage'
 import { PrivacyPage } from './site/legal/PrivacyPage'
 import { TermsPage } from './site/legal/TermsPage'
 
@@ -28,6 +29,7 @@ function App() {
       <Route path="/boards/:boardId" element={<BoardPage />} />
       <Route path="/about" element={<AboutPage />} />
       <Route path="/faq" element={<FaqPage />} />
+      <Route path="/support" element={<SupportPage />} />
       <Route path="/privacy" element={<PrivacyPage />} />
       <Route path="/terms" element={<TermsPage />} />
       <Route path="*" element={<Navigate to="/" replace />} />
