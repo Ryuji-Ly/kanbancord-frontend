@@ -17,6 +17,7 @@ import {
   labelsByTask,
   nextLabelColor,
   rolesByTask,
+  withSimpleView,
   resolveAssignee,
   sortColumns,
   toAssigneeMembers,
@@ -39,6 +40,7 @@ import { BoardColumn } from '../features/board/components/BoardColumn'
 import { ConfirmDialog } from '../features/board/components/ConfirmDialog'
 import { CreateTaskModal } from '../features/board/components/CreateTaskModal'
 import { BoardSettingsDialog } from '../features/boardSettings/BoardSettingsDialog'
+import { usePreferences } from '../features/preferences/usePreferences'
 import { TaskPanel } from '../features/board/components/TaskPanel'
 
 export function BoardPage() {
@@ -60,19 +62,22 @@ export function BoardPage() {
   const me = meQuery.data ?? null
   const snapshot = snapshotQuery.data
   const board = snapshot?.board ?? null
-  const abilities = useMemo(() => boardAbilities(snapshot), [snapshot])
+  const simpleView = usePreferences()?.simpleView
+  const abilities = useMemo(() => withSimpleView(boardAbilities(snapshot), simpleView), [snapshot, simpleView])
+  const shown = abilities.features
   const columns = useMemo(() => sortColumns(snapshot?.columns ?? []), [snapshot])
   const tasksByColumn = useMemo(() => groupTasksByColumn(snapshot?.tasks ?? []), [snapshot])
-  const labelsByTaskId = useMemo(() => labelsByTask(snapshot), [snapshot])
+  // Features that are off, for the server or in the user's simple view, show nothing on the board.
+  const labelsByTaskId = useMemo(() => (shown.LABELS ? labelsByTask(snapshot) : new Map()), [snapshot, shown.LABELS])
   const prioritiesById = useMemo(
-    () => new Map((snapshot?.priorities ?? []).map((level) => [level.priorityId, level])),
-    [snapshot],
+    () => new Map(shown.PRIORITIES ? (snapshot?.priorities ?? []).map((level) => [level.priorityId, level]) : []),
+    [snapshot, shown.PRIORITIES],
   )
   const rolesQuery = useServerRoles(serverId, Boolean(snapshot?.features.ASSIGNEES))
   const roles = useMemo(() => rolesQuery.data ?? [], [rolesQuery.data])
   const rolesByTaskId = useMemo(
-    () => rolesByTask(snapshot, new Map(roles.map((role) => [String(role.roleId), role]))),
-    [snapshot, roles],
+    () => (shown.ASSIGNEES ? rolesByTask(snapshot, new Map(roles.map((role) => [String(role.roleId), role]))) : new Map()),
+    [snapshot, roles, shown.ASSIGNEES],
   )
   const canOpenSettings = hasAnySetting(boardSettingsAccess(snapshot?.permissions, snapshot?.features))
   const ready = Boolean(snapshot && me)
@@ -97,11 +102,11 @@ export function BoardPage() {
   const directory = useMemo(() => assigneeDirectory(members, me), [members, me])
   const assigneesByTaskId = useMemo(() => {
     const groups: Record<number, AssigneeMember[]> = {}
-    for (const assignment of snapshot?.assignments ?? []) {
+    for (const assignment of shown.ASSIGNEES ? (snapshot?.assignments ?? []) : []) {
       ;(groups[assignment.taskId] ??= []).push(resolveAssignee(directory, String(assignment.userId)))
     }
     return groups
-  }, [snapshot, directory])
+  }, [snapshot, directory, shown.ASSIGNEES])
 
   const drag = useBoardDragAndDrop({
     columns,

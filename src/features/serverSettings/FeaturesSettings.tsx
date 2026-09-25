@@ -5,9 +5,9 @@ import {
   FEATURES,
   NO_FEATURES,
   updateServerFeatures,
-  type FeatureKey,
   type ServerFeatures,
 } from '../../services/featuresService'
+import { SwitchRow } from '../../components/SwitchRow'
 import { serverKeys } from '../server/serverQueries'
 
 type FeaturesSettingsProps = {
@@ -74,9 +74,8 @@ export function FeaturesSettings({ serverId, features }: FeaturesSettingsProps) 
 
       <ul className="kc-features-list">
         {FEATURES.map((feature) => (
-          <FeatureRow
+          <SwitchRow
             key={feature.key}
-            featureKey={feature.key}
             label={feature.label}
             description={feature.description}
             on={features[feature.key]}
@@ -85,41 +84,5 @@ export function FeaturesSettings({ serverId, features }: FeaturesSettingsProps) 
         ))}
       </ul>
     </div>
-  )
-}
-
-function FeatureRow({
-  featureKey,
-  label,
-  description,
-  on,
-  onToggle,
-}: {
-  featureKey: FeatureKey
-  label: string
-  description: string
-  on: boolean
-  onToggle: (on: boolean) => void
-}) {
-  const id = `feature-${featureKey}`
-  return (
-    <li className="kc-feature-row">
-      <div className="kc-feature-text">
-        <label htmlFor={id} className="kc-feature-label">
-          {label}
-        </label>
-        <p className="kc-muted">{description}</p>
-      </div>
-      <button
-        id={id}
-        type="button"
-        role="switch"
-        aria-checked={on}
-        className={`kc-switch${on ? ' kc-switch--on' : ''}`}
-        onClick={() => onToggle(!on)}
-      >
-        <span className="kc-switch-knob" aria-hidden="true" />
-      </button>
-    </li>
   )
 }
