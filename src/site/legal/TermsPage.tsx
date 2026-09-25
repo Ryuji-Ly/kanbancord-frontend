@@ -16,7 +16,7 @@ export function TermsPage() {
 
       <p>
         These terms apply to {SITE.name}: the website at {SITE.url} and the {SITE.name} Discord bot (together, "the
-        service"), run by {SITE.operator} ("we"). By using the service, or adding the bot to a server, you agree to them.
+        service"), a personal, non-commercial project run by {SITE.operator} ("we"). By using the service, or adding the bot to a server, you agree to them.
         How we handle personal data is described in the <Link to="/privacy">Privacy Policy</Link>.
       </p>
 
