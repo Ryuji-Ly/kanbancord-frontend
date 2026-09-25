@@ -9,11 +9,21 @@ const QUESTIONS: { question: string; answer: ReactNode }[] = [
     answer: 'Yes. There are no paid plans, no ads, and your data is not sold.',
   },
   {
+    question: 'Do I need the website?',
+    answer: (
+      <>
+        No. {SITE.name} is built to be used entirely from Discord: create boards, columns and tasks, move and assign them,
+        set labels, priorities and due dates, comment, and choose your notifications, all with slash commands. The website
+        is for when you want the whole board at a glance, or to fine-tune settings.
+      </>
+    ),
+  },
+  {
     question: 'How do I add it to my server?',
     answer: (
       <>
         Use "Add to Discord" at the bottom of any page, and pick the server. You need the Manage Server permission there.
-        Then sign in on the website and choose the server to create its first board.
+        Then create a first board with <code>/board create</code> and add tasks with <code>/task create</code>.
       </>
     ),
   },
@@ -35,8 +45,20 @@ const QUESTIONS: { question: string; answer: ReactNode }[] = [
     question: 'What can I do from Discord?',
     answer: (
       <>
-        View boards and tasks, create and edit tasks, move and assign them, set labels, priorities and due dates, comment,
-        and manage columns and boards. Run <code>/help</code> in Discord for every command.
+        Everything you need day to day: create, view, rename and archive boards; add, rename, reorder and delete columns;
+        create, edit, move and delete tasks; assign people and roles; set labels, priorities and due dates; read and write
+        comments; choose your own notifications with <code>/notifications</code>; and, for server managers, set up update
+        channels with <code>/kanbancord</code>. Run <code>/help</code> in Discord for every command.
+      </>
+    ),
+  },
+  {
+    question: 'What needs the website?',
+    answer: (
+      <>
+        Fine-tuning and the big picture: seeing a whole board at once, permission rules per board and per person, the
+        labels and priority levels a board offers, which features a server uses, exactly which updates you are told about,
+        themes and accessibility options, uploading images and videos, and browsing the audit log.
       </>
     ),
   },
@@ -45,9 +67,10 @@ const QUESTIONS: { question: string; answer: ReactNode }[] = [
     answer: (
       <>
         A server can have the bot post updates in chosen channels, and mirror its audit log in one. You can also get
-        direct messages about tasks you are assigned to or created. If a channel already mentioned you about something,
-        you do not get a direct message about it too. Choose what you get in Settings → Notifications, or with{' '}
-        <code>/notifications</code>.
+        direct messages about tasks you are assigned to or created, including reminders when they are due. If a channel
+        already mentioned you about something, you do not get a direct message about it too. Choose what you get with{' '}
+        <code>/notifications</code>, or in more detail under Settings → Notifications on the website. Server managers set
+        up channels with <code>/kanbancord</code>.
       </>
     ),
   },
