@@ -1,4 +1,6 @@
 import { useMemo, useState } from 'react'
+import { LandingPage } from '../site/LandingPage'
+import { SiteFooter } from '../site/SiteFooter'
 import { useQuery } from '@tanstack/react-query'
 import { useNavigate } from 'react-router-dom'
 import { readableError } from '../api/http'
@@ -68,6 +70,25 @@ export function DashboardPage() {
   const banner = session.banner ?? (loadError ? { text: readableError(loadError, 'Failed to fetch servers'), type: 'error' as const } : null)
   const loading = session.exchanging || (Boolean(userId) && (guildsQuery.isPending || myServersQuery.isPending))
 
+  // Signed out: the front door, with what KanbanCord is and how to start.
+  if (!session.isAuthenticated && !session.exchanging) {
+    return (
+      <div className="kc-dashboard-root kc-dashboard-root--public">
+        <DashboardHeader
+          isAuthenticated={false}
+          me={null}
+          loading={false}
+          onBrandClick={() => navigate('/')}
+          onLogout={session.logout}
+          onLogin={session.login}
+        />
+        {banner && <p className={`kc-banner${banner.type === 'success' ? ' kc-banner--success' : ''}`}>{banner.text}</p>}
+        <LandingPage onLogin={session.login} />
+        <SiteFooter />
+      </div>
+    )
+  }
+
   return (
     <div className="kc-dashboard-root">
       <DashboardHeader
@@ -91,12 +112,6 @@ export function DashboardPage() {
         <main className="kc-content">
           {banner && <p className={`kc-banner${banner.type === 'success' ? ' kc-banner--success' : ''}`}>{banner.text}</p>}
 
-          {!session.isAuthenticated && !session.exchanging && (
-            <section className="kc-panel">
-              <h2>Welcome</h2>
-              <p className="kc-muted">Login with Discord to load your servers and manage KanbanCord boards.</p>
-            </section>
-          )}
 
           {session.isAuthenticated && selectedServer && (
             <ServerWorkspace
@@ -120,6 +135,7 @@ export function DashboardPage() {
               }
             }}
           />
+          <SiteFooter />
         </main>
       </div>
 

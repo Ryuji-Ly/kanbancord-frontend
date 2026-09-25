@@ -1,0 +1,5 @@
+# Everything public may be indexed. Boards need signing in, so there is nothing to find there.
+User-agent: *
+Disallow: /boards/
+
+Sitemap: https://kanbancord.com/sitemap.xml
