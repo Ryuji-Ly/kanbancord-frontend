@@ -17,7 +17,7 @@ export type TaskEntry = {
   dueDate: string | null
   isArchived: boolean
   metadata: Record<string, unknown> | null
-  createdBy: string | number | null
+  createdBy: string | null
   createdAt: string
   updatedAt: string
   completedAt: string | null
