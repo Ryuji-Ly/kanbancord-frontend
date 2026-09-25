@@ -26,7 +26,7 @@ export type RealtimeEvent = {
 
 /** A change that concerns the signed-in user only, sent on their own queue. */
 export type UserRealtimeEvent = {
-  eventType: 'PROFILE_UPDATED' | 'NOTIFICATIONS_CHANGED' | 'SESSIONS_CHANGED'
+  eventType: 'PROFILE_UPDATED' | 'NOTIFICATIONS_CHANGED' | 'SESSIONS_CHANGED' | 'NOTIFICATION_SETTINGS_CHANGED'
   occurredAt: string
   payload?: unknown
 }
