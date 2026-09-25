@@ -8,7 +8,10 @@ export type ServerSettingsSection = {
 }
 
 type ServerSettingsDialogProps = {
+  /** Shown above the list of sections. */
   serverName: string
+  /** What the dialog is, for screen readers; "Server settings" unless given. */
+  title?: string
   /** Only the sections the user may open; the first is shown first. */
   sections: ServerSettingsSection[]
   onClose: () => void
@@ -21,14 +24,14 @@ type ServerSettingsDialogProps = {
  * Rendered in place rather than into the document body, so dialogs opened from a section and
  * rendered after it (such as adding a permission entry) appear on top of it.
  */
-export function ServerSettingsDialog({ serverName, sections, onClose }: ServerSettingsDialogProps) {
+export function ServerSettingsDialog({ serverName, title = 'Server settings', sections, onClose }: ServerSettingsDialogProps) {
   const [active, setActive] = useState(sections[0]?.key ?? '')
   const current = sections.find((section) => section.key === active) ?? sections[0]
 
   return (
-    <div className="kc-modal-overlay" role="dialog" aria-modal="true" aria-label="Server settings" onClick={onClose}>
+    <div className="kc-modal-overlay" role="dialog" aria-modal="true" aria-label={title} onClick={onClose}>
       <div className="kc-modal kc-server-settings" onClick={(event) => event.stopPropagation()}>
-        <nav className="kc-server-settings-nav" aria-label="Server settings sections">
+        <nav className="kc-server-settings-nav" aria-label={`${title} sections`}>
           <p className="kc-server-settings-server">{serverName}</p>
           {sections.map((section) => (
             <button
@@ -45,7 +48,7 @@ export function ServerSettingsDialog({ serverName, sections, onClose }: ServerSe
         <div className="kc-server-settings-main">
           <div className="kc-server-settings-head">
             <h3>{current?.label}</h3>
-            <button type="button" className="kc-modal-close" aria-label="Close server settings" onClick={onClose}>
+            <button type="button" className="kc-modal-close" aria-label={`Close ${title.toLowerCase()}`} onClick={onClose}>
               <FiX aria-hidden="true" />
             </button>
           </div>

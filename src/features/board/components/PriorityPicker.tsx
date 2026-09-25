@@ -3,12 +3,19 @@ import type { PriorityEntry } from '../../../services/boardsService'
 import { readableTextColor } from '../boardModel'
 
 /** A priority level in its own colour. */
-export function PriorityBadge({ priority, className = '' }: { priority: Pick<PriorityEntry, 'name' | 'color'>; className?: string }) {
+export function PriorityBadge({
+  priority,
+  className = '',
+}: {
+  priority: Pick<PriorityEntry, 'name' | 'color'> & { position?: number }
+  className?: string
+}) {
   return (
     <span
       className={`kc-priority-badge ${className}`}
       style={{ background: priority.color ?? 'var(--kc-neutral-tag)', color: readableTextColor(priority.color) }}
     >
+      {priority.position !== undefined && <span className="kc-priority-rank">P{priority.position}</span>}
       {priority.name}
     </span>
   )
