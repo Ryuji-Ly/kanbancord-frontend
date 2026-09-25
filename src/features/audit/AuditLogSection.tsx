@@ -160,6 +160,11 @@ function AuditRow({ entry, lookups }: { entry: AuditEntry; lookups: AuditLookups
           <time dateTime={entry.createdAt} title={parseServerTime(entry.createdAt).toLocaleString()}>
             {relativeTime(entry.createdAt)}
           </time>
+          {entry.source === 'DISCORD' && (
+            <span className="kc-audit-source" title="Done with a slash command in Discord">
+              via Discord
+            </span>
+          )}
           {fields.length > 0 && (
             <button
               type="button"
