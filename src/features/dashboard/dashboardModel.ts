@@ -4,13 +4,14 @@ import type { ServerAccess } from '../../services/permissionsService'
 import type { DiscordGuild } from '../../types/auth'
 import type { ApiServer, BoardCapability, MergedServer } from '../../components/dashboard/types'
 
-export function buildBotInviteLink(guildId: string): string {
+/** The link that adds the bot to a server: that server, or one Discord asks you to pick. */
+export function buildBotInviteLink(guildId?: string): string {
   const params = new URLSearchParams({
     client_id: DISCORD_CLIENT_ID,
-    guild_id: guildId,
     permissions: '412854119488',
     scope: 'bot applications.commands',
   })
+  if (guildId) params.set('guild_id', guildId)
   return `https://discord.com/api/oauth2/authorize?${params.toString()}`
 }
 
