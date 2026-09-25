@@ -89,10 +89,15 @@ const QUESTIONS: { question: string; answer: ReactNode }[] = [
     ),
   },
   {
-    question: 'I found a bug, or have an idea.',
+    question: 'I found a bug, have an idea, or need help.',
     answer: (
       <>
-        Use <code>/report</code> in Discord; it goes straight to the developer.
+        Join the{' '}
+        <a href={SITE.supportServerUrl} target="_blank" rel="noopener noreferrer">
+          {SITE.name} support server
+        </a>{' '}
+        to ask questions and hear about new features, or use <code>/report</code> in Discord to send a report straight to
+        the developer.
       </>
     ),
   },
