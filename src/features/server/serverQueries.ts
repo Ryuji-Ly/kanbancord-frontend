@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { fetchBoards } from '../../services/boardsService'
+import { fetchServerFeatures } from '../../services/featuresService'
 import {
   fetchMyAccess,
   fetchPermissionCatalog,
@@ -19,6 +20,7 @@ export const serverKeys = {
   roles: (serverId: string) => ['server', serverId, 'roles'] as const,
   members: (serverId: string) => ['server', serverId, 'members'] as const,
   catalog: (serverId: string) => ['server', serverId, 'catalog'] as const,
+  features: (serverId: string) => ['server', serverId, 'features'] as const,
 }
 
 /** The server's boards the caller can view. */
@@ -35,6 +37,15 @@ export function useServerAccess(serverId: string) {
   return useQuery({
     queryKey: serverKeys.access(serverId),
     queryFn: () => fetchMyAccess(serverId),
+    enabled: Boolean(serverId),
+  })
+}
+
+/** Which optional features the server has on. */
+export function useServerFeatures(serverId: string) {
+  return useQuery({
+    queryKey: serverKeys.features(serverId),
+    queryFn: () => fetchServerFeatures(serverId),
     enabled: Boolean(serverId),
   })
 }
