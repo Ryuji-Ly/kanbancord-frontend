@@ -1,6 +1,7 @@
 import type { ComponentPropsWithoutRef } from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import { isUploadMarker, mediaKindOf } from '../../../services/mediaService'
 
 type MarkdownProps = {
   children: string
@@ -10,12 +11,48 @@ type MarkdownProps = {
   onToggle?: (itemIndex: number, checked: boolean) => void
 }
 
-/** GitHub-flavoured markdown without raw HTML, with optionally clickable checklists. */
+/**
+ * GitHub-flavoured markdown without raw HTML, with optionally clickable checklists. Images and videos
+ * are shown only from Imgur, where uploads go; an image from anywhere else stays a link, so opening a
+ * task never loads files from servers someone else chose.
+ */
 export function Markdown({ children, editable = false, onToggle }: MarkdownProps) {
   return (
     <ReactMarkdown
       remarkPlugins={[remarkGfm]}
       components={{
+        img: ({ src, alt }: ComponentPropsWithoutRef<'img'>) => {
+          const source = typeof src === 'string' ? src : undefined
+          if (isUploadMarker(source)) return <span className="kc-markdown-uploading">{alt}</span>
+          const kind = mediaKindOf(source)
+          if (kind === 'video') {
+            return (
+              <video
+                className="kc-markdown-media"
+                src={source}
+                controls
+                playsInline
+                preload="metadata"
+                aria-label={alt || 'Video'}
+                onClick={(event) => event.stopPropagation()}
+              />
+            )
+          }
+          if (kind === 'image') {
+            return (
+              <a href={source} target="_blank" rel="noopener noreferrer" onClick={(event) => event.stopPropagation()}>
+                <img className="kc-markdown-media" src={source} alt={alt ?? ''} loading="lazy" referrerPolicy="no-referrer" />
+              </a>
+            )
+          }
+          return source ? (
+            <a href={source} target="_blank" rel="noopener noreferrer" onClick={(event) => event.stopPropagation()}>
+              {alt || source}
+            </a>
+          ) : (
+            <span>{alt}</span>
+          )
+        },
         input: (props: ComponentPropsWithoutRef<'input'>) => {
           if (props.type !== 'checkbox') {
             return <input {...props} />

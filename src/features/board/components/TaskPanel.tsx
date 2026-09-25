@@ -9,7 +9,9 @@ import { AssigneePicker } from './AssigneePicker'
 import { LabelChip, LabelPicker } from './LabelPicker'
 import { PriorityBadge, PriorityPicker } from './PriorityPicker'
 import { RolePicker } from './RolePicker'
+import { hasPendingUploads } from '../../../services/mediaService'
 import { Markdown } from './Markdown'
+import { MarkdownEditor } from './MarkdownEditor'
 import { TaskComments } from './TaskComments'
 
 type TaskPanelProps = {
@@ -79,6 +81,7 @@ export function TaskPanel({
   const [togglingChecklist, setTogglingChecklist] = useState(false)
 
   const assigneeIds = new Set(assignees.map((assignee) => assignee.userId))
+  const uploading = hasPendingUploads(draft.description)
   const features = abilities.features
   const priority = features.PRIORITIES ? (priorities.find((level) => level.priorityId === task.priorityId) ?? null) : null
   const shownDueDate = features.DUE_DATES ? task.dueDate : null
@@ -213,11 +216,11 @@ export function TaskPanel({
             <div className="kc-field">
               <span className="kc-field-label">Description</span>
               {editingDescription ? (
-                <textarea
-                  className="kc-textarea"
+                <MarkdownEditor
                   autoFocus
                   value={draft.description}
-                  onChange={(event) => setDraft((prev) => ({ ...prev, description: event.target.value }))}
+                  onChange={(description) => setDraft((prev) => ({ ...prev, description }))}
+                  upload={{ serverId, boardId }}
                   onBlur={() => setEditingDescription(false)}
                   onKeyDown={(event) => {
                     if (event.key === 'Escape') {
@@ -378,8 +381,14 @@ export function TaskPanel({
               <button type="button" className="kc-btn kc-btn-ghost" onClick={onClose} disabled={saving}>
                 Discard
               </button>
-              <button type="button" className="kc-btn kc-btn-primary" onClick={() => void save()} disabled={saving}>
-                {saving ? 'Saving...' : 'Save'}
+              <button
+                type="button"
+                className="kc-btn kc-btn-primary"
+                onClick={() => void save()}
+                disabled={saving || uploading}
+                title={uploading ? 'Wait for the files to finish uploading' : undefined}
+              >
+                {saving ? 'Saving...' : uploading ? 'Uploading…' : 'Save'}
               </button>
             </div>
           )}
