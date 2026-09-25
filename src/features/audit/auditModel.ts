@@ -39,7 +39,9 @@ const ENTITY_NOUNS: Record<string, string> = {
 }
 
 /** Fields that change as a side effect and say nothing about what the person did. */
-const HIDDEN_FIELDS = new Set(['position', 'updatedAt', 'createdAt', 'editedByUsers', '_subject', 'columnId'])
+const HIDDEN_FIELDS = new Set([
+  'position', 'updatedAt', 'createdAt', 'editedByUsers', '_subject', '_column', '_fromColumn', 'columnId',
+])
 /** Fields holding the id of something else; shown as "#id". */
 const ID_FIELDS = new Set(['priorityId'])
 
@@ -129,6 +131,22 @@ export function describeAuditEntry(entry: AuditEntry, lookups: AuditLookups): Au
       return { summary: describeRule('removed', snapshot, lookups), fields }
     case 'PERMISSION_UPDATED':
       return { summary: 'changed a permission rule', fields }
+    case 'TASK_MOVED':
+    case 'TASK_UPDATED': {
+      // Column names are recorded from this version on; older entries fall back to the plain wording.
+      const column = entry.changes?._column
+      const fromColumn = entry.changes?._fromColumn
+      if (typeof fromColumn === 'string' && typeof column === 'string') {
+        const moved = `moved ${named('task')} from ${fromColumn} to ${column}`
+        return { summary: entry.action === 'TASK_UPDATED' && fields.length > 0 ? `edited and ${moved}` : moved, fields }
+      }
+      if (entry.action === 'TASK_MOVED' && typeof column === 'string') {
+        return { summary: `reordered ${named('task')} in ${column}`, fields }
+      }
+      break
+    }
+    case 'COLUMN_MOVED':
+      return { summary: `reordered ${named('column')}`, fields }
   }
 
   const noun = ENTITY_NOUNS[entry.entityType] ?? entry.entityType.toLowerCase()

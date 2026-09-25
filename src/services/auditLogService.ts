@@ -42,3 +42,17 @@ export async function fetchAuditLog(serverId: string, filter: AuditFilter, befor
   if (!response.ok) throw new Error(await parseError(response))
   return response.json() as Promise<AuditPage>
 }
+
+/** Someone with recorded changes in the server's log. */
+export type AuditActor = {
+  userId: string
+  username: string
+  displayName: string
+  avatarUrl: string | null
+}
+
+export async function fetchAuditActors(serverId: string): Promise<AuditActor[]> {
+  const response = await apiFetch(`/api/servers/${serverId}/audit-logs/actors`)
+  if (!response.ok) throw new Error(await parseError(response))
+  return response.json() as Promise<AuditActor[]>
+}

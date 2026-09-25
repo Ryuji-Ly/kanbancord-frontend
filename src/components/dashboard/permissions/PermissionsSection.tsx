@@ -6,6 +6,8 @@ import { PermissionGroupRow } from './PermissionGroupRow'
 type PermissionsSectionProps = {
   canEditPermissions: boolean
   helperText?: string
+  /** Shows the Expand/Collapse toggle and heading; off where the section has a page of its own. */
+  collapsible?: boolean
   permissionsCollapsed: boolean
   permissionsLoading: boolean
   permFilter: string
@@ -34,6 +36,7 @@ type PermissionsSectionProps = {
 export function PermissionsSection({
   canEditPermissions,
   helperText,
+  collapsible = true,
   permissionsCollapsed,
   permissionsLoading,
   permFilter,
@@ -62,17 +65,19 @@ export function PermissionsSection({
 
   return (
     <div className="kc-server-perms-section">
-      <div className="kc-perms-header-row">
-        <h3>Permissions</h3>
-        <button
-          type="button"
-          className="kc-btn kc-btn-ghost kc-perms-toggle"
-          onClick={onToggleCollapsed}
-          aria-expanded={!permissionsCollapsed}
-        >
-          {permissionsCollapsed ? 'Expand' : 'Collapse'}
-        </button>
-      </div>
+      {collapsible && (
+        <div className="kc-perms-header-row">
+          <h3>Permissions</h3>
+          <button
+            type="button"
+            className="kc-btn kc-btn-ghost kc-perms-toggle"
+            onClick={onToggleCollapsed}
+            aria-expanded={!permissionsCollapsed}
+          >
+            {permissionsCollapsed ? 'Expand' : 'Collapse'}
+          </button>
+        </div>
+      )}
       {helperText && <p className="kc-perms-helper kc-muted">{helperText}</p>}
       {!permissionsCollapsed && permissionsLoading && (
         <div className="kc-loading-state" aria-live="polite" aria-busy="true">
