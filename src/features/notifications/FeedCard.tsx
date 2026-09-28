@@ -129,6 +129,9 @@ export function FeedCard({ feed, channels, boards, catalogue, onChange, onDelete
           {catalogue.map((category) => {
             const on = category.events.filter((event) => feed.events[event.key])
             const open = expanded === category.key
+            // Mentions are per event; the category's switch shows (and sets) those of its posted events.
+            const mentionable = on.filter((event) => event.canMention)
+            const mentioning = mentionable.filter((event) => feed.mentions[event.key])
             return (
               <li key={category.key} className="kc-feed-category">
                 <div className="kc-feed-category-row">
@@ -152,21 +155,22 @@ export function FeedCard({ feed, channels, boards, catalogue, onChange, onDelete
                       {on.length}/{category.events.length}
                     </span>
                   </button>
-                  <label className="kc-feed-mention">
-                    <input
-                      type="checkbox"
-                      className="kc-check"
-                      checked={Boolean(feed.mentions[category.key])}
-                      disabled={on.length === 0}
-                      onChange={(event) => onChange({ mentions: { [category.key]: event.target.checked } })}
-                    />
-                    Mention people
-                  </label>
+                  {category.events.some((event) => event.canMention) && (
+                    <label className="kc-feed-mention">
+                      <TriStateCheckbox
+                        label={`Mention people for ${category.label}`}
+                        checked={mentionable.length > 0 && mentioning.length === mentionable.length}
+                        mixed={mentioning.length > 0 && mentioning.length < mentionable.length}
+                        onChange={(checked) => onChange({ mentions: { [category.key]: checked } })}
+                      />
+                      Mention people
+                    </label>
+                  )}
                 </div>
                 {open && (
                   <ul className="kc-feed-events">
                     {category.events.map((event) => (
-                      <li key={event.key}>
+                      <li key={event.key} className="kc-feed-event">
                         <label>
                           <input
                             type="checkbox"
@@ -176,6 +180,19 @@ export function FeedCard({ feed, channels, boards, catalogue, onChange, onDelete
                           />
                           {event.label}
                         </label>
+                        {event.canMention && (
+                          <label className="kc-feed-mention">
+                            <input
+                              type="checkbox"
+                              className="kc-check"
+                              aria-label={`Mention people for ${event.label}`}
+                              checked={Boolean(feed.mentions[event.key])}
+                              disabled={!feed.events[event.key]}
+                              onChange={(change) => onChange({ mentions: { [event.key]: change.target.checked } })}
+                            />
+                            Mention
+                          </label>
+                        )}
                       </li>
                     ))}
                   </ul>
