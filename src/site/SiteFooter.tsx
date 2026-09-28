@@ -8,6 +8,7 @@ export function SiteFooter() {
     <footer className="kc-site-footer">
       <nav aria-label="Site">
         <Link to="/about">About</Link>
+        <Link to="/guides">Guides</Link>
         <Link to="/faq">FAQ</Link>
         <Link to="/support">Support</Link>
         <a href={SITE.supportServerUrl} target="_blank" rel="noopener noreferrer">

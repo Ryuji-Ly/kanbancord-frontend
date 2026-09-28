@@ -3994,3 +3994,86 @@ select.kc-input {
   justify-content: space-between;
   gap: 12px;
 }
+
+// ── Guides ────────────────────────────────────────────────────────────────────
+.kc-public-nav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  > a:not(.kc-btn) {
+    color: var(--kc-text-dim);
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover {
+      color: var(--kc-heading);
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .kc-public-nav {
+    gap: 10px;
+  }
+}
+
+.kc-breadcrumbs {
+  margin-bottom: 8px;
+  font-size: 0.85rem;
+  color: var(--kc-text-dim);
+}
+
+.kc-public-article pre {
+  overflow-x: auto;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--kc-ink) 45%, transparent);
+
+  code {
+    padding: 0;
+    background: none;
+  }
+}
+
+.kc-public-article kbd {
+  padding: 1px 6px;
+  border: 1px solid var(--kc-border);
+  border-radius: 4px;
+  font-size: 0.85em;
+}
+
+.kc-guide-cta {
+  margin: 36px 0 8px;
+  padding: 18px 20px;
+  border: 1px solid var(--kc-border);
+  border-radius: 12px;
+  background: var(--kc-nav);
+
+  h2 {
+    margin-top: 0;
+  }
+
+  a.kc-btn {
+    display: inline-block;
+    color: #fff;
+    text-decoration: none;
+  }
+}
+
+.kc-public-article .kc-guide-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.kc-guide-list--index {
+  margin-top: 24px;
+
+  li + li {
+    margin-top: 14px;
+  }
+
+  p {
+    margin: 2px 0 0;
+  }
+}
