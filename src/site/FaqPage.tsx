@@ -9,6 +9,15 @@ const QUESTIONS: { question: string; answer: ReactNode }[] = [
     answer: 'Yes. There are no paid plans, no ads, and your data is not sold.',
   },
   {
+    question: 'Where do I start?',
+    answer: (
+      <>
+        Add the bot, then run <code>/guide</code> in Discord for a step-by-step walkthrough. The{' '}
+        <Link to="/guides">guides</Link> cover everything from a shared to-do list to reminders and permissions.
+      </>
+    ),
+  },
+  {
     question: 'Do I need the website?',
     answer: (
       <>

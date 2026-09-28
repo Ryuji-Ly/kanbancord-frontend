@@ -6,11 +6,7 @@ import { useUserRealtime } from './features/session/useUserRealtime'
 import { useApplyPreferences } from './features/preferences/usePreferences'
 import { DashboardPage } from './pages/DashboardPage'
 import { BoardPage } from './pages/BoardPage'
-import { AboutPage } from './site/AboutPage'
-import { FaqPage } from './site/FaqPage'
-import { SupportPage } from './site/SupportPage'
-import { PrivacyPage } from './site/legal/PrivacyPage'
-import { TermsPage } from './site/legal/TermsPage'
+import { PUBLIC_ROUTES } from './site/publicRoutes'
 
 function App() {
   const session = useSession()
@@ -27,11 +23,9 @@ function App() {
     <Routes>
       <Route path="/" element={<DashboardPage />} />
       <Route path="/boards/:boardId" element={<BoardPage />} />
-      <Route path="/about" element={<AboutPage />} />
-      <Route path="/faq" element={<FaqPage />} />
-      <Route path="/support" element={<SupportPage />} />
-      <Route path="/privacy" element={<PrivacyPage />} />
-      <Route path="/terms" element={<TermsPage />} />
+      {PUBLIC_ROUTES.map((route) => (
+        <Route key={route.path} path={route.path} element={route.element} />
+      ))}
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )
