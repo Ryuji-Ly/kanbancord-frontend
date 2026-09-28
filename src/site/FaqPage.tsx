@@ -66,8 +66,9 @@ const QUESTIONS: { question: string; answer: ReactNode }[] = [
     question: 'How do notifications work?',
     answer: (
       <>
-        A server can have the bot post updates in chosen channels, and mirror its audit log in one. You can also get
-        direct messages about tasks you are assigned to or created, including reminders when they are due. If a channel
+        A server can have the bot post updates in chosen channels, and mirror its audit log in one; update posts can
+        show the whole task with buttons to move it, assign people or edit it right there. You can also get direct
+        messages about tasks you are assigned to, created or follow, including reminders when they are due. If a channel
         already mentioned you about something, you do not get a direct message about it too. Choose what you get with{' '}
         <code>/notifications</code>, or in more detail under Settings → Notifications on the website. Server managers set
         up channels with <code>/kanbancord</code>.
