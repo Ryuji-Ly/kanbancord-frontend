@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { GuideImage } from './GuideImage'
 import { GuideLayout } from './GuideLayout'
 
 export function LabelsPrioritiesGuide() {
@@ -57,6 +58,14 @@ export function LabelsPrioritiesGuide() {
         On the <Link to="/guides/website-board">website</Link>, a board&apos;s search bar filters tasks by label, by
         priority, by who is assigned and by due date, so &ldquo;every high-priority bug&rdquo; is two clicks away.
       </p>
+
+      <GuideImage
+        src="/images/guides/filters.webp"
+        width={3440}
+        height={1000}
+        alt="A board filtered to tasks with the Code label, showing each task with its coloured labels and priority badge."
+        caption="Every task labelled Code, with its priority on the right."
+      />
     </GuideLayout>
   )
 }

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { GuideImage } from './GuideImage'
 import { GuideLayout } from './GuideLayout'
 
 export function AssignTasksGuide() {
@@ -38,6 +39,14 @@ export function AssignTasksGuide() {
         assigned: add or remove people right there.
       </p>
 
+      <GuideImage
+        src="/images/guides/task-panel.webp"
+        width={1040}
+        height={1800}
+        alt="The task panel on the website showing a task assigned to two people, Alex and Theo, and to the Programmers role, with its priority, due date and labels."
+        caption="A task assigned to two people and a whole role."
+        narrow
+      />
       <h2>Keeping people in the loop</h2>
       <p>
         People hear about the tasks they are assigned to by direct message: when they are assigned, when the task

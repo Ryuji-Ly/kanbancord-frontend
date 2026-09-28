@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { GuideImage } from './GuideImage'
 import { GuideLayout } from './GuideLayout'
 
 export function WebsiteGuide() {
@@ -10,6 +11,13 @@ export function WebsiteGuide() {
         Discord and pick your server.
       </p>
 
+      <GuideImage
+        src="/images/guides/dashboard.webp"
+        width={2880}
+        height={1160}
+        alt="The KanbanCord dashboard for a server named Pixel Forge, listing its boards: Game Jam 2026, Community Events and Website Redesign."
+        caption="Your server's boards, after signing in."
+      />
       <h2>The board</h2>
       <ul>
         <li>
@@ -26,6 +34,13 @@ export function WebsiteGuide() {
         </li>
       </ul>
 
+      <GuideImage
+        src="/images/guides/filters.webp"
+        width={3440}
+        height={1000}
+        alt="A board with its filters open: people, label, priority and due date, with six of fourteen tasks shown."
+        caption="Search and filters, right in the board's title bar."
+      />
       <h2>Tasks in full</h2>
       <p>Open a task to see and edit everything about it:</p>
       <ul>
@@ -35,6 +50,13 @@ export function WebsiteGuide() {
         <li>Comments, and a Follow button to hear about the task by direct message.</li>
       </ul>
 
+      <GuideImage
+        src="/images/guides/task.webp"
+        width={2880}
+        height={1800}
+        alt="A task open beside the board, with its priority, due date, a checklist, labels, people, roles and comments."
+        caption="A task in full, beside the board."
+      />
       <h2>Settings</h2>
       <ul>
         <li>

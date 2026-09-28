@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { GuideImage } from './GuideImage'
 import { GuideLayout } from './GuideLayout'
 
 export function ToDoListGuide() {
@@ -22,6 +23,13 @@ export function ToDoListGuide() {
         a checklist inside a single task: on the website, a task&apos;s description can hold tick boxes.
       </p>
 
+      <GuideImage
+        src="/images/guides/task.webp"
+        width={2880}
+        height={1800}
+        alt="A task open on the website, with a checklist in its description: two items ticked, two still to do."
+        caption="A checklist inside a task. Tick items off right in the task's description."
+      />
       <h2>Set it up in a minute</h2>
       <ol>
         <li>
