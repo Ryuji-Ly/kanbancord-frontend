@@ -121,6 +121,19 @@ export async function moveTask(
   return response.json() as Promise<TaskEntry>
 }
 
+/** Follows or unfollows a task: followers hear about it by direct message, like its assignees. */
+export async function setTaskFollowing(
+  serverId: string,
+  boardId: string,
+  taskId: number,
+  follow: boolean,
+): Promise<void> {
+  const response = await apiFetch(`/api/servers/${serverId}/boards/${boardId}/tasks/${taskId}/follow`, {
+    method: follow ? 'PUT' : 'DELETE',
+  })
+  if (!response.ok) throw new Error(await parseError(response))
+}
+
 export async function deleteTask(
   serverId: string,
   boardId: string,

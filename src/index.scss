@@ -3978,3 +3978,11 @@ select.kc-input {
     color: var(--kc-text);
   }
 }
+
+// ── Following a task ──────────────────────────────────────────────────────────
+.kc-follow-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-right: 4px;
+}
