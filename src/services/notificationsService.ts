@@ -6,7 +6,16 @@ export type NotificationCategory = {
   key: string
   label: string
   mentionByDefault: boolean
-  events: { key: string; label: string; feedDefault: boolean; canDm: boolean; dmDefault: boolean }[]
+  events: {
+    key: string
+    label: string
+    feedDefault: boolean
+    canDm: boolean
+    dmDefault: boolean
+    /** Whether the event concerns a task, so there are people to mention. */
+    canMention: boolean
+    mentionDefault: boolean
+  }[]
 }
 
 export type DiscordChannel = {
@@ -23,6 +32,7 @@ export type NotificationFeed = {
   channelId: string
   boardIds: number[]
   events: Record<string, boolean>
+  /** Per event: whether posting it mentions the people involved. A category key sets all its events. */
   mentions: Record<string, boolean>
   mentionRoles: boolean
   /** Posts show the whole task, with buttons to change it right there in Discord. */
