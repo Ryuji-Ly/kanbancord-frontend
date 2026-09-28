@@ -3986,3 +3986,11 @@ select.kc-input {
   gap: 6px;
   margin-right: 4px;
 }
+
+// A feed's events, each with its own "Mention" switch at the end of the row.
+.kc-feed-event {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
