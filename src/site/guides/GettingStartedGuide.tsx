@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { GuideImage } from './GuideImage'
 import { GuideLayout } from './GuideLayout'
 
 export function GettingStartedGuide() {
@@ -34,6 +35,13 @@ export function GettingStartedGuide() {
         <em>Blocked</em> column.
       </p>
 
+      <GuideImage
+        src="/images/guides/board.webp"
+        width={3440}
+        height={1520}
+        alt="A KanbanCord board named Game Jam 2026 with five columns: Backlog, To Do, In Progress, Review and Done. Each task shows its labels, priority and the people assigned."
+        caption="A board with a few columns added, as the website shows it. In Discord, /board view shows the same board."
+      />
       <h2>3. Add tasks</h2>
       <p>
         <code>/task create board:Sprint</code> opens a short form for the task&apos;s title and description. If your

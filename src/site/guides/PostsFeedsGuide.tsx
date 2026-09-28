@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { GuideImage } from './GuideImage'
 import { GuideLayout } from './GuideLayout'
 
 export function PostsFeedsGuide() {
@@ -51,6 +52,13 @@ export function PostsFeedsGuide() {
         </li>
       </ul>
 
+      <GuideImage
+        src="/images/guides/feeds.webp"
+        width={2880}
+        height={1800}
+        alt="An update feed's settings on the website: the channel, its board, and for each kind of change whether it is posted and whether it mentions people."
+        caption="Choosing, per change, what a feed posts and when it mentions people."
+      />
       <h2>Which one?</h2>
       <p>
         Use a <strong>board post</strong> when people mostly want to know where things stand: a small team, a shared

@@ -1,3 +1,4 @@
+import { useLayoutEffect, useRef } from 'react'
 import { FiLock, FiPlus, FiX } from 'react-icons/fi'
 import {
   KANBAN_PERM_INFO,
@@ -76,6 +77,20 @@ export function PermissionGroupRow({
     actorRankWeight <= groupHighestAllowedRankWeight(group.permissions)
   const hasAdd = !(group.subjectType === 'DISCORD_PERMISSION' && String(group.subjectId) === '8')
 
+  // A collapsed row that has more permissions than fit fades out at the bottom, so the edge of the
+  // next line reads as "more, click to expand" rather than as cut off.
+  const chipsRef = useRef<HTMLDivElement | null>(null)
+  useLayoutEffect(() => {
+    const element = chipsRef.current
+    if (!element) return
+    const check = () =>
+      element.classList.toggle('kc-perm-chip-wrap--overflowing', element.scrollHeight > element.clientHeight + 1)
+    check()
+    const observer = new ResizeObserver(check)
+    observer.observe(element)
+    return () => observer.disconnect()
+  }, [isExpanded, group.permissions.length])
+
   return (
     <div
       className="kc-perms-granted-to-row"
@@ -119,6 +134,7 @@ export function PermissionGroupRow({
       <div className="kc-perms-granted-to-perms">
         <>
           <div
+            ref={chipsRef}
             className={`kc-perm-chip-wrap ${isExpanded ? 'kc-perm-chip-wrap--expanded' : 'kc-perm-chip-wrap--clamped'}`}
           >
             {hasAdd && (

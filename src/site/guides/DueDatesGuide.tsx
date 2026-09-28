@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { GuideImage } from './GuideImage'
 import { GuideLayout } from './GuideLayout'
 
 export function DueDatesGuide() {
@@ -50,6 +51,14 @@ export function DueDatesGuide() {
         Task lists in Discord show each task&apos;s due date as &ldquo;in 2 days&rdquo; or &ldquo;3 hours ago&rdquo;.
         On the website, filter a board to <strong>overdue</strong> tasks or those due in the next seven days.
       </p>
+
+      <GuideImage
+        src="/images/guides/due-filter.webp"
+        width={3440}
+        height={1000}
+        alt="A board filtered to tasks due in the next seven days: six of fourteen tasks are shown."
+        caption="The board filtered to what is due this week."
+      />
     </GuideLayout>
   )
 }

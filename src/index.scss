@@ -1617,8 +1617,13 @@ pre {
     position: relative;
     padding-right: 4px;
 
-    &--clamped  { max-height: 52px; }
+    &--clamped  { max-height: 46px; }
     &--expanded { max-height: none; }
+
+    // One full line of permissions, then only a faint hint of the next: there is more to expand.
+    &--clamped#{&}--overflowing {
+      mask-image: linear-gradient(to bottom, #000 34px, transparent 46px);
+    }
   }
 
   &-row-actions {
@@ -3725,10 +3730,12 @@ html[data-kc-reduce-motion="on"] {
     color: var(--kc-link);
   }
 
+  // Theme colours, so commands read well in every theme.
   code {
     padding: 1px 5px;
     border-radius: 4px;
-    background: color-mix(in srgb, var(--kc-ink) 45%, transparent);
+    background: var(--kc-card);
+    color: var(--kc-text);
     font-size: 0.9em;
   }
 }
@@ -3886,7 +3893,7 @@ html[data-kc-reduce-motion="on"] {
 
   > select.kc-input {
     width: auto;
-    max-width: 180px;
+    max-width: 220px;
   }
 }
 
@@ -4025,10 +4032,13 @@ select.kc-input {
 }
 
 .kc-public-article pre {
+  margin: 12px 0;
   overflow-x: auto;
   padding: 10px 14px;
+  border: 1px solid var(--kc-border);
   border-radius: 8px;
-  background: color-mix(in srgb, var(--kc-ink) 45%, transparent);
+  background: var(--kc-card);
+  color: var(--kc-text);
 
   code {
     padding: 0;
@@ -4076,4 +4086,28 @@ select.kc-input {
   p {
     margin: 2px 0 0;
   }
+}
+
+.kc-guide-figure {
+  margin: 20px 0 24px;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--kc-border);
+    border-radius: 10px;
+  }
+
+  figcaption {
+    margin-top: 8px;
+    font-size: 0.85rem;
+    color: var(--kc-text-dim);
+    text-align: center;
+  }
+}
+
+.kc-guide-figure--narrow img {
+  width: min(100%, 360px);
+  margin: 0 auto;
 }

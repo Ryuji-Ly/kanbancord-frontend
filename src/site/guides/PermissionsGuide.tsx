@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { GuideImage } from './GuideImage'
 import { GuideLayout } from './GuideLayout'
 
 export function PermissionsGuide() {
@@ -55,6 +56,13 @@ export function PermissionsGuide() {
           <strong>Per-person rules</strong> make exceptions for one member, whatever their roles.
         </li>
       </ul>
+      <GuideImage
+        src="/images/guides/permissions.webp"
+        width={2880}
+        height={1800}
+        alt="The server's permission rules on the website: what each Discord permission allows, from View Channel to Manage Server, plus a rule for the Organisers role."
+        caption="The defaults, grouped by Discord permission, and a rule added for one role."
+      />
       <p>
         Rules can allow or deny. A rule for a person beats one for their roles, and a board&apos;s rules beat the
         server&apos;s. People who may change a board&apos;s permissions cannot give out more than they have themselves.
