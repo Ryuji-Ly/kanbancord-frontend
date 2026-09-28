@@ -436,6 +436,8 @@ export function BoardPage() {
             onUnassignRole={(assignmentId) =>
               mutations.unassignRole.mutateAsync({ taskId: selectedTask.taskId, assignmentId })
             }
+            following={(snapshot?.followedTaskIds ?? []).includes(selectedTask.taskId)}
+            onToggleFollow={(following) => mutations.follow.mutateAsync({ taskId: selectedTask.taskId, following })}
             onAddLabel={(labelId) => mutations.labelTask.mutateAsync({ taskId: selectedTask.taskId, labelId })}
             onRemoveLabel={(taskLabelId) =>
               mutations.unlabelTask.mutateAsync({ taskId: selectedTask.taskId, taskLabelId })

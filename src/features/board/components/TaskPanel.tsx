@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { FiBell, FiBellOff } from 'react-icons/fi'
 import type { LabelEntry, PriorityEntry } from '../../../services/boardsService'
 import type { ServerRoleEntry } from '../../../services/permissionsService'
 import type { TaskEntry } from '../../../services/tasksService'
@@ -31,6 +32,9 @@ type TaskPanelProps = {
   roles: ServerRoleEntry[]
   taskRoles: { role: ServerRoleEntry; assignmentId: number }[]
   saving: boolean
+  /** Whether you follow this task, hearing about it by direct message. */
+  following: boolean
+  onToggleFollow: (following: boolean) => Promise<unknown>
   onClose: () => void
   onSave: (fields: TaskFields) => Promise<unknown>
   onRequestDelete: () => void
@@ -62,6 +66,8 @@ export function TaskPanel({
   roles,
   taskRoles,
   saving,
+  following,
+  onToggleFollow,
   onClose,
   onSave,
   onRequestDelete,
@@ -144,6 +150,21 @@ export function TaskPanel({
       <div className="kc-task-panel-header">
         <h3 className="kc-task-panel-title">Task details</h3>
         <div className="kc-task-panel-header-actions">
+          <button
+            type="button"
+            className={`kc-btn kc-btn-small ${following ? 'kc-btn-primary' : 'kc-btn-ghost'} kc-follow-btn`}
+            aria-pressed={following}
+            title={following ? 'You hear about changes to this task by direct message' : 'Hear about changes to this task by direct message'}
+            onClick={() => {
+              setError('')
+              onToggleFollow(!following).catch((reason: unknown) =>
+                setError(reason instanceof Error ? reason.message : 'Could not change following.'),
+              )
+            }}
+          >
+            {following ? <FiBellOff aria-hidden="true" /> : <FiBell aria-hidden="true" />}
+            {following ? 'Following' : 'Follow'}
+          </button>
           <button
             type="button"
             className="kc-modal-close"
