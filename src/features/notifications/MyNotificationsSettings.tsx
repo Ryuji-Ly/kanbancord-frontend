@@ -59,8 +59,8 @@ export function MyNotificationsSettings() {
   return (
     <div className="kc-features kc-notifications">
       <p className="kc-muted">
-        The bot can send you direct messages about tasks you are assigned to or created. You are never told about
-        your own changes, and only about boards you can see.
+        The bot can send you direct messages about tasks you are assigned to, created or follow. You are never told
+        about your own changes, and only about boards you can see.
       </p>
       {save.isError && <p className="kc-banner">{readableError(save.error, 'The change could not be saved')}</p>}
 
@@ -107,6 +107,13 @@ export function MyNotificationsSettings() {
             </fieldset>
           ))}
         <ul className="kc-features-list">
+          <SwitchRow
+            label="Also tasks I follow"
+            description="Follow a task from its panel, or with Follow in Discord, to hear about it like your own."
+            on={mine.includeFollowed}
+            disabled={off}
+            onToggle={(on) => save.mutate({ includeFollowed: on })}
+          />
           <SwitchRow
             label="Also tasks I commented on"
             description="Hear about tasks you took part in, not only ones you are assigned to or created."

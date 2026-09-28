@@ -25,6 +25,8 @@ export type NotificationFeed = {
   events: Record<string, boolean>
   mentions: Record<string, boolean>
   mentionRoles: boolean
+  /** Posts show the whole task, with buttons to change it right there in Discord. */
+  interactive: boolean
 }
 
 export type ServerNotifications = {
@@ -43,6 +45,8 @@ export type MyNotifications = {
   dmMode: DmMode
   events: Record<string, boolean>
   includeCommented: boolean
+  /** Also tasks you follow; on unless switched off. */
+  includeFollowed: boolean
   /** Per server id; servers not listed use DEFAULT. */
   servers: Record<string, ServerMode>
   catalogue: NotificationCategory[]

@@ -17,7 +17,7 @@ import {
   updateTaskComment,
   type TaskCommentEntry,
 } from '../../services/taskCommentsService'
-import { createTask, deleteTask, moveTask, updateTask, type TaskEntry } from '../../services/tasksService'
+import { createTask, deleteTask, moveTask, setTaskFollowing, updateTask, type TaskEntry } from '../../services/tasksService'
 import { snapshotWithColumnMoved, snapshotWithTaskMoved, sortCommentsByCreatedAt, type TaskDraft } from './boardModel'
 
 // ── Keys ─────────────────────────────────────────────────────────────────────
@@ -271,6 +271,18 @@ export function useBoardMutations(serverId: string, boardId: string) {
     ...settle,
   })
 
+  const follow = useMutation({
+    mutationFn: ({ taskId, following }: { taskId: number; following: boolean }) =>
+      setTaskFollowing(serverId, boardId, taskId, following),
+    onMutate: ({ taskId, following }) =>
+      board.apply((snapshot) => {
+        const others = (snapshot.followedTaskIds ?? []).filter((id) => id !== taskId)
+        return { ...snapshot, followedTaskIds: following ? [...others, taskId] : others }
+      }),
+    onError: (_error, _variables, context) => board.rollback(context),
+    ...settle,
+  })
+
   const unassign = useMutation({
     mutationFn: ({ taskId, assignmentId }: { taskId: number; assignmentId: number }) =>
       deleteTaskAssignment(serverId, boardId, taskId, assignmentId),
@@ -298,6 +310,7 @@ export function useBoardMutations(serverId: string, boardId: string) {
     removeTask,
     assign,
     unassign,
+    follow,
   }
 }
 

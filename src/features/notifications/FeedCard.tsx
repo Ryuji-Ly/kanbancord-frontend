@@ -188,6 +188,12 @@ export function FeedCard({ feed, channels, boards, catalogue, onChange, onDelete
 
       <ul className="kc-features-list">
         <SwitchRow
+          label="Interactive posts"
+          description="Each post shows the whole task with buttons to move it, assign people, edit or follow it, right there in Discord."
+          on={feed.interactive}
+          onToggle={(on) => onChange({ interactive: on })}
+        />
+        <SwitchRow
           label="Also mention assigned roles"
           description="Off by default: a role can be a lot of people. Mentioning people above only mentions individual people."
           on={feed.mentionRoles}

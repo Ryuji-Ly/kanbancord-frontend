@@ -129,6 +129,8 @@ export type BoardSnapshot = {
   taskLabels: TaskLabelEntry[]
   /** The board's priority levels, most urgent first. */
   priorities: PriorityEntry[]
+  /** The tasks on this board you follow. */
+  followedTaskIds?: number[]
   permissions: PermissionDecisionMap
   /**
    * Which optional features are on for this board: on for the server and not switched off by the
