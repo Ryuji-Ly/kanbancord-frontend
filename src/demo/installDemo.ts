@@ -147,6 +147,30 @@ const members = data.PEOPLE.map((person, index) => ({
   joinedAt: data.at(-200),
 }))
 
+/** Boards' own settings for the demo's feed, by board id. */
+const boardOverrides: Record<number, { events: Record<string, boolean>; mentions: Record<string, boolean> }> = {}
+
+function boardNotifications(boardId: number) {
+  const feed = feeds[0]
+  const own = boardOverrides[boardId] ?? { events: {}, mentions: {} }
+  const covers = feed.boardIds.length === 0 || feed.boardIds.includes(boardId)
+  return {
+    feeds: covers
+      ? [{
+          feedId: feed.feedId,
+          channelId: feed.channelId,
+          channelName: data.CHANNELS.find((channel) => channel.channelId === feed.channelId)?.name ?? null,
+          everyBoard: feed.boardIds.length === 0,
+          interactive: feed.interactive,
+          feedEvents: feed.events,
+          feedMentions: feed.mentions,
+          own: { ...own, changes: Object.keys(own.events).length + Object.keys(own.mentions).length },
+        }]
+      : [],
+    catalogue,
+  }
+}
+
 const ROUTES: [string, RegExp, Handler][] = [
   ['POST', /^\/api\/auth\/refresh$/, () => ({ accessToken: 'demo', tokenType: 'Bearer', expiresIn: 86_400, sessionId: 'demo', user: me })],
   ['POST', /^\/api\/auth\/logout$/, () => undefined],
@@ -185,9 +209,32 @@ const ROUTES: [string, RegExp, Handler][] = [
   ['GET', /^\/api\/servers\/\d+\/boards\/(\d+)\/snapshot$/, (m) => snapshot(Number(m[1]))],
   ['GET', /^\/api\/servers\/\d+\/boards\/\d+\/tasks\/(\d+)\/comments$/, (m) =>
     ({ content: Number(m[1]) === data.FEATURED_TASK ? data.COMMENTS : [] })],
+  ['GET', /^\/api\/servers\/\d+\/boards\/(\d+)\/notifications$/, (m) => boardNotifications(Number(m[1]))],
+  ['PUT', /^\/api\/servers\/\d+\/boards\/(\d+)\/notifications\/feeds\/\d+$/, (m, { body }) => {
+    const boardId = Number(m[1])
+    const changes = body as { events?: Record<string, boolean>; mentions?: Record<string, boolean> }
+    const own = boardOverrides[boardId] ?? { events: {}, mentions: {} }
+    const feed = feeds[0]
+    for (const [kind, feedFlags] of [['events', feed.events], ['mentions', feed.mentions]] as const) {
+      for (const [key, on] of Object.entries(changes[kind] ?? {})) {
+        if (on === Boolean(feedFlags[key])) delete own[kind][key]
+        else own[kind][key] = on
+      }
+    }
+    boardOverrides[boardId] = own
+    return boardNotifications(boardId)
+  }],
+  ['DELETE', /^\/api\/servers\/\d+\/boards\/(\d+)\/notifications\/feeds\/\d+$/, (m) => {
+    delete boardOverrides[Number(m[1])]
+    return boardNotifications(Number(m[1]))
+  }],
   ['GET', /^\/api\/servers\/\d+\/notifications$/, () => ({
     auditChannelId: data.CHANNELS[4].channelId,
-    feeds,
+    feeds: feeds.map((feed) => ({
+      ...feed,
+      boardOverrides: Object.fromEntries(Object.entries(boardOverrides).map(([boardId, own]) =>
+        [boardId, { ...own, changes: Object.keys(own.events).length + Object.keys(own.mentions).length }])),
+    })),
     channels: data.CHANNELS,
     catalogue,
   })],

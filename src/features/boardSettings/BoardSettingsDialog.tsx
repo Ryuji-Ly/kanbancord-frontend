@@ -16,6 +16,7 @@ import {
   useServerRoles,
 } from '../server/serverQueries'
 import { BoardFeaturesSettings } from './BoardFeaturesSettings'
+import { BoardNotificationsSettings } from './BoardNotificationsSettings'
 import { LabelsSettings } from './LabelsSettings'
 import { PrioritiesSettings } from './PrioritiesSettings'
 
@@ -30,8 +31,8 @@ type BoardSettingsDialogProps = {
 }
 
 /**
- * A board's settings: details, permissions, simple mode, labels, priority levels, and archiving or
- * deleting it.
+ * A board's settings: details, permissions, simple mode, notifications, labels, priority levels, and
+ * archiving or deleting it.
  * The same dialog opens from the board page and from the dashboard. Each part shows only what the
  * user may change; simple mode, labels and priorities save as they change, details and permissions
  * on Save.
@@ -151,6 +152,7 @@ export function BoardSettingsDialog({ serverId, boardId, onClose, onDeleted, sho
       {snapshot && !archived && access.editDetails && (
         <BoardFeaturesSettings serverId={serverId} boardId={boardId} snapshot={snapshot} />
       )}
+      {snapshot && !archived && access.editDetails && <BoardNotificationsSettings serverId={serverId} boardId={boardId} />}
       {snapshot && !archived && (access.createLabel || access.editLabel || access.deleteLabel) && (
         <LabelsSettings
           labels={snapshot.labels}

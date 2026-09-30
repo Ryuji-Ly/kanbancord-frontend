@@ -123,6 +123,19 @@ export function FeedCard({ feed, channels, boards, catalogue, onChange, onDelete
         )}
       </div>
 
+      {Object.keys(feed.boardOverrides ?? {}).length > 0 && (
+        <p className="kc-muted kc-feed-overrides">
+          Boards with their own settings for this feed:{' '}
+          {Object.entries(feed.boardOverrides ?? {})
+            .map(([boardId, own]) => {
+              const name = boards.find((board) => String(board.boardId) === boardId)?.name ?? 'a board'
+              return `${name} (${own.changes} change${own.changes === 1 ? '' : 's'})`
+            })
+            .join(', ')}
+          . Change them in each board&apos;s settings.
+        </p>
+      )}
+
       <div className="kc-field">
         <span className="kc-field-label">What it announces</span>
         <ul className="kc-feed-categories">
