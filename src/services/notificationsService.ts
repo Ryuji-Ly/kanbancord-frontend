@@ -37,6 +37,32 @@ export type NotificationFeed = {
   mentionRoles: boolean
   /** Posts show the whole task, with buttons to change it right there in Discord. */
   interactive: boolean
+  /** By board id: boards with their own settings for this feed, set in their board settings. */
+  boardOverrides?: Record<string, BoardOverride>
+}
+
+/** Where a board's settings for a feed differ from the feed's; the rest follows the feed. */
+export type BoardOverride = {
+  events: Record<string, boolean>
+  mentions: Record<string, boolean>
+  changes: number
+}
+
+/** A feed as it concerns one board: its own settings, the board's changes, and where it posts. */
+export type BoardFeed = {
+  feedId: number
+  channelId: string
+  channelName: string | null
+  everyBoard: boolean
+  interactive: boolean
+  feedEvents: Record<string, boolean>
+  feedMentions: Record<string, boolean>
+  own: BoardOverride
+}
+
+export type BoardNotifications = {
+  feeds: BoardFeed[]
+  catalogue: NotificationCategory[]
 }
 
 export type ServerNotifications = {
@@ -106,4 +132,28 @@ export async function fetchMyNotifications(): Promise<MyNotifications> {
 /** Changes only what is given: `{ events: { TASK_DUE: false } }` leaves every other setting alone. */
 export async function updateMyNotifications(changes: MyNotificationChanges): Promise<MyNotifications> {
   return json(await send('/api/me/notifications', 'PUT', changes))
+}
+
+/** The feeds that post about a board, with the board's own settings for each. */
+export async function fetchBoardNotifications(serverId: string, boardId: string): Promise<BoardNotifications> {
+  return json<BoardNotifications>(await apiFetch(`/api/servers/${serverId}/boards/${boardId}/notifications`))
+}
+
+/** Changes the board's settings for one feed; a value equal to the feed's goes back to following it. */
+export async function updateBoardFeed(
+  serverId: string,
+  boardId: string,
+  feedId: number,
+  changes: { events?: Record<string, boolean>; mentions?: Record<string, boolean> },
+): Promise<BoardNotifications> {
+  return json<BoardNotifications>(
+    await send(`/api/servers/${serverId}/boards/${boardId}/notifications/feeds/${feedId}`, 'PUT', changes),
+  )
+}
+
+/** The board follows the feed's settings again. */
+export async function resetBoardFeed(serverId: string, boardId: string, feedId: number): Promise<BoardNotifications> {
+  return json<BoardNotifications>(
+    await send(`/api/servers/${serverId}/boards/${boardId}/notifications/feeds/${feedId}`, 'DELETE'),
+  )
 }

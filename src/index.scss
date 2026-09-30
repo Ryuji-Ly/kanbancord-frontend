@@ -4111,3 +4111,39 @@ select.kc-input {
   width: min(100%, 360px);
   margin: 0 auto;
 }
+
+// A board's own settings for a feed.
+.kc-board-feed-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 6px 0 10px;
+}
+
+.kc-board-feed-category {
+  margin: 0 0 10px;
+  padding: 0;
+  border: none;
+
+  legend {
+    margin-bottom: 6px;
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+}
+
+.kc-board-feed-changed {
+  margin-left: 8px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--kc-primary) 25%, transparent);
+  color: var(--kc-text);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.kc-feed-overrides {
+  margin: 4px 0 8px;
+  font-size: 0.85rem;
+}
