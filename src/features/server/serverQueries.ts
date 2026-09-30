@@ -21,6 +21,7 @@ export const serverKeys = {
   members: (serverId: string) => ['server', serverId, 'members'] as const,
   catalog: (serverId: string) => ['server', serverId, 'catalog'] as const,
   features: (serverId: string) => ['server', serverId, 'features'] as const,
+  openPermissions: (serverId: string) => ['server', serverId, 'open-permissions'] as const,
 }
 
 /** The server's boards the caller can view. */

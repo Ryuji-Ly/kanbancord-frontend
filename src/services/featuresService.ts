@@ -46,6 +46,27 @@ export async function updateServerFeatures(serverId: string, changes: Partial<Se
   return response.json() as Promise<ServerFeatures>
 }
 
+/**
+ * Open permissions: everyone who can talk in the server may do anything with boards, columns and
+ * tasks. Not a feature: simple mode and "enable everything" leave it alone, and it cannot be on
+ * together with custom permissions.
+ */
+export async function fetchOpenPermissions(serverId: string): Promise<boolean> {
+  const response = await apiFetch(`/api/servers/${serverId}/features/open-permissions`)
+  if (!response.ok) throw new Error(await parseError(response))
+  return Boolean(((await response.json()) as { enabled: boolean }).enabled)
+}
+
+export async function setOpenPermissions(serverId: string, enabled: boolean): Promise<boolean> {
+  const response = await apiFetch(`/api/servers/${serverId}/features/open-permissions`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ enabled }),
+  })
+  if (!response.ok) throw new Error(await parseError(response))
+  return Boolean(((await response.json()) as { enabled: boolean }).enabled)
+}
+
 /** Features a board can switch off for itself; permissions are managed for the whole server. */
 export type BoardFeatureKey = Exclude<FeatureKey, 'PERMISSIONS'>
 

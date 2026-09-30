@@ -22,6 +22,7 @@ const allowed = (keys: string[]) =>
   Object.fromEntries(keys.map((key) => [key, { allowed: true, sourceTier: 'ROLE', sourceScopeType: 'SERVER' }]))
 
 let features = { ...data.FEATURES }
+let openPermissions = false
 
 const EVENTS: [string, string, string, boolean, boolean | null, boolean, boolean][] = [
   // key, category, label, posted by default, DM default (null: never), can mention, mentions by default
@@ -165,6 +166,9 @@ const ROUTES: [string, RegExp, Handler][] = [
   })],
   ['POST', /^\/api\/realtime\/tickets$/, () => NEVER],
   ['GET', /^\/api\/servers\/\d+\/features$/, () => features],
+  ['GET', /^\/api\/servers\/\d+\/features\/open-permissions$/, () => ({ enabled: openPermissions })],
+  ['PUT', /^\/api\/servers\/\d+\/features\/open-permissions$/, (_m, { body }) =>
+    ({ enabled: (openPermissions = Boolean((body as { enabled: boolean }).enabled)) })],
   ['PUT', /^\/api\/servers\/\d+\/features$/, (_m, { body }) => (features = { ...features, ...(body as object) })],
   ['GET', /^\/api\/servers\/\d+\/permissions\/mine$/, () => ({
     server: Object.fromEntries(data.SERVER_KEYS.map((key) => [key, true])),
