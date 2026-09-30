@@ -49,7 +49,6 @@ export type BoardAbilities = {
   assignSelf: boolean
   assignOthers: boolean
   comment: boolean
-  moderateCommentEdits: boolean
   moderateCommentDeletes: boolean
   applyLabel: boolean
   removeLabel: boolean
@@ -64,7 +63,6 @@ const FEATURE_OF: Record<string, FeatureKey> = {
   ASSIGN_TASK_SELF: 'ASSIGNEES',
   ASSIGN_TASK_OTHERS: 'ASSIGNEES',
   CREATE_TASK_COMMENT: 'COMMENTS',
-  EDIT_TASK_COMMENT: 'COMMENTS',
   DELETE_TASK_COMMENT: 'COMMENTS',
   APPLY_LABEL_TO_TASK: 'LABELS',
   REMOVE_LABEL_FROM_TASK: 'LABELS',
@@ -90,7 +88,6 @@ export function boardAbilities(snapshot: BoardSnapshot | undefined): BoardAbilit
     assignSelf: can('ASSIGN_TASK_SELF'),
     assignOthers: can('ASSIGN_TASK_OTHERS'),
     comment: can('CREATE_TASK_COMMENT'),
-    moderateCommentEdits: can('EDIT_TASK_COMMENT'),
     moderateCommentDeletes: can('DELETE_TASK_COMMENT'),
     applyLabel: can('APPLY_LABEL_TO_TASK'),
     removeLabel: can('REMOVE_LABEL_FROM_TASK'),
@@ -118,7 +115,6 @@ export function withSimpleView(
     assignSelf: abilities.assignSelf && features.ASSIGNEES,
     assignOthers: abilities.assignOthers && features.ASSIGNEES,
     comment: abilities.comment && features.COMMENTS,
-    moderateCommentEdits: abilities.moderateCommentEdits && features.COMMENTS,
     moderateCommentDeletes: abilities.moderateCommentDeletes && features.COMMENTS,
     applyLabel: abilities.applyLabel && features.LABELS,
     removeLabel: abilities.removeLabel && features.LABELS,

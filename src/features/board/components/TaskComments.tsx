@@ -36,10 +36,10 @@ export function TaskComments({ serverId, boardId, taskId, me, abilities }: TaskC
   const [deleteError, setDeleteError] = useState('')
   const [togglingIds, setTogglingIds] = useState<Set<number>>(new Set())
 
-  // Mirrors the API: authors manage their own comments with the permission to comment at all;
-  // EDIT/DELETE_TASK_COMMENT are moderation permissions for other people's comments.
+  // Mirrors the API: authors manage their own comments with the permission to comment at all, and
+  // only they can edit them; DELETE_TASK_COMMENT lets moderators delete other people's.
   const isOwn = (comment: TaskCommentEntry) => me !== null && String(comment.userId) === String(me.userId)
-  const canEdit = (comment: TaskCommentEntry) => (isOwn(comment) ? abilities.comment : abilities.moderateCommentEdits)
+  const canEdit = (comment: TaskCommentEntry) => isOwn(comment) && abilities.comment
   const canDelete = (comment: TaskCommentEntry) =>
     isOwn(comment) ? abilities.comment : abilities.moderateCommentDeletes
 
