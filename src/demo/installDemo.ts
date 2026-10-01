@@ -267,6 +267,27 @@ function accessCheck(query: URLSearchParams) {
   }
 }
 
+type ThreadSetting = { channelId: string; privateThreads: boolean; updates: string }
+/** Boards' task thread settings, by board id. */
+const threadSettings: Record<number, ThreadSetting> = {}
+
+function boardThreads(boardId: number) {
+  const feed = feeds[0]
+  const covers = feed.boardIds.length === 0 || feed.boardIds.includes(boardId)
+  const channels = covers
+    ? data.CHANNELS.filter((channel) => channel.channelId === feed.channelId).map((channel) => ({
+        channelId: channel.channelId,
+        name: channel.name,
+        botCanThread: true,
+        botCanPrivateThread: true,
+      }))
+    : []
+  const own = threadSettings[boardId]
+  return own
+    ? { enabled: true, active: channels.some((channel) => channel.channelId === own.channelId), ...own, channels }
+    : { enabled: false, active: false, channelId: null, privateThreads: false, updates: 'BOTH', channels }
+}
+
 const ROUTES: [string, RegExp, Handler][] = [
   ['GET', /^\/api\/servers\/\d+\/permissions\/check$/, (_m, { query }) => accessCheck(query)],
   ['POST', /^\/api\/auth\/refresh$/, () => ({ accessToken: 'demo', tokenType: 'Bearer', expiresIn: 86_400, sessionId: 'demo', user: me })],
@@ -307,6 +328,15 @@ const ROUTES: [string, RegExp, Handler][] = [
   ['GET', /^\/api\/servers\/\d+\/boards\/\d+\/tasks\/(\d+)\/comments$/, (m) =>
     ({ content: Number(m[1]) === data.FEATURED_TASK ? data.COMMENTS : [] })],
   ['GET', /^\/api\/servers\/\d+\/boards\/(\d+)\/notifications$/, (m) => boardNotifications(Number(m[1]))],
+  ['GET', /^\/api\/servers\/\d+\/boards\/(\d+)\/threads$/, (m) => boardThreads(Number(m[1]))],
+  ['PUT', /^\/api\/servers\/\d+\/boards\/(\d+)\/threads$/, (m, { body }) => {
+    threadSettings[Number(m[1])] = body as ThreadSetting
+    return boardThreads(Number(m[1]))
+  }],
+  ['DELETE', /^\/api\/servers\/\d+\/boards\/(\d+)\/threads$/, (m) => {
+    delete threadSettings[Number(m[1])]
+    return boardThreads(Number(m[1]))
+  }],
   ['PUT', /^\/api\/servers\/\d+\/boards\/(\d+)\/notifications\/feeds\/\d+$/, (m, { body }) => {
     const boardId = Number(m[1])
     const changes = body as { events?: Record<string, boolean>; mentions?: Record<string, boolean> }

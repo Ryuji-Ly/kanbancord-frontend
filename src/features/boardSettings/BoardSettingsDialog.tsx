@@ -18,6 +18,7 @@ import {
 } from '../server/serverQueries'
 import { BoardFeaturesSettings } from './BoardFeaturesSettings'
 import { BoardNotificationsSettings } from './BoardNotificationsSettings'
+import { BoardThreadsSettings } from './BoardThreadsSettings'
 import { LabelsSettings } from './LabelsSettings'
 import { PrioritiesSettings } from './PrioritiesSettings'
 
@@ -154,6 +155,7 @@ export function BoardSettingsDialog({ serverId, boardId, onClose, onDeleted, sho
         <BoardFeaturesSettings serverId={serverId} boardId={boardId} snapshot={snapshot} />
       )}
       {snapshot && !archived && access.editDetails && <BoardNotificationsSettings serverId={serverId} boardId={boardId} />}
+      {snapshot && !archived && access.editDetails && <BoardThreadsSettings serverId={serverId} boardId={boardId} />}
       {snapshot && snapshot.permissions.EDIT_BOARD_PERMISSIONS?.allowed && (
         <section className="kc-board-modal-section">
           <div className="kc-board-modal-section-head">

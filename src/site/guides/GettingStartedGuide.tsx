@@ -48,6 +48,11 @@ export function GettingStartedGuide() {
         server uses assignees, due dates or priorities, the form asks for those too. Typing a board or task name in any
         command suggests matches as you type.
       </p>
+      <p>
+        Someone said something that should be on the board? Long-press or right-click the message, then{' '}
+        <strong>Apps → Create task</strong>. A short message becomes the title; a longer one goes in the description.
+        Either way the task links back to the message, and you can change everything before it is saved.
+      </p>
 
       <h2>4. Move tasks along</h2>
       <p>
