@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import { GuideImage } from './GuideImage'
 import { GuideLayout } from './GuideLayout'
 
 export function PostsFeedsGuide() {
@@ -33,53 +32,13 @@ export function PostsFeedsGuide() {
       <h2>Update feeds: what just happened</h2>
       <p>
         <code>/kanbancord feed channel:#updates</code> (for server managers) posts a message for each change: a task
-        created, moved, assigned, commented on, and so on. Quick changes to the same task are grouped into one post.
+        created, moved, assigned, commented on, and so on, mentioning the people it concerns. Its posts can show the whole
+        task with buttons to act on it right there, and each task can get its own thread for discussion.
       </p>
-      <ul>
-        <li>
-          Feeds mention the people a change concerns, such as someone who was just assigned, or the people on a task
-          that moved. On the website you choose, per event, which changes are posted and which of them mention people.
-          Nobody is pinged about their own changes.
-        </li>
-        <li>
-          <strong>Interactive</strong> feeds (the default for new ones) show the whole task under each update, with
-          buttons to move it, a picker to assign people, and Edit and Follow buttons. People can act on an update
-          without typing a command.
-        </li>
-        <li>
-          A feed can cover every board or one board. Running the command again for the same channel and board updates
-          that feed instead of adding another.
-        </li>
-      </ul>
-
-      <GuideImage
-        src="/images/guides/feeds.webp"
-        width={2880}
-        height={1800}
-        alt="An update feed's settings on the website: the channel, its board, and for each kind of change whether it is posted and whether it mentions people."
-        caption="Choosing, per change, what a feed posts and when it mentions people."
-      />
-      <h2>A thread per task</h2>
       <p>
-        A board with a feed can also give each task its own thread in that feed&apos;s channel, so the discussion about
-        a task stays with the task. Switch it on with <code>/board threads board:Sprint enabled:True</code>, or in the
-        board&apos;s settings on the website.
+        Setting feeds up, choosing what they post and who they mention, giving tasks threads, and what to check when
+        something does not show up are all in <Link to="/guides/feeds-and-threads">update feeds and task threads</Link>.
       </p>
-      <ul>
-        <li>
-          Threads are <strong>public</strong> by default, started from the task&apos;s post in the channel.{' '}
-          <strong>Private</strong> threads include only the task&apos;s creator and assignees (and server moderators),
-          and new assignees are added as they are assigned. Private threads need a text channel.
-        </li>
-        <li>
-          Once a task has a thread, its updates go to <strong>both</strong> the thread and the channel, unless you
-          choose only the thread (a quieter channel) or only the channel. Mentions are made once, not twice.
-        </li>
-        <li>
-          A thread follows its task&apos;s title, and is archived when the task is deleted or archived. Comments made in
-          KanbanCord are posted in the thread; messages written in the thread stay in Discord.
-        </li>
-      </ul>
 
       <h2>Which one?</h2>
       <p>

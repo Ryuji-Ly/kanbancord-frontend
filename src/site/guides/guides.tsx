@@ -1,6 +1,7 @@
 import type { ComponentType } from 'react'
 import { AssignTasksGuide } from './AssignTasksGuide'
 import { DueDatesGuide } from './DueDatesGuide'
+import { FeedsThreadsGuide } from './FeedsThreadsGuide'
 import { GettingStartedGuide } from './GettingStartedGuide'
 import { GUIDE_META, type GuideMeta } from './guideMeta'
 import { LabelsPrioritiesGuide } from './LabelsPrioritiesGuide'
@@ -16,6 +17,7 @@ const PAGES: Record<string, ComponentType> = {
   'due-dates-and-reminders': DueDatesGuide,
   'labels-and-priorities': LabelsPrioritiesGuide,
   'board-posts-and-feeds': PostsFeedsGuide,
+  'feeds-and-threads': FeedsThreadsGuide,
   'roles-and-permissions': PermissionsGuide,
   'website-board': WebsiteGuide,
 }
