@@ -63,8 +63,9 @@ export function BoardThreadsSettings({ serverId, boardId }: BoardThreadsSettings
         <h4>Task threads</h4>
         <p className="kc-muted">
           Give each task its own thread for discussion, in one of this board&apos;s update feed channels. A thread
-          follows its task&apos;s title and is archived when the task is deleted or archived. Comments made in
-          KanbanCord are posted in it; messages in the thread stay in Discord. Changes save straight away.
+          follows its task&apos;s title and is archived when the task is deleted or archived. The feed&apos;s updates
+          about the task, including new comments, are posted in it as you choose below; messages written in the thread
+          stay in Discord. Changes save straight away.
         </p>
       </div>
       {error && <p className="kc-banner">{error}</p>}

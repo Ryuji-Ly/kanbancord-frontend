@@ -56,6 +56,13 @@ export const GUIDE_META: GuideMeta[] = [
     summary: 'A live board in a channel, or a post for every change.',
   },
   {
+    slug: 'feeds-and-threads',
+    title: 'Update feeds and task threads in Discord: set up, fine-tune and fix',
+    description:
+      'Post every change to your Discord channels with update feeds, choose what they post and who they mention, give each task its own thread, and fix what does not show up.',
+    summary: 'Feeds, mentions and a thread per task, step by step.',
+  },
+  {
     slug: 'roles-and-permissions',
     title: 'Roles and permissions: who can see and change each board',
     description:
