@@ -4354,3 +4354,11 @@ select.kc-input {
   font-size: 0.8rem;
   color: var(--kc-subtle);
 }
+
+// A thread per task, in a board's settings.
+.kc-board-threads-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}

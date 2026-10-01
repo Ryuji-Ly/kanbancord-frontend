@@ -24,6 +24,9 @@ export type DiscordChannel = {
   category: string | null
   position: number
   botCanPost: boolean
+  /** Whether the bot may start public threads there, and private ones (text channels only). */
+  botCanThread?: boolean
+  botCanPrivateThread?: boolean
 }
 
 /** An update feed; no boards means every board in the server. */
@@ -156,4 +159,37 @@ export async function resetBoardFeed(serverId: string, boardId: string, feedId: 
   return json<BoardNotifications>(
     await send(`/api/servers/${serverId}/boards/${boardId}/notifications/feeds/${feedId}`, 'DELETE'),
   )
+}
+
+/** Where a task's updates go once it has a thread. */
+export type ThreadUpdates = 'BOTH' | 'THREAD' | 'CHANNEL'
+
+/**
+ * A thread per task for one board. `enabled`: switched on; `active`: and working (a feed for the board
+ * still posts in the chosen channel). `channels`: the board's feed channels, where threads can go.
+ */
+export type BoardThreads = {
+  enabled: boolean
+  active: boolean
+  channelId: string | null
+  privateThreads: boolean
+  updates: ThreadUpdates
+  channels: { channelId: string; name: string; botCanThread: boolean; botCanPrivateThread: boolean }[]
+}
+
+export async function fetchBoardThreads(serverId: string, boardId: string): Promise<BoardThreads> {
+  return json<BoardThreads>(await apiFetch(`/api/servers/${serverId}/boards/${boardId}/threads`))
+}
+
+/** Switches threads on for the board, or changes how. */
+export async function saveBoardThreads(
+  serverId: string,
+  boardId: string,
+  settings: { channelId: string; privateThreads: boolean; updates: ThreadUpdates },
+): Promise<BoardThreads> {
+  return json<BoardThreads>(await send(`/api/servers/${serverId}/boards/${boardId}/threads`, 'PUT', settings))
+}
+
+export async function disableBoardThreads(serverId: string, boardId: string): Promise<BoardThreads> {
+  return json<BoardThreads>(await send(`/api/servers/${serverId}/boards/${boardId}/threads`, 'DELETE'))
 }
