@@ -142,7 +142,13 @@ export function FeedsThreadsGuide() {
       <ul>
         <li>
           A task gets its thread the first time something happens to it after threads are switched on, so existing tasks
-          get one too, as they are worked on.
+          get one too, as they are worked on. To start one straight away, press <strong>Discuss in thread</strong> on the
+          task, in <code>/task view</code> or under a feed post; once the thread exists, the button opens it.
+        </li>
+        <li>
+          On a board with a feed but threads switched off, <strong>Discuss in thread</strong> tells people threads are
+          off. Whoever may edit the board is offered to switch them on instead, in the board&apos;s feed channel (or
+          one they pick, if there are several).
         </li>
         <li>The thread is renamed when the task is, and archived when the task is deleted or archived.</li>
         <li>
@@ -246,6 +252,7 @@ export function FeedsThreadsGuide() {
       <ul>
         <li>
           Has something happened to the task since threads were switched on? Threads are made then, not all at once.
+          Press <strong>Discuss in thread</strong> on the task to make it now.
         </li>
         <li>
           Does <code>/board threads</code> say <em>On, but not working</em>? The channel no longer has a feed for this
