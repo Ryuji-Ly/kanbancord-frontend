@@ -4,15 +4,15 @@ import type { ServerAccess } from '../../services/permissionsService'
 import type { DiscordGuild } from '../../types/auth'
 import type { ApiServer, BoardCapability, MergedServer } from '../../components/dashboard/types'
 
-/** The link that adds the bot to a server: that server, or one Discord asks you to pick. */
+/**
+ * The link that adds the bot to a server: that server, or one Discord asks you to pick. Scopes and
+ * permissions come from the app's default install settings in the Discord Developer Portal, so they
+ * are set in one place.
+ */
 export function buildBotInviteLink(guildId?: string): string {
-  const params = new URLSearchParams({
-    client_id: DISCORD_CLIENT_ID,
-    permissions: '412854119488',
-    scope: 'bot applications.commands',
-  })
+  const params = new URLSearchParams({ client_id: DISCORD_CLIENT_ID })
   if (guildId) params.set('guild_id', guildId)
-  return `https://discord.com/api/oauth2/authorize?${params.toString()}`
+  return `https://discord.com/oauth2/authorize?${params.toString()}`
 }
 
 /** Ids of the servers the bot is in. */
