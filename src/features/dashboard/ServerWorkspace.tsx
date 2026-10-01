@@ -21,6 +21,7 @@ import { FeaturesSettings } from '../serverSettings/FeaturesSettings'
 import { NO_FEATURES } from '../../services/featuresService'
 import { ServerSettingsDialog, type ServerSettingsSection } from '../serverSettings/ServerSettingsDialog'
 import { PermissionsSection } from '../../components/dashboard/permissions/PermissionsSection'
+import { AccessCheckPanel } from '../accessCheck/AccessCheckPanel'
 import { buildInheritedBoardPermissionDrafts } from '../../components/dashboard/boards/boardPermissionDraft'
 import { DeleteGroupModal } from '../../components/dashboard/DeleteGroupModal'
 import { permissionRankWeight } from '../../components/dashboard/permissionRank'
@@ -433,6 +434,13 @@ export function ServerWorkspace({ serverId, server, showError, showToast }: Serv
           onCancelAddPermission={cancelInlineAdd}
         />
       ),
+    })
+  }
+  if (access?.server.MANAGE_SERVER_PERMISSIONS) {
+    settingsSections.push({
+      key: 'check-access',
+      label: 'Check access',
+      content: <AccessCheckPanel serverId={serverId} boards={boardsQuery.data ?? []} />,
     })
   }
   if (access?.server.VIEW_AUDIT_LOG) {

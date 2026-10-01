@@ -485,3 +485,67 @@ export async function fetchServerMembers(
   if (!response.ok) throw new Error(await parseError(response))
   return response.json() as Promise<ServerMemberEntry[]>
 }
+
+/** A rule as it took part in a check. `builtIn` for the defaults that apply while custom permissions are off. */
+export type CheckedRule = {
+  ruleId: number | null
+  scope: 'SERVER' | 'BOARD'
+  subjectType: 'DISCORD_PERMISSION' | 'ROLE' | 'USER'
+  subjectId: string
+  /** A role's or person's name, or a Discord permission such as SEND_MESSAGES. */
+  subjectName: string
+  state: 'ALLOW' | 'DENY'
+  builtIn: boolean
+}
+
+export type KeyCheck = {
+  key: string
+  name: string
+  category: string
+  allowed: boolean
+  /** ADMIN: an administrator; OPEN: open permissions; RULE: a rule decided; NONE: no rule matched. */
+  reason: 'ADMIN' | 'OPEN' | 'RULE' | 'NONE'
+  decidedBy: CheckedRule | null
+  /** Rules that matched too, but were outweighed. */
+  overridden: CheckedRule[]
+}
+
+export type AccessCheck = {
+  subject: {
+    userId: string | null
+    name: string | null
+    member: boolean
+    owner: boolean
+    rolesChanged: boolean
+    roles: { roleId: string; name: string; color: number | null; everyone: boolean }[]
+    /** The Discord permissions held that some rule mentions. */
+    discordPermissions: string[]
+    administrator: boolean
+    administratorRule: CheckedRule | null
+  }
+  customPermissions: boolean
+  openPermissions: boolean
+  boardId: string | null
+  boardName: string | null
+  results: KeyCheck[]
+}
+
+/**
+ * What someone may do, and why. Without a user or roles, the caller themselves; with `roleIds`, those
+ * roles instead of the member's own (or, without a member, anyone with them).
+ */
+export async function fetchAccessCheck(
+  serverId: string,
+  options: { userId?: string; roleIds?: string[]; boardId?: string },
+): Promise<AccessCheck> {
+  const params = new URLSearchParams()
+  if (options.userId) params.set('userId', options.userId)
+  if (options.roleIds) {
+    params.set('withRoles', 'true')
+    if (options.roleIds.length > 0) params.set('roleIds', options.roleIds.join(','))
+  }
+  if (options.boardId) params.set('boardId', options.boardId)
+  const response = await apiFetch(`/api/servers/${serverId}/permissions/check?${params.toString()}`)
+  if (!response.ok) throw new Error(await parseError(response))
+  return response.json() as Promise<AccessCheck>
+}
