@@ -171,7 +171,104 @@ function boardNotifications(boardId: number) {
   }
 }
 
+/** The Discord permissions each demo role gives, and each demo member's roles; Alex owns the server. */
+const ROLE_FLAGS: Record<string, string[]> = {
+  [data.ROLES[0].roleId]: ['1024', '2048'],
+  [data.ROLES[1].roleId]: [],
+  [data.ROLES[2].roleId]: ['8192'],
+  [data.ROLES[3].roleId]: ['16', '8192'],
+}
+const MEMBER_ROLES: Record<string, string[]> = {
+  [data.PEOPLE[1].userId]: [data.ROLES[3].roleId],
+  [data.PEOPLE[2].userId]: [data.ROLES[1].roleId],
+  [data.PEOPLE[3].userId]: [data.ROLES[2].roleId],
+  [data.PEOPLE[4].userId]: [data.ROLES[1].roleId, data.ROLES[2].roleId],
+}
+const FLAG_NAMES: Record<string, string> = {
+  '8': 'ADMINISTRATOR', '16': 'MANAGE_CHANNELS', '32': 'MANAGE_GUILD', '1024': 'VIEW_CHANNEL', '2048': 'SEND_MESSAGES',
+  '8192': 'MANAGE_MESSAGES',
+}
+
+/** The server's rules resolved as the API does (server scope only; the demo has no board rules). */
+function accessCheck(query: URLSearchParams) {
+  const withRoles = query.get('withRoles') === 'true'
+  const userId = query.get('userId') ?? (withRoles ? null : data.ME)
+  const roleIds = withRoles ? (query.get('roleIds')?.split(',').filter(Boolean) ?? []) : (userId ? MEMBER_ROLES[userId] ?? [] : [])
+  const roles = [data.SERVER_ID, ...roleIds]
+  const owner = userId === data.ME
+  const flags = new Set(roles.flatMap((roleId) => ROLE_FLAGS[roleId] ?? []))
+  if (owner) flags.add('8')
+  const subjects: Record<string, Set<string>> = {
+    DISCORD_PERMISSION: flags,
+    ROLE: new Set(roles),
+    USER: new Set(userId ? [userId] : []),
+  }
+  const ref = (rule: (typeof serverRules)[number]) => ({
+    ruleId: rule.id,
+    scope: 'SERVER',
+    subjectType: rule.subjectType,
+    subjectId: rule.subjectId,
+    subjectName:
+      rule.subjectType === 'DISCORD_PERMISSION'
+        ? FLAG_NAMES[rule.subjectId] ?? rule.subjectId
+        : rule.subjectType === 'ROLE'
+          ? data.ROLES.find((role) => role.roleId === rule.subjectId)?.name ?? 'a role'
+          : data.PEOPLE.find((person) => person.userId === rule.subjectId)?.displayName ?? 'someone',
+    state: rule.state,
+    builtIn: false,
+  })
+  const trace = (key: string) =>
+    ['DISCORD_PERMISSION', 'ROLE', 'USER']
+      .map((tier) => serverRules.filter((rule) => rule.subjectType === tier && rule.kanbanPermissionKey === key
+        && subjects[tier].has(rule.subjectId)))
+      .filter((rules) => rules.length > 0)
+      .map((rules) => ({ rules, decider: rules.find((rule) => rule.state === 'DENY') ?? rules[0] }))
+  const adminLayers = trace('ADMIN')
+  const adminRule = adminLayers.length > 0 && adminLayers[adminLayers.length - 1].decider.state === 'ALLOW'
+    ? ref(adminLayers[adminLayers.length - 1].decider)
+    : null
+  const boardId = query.get('boardId')
+  const board = data.BOARDS.find((entry) => String(entry.boardId) === boardId)
+  return {
+    subject: {
+      userId,
+      name: data.PEOPLE.find((person) => person.userId === userId)?.displayName ?? null,
+      member: true,
+      owner,
+      rolesChanged: Boolean(userId) && withRoles,
+      roles: data.ROLES.filter((role) => roles.includes(role.roleId))
+        .sort((a, b) => b.position - a.position)
+        .map((role) => ({ roleId: role.roleId, name: role.name, color: role.color, everyone: role.roleId === data.SERVER_ID })),
+      discordPermissions: [...flags].map((flag) => FLAG_NAMES[flag]),
+      administrator: adminRule !== null,
+      administratorRule: adminRule,
+    },
+    customPermissions: features.PERMISSIONS,
+    openPermissions,
+    boardId: board ? String(board.boardId) : null,
+    boardName: board?.name ?? null,
+    results: catalog
+      .filter((entry) => entry.key !== 'ADMIN' && (!board || data.BOARD_KEYS.includes(entry.key)))
+      .map((entry) => {
+        const layers = trace(entry.key)
+        const matched = layers.flatMap((layer) => layer.rules)
+        const base = { key: entry.key, name: entry.name, category: entry.category }
+        if (adminRule) return { ...base, allowed: true, reason: 'ADMIN', decidedBy: adminRule, overridden: matched.map(ref) }
+        if (layers.length === 0) return { ...base, allowed: false, reason: 'NONE', decidedBy: null, overridden: [] }
+        const decider = layers[layers.length - 1].decider
+        return {
+          ...base,
+          allowed: decider.state === 'ALLOW',
+          reason: 'RULE',
+          decidedBy: ref(decider),
+          overridden: matched.filter((rule) => rule !== decider).map(ref),
+        }
+      }),
+  }
+}
+
 const ROUTES: [string, RegExp, Handler][] = [
+  ['GET', /^\/api\/servers\/\d+\/permissions\/check$/, (_m, { query }) => accessCheck(query)],
   ['POST', /^\/api\/auth\/refresh$/, () => ({ accessToken: 'demo', tokenType: 'Bearer', expiresIn: 86_400, sessionId: 'demo', user: me })],
   ['POST', /^\/api\/auth\/logout$/, () => undefined],
   ['GET', /^\/api\/me$/, () => me],

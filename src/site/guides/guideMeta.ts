@@ -59,8 +59,8 @@ export const GUIDE_META: GuideMeta[] = [
     slug: 'roles-and-permissions',
     title: 'Roles and permissions: who can see and change each board',
     description:
-      'KanbanCord follows your Discord roles from the start. Fine-tune who can see and change each board, per role and per person.',
-    summary: 'Discord roles from the start, fine-tuned per board and per person.',
+      'KanbanCord follows your Discord roles from the start. Fine-tune who can see and change each board, per role and per person, see exactly how rules combine, and check what anyone may do.',
+    summary: 'Discord roles from the start, fine-tuned per board and per person, with worked examples.',
   },
   {
     slug: 'website-board',

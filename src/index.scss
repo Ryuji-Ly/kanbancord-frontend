@@ -4022,6 +4022,11 @@ select.kc-input {
 @media (max-width: 480px) {
   .kc-public-nav {
     gap: 10px;
+
+    // Keeps the header within a phone's width.
+    .kc-btn {
+      padding-inline: 10px;
+    }
   }
 }
 
@@ -4146,4 +4151,206 @@ select.kc-input {
 .kc-feed-overrides {
   margin: 4px 0 8px;
   font-size: 0.85rem;
+}
+
+// Checking what someone may do, and why.
+.kc-access-check {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  .kc-field-label {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--kc-text-dim);
+  }
+
+  .kc-link-button {
+    padding: 0;
+    border: none;
+    background: none;
+    color: var(--kc-link);
+    font: inherit;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+.kc-access-check-who {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 10px 16px;
+}
+
+.kc-access-check-modes,
+.kc-access-check-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+
+  .kc-btn {
+    flex: 0 0 auto;
+    width: auto;
+  }
+}
+
+.kc-access-check-search {
+  position: relative;
+  flex: 1 1 220px;
+  max-width: 340px;
+}
+
+.kc-access-check-matches {
+  position: absolute;
+  z-index: 5;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 4px;
+  list-style: none;
+  border: 1px solid var(--kc-border);
+  border-radius: 8px;
+  background: var(--kc-card);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--kc-ink) 60%, transparent);
+
+  button {
+    width: 100%;
+    padding: 8px 10px;
+    border: none;
+    border-radius: 6px;
+    background: none;
+    color: var(--kc-text);
+    text-align: left;
+    cursor: pointer;
+
+    &:hover,
+    &:focus-visible {
+      background: var(--kc-card-hover);
+    }
+  }
+}
+
+.kc-access-check-scope {
+  flex: 1 1 220px;
+  max-width: 340px;
+}
+
+.kc-access-check-roles ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.kc-access-check-role {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 4px 3px 10px;
+  border: 1px solid var(--kc-border);
+  border-left-width: 4px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+
+  button {
+    display: inline-flex;
+    padding: 3px;
+    border: none;
+    border-radius: 999px;
+    background: none;
+    color: var(--kc-text-dim);
+    cursor: pointer;
+
+    &:hover,
+    &:focus-visible {
+      background: var(--kc-card-hover);
+      color: var(--kc-text);
+    }
+  }
+
+  &--fixed {
+    padding-right: 10px;
+    color: var(--kc-text-dim);
+  }
+}
+
+.kc-access-check-add {
+  width: auto;
+  padding: 4px 8px;
+  font-size: 0.85rem;
+}
+
+.kc-access-check-whatif {
+  margin: 6px 0 0;
+}
+
+.kc-access-check-notes {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--kc-text-soft);
+  font-size: 0.88rem;
+}
+
+.kc-access-check-group {
+  margin: 0;
+  padding: 0;
+  border: none;
+
+  legend {
+    margin-bottom: 6px;
+    font-weight: 700;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+}
+
+.kc-access-check-result {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--kc-ink) 30%, transparent);
+
+  > div {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+}
+
+.kc-access-check-mark {
+  display: inline-flex;
+  flex: none;
+  margin-top: 2px;
+  color: var(--kc-success-text);
+
+  .kc-access-check-result--denied & {
+    color: var(--kc-danger-text, #fca5a5);
+  }
+}
+
+.kc-access-check-why {
+  font-size: 0.88rem;
+  color: var(--kc-text-soft);
+}
+
+.kc-access-check-overridden {
+  font-size: 0.8rem;
+  color: var(--kc-subtle);
 }
