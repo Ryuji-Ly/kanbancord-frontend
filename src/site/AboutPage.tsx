@@ -37,6 +37,20 @@ export function AboutPage() {
         . If you would like to help with its costs, see <Link to="/support">Support</Link>.
       </p>
 
+      <h2>Find it on Discord</h2>
+      <p>
+        {SITE.name} has its own page in{' '}
+        <a href={SITE.appDirectoryUrl} target="_blank" rel="noopener noreferrer">
+          Discord&apos;s App Directory
+        </a>
+        , where you can add it to a server straight from Discord. Whether the website, the bot and everything behind
+        them are running, and any planned maintenance, is on the{' '}
+        <a href={SITE.statusUrl} target="_blank" rel="noopener noreferrer">
+          status page
+        </a>
+        .
+      </p>
+
       <h2>Get started</h2>
       <ol>
         <li>Add the bot to your server.</li>

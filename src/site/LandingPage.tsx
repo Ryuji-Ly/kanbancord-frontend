@@ -1,6 +1,7 @@
 import { FiBell, FiCommand, FiEye, FiLayout, FiShield, FiZap } from 'react-icons/fi'
 import { buildBotInviteLink } from '../features/dashboard/dashboardModel'
 import { usePageMeta } from './usePageMeta'
+import { SITE } from './siteInfo'
 
 const FEATURES = [
   {
@@ -60,7 +61,13 @@ export function LandingPage({ onLogin }: { onLogin: () => void }) {
             Sign in with Discord
           </button>
         </div>
-        <p className="kc-muted kc-landing-free">Free. No ads. No tracking.</p>
+        <p className="kc-muted kc-landing-free">
+          Free. No ads. No tracking. Also on{' '}
+          <a href={SITE.appDirectoryUrl} target="_blank" rel="noopener noreferrer">
+            Discord&apos;s App Directory
+          </a>
+          .
+        </p>
       </section>
 
       <section className="kc-landing-features" aria-label="Features">
