@@ -13,6 +13,10 @@ export const SITE = {
   email: 'privacy@kanbancord.com',
   donationUrl: 'https://ko-fi.com/ryujily',
   supportServerUrl: 'https://discord.gg/SDr4ujFPGR',
+  /** The bot's own page in Discord's App Directory. */
+  appDirectoryUrl: 'https://discord.com/discovery/applications/1303467182344241283',
+  /** Whether the website, API and bot are up, and any planned maintenance. */
+  statusUrl: 'https://status.kanbancord.com',
   /** When the Privacy Policy and Terms of Service last changed. */
   legalUpdated: '25 September 2026',
 }
