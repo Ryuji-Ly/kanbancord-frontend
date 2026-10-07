@@ -1,7 +1,12 @@
 // Writes an HTML file for each public page: the built index.html with the page's own title,
 // description and address, and the page already rendered inside it. nginx serves /faq from
 // faq.html, so search engines and link previews get the real page without running the app.
-import { mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
+//
+// Also writes sitemap.xml, with the date each page's content last changed. Those dates live in
+// scripts/page-dates.json with a fingerprint of each page: a page whose content differs from its
+// fingerprint gets today's date, and the file is updated. Commit it along with content changes.
+import { createHash } from 'node:crypto'
+import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { pathToFileURL } from 'node:url'
 
@@ -18,8 +23,24 @@ function replaceOnce(html, pattern, replacement, what, path) {
   return html.replace(pattern, replacement)
 }
 
+const DATES_FILE = join('scripts', 'page-dates.json')
+const dates = existsSync(DATES_FILE) ? JSON.parse(readFileSync(DATES_FILE, 'utf8')) : {}
+const today = new Date().toISOString().slice(0, 10)
+let datesChanged = false
+
+/** The page's own content: what is inside its article, so the shared header and footer do not count. */
+function fingerprint(html) {
+  const article = html.match(/<article[\s\S]*<\/article>/)
+  return createHash('sha256').update(article ? article[0] : html).digest('hex').slice(0, 16)
+}
+
 for (const path of PATHS) {
   const { html, head } = render(path)
+  const hash = fingerprint(html)
+  if (dates[path]?.hash !== hash) {
+    dates[path] = { hash, lastmod: today }
+    datesChanged = true
+  }
   if (!head.title || !head.description) throw new Error(`${path} did not set its title and description`)
   const url = `${SITE_URL}${head.path ?? path}`
   let page = template
@@ -35,7 +56,39 @@ for (const path of PATHS) {
   writeFileSync(file, page)
 }
 
+// How often each kind of page changes, and how much it matters, for search engines.
+function weight(path) {
+  if (path === '/about' || path === '/guides') return { changefreq: 'monthly', priority: '0.8' }
+  if (path === '/faq' || path.startsWith('/guides/')) return { changefreq: 'monthly', priority: '0.7' }
+  if (path === '/support') return { changefreq: 'yearly', priority: '0.4' }
+  return { changefreq: 'yearly', priority: '0.3' }
+}
+
+// The home page is drawn by the app (it depends on whether you are signed in), so it has no date.
+const entries = [
+  `  <url>\n    <loc>${SITE_URL}/</loc>\n    <changefreq>monthly</changefreq>\n    <priority>1.0</priority>\n  </url>`,
+  ...PATHS.map((path) => {
+    const { changefreq, priority } = weight(path)
+    return `  <url>\n    <loc>${SITE_URL}${path}</loc>\n    <lastmod>${dates[path].lastmod}</lastmod>\n`
+      + `    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`
+  }),
+]
+writeFileSync(join(dist, 'sitemap.xml'),
+  `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${entries.join('\n')}\n</urlset>\n`)
+
+// Pages no longer published are forgotten.
+for (const path of Object.keys(dates)) {
+  if (!PATHS.includes(path)) {
+    delete dates[path]
+    datesChanged = true
+  }
+}
+if (datesChanged) {
+  writeFileSync(DATES_FILE, `${JSON.stringify(dates, null, 2)}\n`)
+  console.log(`Updated ${DATES_FILE}: commit it with the content changes`)
+}
+
 rmSync('dist-ssr', { recursive: true, force: true })
-console.log(`Prerendered ${PATHS.length} public pages`)
+console.log(`Prerendered ${PATHS.length} public pages and the sitemap`)
 // Some modules keep handles open (a BroadcastChannel for sign-in state); nothing else is left to do.
 process.exit(0)
