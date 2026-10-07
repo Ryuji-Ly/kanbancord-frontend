@@ -1,64 +1,69 @@
-# KanbanCord Frontend (Auth Smoke Test)
+# KanbanCord website
 
-This frontend is intentionally minimal.
+**KanbanCord** is a free kanban board for Discord: a Trello-style task board and shared to-do list that lives in your
+Discord server. Teams, clubs, study groups and game-dev communities plan their work where they already talk: create
+tasks, move them across columns, assign people and roles, set due dates, labels and priorities, and get updates in
+their channels, without leaving Discord.
 
-Current scope:
-- Login with a Discord OAuth button (authorization code flow)
-- Exchange Discord auth code through backend `POST /api/auth/discord/exchange`
-- Store backend JWT token locally
-- Validate JWT with backend `GET /api/me`
-- Verify authenticated communication with `GET /api/me/servers`
+This repository is the **website**, live at **[kanbancord.com](https://kanbancord.com)**. Everyday work happens in
+Discord through the bot; the website is there for the big picture and the finer settings.
 
-No dashboard, boards, or styling work is included yet.
+| Repository | What it is |
+| --- | --- |
+| [kanbancord-bot](https://github.com/Ryuji-Ly/kanbancord-bot) | The Discord bot: slash commands, buttons, board posts, update feeds and direct messages. |
+| **kanbancord-frontend** (this one) | The website at [kanbancord.com](https://kanbancord.com). |
+| [kanbancord-api](https://github.com/Ryuji-Ly/kanbancord-api) | The API both of them use: boards, tasks, permissions and notifications. |
 
-## Prerequisites
+**Try it:** sign in at [kanbancord.com](https://kanbancord.com) with Discord, or join the
+[support server](https://discord.gg/SDr4ujFPGR).
 
-- Node.js 20+
-- Running backend API (default: `http://localhost:8080`)
-- Discord application with OAuth redirect URI configured (default: `http://localhost:5173`)
+## What the website does
 
-## Setup
+- **Whole boards on one screen**: every column and task, with drag and drop, search and filters by label, priority,
+  assignee and due date. Changes appear live for everyone, in Discord too.
+- **Tasks in full**: descriptions with checklists, images and videos, assignees, labels, priorities, due dates and
+  comments.
+- **Settings for each server and board**: features and simple mode, labels and priority levels, update feeds and what
+  they post and mention, task threads, and the audit log of every change.
+- **Permissions**: rules per role, per person and per board, and **Check access**, which shows what anyone may do and
+  which rule decides it.
+- **Your preferences**: notification choices, themes and accessibility options.
+- **Public pages and guides**: the [guides](https://kanbancord.com/guides), [FAQ](https://kanbancord.com/faq),
+  privacy policy and terms, prerendered as plain HTML so they load fast and search engines can read them.
 
-1. Copy `.env.example` to `.env`.
-2. Set frontend OAuth variables:
+## Stack
 
-```env
-VITE_API_BASE_URL=
-VITE_DISCORD_CLIENT_ID=your_discord_app_client_id
-VITE_DISCORD_REDIRECT_URI=http://localhost:5173
-VITE_DISCORD_SCOPES=identify guilds
-```
+React 19 · TypeScript · Vite · TanStack Query · SCSS. Pages are prerendered at build time; the app itself is a
+single-page app served by nginx.
 
-When `VITE_API_BASE_URL` is empty, Vite dev proxy forwards `/api/*` to `http://localhost:8080`.
+## Running it locally
 
-3. Install dependencies:
+You need Node.js 22, and the [API](https://github.com/Ryuji-Ly/kanbancord-api) running for anything past the public
+pages.
 
 ```bash
 npm install
-```
-
-4. Start dev server:
-
-```bash
+cp .env.example .env   # then fill in the values
 npm run dev
 ```
 
-3. Configure backend OAuth environment variables before running Spring Boot:
+| Variable | |
+| --- | --- |
+| `VITE_API_BASE_URL` | Where the API runs. Leave empty to use the dev server's proxy to `http://localhost:8080`. |
+| `VITE_DISCORD_CLIENT_ID` | The Discord application's client ID, for signing in and the "Add to Discord" links. |
+| `VITE_DISCORD_REDIRECT_URI` | Where Discord sends you back after signing in; `http://localhost:5173` locally. |
+| `VITE_DISCORD_SCOPES` | The OAuth scopes: `identify guilds`. |
 
-```powershell
-$env:KANBANCORD_DISCORD_CLIENT_ID="your_discord_app_client_id"
-$env:KANBANCORD_DISCORD_CLIENT_SECRET="your_discord_app_client_secret"
-$env:KANBANCORD_JWT_SECRET="your_jwt_secret"
-$env:KANBANCORD_BOT_TOKEN="your_bot_token"
+**Without an API or Discord application:** `npm run demo` runs the website with made-up example data (a game jam
+community with a few boards), so you can click through every screen.
+
+```bash
+npm run lint
+npm run build   # type-checks, builds, and prerenders the public pages
 ```
 
-## How To Test Backend Communication
+Pushes to `main` build a Docker image (nginx serving the built site) and publish it to the GitHub Container Registry.
 
-1. Open the app in browser.
-2. Click `Login with Discord`.
-3. Complete Discord consent screen.
-4. Browser returns to frontend and auto-authenticates against backend.
-4. Click `Validate Token (/api/me)`.
-5. Click `Fetch Servers (/api/me/servers)`.
+## License
 
-Successful responses confirm frontend and backend token-based communication is working.
+[MIT](LICENSE) © Ryuji Ly. KanbanCord is not affiliated with or endorsed by Discord.
