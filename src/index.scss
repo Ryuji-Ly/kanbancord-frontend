@@ -2689,6 +2689,20 @@ pre {
   white-space: nowrap;
 }
 
+.kc-language-request {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 12px;
+  max-width: 460px;
+}
+
+.kc-language-request-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
 /* A heading over a group of sections: not selectable, smaller than the sections but bold. */
 .kc-server-settings-group {
   margin: 12px 10px 4px;

@@ -131,5 +131,17 @@
     "activity": "Active {active} · signed in {signedIn}",
     "signOut": "Sign out",
     "signOutOthers": "Sign out all other devices"
+  },
+  "language": {
+    "request": "Request a language…",
+    "intro": "Your language isn't here yet? Tell the developer which one you'd like. Translations are added as people ask for them.",
+    "which": "Language",
+    "pick": "Pick a language…",
+    "note": "Note (optional)",
+    "notePlaceholder": "Anything to add, such as whether you could help translate",
+    "send": "Send request",
+    "sending": "Sending…",
+    "sent": "Thanks! Your request was sent to the developer.",
+    "failed": "The request could not be sent"
   }
 }
