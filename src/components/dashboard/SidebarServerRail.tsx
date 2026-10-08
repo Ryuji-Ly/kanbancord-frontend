@@ -1,3 +1,4 @@
+import { t } from '../../i18n'
 import { guildIconUrl } from '../../services/discordGuildsService'
 import type { DiscordGuild } from '../../types/auth'
 
@@ -22,10 +23,10 @@ export function SidebarServerRail({
 }: SidebarServerRailProps) {
   return (
     <aside className="kc-sidebar">
-      <h2 className="kc-sidebar-title">Servers</h2>
-      {!isAuthenticated && <p className="kc-muted">Login to see your servers.</p>}
+      <h2 className="kc-sidebar-title">{t('dashboard.servers')}</h2>
+      {!isAuthenticated && <p className="kc-muted">{t('dashboard.loginToSeeServers')}</p>}
       {isAuthenticated && botServers.length === 0 && !loading && (
-        <p className="kc-muted">KanbanCord is not in any of your servers yet.</p>
+        <p className="kc-muted">{t('dashboard.botInNoServers')}</p>
       )}
       <ul className="kc-guild-rail">
         {botServers.map((server) => {

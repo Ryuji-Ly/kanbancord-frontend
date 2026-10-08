@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { readableError } from '../../api/http'
+import { t, type MessageKey } from '../../i18n'
+import { Trans } from '../../i18n/Trans'
 import { SwitchRow } from '../../components/SwitchRow'
 import {
   disableBoardThreads,
@@ -16,10 +18,10 @@ type BoardThreadsSettingsProps = {
   boardId: string
 }
 
-const UPDATES: { value: ThreadUpdates; label: string }[] = [
-  { value: 'BOTH', label: 'The thread and the channel' },
-  { value: 'THREAD', label: 'Only the thread' },
-  { value: 'CHANNEL', label: 'Only the channel' },
+const UPDATES: { value: ThreadUpdates; label: MessageKey }[] = [
+  { value: 'BOTH', label: 'settings.threads.updatesBoth' },
+  { value: 'THREAD', label: 'settings.threads.updatesThread' },
+  { value: 'CHANNEL', label: 'settings.threads.updatesChannel' },
 ]
 
 /**
@@ -35,7 +37,7 @@ export function BoardThreadsSettings({ serverId, boardId }: BoardThreadsSettings
   const settle = {
     onMutate: () => setError(''),
     onSuccess: (data: BoardThreads) => queryClient.setQueryData(queryKey, data),
-    onError: (err: unknown) => setError(readableError(err, 'The change could not be saved')),
+    onError: (err: unknown) => setError(readableError(err, t('common.changeNotSaved'))),
   }
   const save = useMutation({
     mutationFn: (settings: { channelId: string; privateThreads: boolean; updates: ThreadUpdates }) =>
@@ -60,31 +62,23 @@ export function BoardThreadsSettings({ serverId, boardId }: BoardThreadsSettings
   return (
     <section className="kc-board-modal-section">
       <div className="kc-board-modal-section-head">
-        <h4>Task threads</h4>
-        <p className="kc-muted">
-          Give each task its own thread for discussion, in one of this board&apos;s update feed channels. A thread
-          follows its task&apos;s title and is archived when the task is deleted or archived. The feed&apos;s updates
-          about the task, including new comments, are posted in it as you choose below; messages written in the thread
-          stay in Discord. Changes save straight away.
-        </p>
+        <h4>{t('settings.threads.title')}</h4>
+        <p className="kc-muted">{t('settings.threads.intro')}</p>
       </div>
       {error && <p className="kc-banner">{error}</p>}
-      {query.isPending && <p className="kc-muted">Loading…</p>}
+      {query.isPending && <p className="kc-muted">{t('common.loadingEllipsis')}</p>}
       {data && data.channels.length === 0 && !data.enabled && (
         <p className="kc-muted">
-          This board has no update feed yet. Add one in the server&apos;s notification settings, or with{' '}
-          <code>/kanbancord feed</code> in Discord, then switch threads on here.
+          <Trans k="settings.threads.noFeed" />
         </p>
       )}
       {data && current && (data.channels.length > 0 || data.enabled) && (
         <>
           <ul className="kc-features-list">
             <SwitchRow
-              label="A thread per task"
+              label={t('settings.threads.perTask')}
               description={
-                data.enabled && !data.active
-                  ? 'On, but not working: the chosen channel no longer has a feed for this board. Choose another feed channel.'
-                  : 'Each task gets its thread when something next happens to it.'
+                data.enabled && !data.active ? t('settings.threads.notWorking') : t('settings.threads.perTaskHint')
               }
               on={data.enabled}
               disabled={busy || (!data.enabled && !current.channelId)}
@@ -94,24 +88,24 @@ export function BoardThreadsSettings({ serverId, boardId }: BoardThreadsSettings
           {data.enabled && (
             <div className="kc-board-threads-fields">
               <label className="kc-field">
-                <span className="kc-field-label">Channel</span>
+                <span className="kc-field-label">{t('settings.threads.channel')}</span>
                 <select
                   className="kc-input"
                   value={current.channelId}
                   disabled={busy}
                   onChange={(event) => change({ channelId: event.target.value })}
                 >
-                  {!chosen && <option value={current.channelId}>A channel without a feed for this board</option>}
+                  {!chosen && <option value={current.channelId}>{t('settings.threads.channelWithoutFeed')}</option>}
                   {data.channels.map((channel) => (
                     <option key={channel.channelId} value={channel.channelId} disabled={!channel.botCanThread}>
                       #{channel.name}
-                      {channel.botCanThread ? '' : ' (the bot cannot make threads here)'}
+                      {channel.botCanThread ? '' : t('settings.threads.botCannot')}
                     </option>
                   ))}
                 </select>
               </label>
               <label className="kc-field">
-                <span className="kc-field-label">A task&apos;s updates go to</span>
+                <span className="kc-field-label">{t('settings.threads.updatesGoTo')}</span>
                 <select
                   className="kc-input"
                   value={current.updates}
@@ -120,18 +114,18 @@ export function BoardThreadsSettings({ serverId, boardId }: BoardThreadsSettings
                 >
                   {UPDATES.map((option) => (
                     <option key={option.value} value={option.value}>
-                      {option.label}
+                      {t(option.label)}
                     </option>
                   ))}
                 </select>
               </label>
               <ul className="kc-features-list">
                 <SwitchRow
-                  label="Private threads"
+                  label={t('settings.threads.private')}
                   description={
                     chosen && !chosen.botCanPrivateThread && !current.privateThreads
-                      ? 'Not possible in this channel: private threads need a text channel where the bot may create private threads.'
-                      : "Only the task's creator and assignees are in the thread, plus server moderators. New assignees are added."
+                      ? t('settings.threads.privateNotPossible')
+                      : t('settings.threads.privateHint')
                   }
                   on={current.privateThreads}
                   disabled={busy || (!current.privateThreads && !chosen?.botCanPrivateThread)}

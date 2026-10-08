@@ -64,6 +64,19 @@ npm run build   # type-checks, builds, and prerenders the public pages
 
 Pushes to `main` build a Docker image (nginx serving the built site) and publish it to the GitHub Container Registry.
 
+## Translating
+
+Every piece of text the website shows is in [`src/i18n/locales/en`](src/i18n/locales/en), one JSON file per area. To
+add a language, copy those files to `src/i18n/locales/<code>` (`fr`, `de`, `pt-BR`, ...) and translate the values:
+the language is picked up on its own, offered under Preferences → Appearance, and chosen automatically for browsers set
+to it. Anything left untranslated shows in English.
+
+- Keep `{placeholders}` and `<tags>` as they are; move them wherever the sentence needs them.
+- Text that depends on a number has one entry per plural form (`tasks_one`, `tasks_other`, plus `_zero`, `_two`,
+  `_few` or `_many` where the language has them).
+- Slash commands such as `/task create` stay in English: they are the bot's commands.
+- The Privacy Policy and Terms of Service are only in English.
+
 ## License
 
 [MIT](LICENSE) © Ryuji Ly. KanbanCord is not affiliated with or endorsed by Discord.

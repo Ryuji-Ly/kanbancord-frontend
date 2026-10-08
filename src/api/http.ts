@@ -1,4 +1,5 @@
 import { API_BASE_URL } from '../config/env'
+import { t } from '../i18n'
 
 export function apiUrl(path: string): string {
   return `${API_BASE_URL}${path}`
@@ -6,7 +7,8 @@ export function apiUrl(path: string): string {
 
 export async function parseError(response: Response): Promise<string> {
   const errorText = await response.text()
-  return errorText || `Request failed (${response.status})`
+  // In the API's own error shape, so the status is still recognised (see queryClient) in any language.
+  return errorText || JSON.stringify({ status: response.status, message: t('common.requestFailed', { status: response.status }) })
 }
 
 /** The message to show for a failed request: the API's `message` field when the error carries its JSON body. */

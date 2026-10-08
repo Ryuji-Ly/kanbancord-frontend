@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { t } from '../../../i18n'
+import { Trans } from '../../../i18n/Trans'
 import type { BoardColumnEntry } from '../../../services/boardColumnsService'
 import type { LabelEntry, PriorityEntry } from '../../../services/boardsService'
 import type { ServerFeatures } from '../../../services/featuresService'
@@ -77,7 +79,7 @@ export function CreateTaskModal({
 
   function submit() {
     if (!draft.title.trim()) {
-      setValidationError('Task title is required.')
+      setValidationError(t('board.createTask.titleRequired'))
       return
     }
     setValidationError('')
@@ -87,22 +89,22 @@ export function CreateTaskModal({
   const shownError = validationError || error
 
   return (
-    <div className="kc-modal-overlay" role="dialog" aria-modal="true" aria-label="Create Task" onClick={close}>
+    <div className="kc-modal-overlay" role="dialog" aria-modal="true" aria-label={t('board.createTask.label')} onClick={close}>
       <div className="kc-modal kc-task-modal" onClick={(event) => event.stopPropagation()}>
         <div className="kc-modal-header">
-          <h3 className="kc-modal-title">Create task</h3>
-          <button type="button" className="kc-modal-close" aria-label="Close create task modal" onClick={close}>
+          <h3 className="kc-modal-title">{t('board.createTask.title')}</h3>
+          <button type="button" className="kc-modal-close" aria-label={t('board.createTask.close')} onClick={close}>
             ×
           </button>
         </div>
         <div className="kc-modal-body kc-task-modal-body">
           <p className="kc-muted">
-            New tasks in <strong>{column.name}</strong> are added to the end of the column.
+            <Trans k="board.createTask.whereAdded" values={{ column: column.name }} />
           </p>
           {shownError && <p className="kc-banner">{shownError}</p>}
 
           <label className="kc-field">
-            <span className="kc-field-label">Title</span>
+            <span className="kc-field-label">{t('board.fields.title')}</span>
             <input
               className="kc-input"
               value={draft.title}
@@ -116,7 +118,7 @@ export function CreateTaskModal({
             <div className="kc-task-modal-grid">
               {features.PRIORITIES && (
                 <div className="kc-field">
-                  <span className="kc-field-label">Priority</span>
+                  <span className="kc-field-label">{t('board.fields.priority')}</span>
                   <PriorityPicker
                     priorities={priorities}
                     value={draft.priorityId}
@@ -129,7 +131,7 @@ export function CreateTaskModal({
 
               {features.DUE_DATES && (
                 <label className="kc-field">
-                  <span className="kc-field-label">Due Date</span>
+                  <span className="kc-field-label">{t('board.fields.dueDateTitle')}</span>
                   <input
                     className="kc-input"
                     type="datetime-local"
@@ -143,7 +145,7 @@ export function CreateTaskModal({
 
           {canApplyLabels && (
             <div className="kc-field">
-              <span className="kc-field-label">Labels</span>
+              <span className="kc-field-label">{t('board.fields.labels')}</span>
               <LabelPicker
                 labels={labels}
                 selectedIds={labelIds}
@@ -158,7 +160,7 @@ export function CreateTaskModal({
           )}
 
           <div className="kc-field">
-            <span className="kc-field-label">Description</span>
+            <span className="kc-field-label">{t('common.description')}</span>
             <MarkdownEditor
               value={draft.description}
               onChange={(description) => setDraft((prev) => ({ ...prev, description }))}
@@ -168,7 +170,7 @@ export function CreateTaskModal({
 
           {canAssign && (
             <div className="kc-field">
-              <span className="kc-field-label">Assignees</span>
+              <span className="kc-field-label">{t('board.fields.assignees')}</span>
               <div className="kc-task-assignee-picker">
                 <AssigneePicker
                   assignees={assigneeIds.map((id) => resolveAssignee(directory, id))}
@@ -184,7 +186,7 @@ export function CreateTaskModal({
 
           {canAssignOthers && roles.length > 0 && (
             <div className="kc-field">
-              <span className="kc-field-label">Roles</span>
+              <span className="kc-field-label">{t('board.fields.roles')}</span>
               <RolePicker
                 roles={roles}
                 selectedIds={roleIds}
@@ -197,7 +199,7 @@ export function CreateTaskModal({
         </div>
         <div className="kc-task-modal-actions">
           <button type="button" className="kc-btn kc-btn-ghost" onClick={close} disabled={creating}>
-            Cancel
+            {t('common.cancel')}
           </button>
           <button
             type="button"
@@ -205,7 +207,7 @@ export function CreateTaskModal({
             onClick={submit}
             disabled={creating || hasPendingUploads(draft.description)}
           >
-            {creating ? 'Creating...' : 'Create task'}
+            {creating ? t('common.creatingDots') : t('board.createTask.title')}
           </button>
         </div>
       </div>

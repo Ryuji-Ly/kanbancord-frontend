@@ -1,11 +1,12 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { parseServerTime, readableError } from '../../api/http'
+import { formatLocale, t } from '../../i18n'
 import { fetchSessions, revokeOtherSessions, revokeSession, type SessionEntry } from '../../services/meService'
 import { relativeTime } from '../audit/auditModel'
 
 /** "Chrome on Windows" from a user agent string, or the string itself when it is not recognised. */
 function describeDevice(userAgent: string | null): string {
-  if (!userAgent) return 'Unknown device'
+  if (!userAgent) return t('account.sessions.unknownDevice')
   const browser = /Edg\//.test(userAgent)
     ? 'Edge'
     : /OPR\//.test(userAgent)
@@ -28,7 +29,7 @@ function describeDevice(userAgent: string | null): string {
           : /Linux/.test(userAgent)
             ? 'Linux'
             : null
-  return browser && system ? `${browser} on ${system}` : browser ?? system ?? userAgent.slice(0, 60)
+  return browser && system ? t('account.sessions.browserOn', { browser, system }) : browser ?? system ?? userAgent.slice(0, 60)
 }
 
 /** Where the user is signed in, with sign-out for any other device. */
@@ -43,12 +44,9 @@ export function SessionsSettings() {
 
   return (
     <div className="kc-features">
-      <p className="kc-muted">
-        Devices and browsers signed in to your account. Signing one out ends it straight away, including any board it
-        has open.
-      </p>
-      {error && <p className="kc-banner">{readableError(error, 'Could not sign out that session')}</p>}
-      {sessions.isError && <p className="kc-banner">{readableError(sessions.error, 'Could not load your sessions')}</p>}
+      <p className="kc-muted">{t('account.sessions.intro')}</p>
+      {error && <p className="kc-banner">{readableError(error, t('account.sessions.signOutFailed'))}</p>}
+      {sessions.isError && <p className="kc-banner">{readableError(sessions.error, t('account.sessions.loadFailed'))}</p>}
 
       <ul className="kc-features-list">
         {(sessions.data ?? []).map((session: SessionEntry) => (
@@ -56,11 +54,13 @@ export function SessionsSettings() {
             <div className="kc-feature-text">
               <span className="kc-feature-label">
                 {describeDevice(session.userAgent)}
-                {session.current && <span className="kc-session-current"> · This device</span>}
+                {session.current && <span className="kc-session-current">{t('account.sessions.thisDevice')}</span>}
               </span>
               <p className="kc-muted">
-                Active {relativeTime(session.lastUsedAt)} · signed in{' '}
-                {parseServerTime(session.createdAt).toLocaleDateString()}
+                {t('account.sessions.activity', {
+                  active: relativeTime(session.lastUsedAt),
+                  signedIn: parseServerTime(session.createdAt).toLocaleDateString(formatLocale()),
+                })}
               </p>
             </div>
             {!session.current && (
@@ -70,7 +70,7 @@ export function SessionsSettings() {
                 disabled={revokeOne.isPending}
                 onClick={() => revokeOne.mutate(session.sessionId)}
               >
-                Sign out
+                {t('account.sessions.signOut')}
               </button>
             )}
           </li>
@@ -85,7 +85,7 @@ export function SessionsSettings() {
             disabled={revokeOthers.isPending}
             onClick={() => revokeOthers.mutate()}
           >
-            Sign out all other devices
+            {t('account.sessions.signOutOthers')}
           </button>
         </div>
       )}

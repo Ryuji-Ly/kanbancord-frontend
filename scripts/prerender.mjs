@@ -28,10 +28,15 @@ const dates = existsSync(DATES_FILE) ? JSON.parse(readFileSync(DATES_FILE, 'utf8
 const today = new Date().toISOString().slice(0, 10)
 let datesChanged = false
 
-/** The page's own content: what is inside its article, so the shared header and footer do not count. */
+/**
+ * The page's own content: what is inside its article, so the shared header and footer do not count.
+ * React's markers between adjacent pieces of text (<!-- -->) are left out: they change with how the
+ * text is put together (such as from translated messages), not with what it says.
+ */
 function fingerprint(html) {
   const article = html.match(/<article[\s\S]*<\/article>/)
-  return createHash('sha256').update(article ? article[0] : html).digest('hex').slice(0, 16)
+  const content = (article ? article[0] : html).replaceAll('<!-- -->', '')
+  return createHash('sha256').update(content).digest('hex').slice(0, 16)
 }
 
 for (const path of PATHS) {

@@ -2,6 +2,7 @@ import { useDeferredValue, useMemo, useState } from 'react'
 import { ServerNotificationsSettings } from '../notifications/ServerNotificationsSettings'
 import { useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from 'react-router-dom'
+import { t } from '../../i18n'
 import type { BoardEntry } from '../../services/boardsService'
 import {
   DISCORD_FLAG_NAMES,
@@ -135,16 +136,16 @@ export function ServerWorkspace({ serverId, server, showError, showToast }: Serv
     mutations.setRuleState.mutate(
       { permissionId, state },
       {
-        onSuccess: () => showToast(`Permission state changed to ${state}`, 'success'),
-        onError: (error) => showError(`Failed to update permission: ${error}`),
+        onSuccess: () => showToast(t('dashboard.workspace.stateChanged', { state: t(`permissions.state.${state}`) }), 'success'),
+        onError: (error) => showError(t('dashboard.workspace.updateFailed', { error: String(error) })),
       },
     )
   }
 
   function removeRule(permissionId: number) {
     mutations.removeRule.mutate(permissionId, {
-      onSuccess: () => showToast('Permission removed', 'success'),
-      onError: (error) => showError(`Failed to delete permission: ${error}`),
+      onSuccess: () => showToast(t('dashboard.workspace.removed'), 'success'),
+      onError: (error) => showError(t('dashboard.workspace.deleteFailed', { error: String(error) })),
     })
   }
 
@@ -154,10 +155,10 @@ export function ServerWorkspace({ serverId, server, showError, showToast }: Serv
       deleteGroupTarget.permissions.map((permission) => permission.id),
       {
         onSuccess: () => {
-          showToast(`Removed all permissions for ${deleteGroupTarget.subjectDisplay}`, 'success')
+          showToast(t('dashboard.workspace.removedAll', { subject: deleteGroupTarget.subjectDisplay }), 'success')
           setDeleteGroupTarget(null)
         },
-        onError: (error) => showError(`Failed to delete permission entry: ${error}`),
+        onError: (error) => showError(t('dashboard.workspace.deleteEntryFailed', { error: String(error) })),
       },
     )
   }
@@ -165,7 +166,7 @@ export function ServerWorkspace({ serverId, server, showError, showToast }: Serv
   function openInlineAdd(subjectType: string, subjectId: string, existingKeys: string[]) {
     const available = catalogEntries.filter((entry) => !existingKeys.includes(entry.key) && canGrant(rankWeight, entry.key))
     if (available.length === 0) {
-      showToast('No grantable permissions available for this target', 'error')
+      showToast(t('dashboard.workspace.nothingToGrant'), 'error')
       return
     }
     setOpenAddGroupKey(`${subjectType}:${subjectId}`)
@@ -186,9 +187,9 @@ export function ServerWorkspace({ serverId, server, showError, showToast }: Serv
       {
         onSuccess: () => {
           cancelInlineAdd()
-          showToast('Permission added', 'success')
+          showToast(t('dashboard.workspace.added'), 'success')
         },
-        onError: (error) => showError(`Failed to add permission: ${error}`),
+        onError: (error) => showError(t('dashboard.workspace.addFailed', { error: String(error) })),
       },
     )
   }
@@ -228,7 +229,7 @@ export function ServerWorkspace({ serverId, server, showError, showToast }: Serv
       .filter((member) => !existingSubjectIds.USER.has(member.userId))
       .filter((member) => {
         if (!query) return true
-        const display = member.displayName ?? member.nickname ?? `User #${member.userId}`
+        const display = member.displayName ?? member.nickname ?? t('dashboard.boardModal.userNumber', { id: member.userId })
         return (
           display.toLowerCase().includes(query) ||
           (member.username?.toLowerCase().includes(query) ?? false) ||
@@ -278,9 +279,9 @@ export function ServerWorkspace({ serverId, server, showError, showToast }: Serv
       {
         onSuccess: () => {
           setShowAddModal(false)
-          showToast(`${entries.length} permission${entries.length > 1 ? 's' : ''} added`, 'success')
+          showToast(t('dashboard.workspace.addedCount', { count: entries.length }), 'success')
         },
-        onError: (error) => showError(`Failed to save permissions: ${error}`),
+        onError: (error) => showError(t('dashboard.workspace.saveFailed', { error: String(error) })),
       },
     )
   }
@@ -311,7 +312,7 @@ export function ServerWorkspace({ serverId, server, showError, showToast }: Serv
         loading: false,
       })
     } catch (error) {
-      showError(`Failed to prepare board creation: ${error}`)
+      showError(t('dashboard.workspace.prepareFailed', { error: String(error) }))
     }
   }
 
@@ -333,7 +334,7 @@ export function ServerWorkspace({ serverId, server, showError, showToast }: Serv
     if (!boardEditor) return
     const { config } = boardEditor
     if (config.canEditDetails && !payload.name.trim()) {
-      showError('Board name is required')
+      showError(t('dashboard.workspace.nameRequired'))
       return
     }
     const creating = config.mode === 'create'
@@ -347,10 +348,10 @@ export function ServerWorkspace({ serverId, server, showError, showToast }: Serv
       },
       {
         onSuccess: () => {
-          showToast(creating ? 'Board created' : 'Board updated', 'success')
+          showToast(creating ? t('dashboard.workspace.boardCreated') : t('dashboard.workspace.boardUpdated'), 'success')
           setBoardEditor(null)
         },
-        onError: (error) => showError(`Failed to save board: ${error}`),
+        onError: (error) => showError(t('dashboard.workspace.saveBoardFailed', { error: String(error) })),
       },
     )
   }
@@ -363,9 +364,12 @@ export function ServerWorkspace({ serverId, server, showError, showToast }: Serv
       {
         onSuccess: () => {
           setBoardEditor(null)
-          showToast(archived ? 'Board archived' : 'Board restored', 'success')
+          showToast(archived ? t('dashboard.workspace.boardArchived') : t('dashboard.workspace.boardRestored'), 'success')
         },
-        onError: (error) => showError(`Failed to ${archived ? 'archive' : 'restore'} board: ${error}`),
+        onError: (error) =>
+          showError(
+            t(archived ? 'dashboard.workspace.archiveFailed' : 'dashboard.workspace.restoreFailed', { error: String(error) }),
+          ),
       },
     )
   }
@@ -376,9 +380,9 @@ export function ServerWorkspace({ serverId, server, showError, showToast }: Serv
     mutations.removeBoard.mutate(String(board.boardId), {
       onSuccess: () => {
         setBoardEditor(null)
-        showToast('Board deleted', 'success')
+        showToast(t('dashboard.workspace.boardDeleted'), 'success')
       },
-      onError: (error) => showError(`Failed to delete board: ${error}`),
+      onError: (error) => showError(t('dashboard.workspace.deleteBoardFailed', { error: String(error) })),
     })
   }
 
@@ -390,21 +394,21 @@ export function ServerWorkspace({ serverId, server, showError, showToast }: Serv
   if (access?.server.MANAGE_SERVER_PERMISSIONS && featuresQuery.data) {
     settingsSections.push({
       key: 'features',
-      label: 'Features',
+      label: t('dashboard.settings.features'),
       content: <FeaturesSettings serverId={serverId} features={featuresQuery.data} />,
     })
   }
   if (access?.server.MANAGE_SERVER_PERMISSIONS) {
     settingsSections.push({
       key: 'notifications',
-      label: 'Notifications',
+      label: t('dashboard.settings.notifications'),
       content: <ServerNotificationsSettings serverId={serverId} boards={boardsQuery.data ?? []} />,
     })
   }
   if (access?.server.MANAGE_SERVER_PERMISSIONS && features.PERMISSIONS) {
     settingsSections.push({
       key: 'permissions',
-      label: 'Permissions',
+      label: t('dashboard.settings.permissions'),
       content: (
         <PermissionsSection
           canEditPermissions
@@ -439,14 +443,14 @@ export function ServerWorkspace({ serverId, server, showError, showToast }: Serv
   if (access?.server.MANAGE_SERVER_PERMISSIONS) {
     settingsSections.push({
       key: 'check-access',
-      label: 'Check access',
+      label: t('dashboard.settings.checkAccess'),
       content: <AccessCheckPanel serverId={serverId} boards={boardsQuery.data ?? []} />,
     })
   }
   if (access?.server.VIEW_AUDIT_LOG) {
     settingsSections.push({
       key: 'audit',
-      label: 'Audit log',
+      label: t('dashboard.settings.auditLog'),
       content: <AuditLogSection serverId={serverId} boards={boardsQuery.data ?? []} members={serverMembers} roles={serverRoles} />,
     })
   }

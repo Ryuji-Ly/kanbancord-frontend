@@ -7,6 +7,8 @@
  * - advanced: any variable set directly, on top of either.
  */
 
+import type { MessageKey } from '../../i18n'
+
 /** Every theme variable and its default value, as in index.scss. */
 export const DEFAULT_TOKENS: Record<string, string> = {
   '--kc-ink': '#0f172a',
@@ -70,13 +72,13 @@ export const DEFAULT_TOKENS: Record<string, string> = {
 }
 
 /** Groups for the advanced editor, in the order shown. */
-export const TOKEN_GROUPS: { label: string; prefix: RegExp }[] = [
-  { label: 'Surfaces', prefix: /^--kc-(ink|nav|panel|bg|card|surface|border)/ },
-  { label: 'Controls', prefix: /^--kc-control/ },
-  { label: 'Text', prefix: /^--kc-(text|heading|muted|subtle|faint)/ },
-  { label: 'Brand and accents', prefix: /^--kc-(primary|on-primary|accent|on-accent|link|info)/ },
-  { label: 'Status', prefix: /^--kc-(danger|on-danger|success|on-success|warning|shadow|neutral)/ },
-  { label: 'Permission rules', prefix: /^--kc-(allow|deny)/ },
+export const TOKEN_GROUPS: { label: MessageKey; prefix: RegExp }[] = [
+  { label: 'account.appearance.groups.surfaces', prefix: /^--kc-(ink|nav|panel|bg|card|surface|border)/ },
+  { label: 'account.appearance.groups.controls', prefix: /^--kc-control/ },
+  { label: 'account.appearance.groups.text', prefix: /^--kc-(text|heading|muted|subtle|faint)/ },
+  { label: 'account.appearance.groups.brand', prefix: /^--kc-(primary|on-primary|accent|on-accent|link|info)/ },
+  { label: 'account.appearance.groups.status', prefix: /^--kc-(danger|on-danger|success|on-success|warning|shadow|neutral)/ },
+  { label: 'account.appearance.groups.permissions', prefix: /^--kc-(allow|deny)/ },
 ]
 
 /** The colours the custom level edits; everything else follows from them. */
@@ -91,23 +93,24 @@ export type CoreColors = {
   warning: string
 }
 
-export const CORE_FIELDS: { key: keyof CoreColors; label: string; hint: string }[] = [
-  { key: 'background', label: 'Background', hint: 'Behind everything' },
-  { key: 'surface', label: 'Surface', hint: 'Panels, columns and cards' },
-  { key: 'text', label: 'Text', hint: 'Body text; headings and hints are derived' },
-  { key: 'accent', label: 'Accent', hint: 'Highlights, focus rings, headings tint' },
-  { key: 'primary', label: 'Primary', hint: 'Main buttons and links' },
-  { key: 'success', label: 'Success', hint: 'Confirmations and allow rules' },
-  { key: 'danger', label: 'Danger', hint: 'Errors, delete buttons and deny rules' },
-  { key: 'warning', label: 'Warning', hint: 'Cautions and highlights' },
+/** The core colours in the order shown; their names and hints are in account.appearance.core. */
+export const CORE_FIELDS: (keyof CoreColors)[] = [
+  'background',
+  'surface',
+  'text',
+  'accent',
+  'primary',
+  'success',
+  'danger',
+  'warning',
 ]
 
 export type PresetId = 'dark' | 'light' | 'high-contrast' | 'red-green' | 'blue-yellow'
 
 export type Preset = {
   id: PresetId
-  label: string
-  description: string
+  label: MessageKey
+  description: MessageKey
   core: CoreColors
   /** Values set on top of what the core colours derive; the dark preset keeps the stylesheet as is. */
   extra?: Record<string, string>
@@ -125,11 +128,11 @@ const DARK_CORE: CoreColors = {
 }
 
 export const PRESETS: Preset[] = [
-  { id: 'dark', label: 'Dark', description: 'The default.', core: DARK_CORE },
+  { id: 'dark', label: 'account.appearance.presets.dark.label', description: 'account.appearance.presets.dark.description', core: DARK_CORE },
   {
     id: 'light',
-    label: 'Light',
-    description: 'Dark text on light surfaces.',
+    label: 'account.appearance.presets.light.label',
+    description: 'account.appearance.presets.light.description',
     core: {
       background: '#e5e7eb',
       surface: '#f8fafc',
@@ -143,8 +146,8 @@ export const PRESETS: Preset[] = [
   },
   {
     id: 'high-contrast',
-    label: 'High contrast',
-    description: 'Pure black and white with strong borders, for low vision.',
+    label: 'account.appearance.presets.highContrast.label',
+    description: 'account.appearance.presets.highContrast.description',
     core: {
       background: '#000000',
       surface: '#0b0b0b',
@@ -160,15 +163,15 @@ export const PRESETS: Preset[] = [
   {
     // Okabe–Ito colours: sky blue for success and orange for danger stay apart with protanopia and deuteranopia.
     id: 'red-green',
-    label: 'Red-green safe',
-    description: 'For protanopia and deuteranopia: blue for success, orange for danger.',
+    label: 'account.appearance.presets.redGreen.label',
+    description: 'account.appearance.presets.redGreen.description',
     core: { ...DARK_CORE, success: '#56b4e9', danger: '#e69f00', warning: '#f0e442' },
   },
   {
     // Tritanopia confuses blue with green and yellow with violet; red against teal stays clear.
     id: 'blue-yellow',
-    label: 'Blue-yellow safe',
-    description: 'For tritanopia: teal for success, red for danger, pink for warnings.',
+    label: 'account.appearance.presets.blueYellow.label',
+    description: 'account.appearance.presets.blueYellow.description',
     core: { ...DARK_CORE, accent: '#f9a8d4', success: '#2dd4bf', danger: '#ef4444', warning: '#f472b6' },
   },
 ]

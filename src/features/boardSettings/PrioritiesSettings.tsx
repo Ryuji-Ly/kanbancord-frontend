@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { FiArrowDown, FiArrowUp } from 'react-icons/fi'
 import { readableError } from '../../api/http'
+import { t } from '../../i18n'
+import { Trans } from '../../i18n/Trans'
 import type { PriorityEntry } from '../../services/boardsService'
 import type { TaskEntry } from '../../services/tasksService'
 import type { useBoardCatalogMutations } from '../board/boardQueries'
@@ -29,7 +31,7 @@ export function PrioritiesSettings({ priorities, tasks, canManage, mutations }: 
 
   function run(action: Promise<unknown>) {
     setError('')
-    action.catch((err: unknown) => setError(readableError(err, 'The change could not be saved')))
+    action.catch((err: unknown) => setError(readableError(err, t('common.changeNotSaved'))))
   }
 
   function add() {
@@ -57,15 +59,13 @@ export function PrioritiesSettings({ priorities, tasks, canManage, mutations }: 
   return (
     <section className="kc-board-modal-section kc-board-modal-section--half">
       <div className="kc-board-modal-section-head">
-        <h4>Priorities</h4>
-        <p className="kc-muted">
-          Priority levels, most urgent first. A task has at most one. Changes here apply immediately.
-        </p>
+        <h4>{t('settings.priorities.title')}</h4>
+        <p className="kc-muted">{t('settings.priorities.intro')}</p>
       </div>
       {error && <p className="kc-banner">{error}</p>}
 
       {priorities.length === 0 ? (
-        <p className="kc-muted">No priority levels. Tasks on this board have no priority.</p>
+        <p className="kc-muted">{t('settings.priorities.none')}</p>
       ) : (
         <ol className="kc-settings-list">
           {priorities.map((level, index) => (
@@ -76,7 +76,7 @@ export function PrioritiesSettings({ priorities, tasks, canManage, mutations }: 
                     <button
                       type="button"
                       className="kc-icon-btn"
-                      aria-label={`Move ${level.name} up`}
+                      aria-label={t('settings.priorities.moveUp', { name: level.name })}
                       disabled={index === 0}
                       onClick={() => move(level, index - 1)}
                     >
@@ -85,7 +85,7 @@ export function PrioritiesSettings({ priorities, tasks, canManage, mutations }: 
                     <button
                       type="button"
                       className="kc-icon-btn"
-                      aria-label={`Move ${level.name} down`}
+                      aria-label={t('settings.priorities.moveDown', { name: level.name })}
                       disabled={index === priorities.length - 1}
                       onClick={() => move(level, index + 1)}
                     >
@@ -95,13 +95,13 @@ export function PrioritiesSettings({ priorities, tasks, canManage, mutations }: 
                   <ColorField
                     key={level.color ?? NEW_LEVEL_COLOR}
                     value={level.color ?? NEW_LEVEL_COLOR}
-                    label={`Colour of ${level.name}`}
+                    label={t('settings.colourOf', { name: level.name })}
                     onCommit={(color) => save(level, { color })}
                   />
                   <input
                     key={level.name}
                     className="kc-input kc-settings-name"
-                    aria-label="Priority name"
+                    aria-label={t('settings.priorities.name')}
                     maxLength={50}
                     defaultValue={level.name}
                     onBlur={(event) => save(level, { name: event.target.value })}
@@ -114,11 +114,11 @@ export function PrioritiesSettings({ priorities, tasks, canManage, mutations }: 
                 <PriorityBadge priority={level} />
               )}
               <span className="kc-muted kc-settings-usage">
-                {usage(level.priorityId)} task{usage(level.priorityId) === 1 ? '' : 's'}
+                {t('settings.usage', { count: usage(level.priorityId) })}
               </span>
               {canManage && (
                 <button type="button" className="kc-btn kc-btn-ghost kc-btn-small" onClick={() => setDeleting(level)}>
-                  Delete
+                  {t('common.delete')}
                 </button>
               )}
             </li>
@@ -131,13 +131,13 @@ export function PrioritiesSettings({ priorities, tasks, canManage, mutations }: 
           <input
             type="color"
             className="kc-color-input"
-            aria-label="Colour of the new level"
+            aria-label={t('settings.priorities.newColour')}
             value={newColor}
             onChange={(event) => setNewColor(event.target.value)}
           />
           <input
             className="kc-input kc-settings-name"
-            placeholder="New level, added at the bottom"
+            placeholder={t('settings.priorities.newPlaceholder')}
             maxLength={50}
             value={newName}
             onChange={(event) => setNewName(event.target.value)}
@@ -151,14 +151,14 @@ export function PrioritiesSettings({ priorities, tasks, canManage, mutations }: 
             disabled={!newName.trim() || mutations.addPriority.isPending}
             onClick={add}
           >
-            Add level
+            {t('settings.priorities.add')}
           </button>
         </div>
       )}
 
       {deleting && (
         <ConfirmDialog
-          title="Delete priority level"
+          title={t('settings.priorities.deleteTitle')}
           busy={mutations.removePriority.isPending}
           onCancel={() => setDeleting(null)}
           onConfirm={() => {
@@ -167,9 +167,8 @@ export function PrioritiesSettings({ priorities, tasks, canManage, mutations }: 
           }}
         >
           <p>
-            Delete <strong>{deleting.name}</strong>?
-            {usage(deleting.priorityId) > 0 &&
-              ` The ${usage(deleting.priorityId)} task${usage(deleting.priorityId) === 1 ? '' : 's'} with this priority will have none.`}
+            <Trans k="settings.priorities.deleteConfirm" values={{ name: deleting.name }} />
+            {usage(deleting.priorityId) > 0 && t('settings.priorities.deleteUsage', { count: usage(deleting.priorityId) })}
           </p>
         </ConfirmDialog>
       )}

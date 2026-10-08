@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { readableError } from '../../api/http'
+import { t } from '../../i18n'
 import { SwitchRow } from '../../components/SwitchRow'
 import type { BoardSnapshot } from '../../services/boardsService'
 import { FEATURES, updateBoardFeatures, type BoardFeatureKey } from '../../services/featuresService'
@@ -42,7 +43,7 @@ export function BoardFeaturesSettings({ serverId, boardId, snapshot }: BoardFeat
     },
     onError: (err, _changes, context) => {
       if (context?.previous) queryClient.setQueryData(snapshotKey, context.previous)
-      setError(readableError(err, 'The change could not be saved'))
+      setError(readableError(err, t('common.changeNotSaved')))
     },
     // Switching a feature on brings its lists back, which only a refetch provides.
     onSettled: () => queryClient.invalidateQueries({ queryKey: boardKeys.all(serverId, boardId) }),
@@ -56,11 +57,8 @@ export function BoardFeaturesSettings({ serverId, boardId, snapshot }: BoardFeat
   return (
     <section className="kc-board-modal-section">
       <div className="kc-board-modal-section-head">
-        <h4>Simple mode</h4>
-        <p className="kc-muted">
-          Switch off what this board does not need; other boards are not affected. Switching something off hides it
-          and keeps its data. Changes here apply immediately.
-        </p>
+        <h4>{t('settings.boardFeatures.title')}</h4>
+        <p className="kc-muted">{t('settings.boardFeatures.intro')}</p>
       </div>
       {error && <p className="kc-banner">{error}</p>}
 
@@ -71,7 +69,7 @@ export function BoardFeaturesSettings({ serverId, boardId, snapshot }: BoardFeat
           disabled={allOff || update.isPending}
           onClick={() => setAll(false)}
         >
-          Simple mode
+          {t('settings.boardFeatures.title')}
         </button>
         <button
           type="button"
@@ -79,7 +77,7 @@ export function BoardFeaturesSettings({ serverId, boardId, snapshot }: BoardFeat
           disabled={allOn || update.isPending}
           onClick={() => setAll(true)}
         >
-          Everything the server allows
+          {t('settings.boardFeatures.everything')}
         </button>
       </div>
 
@@ -90,7 +88,7 @@ export function BoardFeaturesSettings({ serverId, boardId, snapshot }: BoardFeat
             <SwitchRow
               key={feature.key}
               label={feature.label}
-              description={serverOn ? feature.description : 'Switched off for the whole server, in the server settings.'}
+              description={serverOn ? feature.description : t('settings.boardFeatures.offForServer')}
               on={snapshot.features[feature.key]}
               disabled={!serverOn}
               onToggle={(on) => update.mutate({ [feature.key]: on })}

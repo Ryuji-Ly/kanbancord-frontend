@@ -1,4 +1,5 @@
 import { useLayoutEffect, useRef, useState, type ComponentPropsWithoutRef, type DragEvent } from 'react'
+import { t } from '../../../i18n'
 import type { LabelEntry, PriorityEntry } from '../../../services/boardsService'
 import type { ServerRoleEntry } from '../../../services/permissionsService'
 import type { TaskEntry } from '../../../services/tasksService'
@@ -131,18 +132,18 @@ function TaskCardAssigneeStack({ assignees, roles }: { assignees: AssigneeMember
   return (
     <div
       className="kc-column-task-assignees"
-      aria-label={`Assigned to ${assignees.map(resolveAssigneeDisplayName).join(', ')}`}
+      aria-label={t('board.card.assignedTo', { names: assignees.map(resolveAssigneeDisplayName).join(', ') })}
     >
       {visibleAssignees.map((assignee) => (
         <AssigneeAvatar key={assignee.userId} assignee={assignee} className="kc-column-task-assignee" loading="lazy" />
       ))}
       {hiddenCount > 0 ? (
-        <span className="kc-column-task-assignee kc-column-task-assignee--count" aria-label={`${hiddenCount} more assignees`}>
+        <span className="kc-column-task-assignee kc-column-task-assignee--count" aria-label={t('board.card.moreAssignees', { count: hiddenCount })}>
           +{hiddenCount}
         </span>
       ) : null}
       {roles.length > 0 && (
-        <span className="kc-column-task-roles" aria-label={`Roles: ${roles.map((role) => role.name).join(', ')}`}>
+        <span className="kc-column-task-roles" aria-label={t('board.card.roles', { names: roles.map((role) => role.name).join(', ') })}>
           {roles.slice(0, 2).map((role) => (
             <RoleChip key={role.roleId} role={role} />
           ))}
@@ -161,7 +162,7 @@ function TaskCardLabels({ labels }: { labels: LabelEntry[] }) {
   const shown = labels.slice(0, MAX_CARD_LABELS)
   const hidden = labels.length - shown.length
   return (
-    <div className="kc-column-task-labels" aria-label={`Labels: ${labels.map((label) => label.name).join(', ')}`}>
+    <div className="kc-column-task-labels" aria-label={t('board.card.labels', { names: labels.map((label) => label.name).join(', ') })}>
       {shown.map((label) => (
         <span
           key={label.labelId}
@@ -237,11 +238,11 @@ export function TaskCard({
           {priority && (
             <span
               className="kc-column-task-priority"
-              title={`Priority: ${priority.name}`}
+              title={t('board.card.priority', { name: priority.name })}
               style={priorityStyle(priority.color)}
             >
               <FiFlag className="kc-priority-flag" aria-hidden="true" />
-              <span className="kc-priority-rank">P{priority.position}</span>
+              <span className="kc-priority-rank">{t('board.priority.rank', { position: priority.position })}</span>
               {priority.name}
             </span>
           )}

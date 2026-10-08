@@ -1,5 +1,16 @@
 import { parseError } from '../api/http'
 import { apiFetch } from '../api/session'
+import { tOr } from '../i18n'
+
+/** A category's name in the reader's language; the API's (English) for one this app does not know yet. */
+export function categoryLabel(category: Pick<NotificationCategory, 'key' | 'label'>): string {
+  return tOr(`notifications.categories.${category.key}`, category.label)
+}
+
+/** An event's name in the reader's language; the API's (English) for one this app does not know yet. */
+export function eventLabel(event: Pick<NotificationCategory['events'][number], 'key' | 'label'>): string {
+  return tOr(`notifications.events.${event.key}`, event.label)
+}
 
 /** Every event that can be announced, grouped as the API defines them. */
 export type NotificationCategory = {

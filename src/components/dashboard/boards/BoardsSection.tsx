@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { FiPlus } from 'react-icons/fi'
+import { t } from '../../../i18n'
 import type { BoardEntry } from '../../../services/boardsService'
 import { BoardCard } from './BoardCard'
 
@@ -55,12 +56,12 @@ export function BoardsSection({
     <div className="kc-board-section">
       <div className="kc-board-section-header">
         <div>
-          <h3>Boards</h3>
-          <p className="kc-muted">Create and configure kanban boards for this server.</p>
+          <h3>{t('dashboard.boards.title')}</h3>
+          <p className="kc-muted">{t('dashboard.boards.intro')}</p>
         </div>
         {canCreateBoard && (
           <button type="button" className="kc-btn kc-btn-primary" onClick={onOpenCreate}>
-            <FiPlus aria-hidden="true" /> Create Board
+            <FiPlus aria-hidden="true" /> {t('dashboard.boards.create')}
           </button>
         )}
       </div>
@@ -69,32 +70,32 @@ export function BoardsSection({
         <input
           type="text"
           className="kc-input kc-board-search"
-          placeholder="Search boards..."
+          placeholder={t('dashboard.boards.searchPlaceholder')}
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          aria-label="Search boards"
+          aria-label={t('dashboard.boards.searchLabel')}
         />
         <select
           className="kc-input kc-board-filter"
           value={visibilityFilter}
           onChange={(e) => setVisibilityFilter(e.target.value as BoardVisibilityFilter)}
-          aria-label="Filter boards by archived status"
+          aria-label={t('dashboard.boards.filterLabel')}
         >
-          <option value="active">Active</option>
-          <option value="archived">Archived</option>
-          <option value="all">All</option>
+          <option value="active">{t('dashboard.boards.active')}</option>
+          <option value="archived">{t('dashboard.boards.archived')}</option>
+          <option value="all">{t('dashboard.boards.all')}</option>
         </select>
       </div>
 
       {loading ? (
         <div className="kc-loading-state" aria-live="polite" aria-busy="true">
           <span className="kc-spinner" aria-hidden="true" />
-          <span className="kc-muted">Loading boards...</span>
+          <span className="kc-muted">{t('dashboard.boards.loading')}</span>
         </div>
       ) : boards.length === 0 ? (
-        <p className="kc-muted">No boards yet.</p>
+        <p className="kc-muted">{t('dashboard.boards.none')}</p>
       ) : visibleBoards.length === 0 ? (
-        <p className="kc-muted">No boards match the current search/filter.</p>
+        <p className="kc-muted">{t('dashboard.boards.noMatch')}</p>
       ) : (
         <div className="kc-board-grid">
           {visibleBoards.map((board) => {

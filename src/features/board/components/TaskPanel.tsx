@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { FiBell, FiBellOff } from 'react-icons/fi'
+import { formatLocale, t } from '../../../i18n'
 import type { LabelEntry, PriorityEntry } from '../../../services/boardsService'
 import type { ServerRoleEntry } from '../../../services/permissionsService'
 import type { TaskEntry } from '../../../services/tasksService'
@@ -96,7 +97,7 @@ export function TaskPanel({
 
   async function save() {
     if (!draft.title.trim()) {
-      setError('Task title is required.')
+      setError(t('board.createTask.titleRequired'))
       return
     }
     setError('')
@@ -138,7 +139,7 @@ export function TaskPanel({
   return (
     <aside
       className={`kc-task-panel${expanded ? ' kc-task-panel--expanded' : ''}`}
-      aria-label="Task details"
+      aria-label={t('board.panel.title')}
       tabIndex={-1}
       onClick={(event) => event.stopPropagation()}
       onKeyDown={(event) => {
@@ -148,33 +149,33 @@ export function TaskPanel({
       }}
     >
       <div className="kc-task-panel-header">
-        <h3 className="kc-task-panel-title">Task details</h3>
+        <h3 className="kc-task-panel-title">{t('board.panel.title')}</h3>
         <div className="kc-task-panel-header-actions">
           <button
             type="button"
             className={`kc-btn kc-btn-small ${following ? 'kc-btn-primary' : 'kc-btn-ghost'} kc-follow-btn`}
             aria-pressed={following}
-            title={following ? 'You hear about changes to this task by direct message' : 'Hear about changes to this task by direct message'}
+            title={following ? t('board.panel.followingHint') : t('board.panel.followHint')}
             onClick={() => {
               setError('')
               onToggleFollow(!following).catch((reason: unknown) =>
-                setError(reason instanceof Error ? reason.message : 'Could not change following.'),
+                setError(reason instanceof Error ? reason.message : t('board.panel.followFailed')),
               )
             }}
           >
             {following ? <FiBellOff aria-hidden="true" /> : <FiBell aria-hidden="true" />}
-            {following ? 'Following' : 'Follow'}
+            {following ? t('board.panel.following') : t('board.panel.follow')}
           </button>
           <button
             type="button"
             className="kc-modal-close"
-            aria-label={expanded ? 'Collapse task panel' : 'Expand task panel'}
-            title={expanded ? 'Collapse' : 'Expand'}
+            aria-label={expanded ? t('board.panel.collapsePanel') : t('board.panel.expandPanel')}
+            title={expanded ? t('permissions.collapse') : t('permissions.expand')}
             onClick={() => setExpanded((prev) => !prev)}
           >
             {expanded ? '⊡' : '⊞'}
           </button>
-          <button type="button" className="kc-modal-close" aria-label="Close task panel" onClick={onClose}>
+          <button type="button" className="kc-modal-close" aria-label={t('board.panel.close')} onClick={onClose}>
             ×
           </button>
         </div>
@@ -194,7 +195,7 @@ export function TaskPanel({
         {abilities.editTask ? (
           <>
             <label className="kc-field">
-              <span className="kc-field-label">Title</span>
+              <span className="kc-field-label">{t('board.fields.title')}</span>
               <input
                 className="kc-input"
                 value={draft.title}
@@ -208,7 +209,7 @@ export function TaskPanel({
               <div className="kc-task-modal-grid">
                 {features.PRIORITIES && (
                   <div className="kc-field">
-                    <span className="kc-field-label">Priority</span>
+                    <span className="kc-field-label">{t('board.fields.priority')}</span>
                     <PriorityPicker
                       priorities={priorities}
                       value={draft.priorityId}
@@ -221,7 +222,7 @@ export function TaskPanel({
 
                 {features.DUE_DATES && (
                   <label className="kc-field">
-                    <span className="kc-field-label">Due Date</span>
+                    <span className="kc-field-label">{t('board.fields.dueDateTitle')}</span>
                     <input
                       className="kc-input"
                       type="datetime-local"
@@ -235,7 +236,7 @@ export function TaskPanel({
             )}
 
             <div className="kc-field">
-              <span className="kc-field-label">Description</span>
+              <span className="kc-field-label">{t('common.description')}</span>
               {editingDescription ? (
                 <MarkdownEditor
                   autoFocus
@@ -262,7 +263,7 @@ export function TaskPanel({
                   onKeyDown={(event) => {
                     if (event.key === 'Enter' || event.key === ' ') setEditingDescription(true)
                   }}
-                  title="Click to edit description"
+                  title={t('board.panel.editDescription')}
                 >
                   {draft.description ? (
                     <Markdown
@@ -272,7 +273,7 @@ export function TaskPanel({
                       {draft.description}
                     </Markdown>
                   ) : (
-                    <span className="kc-task-description-preview__placeholder">Click to add a description…</span>
+                    <span className="kc-task-description-preview__placeholder">{t('board.panel.addDescription')}</span>
                   )}
                 </div>
               )}
@@ -281,14 +282,14 @@ export function TaskPanel({
         ) : (
           <>
             <div className="kc-task-panel-field">
-              <span className="kc-field-label">Title</span>
+              <span className="kc-field-label">{t('board.fields.title')}</span>
               <p className="kc-task-panel-value">{task.title}</p>
             </div>
             {(priority || shownDueDate) && (
               <div className="kc-task-modal-grid">
                 {priority && (
                   <div className="kc-task-panel-field">
-                    <span className="kc-field-label">Priority</span>
+                    <span className="kc-field-label">{t('board.fields.priority')}</span>
                     <p className="kc-task-panel-value">
                       <PriorityBadge priority={priority} />
                     </p>
@@ -296,15 +297,15 @@ export function TaskPanel({
                 )}
                 {shownDueDate && (
                   <div className="kc-task-panel-field">
-                    <span className="kc-field-label">Due Date</span>
-                    <p className="kc-task-panel-value">{new Date(shownDueDate).toLocaleString()}</p>
+                    <span className="kc-field-label">{t('board.fields.dueDateTitle')}</span>
+                    <p className="kc-task-panel-value">{new Date(shownDueDate).toLocaleString(formatLocale())}</p>
                   </div>
                 )}
               </div>
             )}
             {task.description && (
               <div className="kc-task-panel-field">
-                <span className="kc-field-label">Description</span>
+                <span className="kc-field-label">{t('common.description')}</span>
                 <div className="kc-task-panel-value kc-task-panel-value--description kc-markdown">
                   <Markdown>{task.description}</Markdown>
                 </div>
@@ -315,7 +316,7 @@ export function TaskPanel({
 
         {(taskLabels.length > 0 || abilities.applyLabel) && (
           <div className="kc-task-panel-field">
-            <span className="kc-field-label">Labels</span>
+            <span className="kc-field-label">{t('board.fields.labels')}</span>
             {abilities.applyLabel || abilities.removeLabel ? (
               <LabelPicker
                 labels={labels}
@@ -342,7 +343,7 @@ export function TaskPanel({
 
         {(assignees.length > 0 || abilities.assignSelf || abilities.assignOthers) && (
           <div className="kc-task-panel-field">
-            <span className="kc-field-label">Assignees</span>
+            <span className="kc-field-label">{t('board.fields.assignees')}</span>
             <AssigneePicker
               assignees={assignees}
               candidates={members}
@@ -360,18 +361,18 @@ export function TaskPanel({
                     className="kc-btn kc-btn-ghost"
                     onClick={() => reportError(onAssign(String(me.userId)))}
                   >
-                    Assign yourself
+                    {t('board.panel.assignYourself')}
                   </button>
                 )
               }
             />
-            {assignees.length === 0 && <p className="kc-task-panel-value">No assignees yet.</p>}
+            {assignees.length === 0 && <p className="kc-task-panel-value">{t('board.panel.noAssignees')}</p>}
           </div>
         )}
 
         {(taskRoles.length > 0 || (abilities.assignOthers && roles.length > 0)) && (
           <div className="kc-task-panel-field">
-            <span className="kc-field-label">Roles</span>
+            <span className="kc-field-label">{t('board.fields.roles')}</span>
             <RolePicker
               roles={roles}
               selectedIds={taskRoles.map((entry) => entry.role.roleId)}
@@ -394,22 +395,22 @@ export function TaskPanel({
         <div className="kc-task-panel-footer">
           {abilities.deleteTask && (
             <button type="button" className="kc-btn kc-btn-danger" onClick={onRequestDelete} disabled={saving}>
-              Delete
+              {t('common.delete')}
             </button>
           )}
           {abilities.editTask && (
             <div className="kc-task-panel-footer-actions">
               <button type="button" className="kc-btn kc-btn-ghost" onClick={onClose} disabled={saving}>
-                Discard
+                {t('board.panel.discard')}
               </button>
               <button
                 type="button"
                 className="kc-btn kc-btn-primary"
                 onClick={() => void save()}
                 disabled={saving || uploading}
-                title={uploading ? 'Wait for the files to finish uploading' : undefined}
+                title={uploading ? t('board.panel.waitForUploads') : undefined}
               >
-                {saving ? 'Saving...' : uploading ? 'Uploading…' : 'Save'}
+                {saving ? t('common.savingDots') : uploading ? t('board.panel.uploading') : t('common.save')}
               </button>
             </div>
           )}

@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
+import { t } from '../i18n'
 import { SiteFooter } from './SiteFooter'
 import { usePageMeta } from './usePageMeta'
 
@@ -20,11 +21,11 @@ export function PublicLayout({ title, description, path, children }: PublicLayou
           <img src="/images/kanbancord.png" alt="" width={32} height={32} />
           KanbanCord
         </Link>
-        <nav className="kc-public-nav" aria-label="Main">
-          <Link to="/guides">Guides</Link>
-          <Link to="/faq">FAQ</Link>
+        <nav className="kc-public-nav" aria-label={t('site.nav.main')}>
+          <Link to="/guides">{t('site.nav.guides')}</Link>
+          <Link to="/faq">{t('site.nav.faq')}</Link>
           <Link to="/" className="kc-btn kc-btn-primary">
-            Open KanbanCord
+            {t('site.nav.open')}
           </Link>
         </nav>
       </header>

@@ -1,3 +1,4 @@
+import { t } from '../../i18n'
 import { useCallback, useEffect, useState } from 'react'
 import { signOut, useSession } from '../../api/session'
 import {
@@ -38,10 +39,10 @@ function readOAuthCallback(): OAuthCallback {
 
     if (error) {
       clearCallbackQuery()
-      result = { error: `Discord authorization failed: ${error}` }
+      result = { error: t('dashboard.session.authorizationFailed', { error }) }
     } else if (code && (!state || state !== expectedState)) {
       clearCallbackQuery()
-      result = { error: 'Invalid OAuth state. Please try again.' }
+      result = { error: t('dashboard.session.invalidState') }
     } else if (code) {
       result = { code }
     }
@@ -73,11 +74,11 @@ export function useDashboardSession() {
 
     exchangeDiscordCode(callback.code)
       .then(() => {
-        setBanner({ text: 'Logged in successfully.', type: 'success' })
+        setBanner({ text: t('dashboard.session.loggedIn'), type: 'success' })
         clearCallbackQuery()
       })
       .catch((error: unknown) => {
-        setBanner({ text: error instanceof Error ? error.message : 'OAuth login failed', type: 'error' })
+        setBanner({ text: error instanceof Error ? error.message : t('dashboard.session.loginFailed'), type: 'error' })
       })
       .finally(() => setExchanging(false))
   }, [callback])
@@ -101,7 +102,7 @@ export function useDashboardSession() {
   function logout() {
     clearCallbackQuery()
     saveSelectedServerId('')
-    void signOut().then(() => setBanner({ text: 'Logged out successfully.', type: 'success' }))
+    void signOut().then(() => setBanner({ text: t('dashboard.session.loggedOut'), type: 'success' }))
   }
 
   return {
@@ -109,7 +110,7 @@ export function useDashboardSession() {
     me: isAuthenticated ? (meQuery.data ?? session.user) : null,
     isAuthenticated,
     exchanging: exchanging || session.status === 'loading',
-    banner: sessionExpired && !banner ? { text: 'Session expired. Please login again.', type: 'error' as const } : banner,
+    banner: sessionExpired && !banner ? { text: t('dashboard.session.expired'), type: 'error' as const } : banner,
     showBanner,
     login,
     logout,

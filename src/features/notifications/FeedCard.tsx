@@ -1,8 +1,16 @@
 import { useEffect, useRef, useState } from 'react'
 import { FiChevronDown, FiChevronRight, FiTrash2 } from 'react-icons/fi'
 import { SwitchRow } from '../../components/SwitchRow'
+import { t } from '../../i18n'
 import type { BoardEntry } from '../../services/boardsService'
-import type { DiscordChannel, FeedChanges, NotificationCategory, NotificationFeed } from '../../services/notificationsService'
+import {
+  categoryLabel,
+  eventLabel,
+  type DiscordChannel,
+  type FeedChanges,
+  type NotificationCategory,
+  type NotificationFeed,
+} from '../../services/notificationsService'
 import { ChannelSelect } from './ChannelSelect'
 
 type FeedCardProps = {
@@ -51,26 +59,26 @@ export function FeedCard({ feed, channels, boards, catalogue, onChange, onDelete
   return (
     <li className="kc-feed-card">
       <div className="kc-feed-card-head">
-        <strong>{channel ? `#${channel.name}` : 'A channel that no longer exists'}</strong>
+        <strong>{channel ? `#${channel.name}` : t('notifications.channel.gone')}</strong>
         <span className="kc-muted">
           {feed.boardIds.length === 0
-            ? 'Every board'
-            : `${feed.boardIds.length} board${feed.boardIds.length === 1 ? '' : 's'}`}
+            ? t('notifications.feed.everyBoard')
+            : t('notifications.feed.boardCount', { count: feed.boardIds.length })}
         </span>
-        <button type="button" className="kc-icon-btn" aria-label="Delete this feed" onClick={onDelete}>
+        <button type="button" className="kc-icon-btn" aria-label={t('notifications.feed.delete')} onClick={onDelete}>
           <FiTrash2 aria-hidden="true" />
         </button>
       </div>
       {channel && !channel.botCanPost && (
         <p className="kc-banner" role="status">
-          The bot cannot post in #{channel.name}. Give it permission to view the channel and send messages there.
+          {t('notifications.feed.botCannotPost', { channel: channel.name })}
         </p>
       )}
 
       <label className="kc-field">
-        <span className="kc-field-label">Channel</span>
+        <span className="kc-field-label">{t('settings.threads.channel')}</span>
         <ChannelSelect
-          label="Feed channel"
+          label={t('notifications.feed.channel')}
           channels={channels}
           value={feed.channelId}
           onChange={(channelId) => channelId && onChange({ channelId })}
@@ -78,8 +86,8 @@ export function FeedCard({ feed, channels, boards, catalogue, onChange, onDelete
       </label>
 
       <div className="kc-field">
-        <span className="kc-field-label">Boards</span>
-        <div className="kc-segmented" role="radiogroup" aria-label="Which boards">
+        <span className="kc-field-label">{t('dashboard.boards.title')}</span>
+        <div className="kc-segmented" role="radiogroup" aria-label={t('notifications.feed.whichBoards')}>
           <button
             type="button"
             role="radio"
@@ -90,7 +98,7 @@ export function FeedCard({ feed, channels, boards, catalogue, onChange, onDelete
               if (feed.boardIds.length > 0) onChange({ boardIds: [] })
             }}
           >
-            Every board
+            {t('notifications.feed.everyBoard')}
           </button>
           <button
             type="button"
@@ -99,7 +107,7 @@ export function FeedCard({ feed, channels, boards, catalogue, onChange, onDelete
             className={`kc-segment${chosenBoards ? ' kc-segment--on' : ''}`}
             onClick={() => setChosenBoards(true)}
           >
-            Chosen boards
+            {t('notifications.feed.chosenBoards')}
           </button>
         </div>
         {chosenBoards && (
@@ -114,30 +122,30 @@ export function FeedCard({ feed, channels, boards, catalogue, onChange, onDelete
                     onChange={(event) => toggleBoard(board.boardId, event.target.checked)}
                   />
                   {board.name}
-                  {board.isArchived && <span className="kc-muted"> (archived)</span>}
+                  {board.isArchived && <span className="kc-muted">{t('notifications.feed.archived')}</span>}
                 </label>
               </li>
             ))}
-            {feed.boardIds.length === 0 && <li className="kc-muted">Pick at least one board; until then this feed covers every board.</li>}
+            {feed.boardIds.length === 0 && <li className="kc-muted">{t('notifications.feed.pickOne')}</li>}
           </ul>
         )}
       </div>
 
       {Object.keys(feed.boardOverrides ?? {}).length > 0 && (
         <p className="kc-muted kc-feed-overrides">
-          Boards with their own settings for this feed:{' '}
-          {Object.entries(feed.boardOverrides ?? {})
-            .map(([boardId, own]) => {
-              const name = boards.find((board) => String(board.boardId) === boardId)?.name ?? 'a board'
-              return `${name} (${own.changes} change${own.changes === 1 ? '' : 's'})`
-            })
-            .join(', ')}
-          . Change them in each board&apos;s settings.
+          {t('notifications.feed.overrides', {
+            boards: Object.entries(feed.boardOverrides ?? {})
+              .map(([boardId, own]) => {
+                const name = boards.find((board) => String(board.boardId) === boardId)?.name ?? t('notifications.feed.aBoard')
+                return t('notifications.feed.override', { name, count: own.changes })
+              })
+              .join(', '),
+          })}
         </p>
       )}
 
       <div className="kc-field">
-        <span className="kc-field-label">What it announces</span>
+        <span className="kc-field-label">{t('notifications.feed.announces')}</span>
         <ul className="kc-feed-categories">
           {catalogue.map((category) => {
             const on = category.events.filter((event) => feed.events[event.key])
@@ -149,7 +157,7 @@ export function FeedCard({ feed, channels, boards, catalogue, onChange, onDelete
               <li key={category.key} className="kc-feed-category">
                 <div className="kc-feed-category-row">
                   <TriStateCheckbox
-                    label={category.label}
+                    label={categoryLabel(category)}
                     checked={on.length === category.events.length}
                     mixed={on.length > 0 && on.length < category.events.length}
                     onChange={(checked) =>
@@ -163,7 +171,7 @@ export function FeedCard({ feed, channels, boards, catalogue, onChange, onDelete
                     onClick={() => setExpanded(open ? null : category.key)}
                   >
                     {open ? <FiChevronDown aria-hidden="true" /> : <FiChevronRight aria-hidden="true" />}
-                    {category.label}
+                    {categoryLabel(category)}
                     <span className="kc-muted">
                       {on.length}/{category.events.length}
                     </span>
@@ -171,12 +179,12 @@ export function FeedCard({ feed, channels, boards, catalogue, onChange, onDelete
                   {category.events.some((event) => event.canMention) && (
                     <label className="kc-feed-mention">
                       <TriStateCheckbox
-                        label={`Mention people for ${category.label}`}
+                        label={t('notifications.mentionFor', { name: categoryLabel(category) })}
                         checked={mentionable.length > 0 && mentioning.length === mentionable.length}
                         mixed={mentioning.length > 0 && mentioning.length < mentionable.length}
                         onChange={(checked) => onChange({ mentions: { [category.key]: checked } })}
                       />
-                      Mention people
+                      {t('notifications.mentionPeople')}
                     </label>
                   )}
                 </div>
@@ -191,19 +199,19 @@ export function FeedCard({ feed, channels, boards, catalogue, onChange, onDelete
                             checked={Boolean(feed.events[event.key])}
                             onChange={(change) => onChange({ events: { [event.key]: change.target.checked } })}
                           />
-                          {event.label}
+                          {eventLabel(event)}
                         </label>
                         {event.canMention && (
                           <label className="kc-feed-mention">
                             <input
                               type="checkbox"
                               className="kc-check"
-                              aria-label={`Mention people for ${event.label}`}
+                              aria-label={t('notifications.mentionFor', { name: eventLabel(event) })}
                               checked={Boolean(feed.mentions[event.key])}
                               disabled={!feed.events[event.key]}
                               onChange={(change) => onChange({ mentions: { [event.key]: change.target.checked } })}
                             />
-                            Mention
+                            {t('notifications.mention')}
                           </label>
                         )}
                       </li>
@@ -218,14 +226,14 @@ export function FeedCard({ feed, channels, boards, catalogue, onChange, onDelete
 
       <ul className="kc-features-list">
         <SwitchRow
-          label="Interactive posts"
-          description="Each post shows the whole task with buttons to move it, assign people, edit or follow it, right there in Discord."
+          label={t('notifications.feed.interactive')}
+          description={t('notifications.feed.interactiveHint')}
           on={feed.interactive}
           onToggle={(on) => onChange({ interactive: on })}
         />
         <SwitchRow
-          label="Also mention assigned roles"
-          description="Off by default: a role can be a lot of people. Mentioning people above only mentions individual people."
+          label={t('notifications.feed.mentionRoles')}
+          description={t('notifications.feed.mentionRolesHint')}
           on={feed.mentionRoles}
           onToggle={(on) => onChange({ mentionRoles: on })}
         />

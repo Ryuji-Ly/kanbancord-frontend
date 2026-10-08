@@ -1,11 +1,12 @@
 import { SwitchRow } from '../../components/SwitchRow'
+import { t, type MessageKey } from '../../i18n'
 import { TEXT_SCALES, type AccessibilityPreference, type ColorFilter } from './preferencesModel'
 
-const FILTERS: { value: ColorFilter; label: string }[] = [
-  { value: 'none', label: 'None' },
-  { value: 'protanopia', label: 'Protanopia (red weak)' },
-  { value: 'deuteranopia', label: 'Deuteranopia (green weak)' },
-  { value: 'tritanopia', label: 'Tritanopia (blue weak)' },
+const FILTERS: { value: ColorFilter; label: MessageKey }[] = [
+  { value: 'none', label: 'account.accessibility.filters.none' },
+  { value: 'protanopia', label: 'account.accessibility.filters.protanopia' },
+  { value: 'deuteranopia', label: 'account.accessibility.filters.deuteranopia' },
+  { value: 'tritanopia', label: 'account.accessibility.filters.tritanopia' },
 ]
 
 type AccessibilitySettingsProps = {
@@ -23,27 +24,24 @@ export function AccessibilitySettings({ accessibility, onChange }: Accessibility
 
   return (
     <div className="kc-features">
-      <p className="kc-muted">
-        For colour blindness, the Red-green safe and Blue-yellow safe themes recolour the interface. The options
-        below help with the colours people choose for labels, priorities and roles.
-      </p>
+      <p className="kc-muted">{t('account.accessibility.intro')}</p>
       <ul className="kc-features-list">
         <SwitchRow
-          label="Patterns on labels"
-          description="Each label gets its own stripe or dot pattern, so labels differ by more than colour."
+          label={t('account.accessibility.patterns')}
+          description={t('account.accessibility.patternsHint')}
           on={Boolean(current.labelPatterns)}
           onToggle={(on) => set({ labelPatterns: on })}
         />
         <SwitchRow
-          label="Priority ranks"
-          description="Shows each priority's rank, P1 being the most urgent, next to its name."
+          label={t('account.accessibility.ranks')}
+          description={t('account.accessibility.ranksHint')}
           on={Boolean(current.priorityRanks)}
           onToggle={(on) => set({ priorityRanks: on })}
         />
       </ul>
 
       <label className="kc-field">
-        <span className="kc-field-label">Colour filter for labels, priorities and roles</span>
+        <span className="kc-field-label">{t('account.accessibility.filter')}</span>
         <select
           className="kc-input"
           value={current.colorFilter ?? 'none'}
@@ -51,16 +49,16 @@ export function AccessibilitySettings({ accessibility, onChange }: Accessibility
         >
           {FILTERS.map((filter) => (
             <option key={filter.value} value={filter.value}>
-              {filter.label}
+              {t(filter.label)}
             </option>
           ))}
         </select>
-        <span className="kc-muted">Shifts colours that are hard to tell apart into ones that are easier to see.</span>
+        <span className="kc-muted">{t('account.accessibility.filterHint')}</span>
       </label>
 
       <div className="kc-field">
-        <span className="kc-field-label">Text size</span>
-        <div className="kc-segmented" role="radiogroup" aria-label="Text size">
+        <span className="kc-field-label">{t('account.accessibility.textSize')}</span>
+        <div className="kc-segmented" role="radiogroup" aria-label={t('account.accessibility.textSize')}>
           {TEXT_SCALES.map((scale) => (
             <button
               key={scale.value}
@@ -70,22 +68,22 @@ export function AccessibilitySettings({ accessibility, onChange }: Accessibility
               className={`kc-segment${(current.textScale ?? 1) === scale.value ? ' kc-segment--on' : ''}`}
               onClick={() => set({ textScale: scale.value })}
             >
-              {scale.label}
+              {t(scale.label)}
             </button>
           ))}
         </div>
       </div>
 
       <label className="kc-field">
-        <span className="kc-field-label">Reduce motion</span>
+        <span className="kc-field-label">{t('account.accessibility.motion')}</span>
         <select
           className="kc-input"
           value={current.reduceMotion ?? 'system'}
           onChange={(event) => set({ reduceMotion: event.target.value as AccessibilityPreference['reduceMotion'] })}
         >
-          <option value="system">Follow my device</option>
-          <option value="on">Always reduce</option>
-          <option value="off">Never reduce</option>
+          <option value="system">{t('account.accessibility.motionSystem')}</option>
+          <option value="on">{t('account.accessibility.motionOn')}</option>
+          <option value="off">{t('account.accessibility.motionOff')}</option>
         </select>
       </label>
     </div>

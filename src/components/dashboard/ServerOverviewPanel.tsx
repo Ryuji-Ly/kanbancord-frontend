@@ -1,4 +1,5 @@
 import { FiSettings } from 'react-icons/fi'
+import { t } from '../../i18n'
 import type { DiscordGuild } from '../../types/auth'
 import type { BoardEntry } from '../../services/boardsService'
 import type { BoardCapability } from './types'
@@ -35,14 +36,14 @@ export function ServerOverviewPanel({
       <div className="kc-server-panel-header">
         <div>
           <h2>{selectedServer.name}</h2>
-          <p className="kc-muted">Server overview.</p>
+          <p className="kc-muted">{t('dashboard.serverOverview')}</p>
         </div>
         {onOpenSettings && (
           <button
             type="button"
             className="kc-icon-btn kc-server-settings-btn"
-            aria-label="Server settings"
-            title="Server settings"
+            aria-label={t('dashboard.serverSettings')}
+            title={t('dashboard.serverSettings')}
             onClick={onOpenSettings}
           >
             <FiSettings aria-hidden="true" />

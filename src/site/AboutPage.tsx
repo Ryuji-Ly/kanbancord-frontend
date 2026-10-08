@@ -1,68 +1,54 @@
 import { Link } from 'react-router-dom'
+import { t } from '../i18n'
+import { Trans } from '../i18n/Trans'
 import { PublicLayout } from './PublicLayout'
-import { SITE } from './siteInfo'
+import { SITE, SITE_VALUES } from './siteInfo'
 
 export function AboutPage() {
   return (
-    <PublicLayout
-      title="About"
-      description="KanbanCord is a kanban board that lives in your Discord server: run it entirely with the bot, and use the website for the big picture and fine-tuning."
-      path="/about"
-    >
-      <h1>About {SITE.name}</h1>
+    <PublicLayout title={t('site.about.metaTitle')} description={t('site.about.metaDescription')} path="/about">
+      <h1>{t('site.about.title', SITE_VALUES)}</h1>
+      <p>{t('site.about.p1', SITE_VALUES)}</p>
+      <p>{t('site.about.p2')}</p>
+      <p>{t('site.about.p3')}</p>
+
+      <h2>{t('site.about.madeByTitle')}</h2>
       <p>
-        {SITE.name} is a kanban board that lives in your Discord server. The idea is simple: your community already talks
-        in Discord, so planning should happen there too. Create boards and columns, add tasks, move them along, assign
-        people, set labels, priorities and due dates, and discuss them in comments, all with the bot's slash commands,
-        without leaving the chat. Updates arrive in the channels you choose and, for your own tasks, by direct message.
-      </p>
-      <p>
-        Most people never need anything else. The website is there when you want the whole board at a glance, or to
-        fine-tune things: detailed permissions per board and per person, the labels and priority levels a board offers,
-        which features a server uses, exactly which updates you are told about, and the audit log of every change.
-      </p>
-      <p>
-        It follows your server's Discord roles and permissions from the start, so the right people see and change the right
-        boards without setting anything up twice.
+        <Trans
+          k="site.about.madeBy"
+          values={SITE_VALUES}
+          tags={{
+            privacy: <Link to="/privacy" />,
+            server: <a href={SITE.supportServerUrl} target="_blank" rel="noopener noreferrer" />,
+            support: <Link to="/support" />,
+          }}
+        />
       </p>
 
-      <h2>Made by one person</h2>
+      <h2>{t('site.about.findTitle')}</h2>
       <p>
-        {SITE.name} is built and run by {SITE.operator}. It is free, has no ads, and does not sell or track your data (see
-        the <Link to="/privacy">Privacy Policy</Link>). Found a problem or have an idea? Use <code>/report</code> in Discord.
-        Questions, or want to hear about new features? Join the{' '}
-        <a href={SITE.supportServerUrl} target="_blank" rel="noopener noreferrer">
-          support server
-        </a>
-        . If you would like to help with its costs, see <Link to="/support">Support</Link>.
+        <Trans
+          k="site.about.find"
+          values={SITE_VALUES}
+          tags={{
+            directory: <a href={SITE.appDirectoryUrl} target="_blank" rel="noopener noreferrer" />,
+            status: <a href={SITE.statusUrl} target="_blank" rel="noopener noreferrer" />,
+          }}
+        />
       </p>
 
-      <h2>Find it on Discord</h2>
-      <p>
-        {SITE.name} has its own page in{' '}
-        <a href={SITE.appDirectoryUrl} target="_blank" rel="noopener noreferrer">
-          Discord&apos;s App Directory
-        </a>
-        , where you can add it to a server straight from Discord. Whether the website, the bot and everything behind
-        them are running, and any planned maintenance, is on the{' '}
-        <a href={SITE.statusUrl} target="_blank" rel="noopener noreferrer">
-          status page
-        </a>
-        .
-      </p>
-
-      <h2>Get started</h2>
+      <h2>{t('site.about.startTitle')}</h2>
       <ol>
-        <li>Add the bot to your server.</li>
+        <li>{t('site.about.start1')}</li>
         <li>
-          Create a board with <code>/board create</code>, then add tasks with <code>/task create</code>.
+          <Trans k="site.about.start2" />
         </li>
         <li>
-          Run <code>/help</code> to see everything the bot can do.
+          <Trans k="site.about.start3" />
         </li>
       </ol>
       <p>
-        Questions? See the <Link to="/faq">FAQ</Link>.
+        <Trans k="site.about.questions" tags={{ faq: <Link to="/faq" /> }} />
       </p>
     </PublicLayout>
   )

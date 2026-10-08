@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query'
 import { FiChevronDown, FiChevronRight, FiRefreshCw } from 'react-icons/fi'
 import { parseServerTime, readableError } from '../../api/http'
+import { formatLocale, t } from '../../i18n'
 import { fetchAuditActors, fetchAuditLog, type AuditEntry, type AuditFilter } from '../../services/auditLogService'
 import type { BoardEntry } from '../../services/boardsService'
 import type { ServerMemberEntry, ServerRoleEntry } from '../../services/permissionsService'
@@ -57,12 +58,12 @@ export function AuditLogSection({ serverId, boards, members, roles }: AuditLogSe
   return (
     <div className="kc-audit-pane">
       <div className="kc-audit-toolbar">
-        <p className="kc-muted">Every change made in KanbanCord on this server, newest first.</p>
+        <p className="kc-muted">{t('audit.intro')}</p>
         <button
           type="button"
           className="kc-icon-btn"
-          aria-label="Refresh audit log"
-          title="Refresh"
+          aria-label={t('audit.refreshLabel')}
+          title={t('audit.refresh')}
           disabled={log.isFetching}
           onClick={() => {
             void log.refetch()
@@ -75,9 +76,9 @@ export function AuditLogSection({ serverId, boards, members, roles }: AuditLogSe
 
       <div className="kc-audit-filters">
         <label className="kc-field">
-          <span className="kc-field-label">Board</span>
+          <span className="kc-field-label">{t('audit.filters.board')}</span>
           <select className="kc-input" value={boardId} onChange={(event) => setBoardId(event.target.value)}>
-            <option value="">All boards</option>
+            <option value="">{t('audit.filters.allBoards')}</option>
             {boards.map((board) => (
               <option key={board.boardId} value={String(board.boardId)}>
                 {board.name}
@@ -86,9 +87,9 @@ export function AuditLogSection({ serverId, boards, members, roles }: AuditLogSe
           </select>
         </label>
         <label className="kc-field">
-          <span className="kc-field-label">Person</span>
+          <span className="kc-field-label">{t('audit.filters.person')}</span>
           <select className="kc-input" value={actorUserId} onChange={(event) => setActorUserId(event.target.value)}>
-            <option value="">Everyone</option>
+            <option value="">{t('audit.filters.everyone')}</option>
             {(actors.data ?? []).map((actor) => (
               <option key={actor.userId} value={actor.userId}>
                 {actor.displayName}
@@ -97,12 +98,12 @@ export function AuditLogSection({ serverId, boards, members, roles }: AuditLogSe
           </select>
         </label>
         <label className="kc-field">
-          <span className="kc-field-label">Kind of change</span>
+          <span className="kc-field-label">{t('audit.filters.kind')}</span>
           <select className="kc-input" value={category} onChange={(event) => setCategory(event.target.value)}>
-            <option value="">Everything</option>
+            <option value="">{t('audit.filters.everything')}</option>
             {AUDIT_CATEGORIES.map((entry) => (
               <option key={entry.key} value={entry.key}>
-                {entry.label}
+                {t(entry.label)}
               </option>
             ))}
           </select>
@@ -112,11 +113,11 @@ export function AuditLogSection({ serverId, boards, members, roles }: AuditLogSe
       {log.isPending && (
         <div className="kc-loading-state" aria-live="polite" aria-busy="true">
           <span className="kc-spinner" aria-hidden="true" />
-          <span className="kc-muted">Loading the audit log...</span>
+          <span className="kc-muted">{t('audit.loading')}</span>
         </div>
       )}
-      {log.isError && <p className="kc-banner">{readableError(log.error, 'Failed to load the audit log')}</p>}
-      {log.isSuccess && entries.length === 0 && <p className="kc-muted">Nothing recorded yet.</p>}
+      {log.isError && <p className="kc-banner">{readableError(log.error, t('audit.loadFailed'))}</p>}
+      {log.isSuccess && entries.length === 0 && <p className="kc-muted">{t('audit.empty')}</p>}
 
       {entries.length > 0 && (
         <ol className="kc-audit-list">
@@ -133,7 +134,7 @@ export function AuditLogSection({ serverId, boards, members, roles }: AuditLogSe
           disabled={log.isFetchingNextPage}
           onClick={() => void log.fetchNextPage()}
         >
-          {log.isFetchingNextPage ? 'Loading…' : 'Load older entries'}
+          {log.isFetchingNextPage ? t('common.loadingEllipsis') : t('audit.older')}
         </button>
       )}
     </div>
@@ -143,8 +144,8 @@ export function AuditLogSection({ serverId, boards, members, roles }: AuditLogSe
 function AuditRow({ entry, lookups }: { entry: AuditEntry; lookups: AuditLookups }) {
   const [expanded, setExpanded] = useState(false)
   const { summary, fields } = describeAuditEntry(entry, lookups)
-  const actor = entry.actorDisplayName ?? (entry.userId ? `User #${entry.userId}` : 'System')
-  const boardName = entry.boardName ?? (entry.boardId ? `board #${entry.boardId}` : null)
+  const actor = entry.actorDisplayName ?? (entry.userId ? t('dashboard.boardModal.userNumber', { id: entry.userId }) : t('audit.system'))
+  const boardName = entry.boardName ?? (entry.boardId ? t('audit.numbered', { noun: t('audit.nouns.BOARD'), id: entry.boardId }) : null)
 
   return (
     <li className="kc-audit-row">
@@ -154,15 +155,15 @@ function AuditRow({ entry, lookups }: { entry: AuditEntry; lookups: AuditLookups
       <div className="kc-audit-main">
         <p className="kc-audit-summary">
           <strong>{actor}</strong> {summary}
-          {boardName && entry.entityType !== 'BOARD' && <span className="kc-audit-board"> on {boardName}</span>}
+          {boardName && entry.entityType !== 'BOARD' && <span className="kc-audit-board">{t('audit.onBoardName', { board: boardName })}</span>}
         </p>
         <p className="kc-audit-meta">
-          <time dateTime={entry.createdAt} title={parseServerTime(entry.createdAt).toLocaleString()}>
+          <time dateTime={entry.createdAt} title={parseServerTime(entry.createdAt).toLocaleString(formatLocale())}>
             {relativeTime(entry.createdAt)}
           </time>
           {entry.source === 'DISCORD' && (
-            <span className="kc-audit-source" title="Done with a slash command in Discord">
-              via Discord
+            <span className="kc-audit-source" title={t('audit.viaDiscordHint')}>
+              {t('audit.viaDiscord')}
             </span>
           )}
           {fields.length > 0 && (
@@ -173,7 +174,7 @@ function AuditRow({ entry, lookups }: { entry: AuditEntry; lookups: AuditLookups
               onClick={() => setExpanded((prev) => !prev)}
             >
               {expanded ? <FiChevronDown aria-hidden="true" /> : <FiChevronRight aria-hidden="true" />}
-              {fields.length === 1 ? '1 change' : `${fields.length} changes`}
+              {t('audit.changeCount', { count: fields.length })}
             </button>
           )}
         </p>

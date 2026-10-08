@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { t } from '../../../i18n'
 import type { TaskCommentEntry } from '../../../services/taskCommentsService'
 import type { MeResponse } from '../../../types/auth'
 import { useCommentMutations, useTaskComments } from '../boardQueries'
@@ -106,12 +107,12 @@ export function TaskComments({ serverId, boardId, taskId, me, abilities }: TaskC
     })
   }
 
-  const loadError = commentsQuery.isError ? `Failed to load comments: ${commentsQuery.error}` : ''
+  const loadError = commentsQuery.isError ? t('board.comments.loadFailed', { error: String(commentsQuery.error) }) : ''
 
   return (
-    <section className="kc-task-comments" aria-label="Task comments">
+    <section className="kc-task-comments" aria-label={t('board.comments.label')}>
       <div className="kc-task-comments-header">
-        <h4>Comments</h4>
+        <h4>{t('board.comments.title')}</h4>
         {abilities.comment && (
           <button
             type="button"
@@ -122,12 +123,12 @@ export function TaskComments({ serverId, boardId, taskId, me, abilities }: TaskC
               setOpenMenuId(null)
             }}
           >
-            {composing ? 'Cancel' : 'New comment'}
+            {composing ? t('common.cancel') : t('board.comments.new')}
           </button>
         )}
       </div>
 
-      {commentsQuery.isPending && <p className="kc-muted">Loading comments...</p>}
+      {commentsQuery.isPending && <p className="kc-muted">{t('board.comments.loading')}</p>}
       {(error || loadError) && <p className="kc-banner">{error || loadError}</p>}
 
       {composing && abilities.comment && (
@@ -135,7 +136,7 @@ export function TaskComments({ serverId, boardId, taskId, me, abilities }: TaskC
           <textarea
             className="kc-textarea"
             value={draft}
-            placeholder="Write a comment..."
+            placeholder={t('board.comments.placeholder')}
             onChange={(event) => setDraft(event.target.value)}
             onKeyDown={(event) => {
               if (event.key === 'Enter' && !event.shiftKey) {
@@ -151,13 +152,13 @@ export function TaskComments({ serverId, boardId, taskId, me, abilities }: TaskC
               disabled={mutations.create.isPending || !draft.trim()}
               onClick={post}
             >
-              {mutations.create.isPending ? 'Posting...' : 'Post comment'}
+              {mutations.create.isPending ? t('board.comments.posting') : t('board.comments.post')}
             </button>
           </div>
         </div>
       )}
 
-      {commentsQuery.isSuccess && comments.length === 0 && <p className="kc-muted">No comments yet.</p>}
+      {commentsQuery.isSuccess && comments.length === 0 && <p className="kc-muted">{t('board.comments.none')}</p>}
 
       {comments.length > 0 && (
         <ul className="kc-task-comments-list">
@@ -208,7 +209,7 @@ export function TaskComments({ serverId, boardId, taskId, me, abilities }: TaskC
                           }}
                           disabled={mutations.edit.isPending}
                         >
-                          Cancel
+                          {t('common.cancel')}
                         </button>
                         <button
                           type="button"
@@ -216,7 +217,7 @@ export function TaskComments({ serverId, boardId, taskId, me, abilities }: TaskC
                           onClick={saveEdit}
                           disabled={mutations.edit.isPending || !editingContent.trim()}
                         >
-                          {mutations.edit.isPending ? 'Saving...' : 'Save'}
+                          {mutations.edit.isPending ? t('common.savingDots') : t('common.save')}
                         </button>
                       </div>
                     </div>
@@ -237,7 +238,7 @@ export function TaskComments({ serverId, boardId, taskId, me, abilities }: TaskC
                     <button
                       type="button"
                       className="kc-column-menu-btn"
-                      aria-label="Comment options"
+                      aria-label={t('board.comments.options')}
                       aria-expanded={openMenuId === comment.commentId}
                       onClick={() => setOpenMenuId((prev) => (prev === comment.commentId ? null : comment.commentId))}
                     >
@@ -257,7 +258,7 @@ export function TaskComments({ serverId, boardId, taskId, me, abilities }: TaskC
                                 setOpenMenuId(null)
                               }}
                             >
-                              Edit comment
+                              {t('board.comments.edit')}
                             </button>
                           </li>
                         )}
@@ -273,7 +274,7 @@ export function TaskComments({ serverId, boardId, taskId, me, abilities }: TaskC
                                 setOpenMenuId(null)
                               }}
                             >
-                              Delete comment
+                              {t('board.comments.delete')}
                             </button>
                           </li>
                         )}
@@ -289,7 +290,7 @@ export function TaskComments({ serverId, boardId, taskId, me, abilities }: TaskC
 
       {deleteTarget && (
         <ConfirmDialog
-          title="Delete Comment"
+          title={t('board.comments.deleteTitle')}
           error={deleteError}
           busy={mutations.remove.isPending}
           onCancel={() => {
@@ -298,7 +299,7 @@ export function TaskComments({ serverId, boardId, taskId, me, abilities }: TaskC
           }}
           onConfirm={confirmDelete}
         >
-          <p className="kc-modal-confirm-desc">Delete this comment? This cannot be undone.</p>
+          <p className="kc-modal-confirm-desc">{t('board.comments.deleteConfirm')}</p>
         </ConfirmDialog>
       )}
     </section>

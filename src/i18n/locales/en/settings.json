@@ -1,0 +1,85 @@
+{
+  "boardFeatures": {
+    "title": "Simple mode",
+    "intro": "Switch off what this board does not need; other boards are not affected. Switching something off hides it and keeps its data. Changes here apply immediately.",
+    "everything": "Everything the server allows",
+    "offForServer": "Switched off for the whole server, in the server settings."
+  },
+  "board": {
+    "loadFailed": "Failed to load the board settings"
+  },
+  "boardNotifications": {
+    "intro": "The update feeds that post about this board. Each follows its own settings from the server's notifications until you change something here, for this board only. Changes save straight away.",
+    "noFeeds": "No feed posts about this board. Server managers add feeds in the server's settings.",
+    "followsFeed": "Follows the feed's settings.",
+    "changes_one": "{count} change for this board.",
+    "changes_other": "{count} changes for this board.",
+    "useFeed": "Use the feed's settings",
+    "changed": "changed"
+  },
+  "threads": {
+    "updatesBoth": "The thread and the channel",
+    "updatesThread": "Only the thread",
+    "updatesChannel": "Only the channel",
+    "title": "Task threads",
+    "intro": "Give each task its own thread for discussion, in one of this board's update feed channels. A thread follows its task's title and is archived when the task is deleted or archived. The feed's updates about the task, including new comments, are posted in it as you choose below; messages written in the thread stay in Discord. Changes save straight away.",
+    "noFeed": "This board has no update feed yet. Add one in the server's notification settings, or with <code>/kanbancord feed</code> in Discord, then switch threads on here.",
+    "perTask": "A thread per task",
+    "notWorking": "On, but not working: the chosen channel no longer has a feed for this board. Choose another feed channel.",
+    "perTaskHint": "Each task gets its thread when something next happens to it.",
+    "channel": "Channel",
+    "channelWithoutFeed": "A channel without a feed for this board",
+    "botCannot": " (the bot cannot make threads here)",
+    "updatesGoTo": "A task's updates go to",
+    "private": "Private threads",
+    "privateNotPossible": "Not possible in this channel: private threads need a text channel where the bot may create private threads.",
+    "privateHint": "Only the task's creator and assignees are in the thread, plus server moderators. New assignees are added."
+  },
+  "usage_one": "{count} task",
+  "usage_other": "{count} tasks",
+  "colourOf": "Colour of {name}",
+  "labels": {
+    "intro": "Labels this board's tasks can be tagged with. Changes here apply immediately.",
+    "none": "No labels yet.",
+    "name": "Label name",
+    "newColour": "Colour of the new label",
+    "newPlaceholder": "New label, e.g. frontend",
+    "add": "Add label",
+    "deleteTitle": "Delete label",
+    "deleteConfirm": "Delete <strong>{name}</strong> from this board?",
+    "deleteUsage_one": " It will be removed from the {count} task using it.",
+    "deleteUsage_other": " It will be removed from the {count} tasks using it."
+  },
+  "priorities": {
+    "title": "Priorities",
+    "intro": "Priority levels, most urgent first. A task has at most one. Changes here apply immediately.",
+    "none": "No priority levels. Tasks on this board have no priority.",
+    "moveUp": "Move {name} up",
+    "moveDown": "Move {name} down",
+    "name": "Priority name",
+    "newColour": "Colour of the new level",
+    "newPlaceholder": "New level, added at the bottom",
+    "add": "Add level",
+    "deleteTitle": "Delete priority level",
+    "deleteConfirm": "Delete <strong>{name}</strong>?",
+    "deleteUsage_one": " The {count} task with this priority will have none.",
+    "deleteUsage_other": " The {count} tasks with this priority will have none."
+  },
+  "features": {
+    "intro": "Simple mode keeps boards to the essentials: columns, and tasks with a title and description. Switch on only what this server needs. Switching something off hides it and keeps its data.",
+    "enableEverything": "Enable everything",
+    "openFirst": "{description} Turn open permissions off first.",
+    "open": "Open permissions",
+    "openLabel": "Everyone may do everything",
+    "customFirst": "Turn custom permissions off first: their rules are kept for when you switch back.",
+    "openHint": "Everyone who can talk in this server may create, change, move and delete columns, tasks, labels and priority levels, whatever their roles. Managing the server, board permissions, deleting or archiving boards and the audit log stay with its managers.",
+    "confirmTitle": "Turn on open permissions?",
+    "turnOn": "Turn on",
+    "turningOn": "Turning on...",
+    "confirm": "Everyone who can talk in this server will be able to create, change, move and delete columns, tasks, labels and priority levels, whatever their roles. Best for a small group that trusts each other."
+  },
+  "dialog": {
+    "sections": "{title} sections",
+    "close": "Close {title}"
+  }
+}

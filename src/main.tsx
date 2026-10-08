@@ -7,17 +7,23 @@ import App from './App.tsx'
 import { queryClient } from './api/queryClient'
 import { removeLegacyTokens } from './services/authService'
 import { applyPreferences, cachedPreferences } from './features/preferences/preferencesModel'
+import { startI18n } from './i18n'
+import { I18nProvider } from './i18n/I18nProvider'
 
 removeLegacyTokens()
 // The theme this browser last used, before anything renders, so the page does not flash the default.
 applyPreferences(cachedPreferences())
 
-function render() {
+async function render() {
+  // The reader's language, before anything renders, so English does not flash first.
+  await startI18n()
   createRoot(document.getElementById('root')!).render(
     <StrictMode>
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
-          <App />
+          <I18nProvider>
+            <App />
+          </I18nProvider>
         </BrowserRouter>
       </QueryClientProvider>
     </StrictMode>,
@@ -29,8 +35,8 @@ function render() {
 if (import.meta.env.DEV && import.meta.env.MODE === 'demo') {
   void import('./demo/installDemo').then(({ installDemo }) => {
     installDemo()
-    render()
+    void render()
   })
 } else {
-  render()
+  void render()
 }

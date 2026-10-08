@@ -1,5 +1,6 @@
 import { parseError } from '../api/http'
 import { apiFetch } from '../api/session'
+import { t } from '../i18n'
 
 export type UploadedMedia = {
   /** The file's link on Imgur. */
@@ -35,7 +36,7 @@ export function mediaSizeError(file: File): string | null {
   const video = file.type.startsWith('video/')
   const limit = video ? MAX_VIDEO_BYTES : MAX_IMAGE_BYTES
   if (file.size <= limit) return null
-  return `${video ? 'Videos' : 'Images'} can be at most ${limit / (1024 * 1024)} MB`
+  return t(video ? 'board.media.videoTooBig' : 'board.media.imageTooBig', { size: limit / (1024 * 1024) })
 }
 
 /** How a link in a description is shown: as an image, as a video, or (from anywhere else) not at all. */

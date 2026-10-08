@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { t } from '../../../i18n'
 import type { LabelEntry } from '../../../services/boardsService'
 import { readableTextColor } from '../boardModel'
 
@@ -21,7 +22,7 @@ export function LabelChip({
     >
       <span className="kc-label-chip-name">{label.name}</span>
       {onRemove && (
-        <button type="button" className="kc-label-chip-remove" aria-label={`Remove label ${label.name}`} onClick={onRemove}>
+        <button type="button" className="kc-label-chip-remove" aria-label={t('board.pickers.removeLabel', { name: label.name })} onClick={onRemove}>
           ×
         </button>
       )}
@@ -87,8 +88,8 @@ export function LabelPicker({ labels, selectedIds, canApply, canRemove, canCreat
           <input
             className="kc-task-assignee-input"
             value={query}
-            placeholder={canCreate ? 'Add or create a label' : 'Add a label'}
-            aria-label="Search labels"
+            placeholder={canCreate ? t('board.pickers.addOrCreateLabel') : t('board.pickers.addLabel')}
+            aria-label={t('board.pickers.searchLabels')}
             onFocus={() => setOpen(true)}
             onBlur={() => window.setTimeout(() => setOpen(false), 150)}
             onChange={(event) => {
@@ -106,11 +107,11 @@ export function LabelPicker({ labels, selectedIds, canApply, canRemove, canCreat
             }}
           />
         )}
-        {!canApply && selected.length === 0 && <span className="kc-muted">No labels.</span>}
+        {!canApply && selected.length === 0 && <span className="kc-muted">{t('board.pickers.noLabels')}</span>}
       </div>
 
       {canApply && open && (options.length > 0 || offerCreate) && (
-        <ul className="kc-task-assignee-results" role="listbox" aria-label="Labels">
+        <ul className="kc-task-assignee-results" role="listbox" aria-label={t('board.fields.labels')}>
           {options.map((label) => (
             <li key={label.labelId}>
               <button type="button" className="kc-task-assignee-result" onMouseDown={(e) => e.preventDefault()} onClick={() => pick(label.labelId)}>
@@ -121,7 +122,7 @@ export function LabelPicker({ labels, selectedIds, canApply, canRemove, canCreat
           {offerCreate && (
             <li>
               <button type="button" className="kc-task-assignee-result" disabled={creating} onMouseDown={(e) => e.preventDefault()} onClick={() => void create()}>
-                {creating ? 'Creating…' : `Create label "${query.trim()}"`}
+                {creating ? t('common.creating') : t('board.pickers.createLabel', { name: query.trim() })}
               </button>
             </li>
           )}

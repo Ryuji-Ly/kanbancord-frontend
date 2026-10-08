@@ -20,3 +20,6 @@ export const SITE = {
   /** When the Privacy Policy and Terms of Service last changed. */
   legalUpdated: '25 September 2026',
 }
+
+/** The values messages about the site fill in: {name}, {operator} and {email}. */
+export const SITE_VALUES = { name: SITE.name, operator: SITE.operator, email: SITE.email }

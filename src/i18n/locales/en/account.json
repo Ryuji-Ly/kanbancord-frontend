@@ -1,0 +1,135 @@
+{
+  "appearance": {
+    "groups": {
+      "surfaces": "Surfaces",
+      "controls": "Controls",
+      "text": "Text",
+      "brand": "Brand and accents",
+      "status": "Status",
+      "permissions": "Permission rules"
+    },
+    "core": {
+      "background": {
+        "label": "Background",
+        "hint": "Behind everything"
+      },
+      "surface": {
+        "label": "Surface",
+        "hint": "Panels, columns and cards"
+      },
+      "text": {
+        "label": "Text",
+        "hint": "Body text; headings and hints are derived"
+      },
+      "accent": {
+        "label": "Accent",
+        "hint": "Highlights, focus rings, headings tint"
+      },
+      "primary": {
+        "label": "Primary",
+        "hint": "Main buttons and links"
+      },
+      "success": {
+        "label": "Success",
+        "hint": "Confirmations and allow rules"
+      },
+      "danger": {
+        "label": "Danger",
+        "hint": "Errors, delete buttons and deny rules"
+      },
+      "warning": {
+        "label": "Warning",
+        "hint": "Cautions and highlights"
+      }
+    },
+    "presets": {
+      "dark": {
+        "label": "Dark",
+        "description": "The default."
+      },
+      "light": {
+        "label": "Light",
+        "description": "Dark text on light surfaces."
+      },
+      "highContrast": {
+        "label": "High contrast",
+        "description": "Pure black and white with strong borders, for low vision."
+      },
+      "redGreen": {
+        "label": "Red-green safe",
+        "description": "For protanopia and deuteranopia: blue for success, orange for danger."
+      },
+      "blueYellow": {
+        "label": "Blue-yellow safe",
+        "description": "For tritanopia: teal for success, red for danger, pink for warnings."
+      }
+    },
+    "theme": "Theme",
+    "custom": "Custom",
+    "customHint": "Your own colours, starting from the theme above.",
+    "customColours": "Custom colours",
+    "customColoursHint": "Set eight colours; every other colour is worked out from them.",
+    "lowContrast": "Text against the background has a contrast of {contrast}:1; at least 4.5:1 is recommended for reading comfortably.",
+    "advanced": "Advanced: edit every colour",
+    "changed_one": " ({count} changed)",
+    "changed_other": " ({count} changed)",
+    "advancedHint": "Changes here apply on top of the theme above and stay when you switch themes.",
+    "resetAll": "Reset all",
+    "reset": "Reset",
+    "language": "Language",
+    "browserLanguage": "My browser's language"
+  },
+  "accessibility": {
+    "textScale": {
+      "normal": "Normal",
+      "large": "Large",
+      "larger": "Larger",
+      "largest": "Largest"
+    },
+    "filters": {
+      "none": "None",
+      "protanopia": "Protanopia (red weak)",
+      "deuteranopia": "Deuteranopia (green weak)",
+      "tritanopia": "Tritanopia (blue weak)"
+    },
+    "intro": "For colour blindness, the Red-green safe and Blue-yellow safe themes recolour the interface. The options below help with the colours people choose for labels, priorities and roles.",
+    "patterns": "Patterns on labels",
+    "patternsHint": "Each label gets its own stripe or dot pattern, so labels differ by more than colour.",
+    "ranks": "Priority ranks",
+    "ranksHint": "Shows each priority's rank, P1 being the most urgent, next to its name.",
+    "filter": "Colour filter for labels, priorities and roles",
+    "filterHint": "Shifts colours that are hard to tell apart into ones that are easier to see.",
+    "textSize": "Text size",
+    "motion": "Reduce motion",
+    "motionSystem": "Follow my device",
+    "motionOn": "Always reduce",
+    "motionOff": "Never reduce"
+  },
+  "simpleView": {
+    "intro": "Hide what you do not use, on every board. This only changes what you see: the data stays, and everyone else still sees it. Servers that switched a feature off hide it for everyone.",
+    "hideAll": "Hide everything optional",
+    "showAll": "Show everything"
+  },
+  "menu": {
+    "label": "Account",
+    "preferences": "Preferences",
+    "settings": "Settings",
+    "logOut": "Log out",
+    "appearance": "Appearance",
+    "accessibility": "Accessibility",
+    "simpleView": "Simple view",
+    "sessions": "Sessions",
+    "dialogTitle": "Preferences and settings"
+  },
+  "sessions": {
+    "unknownDevice": "Unknown device",
+    "browserOn": "{browser} on {system}",
+    "intro": "Devices and browsers signed in to your account. Signing one out ends it straight away, including any board it has open.",
+    "signOutFailed": "Could not sign out that session",
+    "loadFailed": "Could not load your sessions",
+    "thisDevice": " · This device",
+    "activity": "Active {active} · signed in {signedIn}",
+    "signOut": "Sign out",
+    "signOutOthers": "Sign out all other devices"
+  }
+}

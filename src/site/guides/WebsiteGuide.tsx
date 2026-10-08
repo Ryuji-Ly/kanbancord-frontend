@@ -1,87 +1,52 @@
-import { Link } from 'react-router-dom'
+import { t } from '../../i18n'
 import { GuideImage } from './GuideImage'
 import { GuideLayout } from './GuideLayout'
+import { GuideItems } from './GuideText'
 
 export function WebsiteGuide() {
   return (
     <GuideLayout slug="website-board">
-      <p>
-        You can run KanbanCord entirely from Discord. The website is there for when you want the whole picture: every
-        column and task of a board on one screen, and the settings that are easier with a bit of room. Sign in with
-        Discord and pick your server.
-      </p>
+      <p>{t('guides.website.intro')}</p>
 
       <GuideImage
         src="/images/guides/dashboard.webp"
         width={2880}
         height={1160}
-        alt="The KanbanCord dashboard for a server named Pixel Forge, listing its boards: Game Jam 2026, Community Events and Website Redesign."
-        caption="Your server's boards, after signing in."
+        alt={t('guides.website.dashboardAlt')}
+        caption={t('guides.website.dashboardCaption')}
       />
-      <h2>The board</h2>
+      <h2>{t('guides.website.boardTitle')}</h2>
       <ul>
-        <li>
-          <strong>Drag and drop</strong> tasks between columns and within them, and reorder the columns themselves.
-        </li>
-        <li>
-          <strong>Live</strong>: changes made by anyone, on the website or in Discord, appear straight away for everyone
-          with the board open.
-        </li>
-        <li>
-          <strong>Search and filters</strong>: press <kbd>/</kbd> to search titles and descriptions, and filter by who
-          is assigned, label, priority or due date. Filters are in the page&apos;s address, so you can share a filtered
-          view.
-        </li>
+        <GuideItems k="guides.website.board" />
       </ul>
 
       <GuideImage
         src="/images/guides/filters.webp"
         width={3440}
         height={1000}
-        alt="A board with its filters open: people, label, priority and due date, with six of fourteen tasks shown."
-        caption="Search and filters, right in the board's title bar."
+        alt={t('guides.website.filtersAlt')}
+        caption={t('guides.website.filtersCaption')}
       />
-      <h2>Tasks in full</h2>
-      <p>Open a task to see and edit everything about it:</p>
+      <h2>{t('guides.website.tasksTitle')}</h2>
+      <p>{t('guides.website.tasks')}</p>
       <ul>
-        <li>A description with formatting, and checklists you can tick off right in the task.</li>
-        <li>Images and videos, uploaded, dropped or pasted straight into the description.</li>
-        <li>People and roles, labels, priority and due date, as your server has them switched on.</li>
-        <li>Comments, and a Follow button to hear about the task by direct message.</li>
+        <GuideItems k="guides.website.taskPoints" />
       </ul>
 
       <GuideImage
         src="/images/guides/task.webp"
         width={2880}
         height={1800}
-        alt="A task open beside the board, with its priority, due date, a checklist, labels, people, roles and comments."
-        caption="A task in full, beside the board."
+        alt={t('guides.website.taskAlt')}
+        caption={t('guides.website.taskCaption')}
       />
-      <h2>Settings</h2>
+      <h2>{t('guides.website.settingsTitle')}</h2>
       <ul>
-        <li>
-          <strong>Features</strong>: which ones the server uses, and which each board switches off for itself.
-        </li>
-        <li>
-          <strong>Permissions</strong>: who may do what, per role, per board and per person. See{' '}
-          <Link to="/guides/roles-and-permissions">roles and permissions</Link>.
-        </li>
-        <li>
-          <strong>Notifications</strong>: update feeds, with each event and its mentions, and your own direct messages.
-        </li>
-        <li>
-          <strong>Labels and priority levels</strong> for each board.
-        </li>
-        <li>
-          <strong>Appearance</strong>: themes, including light and dark, and accessibility options.
-        </li>
+        <GuideItems k="guides.website.settings" />
       </ul>
 
-      <h2>The audit log</h2>
-      <p>
-        Every change is recorded, newest first: who did what, when, and whether it came from Discord or the website.
-        Filter it by board, person or kind of change.
-      </p>
+      <h2>{t('guides.website.auditTitle')}</h2>
+      <p>{t('guides.website.audit')}</p>
     </GuideLayout>
   )
 }

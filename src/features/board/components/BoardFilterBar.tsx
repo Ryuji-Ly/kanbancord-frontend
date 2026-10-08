@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { FiSearch, FiX } from 'react-icons/fi'
+import { t } from '../../../i18n'
 import type { LabelEntry, PriorityEntry } from '../../../services/boardsService'
 import type { ServerFeatures } from '../../../services/featuresService'
 import type { AssigneeMember } from '../boardModel'
@@ -54,7 +55,7 @@ export function BoardFilterBar({ filters, onChange, features, people, labels, pr
       ref={rootRef}
       className={`kc-task-filters${open ? ' kc-task-filters--open' : ''}`}
       role="search"
-      aria-label="Search and filter tasks"
+      aria-label={t('board.filters.label')}
       onFocus={() => setOpen(true)}
       onBlur={(event) => {
         if (!rootRef.current?.contains(event.relatedTarget as Node | null)) setOpen(false)
@@ -66,8 +67,8 @@ export function BoardFilterBar({ filters, onChange, features, people, labels, pr
           ref={searchRef}
           type="search"
           className="kc-input"
-          placeholder="Search tasks  /"
-          aria-label="Search tasks by title or description"
+          placeholder={t('board.filters.searchPlaceholder')}
+          aria-label={t('board.filters.searchLabel')}
           value={filters.query}
           onChange={(event) => set({ query: event.target.value })}
           onKeyDown={(event) => {
@@ -82,10 +83,10 @@ export function BoardFilterBar({ filters, onChange, features, people, labels, pr
       {open && (
         <>
           {features.ASSIGNEES && (
-            <select className="kc-input" aria-label="Filter by assignee" value={filters.assignee} onChange={(event) => set({ assignee: event.target.value })}>
-              <option value="">Anyone</option>
-              <option value="me">Assigned to me</option>
-              <option value="none">Unassigned</option>
+            <select className="kc-input" aria-label={t('board.filters.byAssignee')} value={filters.assignee} onChange={(event) => set({ assignee: event.target.value })}>
+              <option value="">{t('board.filters.anyone')}</option>
+              <option value="me">{t('board.filters.assignedToMe')}</option>
+              <option value="none">{t('board.filters.unassigned')}</option>
               {people.map((person) => (
                 <option key={person.userId} value={person.userId}>
                   {person.nickname ?? person.displayName}
@@ -94,8 +95,8 @@ export function BoardFilterBar({ filters, onChange, features, people, labels, pr
             </select>
           )}
           {features.LABELS && labels.length > 0 && (
-            <select className="kc-input" aria-label="Filter by label" value={filters.label} onChange={(event) => set({ label: event.target.value })}>
-              <option value="">Any label</option>
+            <select className="kc-input" aria-label={t('board.filters.byLabel')} value={filters.label} onChange={(event) => set({ label: event.target.value })}>
+              <option value="">{t('board.filters.anyLabel')}</option>
               {labels.map((label) => (
                 <option key={label.labelId} value={String(label.labelId)}>
                   {label.name}
@@ -104,27 +105,27 @@ export function BoardFilterBar({ filters, onChange, features, people, labels, pr
             </select>
           )}
           {features.PRIORITIES && priorities.length > 0 && (
-            <select className="kc-input" aria-label="Filter by priority" value={filters.priority} onChange={(event) => set({ priority: event.target.value })}>
-              <option value="">Any priority</option>
+            <select className="kc-input" aria-label={t('board.filters.byPriority')} value={filters.priority} onChange={(event) => set({ priority: event.target.value })}>
+              <option value="">{t('board.filters.anyPriority')}</option>
               {priorities.map((level) => (
                 <option key={level.priorityId} value={String(level.priorityId)}>
                   {level.name}
                 </option>
               ))}
-              <option value="none">No priority</option>
+              <option value="none">{t('board.filters.noPriority')}</option>
             </select>
           )}
           {features.DUE_DATES && (
             <select
               className="kc-input"
-              aria-label="Filter by due date"
+              aria-label={t('board.filters.byDueDate')}
               value={filters.due}
               onChange={(event) => set({ due: event.target.value as BoardFilters['due'] })}
             >
-              <option value="">Any due date</option>
-              <option value="overdue">Overdue</option>
-              <option value="week">Due in the next 7 days</option>
-              <option value="none">No due date</option>
+              <option value="">{t('board.filters.anyDueDate')}</option>
+              <option value="overdue">{t('board.filters.overdue')}</option>
+              <option value="week">{t('board.filters.dueThisWeek')}</option>
+              <option value="none">{t('board.filters.noDueDate')}</option>
             </select>
           )}
         </>
@@ -132,15 +133,15 @@ export function BoardFilterBar({ filters, onChange, features, people, labels, pr
 
       {filtering && (
         <>
-          <span className="kc-muted kc-task-filter-count" aria-live="polite" title="Dragging tasks waits until filters are cleared">
+          <span className="kc-muted kc-task-filter-count" aria-live="polite" title={t('board.filters.dragWaits')}>
             {shownCount}/{totalCount}
-            {!open && others > 0 && ` · ${others} filter${others === 1 ? '' : 's'}`}
+            {!open && others > 0 && t('board.filters.otherCount', { count: others })}
           </span>
           <button
             type="button"
             className="kc-icon-btn kc-task-filter-clear"
-            aria-label="Clear search and filters"
-            title="Clear search and filters"
+            aria-label={t('board.filters.clear')}
+            title={t('board.filters.clear')}
             onClick={() => onChange(NO_FILTERS)}
           >
             <FiX aria-hidden="true" />

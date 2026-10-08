@@ -1,4 +1,5 @@
 import { FiPlus } from 'react-icons/fi'
+import { t } from '../../../i18n'
 import type { GrantedToGroup, KanbanCatalogEntry } from '../../../services/permissionsService'
 import type { DeleteGroupTarget } from '../types'
 import { PermissionGroupRow } from './PermissionGroupRow'
@@ -67,14 +68,14 @@ export function PermissionsSection({
     <div className="kc-server-perms-section">
       {collapsible && (
         <div className="kc-perms-header-row">
-          <h3>Permissions</h3>
+          <h3>{t('permissions.title')}</h3>
           <button
             type="button"
             className="kc-btn kc-btn-ghost kc-perms-toggle"
             onClick={onToggleCollapsed}
             aria-expanded={!permissionsCollapsed}
           >
-            {permissionsCollapsed ? 'Expand' : 'Collapse'}
+            {permissionsCollapsed ? t('permissions.expand') : t('permissions.collapse')}
           </button>
         </div>
       )}
@@ -82,7 +83,7 @@ export function PermissionsSection({
       {!permissionsCollapsed && permissionsLoading && (
         <div className="kc-loading-state" aria-live="polite" aria-busy="true">
           <span className="kc-spinner" aria-hidden="true" />
-          <span className="kc-muted">Loading permissions...</span>
+          <span className="kc-muted">{t('permissions.loading')}</span>
         </div>
       )}
       {!permissionsCollapsed && !permissionsLoading && (
@@ -91,17 +92,17 @@ export function PermissionsSection({
             <input
               className="kc-perms-filter"
               type="text"
-              placeholder="Search entries..."
+              placeholder={t('permissions.searchEntries')}
               value={permFilter}
               onChange={(e) => onPermFilterChange(e.target.value)}
-              aria-label="Filter permissions"
+              aria-label={t('permissions.filter')}
             />
             <button
               type="button"
               className="kc-btn kc-btn-primary kc-perms-add-btn"
               onClick={onOpenNewEntryModal}
             >
-              <FiPlus aria-hidden="true" /> Add Entry
+              <FiPlus aria-hidden="true" /> {t('permissions.addEntryButton')}
             </button>
           </div>
 

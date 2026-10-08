@@ -1,4 +1,6 @@
 import { FiX } from 'react-icons/fi'
+import { t } from '../../i18n'
+import { Trans } from '../../i18n/Trans'
 import { KANBAN_PERM_INFO } from '../../services/permissionsService'
 import type { DeleteGroupTarget } from './types'
 
@@ -17,29 +19,30 @@ export function DeleteGroupModal({ target, deleteGroupSaving, onClose, onConfirm
       className="kc-modal-overlay"
       role="dialog"
       aria-modal="true"
-      aria-label="Confirm Delete Permission Entry"
+      aria-label={t('permissions.deleteGroup.confirmLabel')}
       onClick={() => {
         if (!deleteGroupSaving) onClose()
       }}
     >
       <div className="kc-modal kc-modal--confirm" onClick={(e) => e.stopPropagation()}>
         <div className="kc-modal-header">
-          <h3 className="kc-modal-title">Delete Permission Entry</h3>
+          <h3 className="kc-modal-title">{t('permissions.deleteGroup.title')}</h3>
           <button
             type="button"
             className="kc-modal-close"
             onClick={onClose}
             disabled={deleteGroupSaving}
-            aria-label="Close"
+            aria-label={t('common.close')}
           >
             <FiX aria-hidden="true" />
           </button>
         </div>
         <div className="kc-modal-body">
           <p className="kc-modal-confirm-desc">
-            Are you sure you want to remove all Kanban permissions for <strong>{target.subjectDisplay}</strong>?
-            This will delete the following {target.permissions.length} permission
-            {target.permissions.length !== 1 ? 's' : ''}:
+            <Trans
+              k="permissions.deleteGroup.confirm"
+              values={{ subject: target.subjectDisplay, count: target.permissions.length }}
+            />
           </p>
           <div className="kc-modal-confirm-chips">
             {target.permissions.map((p) => (
@@ -56,10 +59,10 @@ export function DeleteGroupModal({ target, deleteGroupSaving, onClose, onConfirm
         </div>
         <div className="kc-modal-footer">
           <button type="button" className="kc-btn kc-btn-ghost" onClick={onClose} disabled={deleteGroupSaving}>
-            Cancel
+            {t('common.cancel')}
           </button>
           <button type="button" className="kc-btn kc-btn-danger" onClick={onConfirm} disabled={deleteGroupSaving}>
-            {deleteGroupSaving ? 'Deleting…' : 'Delete All'}
+            {deleteGroupSaving ? t('common.deleting') : t('permissions.deleteGroup.deleteAll')}
           </button>
         </div>
       </div>

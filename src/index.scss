@@ -2689,6 +2689,19 @@ pre {
   white-space: nowrap;
 }
 
+/* A heading over a group of sections: not selectable, smaller than the sections but bold. */
+.kc-server-settings-group {
+  margin: 12px 10px 4px;
+  color: var(--kc-text-dim);
+  font-size: 0.78rem;
+  font-weight: 700;
+  user-select: none;
+}
+
+.kc-server-settings-server + .kc-server-settings-group {
+  margin-top: 0;
+}
+
 .kc-server-settings-tab {
   border: none;
   border-radius: 6px;
@@ -2755,6 +2768,11 @@ pre {
 
   .kc-server-settings-server {
     display: none;
+  }
+
+  .kc-server-settings-group {
+    margin: 0 4px 0 8px;
+    white-space: nowrap;
   }
 
   .kc-server-settings-tab {

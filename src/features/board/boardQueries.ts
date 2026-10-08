@@ -1,3 +1,4 @@
+import { t } from '../../i18n'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { useOptimisticCache } from '../../api/useOptimisticCache'
 import { fetchBoardSnapshot, type BoardSnapshot } from '../../services/boardsService'
@@ -320,7 +321,7 @@ export function useCommentMutations(serverId: string, boardId: string, taskId: n
   const comments = useOptimisticCache<TaskCommentEntry[]>(boardKeys.comments(serverId, boardId, taskId ?? -1))
   const settle = { onSettled: () => comments.refresh() }
   const currentTaskId = () => {
-    if (taskId === null) throw new Error('No task is selected.')
+    if (taskId === null) throw new Error(t('board.panel.noTaskSelected'))
     return taskId
   }
 

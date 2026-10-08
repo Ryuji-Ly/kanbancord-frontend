@@ -1,3 +1,4 @@
+import { t } from '../../i18n'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useOptimisticCache } from '../../api/useOptimisticCache'
 import { archiveBoard, createBoard, deleteBoard, updateBoard } from '../../services/boardsService'
@@ -105,7 +106,7 @@ export function useServerMutations(serverId: string) {
     mutationFn: async ({ boardId, details, permissions }: BoardSave) => {
       let savedBoardId = boardId
       if (!savedBoardId) {
-        if (!details) throw new Error('A new board needs a name.')
+        if (!details) throw new Error(t('dashboard.workspace.newBoardNeedsName'))
         savedBoardId = String((await createBoard(serverId, details)).boardId)
       } else if (details) {
         await updateBoard(serverId, savedBoardId, { name: details.name, description: details.description })

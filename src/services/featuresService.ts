@@ -1,23 +1,43 @@
 import { parseError } from '../api/http'
 import { apiFetch } from '../api/session'
+import { t } from '../i18n'
 
 /** The optional parts of KanbanCord. With all of them off, a server is in simple mode. */
 export type FeatureKey = 'LABELS' | 'PRIORITIES' | 'ASSIGNEES' | 'COMMENTS' | 'DUE_DATES' | 'PERMISSIONS'
 
 export type ServerFeatures = Record<FeatureKey, boolean>
 
-export const FEATURES: { key: FeatureKey; label: string; description: string }[] = [
-  { key: 'LABELS', label: 'Labels', description: 'Coloured tags on tasks, managed per board.' },
-  { key: 'PRIORITIES', label: 'Priorities', description: 'A priority level on each task, from Critical to Ignorable.' },
-  { key: 'ASSIGNEES', label: 'Assignees', description: 'Assign members to tasks.' },
-  { key: 'COMMENTS', label: 'Comments', description: 'Discussion on each task.' },
-  { key: 'DUE_DATES', label: 'Due dates', description: 'A date and time each task is due.' },
-  {
-    key: 'PERMISSIONS',
-    label: 'Custom permissions',
-    description: 'Edit who may do what, per server and per board. While off, access follows Discord permissions.',
+/** Where each feature's name and description are in the messages. */
+const FEATURE_MESSAGES = {
+  LABELS: 'labels',
+  PRIORITIES: 'priorities',
+  ASSIGNEES: 'assignees',
+  COMMENTS: 'comments',
+  DUE_DATES: 'dueDates',
+  PERMISSIONS: 'permissions',
+} as const
+
+/** Every feature, in the order they are listed. Names are read when shown, in the reader's language. */
+export const FEATURES: {
+  key: FeatureKey
+  readonly label: string
+  readonly description: string
+  /** "Show labels", for hiding it in your own simple view. */
+  readonly show: string
+}[] = (
+  Object.keys(FEATURE_MESSAGES) as FeatureKey[]
+).map((key) => ({
+  key,
+  get label() {
+    return t(`common.features.${FEATURE_MESSAGES[key]}.label`)
   },
-]
+  get description() {
+    return t(`common.features.${FEATURE_MESSAGES[key]}.description`)
+  },
+  get show() {
+    return t(`common.features.${FEATURE_MESSAGES[key]}.show`)
+  },
+}))
 
 /** Everything off: what a new server starts with. */
 export const NO_FEATURES: ServerFeatures = {

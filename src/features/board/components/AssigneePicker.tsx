@@ -1,4 +1,5 @@
 import { useDeferredValue, useMemo, useState, type ReactNode } from 'react'
+import { t } from '../../../i18n'
 import { resolveAssigneeDisplayName, searchMembers, type AssigneeMember } from '../boardModel'
 import { AssigneeAvatar } from './TaskCard'
 
@@ -34,7 +35,7 @@ export function AssigneePicker({ assignees, candidates, searchable, canRemove, o
               <button
                 type="button"
                 className="kc-task-assignee-chip-remove"
-                aria-label={`Remove ${resolveAssigneeDisplayName(assignee)}`}
+                aria-label={t('permissions.row.removeNamed', { name: resolveAssigneeDisplayName(assignee) })}
                 onClick={() => onRemove(assignee)}
               >
                 ×
@@ -47,7 +48,7 @@ export function AssigneePicker({ assignees, candidates, searchable, canRemove, o
           <input
             className="kc-task-assignee-input"
             value={query}
-            placeholder="Search user"
+            placeholder={t('board.pickers.searchUser')}
             onChange={(event) => setQuery(event.target.value)}
           />
         )}
