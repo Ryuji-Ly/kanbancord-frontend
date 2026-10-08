@@ -104,6 +104,7 @@
     "deleteTitle": "Delete this feed?",
     "deleteFeed": "Delete feed",
     "feedDeleteFailed": "The feed could not be deleted",
-    "deleteConfirm": "The bot stops posting these updates. Messages it already posted stay."
+    "deleteConfirm": "The bot stops posting these updates. Messages it already posted stay.",
+    "auditCannotPost": "The bot cannot post in #{channel}, so nothing is posted there. Give it permission to view the channel and send messages there, or choose another channel."
   }
 }

@@ -33,7 +33,9 @@
     "updatesGoTo": "A task's updates go to",
     "private": "Private threads",
     "privateNotPossible": "Not possible in this channel: private threads need a text channel where the bot may create private threads.",
-    "privateHint": "Only the task's creator and assignees are in the thread, plus server moderators. New assignees are added."
+    "privateHint": "Only the task's creator and assignees are in the thread, plus server moderators. New assignees are added.",
+    "cannotMake": "The bot cannot make threads in #{channel}, so tasks get no new threads. Give it View Channel, Send Messages in Threads and Create Public Threads there, or choose another channel.",
+    "cannotMakePrivate": "The bot cannot make private threads in #{channel}, so tasks get no new threads. Give it View Channel, Send Messages in Threads and Create Private Threads there, or choose another channel."
   },
   "usage_one": "{count} task",
   "usage_other": "{count} tasks",
