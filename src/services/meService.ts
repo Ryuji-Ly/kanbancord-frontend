@@ -33,6 +33,16 @@ export async function patchPreferences(changes: Record<string, unknown>): Promis
   return response.json() as Promise<Record<string, unknown>>
 }
 
+/** Asks the developer for the website in another language (a language tag such as pt-BR). */
+export async function requestLanguage(language: string, note: string | null): Promise<void> {
+  const response = await apiFetch('/api/me/language-requests', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ language, note }),
+  })
+  if (!response.ok) throw new Error(await parseError(response))
+}
+
 export type SessionEntry = {
   sessionId: string
   createdAt: string

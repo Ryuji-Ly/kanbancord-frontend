@@ -69,7 +69,8 @@ Pushes to `main` build a Docker image (nginx serving the built site) and publish
 Every piece of text the website shows is in [`src/i18n/locales/en`](src/i18n/locales/en), one JSON file per area. To
 add a language, copy those files to `src/i18n/locales/<code>` (`fr`, `de`, `pt-BR`, ...) and translate the values:
 the language is picked up on its own, offered under Preferences → Appearance, and chosen automatically for browsers set
-to it. Anything left untranslated shows in English.
+to it. Anything left untranslated shows in English. Missing languages can be requested from the same place; requests
+reach the developer by direct message.
 
 - Keep `{placeholders}` and `<tags>` as they are; move them wherever the sentence needs them.
 - Text that depends on a number has one entry per plural form (`tasks_one`, `tasks_other`, plus `_zero`, `_two`,

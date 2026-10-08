@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import { chooseLanguage, chosenLanguage, language, LANGUAGES, languageName, t } from '../../i18n'
-import { clearPendingAccountDialog, reopenAccountDialog } from '../account/accountDialog'
+import { t } from '../../i18n'
 import { ColorField } from '../boardSettings/ColorField'
+import { LanguageSettings } from './LanguageSettings'
 import {
   CORE_FIELDS,
   DEFAULT_TOKENS,
@@ -44,7 +44,7 @@ export function AppearanceSettings({ theme, onChange }: AppearanceSettingsProps)
 
   return (
     <div className="kc-appearance">
-      {LANGUAGES.length > 1 && <LanguageSection />}
+      <LanguageSettings />
 
       <section className="kc-appearance-section">
         <h4>{t('account.appearance.theme')}</h4>
@@ -144,38 +144,6 @@ export function AppearanceSettings({ theme, onChange }: AppearanceSettingsProps)
         )}
       </section>
     </div>
-  )
-}
-
-/** The website's language: the browser's, or one picked here (remembered on this browser). */
-function LanguageSection() {
-  const [chosen, setChosen] = useState(chosenLanguage)
-  return (
-    <section className="kc-appearance-section">
-      <h4>{t('account.appearance.language')}</h4>
-      <select
-        className="kc-input"
-        aria-label={t('account.appearance.language')}
-        value={chosen ?? ''}
-        onChange={(event) => {
-          const code = event.target.value || null
-          setChosen(code)
-          // The app is drawn afresh in the new language; this dialog opens again where it was.
-          const before = language()
-          reopenAccountDialog('appearance')
-          void chooseLanguage(code).then(() => {
-            if (language() === before) clearPendingAccountDialog()
-          })
-        }}
-      >
-        <option value="">{t('account.appearance.browserLanguage')}</option>
-        {LANGUAGES.map((code) => (
-          <option key={code} value={code} lang={code}>
-            {languageName(code)}
-          </option>
-        ))}
-      </select>
-    </section>
   )
 }
 

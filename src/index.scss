@@ -2689,6 +2689,20 @@ pre {
   white-space: nowrap;
 }
 
+.kc-language-request {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 12px;
+  max-width: 460px;
+}
+
+.kc-language-request-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
 /* A heading over a group of sections: not selectable, smaller than the sections but bold. */
 .kc-server-settings-group {
   margin: 12px 10px 4px;
@@ -2700,6 +2714,11 @@ pre {
 
 .kc-server-settings-server + .kc-server-settings-group {
   margin-top: 0;
+}
+
+/* Sections under a heading sit further in than the heading, so the headings read as categories. */
+.kc-server-settings-tab--grouped {
+  margin-left: 20px;
 }
 
 .kc-server-settings-tab {
@@ -2773,6 +2792,10 @@ pre {
   .kc-server-settings-group {
     margin: 0 4px 0 8px;
     white-space: nowrap;
+  }
+
+  .kc-server-settings-tab--grouped {
+    margin-left: 0;
   }
 
   .kc-server-settings-tab {
