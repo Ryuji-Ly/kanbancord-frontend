@@ -50,7 +50,9 @@ export function ServerSettingsDialog({
               )}
               <button
                 type="button"
-                className={`kc-server-settings-tab${section.key === current?.key ? ' kc-server-settings-tab--active' : ''}`}
+                className={`kc-server-settings-tab${section.group ? ' kc-server-settings-tab--grouped' : ''}${
+                  section.key === current?.key ? ' kc-server-settings-tab--active' : ''
+                }`}
                 aria-current={section.key === current?.key ? 'page' : undefined}
                 onClick={() => setActive(section.key)}
               >

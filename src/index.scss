@@ -2716,6 +2716,11 @@ pre {
   margin-top: 0;
 }
 
+/* Sections under a heading sit further in than the heading, so the headings read as categories. */
+.kc-server-settings-tab--grouped {
+  margin-left: 20px;
+}
+
 .kc-server-settings-tab {
   border: none;
   border-radius: 6px;
@@ -2787,6 +2792,10 @@ pre {
   .kc-server-settings-group {
     margin: 0 4px 0 8px;
     white-space: nowrap;
+  }
+
+  .kc-server-settings-tab--grouped {
+    margin-left: 0;
   }
 
   .kc-server-settings-tab {
