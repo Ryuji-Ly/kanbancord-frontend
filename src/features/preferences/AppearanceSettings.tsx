@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { chooseLanguage, chosenLanguage, LANGUAGES, languageName, t } from '../../i18n'
+import { chooseLanguage, chosenLanguage, language, LANGUAGES, languageName, t } from '../../i18n'
+import { clearPendingAccountDialog, reopenAccountDialog } from '../account/accountDialog'
 import { ColorField } from '../boardSettings/ColorField'
 import {
   CORE_FIELDS,
@@ -159,7 +160,12 @@ function LanguageSection() {
         onChange={(event) => {
           const code = event.target.value || null
           setChosen(code)
-          void chooseLanguage(code)
+          // The app is drawn afresh in the new language; this dialog opens again where it was.
+          const before = language()
+          reopenAccountDialog('appearance')
+          void chooseLanguage(code).then(() => {
+            if (language() === before) clearPendingAccountDialog()
+          })
         }}
       >
         <option value="">{t('account.appearance.browserLanguage')}</option>

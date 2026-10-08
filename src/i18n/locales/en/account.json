@@ -118,7 +118,8 @@
     "appearance": "Appearance",
     "accessibility": "Accessibility",
     "simpleView": "Simple view",
-    "sessions": "Sessions"
+    "sessions": "Sessions",
+    "dialogTitle": "Preferences and settings"
   },
   "sessions": {
     "unknownDevice": "Unknown device",
