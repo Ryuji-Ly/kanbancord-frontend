@@ -1,0 +1,70 @@
+{
+  "categories": {
+    "SERVER": "Server",
+    "BOARD": "Boards",
+    "COLUMN": "Columns",
+    "TASK": "Tasks",
+    "COMMENT": "Comments",
+    "LABEL": "Labels and priorities"
+  },
+  "flags": {
+    "VIEW_CHANNEL": "View Channels",
+    "MANAGE_GUILD": "Manage Server",
+    "VIEW_AUDIT_LOG": "View Audit Log"
+  },
+  "everyoneWith": "everyone with {permission}",
+  "personally": "{name} personally",
+  "where": {
+    "default": "default",
+    "board": "this board",
+    "server": "server"
+  },
+  "why": {
+    "owner": "Allowed: the server owner may do everything",
+    "admin": "Allowed: administrators may do everything",
+    "adminRule": "Allowed: administrators may do everything ({subject})",
+    "open": "Allowed: open permissions let everyone who can talk do this",
+    "none": "Denied: no rule allows it",
+    "byDefault": "{result} by the default for {subject}",
+    "byBoard": "{result} by the board's rule for {subject}",
+    "byServer": "{result} by the server's rule for {subject}"
+  },
+  "allowed": "Allowed",
+  "denied": "Denied",
+  "intro": "See what someone may do, and which rule decides each thing. Pick a member to start from their roles, then add or remove roles to see what would change. Or check a set of roles on its own.",
+  "introBoard": "See what someone may do on this board, and which rule decides each thing. Pick a member to start from their roles, then add or remove roles to see what would change. Or check a set of roles on its own.",
+  "check": "Check",
+  "aMember": "A member",
+  "rolesOnly": "Roles only",
+  "searchMembers": "Search members by name",
+  "whereLabel": "Where",
+  "serverWide": "Server-wide",
+  "someonesRoles": "{name}’s roles",
+  "theirRoles": "Their roles",
+  "unknownRole": "Unknown role",
+  "without": "Without {role}",
+  "thisRole": "this role",
+  "addRole": "Add a role",
+  "addRoleOption": "Add a role…",
+  "whatIf": "Showing {name} with different roles than they have.",
+  "them": "them",
+  "realRoles": "Use their real roles",
+  "start": "Search for a member above, or choose Roles only.",
+  "failed": "The check failed",
+  "notes": {
+    "serverWide": "Server-wide: what applies on every board that has no rules of its own.",
+    "customOff": "Custom permissions are off, so the defaults apply: what each Discord permission allows.",
+    "open": "Open permissions are on: everyone who can view channels and send messages may work with boards.",
+    "notMember": "{name} is not in the server, so only rules for them personally count.",
+    "discord": "Discord permissions that matter here: {permissions}."
+  },
+  "thisPerson": "This person",
+  "show": "Show",
+  "allowedCount_one": "Allowed ({count})",
+  "allowedCount_other": "Allowed ({count})",
+  "deniedCount_one": "Denied ({count})",
+  "deniedCount_other": "Denied ({count})",
+  "outweighs": "Outweighs: {rules}",
+  "overriddenAllow": "Allow for {subject} ({where})",
+  "overriddenDeny": "Deny for {subject} ({where})"
+}

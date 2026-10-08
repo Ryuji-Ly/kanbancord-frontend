@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { t } from '../../../i18n'
 import type { PriorityEntry } from '../../../services/boardsService'
 import { FiFlag } from 'react-icons/fi'
 import { priorityStyle } from '../boardModel'
@@ -20,7 +21,7 @@ export function PriorityBadge({
       style={priorityStyle(priority.color)}
     >
       <FiFlag className="kc-priority-flag" aria-hidden="true" />
-      {priority.position !== undefined && <span className="kc-priority-rank">P{priority.position}</span>}
+      {priority.position !== undefined && <span className="kc-priority-rank">{t('board.priority.rank', { position: priority.position })}</span>}
       {priority.name}
     </span>
   )
@@ -76,8 +77,8 @@ export function PriorityPicker({ priorities, value, canCreate, onChange, onCreat
         <input
           className="kc-input kc-priority-picker-input"
           value={query}
-          placeholder={open ? (canCreate ? 'Search or add a level' : 'Search') : current ? '' : 'None'}
-          aria-label="Priority"
+          placeholder={open ? (canCreate ? t('board.priority.searchOrAdd') : t('board.priority.search')) : current ? '' : t('board.priority.none')}
+          aria-label={t('board.fields.priority')}
           role="combobox"
           aria-expanded={open}
           onFocus={() => setOpen(true)}
@@ -109,11 +110,11 @@ export function PriorityPicker({ priorities, value, canCreate, onChange, onCreat
       </div>
 
       {open && (
-        <ul className="kc-task-assignee-results kc-priority-picker-options" role="listbox" aria-label="Priority levels">
+        <ul className="kc-task-assignee-results kc-priority-picker-options" role="listbox" aria-label={t('board.priority.levels')}>
           {!needle && (
             <li>
               <button type="button" className="kc-task-assignee-result" onMouseDown={(e) => e.preventDefault()} onClick={() => choose(null)}>
-                <span className="kc-muted">None</span>
+                <span className="kc-muted">{t('board.priority.none')}</span>
               </button>
             </li>
           )}
@@ -132,7 +133,7 @@ export function PriorityPicker({ priorities, value, canCreate, onChange, onCreat
           {offerCreate && (
             <li>
               <button type="button" className="kc-task-assignee-result" disabled={creating} onMouseDown={(e) => e.preventDefault()} onClick={() => void create()}>
-                {creating ? 'Adding…' : `Add priority "${query.trim()}"`}
+                {creating ? t('common.adding') : t('board.priority.add', { name: query.trim() })}
               </button>
             </li>
           )}

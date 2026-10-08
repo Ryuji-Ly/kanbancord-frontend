@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { readableError } from '../../api/http'
+import { t } from '../../i18n'
+import { Trans } from '../../i18n/Trans'
 import type { LabelEntry, TaskLabelEntry } from '../../services/boardsService'
 import { nextLabelColor } from '../board/boardModel'
 import { ColorField } from './ColorField'
@@ -28,7 +30,7 @@ export function LabelsSettings({ labels, taskLabels, canCreate, canEdit, canDele
 
   function run(action: Promise<unknown>) {
     setError('')
-    action.catch((err: unknown) => setError(readableError(err, 'The change could not be saved')))
+    action.catch((err: unknown) => setError(readableError(err, t('common.changeNotSaved'))))
   }
 
   function add() {
@@ -52,13 +54,13 @@ export function LabelsSettings({ labels, taskLabels, canCreate, canEdit, canDele
   return (
     <section className="kc-board-modal-section kc-board-modal-section--half">
       <div className="kc-board-modal-section-head">
-        <h4>Labels</h4>
-        <p className="kc-muted">Labels this board's tasks can be tagged with. Changes here apply immediately.</p>
+        <h4>{t('board.fields.labels')}</h4>
+        <p className="kc-muted">{t('settings.labels.intro')}</p>
       </div>
       {error && <p className="kc-banner">{error}</p>}
 
       {labels.length === 0 ? (
-        <p className="kc-muted">No labels yet.</p>
+        <p className="kc-muted">{t('settings.labels.none')}</p>
       ) : (
         <ul className="kc-settings-list">
           {labels.map((label) => (
@@ -68,13 +70,13 @@ export function LabelsSettings({ labels, taskLabels, canCreate, canEdit, canDele
                   <ColorField
                     key={label.color}
                     value={label.color}
-                    label={`Colour of ${label.name}`}
+                    label={t('settings.colourOf', { name: label.name })}
                     onCommit={(color) => save(label, { color })}
                   />
                   <input
                     key={label.name}
                     className="kc-input kc-settings-name"
-                    aria-label="Label name"
+                    aria-label={t('settings.labels.name')}
                     maxLength={50}
                     defaultValue={label.name}
                     onBlur={(event) => save(label, { name: event.target.value })}
@@ -87,11 +89,11 @@ export function LabelsSettings({ labels, taskLabels, canCreate, canEdit, canDele
                 <LabelChip label={label} />
               )}
               <span className="kc-muted kc-settings-usage">
-                {usage(label.labelId)} task{usage(label.labelId) === 1 ? '' : 's'}
+                {t('settings.usage', { count: usage(label.labelId) })}
               </span>
               {canDelete && (
                 <button type="button" className="kc-btn kc-btn-ghost kc-btn-small" onClick={() => setDeleting(label)}>
-                  Delete
+                  {t('common.delete')}
                 </button>
               )}
             </li>
@@ -104,13 +106,13 @@ export function LabelsSettings({ labels, taskLabels, canCreate, canEdit, canDele
           <input
             type="color"
             className="kc-color-input"
-            aria-label="Colour of the new label"
+            aria-label={t('settings.labels.newColour')}
             value={color}
             onChange={(event) => setNewColor(event.target.value)}
           />
           <input
             className="kc-input kc-settings-name"
-            placeholder="New label, e.g. frontend"
+            placeholder={t('settings.labels.newPlaceholder')}
             maxLength={50}
             value={newName}
             onChange={(event) => setNewName(event.target.value)}
@@ -124,14 +126,14 @@ export function LabelsSettings({ labels, taskLabels, canCreate, canEdit, canDele
             disabled={!newName.trim() || mutations.addLabel.isPending}
             onClick={add}
           >
-            Add label
+            {t('settings.labels.add')}
           </button>
         </div>
       )}
 
       {deleting && (
         <ConfirmDialog
-          title="Delete label"
+          title={t('settings.labels.deleteTitle')}
           busy={mutations.removeLabel.isPending}
           onCancel={() => setDeleting(null)}
           onConfirm={() => {
@@ -140,9 +142,8 @@ export function LabelsSettings({ labels, taskLabels, canCreate, canEdit, canDele
           }}
         >
           <p>
-            Delete <strong>{deleting.name}</strong> from this board?
-            {usage(deleting.labelId) > 0 &&
-              ` It will be removed from the ${usage(deleting.labelId)} task${usage(deleting.labelId) === 1 ? '' : 's'} using it.`}
+            <Trans k="settings.labels.deleteConfirm" values={{ name: deleting.name }} />
+            {usage(deleting.labelId) > 0 && t('settings.labels.deleteUsage', { count: usage(deleting.labelId) })}
           </p>
         </ConfirmDialog>
       )}

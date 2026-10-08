@@ -1,62 +1,62 @@
 {
   "/about": {
-    "hash": "db169647e36be1f1",
+    "hash": "2dd7614fb7767b1d",
     "lastmod": "2026-10-01"
   },
   "/faq": {
-    "hash": "703c976240a78f77",
+    "hash": "c766c91088f3efc1",
     "lastmod": "2026-09-28"
   },
   "/support": {
-    "hash": "2de9b15c0b510f52",
+    "hash": "cecdea4c31c728fc",
     "lastmod": "2026-09-25"
   },
   "/privacy": {
-    "hash": "c3b00421313809e7",
+    "hash": "c331fd7dc5f69ba5",
     "lastmod": "2026-09-25"
   },
   "/terms": {
-    "hash": "8f825194db3e46f3",
+    "hash": "746242b29cd71756",
     "lastmod": "2026-09-25"
   },
   "/guides": {
-    "hash": "37081ae4a3d4021a",
+    "hash": "0cdbd6454ddde969",
     "lastmod": "2026-10-01"
   },
   "/guides/getting-started": {
-    "hash": "cd3fe2f0400e7406",
+    "hash": "40e17cb73f700284",
     "lastmod": "2026-10-01"
   },
   "/guides/discord-to-do-list": {
-    "hash": "cd105bba149e438e",
+    "hash": "684be98dc4231e18",
     "lastmod": "2026-09-28"
   },
   "/guides/assign-tasks": {
-    "hash": "3788a3f6a9324037",
+    "hash": "c693548c6abf25c0",
     "lastmod": "2026-09-28"
   },
   "/guides/due-dates-and-reminders": {
-    "hash": "3d71bb5ed5a229cf",
+    "hash": "9b2fd28f58146029",
     "lastmod": "2026-09-28"
   },
   "/guides/labels-and-priorities": {
-    "hash": "7796dd0568b0db70",
+    "hash": "7bc2aa07dfadacbb",
     "lastmod": "2026-09-28"
   },
   "/guides/board-posts-and-feeds": {
-    "hash": "fa477fb5deebfea9",
+    "hash": "8f6b8d7379ed806a",
     "lastmod": "2026-10-01"
   },
   "/guides/feeds-and-threads": {
-    "hash": "ee688477af43ef5a",
+    "hash": "256ecc8b1cb7daf0",
     "lastmod": "2026-10-01"
   },
   "/guides/roles-and-permissions": {
-    "hash": "be5f5e85c6901afe",
+    "hash": "996f3060dc0f9dba",
     "lastmod": "2026-10-01"
   },
   "/guides/website-board": {
-    "hash": "26bc29497e4ad8be",
+    "hash": "61baa23ad092b586",
     "lastmod": "2026-09-28"
   }
 }

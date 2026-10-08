@@ -24,9 +24,13 @@ import {
   type ServerRoleEntry,
 } from '../../../services/permissionsService'
 import { FiX } from 'react-icons/fi'
+import { t } from '../../../i18n'
+import { Trans } from '../../../i18n/Trans'
 
-const DEFAULT_CREATE_COLUMNS = ['To Do', 'In Progress', 'Done']
-const DEFAULT_CREATE_COLUMNS_TEXT = DEFAULT_CREATE_COLUMNS.join('\n')
+/** The columns a new board starts with, in the reader's language. */
+function defaultColumns(): string[] {
+  return [t('dashboard.boardModal.defaultColumns.toDo'), t('dashboard.boardModal.defaultColumns.inProgress'), t('dashboard.boardModal.defaultColumns.done')]
+}
 
 type BoardModalProps = {
   show: boolean
@@ -94,7 +98,7 @@ export function BoardModal({
   const [openAddGroupKey, setOpenAddGroupKey] = useState('')
   const [newPermId, setNewPermId] = useState<number | ''>('')
   const [newPermState, setNewPermState] = useState<'ALLOW' | 'DENY'>('ALLOW')
-  const [createColumnsText, setCreateColumnsText] = useState(DEFAULT_CREATE_COLUMNS_TEXT)
+  const [createColumnsText, setCreateColumnsText] = useState(() => defaultColumns().join('\n'))
   const [showAddEntryModal, setShowAddEntryModal] = useState(false)
   const [modalSearch, setModalSearch] = useState('')
   const [modalSubjectType, setModalSubjectType] = useState<string | null>(null)
@@ -164,7 +168,7 @@ export function BoardModal({
     const available = serverMembers.filter((member) => !existingSubjectIds.USER.has(member.userId))
     if (!q) return available
     return available.filter((member) => {
-      const displayName = member.displayName ?? member.nickname ?? `User #${member.userId}`
+      const displayName = member.displayName ?? member.nickname ?? t('dashboard.boardModal.userNumber', { id: member.userId })
       return (
         displayName.toLowerCase().includes(q) ||
         (member.username?.toLowerCase().includes(q) ?? false) ||
@@ -324,75 +328,75 @@ export function BoardModal({
         return true
       })
 
-    return names.length > 0 ? names : DEFAULT_CREATE_COLUMNS
+    return names.length > 0 ? names : defaultColumns()
   }
 
   if (!show) return null
 
   return (
     <>
-      <div className="kc-modal-overlay" role="dialog" aria-modal="true" aria-label={mode === 'create' ? 'Create Board' : 'Edit Board'} onClick={onClose}>
+      <div className="kc-modal-overlay" role="dialog" aria-modal="true" aria-label={mode === 'create' ? t('dashboard.boards.create') : t('dashboard.boardModal.edit')} onClick={onClose}>
         <div className="kc-modal kc-board-modal" onClick={(e) => e.stopPropagation()}>
           <div className="kc-modal-header">
-            <h3 className="kc-modal-title">{mode === 'create' ? 'Create Board' : `Configure ${board?.name ?? 'Board'}`}</h3>
-            <button type="button" className="kc-modal-close" onClick={onClose} disabled={saving} aria-label="Close modal">
+            <h3 className="kc-modal-title">{mode === 'create' ? t('dashboard.boards.create') : t('dashboard.boards.configure', { name: board?.name ?? t('dashboard.boardModal.board') })}</h3>
+            <button type="button" className="kc-modal-close" onClick={onClose} disabled={saving} aria-label={t('common.closeModal')}>
               <FiX aria-hidden="true" />
             </button>
           </div>
 
           <div className="kc-board-modal-layout">
-          {mode === 'edit' && !loading && <SectionNav containerRef={bodyRef} label="Board settings sections" />}
+          {mode === 'edit' && !loading && <SectionNav containerRef={bodyRef} label={t('dashboard.boardModal.sections')} />}
           <div className="kc-modal-body kc-board-modal-body" ref={bodyRef}>
             {loading ? (
               <div className="kc-loading-state" aria-live="polite" aria-busy="true">
                 <span className="kc-spinner" aria-hidden="true" />
-                <span className="kc-muted">Loading board configuration...</span>
+                <span className="kc-muted">{t('dashboard.boardModal.loading')}</span>
               </div>
             ) : (
               <>
                 {(canEditDetailsInModal || isArchivedMode) && (
                   <section className="kc-board-modal-section">
                     <div className="kc-board-modal-section-head">
-                      <h4>Board Details</h4>
+                      <h4>{t('dashboard.boardModal.details')}</h4>
                       <p className="kc-muted">
                         {isArchivedMode
-                          ? 'This board is archived. Details are view-only until restored.'
-                          : 'Set the board name and description.'}
+                          ? t('dashboard.boardModal.detailsArchived')
+                          : t('dashboard.boardModal.detailsIntro')}
                       </p>
                     </div>
                     {isArchivedMode ? (
                       <div className="kc-board-modal-static">
                         <div className="kc-field">
-                          <span className="kc-field-label">Name</span>
-                          <p className="kc-board-modal-static-value">{name || 'Unnamed board'}</p>
+                          <span className="kc-field-label">{t('common.name')}</span>
+                          <p className="kc-board-modal-static-value">{name || t('dashboard.boardModal.unnamed')}</p>
                         </div>
                         <div className="kc-field">
-                          <span className="kc-field-label">Description</span>
-                          <p className="kc-board-modal-static-value">{description?.trim() || 'No description set.'}</p>
+                          <span className="kc-field-label">{t('common.description')}</span>
+                          <p className="kc-board-modal-static-value">{description?.trim() || t('dashboard.boards.noDescription')}</p>
                         </div>
                       </div>
                     ) : (
                       <>
                         <label className="kc-field">
-                          <span className="kc-field-label">Name</span>
+                          <span className="kc-field-label">{t('common.name')}</span>
                           <input
                             className="kc-input"
                             type="text"
                             maxLength={100}
                             value={name}
                             onChange={(e) => setName(e.target.value)}
-                            placeholder="Sprint board"
+                            placeholder={t('dashboard.boardModal.namePlaceholder')}
                           />
                         </label>
                         <label className="kc-field">
-                          <span className="kc-field-label">Description</span>
+                          <span className="kc-field-label">{t('common.description')}</span>
                           <textarea
                             className="kc-textarea"
                             maxLength={500}
                             rows={4}
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
-                            placeholder="What this board is used for"
+                            placeholder={t('dashboard.boardModal.descriptionPlaceholder')}
                           />
                         </label>
                       </>
@@ -403,17 +407,17 @@ export function BoardModal({
                 {mode === 'create' && !isArchivedMode && (
                   <section className="kc-board-modal-section">
                     <div className="kc-board-modal-section-head">
-                      <h4>Columns</h4>
-                      <p className="kc-muted">Set columns for the new board. Use one column per line.</p>
+                      <h4>{t('dashboard.boardModal.columns')}</h4>
+                      <p className="kc-muted">{t('dashboard.boardModal.columnsIntro')}</p>
                     </div>
                     <label className="kc-field">
-                      <span className="kc-field-label">Default Columns</span>
+                      <span className="kc-field-label">{t('dashboard.boardModal.defaultColumnsLabel')}</span>
                       <textarea
                         className="kc-textarea"
                         value={createColumnsText}
                         onChange={(e) => setCreateColumnsText(e.target.value)}
                         rows={4}
-                        placeholder={DEFAULT_CREATE_COLUMNS_TEXT}
+                        placeholder={defaultColumns().join('\n')}
                       />
                     </label>
                   </section>
@@ -424,7 +428,7 @@ export function BoardModal({
                     <PermissionsSection
                       canEditPermissions={canEditPermissions}
                       helperText={
-                        mode === 'create' ? 'Adjust inherited board permissions before saving.' : undefined
+                        mode === 'create' ? t('dashboard.boardModal.adjustInherited') : undefined
                       }
                       permissionsCollapsed={permissionsCollapsed}
                       permissionsLoading={false}
@@ -464,23 +468,23 @@ export function BoardModal({
                 {isArchivedMode && (
                   <section className="kc-board-modal-section">
                     <div className="kc-board-modal-section-head">
-                      <h4>Permissions</h4>
-                      <p className="kc-muted">Permissions are locked while the board is archived.</p>
+                      <h4>{t('dashboard.boardModal.permissions')}</h4>
+                      <p className="kc-muted">{t('dashboard.boardModal.permissionsLocked')}</p>
                     </div>
 
                     <div className="kc-perms-toolbar">
                       <input
                         className="kc-perms-filter"
                         type="text"
-                        placeholder="Search entries..."
+                        placeholder={t('permissions.searchEntries')}
                         value={permFilter}
                         onChange={(e) => setPermFilter(e.target.value)}
-                        aria-label="Filter board permission entries"
+                        aria-label={t('dashboard.boardModal.filterEntries')}
                       />
                     </div>
 
                     {filteredGroups.length === 0 ? (
-                      <p className="kc-muted">No board-specific permission entries.</p>
+                      <p className="kc-muted">{t('dashboard.boardModal.noEntries')}</p>
                     ) : (
                       <div className="kc-perms-granted-to-list">
                         {filteredGroups.map((group) => {
@@ -512,7 +516,7 @@ export function BoardModal({
                                       <span
                                         key={perm.id}
                                         className={`kc-perm-button kc-perm-button--${perm.state.toLowerCase()} kc-perm-button--preview`}
-                                        title={`${permName} — ${perm.state}`}
+                                        title={t('permissions.row.chip', { name: permName, state: t(`permissions.state.${perm.state}`) })}
                                       >
                                         <span className="kc-perm-button-text">{permName}</span>
                                       </span>
@@ -533,8 +537,8 @@ export function BoardModal({
                 {mode === 'edit' && board && (canArchive || canDelete) && (
                   <section className="kc-board-modal-section">
                     <div className="kc-board-modal-section-head">
-                      <h4>Board Actions</h4>
-                      <p className="kc-muted">Archive or permanently delete this board.</p>
+                      <h4>{t('dashboard.boardModal.actions')}</h4>
+                      <p className="kc-muted">{t('dashboard.boardModal.actionsIntro')}</p>
                     </div>
                     <div className="kc-board-modal-actions">
                       {canArchive && (
@@ -544,7 +548,7 @@ export function BoardModal({
                           disabled={loading || saving}
                           onClick={() => setShowArchiveConfirm(true)}
                         >
-                          {board.isArchived ? 'Restore Board' : 'Archive Board'}
+                          {board.isArchived ? t('dashboard.boardModal.restore') : t('dashboard.boardModal.archive')}
                         </button>
                       )}
                       {canDelete && (
@@ -554,7 +558,7 @@ export function BoardModal({
                           disabled={loading || saving}
                           onClick={() => setShowDeleteConfirm(true)}
                         >
-                          Delete Board
+                          {t('dashboard.boardModal.delete')}
                         </button>
                       )}
                     </div>
@@ -569,7 +573,7 @@ export function BoardModal({
           {!isArchivedMode && (mode === 'create' || canEditDetailsInModal || canEditPermissionsInModal) && (
             <div className="kc-modal-footer">
               <button type="button" className="kc-btn kc-btn-ghost" onClick={onClose} disabled={saving}>
-                Cancel
+                {t('common.cancel')}
               </button>
               <button
                 type="button"
@@ -584,7 +588,7 @@ export function BoardModal({
                 }
                 disabled={loading || saving || (canEditDetailsInModal && name.trim().length === 0)}
               >
-                {saving ? 'Saving…' : mode === 'create' ? 'Create Board' : 'Save Changes'}
+                {saving ? t('common.saving') : mode === 'create' ? t('dashboard.boards.create') : t('common.saveChanges')}
               </button>
             </div>
           )}
@@ -610,8 +614,8 @@ export function BoardModal({
 
       <AddEntryModal
         show={showAddEntryModal}
-        title="Add Board Permission Entry"
-        ariaLabel="Add Board Permission Entry"
+        title={t('dashboard.boardModal.addEntry')}
+        ariaLabel={t('dashboard.boardModal.addEntry')}
         loading={false}
         saving={false}
         modalSearch={modalSearch}
@@ -635,20 +639,20 @@ export function BoardModal({
           className="kc-modal-overlay"
           role="dialog"
           aria-modal="true"
-          aria-label={board.isArchived ? 'Confirm Restore Board' : 'Confirm Archive Board'}
+          aria-label={board.isArchived ? t('dashboard.boardModal.confirmRestore') : t('dashboard.boardModal.confirmArchive')}
           onClick={() => {
             if (!saving) setShowArchiveConfirm(false)
           }}
         >
           <div className="kc-modal kc-modal--confirm" onClick={(e) => e.stopPropagation()}>
             <div className="kc-modal-header">
-              <h3 className="kc-modal-title">{board.isArchived ? 'Restore Board' : 'Archive Board'}</h3>
+              <h3 className="kc-modal-title">{board.isArchived ? t('dashboard.boardModal.restore') : t('dashboard.boardModal.archive')}</h3>
               <button
                 type="button"
                 className="kc-modal-close"
                 onClick={() => setShowArchiveConfirm(false)}
                 disabled={saving}
-                aria-label="Close"
+                aria-label={t('common.close')}
               >
                 <FiX aria-hidden="true" />
               </button>
@@ -656,8 +660,8 @@ export function BoardModal({
             <div className="kc-modal-body">
               <p className="kc-modal-confirm-desc">
                 {board.isArchived
-                  ? `Are you sure you want to restore ${board.name}? It will become active again.`
-                  : `Are you sure you want to archive ${board.name}? It will be marked as archived.`}
+                  ? t('dashboard.boardModal.restoreConfirm', { name: board.name })
+                  : t('dashboard.boardModal.archiveConfirm', { name: board.name })}
               </p>
             </div>
             <div className="kc-modal-footer">
@@ -667,7 +671,7 @@ export function BoardModal({
                 onClick={() => setShowArchiveConfirm(false)}
                 disabled={saving}
               >
-                Cancel
+                {t('common.cancel')}
               </button>
               <button
                 type="button"
@@ -675,7 +679,7 @@ export function BoardModal({
                 onClick={() => onArchive(!board.isArchived)}
                 disabled={saving}
               >
-                {saving ? 'Applying…' : board.isArchived ? 'Restore Board' : 'Archive Board'}
+                {saving ? t('common.applying') : board.isArchived ? t('dashboard.boardModal.restore') : t('dashboard.boardModal.archive')}
               </button>
             </div>
           </div>
@@ -687,28 +691,27 @@ export function BoardModal({
           className="kc-modal-overlay"
           role="dialog"
           aria-modal="true"
-          aria-label="Confirm Delete Board"
+          aria-label={t('dashboard.boardModal.confirmDelete')}
           onClick={() => {
             if (!saving) setShowDeleteConfirm(false)
           }}
         >
           <div className="kc-modal kc-modal--confirm" onClick={(e) => e.stopPropagation()}>
             <div className="kc-modal-header">
-              <h3 className="kc-modal-title">Delete Board</h3>
+              <h3 className="kc-modal-title">{t('dashboard.boardModal.delete')}</h3>
               <button
                 type="button"
                 className="kc-modal-close"
                 onClick={() => setShowDeleteConfirm(false)}
                 disabled={saving}
-                aria-label="Close"
+                aria-label={t('common.close')}
               >
                 <FiX aria-hidden="true" />
               </button>
             </div>
             <div className="kc-modal-body">
               <p className="kc-modal-confirm-desc">
-                Are you sure you want to permanently delete <strong>{board.name}</strong>? This action cannot be
-                undone.
+                <Trans k="dashboard.boardModal.deleteConfirm" values={{ name: board.name }} />
               </p>
             </div>
             <div className="kc-modal-footer">
@@ -718,10 +721,10 @@ export function BoardModal({
                 onClick={() => setShowDeleteConfirm(false)}
                 disabled={saving}
               >
-                Cancel
+                {t('common.cancel')}
               </button>
               <button type="button" className="kc-btn kc-btn-danger" onClick={onDelete} disabled={saving}>
-                {saving ? 'Deleting…' : 'Delete Board'}
+                {saving ? t('common.deleting') : t('dashboard.boardModal.delete')}
               </button>
             </div>
           </div>

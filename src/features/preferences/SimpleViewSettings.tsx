@@ -1,4 +1,5 @@
 import { SwitchRow } from '../../components/SwitchRow'
+import { t } from '../../i18n'
 import { FEATURES } from '../../services/featuresService'
 import type { SimpleViewPreference } from './preferencesModel'
 
@@ -17,10 +18,7 @@ export function SimpleViewSettings({ simpleView, onChange }: SimpleViewSettingsP
 
   return (
     <div className="kc-features">
-      <p className="kc-muted">
-        Hide what you do not use, on every board. This only changes what you see: the data stays, and everyone
-        else still sees it. Servers that switched a feature off hide it for everyone.
-      </p>
+      <p className="kc-muted">{t('account.simpleView.intro')}</p>
       <div className="kc-features-presets">
         <button
           type="button"
@@ -28,7 +26,7 @@ export function SimpleViewSettings({ simpleView, onChange }: SimpleViewSettingsP
           disabled={allHidden}
           onClick={() => onChange(Object.fromEntries(hideable.map((feature) => [feature.key, true])))}
         >
-          Hide everything optional
+          {t('account.simpleView.hideAll')}
         </button>
         <button
           type="button"
@@ -36,14 +34,14 @@ export function SimpleViewSettings({ simpleView, onChange }: SimpleViewSettingsP
           disabled={Object.values(current).every((hidden) => !hidden)}
           onClick={() => onChange({})}
         >
-          Show everything
+          {t('account.simpleView.showAll')}
         </button>
       </div>
       <ul className="kc-features-list">
         {hideable.map((feature) => (
           <SwitchRow
             key={feature.key}
-            label={`Show ${feature.label.toLowerCase()}`}
+            label={feature.show}
             description={feature.description}
             on={!current[feature.key as HideableFeature]}
             onToggle={(on) => onChange({ ...current, [feature.key]: !on })}

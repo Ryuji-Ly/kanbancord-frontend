@@ -1,3 +1,4 @@
+import { t } from '../../i18n'
 import { guildIconUrl } from '../../services/discordGuildsService'
 import type { MergedServer } from './types'
 
@@ -22,14 +23,14 @@ export function ServersGridSection({
 
   return (
     <section className="kc-panel">
-      <h2>Your Servers</h2>
+      <h2>{t('dashboard.yourServers')}</h2>
       {loading ? (
         <div className="kc-loading-state" aria-live="polite" aria-busy="true">
           <span className="kc-spinner" aria-hidden="true" />
-          <span className="kc-muted">Loading your servers...</span>
+          <span className="kc-muted">{t('dashboard.loadingServers')}</span>
         </div>
       ) : mergedServers.length === 0 ? (
-        <p className="kc-muted">No servers with manage permissions found.</p>
+        <p className="kc-muted">{t('dashboard.noManageableServers')}</p>
       ) : (
         <div className="kc-card-grid">
           {mergedServers.map((server) => (
@@ -49,7 +50,7 @@ export function ServersGridSection({
                 )}
                 <h3>{server.name}</h3>
               </div>
-              {!server.botPresent && <p className="kc-invite-hint">Click to invite bot</p>}
+              {!server.botPresent && <p className="kc-invite-hint">{t('dashboard.clickToInvite')}</p>}
             </article>
           ))}
         </div>

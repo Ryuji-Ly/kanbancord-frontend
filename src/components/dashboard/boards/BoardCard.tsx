@@ -1,4 +1,5 @@
 import { FiSettings } from 'react-icons/fi'
+import { t } from '../../../i18n'
 import type { BoardEntry } from '../../../services/boardsService'
 
 type BoardCardProps = {
@@ -25,14 +26,14 @@ export function BoardCard({ board, canConfigure, onOpenBoard, onOpenSettings }: 
       <div className="kc-board-card-head">
         <div>
           <h4 className="kc-board-card-title">{board.name}</h4>
-          <p className="kc-board-card-meta">{board.isArchived ? 'Archived board' : 'Active board'}</p>
+          <p className="kc-board-card-meta">{board.isArchived ? t('dashboard.boards.archivedBoard') : t('dashboard.boards.activeBoard')}</p>
         </div>
         {canConfigure && (
           <button
             type="button"
             className="kc-btn kc-btn-ghost kc-board-card-settings"
-            aria-label={`Configure ${board.name}`}
-            title={`Configure ${board.name}`}
+            aria-label={t('dashboard.boards.configure', { name: board.name })}
+            title={t('dashboard.boards.configure', { name: board.name })}
             onClick={(e) => {
               e.stopPropagation()
               onOpenSettings(board)
@@ -42,7 +43,7 @@ export function BoardCard({ board, canConfigure, onOpenBoard, onOpenSettings }: 
           </button>
         )}
       </div>
-      <p className="kc-board-card-description">{board.description?.trim() || 'No description set.'}</p>
+      <p className="kc-board-card-description">{board.description?.trim() || t('dashboard.boards.noDescription')}</p>
     </article>
   )
 }

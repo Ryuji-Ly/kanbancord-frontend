@@ -1,6 +1,7 @@
 import type { ComponentPropsWithoutRef } from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import { t } from '../../../i18n'
 import { isUploadMarker, mediaKindOf } from '../../../services/mediaService'
 
 type MarkdownProps = {
@@ -33,7 +34,7 @@ export function Markdown({ children, editable = false, onToggle }: MarkdownProps
                 controls
                 playsInline
                 preload="metadata"
-                aria-label={alt || 'Video'}
+                aria-label={alt || t('board.media.video')}
                 onClick={(event) => event.stopPropagation()}
               />
             )

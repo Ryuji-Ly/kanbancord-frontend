@@ -1,5 +1,6 @@
 import { useLayoutEffect, useRef } from 'react'
 import { FiLock, FiPlus, FiX } from 'react-icons/fi'
+import { t } from '../../../i18n'
 import {
   KANBAN_PERM_INFO,
   type GrantedToGroup,
@@ -118,8 +119,8 @@ export function PermissionGroupRow({
         <button
           type="button"
           className="kc-perms-group-delete-btn"
-          title={`Delete all permissions for ${group.subjectDisplay}`}
-          aria-label={`Delete all permissions for ${group.subjectDisplay}`}
+          title={t('permissions.row.deleteAll', { subject: group.subjectDisplay })}
+          aria-label={t('permissions.row.deleteAll', { subject: group.subjectDisplay })}
           onClick={(e) => {
             e.stopPropagation()
             onRequestDeleteGroup(group)
@@ -141,8 +142,8 @@ export function PermissionGroupRow({
               <button
                 type="button"
                 className="kc-perm-button-add"
-                title="Add permission"
-                aria-label="Add permission"
+                title={t('permissions.row.add')}
+                aria-label={t('permissions.row.add')}
                 disabled={addDisabled}
                 onClick={(e) => {
                   e.stopPropagation()
@@ -164,14 +165,15 @@ export function PermissionGroupRow({
               const inheritanceNote = !isInherited
                 ? ''
                 : perm.state === perm.inheritedState
-                  ? ' (inherited from server)'
-                  : ` (overrides server: ${perm.inheritedState})`
+                  ? t('permissions.row.inherited')
+                  : t('permissions.row.overrides', { state: t(`permissions.state.${perm.inheritedState!}`) })
+              const state = t(`permissions.state.${perm.state}`)
 
               return (
                 <div
                   key={perm.id}
                   className={`kc-perm-button kc-perm-button--${perm.state.toLowerCase()}${isLocked ? ` ${perm.isImmutable ? 'kc-perm-button--immutable' : 'kc-perm-button--locked'}` : ''}`}
-                  title={`${permName} — ${perm.state}${isLocked ? ' (locked)' : ''}${inheritanceNote}`}
+                  title={`${t('permissions.row.chip', { name: permName, state })}${isLocked ? t('permissions.row.locked') : ''}${inheritanceNote}`}
                   onClick={(e) => {
                     e.stopPropagation()
                     if (!isLocked) {
@@ -197,8 +199,8 @@ export function PermissionGroupRow({
                         e.stopPropagation()
                         onDeletePermission(perm.id)
                       }}
-                      title="Remove permission"
-                      aria-label={`Remove ${permName}`}
+                      title={t('permissions.row.remove')}
+                      aria-label={t('permissions.row.removeNamed', { name: permName })}
                     >
                       <FiX aria-hidden="true" />
                     </button>
@@ -220,7 +222,7 @@ export function PermissionGroupRow({
                     .filter((c) => !group.permissions.some((p) => p.kanbanPermissionKey === c.key))
                     .map((c) => (
                       <option key={c.permissionId} value={c.permissionId}>
-                        {c.name}
+                        {KANBAN_PERM_INFO[c.key]?.name ?? c.name}
                       </option>
                     ))}
                 </select>
@@ -229,8 +231,8 @@ export function PermissionGroupRow({
                   value={newPermState}
                   onChange={(e) => onSetNewPermState(e.target.value as 'ALLOW' | 'DENY')}
                 >
-                  <option value="ALLOW">ALLOW</option>
-                  <option value="DENY">DENY</option>
+                  <option value="ALLOW">{t('permissions.state.ALLOW')}</option>
+                  <option value="DENY">{t('permissions.state.DENY')}</option>
                 </select>
                 <button
                   type="button"
@@ -244,7 +246,7 @@ export function PermissionGroupRow({
                     )
                   }
                 >
-                  Add
+                  {t('common.add')}
                 </button>
                 <button
                   type="button"
@@ -252,7 +254,7 @@ export function PermissionGroupRow({
                   disabled={addSaving}
                   onClick={onCancelAddPermission}
                 >
-                  Cancel
+                  {t('common.cancel')}
                 </button>
               </div>
             )}

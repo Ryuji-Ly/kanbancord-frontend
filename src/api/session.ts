@@ -1,4 +1,5 @@
 import { useSyncExternalStore } from 'react'
+import { t } from '../i18n'
 import { apiUrl, parseError } from './http'
 import type { AuthResponse, MeResponse } from '../types/auth'
 
@@ -17,7 +18,7 @@ export type SessionState =
 /** Thrown by API calls once the session has ended; the page shows the signed-out state instead. */
 export class SignedOutError extends Error {
   constructor() {
-    super('You are not signed in.')
+    super(t('common.notSignedIn'))
     this.name = 'SignedOutError'
   }
 }

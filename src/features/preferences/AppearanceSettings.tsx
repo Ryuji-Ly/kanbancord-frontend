@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { chooseLanguage, chosenLanguage, LANGUAGES, languageName, t } from '../../i18n'
 import { ColorField } from '../boardSettings/ColorField'
 import {
   CORE_FIELDS,
@@ -42,22 +43,24 @@ export function AppearanceSettings({ theme, onChange }: AppearanceSettingsProps)
 
   return (
     <div className="kc-appearance">
+      {LANGUAGES.length > 1 && <LanguageSection />}
+
       <section className="kc-appearance-section">
-        <h4>Theme</h4>
-        <div className="kc-theme-grid" role="radiogroup" aria-label="Theme">
+        <h4>{t('account.appearance.theme')}</h4>
+        <div className="kc-theme-grid" role="radiogroup" aria-label={t('account.appearance.theme')}>
           {PRESETS.map((preset) => (
             <ThemeCard
               key={preset.id}
-              label={preset.label}
-              description={preset.description}
+              label={t(preset.label)}
+              description={t(preset.description)}
               core={preset.core}
               selected={current.preset === preset.id}
               onSelect={() => onChange({ ...current, preset: preset.id, core: undefined })}
             />
           ))}
           <ThemeCard
-            label="Custom"
-            description="Your own colours, starting from the theme above."
+            label={t('account.appearance.custom')}
+            description={t('account.appearance.customHint')}
             core={core}
             selected={current.preset === 'custom'}
             onSelect={() => onChange({ ...current, preset: 'custom', core })}
@@ -67,28 +70,27 @@ export function AppearanceSettings({ theme, onChange }: AppearanceSettingsProps)
 
       {current.preset === 'custom' && (
         <section className="kc-appearance-section">
-          <h4>Custom colours</h4>
-          <p className="kc-muted">Set eight colours; every other colour is worked out from them.</p>
+          <h4>{t('account.appearance.customColours')}</h4>
+          <p className="kc-muted">{t('account.appearance.customColoursHint')}</p>
           <ul className="kc-core-colors">
             {CORE_FIELDS.map((field) => (
-              <li key={field.key} className="kc-core-color">
+              <li key={field} className="kc-core-color">
                 <ColorField
-                  key={core[field.key]}
-                  value={core[field.key]}
-                  label={field.label}
-                  onCommit={(value) => setCore(field.key, value)}
+                  key={core[field]}
+                  value={core[field]}
+                  label={t(`account.appearance.core.${field}.label`)}
+                  onCommit={(value) => setCore(field, value)}
                 />
                 <div>
-                  <strong>{field.label}</strong>
-                  <p className="kc-muted">{field.hint}</p>
+                  <strong>{t(`account.appearance.core.${field}.label`)}</strong>
+                  <p className="kc-muted">{t(`account.appearance.core.${field}.hint`)}</p>
                 </div>
               </li>
             ))}
           </ul>
           {textContrast < 4.5 && (
             <p className="kc-banner" role="status">
-              Text against the background has a contrast of {textContrast.toFixed(1)}:1; at least 4.5:1 is
-              recommended for reading comfortably.
+              {t('account.appearance.lowContrast', { contrast: textContrast.toFixed(1) })}
             </p>
           )}
         </section>
@@ -101,25 +103,25 @@ export function AppearanceSettings({ theme, onChange }: AppearanceSettingsProps)
           aria-expanded={advancedOpen}
           onClick={() => setAdvancedOpen((open) => !open)}
         >
-          {advancedOpen ? '▾' : '▸'} Advanced: edit every colour
-          {Object.keys(overrides).length > 0 && ` (${Object.keys(overrides).length} changed)`}
+          {advancedOpen ? '▾' : '▸'} {t('account.appearance.advanced')}
+          {Object.keys(overrides).length > 0 && t('account.appearance.changed', { count: Object.keys(overrides).length })}
         </button>
         {advancedOpen && (
           <div className="kc-advanced-colors">
             <p className="kc-muted">
-              Changes here apply on top of the theme above and stay when you switch themes.
+              {t('account.appearance.advancedHint')}
               {Object.keys(overrides).length > 0 && (
                 <>
                   {' '}
                   <button type="button" className="kc-link-btn" onClick={() => onChange({ ...current, overrides: undefined })}>
-                    Reset all
+                    {t('account.appearance.resetAll')}
                   </button>
                 </>
               )}
             </p>
             {TOKEN_GROUPS.map((group) => (
               <div key={group.label} className="kc-advanced-group">
-                <h5>{group.label}</h5>
+                <h5>{t(group.label)}</h5>
                 <ul>
                   {Object.keys(DEFAULT_TOKENS)
                     .filter((name) => group.prefix.test(name))
@@ -129,7 +131,7 @@ export function AppearanceSettings({ theme, onChange }: AppearanceSettingsProps)
                         <code>{name.replace('--kc-', '')}</code>
                         {name in overrides && (
                           <button type="button" className="kc-link-btn" onClick={() => setOverride(name, null)}>
-                            Reset
+                            {t('account.appearance.reset')}
                           </button>
                         )}
                       </li>
@@ -141,6 +143,33 @@ export function AppearanceSettings({ theme, onChange }: AppearanceSettingsProps)
         )}
       </section>
     </div>
+  )
+}
+
+/** The website's language: the browser's, or one picked here (remembered on this browser). */
+function LanguageSection() {
+  const [chosen, setChosen] = useState(chosenLanguage)
+  return (
+    <section className="kc-appearance-section">
+      <h4>{t('account.appearance.language')}</h4>
+      <select
+        className="kc-input"
+        aria-label={t('account.appearance.language')}
+        value={chosen ?? ''}
+        onChange={(event) => {
+          const code = event.target.value || null
+          setChosen(code)
+          void chooseLanguage(code)
+        }}
+      >
+        <option value="">{t('account.appearance.browserLanguage')}</option>
+        {LANGUAGES.map((code) => (
+          <option key={code} value={code} lang={code}>
+            {languageName(code)}
+          </option>
+        ))}
+      </select>
+    </section>
   )
 }
 

@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { readableError } from '../../api/http'
+import { t } from '../../i18n'
 import { BoardModal } from '../../components/dashboard/boards/BoardModal'
 import { mergeBoardPermissionDrafts } from '../../components/dashboard/boards/boardPermissionDraft'
 import { fetchScopedPermissions, type PermissionEntry } from '../../services/permissionsService'
@@ -76,7 +77,7 @@ export function BoardSettingsDialog({ serverId, boardId, onClose, onDeleted, sho
     if (!saving) onClose()
   }
 
-  const loadError = snapshotQuery.isError ? readableError(snapshotQuery.error, 'Failed to load the board settings') : ''
+  const loadError = snapshotQuery.isError ? readableError(snapshotQuery.error, t('settings.board.loadFailed')) : ''
   useEffect(() => {
     if (!loadError) return
     showError(loadError)
@@ -109,7 +110,7 @@ export function BoardSettingsDialog({ serverId, boardId, onClose, onDeleted, sho
       onClose={close}
       onSave={(payload) => {
         if (access.editDetails && !payload.name) {
-          showError('Board name is required')
+          showError(t('dashboard.workspace.nameRequired'))
           return
         }
         serverMutations.saveBoard.mutate(
@@ -121,10 +122,11 @@ export function BoardSettingsDialog({ serverId, boardId, onClose, onDeleted, sho
           {
             onSuccess: () => {
               refreshBoard()
-              showToast('Board updated', 'success')
+              showToast(t('dashboard.workspace.boardUpdated'), 'success')
               onClose()
             },
-            onError: (error) => showError(`Failed to save board: ${readableError(error, 'unknown error')}`),
+            onError: (error) =>
+              showError(t('dashboard.workspace.saveBoardFailed', { error: readableError(error, t('board.page.unknownError')) })),
           },
         )
       }}
@@ -134,20 +136,26 @@ export function BoardSettingsDialog({ serverId, boardId, onClose, onDeleted, sho
           {
             onSuccess: () => {
               refreshBoard()
-              showToast(nextArchived ? 'Board archived' : 'Board restored', 'success')
+              showToast(nextArchived ? t('dashboard.workspace.boardArchived') : t('dashboard.workspace.boardRestored'), 'success')
               onClose()
             },
-            onError: (error) => showError(`Failed to ${nextArchived ? 'archive' : 'restore'} board: ${readableError(error, 'unknown error')}`),
+            onError: (error) =>
+              showError(
+                t(nextArchived ? 'dashboard.workspace.archiveFailed' : 'dashboard.workspace.restoreFailed', {
+                  error: readableError(error, t('board.page.unknownError')),
+                }),
+              ),
           },
         )
       }
       onDelete={() =>
         serverMutations.removeBoard.mutate(boardId, {
           onSuccess: () => {
-            showToast('Board deleted', 'success')
+            showToast(t('dashboard.workspace.boardDeleted'), 'success')
             onDeleted()
           },
-          onError: (error) => showError(`Failed to delete board: ${readableError(error, 'unknown error')}`),
+          onError: (error) =>
+            showError(t('dashboard.workspace.deleteBoardFailed', { error: readableError(error, t('board.page.unknownError')) })),
         })
       }
     >
@@ -159,7 +167,7 @@ export function BoardSettingsDialog({ serverId, boardId, onClose, onDeleted, sho
       {snapshot && snapshot.permissions.EDIT_BOARD_PERMISSIONS?.allowed && (
         <section className="kc-board-modal-section">
           <div className="kc-board-modal-section-head">
-            <h4>Check access</h4>
+            <h4>{t('dashboard.settings.checkAccess')}</h4>
           </div>
           <AccessCheckPanel serverId={serverId} board={{ boardId, name: snapshot.board.name }} />
         </section>

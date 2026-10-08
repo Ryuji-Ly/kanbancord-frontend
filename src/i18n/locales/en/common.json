@@ -1,0 +1,59 @@
+{
+  "features": {
+    "labels": {
+      "label": "Labels",
+      "description": "Coloured tags on tasks, managed per board.",
+      "show": "Show labels"
+    },
+    "priorities": {
+      "label": "Priorities",
+      "description": "A priority level on each task, from Critical to Ignorable.",
+      "show": "Show priorities"
+    },
+    "assignees": {
+      "label": "Assignees",
+      "description": "Assign members to tasks.",
+      "show": "Show assignees"
+    },
+    "comments": {
+      "label": "Comments",
+      "description": "Discussion on each task.",
+      "show": "Show comments"
+    },
+    "dueDates": {
+      "label": "Due dates",
+      "description": "A date and time each task is due.",
+      "show": "Show due dates"
+    },
+    "permissions": {
+      "label": "Custom permissions",
+      "description": "Edit who may do what, per server and per board. While off, access follows Discord permissions.",
+      "show": "Show custom permissions"
+    }
+  },
+  "requestFailed": "Request failed ({status})",
+  "notSignedIn": "You are not signed in.",
+  "cancel": "Cancel",
+  "close": "Close",
+  "loginWithDiscord": "Login with Discord",
+  "deleting": "Deleting…",
+  "loading": "Loading...",
+  "saving": "Saving…",
+  "change": "Change",
+  "closeModal": "Close modal",
+  "save": "Save",
+  "applying": "Applying…",
+  "name": "Name",
+  "description": "Description",
+  "saveChanges": "Save Changes",
+  "add": "Add",
+  "delete": "Delete",
+  "deletingDots": "Deleting...",
+  "confirmNamed": "Confirm {title}",
+  "creatingDots": "Creating...",
+  "creating": "Creating…",
+  "adding": "Adding…",
+  "savingDots": "Saving...",
+  "changeNotSaved": "The change could not be saved",
+  "loadingEllipsis": "Loading…"
+}

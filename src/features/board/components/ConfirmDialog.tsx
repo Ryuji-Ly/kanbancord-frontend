@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { createPortal } from 'react-dom'
+import { t } from '../../../i18n'
 
 type ConfirmDialogProps = {
   title: string
@@ -21,8 +22,8 @@ export function ConfirmDialog({
   children,
   error,
   busy,
-  confirmLabel = 'Delete',
-  busyLabel = 'Deleting...',
+  confirmLabel = t('common.delete'),
+  busyLabel = t('common.deletingDots'),
   onCancel,
   onConfirm,
 }: ConfirmDialogProps) {
@@ -31,7 +32,7 @@ export function ConfirmDialog({
       className="kc-modal-overlay"
       role="dialog"
       aria-modal="true"
-      aria-label={`Confirm ${title}`}
+      aria-label={t('common.confirmNamed', { title })}
       onClick={(event) => {
         // React events bubble through portals; keep clicks from reaching whatever rendered the dialog.
         event.stopPropagation()
@@ -48,7 +49,7 @@ export function ConfirmDialog({
         </div>
         <div className="kc-modal-footer">
           <button type="button" className="kc-btn kc-btn-ghost" onClick={onCancel} disabled={busy}>
-            Cancel
+            {t('common.cancel')}
           </button>
           <button type="button" className="kc-btn kc-btn-danger" onClick={onConfirm} disabled={busy}>
             {busy ? busyLabel : confirmLabel}

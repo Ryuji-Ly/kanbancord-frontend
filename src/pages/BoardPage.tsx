@@ -4,6 +4,8 @@ import { BoardFilterBar } from '../features/board/components/BoardFilterBar'
 import { FiSettings } from 'react-icons/fi'
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { readableError } from '../api/http'
+import { t } from '../i18n'
+import { Trans } from '../i18n/Trans'
 import { signOut, useSession } from '../api/session'
 import type { BoardColumnEntry } from '../services/boardColumnsService'
 import type { TaskEntry } from '../services/tasksService'
@@ -144,16 +146,16 @@ export function BoardPage() {
       mutations.reorderColumn.mutate(
         { columnId, index },
         {
-          onSuccess: () => showToast('Columns reordered', 'success'),
-          onError: () => showToast('Failed to reorder columns', 'error'),
+          onSuccess: () => showToast(t('board.toast.columnsReordered'), 'success'),
+          onError: () => showToast(t('board.toast.reorderColumnsFailed'), 'error'),
         },
       ),
     onMoveTask: (taskId, columnId, index) =>
       mutations.relocateTask.mutate(
         { taskId, columnId, index },
         {
-          onSuccess: () => showToast('Tasks reordered', 'success'),
-          onError: () => showToast('Failed to reorder tasks', 'error'),
+          onSuccess: () => showToast(t('board.toast.tasksReordered'), 'success'),
+          onError: () => showToast(t('board.toast.reorderTasksFailed'), 'error'),
         },
       ),
   })
@@ -176,8 +178,8 @@ export function BoardPage() {
     mutations.renameColumn.mutate(
       { column, name },
       {
-        onSuccess: () => showToast('Column updated', 'success'),
-        onError: () => showToast('Failed to update column', 'error'),
+        onSuccess: () => showToast(t('board.toast.columnUpdated'), 'success'),
+        onError: () => showToast(t('board.toast.updateColumnFailed'), 'error'),
       },
     )
   }
@@ -186,8 +188,8 @@ export function BoardPage() {
     mutations.addColumn.mutate(
       { name, optimisticId: -Date.now() },
       {
-        onSuccess: () => showToast('Column created', 'success'),
-        onError: () => showToast('Failed to create column', 'error'),
+        onSuccess: () => showToast(t('board.toast.columnCreated'), 'success'),
+        onError: () => showToast(t('board.toast.createColumnFailed'), 'error'),
       },
     )
   }
@@ -228,13 +230,13 @@ export function BoardPage() {
       },
       {
         onSuccess: ({ extrasFailed }) => {
-          if (extrasFailed) showToast('Task created, but some assignees or labels could not be added', 'error')
+          if (extrasFailed) showToast(t('board.toast.taskCreatedPartly'), 'error')
           setCreateInColumn(null)
-          showToast('Task created', 'success')
+          showToast(t('board.toast.taskCreated'), 'success')
         },
         onError: (err) => {
           setCreateTaskError(String(err))
-          showToast('Failed to create task', 'error')
+          showToast(t('board.toast.createTaskFailed'), 'error')
         },
       },
     )
@@ -242,7 +244,7 @@ export function BoardPage() {
 
   async function saveTask(task: TaskEntry, fields: TaskFields) {
     await mutations.editTask.mutateAsync({ task, fields })
-    showToast('Task updated', 'success')
+    showToast(t('board.toast.taskUpdated'), 'success')
   }
 
   function deleteTask() {
@@ -252,7 +254,7 @@ export function BoardPage() {
       onSuccess: () => {
         setDeleteTargetTask(null)
         setSelectedTaskId(null)
-        showToast('Task deleted', 'success')
+        showToast(t('board.toast.taskDeleted'), 'success')
       },
       onError: (err) => setDeleteTaskError(String(err)),
     })
@@ -275,15 +277,17 @@ export function BoardPage() {
   }
 
   const loadError = !hasContext
-    ? 'Missing board context. Please open a board from the dashboard.'
+    ? t('board.page.noContext')
     : session.status === 'signedOut'
-      ? 'You are signed out. Sign in from the dashboard to open this board.'
+      ? t('board.page.signedOut')
       : revokedReason === 'BOARD_DELETED'
-        ? 'This board was deleted.'
+        ? t('board.page.deleted')
         : revokedReason === 'ACCESS_LOST'
-          ? 'You no longer have access to this board.'
+          ? t('board.page.accessLost')
           : snapshotQuery.isError || meQuery.isError
-            ? `Failed to load board: ${readableError(snapshotQuery.error ?? meQuery.error, 'unknown error')}`
+            ? t('board.page.loadFailed', {
+                error: readableError(snapshotQuery.error ?? meQuery.error, t('board.page.unknownError')),
+              })
             : ''
   const loading = hasContext && !loadError && !ready
   const deleteColumnTaskCount = deleteTargetColumn ? (tasksByColumn[deleteTargetColumn.columnId] ?? []).length : 0
@@ -295,15 +299,15 @@ export function BoardPage() {
           isAuthenticated={Boolean(me)}
           me={me}
           loading={loading}
-          subtitle="Board"
+          subtitle={t('board.page.board')}
           onBrandClick={() => navigate('/')}
           onLogout={() => void signOut().finally(() => navigate('/'))}
           onLogin={() => navigate('/')}
         />
 
-        <div className="kc-board-subbar" role="banner" aria-label="Board title bar">
-          <h2>{board?.name ?? 'Board'}</h2>
-          {board?.isArchived && <span className="kc-board-archived-badge">Archived</span>}
+        <div className="kc-board-subbar" role="banner" aria-label={t('board.page.titleBar')}>
+          <h2>{board?.name ?? t('board.page.board')}</h2>
+          {board?.isArchived && <span className="kc-board-archived-badge">{t('board.page.archived')}</span>}
           {ready && board && totalTaskCount > 0 && (
             <BoardFilterBar
               filters={filters}
@@ -320,8 +324,8 @@ export function BoardPage() {
             <button
               type="button"
               className="kc-icon-btn kc-board-settings-btn"
-              aria-label="Board settings"
-              title="Board settings"
+              aria-label={t('board.page.settings')}
+              title={t('board.page.settings')}
               onClick={() => setShowSettings(true)}
             >
               <FiSettings aria-hidden="true" />
@@ -333,7 +337,7 @@ export function BoardPage() {
           {loading && (
             <div className="kc-loading-state" aria-live="polite" aria-busy="true">
               <span className="kc-spinner" aria-hidden="true" />
-              <span className="kc-muted">Loading board...</span>
+              <span className="kc-muted">{t('board.page.loading')}</span>
             </div>
           )}
 
@@ -341,18 +345,18 @@ export function BoardPage() {
 
           {ready && board?.isArchived && (
             <p className="kc-banner kc-banner--success">
-              This board is archived. All columns and tasks are view-only until the board is restored.
+              {t('board.page.archivedBanner')}
             </p>
           )}
 
           {ready && board && (
-            <section className="kc-board-page-columns" aria-label="Board columns">
+            <section className="kc-board-page-columns" aria-label={t('board.page.columns')}>
               {openMenuColumnId !== null && (
                 <div className="kc-column-menu-backdrop" onClick={() => setOpenMenuColumnId(null)} />
               )}
 
               {columns.length === 0 && !abilities.createColumn && (
-                <p className="kc-muted">No columns found on this board.</p>
+                <p className="kc-muted">{t('board.page.noColumns')}</p>
               )}
 
               {drag.columnsForRender.map((column) => (
@@ -486,7 +490,7 @@ export function BoardPage() {
 
         {deleteTargetTask && (
           <ConfirmDialog
-            title="Delete Task"
+            title={t('board.page.deleteTask')}
             error={deleteTaskError}
             busy={mutations.removeTask.isPending}
             onCancel={() => {
@@ -496,14 +500,14 @@ export function BoardPage() {
             onConfirm={deleteTask}
           >
             <p className="kc-modal-confirm-desc">
-              Delete <strong>{deleteTargetTask.title}</strong>? This cannot be undone.
+              <Trans k="board.page.deleteConfirm" values={{ name: deleteTargetTask.title }} />
             </p>
           </ConfirmDialog>
         )}
 
         {deleteTargetColumn && (
           <ConfirmDialog
-            title="Delete Column"
+            title={t('board.page.deleteColumn')}
             error={deleteColumnError}
             busy={mutations.removeColumn.isPending}
             onCancel={() => {
@@ -513,12 +517,11 @@ export function BoardPage() {
             onConfirm={deleteColumn}
           >
             <p className="kc-modal-confirm-desc">
-              Delete <strong>{deleteTargetColumn.name}</strong>? This cannot be undone.
+              <Trans k="board.page.deleteConfirm" values={{ name: deleteTargetColumn.name }} />
             </p>
             {deleteColumnTaskCount > 0 && (
               <p className="kc-modal-confirm-desc">
-                This will also delete {deleteColumnTaskCount} {deleteColumnTaskCount === 1 ? 'task' : 'tasks'} in this
-                column.
+                {t('board.page.deleteColumnTasks', { count: deleteColumnTaskCount })}
               </p>
             )}
           </ConfirmDialog>

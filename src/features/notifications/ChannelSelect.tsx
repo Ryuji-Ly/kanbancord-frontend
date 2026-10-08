@@ -1,3 +1,4 @@
+import { t } from '../../i18n'
 import type { DiscordChannel } from '../../services/notificationsService'
 
 type ChannelSelectProps = {
@@ -26,7 +27,7 @@ export function ChannelSelect({ channels, value, onChange, noneLabel, placeholde
   const option = (channel: DiscordChannel) => (
     <option key={channel.channelId} value={channel.channelId} disabled={!channel.botCanPost}>
       #{channel.name}
-      {channel.botCanPost ? '' : ' (the bot cannot post here)'}
+      {channel.botCanPost ? '' : t('notifications.channel.botCannotPost')}
     </option>
   )
 
@@ -38,8 +39,8 @@ export function ChannelSelect({ channels, value, onChange, noneLabel, placeholde
       disabled={disabled}
       onChange={(event) => onChange(event.target.value || null)}
     >
-      {noneLabel !== undefined ? <option value="">{noneLabel}</option> : <option value="" disabled>{placeholder ?? 'Pick a channel…'}</option>}
-      {!known && <option value={value ?? ''}>A channel that no longer exists</option>}
+      {noneLabel !== undefined ? <option value="">{noneLabel}</option> : <option value="" disabled>{placeholder ?? t('notifications.channel.pick')}</option>}
+      {!known && <option value={value ?? ''}>{t('notifications.channel.gone')}</option>}
       {[...groups.entries()].map(([category, list]) =>
         category ? (
           <optgroup key={category} label={category}>

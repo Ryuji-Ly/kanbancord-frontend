@@ -1,4 +1,5 @@
 import { useState, type CSSProperties, type DragEvent } from 'react'
+import { t } from '../../../i18n'
 import type { BoardColumnEntry } from '../../../services/boardColumnsService'
 import type { LabelEntry, PriorityEntry } from '../../../services/boardsService'
 import type { ServerRoleEntry } from '../../../services/permissionsService'
@@ -127,7 +128,7 @@ export function BoardColumn({
           <div className="kc-column-menu-wrap" data-no-column-drag="true">
             <button
               className="kc-column-menu-btn"
-              aria-label="Column options"
+              aria-label={t('board.column.options')}
               aria-expanded={menuOpen}
               onClick={(event) => {
                 event.stopPropagation()
@@ -140,7 +141,7 @@ export function BoardColumn({
               <ul className="kc-column-menu-dropdown" role="menu">
                 <li role="none">
                   <button role="menuitem" className="kc-column-menu-item kc-column-menu-item--danger" onClick={onRequestDelete}>
-                    Delete column
+                    {t('board.column.delete')}
                   </button>
                 </li>
               </ul>
@@ -185,7 +186,7 @@ export function BoardColumn({
 
         {canCreateTask && (
           <button type="button" className="kc-column-add-task-btn" data-no-column-drag="true" onClick={onAddTask}>
-            + Add a task
+            {t('board.column.addTask')}
           </button>
         )}
       </div>

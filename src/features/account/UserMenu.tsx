@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { FiChevronDown, FiLogOut, FiSettings, FiSliders } from 'react-icons/fi'
+import { t } from '../../i18n'
 import type { HeaderUser } from '../../components/dashboard/types'
 import { AccessibilitySettings } from '../preferences/AccessibilitySettings'
 import { AppearanceSettings } from '../preferences/AppearanceSettings'
@@ -69,12 +70,12 @@ export function UserMenu({ me, onLogout }: UserMenuProps) {
       </button>
 
       {open && (
-        <div className="kc-user-menu-list" role="menu" aria-label="Account">
+        <div className="kc-user-menu-list" role="menu" aria-label={t('account.menu.label')}>
           <button type="button" role="menuitem" onClick={() => openDialog('preferences')}>
-            <FiSliders aria-hidden="true" /> Preferences
+            <FiSliders aria-hidden="true" /> {t('account.menu.preferences')}
           </button>
           <button type="button" role="menuitem" onClick={() => openDialog('settings')}>
-            <FiSettings aria-hidden="true" /> Settings
+            <FiSettings aria-hidden="true" /> {t('account.menu.settings')}
           </button>
           <button
             type="button"
@@ -85,7 +86,7 @@ export function UserMenu({ me, onLogout }: UserMenuProps) {
               onLogout()
             }}
           >
-            <FiLogOut aria-hidden="true" /> Log out
+            <FiLogOut aria-hidden="true" /> {t('account.menu.logOut')}
           </button>
         </div>
       )}
@@ -93,17 +94,17 @@ export function UserMenu({ me, onLogout }: UserMenuProps) {
       {dialog === 'preferences' && (
         <ServerSettingsDialog
           serverName={name}
-          title="Preferences"
+          title={t('account.menu.preferences')}
           onClose={() => setDialog(null)}
           sections={[
             {
               key: 'appearance',
-              label: 'Appearance',
+              label: t('account.menu.appearance'),
               content: <AppearanceSettings theme={preferences?.theme} onChange={(theme) => save.mutate({ theme })} />,
             },
             {
               key: 'accessibility',
-              label: 'Accessibility',
+              label: t('account.menu.accessibility'),
               content: (
                 <AccessibilitySettings
                   accessibility={preferences?.accessibility}
@@ -113,7 +114,7 @@ export function UserMenu({ me, onLogout }: UserMenuProps) {
             },
             {
               key: 'simple-view',
-              label: 'Simple view',
+              label: t('account.menu.simpleView'),
               content: (
                 <SimpleViewSettings simpleView={preferences?.simpleView} onChange={(simpleView) => save.mutate({ simpleView })} />
               ),
@@ -125,11 +126,11 @@ export function UserMenu({ me, onLogout }: UserMenuProps) {
       {dialog === 'settings' && (
         <ServerSettingsDialog
           serverName={name}
-          title="Settings"
+          title={t('account.menu.settings')}
           onClose={() => setDialog(null)}
           sections={[
-            { key: 'notifications', label: 'Notifications', content: <MyNotificationsSettings /> },
-            { key: 'sessions', label: 'Sessions', content: <SessionsSettings /> },
+            { key: 'notifications', label: t('dashboard.settings.notifications'), content: <MyNotificationsSettings /> },
+            { key: 'sessions', label: t('account.menu.sessions'), content: <SessionsSettings /> },
           ]}
         />
       )}

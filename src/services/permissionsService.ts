@@ -1,5 +1,6 @@
 import { parseError } from '../api/http'
 import { apiFetch } from '../api/session'
+import { t, type MessageKey } from '../i18n'
 
 export type PermissionEntry = {
   id: number
@@ -82,93 +83,118 @@ export async function evaluatePermissions(
 }
 
 // Human-readable names for Discord permission bit values used by the bootstrap.
-export const DISCORD_FLAG_NAMES: Record<string, string> = {
-  '1': 'Create Invite',
-  '2': 'Kick Members',
-  '4': 'Ban Members',
-  '8': 'Administrator',
-  '16': 'Manage Channels',
-  '32': 'Manage Server',
-  '64': 'Add Reactions',
-  '128': 'View Audit Log',
-  '256': 'Priority Speaker',
-  '512': 'Video',
-  '1024': 'View Channel',
-  '2048': 'Send Messages',
-  '4096': 'Send TTS Messages',
-  '8192': 'Manage Messages',
-  '16384': 'Embed Links',
-  '32768': 'Attach Files',
-  '65536': 'Read Message History',
-  '131072': 'Mention Everyone',
-  '262144': 'Use External Emojis',
-  '524288': 'View Server Insights',
-  '1048576': 'Connect',
-  '2097152': 'Speak',
-  '4194304': 'Mute Members',
-  '8388608': 'Deafen Members',
-  '16777216': 'Move Members',
-  '33554432': 'Use Voice Activity',
-  '67108864': 'Change Nickname',
-  '134217728': 'Manage Nicknames',
-  '268435456': 'Manage Roles',
-  '536870912': 'Manage Webhooks',
-  '1073741824': 'Manage Expressions',
-  '2147483648': 'Use Application Commands',
-  '4294967296': 'Request to Speak',
-  '8589934592': 'Manage Events',
-  '17179869184': 'Manage Threads',
-  '34359738368': 'Create Public Threads',
-  '68719476736': 'Create Private Threads',
-  '137438953472': 'Use External Stickers',
-  '274877906944': 'Send Messages in Threads',
-  '549755813888': 'Use Embedded Activities',
-  '1099511627776': 'Moderate Members',
-  '2199023255552': 'View Creator Monetization Analytics',
-  '4398046511104': 'Use Soundboard',
-  '8796093022208': 'Create Expressions',
-  '17592186044416': 'Create Events',
-  '35184372088832': 'Use External Sounds',
-  '70368744177664': 'Send Voice Messages',
-  '1125899906842624': 'Send Polls',
-  '2251799813685248': 'Use External Apps',
-}
+/** The Discord permission bits KanbanCord knows by name (the names are in permissions.json). */
+const DISCORD_FLAG_BITS = [
+  '1',
+  '2',
+  '4',
+  '8',
+  '16',
+  '32',
+  '64',
+  '128',
+  '256',
+  '512',
+  '1024',
+  '2048',
+  '4096',
+  '8192',
+  '16384',
+  '32768',
+  '65536',
+  '131072',
+  '262144',
+  '524288',
+  '1048576',
+  '2097152',
+  '4194304',
+  '8388608',
+  '16777216',
+  '33554432',
+  '67108864',
+  '134217728',
+  '268435456',
+  '536870912',
+  '1073741824',
+  '2147483648',
+  '4294967296',
+  '8589934592',
+  '17179869184',
+  '34359738368',
+  '68719476736',
+  '137438953472',
+  '274877906944',
+  '549755813888',
+  '1099511627776',
+  '2199023255552',
+  '4398046511104',
+  '8796093022208',
+  '17592186044416',
+  '35184372088832',
+  '70368744177664',
+  '1125899906842624',
+  '2251799813685248',
+]
 
-export type KanbanPermInfo = { name: string; category: string }
+/** Each Discord permission's name, by bit value, in the reader's language (read when looked up). */
+export const DISCORD_FLAG_NAMES: Record<string, string> = Object.defineProperties(
+  {},
+  Object.fromEntries(
+    DISCORD_FLAG_BITS.map((bit) => [
+      bit,
+      { enumerable: true, get: () => t(`permissions.discord.${bit}` as MessageKey) },
+    ]),
+  ),
+)
+
+export type KanbanPermInfo = { readonly name: string; category: string }
 
 // Static catalog matching KanbanPermissionCatalog.java (system permissions only).
-export const KANBAN_PERM_INFO: Record<string, KanbanPermInfo> = {
-  ADMIN: { name: 'Administrator', category: 'SERVER' },
-  VIEW_SERVER: { name: 'View Server', category: 'SERVER' },
-  MANAGE_SERVER_PERMISSIONS: { name: 'Manage Server Permissions', category: 'SERVER' },
-  VIEW_AUDIT_LOG: { name: 'View Audit Log', category: 'SERVER' },
-  CREATE_BOARD: { name: 'Create Board', category: 'BOARD' },
-  VIEW_BOARD: { name: 'View Board', category: 'BOARD' },
-  EDIT_BOARD_DETAILS: { name: 'Edit Board Details', category: 'BOARD' },
-  EDIT_BOARD_PERMISSIONS: { name: 'Edit Board Permissions', category: 'BOARD' },
-  ARCHIVE_BOARD: { name: 'Archive Board', category: 'BOARD' },
-  DELETE_BOARD: { name: 'Delete Board', category: 'BOARD' },
-  CREATE_COLUMN: { name: 'Create Columns', category: 'COLUMN' },
-  EDIT_COLUMN: { name: 'Edit Columns', category: 'COLUMN' },
-  DELETE_COLUMN: { name: 'Delete Columns', category: 'COLUMN' },
-  MOVE_COLUMN: { name: 'Move Columns', category: 'COLUMN' },
-  CREATE_TASK: { name: 'Create Tasks', category: 'TASK' },
-  VIEW_TASK: { name: 'View Tasks', category: 'TASK' },
-  EDIT_TASK: { name: 'Edit Tasks', category: 'TASK' },
-  MOVE_TASK: { name: 'Move Tasks', category: 'TASK' },
-  DELETE_TASK: { name: 'Delete Tasks', category: 'TASK' },
-  ARCHIVE_TASK: { name: 'Archive Tasks', category: 'TASK' },
-  ASSIGN_TASK_SELF: { name: 'Assign Tasks to Self', category: 'TASK' },
-  ASSIGN_TASK_OTHERS: { name: 'Assign Tasks to Others', category: 'TASK' },
-  CREATE_TASK_COMMENT: { name: 'Create Task Comments', category: 'COMMENT' },
-  DELETE_TASK_COMMENT: { name: 'Delete Task Comments', category: 'COMMENT' },
-  CREATE_LABEL: { name: 'Create Labels', category: 'LABEL' },
-  EDIT_LABEL: { name: 'Edit Labels', category: 'LABEL' },
-  DELETE_LABEL: { name: 'Delete Labels', category: 'LABEL' },
-  APPLY_LABEL_TO_TASK: { name: 'Apply Labels to Tasks', category: 'LABEL' },
-  REMOVE_LABEL_FROM_TASK: { name: 'Remove Labels from Tasks', category: 'LABEL' },
-  MANAGE_PRIORITIES: { name: 'Manage Priorities', category: 'LABEL' },
+const KANBAN_PERM_CATEGORIES: Record<string, string> = {
+  ADMIN: 'SERVER',
+  VIEW_SERVER: 'SERVER',
+  MANAGE_SERVER_PERMISSIONS: 'SERVER',
+  VIEW_AUDIT_LOG: 'SERVER',
+  CREATE_BOARD: 'BOARD',
+  VIEW_BOARD: 'BOARD',
+  EDIT_BOARD_DETAILS: 'BOARD',
+  EDIT_BOARD_PERMISSIONS: 'BOARD',
+  ARCHIVE_BOARD: 'BOARD',
+  DELETE_BOARD: 'BOARD',
+  CREATE_COLUMN: 'COLUMN',
+  EDIT_COLUMN: 'COLUMN',
+  DELETE_COLUMN: 'COLUMN',
+  MOVE_COLUMN: 'COLUMN',
+  CREATE_TASK: 'TASK',
+  VIEW_TASK: 'TASK',
+  EDIT_TASK: 'TASK',
+  MOVE_TASK: 'TASK',
+  DELETE_TASK: 'TASK',
+  ARCHIVE_TASK: 'TASK',
+  ASSIGN_TASK_SELF: 'TASK',
+  ASSIGN_TASK_OTHERS: 'TASK',
+  CREATE_TASK_COMMENT: 'COMMENT',
+  DELETE_TASK_COMMENT: 'COMMENT',
+  CREATE_LABEL: 'LABEL',
+  EDIT_LABEL: 'LABEL',
+  DELETE_LABEL: 'LABEL',
+  APPLY_LABEL_TO_TASK: 'LABEL',
+  REMOVE_LABEL_FROM_TASK: 'LABEL',
+  MANAGE_PRIORITIES: 'LABEL',
 }
+
+/** Each KanbanCord permission's name (in the reader's language, read when shown) and category. */
+export const KANBAN_PERM_INFO: Record<string, KanbanPermInfo> = Object.fromEntries(
+  Object.entries(KANBAN_PERM_CATEGORIES).map(([key, category]) => [
+    key,
+    {
+      category,
+      get name() {
+        return t(`permissions.kanban.${key}` as MessageKey)
+      },
+    },
+  ]),
+)
 
 export const CATEGORY_ORDER = ['SERVER', 'BOARD', 'COLUMN', 'TASK', 'COMMENT', 'LABEL']
 
@@ -362,15 +388,17 @@ export type SubjectLookups = {
 
 function getSubjectDisplay(subjectType: string, subjectId: string, lookups?: SubjectLookups): string {
   if (subjectType === 'DISCORD_PERMISSION') {
-    return `Discord: ${DISCORD_FLAG_NAMES[subjectId] ?? `flag ${subjectId}`}`
+    return t('permissions.subject.discord', {
+      name: DISCORD_FLAG_NAMES[subjectId] ?? t('permissions.subject.flag', { id: subjectId }),
+    })
   }
   if (subjectType === 'ROLE') {
     const name = lookups?.roles?.get(subjectId)
-    return `Role: ${name ?? subjectId}`
+    return t('permissions.subject.role', { name: name ?? subjectId })
   }
   if (subjectType === 'USER') {
     const name = lookups?.members?.get(subjectId)
-    return `User: ${name ?? subjectId}`
+    return t('permissions.subject.user', { name: name ?? subjectId })
   }
   return `${subjectType} #${subjectId}`
 }

@@ -1,0 +1,154 @@
+{
+  "nav": {
+    "main": "Main",
+    "site": "Site",
+    "breadcrumbs": "Breadcrumbs",
+    "guides": "Guides",
+    "faq": "FAQ",
+    "open": "Open KanbanCord",
+    "about": "About",
+    "support": "Support",
+    "supportServer": "Support server",
+    "appDirectory": "App Directory",
+    "status": "Status",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "addToDiscord": "Add to Discord"
+  },
+  "footer": {
+    "notAffiliated": "© {year} {operator}. {name} is not affiliated with or endorsed by Discord."
+  },
+  "landing": {
+    "metaTitle": "Kanban boards for Discord",
+    "metaDescription": "A kanban board that lives in your Discord server: create, move and assign tasks with slash commands, get updates in your channels, and use the website for the big picture.",
+    "title": "A kanban board that lives in your Discord server",
+    "intro": "Plan and track work where your community already talks. Create, move and assign tasks with slash commands, and get updates in your channels. The website is there when you want the whole picture.",
+    "signIn": "Sign in with Discord",
+    "free": "Free. No ads. No tracking. Also on <link>Discord's App Directory</link>.",
+    "features": "Features",
+    "feature": {
+      "discord": {
+        "title": "Everything from Discord",
+        "text": "Create boards and tasks, move and assign them, set due dates and comment with slash commands. No need to leave the chat."
+      },
+      "boards": {
+        "title": "Real kanban boards",
+        "text": "Columns and tasks with labels, priorities, due dates, assignees, comments, checklists, images and videos."
+      },
+      "permissions": {
+        "title": "Your Discord permissions",
+        "text": "Access follows your server roles out of the box, and can be fine-tuned per board and per person on the website."
+      },
+      "updates": {
+        "title": "Updates, not noise",
+        "text": "Post changes to chosen channels and get direct messages about your tasks, never pinged twice for one thing."
+      },
+      "website": {
+        "title": "The big picture, when you want it",
+        "text": "The website shows whole boards at a glance and holds the fine-tuning, with every change live for everyone."
+      },
+      "comfort": {
+        "title": "Made to be comfortable",
+        "text": "Themes including high contrast and colour-blind friendly ones, text size, and a simple mode for small teams."
+      }
+    },
+    "stepsTitle": "Start in a minute",
+    "step1": "<strong>Add the bot</strong> to your server.",
+    "step2": "<strong>Create a board</strong> with <code>/board create</code>.",
+    "step3": "<strong>Add tasks</strong> with <code>/task create</code>, and run <code>/help</code> to see the rest."
+  },
+  "about": {
+    "metaTitle": "About",
+    "metaDescription": "KanbanCord is a kanban board that lives in your Discord server: run it entirely with the bot, and use the website for the big picture and fine-tuning.",
+    "title": "About {name}",
+    "p1": "{name} is a kanban board that lives in your Discord server. The idea is simple: your community already talks in Discord, so planning should happen there too. Create boards and columns, add tasks, move them along, assign people, set labels, priorities and due dates, and discuss them in comments, all with the bot's slash commands, without leaving the chat. Updates arrive in the channels you choose and, for your own tasks, by direct message.",
+    "p2": "Most people never need anything else. The website is there when you want the whole board at a glance, or to fine-tune things: detailed permissions per board and per person, the labels and priority levels a board offers, which features a server uses, exactly which updates you are told about, and the audit log of every change.",
+    "p3": "It follows your server's Discord roles and permissions from the start, so the right people see and change the right boards without setting anything up twice.",
+    "madeByTitle": "Made by one person",
+    "madeBy": "{name} is built and run by {operator}. It is free, has no ads, and does not sell or track your data (see the <privacy>Privacy Policy</privacy>). Found a problem or have an idea? Use <code>/report</code> in Discord. Questions, or want to hear about new features? Join the <server>support server</server>. If you would like to help with its costs, see <support>Support</support>.",
+    "findTitle": "Find it on Discord",
+    "find": "{name} has its own page in <directory>Discord's App Directory</directory>, where you can add it to a server straight from Discord. Whether the website, the bot and everything behind them are running, and any planned maintenance, is on the <status>status page</status>.",
+    "startTitle": "Get started",
+    "start1": "Add the bot to your server.",
+    "start2": "Create a board with <code>/board create</code>, then add tasks with <code>/task create</code>.",
+    "start3": "Run <code>/help</code> to see everything the bot can do.",
+    "questions": "Questions? See the <faq>FAQ</faq>."
+  },
+  "support": {
+    "metaTitle": "Support",
+    "metaDescription": "KanbanCord is free for everyone. If you would like to help with its costs, you can leave a voluntary donation on Ko-fi.",
+    "title": "Support {name}",
+    "p1": "{name} is free, has no ads and no paid plans, and it will stay that way. It is a personal project, built and run by {operator}.",
+    "p2": "If it is useful to your server and you would like to help with its costs, such as the domain, and the servers it will need if it grows, you can leave a donation on Ko-fi.",
+    "kofi": "Support on Ko-fi",
+    "goodToKnow": "Good to know",
+    "voluntary": "Donations are entirely voluntary. Everyone gets the same {name}, whether they donate or not.",
+    "buysNothing": "A donation does not buy features, limits, roles, priority support or anything else.",
+    "payments": "Payments are handled by Ko-fi and PayPal, never by {name}. We do not link donations to your Discord account.",
+    "refunds": "Donations are not refundable as a rule. If you donated by mistake, email <email>{email}</email> and we will do what we can.",
+    "notDonating": "Not donating is completely fine. Telling others about {name}, or reporting a bug with <code>/report</code>, helps too."
+  },
+  "faq": {
+    "metaTitle": "FAQ",
+    "metaDescription": "Answers about KanbanCord: pricing, adding the bot, permissions, Discord commands, notifications, uploads and your data.",
+    "title": "Frequently asked questions",
+    "free": {
+      "q": "Is {name} free?",
+      "a": "Yes. There are no paid plans, no ads, and your data is not sold."
+    },
+    "start": {
+      "q": "Where do I start?",
+      "a": "Add the bot, then run <code>/guide</code> in Discord for a step-by-step walkthrough. The <guides>guides</guides> cover everything from a shared to-do list to reminders and permissions."
+    },
+    "website": {
+      "q": "Do I need the website?",
+      "a": "No. {name} is built to be used entirely from Discord: create boards, columns and tasks, move and assign them, set labels, priorities and due dates, comment, and choose your notifications, all with slash commands. The website is for when you want the whole board at a glance, or to fine-tune settings."
+    },
+    "add": {
+      "q": "How do I add it to my server?",
+      "a": "Use \"Add to Discord\" at the bottom of any page, and pick the server. You need the Manage Server permission there. Then create a first board with <code>/board create</code> and add tasks with <code>/task create</code>."
+    },
+    "access": {
+      "q": "Who can see and change my boards?",
+      "a": "It follows your server's Discord roles and permissions by default: administrators and moderators can manage boards, members can work with tasks. Server administrators can change this for the whole server or per board, in the server and board settings."
+    },
+    "servers": {
+      "q": "Why does signing in ask for my list of servers?",
+      "a": "So {name} can show which of your servers you can manage and add the bot to. It does not read your messages."
+    },
+    "discord": {
+      "q": "What can I do from Discord?",
+      "a": "Everything you need day to day: create, view, rename and archive boards; add, rename, reorder and delete columns; create, edit, move and delete tasks; assign people and roles; set labels, priorities and due dates; read and write comments; choose your own notifications with <code>/notifications</code>; and, for server managers, set up update channels with <code>/kanbancord</code>. Run <code>/help</code> in Discord for every command."
+    },
+    "websiteOnly": {
+      "q": "What needs the website?",
+      "a": "Fine-tuning and the big picture: seeing a whole board at once, permission rules per board and per person, the labels and priority levels a board offers, which features a server uses, exactly which updates you are told about, themes and accessibility options, uploading images and videos, and browsing the audit log."
+    },
+    "notifications": {
+      "q": "How do notifications work?",
+      "a": "A server can have the bot post updates in chosen channels, and mirror its audit log in one; update posts can show the whole task with buttons to move it, assign people or edit it right there. You can also get direct messages about tasks you are assigned to, created or follow, including reminders when they are due. If a channel already mentioned you about something, you do not get a direct message about it too. Choose what you get with <code>/notifications</code>, or in more detail under Settings → Notifications on the website. Server managers set up channels with <code>/kanbancord</code>."
+    },
+    "uploads": {
+      "q": "Where are uploaded images and videos stored?",
+      "a": "On Imgur. Anyone with the link can see them, so do not upload anything private."
+    },
+    "data": {
+      "q": "How do I remove my data?",
+      "a": "Sign out everywhere under Settings → Sessions, and ask us to delete the rest at <email>{email}</email>. Server administrators can delete boards, and removing the bot from a server stops it syncing that server. Details are in the <privacy>Privacy Policy</privacy>."
+    },
+    "help": {
+      "q": "I found a bug, have an idea, or need help.",
+      "a": "Join the <server>{name} support server</server> to ask questions and hear about new features, or use <code>/report</code> in Discord to send a report straight to the developer."
+    }
+  },
+  "guides": {
+    "metaTitle": "Guides",
+    "metaDescription": "Guides to KanbanCord: kanban boards, to-do lists and task tracking in Discord, from your first board to reminders, feeds and permissions.",
+    "title": "Guides",
+    "intro": "How to plan and track work in your Discord server with {name}: kanban boards, shared to-do lists, tasks for people and roles, due dates and reminders. Almost everything happens with slash commands; a few guides cover the website.",
+    "inDiscord": "Already added the bot? Run <code>/guide</code> in Discord for the same steps, ticked off as you go.",
+    "tryTitle": "Try it in your server",
+    "try": "{name} is free. Add it to your server, then run <code>/guide</code> for a step-by-step walkthrough right in Discord.",
+    "more": "More guides"
+  }
+}

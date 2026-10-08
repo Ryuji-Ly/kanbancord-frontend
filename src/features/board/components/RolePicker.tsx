@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { t } from '../../../i18n'
 import type { ServerRoleEntry } from '../../../services/permissionsService'
 import { roleColor } from '../boardModel'
 
@@ -9,7 +10,7 @@ export function RoleChip({ role, onRemove }: { role: Pick<ServerRoleEntry, 'name
     <span className="kc-role-chip" style={color ? { color, borderColor: color } : undefined}>
       <span className="kc-role-chip-name">@{role.name}</span>
       {onRemove && (
-        <button type="button" className="kc-label-chip-remove" aria-label={`Remove role ${role.name}`} onClick={onRemove}>
+        <button type="button" className="kc-label-chip-remove" aria-label={t('board.pickers.removeRole', { name: role.name })} onClick={onRemove}>
           ×
         </button>
       )}
@@ -57,8 +58,8 @@ export function RolePicker({ roles, selectedIds, editable, onAdd, onRemove }: Ro
           <input
             className="kc-task-assignee-input"
             value={query}
-            placeholder="Assign a role"
-            aria-label="Search roles"
+            placeholder={t('board.pickers.assignRole')}
+            aria-label={t('board.pickers.searchRoles')}
             onFocus={() => setOpen(true)}
             onBlur={() => window.setTimeout(() => setOpen(false), 150)}
             onChange={(event) => {
@@ -75,11 +76,11 @@ export function RolePicker({ roles, selectedIds, editable, onAdd, onRemove }: Ro
             }}
           />
         )}
-        {!editable && selected.length === 0 && <span className="kc-muted">No roles.</span>}
+        {!editable && selected.length === 0 && <span className="kc-muted">{t('board.pickers.noRoles')}</span>}
       </div>
 
       {editable && open && options.length > 0 && (
-        <ul className="kc-task-assignee-results" role="listbox" aria-label="Roles">
+        <ul className="kc-task-assignee-results" role="listbox" aria-label={t('board.pickers.roles')}>
           {options.map((role) => (
             <li key={role.roleId}>
               <button

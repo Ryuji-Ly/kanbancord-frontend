@@ -4,6 +4,7 @@ import { SiteFooter } from '../site/SiteFooter'
 import { useQuery } from '@tanstack/react-query'
 import { useNavigate } from 'react-router-dom'
 import { readableError } from '../api/http'
+import { t } from '../i18n'
 import { fetchMyServers } from '../services/meService'
 import { fetchUserGuilds, filterManageableGuilds } from '../services/discordGuildsService'
 import { DashboardHeader } from '../components/dashboard/DashboardHeader'
@@ -67,7 +68,7 @@ export function DashboardPage() {
   }
 
   const loadError = guildsQuery.error ?? myServersQuery.error
-  const banner = session.banner ?? (loadError ? { text: readableError(loadError, 'Failed to fetch servers'), type: 'error' as const } : null)
+  const banner = session.banner ?? (loadError ? { text: readableError(loadError, t('dashboard.fetchServersFailed')), type: 'error' as const } : null)
   const loading = session.exchanging || (Boolean(userId) && (guildsQuery.isPending || myServersQuery.isPending))
 
   // Signed out: the front door, with what KanbanCord is and how to start.

@@ -2,8 +2,10 @@ import { useMemo, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { FiCheck, FiX } from 'react-icons/fi'
 import { readableError } from '../../api/http'
+import { t, tOr, type MessageKey } from '../../i18n'
 import {
   CATEGORY_ORDER,
+  KANBAN_PERM_INFO,
   fetchAccessCheck,
   type AccessCheck,
   type CheckedRule,
@@ -21,56 +23,47 @@ type AccessCheckPanelProps = {
 
 type Who = { kind: 'member'; userId: string; roleIds?: string[] } | { kind: 'roles'; roleIds: string[] }
 
-const CATEGORY_LABELS: Record<string, string> = {
-  SERVER: 'Server',
-  BOARD: 'Boards',
-  COLUMN: 'Columns',
-  TASK: 'Tasks',
-  COMMENT: 'Comments',
-  LABEL: 'Labels and priorities',
-}
-
-/** Discord's own names for the permissions rules mention. */
-const FLAG_LABELS: Record<string, string> = {
-  VIEW_CHANNEL: 'View Channels',
-  MANAGE_GUILD: 'Manage Server',
-  VIEW_AUDIT_LOG: 'View Audit Log',
-}
-
+/** Discord's own names for the permissions rules mention (access.flags), or the flag in words. */
 function flagLabel(flag: string): string {
-  return FLAG_LABELS[flag] ?? flag.toLowerCase().split('_').map((word) => word[0].toUpperCase() + word.slice(1)).join(' ')
+  return tOr(
+    `access.flags.${flag}`,
+    flag.toLowerCase().split('_').map((word) => word[0].toUpperCase() + word.slice(1)).join(' '),
+  )
 }
 
 /** Who a rule is for, in a sentence: "everyone with Send Messages", "@Artists", "Mira personally". */
 function ruleSubject(rule: CheckedRule): string {
-  if (rule.subjectType === 'DISCORD_PERMISSION') return `everyone with ${flagLabel(rule.subjectName)}`
+  if (rule.subjectType === 'DISCORD_PERMISSION') return t('access.everyoneWith', { permission: flagLabel(rule.subjectName) })
   if (rule.subjectType === 'ROLE') return rule.subjectName.startsWith('@') ? rule.subjectName : `@${rule.subjectName}`
-  return `${rule.subjectName} personally`
+  return t('access.personally', { name: rule.subjectName })
 }
 
 function ruleWhere(rule: CheckedRule): string {
-  if (rule.builtIn) return 'default'
-  return rule.scope === 'BOARD' ? 'this board' : 'server'
+  if (rule.builtIn) return t('access.where.default')
+  return rule.scope === 'BOARD' ? t('access.where.board') : t('access.where.server')
 }
 
 /** Why a key came out as it did, in a sentence. */
 function explanation(result: KeyCheck, check: AccessCheck): string {
   switch (result.reason) {
     case 'ADMIN':
-      return check.subject.owner
-        ? 'Allowed: the server owner may do everything'
-        : `Allowed: administrators may do everything${
-            check.subject.administratorRule ? ` (${ruleSubject(check.subject.administratorRule)})` : ''
-          }`
+      if (check.subject.owner) return t('access.why.owner')
+      return check.subject.administratorRule
+        ? t('access.why.adminRule', { subject: ruleSubject(check.subject.administratorRule) })
+        : t('access.why.admin')
     case 'OPEN':
-      return 'Allowed: open permissions let everyone who can talk do this'
+      return t('access.why.open')
     case 'NONE':
-      return 'Denied: no rule allows it'
+      return t('access.why.none')
     default: {
       const rule = result.decidedBy
-      if (!rule) return result.allowed ? 'Allowed' : 'Denied'
-      const whose = rule.builtIn ? 'the default' : rule.scope === 'BOARD' ? "the board's rule" : "the server's rule"
-      return `${result.allowed ? 'Allowed' : 'Denied'} by ${whose} for ${ruleSubject(rule)}`
+      if (!rule) return result.allowed ? t('access.allowed') : t('access.denied')
+      const whose: MessageKey = rule.builtIn
+        ? 'access.why.byDefault'
+        : rule.scope === 'BOARD'
+          ? 'access.why.byBoard'
+          : 'access.why.byServer'
+      return t(whose, { result: result.allowed ? t('access.allowed') : t('access.denied'), subject: ruleSubject(rule) })
     }
   }
 }
@@ -141,26 +134,23 @@ export function AccessCheckPanel({ serverId, board, boards = [] }: AccessCheckPa
 
   return (
     <section className="kc-access-check">
-      <p className="kc-muted">
-        See what someone may do{board ? ' on this board' : ''}, and which rule decides each thing. Pick a member to
-        start from their roles, then add or remove roles to see what would change. Or check a set of roles on its own.
-      </p>
+      <p className="kc-muted">{t(board ? 'access.introBoard' : 'access.intro')}</p>
 
       <div className="kc-access-check-who">
-        <div className="kc-access-check-modes" role="group" aria-label="Check">
+        <div className="kc-access-check-modes" role="group" aria-label={t('access.check')}>
           <button
             type="button"
             className={`kc-btn kc-btn-small ${who?.kind !== 'roles' ? 'kc-btn-primary' : 'kc-btn-ghost'}`}
             onClick={() => setWho(null)}
           >
-            A member
+            {t('access.aMember')}
           </button>
           <button
             type="button"
             className={`kc-btn kc-btn-small ${who?.kind === 'roles' ? 'kc-btn-primary' : 'kc-btn-ghost'}`}
             onClick={() => setWho({ kind: 'roles', roleIds: [] })}
           >
-            Roles only
+            {t('access.rolesOnly')}
           </button>
         </div>
 
@@ -169,8 +159,8 @@ export function AccessCheckPanel({ serverId, board, boards = [] }: AccessCheckPa
             <input
               type="search"
               className="kc-input"
-              placeholder="Search members by name"
-              aria-label="Search members by name"
+              placeholder={t('access.searchMembers')}
+              aria-label={t('access.searchMembers')}
               value={search}
               onChange={(event) => setSearch(event.target.value)}
             />
@@ -197,9 +187,9 @@ export function AccessCheckPanel({ serverId, board, boards = [] }: AccessCheckPa
 
         {!board && boards.length > 0 && (
           <label className="kc-access-check-scope">
-            <span className="kc-field-label">Where</span>
+            <span className="kc-field-label">{t('access.whereLabel')}</span>
             <select className="kc-input" value={scope} onChange={(event) => setScope(event.target.value)}>
-              <option value="">Server-wide</option>
+              <option value="">{t('access.serverWide')}</option>
               {boards.map((entry) => (
                 <option key={entry.boardId} value={String(entry.boardId)}>
                   {entry.name}
@@ -213,7 +203,11 @@ export function AccessCheckPanel({ serverId, board, boards = [] }: AccessCheckPa
       {who && (
         <div className="kc-access-check-roles">
           <span className="kc-field-label">
-            {who.kind === 'roles' ? 'Roles' : data?.subject.name ? `${data.subject.name}’s roles` : 'Their roles'}
+            {who.kind === 'roles'
+              ? t('board.fields.roles')
+              : data?.subject.name
+                ? t('access.someonesRoles', { name: data.subject.name })
+                : t('access.theirRoles')}
           </span>
           <ul>
             <li className="kc-access-check-role kc-access-check-role--fixed">@everyone</li>
@@ -221,10 +215,10 @@ export function AccessCheckPanel({ serverId, board, boards = [] }: AccessCheckPa
               const role = roles.find((entry) => entry.roleId === roleId)
               return (
                 <li key={roleId} className="kc-access-check-role" style={roleColour(role?.color ?? null)}>
-                  {role?.name ?? 'Unknown role'}
+                  {role?.name ?? t('access.unknownRole')}
                   <button
                     type="button"
-                    aria-label={`Without ${role?.name ?? 'this role'}`}
+                    aria-label={t('access.without', { role: role?.name ?? t('access.thisRole') })}
                     onClick={() => setRoles(currentRoleIds.filter((id) => id !== roleId))}
                   >
                     <FiX aria-hidden="true" />
@@ -235,11 +229,11 @@ export function AccessCheckPanel({ serverId, board, boards = [] }: AccessCheckPa
             <li>
               <select
                 className="kc-input kc-access-check-add"
-                aria-label="Add a role"
+                aria-label={t('access.addRole')}
                 value=""
                 onChange={(event) => event.target.value && setRoles([...currentRoleIds, event.target.value])}
               >
-                <option value="">Add a role…</option>
+                <option value="">{t('access.addRoleOption')}</option>
                 {roles
                   .filter((role) => role.roleId !== everyoneId && !currentRoleIds.includes(role.roleId))
                   .map((role) => (
@@ -252,41 +246,39 @@ export function AccessCheckPanel({ serverId, board, boards = [] }: AccessCheckPa
           </ul>
           {who.kind === 'member' && who.roleIds && (
             <p className="kc-muted kc-access-check-whatif">
-              Showing {data?.subject.name ?? 'them'} with different roles than they have.{' '}
+              {t('access.whatIf', { name: data?.subject.name ?? t('access.them') })}{' '}
               <button type="button" className="kc-link-button" onClick={() => setWho({ kind: 'member', userId: who.userId })}>
-                Use their real roles
+                {t('access.realRoles')}
               </button>
             </p>
           )}
         </div>
       )}
 
-      {!who && <p className="kc-muted">Search for a member above, or choose Roles only.</p>}
-      {check.isError && <p className="kc-banner">{readableError(check.error, 'The check failed')}</p>}
+      {!who && <p className="kc-muted">{t('access.start')}</p>}
+      {check.isError && <p className="kc-banner">{readableError(check.error, t('access.failed'))}</p>}
 
       {data && who && (
         <>
           <ul className="kc-access-check-notes">
             {!data.boardId && !board && (
-              <li>Server-wide: what applies on every board that has no rules of its own.</li>
+              <li>{t('access.notes.serverWide')}</li>
             )}
             {!data.customPermissions && (
-              <li>Custom permissions are off, so the defaults apply: what each Discord permission allows.</li>
+              <li>{t('access.notes.customOff')}</li>
             )}
             {data.openPermissions && (
-              <li>Open permissions are on: everyone who can view channels and send messages may work with boards.</li>
+              <li>{t('access.notes.open')}</li>
             )}
             {data.subject.userId && !data.subject.member && (
-              <li>{data.subject.name ?? 'This person'} is not in the server, so only rules for them personally count.</li>
+              <li>{t('access.notes.notMember', { name: data.subject.name ?? t('access.thisPerson') })}</li>
             )}
             {data.subject.discordPermissions.length > 0 && (
-              <li>
-                Discord permissions that matter here: {data.subject.discordPermissions.map(flagLabel).join(', ')}.
-              </li>
+              <li>{t('access.notes.discord', { permissions: data.subject.discordPermissions.map(flagLabel).join(', ') })}</li>
             )}
           </ul>
 
-          <div className="kc-access-check-filter" role="group" aria-label="Show">
+          <div className="kc-access-check-filter" role="group" aria-label={t('access.show')}>
             {(['all', 'allowed', 'denied'] as const).map((value) => (
               <button
                 key={value}
@@ -295,30 +287,38 @@ export function AccessCheckPanel({ serverId, board, boards = [] }: AccessCheckPa
                 onClick={() => setShow(value)}
               >
                 {value === 'all'
-                  ? 'Everything'
-                  : `${value === 'allowed' ? 'Allowed' : 'Denied'} (${data.results.filter((result) => result.allowed === (value === 'allowed')).length})`}
+                  ? t('audit.filters.everything')
+                  : t(value === 'allowed' ? 'access.allowedCount' : 'access.deniedCount', {
+                      count: data.results.filter((result) => result.allowed === (value === 'allowed')).length,
+                    })}
               </button>
             ))}
           </div>
 
           {grouped.map((group) => (
             <fieldset key={group.category} className="kc-access-check-group">
-              <legend>{CATEGORY_LABELS[group.category] ?? group.category}</legend>
+              <legend>{tOr(`access.categories.${group.category}`, group.category)}</legend>
               <ul>
                 {group.results.map((result) => (
                   <li key={result.key} className={`kc-access-check-result${result.allowed ? '' : ' kc-access-check-result--denied'}`}>
-                    <span className="kc-access-check-mark" aria-label={result.allowed ? 'Allowed' : 'Denied'}>
+                    <span className="kc-access-check-mark" aria-label={result.allowed ? t('access.allowed') : t('access.denied')}>
                       {result.allowed ? <FiCheck aria-hidden="true" /> : <FiX aria-hidden="true" />}
                     </span>
                     <div>
-                      <strong>{result.name}</strong>
+                      <strong>{KANBAN_PERM_INFO[result.key]?.name ?? result.name}</strong>
                       <span className="kc-access-check-why">{explanation(result, data)}</span>
                       {result.overridden.length > 0 && (
                         <span className="kc-access-check-overridden">
-                          Outweighs:{' '}
-                          {result.overridden
-                            .map((rule) => `${rule.state === 'ALLOW' ? 'Allow' : 'Deny'} for ${ruleSubject(rule)} (${ruleWhere(rule)})`)
-                            .join('; ')}
+                          {t('access.outweighs', {
+                            rules: result.overridden
+                              .map((rule) =>
+                                t(rule.state === 'ALLOW' ? 'access.overriddenAllow' : 'access.overriddenDeny', {
+                                  subject: ruleSubject(rule),
+                                  where: ruleWhere(rule),
+                                }),
+                              )
+                              .join('; '),
+                          })}
                         </span>
                       )}
                     </div>

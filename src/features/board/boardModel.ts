@@ -1,5 +1,6 @@
 import type { CSSProperties } from 'react'
 import { parseServerTime } from '../../api/http'
+import { formatLocale, t } from '../../i18n'
 import type { BoardSnapshot, LabelEntry } from '../../services/boardsService'
 import { NO_FEATURES, type FeatureKey, type ServerFeatures } from '../../services/featuresService'
 import type { BoardColumnEntry } from '../../services/boardColumnsService'
@@ -474,7 +475,7 @@ function resolveEditorLabel(editor: TaskCommentEditor): string {
 export function formatCommentTimestamp(value: string | null): string {
   if (!value) return ''
   const parsed = parseServerTime(value)
-  return Number.isNaN(parsed.getTime()) ? '' : parsed.toLocaleString()
+  return Number.isNaN(parsed.getTime()) ? '' : parsed.toLocaleString(formatLocale())
 }
 
 /** "(edited)" when the author edited, or "(edited by: …)" naming everyone when someone else did. */
@@ -485,8 +486,8 @@ export function commentEditLabel(comment: TaskCommentEntry): string {
 
   const uniqueEditors = Array.from(new Map((comment.editedByUsers ?? []).map((editor) => [editor.userId, editor])).values())
   const nonAuthorEditors = uniqueEditors.filter((editor) => editor.userId !== comment.userId)
-  if (nonAuthorEditors.length === 0) return '(edited)'
-  return `(edited by: ${uniqueEditors.map(resolveEditorLabel).join(', ')})`
+  if (nonAuthorEditors.length === 0) return t('board.comments.edited')
+  return t('board.comments.editedBy', { names: uniqueEditors.map(resolveEditorLabel).join(', ') })
 }
 
 // ── Assignees ────────────────────────────────────────────────────────────────

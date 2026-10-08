@@ -1,42 +1,33 @@
+import { t } from '../i18n'
+import { Trans } from '../i18n/Trans'
 import { PublicLayout } from './PublicLayout'
-import { SITE } from './siteInfo'
+import { SITE, SITE_VALUES } from './siteInfo'
 
 /** Voluntary donations: what they are for, and that they unlock nothing. */
 export function SupportPage() {
   return (
-    <PublicLayout
-      title="Support"
-      description="KanbanCord is free for everyone. If you would like to help with its costs, you can leave a voluntary donation on Ko-fi."
-      path="/support"
-    >
-      <h1>Support {SITE.name}</h1>
-      <p>
-        {SITE.name} is free, has no ads and no paid plans, and it will stay that way. It is a personal project, built and
-        run by {SITE.operator}.
-      </p>
-      <p>
-        If it is useful to your server and you would like to help with its costs, such as the domain, and the servers it
-        will need if it grows, you can leave a donation on Ko-fi.
-      </p>
+    <PublicLayout title={t('site.support.metaTitle')} description={t('site.support.metaDescription')} path="/support">
+      <h1>{t('site.support.title', SITE_VALUES)}</h1>
+      <p>{t('site.support.p1', SITE_VALUES)}</p>
+      <p>{t('site.support.p2')}</p>
       <p>
         <a className="kc-btn kc-btn-primary" href={SITE.donationUrl} target="_blank" rel="noopener noreferrer">
-          Support on Ko-fi
+          {t('site.support.kofi')}
         </a>
       </p>
 
-      <h2>Good to know</h2>
+      <h2>{t('site.support.goodToKnow')}</h2>
       <ul>
-        <li>Donations are entirely voluntary. Everyone gets the same {SITE.name}, whether they donate or not.</li>
-        <li>A donation does not buy features, limits, roles, priority support or anything else.</li>
+        <li>{t('site.support.voluntary', SITE_VALUES)}</li>
+        <li>{t('site.support.buysNothing')}</li>
+        <li>{t('site.support.payments', SITE_VALUES)}</li>
         <li>
-          Payments are handled by Ko-fi and PayPal, never by {SITE.name}. We do not link donations to your Discord account.
-        </li>
-        <li>
-          Donations are not refundable as a rule. If you donated by mistake, email{' '}
-          <a href={`mailto:${SITE.email}`}>{SITE.email}</a> and we will do what we can.
+          <Trans k="site.support.refunds" values={SITE_VALUES} tags={{ email: <a href={`mailto:${SITE.email}`} /> }} />
         </li>
       </ul>
-      <p>Not donating is completely fine. Telling others about {SITE.name}, or reporting a bug with <code>/report</code>, helps too.</p>
+      <p>
+        <Trans k="site.support.notDonating" values={SITE_VALUES} />
+      </p>
     </PublicLayout>
   )
 }

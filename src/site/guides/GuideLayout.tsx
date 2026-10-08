@@ -1,9 +1,11 @@
 import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { buildBotInviteLink } from '../../features/dashboard/dashboardModel'
+import { t } from '../../i18n'
+import { Trans } from '../../i18n/Trans'
 import { PublicLayout } from '../PublicLayout'
-import { SITE } from '../siteInfo'
-import { GUIDE_META, guideMeta } from './guideMeta'
+import { SITE_VALUES } from '../siteInfo'
+import { GUIDE_META, guideMeta, guideText } from './guideMeta'
 
 /**
  * A guide's page: where it sits among the guides, its content, a way to try it, and the other
@@ -11,32 +13,32 @@ import { GUIDE_META, guideMeta } from './guideMeta'
  */
 export function GuideLayout({ slug, children }: { slug: string; children: ReactNode }) {
   const meta = guideMeta(slug)
+  const title = guideText(meta, 'title')
   const others = GUIDE_META.filter((guide) => guide.slug !== slug)
   return (
-    <PublicLayout title={meta.title} description={meta.description} path={`/guides/${slug}`}>
-      <nav className="kc-breadcrumbs" aria-label="Breadcrumbs">
-        <Link to="/guides">Guides</Link> <span aria-hidden="true">›</span> <span>{meta.title}</span>
+    <PublicLayout title={title} description={guideText(meta, 'description')} path={`/guides/${slug}`}>
+      <nav className="kc-breadcrumbs" aria-label={t('site.nav.breadcrumbs')}>
+        <Link to="/guides">{t('site.nav.guides')}</Link> <span aria-hidden="true">›</span> <span>{title}</span>
       </nav>
-      <h1>{meta.title}</h1>
+      <h1>{title}</h1>
       {children}
 
       <aside className="kc-guide-cta">
-        <h2>Try it in your server</h2>
+        <h2>{t('site.guides.tryTitle')}</h2>
         <p>
-          {SITE.name} is free. Add it to your server, then run <code>/guide</code> for a step-by-step walkthrough right
-          in Discord.
+          <Trans k="site.guides.try" values={SITE_VALUES} />
         </p>
         <a className="kc-btn kc-btn-primary" href={buildBotInviteLink()} target="_blank" rel="noopener noreferrer">
-          Add to Discord
+          {t('site.nav.addToDiscord')}
         </a>
       </aside>
 
-      <h2>More guides</h2>
+      <h2>{t('site.guides.more')}</h2>
       <ul className="kc-guide-list">
         {others.map((guide) => (
           <li key={guide.slug}>
-            <Link to={`/guides/${guide.slug}`}>{guide.title}</Link>
-            <span className="kc-muted"> · {guide.summary}</span>
+            <Link to={`/guides/${guide.slug}`}>{guideText(guide, 'title')}</Link>
+            <span className="kc-muted"> · {guideText(guide, 'summary')}</span>
           </li>
         ))}
       </ul>

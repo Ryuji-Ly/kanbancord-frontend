@@ -1,19 +1,20 @@
 import { parseServerTime } from '../../api/http'
+import { formatLocale, t, tOr, type MessageKey } from '../../i18n'
 import type { AuditEntry } from '../../services/auditLogService'
 import { FEATURES } from '../../services/featuresService'
 import { DISCORD_FLAG_NAMES, KANBAN_PERM_INFO } from '../../services/permissionsService'
 
 /** The kinds of change the log can be filtered by, and the entity types each covers. */
-export const AUDIT_CATEGORIES: { key: string; label: string; entityTypes: string[] }[] = [
-  { key: 'boards', label: 'Boards', entityTypes: ['BOARD'] },
-  { key: 'columns', label: 'Columns', entityTypes: ['BOARD_COLUMN'] },
-  { key: 'tasks', label: 'Tasks', entityTypes: ['TASK'] },
-  { key: 'assignments', label: 'Assignments', entityTypes: ['TASK_ASSIGNMENT'] },
-  { key: 'comments', label: 'Comments', entityTypes: ['TASK_COMMENT'] },
-  { key: 'labels', label: 'Labels', entityTypes: ['LABEL', 'TASK_LABEL'] },
-  { key: 'priorities', label: 'Priorities', entityTypes: ['PRIORITY'] },
-  { key: 'permissions', label: 'Permissions', entityTypes: ['PERMISSION'] },
-  { key: 'settings', label: 'Settings', entityTypes: ['SETTINGS'] },
+export const AUDIT_CATEGORIES: { key: string; label: MessageKey; entityTypes: string[] }[] = [
+  { key: 'boards', label: 'audit.categories.boards', entityTypes: ['BOARD'] },
+  { key: 'columns', label: 'audit.categories.columns', entityTypes: ['BOARD_COLUMN'] },
+  { key: 'tasks', label: 'audit.categories.tasks', entityTypes: ['TASK'] },
+  { key: 'assignments', label: 'audit.categories.assignments', entityTypes: ['TASK_ASSIGNMENT'] },
+  { key: 'comments', label: 'audit.categories.comments', entityTypes: ['TASK_COMMENT'] },
+  { key: 'labels', label: 'audit.categories.labels', entityTypes: ['LABEL', 'TASK_LABEL'] },
+  { key: 'priorities', label: 'audit.categories.priorities', entityTypes: ['PRIORITY'] },
+  { key: 'permissions', label: 'audit.categories.permissions', entityTypes: ['PERMISSION'] },
+  { key: 'settings', label: 'audit.categories.settings', entityTypes: ['SETTINGS'] },
 ]
 
 /** Names for people and roles, to describe assignments and permission rules. */
@@ -31,15 +32,6 @@ export type AuditDescription = {
   fields: AuditFieldChange[]
 }
 
-const ENTITY_NOUNS: Record<string, string> = {
-  BOARD: 'board',
-  BOARD_COLUMN: 'column',
-  TASK: 'task',
-  TASK_COMMENT: 'comment',
-  LABEL: 'label',
-  PRIORITY: 'priority level',
-}
-
 /** Fields that change as a side effect and say nothing about what the person did. */
 const HIDDEN_FIELDS = new Set([
   'position', 'updatedAt', 'createdAt', 'editedByUsers', '_subject', '_column', '_fromColumn', 'columnId',
@@ -47,15 +39,9 @@ const HIDDEN_FIELDS = new Set([
 /** Fields holding the id of something else; shown as "#id". */
 const ID_FIELDS = new Set(['priorityId'])
 
-const FEATURE_NAMES: Record<string, string> = Object.fromEntries(FEATURES.map((feature) => [feature.key, feature.label]))
-
-const FIELD_NAMES: Record<string, string> = {
-  columnId: 'column',
-  priorityId: 'priority',
-  dueDate: 'due date',
-  isArchived: 'archived',
-  wipLimit: 'WIP limit',
-  kanbanPermissionKey: 'permission',
+/** The name of an entity type (audit.nouns), or the type itself in lower case for one without. */
+function noun(entityType: string): string {
+  return tOr(`audit.nouns.${entityType}`, entityType.toLowerCase())
 }
 
 function record(value: unknown): Record<string, unknown> | null {
@@ -63,7 +49,7 @@ function record(value: unknown): Record<string, unknown> | null {
 }
 
 function text(value: unknown, max = 60): string {
-  if (value === null || value === undefined || value === '') return 'none'
+  if (value === null || value === undefined || value === '') return t('audit.none')
   const shown = typeof value === 'string' ? value : typeof value === 'object' ? JSON.stringify(value) : String(value)
   return shown.length > max ? `${shown.slice(0, max - 1)}…` : shown
 }
@@ -83,18 +69,20 @@ function entityName(entry: AuditEntry): string | null {
 
 function subjectLabel(subjectType: unknown, subjectId: unknown, lookups: AuditLookups): string {
   const id = String(subjectId ?? '')
-  if (subjectType === 'ROLE') return `role ${lookups.roles.get(id) ?? `#${id}`}`
-  if (subjectType === 'USER') return lookups.members.get(id) ?? `user #${id}`
-  return `everyone with ${DISCORD_FLAG_NAMES[id] ?? 'a Discord permission'}`
+  if (subjectType === 'ROLE') return t('audit.role', { name: lookups.roles.get(id) ?? `#${id}` })
+  if (subjectType === 'USER') return lookups.members.get(id) ?? t('audit.userNumber', { id })
+  return t('audit.everyoneWith', { permission: DISCORD_FLAG_NAMES[id] ?? t('audit.aDiscordPermission') })
 }
 
-function describeRule(verb: string, rule: Record<string, unknown> | null, lookups: AuditLookups): string {
-  if (!rule) return `${verb} a permission rule`
+function describeRule(added: boolean, rule: Record<string, unknown> | null, lookups: AuditLookups): string {
+  if (!rule) return t(added ? 'audit.ruleAddedUnknown' : 'audit.ruleRemovedUnknown')
   const key = String(rule.kanbanPermissionKey ?? '')
-  const name = KANBAN_PERM_INFO[key]?.name ?? key
-  const state = rule.state === 'DENY' ? 'deny' : 'allow'
   // The board, if any, is named after the sentence.
-  return `${verb} rule: ${state} ${name} for ${subjectLabel(rule.subjectType, rule.subjectId, lookups)}`
+  return t(added ? 'audit.ruleAdded' : 'audit.ruleRemoved', {
+    state: t(rule.state === 'DENY' ? 'audit.deny' : 'audit.allow'),
+    permission: KANBAN_PERM_INFO[key]?.name ?? key,
+    subject: subjectLabel(rule.subjectType, rule.subjectId, lookups),
+  })
 }
 
 function fieldChanges(entry: AuditEntry): AuditFieldChange[] {
@@ -104,7 +92,7 @@ function fieldChanges(entry: AuditEntry): AuditFieldChange[] {
     .map(([field, change]) => {
       const pair = record(change)
       const show = (value: unknown) => (ID_FIELDS.has(field) && value !== null && value !== undefined ? `#${value}` : text(value))
-      return { field: FIELD_NAMES[field] ?? field, from: show(pair?.from), to: show(pair?.to) }
+      return { field: tOr(`audit.fields.${field}`, field), from: show(pair?.from), to: show(pair?.to) }
     })
 }
 
@@ -113,82 +101,85 @@ export function describeAuditEntry(entry: AuditEntry, lookups: AuditLookups): Au
   const fields = fieldChanges(entry)
   const snapshot = snapshotOf(entry)
   const name = entityName(entry)
-  const named = (noun: string) => (name ? `${noun} "${name}"` : `${noun} #${entry.entityId ?? '?'}`)
+  const named = (thing: string) =>
+    name ? t('audit.named', { noun: thing, name }) : t('audit.numbered', { noun: thing, id: entry.entityId ?? '?' })
+  const taskNumber = () => t('audit.taskNumber', { id: String(snapshot?.taskId ?? '?') })
 
   switch (entry.action) {
     case 'TASK_ASSIGNMENT_CREATED':
     case 'TASK_ASSIGNMENT_DELETED': {
-      const assignee = lookups.members.get(String(snapshot?.userId ?? '')) ?? 'someone'
-      const onTask = `task #${snapshot?.taskId ?? '?'}`
-      return {
-        summary: entry.action.endsWith('CREATED') ? `assigned ${assignee} to ${onTask}` : `unassigned ${assignee} from ${onTask}`,
-        fields,
-      }
+      const values = { assignee: lookups.members.get(String(snapshot?.userId ?? '')) ?? t('audit.someone'), task: taskNumber() }
+      return { summary: t(entry.action.endsWith('CREATED') ? 'audit.assigned' : 'audit.unassigned', values), fields }
     }
     case 'TASK_ROLE_ASSIGNED':
     case 'TASK_ROLE_UNASSIGNED': {
-      const role = `role ${lookups.roles.get(String(snapshot?.roleId ?? '')) ?? `#${snapshot?.roleId ?? '?'}`}`
-      const onTask = `task #${snapshot?.taskId ?? '?'}`
-      return {
-        summary: entry.action === 'TASK_ROLE_ASSIGNED' ? `assigned ${role} to ${onTask}` : `unassigned ${role} from ${onTask}`,
-        fields,
+      const roleId = String(snapshot?.roleId ?? '')
+      const values = {
+        assignee: t('audit.role', { name: lookups.roles.get(roleId) ?? `#${snapshot?.roleId ?? '?'}` }),
+        task: taskNumber(),
       }
+      return { summary: t(entry.action === 'TASK_ROLE_ASSIGNED' ? 'audit.assigned' : 'audit.unassigned', values), fields }
     }
     case 'TASK_LABEL_ADDED':
-      return { summary: `added a label to task #${snapshot?.taskId ?? '?'}`, fields }
+      return { summary: t('audit.labelAdded', { task: taskNumber() }), fields }
     case 'TASK_LABEL_REMOVED':
-      return { summary: `removed a label from task #${snapshot?.taskId ?? '?'}`, fields }
+      return { summary: t('audit.labelRemoved', { task: taskNumber() }), fields }
     case 'PERMISSION_CREATED':
-      return { summary: describeRule('added', snapshot, lookups), fields }
+      return { summary: describeRule(true, snapshot, lookups), fields }
     case 'PERMISSION_DELETED':
-      return { summary: describeRule('removed', snapshot, lookups), fields }
+      return { summary: describeRule(false, snapshot, lookups), fields }
     case 'PERMISSION_UPDATED':
-      return { summary: 'changed a permission rule', fields }
+      return { summary: t('audit.ruleChanged'), fields }
     case 'TASK_MOVED':
     case 'TASK_UPDATED': {
       // Column names are recorded from this version on; older entries fall back to the plain wording.
       const column = entry.changes?._column
       const fromColumn = entry.changes?._fromColumn
       if (typeof fromColumn === 'string' && typeof column === 'string') {
-        const moved = `moved ${named('task')} from ${fromColumn} to ${column}`
-        return { summary: entry.action === 'TASK_UPDATED' && fields.length > 0 ? `edited and ${moved}` : moved, fields }
+        const values = { task: named(noun('TASK')), from: fromColumn, to: column }
+        const edited = entry.action === 'TASK_UPDATED' && fields.length > 0
+        return { summary: t(edited ? 'audit.editedAndMoved' : 'audit.moved', values), fields }
       }
       if (entry.action === 'TASK_MOVED' && typeof column === 'string') {
-        return { summary: `reordered ${named('task')} in ${column}`, fields }
+        return { summary: t('audit.reorderedIn', { task: named(noun('TASK')), column }), fields }
       }
       break
     }
     case 'SERVER_FEATURES_UPDATED':
     case 'BOARD_FEATURES_UPDATED': {
+      const featureNames: Record<string, string> = Object.fromEntries(FEATURES.map((feature) => [feature.key, feature.label]))
       const turned = (on: boolean) =>
         Object.entries(entry.changes ?? {})
           .filter(([key, change]) => !key.startsWith('_') && record(change)?.to === on)
-          .map(([key]) => FEATURE_NAMES[key] ?? key)
-      const parts = [
-        turned(true).length > 0 ? `turned on ${turned(true).join(', ')}` : '',
-        turned(false).length > 0 ? `turned off ${turned(false).join(', ')}` : '',
-      ].filter(Boolean)
+          .map(([key]) => featureNames[key] ?? key)
+      const on = turned(true)
+      const off = turned(false)
+      const changes =
+        on.length > 0 && off.length > 0
+          ? t('audit.turnedOnAndOff', { on: on.join(', '), off: off.join(', ') })
+          : on.length > 0
+            ? t('audit.turnedOn', { features: on.join(', ') })
+            : off.length > 0
+              ? t('audit.turnedOff', { features: off.join(', ') })
+              : ''
       if (entry.action === 'SERVER_FEATURES_UPDATED') {
-        return { summary: parts.length > 0 ? parts.join(' and ') : 'changed the server features', fields: [] }
+        return { summary: changes || t('audit.serverFeaturesChanged'), fields: [] }
       }
-      const board = entry.boardName ? `board "${entry.boardName}"` : `board #${entry.boardId ?? '?'}`
-      return { summary: parts.length > 0 ? `${parts.join(' and ')} on ${board}` : `changed the features of ${board}`, fields: [] }
+      const board = entry.boardName
+        ? t('audit.named', { noun: noun('BOARD'), name: entry.boardName })
+        : t('audit.numbered', { noun: noun('BOARD'), id: entry.boardId ?? '?' })
+      return {
+        summary: changes ? t('audit.onBoard', { changes, board }) : t('audit.boardFeaturesChanged', { board }),
+        fields: [],
+      }
     }
     case 'COLUMN_MOVED':
-      return { summary: `reordered ${named('column')}`, fields }
+      return { summary: t('audit.reordered', { thing: named(noun('BOARD_COLUMN')) }), fields }
   }
 
-  const noun = ENTITY_NOUNS[entry.entityType] ?? entry.entityType.toLowerCase()
   const verb = entry.action.slice(entry.action.lastIndexOf('_') + 1)
-  const verbs: Record<string, string> = {
-    CREATED: 'created',
-    UPDATED: 'edited',
-    DELETED: 'deleted',
-    MOVED: 'moved',
-    ARCHIVED: 'archived',
-    RESTORED: 'restored',
-  }
-  return { summary: `${verbs[verb] ?? verb.toLowerCase()} ${named(noun)}`, fields }
+  const thing = named(noun(entry.entityType))
+  return { summary: tOr(`audit.actions.${verb}`, `${verb.toLowerCase()} ${thing}`, { thing }), fields }
 }
 
 /** "just now", "5 min ago", "3 h ago", then the date. */
@@ -196,9 +187,9 @@ export function relativeTime(iso: string, now = Date.now()): string {
   const time = parseServerTime(iso).getTime()
   if (Number.isNaN(time)) return ''
   const seconds = Math.round((now - time) / 1000)
-  if (seconds < 60) return 'just now'
-  if (seconds < 3600) return `${Math.floor(seconds / 60)} min ago`
-  if (seconds < 86_400) return `${Math.floor(seconds / 3600)} h ago`
-  if (seconds < 7 * 86_400) return `${Math.floor(seconds / 86_400)} d ago`
-  return new Date(time).toLocaleDateString()
+  if (seconds < 60) return t('audit.time.justNow')
+  if (seconds < 3600) return t('audit.time.minutes', { count: Math.floor(seconds / 60) })
+  if (seconds < 86_400) return t('audit.time.hours', { count: Math.floor(seconds / 3600) })
+  if (seconds < 7 * 86_400) return t('audit.time.days', { count: Math.floor(seconds / 86_400) })
+  return new Date(time).toLocaleDateString(formatLocale())
 }

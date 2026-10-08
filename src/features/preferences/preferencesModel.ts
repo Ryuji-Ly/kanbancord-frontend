@@ -1,4 +1,5 @@
 import type { FeatureKey } from '../../services/featuresService'
+import type { MessageKey } from '../../i18n'
 import { themeTokens, type ThemePreference } from './themes'
 
 export type ColorFilter = 'none' | 'protanopia' | 'deuteranopia' | 'tritanopia'
@@ -25,11 +26,11 @@ export type Preferences = {
   simpleView?: SimpleViewPreference
 }
 
-export const TEXT_SCALES = [
-  { value: 1, label: 'Normal' },
-  { value: 1.125, label: 'Large' },
-  { value: 1.25, label: 'Larger' },
-  { value: 1.5, label: 'Largest' },
+export const TEXT_SCALES: { value: number; label: MessageKey }[] = [
+  { value: 1, label: 'account.accessibility.textScale.normal' },
+  { value: 1.125, label: 'account.accessibility.textScale.large' },
+  { value: 1.25, label: 'account.accessibility.textScale.larger' },
+  { value: 1.5, label: 'account.accessibility.textScale.largest' },
 ]
 
 // ── Colour-blind correction (daltonization) ──────────────────────────────────

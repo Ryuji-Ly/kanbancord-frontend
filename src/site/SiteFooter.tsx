@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { buildBotInviteLink } from '../features/dashboard/dashboardModel'
-import { SITE } from './siteInfo'
+import { t } from '../i18n'
+import { SITE, SITE_VALUES } from './siteInfo'
 
 /**
  * The footer on every page but the board itself: about, help, the bot's App Directory page, status,
@@ -9,28 +10,28 @@ import { SITE } from './siteInfo'
 export function SiteFooter() {
   return (
     <footer className="kc-site-footer">
-      <nav aria-label="Site">
-        <Link to="/about">About</Link>
-        <Link to="/guides">Guides</Link>
-        <Link to="/faq">FAQ</Link>
-        <Link to="/support">Support</Link>
+      <nav aria-label={t('site.nav.site')}>
+        <Link to="/about">{t('site.nav.about')}</Link>
+        <Link to="/guides">{t('site.nav.guides')}</Link>
+        <Link to="/faq">{t('site.nav.faq')}</Link>
+        <Link to="/support">{t('site.nav.support')}</Link>
         <a href={SITE.supportServerUrl} target="_blank" rel="noopener noreferrer">
-          Support server
+          {t('site.nav.supportServer')}
         </a>
         <a href={SITE.appDirectoryUrl} target="_blank" rel="noopener noreferrer">
-          App Directory
+          {t('site.nav.appDirectory')}
         </a>
         <a href={SITE.statusUrl} target="_blank" rel="noopener noreferrer">
-          Status
+          {t('site.nav.status')}
         </a>
-        <Link to="/privacy">Privacy Policy</Link>
-        <Link to="/terms">Terms of Service</Link>
+        <Link to="/privacy">{t('site.nav.privacy')}</Link>
+        <Link to="/terms">{t('site.nav.terms')}</Link>
         <a href={buildBotInviteLink()} target="_blank" rel="noopener noreferrer">
-          Add to Discord
+          {t('site.nav.addToDiscord')}
         </a>
       </nav>
       <p className="kc-muted">
-        © {new Date().getFullYear()} {SITE.operator}. {SITE.name} is not affiliated with or endorsed by Discord.
+        {t('site.footer.notAffiliated', { ...SITE_VALUES, year: new Date().getFullYear() })}
       </p>
     </footer>
   )

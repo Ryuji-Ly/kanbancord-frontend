@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { readableError } from '../../api/http'
+import { t } from '../../i18n'
 import {
   FEATURES,
   NO_FEATURES,
@@ -38,7 +39,7 @@ export function FeaturesSettings({ serverId, features }: FeaturesSettingsProps) 
     },
     onError: (err, _changes, context) => {
       if (context?.previous) queryClient.setQueryData(serverKeys.features(serverId), context.previous)
-      setError(readableError(err, 'The change could not be saved'))
+      setError(readableError(err, t('common.changeNotSaved')))
     },
     onSettled: () => queryClient.invalidateQueries({ queryKey: serverKeys.all(serverId) }),
   })
@@ -57,7 +58,7 @@ export function FeaturesSettings({ serverId, features }: FeaturesSettingsProps) 
       queryClient.setQueryData(serverKeys.openPermissions(serverId), enabled)
       setConfirmOpen(false)
     },
-    onError: (err) => setOpenError(readableError(err, 'The change could not be saved')),
+    onError: (err) => setOpenError(readableError(err, t('common.changeNotSaved'))),
     onSettled: () => queryClient.invalidateQueries({ queryKey: serverKeys.all(serverId) }),
   })
 
@@ -69,10 +70,7 @@ export function FeaturesSettings({ serverId, features }: FeaturesSettingsProps) 
 
   return (
     <div className="kc-features">
-      <p className="kc-muted">
-        Simple mode keeps boards to the essentials: columns, and tasks with a title and description. Switch on only
-        what this server needs. Switching something off hides it and keeps its data.
-      </p>
+      <p className="kc-muted">{t('settings.features.intro')}</p>
       {error && <p className="kc-banner">{error}</p>}
 
       <div className="kc-features-presets">
@@ -82,7 +80,7 @@ export function FeaturesSettings({ serverId, features }: FeaturesSettingsProps) 
           disabled={allOff || update.isPending}
           onClick={() => update.mutate(NO_FEATURES)}
         >
-          Simple mode
+          {t('settings.boardFeatures.title')}
         </button>
         <button
           type="button"
@@ -92,7 +90,7 @@ export function FeaturesSettings({ serverId, features }: FeaturesSettingsProps) 
             update.mutate(Object.fromEntries(everything.map((feature) => [feature.key, true])) as Partial<ServerFeatures>)
           }
         >
-          Enable everything
+          {t('settings.features.enableEverything')}
         </button>
       </div>
 
@@ -103,7 +101,7 @@ export function FeaturesSettings({ serverId, features }: FeaturesSettingsProps) 
             label={feature.label}
             description={
               feature.key === 'PERMISSIONS' && open
-                ? `${feature.description} Turn open permissions off first.`
+                ? t('settings.features.openFirst', { description: feature.description })
                 : feature.description
             }
             on={features[feature.key]}
@@ -114,16 +112,12 @@ export function FeaturesSettings({ serverId, features }: FeaturesSettingsProps) 
       </ul>
 
       <section className="kc-appearance-section">
-        <h4>Open permissions</h4>
+        <h4>{t('settings.features.open')}</h4>
         {openError && <p className="kc-banner">{openError}</p>}
         <ul className="kc-features-list">
           <SwitchRow
-            label="Everyone may do everything"
-            description={
-              features.PERMISSIONS && !open
-                ? 'Turn custom permissions off first: their rules are kept for when you switch back.'
-                : 'Everyone who can talk in this server may create, change, move and delete columns, tasks, labels and priority levels, whatever their roles. Managing the server, board permissions, deleting or archiving boards and the audit log stay with its managers.'
-            }
+            label={t('settings.features.openLabel')}
+            description={features.PERMISSIONS && !open ? t('settings.features.customFirst') : t('settings.features.openHint')}
             on={open}
             disabled={openQuery.isPending || switchOpen.isPending || (features.PERMISSIONS && !open)}
             onToggle={(on) => (on ? setConfirmOpen(true) : switchOpen.mutate(false))}
@@ -133,16 +127,15 @@ export function FeaturesSettings({ serverId, features }: FeaturesSettingsProps) 
 
       {confirmOpen && (
         <ConfirmDialog
-          title="Turn on open permissions?"
+          title={t('settings.features.confirmTitle')}
           busy={switchOpen.isPending}
           error={openError}
-          confirmLabel="Turn on"
-          busyLabel="Turning on..."
+          confirmLabel={t('settings.features.turnOn')}
+          busyLabel={t('settings.features.turningOn')}
           onCancel={() => setConfirmOpen(false)}
           onConfirm={() => switchOpen.mutate(true)}
         >
-          Everyone who can talk in this server will be able to create, change, move and delete columns, tasks, labels
-          and priority levels, whatever their roles. Best for a small group that trusts each other.
+          {t('settings.features.confirm')}
         </ConfirmDialog>
       )}
     </div>

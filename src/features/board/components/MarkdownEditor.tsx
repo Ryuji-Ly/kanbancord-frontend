@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type ClipboardEvent, type DragEvent, type KeyboardEvent } from 'react'
 import { FiImage } from 'react-icons/fi'
 import { readableError } from '../../../api/http'
+import { t } from '../../../i18n'
 import {
   MEDIA_ACCEPT,
   UPLOAD_MARKER_PREFIX,
@@ -83,14 +84,14 @@ export function MarkdownEditor({ value, onChange, upload, autoFocus, placeholder
         setError(tooLarge)
         continue
       }
-      const marker = `![Uploading ${file.name.replace(/[[\]()]/g, '')}…](${UPLOAD_MARKER_PREFIX}${++uploadCount})`
+      const marker = `![${t('board.media.uploadingFile', { name: file.name.replace(/[[\]()]/g, '') })}](${UPLOAD_MARKER_PREFIX}${++uploadCount})`
       insertAtCursor(marker)
       setPending((count) => count + 1)
       uploadMedia(upload.serverId, upload.boardId, file)
         .then((media) => change(latest.current.replace(marker, mediaMarkdown(file, media))))
         .catch((err: unknown) => {
           change(latest.current.replace(`${marker}\n`, '').replace(marker, ''))
-          setError(readableError(err, 'The file could not be uploaded'))
+          setError(readableError(err, t('board.media.uploadFailed')))
         })
         .finally(() => setPending((count) => count - 1))
     }
@@ -148,10 +149,10 @@ export function MarkdownEditor({ value, onChange, upload, autoFocus, placeholder
               fileRef.current?.click()
             }}
           >
-            <FiImage aria-hidden="true" /> Add image or video
+            <FiImage aria-hidden="true" /> {t('board.media.add')}
           </button>
           <span className="kc-muted kc-markdown-editor-hint">
-            {pending > 0 ? `Uploading ${pending} file${pending === 1 ? '' : 's'}…` : 'or paste or drop one here'}
+            {pending > 0 ? t('board.media.uploadingCount', { count: pending }) : t('board.media.pasteOrDrop')}
           </span>
           <input
             ref={fileRef}

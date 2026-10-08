@@ -1,4 +1,5 @@
 import { UserMenu } from '../../features/account/UserMenu'
+import { t } from '../../i18n'
 import type { HeaderUser } from './types'
 
 type DashboardHeaderProps = {
@@ -17,7 +18,7 @@ export function DashboardHeader({
   loading,
   onLogout,
   onLogin,
-  subtitle = 'Dashboard',
+  subtitle = t('dashboard.title'),
   onBrandClick,
 }: DashboardHeaderProps) {
   return (
@@ -28,7 +29,7 @@ export function DashboardHeader({
         onClick={() => {
           onBrandClick?.()
         }}
-        aria-label="Go to dashboard"
+        aria-label={t('dashboard.goToDashboard')}
       >
         <img src="/images/kanbancord.png" alt="KanbanCord" className="kc-logo" />
         <div>
@@ -47,7 +48,7 @@ export function DashboardHeader({
             onClick={onLogin}
             disabled={loading}
           >
-            Login with Discord
+            {t('common.loginWithDiscord')}
           </button>
         )}
       </div>

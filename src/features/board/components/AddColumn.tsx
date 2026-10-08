@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { t } from '../../../i18n'
 
 /** The "+ Add new column" button, which turns into a name field; Enter or leaving the field creates the column. */
 export function AddColumn({ onAdd }: { onAdd: (name: string) => void }) {
@@ -13,7 +14,7 @@ export function AddColumn({ onAdd }: { onAdd: (name: string) => void }) {
   if (name === null) {
     return (
       <button className="kc-board-add-column-btn" data-no-column-drag="true" onClick={() => setName('')}>
-        + Add new column
+        {t('board.column.addNew')}
       </button>
     )
   }
@@ -23,7 +24,7 @@ export function AddColumn({ onAdd }: { onAdd: (name: string) => void }) {
       <div className="kc-column-header">
         <input
           className="kc-column-name-input"
-          placeholder="Column name..."
+          placeholder={t('board.column.namePlaceholder')}
           value={name}
           autoFocus
           onChange={(event) => setName(event.target.value)}
