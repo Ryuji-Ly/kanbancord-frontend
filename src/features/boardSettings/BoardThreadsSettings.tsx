@@ -85,6 +85,13 @@ export function BoardThreadsSettings({ serverId, boardId }: BoardThreadsSettings
               onToggle={(on) => (on ? change({}) : disable.mutate())}
             />
           </ul>
+          {data.enabled && chosen && !(current.privateThreads ? chosen.botCanPrivateThread : chosen.botCanThread) && (
+            <p className="kc-banner" role="status">
+              {t(current.privateThreads ? 'settings.threads.cannotMakePrivate' : 'settings.threads.cannotMake', {
+                channel: chosen.name,
+              })}
+            </p>
+          )}
           {data.enabled && (
             <div className="kc-board-threads-fields">
               <label className="kc-field">

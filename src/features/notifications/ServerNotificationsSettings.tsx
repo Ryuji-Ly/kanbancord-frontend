@@ -33,6 +33,7 @@ export function ServerNotificationsSettings({ serverId, boards }: ServerNotifica
   }
   const settings = query.data
   const noChannels = settings.channels.length === 0
+  const auditChannel = settings.channels.find((channel) => channel.channelId === settings.auditChannelId)
 
   return (
     <div className="kc-features kc-notifications">
@@ -58,6 +59,11 @@ export function ServerNotificationsSettings({ serverId, boards }: ServerNotifica
             mutations.setAuditChannel.mutate(channelId, report(t('notifications.server.auditSaveFailed')))
           }}
         />
+        {auditChannel && !auditChannel.botCanPost && (
+          <p className="kc-banner" role="status">
+            {t('notifications.server.auditCannotPost', { channel: auditChannel.name })}
+          </p>
+        )}
       </section>
 
       <section className="kc-appearance-section">
