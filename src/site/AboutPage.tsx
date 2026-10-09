@@ -64,6 +64,18 @@ export function AboutPage() {
           tags={{ email: <a href={`mailto:${SITE.contactEmail}`} /> }}
         />
       </p>
+
+      <h2>{t('site.about.storyTitle')}</h2>
+      <p>{t('site.about.story1')}</p>
+      <p>{t('site.about.story2')}</p>
+      <p>
+        <Trans
+          k="site.about.story3"
+          values={SITE_VALUES}
+          tags={{ other: <a href={SITE.sameNameBotUrl} target="_blank" rel="noopener noreferrer" /> }}
+        />
+      </p>
+      <p>{t('site.about.story4')}</p>
     </PublicLayout>
   )
 }

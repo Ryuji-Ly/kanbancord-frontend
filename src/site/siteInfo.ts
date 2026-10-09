@@ -19,6 +19,8 @@ export const SITE = {
   appDirectoryUrl: 'https://discord.com/discovery/applications/1303467182344241283',
   /** Whether the website, API and bot are up, and any planned maintenance. */
   statusUrl: 'https://status.kanbancord.com',
+  /** The unrelated bot that happens to share the name, mentioned in the About page's story. */
+  sameNameBotUrl: 'https://discord.com/discovery/applications/1301269207073165444',
   /** When the Privacy Policy and Terms of Service last changed. */
   legalUpdated: '25 September 2026',
 }
