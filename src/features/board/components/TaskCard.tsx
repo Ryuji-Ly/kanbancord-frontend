@@ -236,8 +236,10 @@ export function TaskCard({
         <>
           <TaskCardLabels labels={labels} />
           {priority && (
+            // lang="": the name is the server's own text, so uppercasing must not follow the page's language rules (Turkish i → İ).
             <span
               className="kc-column-task-priority"
+              lang=""
               title={t('board.card.priority', { name: priority.name })}
               style={priorityStyle(priority.color)}
             >
