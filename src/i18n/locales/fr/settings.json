@@ -1,0 +1,91 @@
+{
+  "boardFeatures": {
+    "title": "Mode simple",
+    "intro": "Désactive ce dont ce tableau n'a pas besoin ; les autres tableaux ne changent pas. Ce qui est désactivé est masqué et ses données sont conservées. Les modifications ici s'appliquent tout de suite.",
+    "everything": "Tout ce que le serveur permet",
+    "offForServer": "Désactivé pour tout le serveur, dans les paramètres du serveur."
+  },
+  "board": {
+    "loadFailed": "Impossible de charger les paramètres du tableau"
+  },
+  "boardNotifications": {
+    "intro": "Les flux de mises à jour qui publient à propos de ce tableau. Chacun suit ses propres réglages issus des notifications du serveur, jusqu'à ce que tu changes quelque chose ici, pour ce tableau seulement. Les modifications sont enregistrées tout de suite.",
+    "noFeeds": "Aucun flux ne publie à propos de ce tableau. Les gestionnaires du serveur ajoutent des flux dans les paramètres du serveur.",
+    "followsFeed": "Suit les réglages du flux.",
+    "changes_one": "{count} modification pour ce tableau.",
+    "changes_other": "{count} modifications pour ce tableau.",
+    "useFeed": "Utiliser les réglages du flux",
+    "changed": "modifié",
+    "changes_many": "{count} modifications pour ce tableau."
+  },
+  "threads": {
+    "updatesBoth": "Le fil et le salon",
+    "updatesThread": "Seulement le fil",
+    "updatesChannel": "Seulement le salon",
+    "title": "Fils des tâches",
+    "intro": "Donne à chaque tâche son propre fil de discussion, dans l'un des salons de flux de ce tableau. Un fil porte le titre de sa tâche et est archivé quand la tâche est supprimée ou archivée. Les mises à jour du flux sur la tâche, y compris les nouveaux commentaires, y sont publiées comme tu le choisis ci-dessous ; les messages écrits dans le fil restent dans Discord. Les modifications sont enregistrées tout de suite.",
+    "noFeed": "Ce tableau n'a pas encore de flux de mises à jour. Ajoutes-en un dans les réglages de notifications du serveur, ou avec <code>/kanbancord feed</code> dans Discord, puis active les fils ici.",
+    "perTask": "Un fil par tâche",
+    "notWorking": "Activé, mais sans effet : le salon choisi n'a plus de flux pour ce tableau. Choisis un autre salon de flux.",
+    "perTaskHint": "Chaque tâche reçoit son fil la prochaine fois qu'il lui arrive quelque chose.",
+    "channel": "Salon",
+    "channelWithoutFeed": "Un salon sans flux pour ce tableau",
+    "botCannot": " (le bot ne peut pas créer de fils ici)",
+    "updatesGoTo": "Les mises à jour d'une tâche vont dans",
+    "private": "Fils privés",
+    "privateNotPossible": "Impossible dans ce salon : les fils privés nécessitent un salon textuel où le bot peut créer des fils privés.",
+    "privateHint": "Seuls la personne qui a créé la tâche et ses responsables sont dans le fil, ainsi que les modérateurs du serveur. Les nouveaux responsables y sont ajoutés.",
+    "cannotMake": "Le bot ne peut pas créer de fils dans #{channel}, donc les tâches n'en reçoivent pas de nouveaux. Donne-lui « Voir les salons », « Envoyer des messages dans les fils » et « Créer des fils publics » dans ce salon, ou choisis-en un autre.",
+    "cannotMakePrivate": "Le bot ne peut pas créer de fils privés dans #{channel}, donc les tâches n'en reçoivent pas de nouveaux. Donne-lui « Voir les salons », « Envoyer des messages dans les fils » et « Créer des fils privés » dans ce salon, ou choisis-en un autre."
+  },
+  "usage_one": "{count} tâche",
+  "usage_other": "{count} tâches",
+  "colourOf": "Couleur de {name}",
+  "labels": {
+    "intro": "Les étiquettes qu'on peut mettre sur les tâches de ce tableau. Les modifications ici s'appliquent tout de suite.",
+    "none": "Aucune étiquette pour l'instant.",
+    "name": "Nom de l'étiquette",
+    "newColour": "Couleur de la nouvelle étiquette",
+    "newPlaceholder": "Nouvelle étiquette, par ex. frontend",
+    "add": "Ajouter l'étiquette",
+    "deleteTitle": "Supprimer l'étiquette",
+    "deleteConfirm": "Supprimer <strong>{name}</strong> de ce tableau ?",
+    "deleteUsage_one": " Elle sera retirée de la tâche qui l'utilise ({count}).",
+    "deleteUsage_other": " Elle sera retirée des {count} tâches qui l'utilisent.",
+    "deleteUsage_many": " Elle sera retirée des {count} tâches qui l'utilisent."
+  },
+  "priorities": {
+    "title": "Priorités",
+    "intro": "Les niveaux de priorité, du plus urgent au moins urgent. Une tâche en a un au plus. Les modifications ici s'appliquent tout de suite.",
+    "none": "Aucun niveau de priorité. Les tâches de ce tableau n'ont pas de priorité.",
+    "moveUp": "Monter {name}",
+    "moveDown": "Descendre {name}",
+    "name": "Nom de la priorité",
+    "newColour": "Couleur du nouveau niveau",
+    "newPlaceholder": "Nouveau niveau, ajouté en bas",
+    "add": "Ajouter le niveau",
+    "deleteTitle": "Supprimer le niveau de priorité",
+    "deleteConfirm": "Supprimer <strong>{name}</strong> ?",
+    "deleteUsage_one": " La tâche qui a cette priorité ({count}) n'en aura plus.",
+    "deleteUsage_other": " Les {count} tâches qui ont cette priorité n'en auront plus.",
+    "deleteUsage_many": " Les {count} tâches qui ont cette priorité n'en auront plus."
+  },
+  "features": {
+    "intro": "Le mode simple limite les tableaux à l'essentiel : des colonnes, et des tâches avec un titre et une description. N'active que ce dont ce serveur a besoin. Ce qui est désactivé est masqué et ses données sont conservées.",
+    "enableEverything": "Tout activer",
+    "openFirst": "{description} Désactive d'abord les permissions ouvertes.",
+    "open": "Permissions ouvertes",
+    "openLabel": "Tout le monde peut tout faire",
+    "customFirst": "Désactive d'abord les permissions personnalisées : leurs règles sont gardées pour plus tard.",
+    "openHint": "Tous ceux qui peuvent écrire sur ce serveur peuvent créer, modifier, déplacer et supprimer des colonnes, des tâches, des étiquettes et des niveaux de priorité, quels que soient leurs rôles. La gestion du serveur, les permissions des tableaux, la suppression ou l'archivage des tableaux et le journal des modifications restent aux gestionnaires.",
+    "confirmTitle": "Activer les permissions ouvertes ?",
+    "turnOn": "Activer",
+    "turningOn": "Activation…",
+    "confirm": "Tous ceux qui peuvent écrire sur ce serveur pourront créer, modifier, déplacer et supprimer des colonnes, des tâches, des étiquettes et des niveaux de priorité, quels que soient leurs rôles. Idéal pour un petit groupe qui se fait confiance."
+  },
+  "dialog": {
+    "sections": "Sections : {title}",
+    "close": "Fermer : {title}"
+  },
+  "usage_many": "{count} tâches"
+}

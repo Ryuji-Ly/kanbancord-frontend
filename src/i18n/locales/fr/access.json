@@ -1,0 +1,72 @@
+{
+  "categories": {
+    "SERVER": "Serveur",
+    "BOARD": "Tableaux",
+    "COLUMN": "Colonnes",
+    "TASK": "Tâches",
+    "COMMENT": "Commentaires",
+    "LABEL": "Étiquettes et priorités"
+  },
+  "flags": {
+    "VIEW_CHANNEL": "Voir les salons",
+    "MANAGE_GUILD": "Gérer le serveur",
+    "VIEW_AUDIT_LOG": "Voir les logs du serveur"
+  },
+  "everyoneWith": "tous ceux qui ont {permission}",
+  "personally": "{name} personnellement",
+  "where": {
+    "default": "par défaut",
+    "board": "ce tableau",
+    "server": "serveur"
+  },
+  "why": {
+    "owner": "Autorisé : le propriétaire du serveur peut tout faire",
+    "admin": "Autorisé : les administrateurs peuvent tout faire",
+    "adminRule": "Autorisé : les administrateurs peuvent tout faire ({subject})",
+    "open": "Autorisé : les permissions ouvertes le permettent à tous ceux qui peuvent écrire",
+    "none": "Refusé : aucune règle ne l'autorise",
+    "byDefault": "{result} par la règle par défaut pour {subject}",
+    "byBoard": "{result} par la règle du tableau pour {subject}",
+    "byServer": "{result} par la règle du serveur pour {subject}"
+  },
+  "allowed": "Autorisé",
+  "denied": "Refusé",
+  "intro": "Vois ce que quelqu'un peut faire, et quelle règle en décide. Choisis un membre pour partir de ses rôles, puis ajoute ou retire des rôles pour voir ce qui changerait. Ou vérifie un ensemble de rôles à lui seul.",
+  "introBoard": "Vois ce que quelqu'un peut faire sur ce tableau, et quelle règle en décide. Choisis un membre pour partir de ses rôles, puis ajoute ou retire des rôles pour voir ce qui changerait. Ou vérifie un ensemble de rôles à lui seul.",
+  "check": "Vérifier",
+  "aMember": "Un membre",
+  "rolesOnly": "Rôles seulement",
+  "searchMembers": "Chercher des membres par nom",
+  "whereLabel": "Où",
+  "serverWide": "Tout le serveur",
+  "someonesRoles": "Rôles de {name}",
+  "theirRoles": "Rôles du membre",
+  "unknownRole": "Rôle inconnu",
+  "without": "Sans {role}",
+  "thisRole": "ce rôle",
+  "addRole": "Ajouter un rôle",
+  "addRoleOption": "Ajouter un rôle…",
+  "whatIf": "{name} est affiché avec d'autres rôles que les siens.",
+  "them": "Ce membre",
+  "realRoles": "Utiliser ses vrais rôles",
+  "start": "Cherche un membre ci-dessus, ou choisis « Rôles seulement ».",
+  "failed": "La vérification a échoué",
+  "notes": {
+    "serverWide": "Tout le serveur : ce qui s'applique sur chaque tableau qui n'a pas ses propres règles.",
+    "customOff": "Les permissions personnalisées sont désactivées, donc les règles par défaut s'appliquent : ce que chaque permission Discord autorise.",
+    "open": "Les permissions ouvertes sont activées : tous ceux qui peuvent voir les salons et envoyer des messages peuvent travailler sur les tableaux.",
+    "notMember": "{name} n'est pas sur le serveur, donc seules les règles qui le visent personnellement comptent.",
+    "discord": "Permissions Discord qui comptent ici : {permissions}."
+  },
+  "thisPerson": "Cette personne",
+  "show": "Afficher",
+  "allowedCount_one": "Autorisé ({count})",
+  "allowedCount_other": "Autorisés ({count})",
+  "allowedCount_many": "Autorisés ({count})",
+  "deniedCount_one": "Refusé ({count})",
+  "deniedCount_other": "Refusés ({count})",
+  "deniedCount_many": "Refusés ({count})",
+  "outweighs": "L'emporte sur : {rules}",
+  "overriddenAllow": "Autoriser pour {subject} ({where})",
+  "overriddenDeny": "Refuser pour {subject} ({where})"
+}

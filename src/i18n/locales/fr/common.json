@@ -1,0 +1,59 @@
+{
+  "features": {
+    "labels": {
+      "label": "Étiquettes",
+      "description": "Des marqueurs colorés pour les tâches, gérés par tableau.",
+      "show": "Afficher les étiquettes"
+    },
+    "priorities": {
+      "label": "Priorités",
+      "description": "Un niveau de priorité pour chaque tâche, de Critique à Négligeable.",
+      "show": "Afficher les priorités"
+    },
+    "assignees": {
+      "label": "Responsables",
+      "description": "Assigner des membres aux tâches.",
+      "show": "Afficher les responsables"
+    },
+    "comments": {
+      "label": "Commentaires",
+      "description": "Une discussion sur chaque tâche.",
+      "show": "Afficher les commentaires"
+    },
+    "dueDates": {
+      "label": "Dates d'échéance",
+      "description": "La date et l'heure à laquelle chaque tâche est due.",
+      "show": "Afficher les dates d'échéance"
+    },
+    "permissions": {
+      "label": "Permissions personnalisées",
+      "description": "Décider qui peut faire quoi, pour tout le serveur et par tableau. Désactivées, ce sont les permissions Discord qui s'appliquent.",
+      "show": "Afficher les permissions personnalisées"
+    }
+  },
+  "requestFailed": "La requête a échoué ({status})",
+  "notSignedIn": "Tu n'es pas connecté.",
+  "cancel": "Annuler",
+  "close": "Fermer",
+  "loginWithDiscord": "Se connecter avec Discord",
+  "deleting": "Suppression…",
+  "loading": "Chargement…",
+  "saving": "Enregistrement…",
+  "change": "Changer",
+  "closeModal": "Fermer la fenêtre",
+  "save": "Enregistrer",
+  "applying": "Application…",
+  "name": "Nom",
+  "description": "Description",
+  "saveChanges": "Enregistrer les modifications",
+  "add": "Ajouter",
+  "delete": "Supprimer",
+  "deletingDots": "Suppression…",
+  "confirmNamed": "Confirmer : {title}",
+  "creatingDots": "Création…",
+  "creating": "Création…",
+  "adding": "Ajout…",
+  "savingDots": "Enregistrement…",
+  "changeNotSaved": "La modification n'a pas pu être enregistrée",
+  "loadingEllipsis": "Chargement…"
+}
