@@ -1,0 +1,148 @@
+{
+  "appearance": {
+    "groups": {
+      "surfaces": "Superfícies",
+      "controls": "Controlos",
+      "text": "Texto",
+      "brand": "Marca e destaques",
+      "status": "Estados",
+      "permissions": "Regras de permissões"
+    },
+    "core": {
+      "background": {
+        "label": "Fundo",
+        "hint": "Por trás de tudo"
+      },
+      "surface": {
+        "label": "Superfície",
+        "hint": "Painéis, colunas e cartões"
+      },
+      "text": {
+        "label": "Texto",
+        "hint": "Texto corrido; os títulos e as indicações derivam dele"
+      },
+      "accent": {
+        "label": "Destaque",
+        "hint": "Realces, contornos de foco, tom dos títulos"
+      },
+      "primary": {
+        "label": "Principal",
+        "hint": "Botões principais e ligações"
+      },
+      "success": {
+        "label": "Sucesso",
+        "hint": "Confirmações e regras de permitir"
+      },
+      "danger": {
+        "label": "Perigo",
+        "hint": "Erros, botões de eliminar e regras de recusar"
+      },
+      "warning": {
+        "label": "Aviso",
+        "hint": "Avisos e realces"
+      }
+    },
+    "presets": {
+      "dark": {
+        "label": "Escuro",
+        "description": "A predefinição."
+      },
+      "light": {
+        "label": "Claro",
+        "description": "Texto escuro em superfícies claras."
+      },
+      "highContrast": {
+        "label": "Alto contraste",
+        "description": "Preto e branco puros com contornos fortes, para baixa visão."
+      },
+      "redGreen": {
+        "label": "Seguro para vermelho-verde",
+        "description": "Para protanopia e deuteranopia: azul para sucesso, laranja para perigo."
+      },
+      "blueYellow": {
+        "label": "Seguro para azul-amarelo",
+        "description": "Para tritanopia: turquesa para sucesso, vermelho para perigo, rosa para avisos."
+      }
+    },
+    "theme": "Tema",
+    "custom": "Personalizado",
+    "customHint": "As tuas próprias cores, a partir do tema acima.",
+    "customColours": "Cores personalizadas",
+    "customColoursHint": "Define oito cores; todas as outras são calculadas a partir delas.",
+    "lowContrast": "O texto sobre o fundo tem um contraste de {contrast}:1; recomenda-se pelo menos 4,5:1 para ler com conforto.",
+    "advanced": "Avançado: editar cada cor",
+    "changed_one": " ({count} alterada)",
+    "changed_other": " ({count} alteradas)",
+    "advancedHint": "As alterações aqui aplicam-se por cima do tema acima e mantêm-se quando mudas de tema.",
+    "resetAll": "Repor tudo",
+    "reset": "Repor",
+    "language": "Idioma",
+    "browserLanguage": "Idioma do meu navegador",
+    "changed_many": " ({count} alteradas)"
+  },
+  "accessibility": {
+    "textScale": {
+      "normal": "Normal",
+      "large": "Grande",
+      "larger": "Maior",
+      "largest": "O maior"
+    },
+    "filters": {
+      "none": "Nenhum",
+      "protanopia": "Protanopia (vermelho fraco)",
+      "deuteranopia": "Deuteranopia (verde fraco)",
+      "tritanopia": "Tritanopia (azul fraco)"
+    },
+    "intro": "Para o daltonismo, os temas Seguro para vermelho-verde e Seguro para azul-amarelo mudam as cores da interface. As opções abaixo ajudam com as cores que cada um escolhe para etiquetas, prioridades e cargos.",
+    "patterns": "Padrões nas etiquetas",
+    "patternsHint": "Cada etiqueta recebe o seu próprio padrão de riscas ou pontos, para que se distingam por mais do que a cor.",
+    "ranks": "Níveis de prioridade",
+    "ranksHint": "Mostra o nível de cada prioridade ao lado do nome, sendo P1 a mais urgente.",
+    "filter": "Filtro de cor para etiquetas, prioridades e cargos",
+    "filterHint": "Desloca as cores difíceis de distinguir para outras mais fáceis de ver.",
+    "textSize": "Tamanho do texto",
+    "motion": "Reduzir o movimento",
+    "motionSystem": "Como no meu dispositivo",
+    "motionOn": "Reduzir sempre",
+    "motionOff": "Nunca reduzir"
+  },
+  "simpleView": {
+    "intro": "Esconde o que não usas, em todos os quadros. Isto só muda o que tu vês: os dados mantêm-se, e toda a gente continua a vê-los. O que um servidor desativou está escondido para todos.",
+    "hideAll": "Esconder tudo o que é opcional",
+    "showAll": "Mostrar tudo"
+  },
+  "menu": {
+    "label": "Conta",
+    "preferences": "Preferências",
+    "settings": "Definições",
+    "logOut": "Terminar sessão",
+    "appearance": "Aspeto",
+    "accessibility": "Acessibilidade",
+    "simpleView": "Vista simples",
+    "sessions": "Sessões",
+    "dialogTitle": "Preferências e definições"
+  },
+  "sessions": {
+    "unknownDevice": "Dispositivo desconhecido",
+    "browserOn": "{browser} em {system}",
+    "intro": "Dispositivos e navegadores com sessão iniciada na tua conta. Terminar uma sessão acaba com ela de imediato, incluindo os quadros que tenha abertos.",
+    "signOutFailed": "Não foi possível terminar essa sessão",
+    "loadFailed": "Não foi possível carregar as tuas sessões",
+    "thisDevice": " · Este dispositivo",
+    "activity": "Ativo {active} · sessão iniciada a {signedIn}",
+    "signOut": "Terminar sessão",
+    "signOutOthers": "Terminar sessão em todos os outros dispositivos"
+  },
+  "language": {
+    "request": "Pedir um idioma…",
+    "intro": "O teu idioma ainda não está aqui? Diz ao programador qual gostavas de ter. As traduções chegam à medida que são pedidas.",
+    "which": "Idioma",
+    "pick": "Escolher um idioma…",
+    "note": "Nota (opcional)",
+    "notePlaceholder": "Algo a acrescentar, por exemplo se podias ajudar a traduzir",
+    "send": "Enviar pedido",
+    "sending": "A enviar…",
+    "sent": "Obrigado! O teu pedido foi enviado ao programador.",
+    "failed": "Não foi possível enviar o pedido"
+  }
+}
