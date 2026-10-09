@@ -101,6 +101,9 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+// Korean breaks lines between words, not inside them.
+:lang(ko) { word-break: keep-all; }
+
 #root { min-height: 100vh; }
 
 pre {
