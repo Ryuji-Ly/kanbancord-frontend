@@ -1,0 +1,91 @@
+{
+  "boardFeatures": {
+    "title": "Modo simple",
+    "intro": "Desactiva lo que este tablero no necesita; los demás tableros no cambian. Lo que desactivas se oculta y sus datos se conservan. Los cambios de aquí se aplican al momento.",
+    "everything": "Todo lo que permite el servidor",
+    "offForServer": "Desactivado para todo el servidor, en los ajustes del servidor."
+  },
+  "board": {
+    "loadFailed": "No se han podido cargar los ajustes del tablero"
+  },
+  "boardNotifications": {
+    "intro": "Los feeds de novedades que publican sobre este tablero. Cada uno sigue sus propios ajustes de las notificaciones del servidor hasta que cambies algo aquí, solo para este tablero. Los cambios se guardan al momento.",
+    "noFeeds": "Ningún feed publica sobre este tablero. Los gestores del servidor añaden feeds en los ajustes del servidor.",
+    "followsFeed": "Sigue los ajustes del feed.",
+    "changes_one": "{count} cambio para este tablero.",
+    "changes_other": "{count} cambios para este tablero.",
+    "useFeed": "Usar los ajustes del feed",
+    "changed": "cambiado",
+    "changes_many": "{count} cambios para este tablero."
+  },
+  "threads": {
+    "updatesBoth": "El hilo y el canal",
+    "updatesThread": "Solo el hilo",
+    "updatesChannel": "Solo el canal",
+    "title": "Hilos de las tareas",
+    "intro": "Da a cada tarea su propio hilo de conversación, en uno de los canales de feed de este tablero. Un hilo lleva el título de su tarea y se archiva cuando la tarea se elimina o se archiva. Las novedades del feed sobre la tarea, incluidos los comentarios nuevos, se publican allí como elijas abajo; los mensajes escritos en el hilo se quedan en Discord. Los cambios se guardan al momento.",
+    "noFeed": "Este tablero aún no tiene un feed de novedades. Añade uno en los ajustes de notificaciones del servidor, o con <code>/kanbancord feed</code> en Discord, y luego activa los hilos aquí.",
+    "perTask": "Un hilo por tarea",
+    "notWorking": "Activado, pero sin efecto: el canal elegido ya no tiene un feed para este tablero. Elige otro canal de feed.",
+    "perTaskHint": "Cada tarea recibe su hilo la próxima vez que le pase algo.",
+    "channel": "Canal",
+    "channelWithoutFeed": "Un canal sin feed para este tablero",
+    "botCannot": " (el bot no puede crear hilos aquí)",
+    "updatesGoTo": "Las novedades de una tarea van a",
+    "private": "Hilos privados",
+    "privateNotPossible": "No es posible en este canal: los hilos privados necesitan un canal de texto donde el bot pueda crear hilos privados.",
+    "privateHint": "Solo quien creó la tarea y sus responsables están en el hilo, además de los moderadores del servidor. Los nuevos responsables se añaden.",
+    "cannotMake": "El bot no puede crear hilos en #{channel}, así que las tareas no reciben hilos nuevos. Dale «Ver canales», «Enviar mensajes en hilos» y «Crear hilos públicos» en ese canal, o elige otro.",
+    "cannotMakePrivate": "El bot no puede crear hilos privados en #{channel}, así que las tareas no reciben hilos nuevos. Dale «Ver canales», «Enviar mensajes en hilos» y «Crear hilos privados» en ese canal, o elige otro."
+  },
+  "usage_one": "{count} tarea",
+  "usage_other": "{count} tareas",
+  "colourOf": "Color de {name}",
+  "labels": {
+    "intro": "Las etiquetas que se pueden poner a las tareas de este tablero. Los cambios de aquí se aplican al momento.",
+    "none": "Aún no hay etiquetas.",
+    "name": "Nombre de la etiqueta",
+    "newColour": "Color de la nueva etiqueta",
+    "newPlaceholder": "Nueva etiqueta, p. ej. frontend",
+    "add": "Añadir etiqueta",
+    "deleteTitle": "Eliminar etiqueta",
+    "deleteConfirm": "¿Eliminar <strong>{name}</strong> de este tablero?",
+    "deleteUsage_one": " Se quitará de la tarea que la usa ({count}).",
+    "deleteUsage_other": " Se quitará de las {count} tareas que la usan.",
+    "deleteUsage_many": " Se quitará de las {count} tareas que la usan."
+  },
+  "priorities": {
+    "title": "Prioridades",
+    "intro": "Los niveles de prioridad, del más urgente al menos urgente. Una tarea tiene como mucho uno. Los cambios de aquí se aplican al momento.",
+    "none": "No hay niveles de prioridad. Las tareas de este tablero no tienen prioridad.",
+    "moveUp": "Subir {name}",
+    "moveDown": "Bajar {name}",
+    "name": "Nombre de la prioridad",
+    "newColour": "Color del nuevo nivel",
+    "newPlaceholder": "Nuevo nivel, se añade al final",
+    "add": "Añadir nivel",
+    "deleteTitle": "Eliminar nivel de prioridad",
+    "deleteConfirm": "¿Eliminar <strong>{name}</strong>?",
+    "deleteUsage_one": " La tarea con esta prioridad ({count}) se quedará sin ninguna.",
+    "deleteUsage_other": " Las {count} tareas con esta prioridad se quedarán sin ninguna.",
+    "deleteUsage_many": " Las {count} tareas con esta prioridad se quedarán sin ninguna."
+  },
+  "features": {
+    "intro": "El modo simple deja los tableros con lo esencial: columnas, y tareas con título y descripción. Activa solo lo que necesite este servidor. Lo que desactivas se oculta y sus datos se conservan.",
+    "enableEverything": "Activar todo",
+    "openFirst": "{description} Desactiva primero los permisos abiertos.",
+    "open": "Permisos abiertos",
+    "openLabel": "Todos pueden hacerlo todo",
+    "customFirst": "Desactiva primero los permisos personalizados: sus reglas se guardan para cuando vuelvas a activarlos.",
+    "openHint": "Todos los que pueden escribir en este servidor pueden crear, cambiar, mover y eliminar columnas, tareas, etiquetas y niveles de prioridad, tengan los roles que tengan. La gestión del servidor, los permisos de los tableros, eliminar o archivar tableros y el registro de cambios siguen en manos de los gestores.",
+    "confirmTitle": "¿Activar los permisos abiertos?",
+    "turnOn": "Activar",
+    "turningOn": "Activando…",
+    "confirm": "Todos los que pueden escribir en este servidor podrán crear, cambiar, mover y eliminar columnas, tareas, etiquetas y niveles de prioridad, tengan los roles que tengan. Ideal para un grupo pequeño que se fía entre sí."
+  },
+  "dialog": {
+    "sections": "Secciones: {title}",
+    "close": "Cerrar: {title}"
+  },
+  "usage_many": "{count} tareas"
+}
