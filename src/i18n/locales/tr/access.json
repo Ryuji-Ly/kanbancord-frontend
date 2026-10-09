@@ -1,0 +1,70 @@
+{
+  "categories": {
+    "SERVER": "Sunucu",
+    "BOARD": "Panolar",
+    "COLUMN": "Sütunlar",
+    "TASK": "Görevler",
+    "COMMENT": "Yorumlar",
+    "LABEL": "Etiketler ve öncelikler"
+  },
+  "flags": {
+    "VIEW_CHANNEL": "Kanalları Görüntüle",
+    "MANAGE_GUILD": "Sunucuyu Yönet",
+    "VIEW_AUDIT_LOG": "Denetim Kaydını Görüntüle"
+  },
+  "everyoneWith": "“{permission}” iznine sahip herkes",
+  "personally": "{name} (kişisel)",
+  "where": {
+    "default": "varsayılan",
+    "board": "bu pano",
+    "server": "sunucu"
+  },
+  "why": {
+    "owner": "İzin verildi: sunucu sahibi her şeyi yapabilir",
+    "admin": "İzin verildi: yöneticiler her şeyi yapabilir",
+    "adminRule": "İzin verildi: yöneticiler her şeyi yapabilir ({subject})",
+    "open": "İzin verildi: açık izinler, mesaj yazabilen herkese buna izin verir",
+    "none": "Reddedildi: buna izin veren bir kural yok",
+    "byDefault": "{result}: {subject} için varsayılan kurala göre",
+    "byBoard": "{result}: {subject} için pano kuralına göre",
+    "byServer": "{result}: {subject} için sunucu kuralına göre"
+  },
+  "allowed": "İzin verildi",
+  "denied": "Reddedildi",
+  "intro": "Birinin neler yapabildiğini ve her birine hangi kuralın karar verdiğini görün. Bir üyenin rolleriyle başlamak için üyeyi seçin, ardından neyin değişeceğini görmek için rol ekleyin veya çıkarın. Ya da yalnızca bir rol grubunu kontrol edin.",
+  "introBoard": "Birinin bu panoda neler yapabildiğini ve her birine hangi kuralın karar verdiğini görün. Bir üyenin rolleriyle başlamak için üyeyi seçin, ardından neyin değişeceğini görmek için rol ekleyin veya çıkarın. Ya da yalnızca bir rol grubunu kontrol edin.",
+  "check": "Kontrol et",
+  "aMember": "Bir üye",
+  "rolesOnly": "Yalnızca roller",
+  "searchMembers": "Üyeleri ada göre arayın",
+  "whereLabel": "Kapsam",
+  "serverWide": "Tüm sunucu",
+  "someonesRoles": "Roller: {name}",
+  "theirRoles": "Üyenin rolleri",
+  "unknownRole": "Bilinmeyen rol",
+  "without": "Çıkar: {role}",
+  "thisRole": "bu rol",
+  "addRole": "Rol ekle",
+  "addRoleOption": "Rol ekle…",
+  "whatIf": "Gösterilen: {name}, sahip olduğundan farklı rollerle.",
+  "them": "bu üye",
+  "realRoles": "Gerçek rollerini kullan",
+  "start": "Yukarıdan bir üye arayın veya “Yalnızca roller”i seçin.",
+  "failed": "Kontrol başarısız oldu",
+  "notes": {
+    "serverWide": "Tüm sunucu: kendi kuralı olmayan her panoda geçerli olanlar.",
+    "customOff": "Özel izinler kapalı olduğu için varsayılanlar geçerlidir: her Discord izninin verdiği yetkiler.",
+    "open": "Açık izinler etkin: kanalları görüntüleyip mesaj gönderebilen herkes panolarla çalışabilir.",
+    "notMember": "{name} sunucuda değil; bu nedenle yalnızca bu kişiye özel kurallar geçerlidir.",
+    "discord": "Burada dikkate alınan Discord izinleri: {permissions}."
+  },
+  "thisPerson": "Bu kişi",
+  "show": "Göster",
+  "allowedCount_one": "İzin verilenler ({count})",
+  "allowedCount_other": "İzin verilenler ({count})",
+  "deniedCount_one": "Reddedilenler ({count})",
+  "deniedCount_other": "Reddedilenler ({count})",
+  "outweighs": "Şunlardan üstündür: {rules}",
+  "overriddenAllow": "{subject} için izin ver ({where})",
+  "overriddenDeny": "{subject} için reddet ({where})"
+}
