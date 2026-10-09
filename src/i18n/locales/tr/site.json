@@ -1,0 +1,158 @@
+{
+  "nav": {
+    "main": "Ana menü",
+    "site": "Site",
+    "breadcrumbs": "Konum",
+    "guides": "Kılavuzlar",
+    "faq": "SSS",
+    "open": "KanbanCord'u aç",
+    "about": "Hakkında",
+    "support": "Destek ol",
+    "supportServer": "Destek sunucusu",
+    "appDirectory": "Uygulama Dizini",
+    "status": "Durum",
+    "privacy": "Gizlilik Politikası",
+    "terms": "Hizmet Koşulları",
+    "addToDiscord": "Discord'a ekle"
+  },
+  "footer": {
+    "notAffiliated": "© {year} {operator}. {name}, Discord ile bağlantılı değildir ve Discord tarafından onaylanmamıştır."
+  },
+  "landing": {
+    "metaTitle": "Discord için kanban panoları",
+    "metaDescription": "Discord sunucunuzda yer alan bir kanban panosu: eğik çizgi komutlarıyla görev oluşturun, taşıyın ve atayın, güncellemeleri kanallarınızda alın ve genel tablo için web sitesini kullanın.",
+    "title": "Discord sunucunuzda yer alan bir kanban panosu",
+    "intro": "İşlerinizi topluluğunuzun zaten konuştuğu yerde planlayın ve takip edin. Eğik çizgi komutlarıyla görev oluşturun, taşıyın ve atayın; güncellemeleri kanallarınızda alın. Genel tabloyu görmek istediğinizde web sitesi hazır.",
+    "signIn": "Discord ile giriş yap",
+    "free": "Ücretsiz. Reklamsız. Takip yok. Ayrıca <link>Discord Uygulama Dizini</link>'nde.",
+    "features": "Özellikler",
+    "feature": {
+      "discord": {
+        "title": "Her şey Discord'dan",
+        "text": "Eğik çizgi komutlarıyla pano ve görev oluşturun, görevleri taşıyın ve atayın, son tarih belirleyin ve yorum yapın. Sohbetten ayrılmanıza gerek yok."
+      },
+      "boards": {
+        "title": "Gerçek kanban panoları",
+        "text": "Etiketler, öncelikler, son tarihler, atananlar, yorumlar, kontrol listeleri, görseller ve videolar içeren sütunlar ve görevler."
+      },
+      "permissions": {
+        "title": "Discord izinleriniz",
+        "text": "Erişim baştan itibaren sunucu rollerinizi izler ve web sitesinde pano ve kişi bazında ince ayar yapılabilir."
+      },
+      "updates": {
+        "title": "Gürültü değil, güncelleme",
+        "text": "Değişiklikleri seçtiğiniz kanallara gönderin ve görevleriniz hakkında doğrudan mesaj alın; aynı konu için asla iki kez bahsedilmez."
+      },
+      "website": {
+        "title": "İstediğinizde genel tablo",
+        "text": "Web sitesi panoların tamamını bir bakışta gösterir ve ince ayarları barındırır; her değişiklik herkese anında yansır."
+      },
+      "comfort": {
+        "title": "Rahat kullanım için tasarlandı",
+        "text": "Yüksek kontrast ve renk körlüğüne uygun temalar dahil temalar, metin boyutu ve küçük ekipler için sade mod."
+      }
+    },
+    "stepsTitle": "Bir dakikada başlayın",
+    "step1": "<strong>Botu sunucunuza ekleyin</strong>.",
+    "step2": "<code>/board create</code> ile <strong>bir pano oluşturun</strong>.",
+    "step3": "<code>/task create</code> ile <strong>görev ekleyin</strong> ve geri kalanını görmek için <code>/help</code> komutunu çalıştırın."
+  },
+  "about": {
+    "metaTitle": "Hakkında",
+    "metaDescription": "KanbanCord, Discord sunucunuzda yer alan bir kanban panosudur: tamamen bot üzerinden kullanın; genel tablo ve ince ayarlar için web sitesini kullanın.",
+    "title": "{name} hakkında",
+    "p1": "{name}, Discord sunucunuzda yer alan bir kanban panosudur. Fikir basit: topluluğunuz zaten Discord'da konuşuyor, öyleyse planlama da orada yapılmalı. Pano ve sütun oluşturun, görev ekleyin, görevleri ilerletin, kişileri atayın, etiket, öncelik ve son tarih belirleyin ve yorumlarda tartışın; tümünü botun eğik çizgi komutlarıyla, sohbetten ayrılmadan yapın. Güncellemeler seçtiğiniz kanallara, kendi görevleriniz için ise doğrudan mesajla gelir.",
+    "p2": "Çoğu kişinin bundan fazlasına ihtiyacı olmaz. Panonun tamamını bir bakışta görmek veya ince ayar yapmak istediğinizde web sitesi hazırdır: pano ve kişi bazında ayrıntılı izinler, bir panonun sunduğu etiketler ve öncelik düzeyleri, bir sunucunun kullandığı özellikler, tam olarak hangi güncellemelerin size bildirileceği ve tüm değişikliklerin kaydı.",
+    "p3": "Baştan itibaren sunucunuzun Discord rollerini ve izinlerini izler; böylece hiçbir şeyi iki kez ayarlamadan doğru kişiler doğru panoları görür ve değiştirir.",
+    "simpleTitle": "Yalnızca seçtikleriniz",
+    "simple": "Yeni sunucular <strong>sade mod</strong> ile başlar: panolar, sütunlar ve başlığı ile açıklaması olan görevler. Atananlar, hatırlatmalı son tarihler, öncelikler, etiketler, yorumlar ve özel izinler, bir sunucu yöneticisi bunları <code>/kanbancord features</code> ile veya web sitesindeki sunucu ayarlarından açana kadar kapalı kalır. Kapalı özellikler ne Discord'da ne de web sitesinde hiçbir yerde gösterilmez: yalnızca seçtikleriniz görünür. Her pano özellikleri kendisi için yeniden kapatabilir ve herkes Tercihler → Sade görünüm bölümünden kendisi için daha fazlasını gizleyebilir. Bir özelliği kapatmak onu yalnızca gizler; hiçbir şey silinmez.",
+    "madeByTitle": "Tek bir kişi tarafından geliştirildi",
+    "madeBy": "{name}, {operator} tarafından geliştirilmekte ve işletilmektedir. Ücretsizdir, reklam içermez ve verilerinizi satmaz veya takip etmez (bkz. <privacy>Gizlilik Politikası</privacy>). Bir sorun mu buldunuz ya da bir fikriniz mi var? Discord'da <code>/report</code> komutunu kullanın. Sorularınız mı var veya yeni özelliklerden haberdar olmak mı istiyorsunuz? <server>Destek sunucusuna</server> katılın. Masraflara katkıda bulunmak isterseniz <support>Destek ol</support> sayfasına bakın.",
+    "findTitle": "Discord'da bulun",
+    "find": "{name}, <directory>Discord Uygulama Dizini</directory>'nde kendi sayfasına sahiptir; buradan doğrudan Discord içinden bir sunucuya ekleyebilirsiniz. Web sitesinin, botun ve arkalarındaki her şeyin çalışıp çalışmadığı ile planlı bakımlar <status>durum sayfasında</status> yer alır.",
+    "startTitle": "Başlarken",
+    "start1": "Botu sunucunuza ekleyin.",
+    "start2": "<code>/board create</code> ile bir pano oluşturun, ardından <code>/task create</code> ile görev ekleyin.",
+    "start3": "Botun yapabildiği her şeyi görmek için <code>/help</code> komutunu çalıştırın.",
+    "questions": "Sorularınız mı var? <faq>SSS</faq> sayfasına bakın.",
+    "translationsTitle": "Çeviriler",
+    "translations": "Bu web sitesinin çevirileri üretken yapay zekâ yardımıyla hazırlanmıştır. Bir hata veya iyileştirilebilecek bir ifade fark ederseniz, bunu Discord'da <code>/report</code> komutuyla veya <email>{contact}</email> adresine e-posta göndererek bize bildirmeniz bizi memnun eder."
+  },
+  "support": {
+    "metaTitle": "Destek ol",
+    "metaDescription": "KanbanCord herkes için ücretsizdir. Masraflarına katkıda bulunmak isterseniz Ko-fi üzerinden gönüllü bağış yapabilirsiniz.",
+    "title": "{name} projesine destek olun",
+    "p1": "{name} ücretsizdir; reklam ve ücretli plan içermez ve böyle kalacaktır. {operator} tarafından geliştirilen ve işletilen kişisel bir projedir.",
+    "p2": "Sunucunuza faydalı olduysa ve alan adı ile büyümesi halinde ihtiyaç duyacağı sunucular gibi masraflara katkıda bulunmak isterseniz Ko-fi üzerinden bağış yapabilirsiniz.",
+    "kofi": "Ko-fi üzerinden destek ol",
+    "goodToKnow": "Bilmenizde fayda var",
+    "voluntary": "Bağışlar tamamen gönüllüdür. Bağış yapsın ya da yapmasın, herkes aynı {name} hizmetini alır.",
+    "buysNothing": "Bağış; özellik, sınır, rol, öncelikli destek veya başka herhangi bir şey satın almaz.",
+    "payments": "Ödemeler {name} tarafından değil, Ko-fi ve PayPal tarafından işlenir. Bağışları Discord hesabınızla ilişkilendirmeyiz.",
+    "refunds": "Bağışlar kural olarak iade edilmez. Yanlışlıkla bağış yaptıysanız <email>{email}</email> adresine e-posta gönderin; elimizden geleni yaparız.",
+    "notDonating": "Bağış yapmamak tamamen normaldir. {name} hakkında başkalarına bahsetmek veya <code>/report</code> ile bir hata bildirmek de yardımcı olur."
+  },
+  "faq": {
+    "metaTitle": "SSS",
+    "metaDescription": "KanbanCord hakkında yanıtlar: fiyat, botu ekleme, izinler, Discord komutları, bildirimler, yüklemeler ve verileriniz.",
+    "title": "Sıkça sorulan sorular",
+    "free": {
+      "q": "{name} ücretsiz mi?",
+      "a": "Evet. Ücretli plan veya reklam yoktur ve verileriniz satılmaz."
+    },
+    "start": {
+      "q": "Nereden başlamalıyım?",
+      "a": "Botu ekleyin, ardından adım adım bir rehber için Discord'da <code>/guide</code> komutunu çalıştırın. <guides>Kılavuzlar</guides>, paylaşılan bir yapılacaklar listesinden hatırlatmalara ve izinlere kadar her şeyi kapsar."
+    },
+    "website": {
+      "q": "Web sitesine ihtiyacım var mı?",
+      "a": "Hayır. {name}, tamamen Discord'dan kullanılmak üzere tasarlanmıştır: pano, sütun ve görev oluşturma, bunları taşıma ve atama, etiket, öncelik ve son tarih belirleme, yorum yapma ve bildirimlerinizi seçme işlemlerinin tümü eğik çizgi komutlarıyla yapılır. Web sitesi, panonun tamamını bir bakışta görmek veya ayarlarda ince ayar yapmak istediğiniz durumlar içindir."
+    },
+    "add": {
+      "q": "Sunucuma nasıl eklerim?",
+      "a": "Herhangi bir sayfanın altındaki “Discord'a ekle” bağlantısını kullanın ve sunucuyu seçin. Orada Sunucuyu Yönet iznine sahip olmanız gerekir. Ardından <code>/board create</code> ile ilk panoyu oluşturun ve <code>/task create</code> ile görev ekleyin."
+    },
+    "access": {
+      "q": "Panolarımı kimler görebilir ve değiştirebilir?",
+      "a": "Varsayılan olarak sunucunuzun Discord rollerini ve izinlerini izler: yöneticiler ve moderatörler panoları yönetebilir, üyeler görevlerle çalışabilir. Sunucu yöneticileri bunu tüm sunucu için veya pano bazında, sunucu ve pano ayarlarından değiştirebilir."
+    },
+    "servers": {
+      "q": "Giriş yaparken neden sunucu listem isteniyor?",
+      "a": "{name}, hangi sunucularınızı yönetebileceğinizi ve botu nereye ekleyebileceğinizi gösterebilsin diye. Mesajlarınızı okumaz."
+    },
+    "discord": {
+      "q": "Discord'dan neler yapabilirim?",
+      "a": "Günlük olarak ihtiyaç duyduğunuz her şeyi: pano oluşturma, görüntüleme, yeniden adlandırma ve arşivleme; sütun ekleme, yeniden adlandırma, sıralama ve silme; görev oluşturma, düzenleme, taşıma ve silme; kişi ve rol atama; etiket, öncelik ve son tarih belirleme; yorum okuma ve yazma; <code>/notifications</code> ile kendi bildirimlerinizi seçme; sunucu yöneticileri için ise <code>/kanbancord</code> ile güncelleme kanallarını ayarlama. Tüm komutlar için Discord'da <code>/help</code> komutunu çalıştırın."
+    },
+    "websiteOnly": {
+      "q": "Web sitesi neler için gerekli?",
+      "a": "İnce ayarlar ve genel tablo için: panonun tamamını tek seferde görmek, pano ve kişi bazında izin kuralları, bir panonun sunduğu etiketler ve öncelik düzeyleri, bir sunucunun kullandığı özellikler, tam olarak hangi güncellemelerin size bildirileceği, temalar ve erişilebilirlik seçenekleri, görsel ve video yükleme ve değişiklik kaydına göz atma."
+    },
+    "notifications": {
+      "q": "Bildirimler nasıl çalışır?",
+      "a": "Bir sunucu, botun güncellemeleri seçilen kanallara göndermesini ve değişiklik kaydını bir kanala yansıtmasını sağlayabilir; güncelleme gönderileri görevin tamamını, görevi taşımak, kişi atamak veya düzenlemek için düğmelerle birlikte gösterebilir. Ayrıca atandığınız, oluşturduğunuz veya takip ettiğiniz görevler hakkında, son tarih hatırlatmaları dahil, doğrudan mesaj alabilirsiniz. Bir kanal sizden bir konuda zaten bahsettiyse aynı konu için ayrıca doğrudan mesaj almazsınız. Neleri alacağınızı <code>/notifications</code> ile veya daha ayrıntılı olarak web sitesinde Ayarlar → Bildirimler bölümünden seçin. Sunucu yöneticileri kanalları <code>/kanbancord</code> ile ayarlar."
+    },
+    "uploads": {
+      "q": "Yüklenen görseller ve videolar nerede saklanır?",
+      "a": "Imgur'da. Bağlantıya sahip olan herkes bunları görebilir; bu nedenle özel hiçbir şey yüklemeyin."
+    },
+    "data": {
+      "q": "Verilerimi nasıl kaldırırım?",
+      "a": "Ayarlar → Oturumlar bölümünden tüm cihazlarda oturumu kapatın ve kalanların silinmesini <email>{email}</email> adresinden talep edin. Sunucu yöneticileri panoları silebilir; botun bir sunucudan çıkarılması, o sunucunun eşitlenmesini durdurur. Ayrıntılar <privacy>Gizlilik Politikası</privacy>'nda yer alır."
+    },
+    "help": {
+      "q": "Bir hata buldum, bir fikrim var veya yardıma ihtiyacım var.",
+      "a": "Soru sormak ve yeni özelliklerden haberdar olmak için <server>{name} destek sunucusuna</server> katılın veya doğrudan geliştiriciye bir rapor göndermek için Discord'da <code>/report</code> komutunu kullanın."
+    }
+  },
+  "guides": {
+    "metaTitle": "Kılavuzlar",
+    "metaDescription": "KanbanCord kılavuzları: Discord'da kanban panoları, yapılacaklar listeleri ve görev takibi; ilk panonuzdan hatırlatmalara, akışlara ve izinlere kadar.",
+    "title": "Kılavuzlar",
+    "intro": "{name} ile Discord sunucunuzda işlerinizi nasıl planlayıp takip edeceğiniz: kanban panoları, paylaşılan yapılacaklar listeleri, kişilere ve rollere verilen görevler, son tarihler ve hatırlatmalar. Neredeyse her şey eğik çizgi komutlarıyla yapılır; birkaç kılavuz web sitesini ele alır.",
+    "inDiscord": "Botu zaten eklediniz mi? Aynı adımları, ilerledikçe işaretlenerek izlemek için Discord'da <code>/guide</code> komutunu çalıştırın.",
+    "tryTitle": "Sunucunuzda deneyin",
+    "try": "{name} ücretsizdir. Sunucunuza ekleyin, ardından doğrudan Discord'da adım adım bir rehber için <code>/guide</code> komutunu çalıştırın.",
+    "more": "Diğer kılavuzlar"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "features": {
+    "labels": {
+      "label": "Etiketler",
+      "description": "Görevler için renkli etiketler; her panonun kendi etiketleri vardır.",
+      "show": "Etiketleri göster"
+    },
+    "priorities": {
+      "label": "Öncelikler",
+      "description": "Her görev için Critical ile Ignorable arasında bir öncelik düzeyi.",
+      "show": "Öncelikleri göster"
+    },
+    "assignees": {
+      "label": "Atananlar",
+      "description": "Görevlere üye atama.",
+      "show": "Atananları göster"
+    },
+    "comments": {
+      "label": "Yorumlar",
+      "description": "Her görevde bir sohbet.",
+      "show": "Yorumları göster"
+    },
+    "dueDates": {
+      "label": "Son tarihler",
+      "description": "Her görevin bitmesi gereken tarih ve saat.",
+      "show": "Son tarihleri göster"
+    },
+    "permissions": {
+      "label": "Özel izinler",
+      "description": "Sunucu genelinde ve pano bazında kimin neyi yapabileceğine karar verin. Kapalıyken Discord izinleri geçerlidir.",
+      "show": "Özel izinleri göster"
+    }
+  },
+  "requestFailed": "İstek başarısız oldu ({status})",
+  "notSignedIn": "Oturum açmadınız.",
+  "cancel": "İptal",
+  "close": "Kapat",
+  "loginWithDiscord": "Discord ile giriş yap",
+  "deleting": "Siliniyor…",
+  "loading": "Yükleniyor…",
+  "saving": "Kaydediliyor…",
+  "change": "Değiştir",
+  "closeModal": "Pencereyi kapat",
+  "save": "Kaydet",
+  "applying": "Uygulanıyor…",
+  "name": "Ad",
+  "description": "Açıklama",
+  "saveChanges": "Değişiklikleri kaydet",
+  "add": "Ekle",
+  "delete": "Sil",
+  "deletingDots": "Siliniyor…",
+  "confirmNamed": "Onaylayın: {title}",
+  "creatingDots": "Oluşturuluyor…",
+  "creating": "Oluşturuluyor…",
+  "adding": "Ekleniyor…",
+  "savingDots": "Kaydediliyor…",
+  "changeNotSaved": "Değişiklik kaydedilemedi",
+  "loadingEllipsis": "Yükleniyor…"
+}

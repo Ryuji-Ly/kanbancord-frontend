@@ -42,7 +42,9 @@ export function ServerSettingsDialog({
     <div className="kc-modal-overlay" role="dialog" aria-modal="true" aria-label={title} onClick={onClose}>
       <div className="kc-modal kc-server-settings" onClick={(event) => event.stopPropagation()}>
         <nav className="kc-server-settings-nav" aria-label={t('settings.dialog.sections', { title })}>
-          <p className="kc-server-settings-server">{serverName}</p>
+          <p className="kc-server-settings-server" lang="">
+            {serverName}
+          </p>
           {sections.map((section, index) => (
             <Fragment key={section.key}>
               {section.group && section.group !== sections[index - 1]?.group && (

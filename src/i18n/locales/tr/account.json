@@ -1,0 +1,147 @@
+{
+  "appearance": {
+    "groups": {
+      "surfaces": "Yüzeyler",
+      "controls": "Denetimler",
+      "text": "Metin",
+      "brand": "Marka ve vurgu",
+      "status": "Durumlar",
+      "permissions": "İzin kuralları"
+    },
+    "core": {
+      "background": {
+        "label": "Arka plan",
+        "hint": "Her şeyin arkasında"
+      },
+      "surface": {
+        "label": "Yüzey",
+        "hint": "Paneller, sütunlar ve kartlar"
+      },
+      "text": {
+        "label": "Metin",
+        "hint": "Gövde metni; başlıklar ve ipuçları buradan türetilir"
+      },
+      "accent": {
+        "label": "Vurgu",
+        "hint": "Vurgular, odak çerçeveleri, başlık tonu"
+      },
+      "primary": {
+        "label": "Birincil",
+        "hint": "Ana düğmeler ve bağlantılar"
+      },
+      "success": {
+        "label": "Başarı",
+        "hint": "Onaylar ve izin kuralları"
+      },
+      "danger": {
+        "label": "Tehlike",
+        "hint": "Hatalar, silme düğmeleri ve reddetme kuralları"
+      },
+      "warning": {
+        "label": "Uyarı",
+        "hint": "Uyarılar ve vurgular"
+      }
+    },
+    "presets": {
+      "dark": {
+        "label": "Koyu",
+        "description": "Varsayılan."
+      },
+      "light": {
+        "label": "Açık",
+        "description": "Açık yüzeylerde koyu metin."
+      },
+      "highContrast": {
+        "label": "Yüksek kontrast",
+        "description": "Belirgin kenarlıklarla saf siyah ve beyaz; az gören kullanıcılar için."
+      },
+      "redGreen": {
+        "label": "Kırmızı-yeşil renk körlüğüne uygun",
+        "description": "Protanopi ve döteranopi için: başarı için mavi, tehlike için turuncu."
+      },
+      "blueYellow": {
+        "label": "Mavi-sarı renk körlüğüne uygun",
+        "description": "Tritanopi için: başarı için turkuaz, tehlike için kırmızı, uyarılar için pembe."
+      }
+    },
+    "theme": "Tema",
+    "custom": "Özel",
+    "customHint": "Yukarıdaki temadan başlayarak kendi renkleriniz.",
+    "customColours": "Özel renkler",
+    "customColoursHint": "Sekiz renk seçin; diğer tüm renkler bunlardan hesaplanır.",
+    "lowContrast": "Arka plandaki metnin kontrastı {contrast}:1; rahat okuma için en az 4,5:1 önerilir.",
+    "advanced": "Gelişmiş: her rengi tek tek düzenleyin",
+    "changed_one": " ({count} değişti)",
+    "changed_other": " ({count} değişti)",
+    "advancedHint": "Buradaki değişiklikler yukarıdaki temanın üzerine uygulanır ve tema değiştirildiğinde de korunur.",
+    "resetAll": "Tümünü sıfırla",
+    "reset": "Sıfırla",
+    "language": "Dil",
+    "browserLanguage": "Tarayıcı dili"
+  },
+  "accessibility": {
+    "textScale": {
+      "normal": "Normal",
+      "large": "Büyük",
+      "larger": "Daha büyük",
+      "largest": "En büyük"
+    },
+    "filters": {
+      "none": "Yok",
+      "protanopia": "Protanopi (zayıf kırmızı)",
+      "deuteranopia": "Döteranopi (zayıf yeşil)",
+      "tritanopia": "Tritanopi (zayıf mavi)"
+    },
+    "intro": "Renk körlüğü için Kırmızı-yeşil ve Mavi-sarı renk körlüğüne uygun temalar arayüzün renklerini değiştirir. Aşağıdaki seçenekler, kullanıcıların etiketler, öncelikler ve roller için seçtiği renklerde yardımcı olur.",
+    "patterns": "Etiketlerde desenler",
+    "patternsHint": "Her etikete kendi çizgi veya nokta deseni verilir; böylece etiketler yalnızca renkle değil, desenle de ayırt edilebilir.",
+    "ranks": "Öncelik sıraları",
+    "ranksHint": "Her önceliğin adının yanında sırasını gösterir; P1 en acil olanıdır.",
+    "filter": "Etiketler, öncelikler ve roller için renk filtresi",
+    "filterHint": "Ayırt edilmesi zor renkleri daha kolay görülen renklere kaydırır.",
+    "textSize": "Metin boyutu",
+    "motion": "Hareketi azalt",
+    "motionSystem": "Cihaz ayarını kullan",
+    "motionOn": "Her zaman azalt",
+    "motionOff": "Hiçbir zaman azaltma"
+  },
+  "simpleView": {
+    "intro": "Kullanmadıklarınızı tüm panolarda gizleyin. Bu yalnızca sizin gördüklerinizi değiştirir: veriler korunur ve diğer herkes onları görmeye devam eder. Sunucunun kapattığı özellikler herkes için gizlidir.",
+    "hideAll": "İsteğe bağlı her şeyi gizle",
+    "showAll": "Tümünü göster"
+  },
+  "menu": {
+    "label": "Hesap",
+    "preferences": "Tercihler",
+    "settings": "Ayarlar",
+    "logOut": "Çıkış yap",
+    "appearance": "Görünüm",
+    "accessibility": "Erişilebilirlik",
+    "simpleView": "Sade görünüm",
+    "sessions": "Oturumlar",
+    "dialogTitle": "Tercihler ve ayarlar"
+  },
+  "sessions": {
+    "unknownDevice": "Bilinmeyen cihaz",
+    "browserOn": "{browser} · {system}",
+    "intro": "Hesabınızda oturumu açık olan cihazlar ve tarayıcılar. Bir oturumu kapatmak, içinde açık olan panolar dahil onu hemen sonlandırır.",
+    "signOutFailed": "Bu oturum kapatılamadı",
+    "loadFailed": "Oturumlarınız yüklenemedi",
+    "thisDevice": " · Bu cihaz",
+    "activity": "Son etkinlik: {active} · Giriş: {signedIn}",
+    "signOut": "Oturumu kapat",
+    "signOutOthers": "Diğer tüm cihazlarda oturumu kapat"
+  },
+  "language": {
+    "request": "Dil iste…",
+    "intro": "Diliniz henüz yok mu? Hangi dili istediğinizi geliştiriciye bildirin. Çeviriler taleplere göre eklenir.",
+    "which": "Dil",
+    "pick": "Bir dil seçin…",
+    "note": "Not (isteğe bağlı)",
+    "notePlaceholder": "Eklemek istedikleriniz; örneğin çeviriye yardımcı olup olamayacağınız",
+    "send": "Talebi gönder",
+    "sending": "Gönderiliyor…",
+    "sent": "Teşekkürler! Talebiniz geliştiriciye iletildi.",
+    "failed": "Talep gönderilemedi"
+  }
+}

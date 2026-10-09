@@ -1,0 +1,87 @@
+{
+  "boardFeatures": {
+    "title": "Sade mod",
+    "intro": "Bu panonun ihtiyaç duymadığı özellikleri kapatın; diğer panolar değişmez. Kapattığınız özellikler gizlenir ve verileri korunur. Buradaki değişiklikler hemen uygulanır.",
+    "everything": "Sunucunun izin verdiği her şey",
+    "offForServer": "Sunucu ayarlarında tüm sunucu için kapalı."
+  },
+  "board": {
+    "loadFailed": "Pano ayarları yüklenemedi"
+  },
+  "boardNotifications": {
+    "intro": "Bu pano hakkında gönderi yapan güncelleme akışları. Siz burada yalnızca bu pano için bir şeyi değiştirene kadar her akış, sunucu bildirimlerindeki kendi ayarlarını izler. Değişiklikler hemen kaydedilir.",
+    "noFeeds": "Bu pano hakkında gönderi yapan bir akış yok. Sunucu yöneticileri akışları sunucu ayarlarından ekler.",
+    "followsFeed": "Akışın ayarlarını izler.",
+    "changes_one": "Bu pano için {count} değişiklik.",
+    "changes_other": "Bu pano için {count} değişiklik.",
+    "useFeed": "Akışın ayarlarını kullan",
+    "changed": "değiştirildi"
+  },
+  "threads": {
+    "updatesBoth": "Alt başlık ve kanal",
+    "updatesThread": "Yalnızca alt başlık",
+    "updatesChannel": "Yalnızca kanal",
+    "title": "Görev alt başlıkları",
+    "intro": "Her göreve, bu panonun akış kanallarından birinde kendi sohbet alt başlığını verin. Alt başlık görevin adını taşır ve görev silindiğinde veya arşivlendiğinde arşivlenir. Yeni yorumlar dahil görevle ilgili akış güncellemeleri aşağıda seçtiğiniz şekilde oraya gönderilir; alt başlıkta yazılan mesajlar Discord'da kalır. Değişiklikler hemen kaydedilir.",
+    "noFeed": "Bu panonun henüz bir güncelleme akışı yok. Sunucunun bildirim ayarlarından veya Discord'da <code>/kanbancord feed</code> ile bir akış ekleyin, ardından alt başlıkları burada açın.",
+    "perTask": "Her görev için bir alt başlık",
+    "notWorking": "Açık, ancak çalışmıyor: seçilen kanalda artık bu pano için bir akış yok. Başka bir akış kanalı seçin.",
+    "perTaskHint": "Her görev, bir sonraki değişiklikte kendi alt başlığını alır.",
+    "channel": "Kanal",
+    "channelWithoutFeed": "Bu pano için akışı olmayan bir kanal",
+    "botCannot": " (bot burada alt başlık oluşturamıyor)",
+    "updatesGoTo": "Görev güncellemelerinin gideceği yer",
+    "private": "Özel alt başlıklar",
+    "privateNotPossible": "Bu kanalda mümkün değil: özel alt başlıklar, botun özel alt başlık oluşturabileceği bir metin kanalı gerektirir.",
+    "privateHint": "Alt başlıkta yalnızca görevi oluşturan kişi ve atananlar, ayrıca sunucu moderatörleri bulunur. Yeni atananlar eklenir.",
+    "cannotMake": "Bot #{channel} kanalında alt başlık oluşturamıyor, bu yüzden görevlere yeni alt başlık açılmıyor. Bota o kanalda “Kanalları Görüntüle”, “Alt Başlıklarda Mesaj Gönder” ve “Herkese Açık Alt Başlıklar Oluştur” izinlerini verin veya başka bir kanal seçin.",
+    "cannotMakePrivate": "Bot #{channel} kanalında özel alt başlık oluşturamıyor, bu yüzden görevlere yeni alt başlık açılmıyor. Bota o kanalda “Kanalları Görüntüle”, “Alt Başlıklarda Mesaj Gönder” ve “Özel Alt Başlıklar Oluştur” izinlerini verin veya başka bir kanal seçin."
+  },
+  "usage_one": "{count} görev",
+  "usage_other": "{count} görev",
+  "colourOf": "Renk: {name}",
+  "labels": {
+    "intro": "Bu panodaki görevlere eklenebilecek etiketler. Buradaki değişiklikler hemen uygulanır.",
+    "none": "Henüz etiket yok.",
+    "name": "Etiket adı",
+    "newColour": "Yeni etiketin rengi",
+    "newPlaceholder": "Yeni etiket, örn. frontend",
+    "add": "Etiket ekle",
+    "deleteTitle": "Etiketi sil",
+    "deleteConfirm": "<strong>{name}</strong> bu panodan silinsin mi?",
+    "deleteUsage_one": " Etiket, kullanıldığı {count} görevden kaldırılacak.",
+    "deleteUsage_other": " Etiket, kullanıldığı {count} görevden kaldırılacak."
+  },
+  "priorities": {
+    "title": "Öncelikler",
+    "intro": "En acilden en az acile doğru öncelik düzeyleri. Bir görevin en fazla bir önceliği olabilir. Buradaki değişiklikler hemen uygulanır.",
+    "none": "Öncelik düzeyi yok. Bu panodaki görevlerin önceliği yok.",
+    "moveUp": "Yukarı taşı: {name}",
+    "moveDown": "Aşağı taşı: {name}",
+    "name": "Öncelik adı",
+    "newColour": "Yeni düzeyin rengi",
+    "newPlaceholder": "Yeni düzey, sona eklenir",
+    "add": "Düzey ekle",
+    "deleteTitle": "Öncelik düzeyini sil",
+    "deleteConfirm": "<strong>{name}</strong> silinsin mi?",
+    "deleteUsage_one": " Bu önceliğe sahip {count} görev önceliksiz kalacak.",
+    "deleteUsage_other": " Bu önceliğe sahip {count} görev önceliksiz kalacak."
+  },
+  "features": {
+    "intro": "Sade mod, panolarda yalnızca temel öğeleri bırakır: sütunlar ve başlığı ile açıklaması olan görevler. Yalnızca bu sunucunun ihtiyaç duyduklarını açın. Kapattığınız özellikler gizlenir ve verileri korunur.",
+    "enableEverything": "Tümünü aç",
+    "openFirst": "{description} Önce açık izinleri kapatın.",
+    "open": "Açık izinler",
+    "openLabel": "Herkes her şeyi yapabilir",
+    "customFirst": "Önce özel izinleri kapatın: kuralları, yeniden açtığınızda kullanılmak üzere saklanır.",
+    "openHint": "Bu sunucuda mesaj yazabilen herkes, rolleri ne olursa olsun sütunları, görevleri, etiketleri ve öncelik düzeylerini oluşturabilir, değiştirebilir, taşıyabilir ve silebilir. Sunucu yönetimi, pano izinleri, panoların silinmesi veya arşivlenmesi ve değişiklik kaydı yöneticilerde kalır.",
+    "confirmTitle": "Açık izinler açılsın mı?",
+    "turnOn": "Aç",
+    "turningOn": "Açılıyor…",
+    "confirm": "Bu sunucuda mesaj yazabilen herkes, rolleri ne olursa olsun sütunları, görevleri, etiketleri ve öncelik düzeylerini oluşturabilecek, değiştirebilecek, taşıyabilecek ve silebilecek. Birbirine güvenen küçük bir grup için uygundur."
+  },
+  "dialog": {
+    "sections": "Bölümler: {title}",
+    "close": "Kapat: {title}"
+  }
+}
