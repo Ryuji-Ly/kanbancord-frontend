@@ -1,0 +1,154 @@
+{
+  "nav": {
+    "main": "Hlavná navigácia",
+    "site": "Stránka",
+    "breadcrumbs": "Omrvinková navigácia",
+    "guides": "Návody",
+    "faq": "Časté otázky",
+    "open": "Otvoriť KanbanCord",
+    "about": "O projekte",
+    "support": "Podpora",
+    "supportServer": "Server podpory",
+    "appDirectory": "Adresár aplikácií",
+    "status": "Stav",
+    "privacy": "Zásady ochrany súkromia",
+    "terms": "Podmienky používania",
+    "addToDiscord": "Pridať do Discordu"
+  },
+  "footer": {
+    "notAffiliated": "© {year} {operator}. {name} nie je prepojený s Discordom ani ním podporovaný."
+  },
+  "landing": {
+    "metaTitle": "Kanban nástenky pre Discord",
+    "metaDescription": "Kanban nástenka priamo na tvojom Discord serveri: vytváraj, presúvaj a priraďuj úlohy príkazmi s lomkou, dostávaj novinky do kanálov a na celkový prehľad použi web.",
+    "title": "Kanban nástenka priamo na tvojom Discord serveri",
+    "intro": "Plánuj a sleduj prácu tam, kde sa tvoja komunita už rozpráva. Vytváraj, presúvaj a priraďuj úlohy príkazmi s lomkou a dostávaj novinky do svojich kanálov. Keď chceš vidieť celok, je tu web.",
+    "signIn": "Prihlásiť sa cez Discord",
+    "free": "Zadarmo. Bez reklám. Bez sledovania. Aj v <link>adresári aplikácií Discordu</link>.",
+    "features": "Funkcie",
+    "feature": {
+      "discord": {
+        "title": "Všetko z Discordu",
+        "text": "Vytváraj nástenky a úlohy, presúvaj ich a priraďuj, nastavuj termíny a komentuj príkazmi s lomkou. Netreba opustiť chat."
+      },
+      "boards": {
+        "title": "Skutočné kanban nástenky",
+        "text": "Stĺpce a úlohy so štítkami, prioritami, termínmi, riešiteľmi, komentármi, zoznamami, obrázkami a videami."
+      },
+      "permissions": {
+        "title": "Tvoje oprávnenia z Discordu",
+        "text": "Prístup sa od začiatku riadi rolami na serveri a na webe sa dá doladiť pre každú nástenku a každého človeka."
+      },
+      "updates": {
+        "title": "Novinky, nie hluk",
+        "text": "Posielaj zmeny do vybraných kanálov a dostávaj súkromné správy o svojich úlohách, nikdy nie dvakrát kvôli tomu istému."
+      },
+      "website": {
+        "title": "Celkový prehľad, keď ho chceš",
+        "text": "Web ukáže celé nástenky naraz a skrýva jemné nastavenia, pričom každá zmena sa všetkým zobrazí hneď."
+      },
+      "comfort": {
+        "title": "Pohodlné na používanie",
+        "text": "Témy vrátane vysokého kontrastu a tém pre farboslepých, veľkosť textu a jednoduchý režim pre malé tímy."
+      }
+    },
+    "stepsTitle": "Začni za minútu",
+    "step1": "<strong>Pridaj bota</strong> na svoj server.",
+    "step2": "<strong>Vytvor nástenku</strong> príkazom <code>/board create</code>.",
+    "step3": "<strong>Pridaj úlohy</strong> príkazom <code>/task create</code> a cez <code>/help</code> uvidíš všetko ostatné."
+  },
+  "about": {
+    "metaTitle": "O projekte",
+    "metaDescription": "KanbanCord je kanban nástenka priamo na tvojom Discord serveri: ovládaj ju celú cez bota a web použi na celkový prehľad a jemné nastavenia.",
+    "title": "O projekte {name}",
+    "p1": "{name} je kanban nástenka priamo na tvojom Discord serveri. Myšlienka je jednoduchá: tvoja komunita sa už rozpráva na Discorde, tak nech sa tam aj plánuje. Vytváraj nástenky a stĺpce, pridávaj úlohy, posúvaj ich ďalej, priraďuj ľudí, nastavuj štítky, priority a termíny a diskutuj o nich v komentároch, všetko príkazmi s lomkou, bez opustenia chatu. Novinky prichádzajú do kanálov, ktoré si vyberieš, a o tvojich vlastných úlohách aj súkromnou správou.",
+    "p2": "Väčšina ľudí nič viac nepotrebuje. Web je tu, keď chceš vidieť celú nástenku naraz alebo niečo doladiť: podrobné oprávnenia pre nástenky aj jednotlivých ľudí, štítky a úrovne priority, ktoré nástenka ponúka, ktoré funkcie server používa, presne aké novinky dostávaš, a denník všetkých zmien.",
+    "p3": "Od začiatku sa riadi rolami a oprávneniami Discordu na tvojom serveri, takže správni ľudia vidia a menia správne nástenky bez toho, aby sa čokoľvek nastavovalo dvakrát.",
+    "madeByTitle": "Robí to jeden človek",
+    "madeBy": "{name} vytvára a prevádzkuje {operator}. Je zadarmo, bez reklám a tvoje údaje nepredáva ani nesleduje (pozri <privacy>Zásady ochrany súkromia</privacy>). Našiel sa problém alebo máš nápad? Použi <code>/report</code> v Discorde. Máš otázky alebo chceš vedieť o novinkách? Pridaj sa na <server>server podpory</server>. Ak chceš pomôcť s nákladmi, pozri <support>Podporu</support>.",
+    "findTitle": "Nájdeš ho na Discorde",
+    "find": "{name} má vlastnú stránku v <directory>adresári aplikácií Discordu</directory>, kde ho môžeš pridať na server priamo z Discordu. Či web, bot a všetko za nimi beží, aj plánovanú údržbu, nájdeš na <status>stránke stavu</status>.",
+    "startTitle": "Začíname",
+    "start1": "Pridaj bota na svoj server.",
+    "start2": "Vytvor nástenku príkazom <code>/board create</code> a potom pridaj úlohy príkazom <code>/task create</code>.",
+    "start3": "Spusti <code>/help</code> a uvidíš všetko, čo bot dokáže.",
+    "questions": "Otázky? Pozri <faq>Časté otázky</faq>."
+  },
+  "support": {
+    "metaTitle": "Podpora",
+    "metaDescription": "KanbanCord je zadarmo pre všetkých. Ak chceš pomôcť s jeho nákladmi, môžeš prispieť dobrovoľným darom cez Ko-fi.",
+    "title": "Podpor {name}",
+    "p1": "{name} je zadarmo, bez reklám a bez platených plánov, a tak to aj zostane. Je to osobný projekt, ktorý vytvára a prevádzkuje {operator}.",
+    "p2": "Ak je tvojmu serveru užitočný a chceš pomôcť s nákladmi, ako je doména či servery, ktoré bude potrebovať, ak porastie, môžeš prispieť darom cez Ko-fi.",
+    "kofi": "Podporiť cez Ko-fi",
+    "goodToKnow": "Dobré vedieť",
+    "voluntary": "Dary sú úplne dobrovoľné. Každý dostane ten istý {name}, či prispeje, alebo nie.",
+    "buysNothing": "Dar nekupuje funkcie, limity, roly, prednostnú podporu ani nič iné.",
+    "payments": "Platby spracúvajú Ko-fi a PayPal, nikdy {name}. Dary neprepájame s tvojím účtom na Discorde.",
+    "refunds": "Dary sa spravidla nevracajú. Ak išlo o omyl, napíš na <email>{email}</email> a urobíme, čo sa dá.",
+    "notDonating": "Neprispieť je úplne v poriadku. Pomôže aj to, keď o {name} povieš ostatným alebo nahlásiš chybu cez <code>/report</code>."
+  },
+  "faq": {
+    "metaTitle": "Časté otázky",
+    "metaDescription": "Odpovede o KanbanCord: cena, pridanie bota, oprávnenia, príkazy v Discorde, upozornenia, nahrávanie súborov a tvoje údaje.",
+    "title": "Časté otázky",
+    "free": {
+      "q": "Je {name} zadarmo?",
+      "a": "Áno. Nie sú tu žiadne platené plány ani reklamy a tvoje údaje sa nepredávajú."
+    },
+    "start": {
+      "q": "Kde mám začať?",
+      "a": "Pridaj bota a v Discorde spusti <code>/guide</code> – prevedie ťa krok za krokom. <guides>Návody</guides> pokrývajú všetko od zdieľaného zoznamu úloh po pripomienky a oprávnenia."
+    },
+    "website": {
+      "q": "Potrebujem web?",
+      "a": "Nie. {name} je navrhnutý tak, aby sa dal celý používať z Discordu: vytváraj nástenky, stĺpce a úlohy, presúvaj ich a priraďuj, nastavuj štítky, priority a termíny, komentuj a vyberaj si upozornenia, všetko príkazmi s lomkou. Web je na to, keď chceš vidieť celú nástenku naraz alebo doladiť nastavenia."
+    },
+    "add": {
+      "q": "Ako ho pridám na svoj server?",
+      "a": "Použi „Pridať do Discordu“ dole na ktorejkoľvek stránke a vyber server. Potrebuješ tam oprávnenie Spravovať server. Potom vytvor prvú nástenku príkazom <code>/board create</code> a pridaj úlohy príkazom <code>/task create</code>."
+    },
+    "access": {
+      "q": "Kto môže vidieť a meniť moje nástenky?",
+      "a": "Predvolene sa riadi rolami a oprávneniami Discordu na tvojom serveri: správcovia a moderátori môžu nástenky spravovať, členovia môžu pracovať s úlohami. Správcovia servera to môžu zmeniť pre celý server alebo pre jednotlivé nástenky v nastaveniach servera a nástenky."
+    },
+    "servers": {
+      "q": "Prečo prihlásenie žiada zoznam mojich serverov?",
+      "a": "Aby ti {name} mohol ukázať, ktoré z tvojich serverov môžeš spravovať a kam môžeš pridať bota. Tvoje správy nečíta."
+    },
+    "discord": {
+      "q": "Čo môžem robiť z Discordu?",
+      "a": "Všetko, čo potrebuješ každý deň: vytvárať, zobrazovať, premenúvať a archivovať nástenky; pridávať, premenúvať, presúvať a odstraňovať stĺpce; vytvárať, upravovať, presúvať a odstraňovať úlohy; priraďovať ľudí a roly; nastavovať štítky, priority a termíny; čítať a písať komentáre; vyberať si vlastné upozornenia cez <code>/notifications</code>; a ak spravuješ server, nastavovať kanály noviniek cez <code>/kanbancord</code>. Spusti <code>/help</code> v Discorde a uvidíš všetky príkazy."
+    },
+    "websiteOnly": {
+      "q": "Na čo potrebujem web?",
+      "a": "Na jemné nastavenia a celkový prehľad: vidieť celú nástenku naraz, pravidlá oprávnení pre nástenky a jednotlivých ľudí, štítky a úrovne priority, ktoré nástenka ponúka, ktoré funkcie server používa, presne aké novinky dostávaš, témy a možnosti prístupnosti, nahrávanie obrázkov a videí a prezeranie denníka zmien."
+    },
+    "notifications": {
+      "q": "Ako fungujú upozornenia?",
+      "a": "Server môže nechať bota posielať novinky do vybraných kanálov a zrkadliť denník zmien do jedného z nich; príspevky s novinkami môžu ukázať celú úlohu s tlačidlami na jej presunutie, priradenie ľudí či úpravu priamo na mieste. Súkromné správy môžeš dostávať aj o úlohách, ktoré máš priradené, ktoré si vytvoril(a) alebo sleduješ, vrátane pripomienok termínov. Ak ťa kvôli niečomu už označil kanál, súkromnú správu o tom istom nedostaneš. Čo dostávaš, si vyberieš cez <code>/notifications</code> alebo podrobnejšie na webe v Nastavenia → Upozornenia. Správcovia servera nastavujú kanály cez <code>/kanbancord</code>."
+    },
+    "uploads": {
+      "q": "Kde sú uložené nahraté obrázky a videá?",
+      "a": "Na Imgur. Ktokoľvek s odkazom ich môže vidieť, preto nenahrávaj nič súkromné."
+    },
+    "data": {
+      "q": "Ako odstránim svoje údaje?",
+      "a": "Odhlás sa všade v Nastavenia → Relácie a o odstránenie zvyšku požiadaj na <email>{email}</email>. Správcovia servera môžu odstraňovať nástenky a odstránenie bota zo servera zastaví synchronizáciu toho servera. Podrobnosti sú v <privacy>Zásadách ochrany súkromia</privacy>."
+    },
+    "help": {
+      "q": "Našla sa chyba, mám nápad alebo potrebujem pomoc.",
+      "a": "Pridaj sa na <server>server podpory {name}</server>, kde sa môžeš pýtať a dozvedieť sa o novinkách, alebo použi <code>/report</code> v Discorde a pošli hlásenie priamo vývojárovi."
+    }
+  },
+  "guides": {
+    "metaTitle": "Návody",
+    "metaDescription": "Návody ku KanbanCord: kanban nástenky, zoznamy úloh a sledovanie úloh v Discorde, od prvej nástenky po pripomienky, feedy a oprávnenia.",
+    "title": "Návody",
+    "intro": "Ako plánovať a sledovať prácu na Discord serveri s {name}: kanban nástenky, zdieľané zoznamy úloh, úlohy pre ľudí a roly, termíny a pripomienky. Takmer všetko sa robí príkazmi s lomkou; niekoľko návodov sa venuje webu.",
+    "inDiscord": "Bota už máš pridaného? Spusti <code>/guide</code> v Discorde a prejdi tie isté kroky, ktoré sa ti budú odškrtávať.",
+    "tryTitle": "Vyskúšaj ho na svojom serveri",
+    "try": "{name} je zadarmo. Pridaj ho na svoj server a spusti <code>/guide</code> – prevedie ťa krok za krokom priamo v Discorde.",
+    "more": "Ďalšie návody"
+  }
+}
