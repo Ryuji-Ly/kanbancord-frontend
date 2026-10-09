@@ -1,0 +1,146 @@
+{
+  "appearance": {
+    "groups": {
+      "surfaces": "표면",
+      "controls": "컨트롤",
+      "text": "텍스트",
+      "brand": "브랜드와 강조",
+      "status": "상태",
+      "permissions": "권한 규칙"
+    },
+    "core": {
+      "background": {
+        "label": "배경",
+        "hint": "모든 것의 뒤"
+      },
+      "surface": {
+        "label": "표면",
+        "hint": "패널, 열, 카드"
+      },
+      "text": {
+        "label": "텍스트",
+        "hint": "본문 텍스트. 제목과 힌트는 여기서 파생돼요"
+      },
+      "accent": {
+        "label": "강조",
+        "hint": "강조 표시, 포커스 테두리, 제목 색조"
+      },
+      "primary": {
+        "label": "기본",
+        "hint": "주요 버튼과 링크"
+      },
+      "success": {
+        "label": "성공",
+        "hint": "확인 메시지와 허용 규칙"
+      },
+      "danger": {
+        "label": "위험",
+        "hint": "오류, 삭제 버튼, 거부 규칙"
+      },
+      "warning": {
+        "label": "경고",
+        "hint": "주의 사항과 강조 표시"
+      }
+    },
+    "presets": {
+      "dark": {
+        "label": "다크",
+        "description": "기본 테마예요."
+      },
+      "light": {
+        "label": "라이트",
+        "description": "밝은 표면에 어두운 텍스트."
+      },
+      "highContrast": {
+        "label": "고대비",
+        "description": "선명한 테두리의 순수한 흑백. 저시력 사용자를 위한 테마예요."
+      },
+      "redGreen": {
+        "label": "적록 색각 친화",
+        "description": "제1·2색각 이상용: 성공은 파랑, 위험은 주황이에요."
+      },
+      "blueYellow": {
+        "label": "청황 색각 친화",
+        "description": "제3색각 이상용: 성공은 청록, 위험은 빨강, 경고는 분홍이에요."
+      }
+    },
+    "theme": "테마",
+    "custom": "사용자 지정",
+    "customHint": "위의 테마에서 시작해 직접 고른 색이에요.",
+    "customColours": "사용자 지정 색",
+    "customColoursHint": "색 여덟 개를 고르면 나머지는 모두 거기서 계산돼요.",
+    "lowContrast": "배경 대비 텍스트의 명암비가 {contrast}:1이에요. 편하게 읽으려면 4.5:1 이상을 권장해요.",
+    "advanced": "고급: 모든 색 하나하나 편집",
+    "changed_other": " ({count}개 변경됨)",
+    "advancedHint": "여기서 바꾼 색은 위의 테마 위에 적용되고, 테마를 바꿔도 유지돼요.",
+    "resetAll": "모두 초기화",
+    "reset": "초기화",
+    "language": "언어",
+    "browserLanguage": "브라우저 언어"
+  },
+  "accessibility": {
+    "textScale": {
+      "normal": "보통",
+      "large": "크게",
+      "larger": "더 크게",
+      "largest": "가장 크게"
+    },
+    "filters": {
+      "none": "없음",
+      "protanopia": "제1색각 이상 (적색약)",
+      "deuteranopia": "제2색각 이상 (녹색약)",
+      "tritanopia": "제3색각 이상 (청색약)"
+    },
+    "intro": "색각 이상이 있다면 적록 색각 친화와 청황 색각 친화 테마가 화면의 색을 바꿔 줘요. 아래 옵션은 사람들이 라벨, 우선순위, 역할에 고른 색을 구분하는 데 도움을 줘요.",
+    "patterns": "라벨 패턴",
+    "patternsHint": "라벨마다 고유한 줄무늬나 점 무늬를 넣어서 색 말고도 구분할 수 있게 해요.",
+    "ranks": "우선순위 순위",
+    "ranksHint": "우선순위 이름 옆에 순위를 표시해요. P1이 가장 긴급해요.",
+    "filter": "라벨, 우선순위, 역할의 색 필터",
+    "filterHint": "구분하기 어려운 색을 알아보기 쉬운 색으로 옮겨요.",
+    "textSize": "텍스트 크기",
+    "motion": "움직임 줄이기",
+    "motionSystem": "기기 설정 따르기",
+    "motionOn": "항상 줄이기",
+    "motionOff": "줄이지 않기"
+  },
+  "simpleView": {
+    "intro": "모든 보드에서 쓰지 않는 것을 숨겨요. 내 화면에만 적용돼요. 데이터는 그대로 남고, 다른 사람에게는 계속 보여요. 서버에서 끈 기능은 모두에게 숨겨져요.",
+    "hideAll": "선택 항목 모두 숨기기",
+    "showAll": "모두 표시"
+  },
+  "menu": {
+    "label": "계정",
+    "preferences": "환경설정",
+    "settings": "설정",
+    "logOut": "로그아웃",
+    "appearance": "모양",
+    "accessibility": "접근성",
+    "simpleView": "간단히 보기",
+    "sessions": "세션",
+    "dialogTitle": "환경설정 및 설정"
+  },
+  "sessions": {
+    "unknownDevice": "알 수 없는 기기",
+    "browserOn": "{system}의 {browser}",
+    "intro": "내 계정에 로그인된 기기와 브라우저예요. 세션에서 로그아웃하면 열려 있는 보드를 포함해 바로 종료돼요.",
+    "signOutFailed": "해당 세션에서 로그아웃하지 못했어요",
+    "loadFailed": "세션을 불러오지 못했어요",
+    "thisDevice": " · 이 기기",
+    "activity": "{active} 활동 · {signedIn} 로그인",
+    "signOut": "로그아웃",
+    "signOutOthers": "다른 모든 기기에서 로그아웃"
+  },
+  "language": {
+    "request": "언어 요청하기…",
+    "intro": "원하는 언어가 아직 없나요? 개발자에게 어떤 언어를 원하는지 알려 주세요. 번역은 요청에 따라 추가돼요.",
+    "which": "언어",
+    "pick": "언어 선택…",
+    "note": "메모 (선택)",
+    "notePlaceholder": "덧붙일 말이 있다면 적어 주세요. 예: 번역을 도와줄 수 있는지",
+    "send": "요청 보내기",
+    "sending": "보내는 중…",
+    "sent": "감사해요! 요청을 개발자에게 보냈어요.",
+    "failed": "요청을 보내지 못했어요"
+  }
+}
