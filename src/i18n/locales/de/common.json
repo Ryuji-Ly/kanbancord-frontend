@@ -1,0 +1,59 @@
+{
+  "features": {
+    "labels": {
+      "label": "Labels",
+      "description": "Farbige Markierungen für Aufgaben, je Board verwaltet.",
+      "show": "Labels anzeigen"
+    },
+    "priorities": {
+      "label": "Prioritäten",
+      "description": "Eine Prioritätsstufe für jede Aufgabe, von Kritisch bis Vernachlässigbar.",
+      "show": "Prioritäten anzeigen"
+    },
+    "assignees": {
+      "label": "Zuständige",
+      "description": "Mitglieder Aufgaben zuweisen.",
+      "show": "Zuständige anzeigen"
+    },
+    "comments": {
+      "label": "Kommentare",
+      "description": "Diskussion zu jeder Aufgabe.",
+      "show": "Kommentare anzeigen"
+    },
+    "dueDates": {
+      "label": "Fälligkeitsdaten",
+      "description": "Datum und Uhrzeit, zu der eine Aufgabe fällig ist.",
+      "show": "Fälligkeitsdaten anzeigen"
+    },
+    "permissions": {
+      "label": "Eigene Berechtigungen",
+      "description": "Festlegen, wer was darf, für den ganzen Server und je Board. Ausgeschaltet gelten die Discord-Berechtigungen.",
+      "show": "Eigene Berechtigungen anzeigen"
+    }
+  },
+  "requestFailed": "Anfrage fehlgeschlagen ({status})",
+  "notSignedIn": "Du bist nicht angemeldet.",
+  "cancel": "Abbrechen",
+  "close": "Schließen",
+  "loginWithDiscord": "Mit Discord anmelden",
+  "deleting": "Wird gelöscht …",
+  "loading": "Wird geladen …",
+  "saving": "Wird gespeichert …",
+  "change": "Ändern",
+  "closeModal": "Fenster schließen",
+  "save": "Speichern",
+  "applying": "Wird übernommen …",
+  "name": "Name",
+  "description": "Beschreibung",
+  "saveChanges": "Änderungen speichern",
+  "add": "Hinzufügen",
+  "delete": "Löschen",
+  "deletingDots": "Wird gelöscht …",
+  "confirmNamed": "{title} bestätigen",
+  "creatingDots": "Wird erstellt …",
+  "creating": "Wird erstellt …",
+  "adding": "Wird hinzugefügt …",
+  "savingDots": "Wird gespeichert …",
+  "changeNotSaved": "Die Änderung konnte nicht gespeichert werden",
+  "loadingEllipsis": "Wird geladen …"
+}

@@ -1,0 +1,70 @@
+{
+  "categories": {
+    "SERVER": "Server",
+    "BOARD": "Boards",
+    "COLUMN": "Spalten",
+    "TASK": "Aufgaben",
+    "COMMENT": "Kommentare",
+    "LABEL": "Labels und Prioritäten"
+  },
+  "flags": {
+    "VIEW_CHANNEL": "Kanäle ansehen",
+    "MANAGE_GUILD": "Server verwalten",
+    "VIEW_AUDIT_LOG": "Audit-Log anzeigen"
+  },
+  "everyoneWith": "alle mit {permission}",
+  "personally": "{name} persönlich",
+  "where": {
+    "default": "Standard",
+    "board": "dieses Board",
+    "server": "Server"
+  },
+  "why": {
+    "owner": "Erlaubt: Der Serverbesitzer darf alles",
+    "admin": "Erlaubt: Administratoren dürfen alles",
+    "adminRule": "Erlaubt: Administratoren dürfen alles ({subject})",
+    "open": "Erlaubt: Durch offene Berechtigungen darf das jeder, der schreiben kann",
+    "none": "Verweigert: Keine Regel erlaubt es",
+    "byDefault": "{result} durch die Standardregel für {subject}",
+    "byBoard": "{result} durch die Regel des Boards für {subject}",
+    "byServer": "{result} durch die Regel des Servers für {subject}"
+  },
+  "allowed": "Erlaubt",
+  "denied": "Verweigert",
+  "intro": "Sieh nach, was jemand darf und welche Regel jeweils entscheidet. Wähle ein Mitglied, um von seinen Rollen auszugehen, und füge dann Rollen hinzu oder entferne sie, um zu sehen, was sich ändern würde. Oder prüfe eine Auswahl von Rollen für sich.",
+  "introBoard": "Sieh nach, was jemand auf diesem Board darf und welche Regel jeweils entscheidet. Wähle ein Mitglied, um von seinen Rollen auszugehen, und füge dann Rollen hinzu oder entferne sie, um zu sehen, was sich ändern würde. Oder prüfe eine Auswahl von Rollen für sich.",
+  "check": "Prüfen",
+  "aMember": "Ein Mitglied",
+  "rolesOnly": "Nur Rollen",
+  "searchMembers": "Mitglieder nach Namen suchen",
+  "whereLabel": "Wo",
+  "serverWide": "Serverweit",
+  "someonesRoles": "Rollen von {name}",
+  "theirRoles": "Rollen des Mitglieds",
+  "unknownRole": "Unbekannte Rolle",
+  "without": "Ohne {role}",
+  "thisRole": "diese Rolle",
+  "addRole": "Rolle hinzufügen",
+  "addRoleOption": "Rolle hinzufügen …",
+  "whatIf": "{name} wird mit anderen Rollen gezeigt, als tatsächlich vergeben sind.",
+  "them": "Dieses Mitglied",
+  "realRoles": "Echte Rollen verwenden",
+  "start": "Suche oben nach einem Mitglied oder wähle „Nur Rollen“.",
+  "failed": "Die Prüfung ist fehlgeschlagen",
+  "notes": {
+    "serverWide": "Serverweit: was auf jedem Board ohne eigene Regeln gilt.",
+    "customOff": "Eigene Berechtigungen sind ausgeschaltet, daher gelten die Standards: was jede Discord-Berechtigung erlaubt.",
+    "open": "Offene Berechtigungen sind an: Jeder, der Kanäle ansehen und Nachrichten senden kann, darf mit Boards arbeiten.",
+    "notMember": "{name} ist nicht auf dem Server, daher zählen nur Regeln für diese Person selbst.",
+    "discord": "Hier relevante Discord-Berechtigungen: {permissions}."
+  },
+  "thisPerson": "Diese Person",
+  "show": "Anzeigen",
+  "allowedCount_one": "Erlaubt ({count})",
+  "allowedCount_other": "Erlaubt ({count})",
+  "deniedCount_one": "Verweigert ({count})",
+  "deniedCount_other": "Verweigert ({count})",
+  "outweighs": "Überwiegt: {rules}",
+  "overriddenAllow": "Erlauben für {subject} ({where})",
+  "overriddenDeny": "Verweigern für {subject} ({where})"
+}

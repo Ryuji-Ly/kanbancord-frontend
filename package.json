@@ -8,7 +8,8 @@
     "demo": "vite --mode demo",
     "build": "tsc -b && vite build && vite build --ssr src/prerender.tsx --outDir dist-ssr && node scripts/prerender.mjs",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "check:i18n": "node scripts/check-translations.mjs"
   },
   "dependencies": {
     "@stomp/stompjs": "^7.3.0",

@@ -1,0 +1,147 @@
+{
+  "appearance": {
+    "groups": {
+      "surfaces": "Flächen",
+      "controls": "Bedienelemente",
+      "text": "Text",
+      "brand": "Marke und Akzente",
+      "status": "Status",
+      "permissions": "Berechtigungsregeln"
+    },
+    "core": {
+      "background": {
+        "label": "Hintergrund",
+        "hint": "Hinter allem"
+      },
+      "surface": {
+        "label": "Fläche",
+        "hint": "Bereiche, Spalten und Karten"
+      },
+      "text": {
+        "label": "Text",
+        "hint": "Fließtext; Überschriften und Hinweise werden daraus abgeleitet"
+      },
+      "accent": {
+        "label": "Akzent",
+        "hint": "Hervorhebungen, Fokusrahmen, Tönung der Überschriften"
+      },
+      "primary": {
+        "label": "Primär",
+        "hint": "Haupt-Schaltflächen und Links"
+      },
+      "success": {
+        "label": "Erfolg",
+        "hint": "Bestätigungen und Erlauben-Regeln"
+      },
+      "danger": {
+        "label": "Gefahr",
+        "hint": "Fehler, Löschen-Schaltflächen und Verweigern-Regeln"
+      },
+      "warning": {
+        "label": "Warnung",
+        "hint": "Warnhinweise und Hervorhebungen"
+      }
+    },
+    "presets": {
+      "dark": {
+        "label": "Dunkel",
+        "description": "Der Standard."
+      },
+      "light": {
+        "label": "Hell",
+        "description": "Dunkler Text auf hellen Flächen."
+      },
+      "highContrast": {
+        "label": "Hoher Kontrast",
+        "description": "Reines Schwarz und Weiß mit kräftigen Rahmen, für eingeschränktes Sehen."
+      },
+      "redGreen": {
+        "label": "Rot-Grün-sicher",
+        "description": "Für Protanopie und Deuteranopie: Blau für Erfolg, Orange für Gefahr."
+      },
+      "blueYellow": {
+        "label": "Blau-Gelb-sicher",
+        "description": "Für Tritanopie: Türkis für Erfolg, Rot für Gefahr, Pink für Warnungen."
+      }
+    },
+    "theme": "Design",
+    "custom": "Eigenes",
+    "customHint": "Deine eigenen Farben, ausgehend vom gewählten Design.",
+    "customColours": "Eigene Farben",
+    "customColoursHint": "Lege acht Farben fest; alle anderen werden daraus berechnet.",
+    "lowContrast": "Text auf dem Hintergrund hat einen Kontrast von {contrast}:1; für angenehmes Lesen wird mindestens 4,5:1 empfohlen.",
+    "advanced": "Erweitert: jede Farbe bearbeiten",
+    "changed_one": " ({count} geändert)",
+    "changed_other": " ({count} geändert)",
+    "advancedHint": "Änderungen hier gelten zusätzlich zum gewählten Design und bleiben erhalten, wenn du das Design wechselst.",
+    "resetAll": "Alle zurücksetzen",
+    "reset": "Zurücksetzen",
+    "language": "Sprache",
+    "browserLanguage": "Sprache meines Browsers"
+  },
+  "accessibility": {
+    "textScale": {
+      "normal": "Normal",
+      "large": "Groß",
+      "larger": "Größer",
+      "largest": "Am größten"
+    },
+    "filters": {
+      "none": "Keiner",
+      "protanopia": "Protanopie (Rotschwäche)",
+      "deuteranopia": "Deuteranopie (Grünschwäche)",
+      "tritanopia": "Tritanopie (Blauschwäche)"
+    },
+    "intro": "Bei Farbenblindheit färben die Designs Rot-Grün-sicher und Blau-Gelb-sicher die Oberfläche um. Die Optionen unten helfen bei den Farben, die Leute für Labels, Prioritäten und Rollen wählen.",
+    "patterns": "Muster auf Labels",
+    "patternsHint": "Jedes Label bekommt ein eigenes Streifen- oder Punktmuster, sodass Labels sich nicht nur durch die Farbe unterscheiden.",
+    "ranks": "Prioritätsstufen",
+    "ranksHint": "Zeigt neben dem Namen jeder Priorität ihre Stufe, wobei P1 am dringendsten ist.",
+    "filter": "Farbfilter für Labels, Prioritäten und Rollen",
+    "filterHint": "Verschiebt schwer unterscheidbare Farben zu solchen, die leichter zu erkennen sind.",
+    "textSize": "Textgröße",
+    "motion": "Bewegung reduzieren",
+    "motionSystem": "Wie auf meinem Gerät",
+    "motionOn": "Immer reduzieren",
+    "motionOff": "Nie reduzieren"
+  },
+  "simpleView": {
+    "intro": "Blende aus, was du nicht nutzt, auf jedem Board. Das ändert nur, was du siehst: Die Daten bleiben, und alle anderen sehen sie weiterhin. Was ein Server ausgeschaltet hat, ist für alle ausgeblendet.",
+    "hideAll": "Alles Optionale ausblenden",
+    "showAll": "Alles anzeigen"
+  },
+  "menu": {
+    "label": "Konto",
+    "preferences": "Einstellungen",
+    "settings": "Konto",
+    "logOut": "Abmelden",
+    "appearance": "Darstellung",
+    "accessibility": "Barrierefreiheit",
+    "simpleView": "Einfache Ansicht",
+    "sessions": "Sitzungen",
+    "dialogTitle": "Einstellungen und Konto"
+  },
+  "sessions": {
+    "unknownDevice": "Unbekanntes Gerät",
+    "browserOn": "{browser} unter {system}",
+    "intro": "Geräte und Browser, die bei deinem Konto angemeldet sind. Eine Sitzung abzumelden beendet sie sofort, einschließlich geöffneter Boards.",
+    "signOutFailed": "Diese Sitzung konnte nicht abgemeldet werden",
+    "loadFailed": "Deine Sitzungen konnten nicht geladen werden",
+    "thisDevice": " · Dieses Gerät",
+    "activity": "Aktiv {active} · angemeldet am {signedIn}",
+    "signOut": "Abmelden",
+    "signOutOthers": "Alle anderen Geräte abmelden"
+  },
+  "language": {
+    "request": "Sprache anfragen …",
+    "intro": "Deine Sprache fehlt noch? Sag dem Entwickler, welche du dir wünschst. Übersetzungen kommen hinzu, wenn danach gefragt wird.",
+    "which": "Sprache",
+    "pick": "Sprache wählen …",
+    "note": "Notiz (optional)",
+    "notePlaceholder": "Noch etwas, zum Beispiel ob du beim Übersetzen helfen könntest",
+    "send": "Anfrage senden",
+    "sending": "Wird gesendet …",
+    "sent": "Danke! Deine Anfrage wurde an den Entwickler gesendet.",
+    "failed": "Die Anfrage konnte nicht gesendet werden"
+  }
+}

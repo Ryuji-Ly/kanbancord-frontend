@@ -29,6 +29,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # Every translation has every message, with the same placeholders and tags as English.
+      - name: Check translations
+        run: npm run check:i18n
+
       # Type-checks and bundles, the same as the image build.
       - name: Type-check and build
         run: npm run build
