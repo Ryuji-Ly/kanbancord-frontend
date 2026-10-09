@@ -1,0 +1,68 @@
+{
+  "categories": {
+    "SERVER": "서버",
+    "BOARD": "보드",
+    "COLUMN": "열",
+    "TASK": "작업",
+    "COMMENT": "댓글",
+    "LABEL": "라벨과 우선순위"
+  },
+  "flags": {
+    "VIEW_CHANNEL": "채널 보기",
+    "MANAGE_GUILD": "서버 관리하기",
+    "VIEW_AUDIT_LOG": "감사 로그 보기"
+  },
+  "everyoneWith": "{permission} 권한이 있는 모든 사람",
+  "personally": "{name} 본인",
+  "where": {
+    "default": "기본값",
+    "board": "이 보드",
+    "server": "서버"
+  },
+  "why": {
+    "owner": "허용: 서버 소유자는 무엇이든 할 수 있어요",
+    "admin": "허용: 관리자는 무엇이든 할 수 있어요",
+    "adminRule": "허용: 관리자는 무엇이든 할 수 있어요 ({subject})",
+    "open": "허용: 개방 권한에 따라 메시지를 보낼 수 있는 사람은 누구나 할 수 있어요",
+    "none": "거부: 이를 허용하는 규칙이 없어요",
+    "byDefault": "{subject}에 대한 기본 규칙에 따라 {result}",
+    "byBoard": "{subject}에 대한 보드 규칙에 따라 {result}",
+    "byServer": "{subject}에 대한 서버 규칙에 따라 {result}"
+  },
+  "allowed": "허용",
+  "denied": "거부",
+  "intro": "누가 무엇을 할 수 있는지, 그리고 각각을 어떤 규칙이 결정하는지 확인해요. 멤버를 골라 그 사람의 역할에서 시작한 뒤, 역할을 더하거나 빼서 무엇이 바뀌는지 볼 수 있어요. 역할 조합만 따로 확인할 수도 있어요.",
+  "introBoard": "이 보드에서 누가 무엇을 할 수 있는지, 그리고 각각을 어떤 규칙이 결정하는지 확인해요. 멤버를 골라 그 사람의 역할에서 시작한 뒤, 역할을 더하거나 빼서 무엇이 바뀌는지 볼 수 있어요. 역할 조합만 따로 확인할 수도 있어요.",
+  "check": "확인 대상",
+  "aMember": "멤버",
+  "rolesOnly": "역할만",
+  "searchMembers": "이름으로 멤버 검색",
+  "whereLabel": "범위",
+  "serverWide": "서버 전체",
+  "someonesRoles": "{name}의 역할",
+  "theirRoles": "멤버의 역할",
+  "unknownRole": "알 수 없는 역할",
+  "without": "{role} 빼기",
+  "thisRole": "이 역할",
+  "addRole": "역할 추가",
+  "addRoleOption": "역할 추가…",
+  "whatIf": "{name}에게 실제와 다른 역할이 있다고 가정해서 보여 주고 있어요.",
+  "them": "이 멤버",
+  "realRoles": "실제 역할 사용",
+  "start": "위에서 멤버를 검색하거나 “역할만”을 선택하세요.",
+  "failed": "확인하지 못했어요",
+  "notes": {
+    "serverWide": "서버 전체: 자체 규칙이 없는 모든 보드에 적용되는 내용이에요.",
+    "customOff": "사용자 지정 권한이 꺼져 있어서 기본값이 적용돼요. 각 Discord 권한이 허용하는 범위예요.",
+    "open": "개방 권한이 켜져 있어요. 채널을 보고 메시지를 보낼 수 있는 사람은 누구나 보드를 다룰 수 있어요.",
+    "notMember": "{name}은(는) 서버에 없어서, 그 사람 본인에 대한 규칙만 적용돼요.",
+    "discord": "여기에 적용되는 Discord 권한: {permissions}."
+  },
+  "thisPerson": "이 사람",
+  "show": "보기",
+  "allowedCount_other": "허용 ({count})",
+  "deniedCount_other": "거부 ({count})",
+  "outweighs": "다음 규칙보다 우선해요: {rules}",
+  "overriddenAllow": "{subject} 허용 ({where})",
+  "overriddenDeny": "{subject} 거부 ({where})"
+}

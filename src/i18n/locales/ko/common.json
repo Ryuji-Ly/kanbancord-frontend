@@ -1,0 +1,59 @@
+{
+  "features": {
+    "labels": {
+      "label": "라벨",
+      "description": "보드별로 관리하는 작업용 색상 태그예요.",
+      "show": "라벨 표시"
+    },
+    "priorities": {
+      "label": "우선순위",
+      "description": "작업마다 하나의 우선순위 단계를 정해요. Critical부터 Ignorable까지 있어요.",
+      "show": "우선순위 표시"
+    },
+    "assignees": {
+      "label": "담당자",
+      "description": "작업에 멤버를 배정해요.",
+      "show": "담당자 표시"
+    },
+    "comments": {
+      "label": "댓글",
+      "description": "작업마다 대화를 나눌 수 있어요.",
+      "show": "댓글 표시"
+    },
+    "dueDates": {
+      "label": "마감일",
+      "description": "작업의 마감 날짜와 시간이에요.",
+      "show": "마감일 표시"
+    },
+    "permissions": {
+      "label": "사용자 지정 권한",
+      "description": "서버 전체와 보드별로 누가 무엇을 할 수 있는지 정해요. 끄면 Discord 권한이 적용돼요.",
+      "show": "사용자 지정 권한 표시"
+    }
+  },
+  "requestFailed": "요청에 실패했어요 ({status})",
+  "notSignedIn": "로그인하지 않았어요.",
+  "cancel": "취소",
+  "close": "닫기",
+  "loginWithDiscord": "Discord로 로그인",
+  "deleting": "삭제 중…",
+  "loading": "불러오는 중…",
+  "saving": "저장 중…",
+  "change": "변경",
+  "closeModal": "창 닫기",
+  "save": "저장",
+  "applying": "적용 중…",
+  "name": "이름",
+  "description": "설명",
+  "saveChanges": "변경 사항 저장",
+  "add": "추가",
+  "delete": "삭제",
+  "deletingDots": "삭제 중…",
+  "confirmNamed": "확인: {title}",
+  "creatingDots": "만드는 중…",
+  "creating": "만드는 중…",
+  "adding": "추가하는 중…",
+  "savingDots": "저장 중…",
+  "changeNotSaved": "변경 사항을 저장하지 못했어요",
+  "loadingEllipsis": "불러오는 중…"
+}
