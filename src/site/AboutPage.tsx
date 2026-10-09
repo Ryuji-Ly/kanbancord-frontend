@@ -76,6 +76,16 @@ export function AboutPage() {
         />
       </p>
       <p>{t('site.about.story4')}</p>
+      <p>
+        <Trans
+          k="site.about.story5"
+          tags={{
+            bot: <a href={SITE.repos.bot} target="_blank" rel="noopener noreferrer" />,
+            website: <a href={SITE.repos.website} target="_blank" rel="noopener noreferrer" />,
+            api: <a href={SITE.repos.api} target="_blank" rel="noopener noreferrer" />,
+          }}
+        />
+      </p>
     </PublicLayout>
   )
 }
