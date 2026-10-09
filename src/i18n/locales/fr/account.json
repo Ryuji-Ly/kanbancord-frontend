@@ -1,0 +1,148 @@
+{
+  "appearance": {
+    "groups": {
+      "surfaces": "Surfaces",
+      "controls": "Commandes",
+      "text": "Texte",
+      "brand": "Marque et accents",
+      "status": "États",
+      "permissions": "Règles de permissions"
+    },
+    "core": {
+      "background": {
+        "label": "Arrière-plan",
+        "hint": "Derrière tout le reste"
+      },
+      "surface": {
+        "label": "Surface",
+        "hint": "Panneaux, colonnes et cartes"
+      },
+      "text": {
+        "label": "Texte",
+        "hint": "Texte courant ; les titres et indications en découlent"
+      },
+      "accent": {
+        "label": "Accent",
+        "hint": "Mises en valeur, contours de focus, teinte des titres"
+      },
+      "primary": {
+        "label": "Principale",
+        "hint": "Boutons principaux et liens"
+      },
+      "success": {
+        "label": "Succès",
+        "hint": "Confirmations et règles d'autorisation"
+      },
+      "danger": {
+        "label": "Danger",
+        "hint": "Erreurs, boutons de suppression et règles de refus"
+      },
+      "warning": {
+        "label": "Avertissement",
+        "hint": "Mises en garde et mises en valeur"
+      }
+    },
+    "presets": {
+      "dark": {
+        "label": "Sombre",
+        "description": "Le thème par défaut."
+      },
+      "light": {
+        "label": "Clair",
+        "description": "Texte foncé sur surfaces claires."
+      },
+      "highContrast": {
+        "label": "Contraste élevé",
+        "description": "Noir et blanc purs avec des bordures marquées, pour la basse vision."
+      },
+      "redGreen": {
+        "label": "Adapté rouge-vert",
+        "description": "Pour la protanopie et la deutéranopie : bleu pour le succès, orange pour le danger."
+      },
+      "blueYellow": {
+        "label": "Adapté bleu-jaune",
+        "description": "Pour la tritanopie : turquoise pour le succès, rouge pour le danger, rose pour les avertissements."
+      }
+    },
+    "theme": "Thème",
+    "custom": "Personnalisé",
+    "customHint": "Tes propres couleurs, à partir du thème ci-dessus.",
+    "customColours": "Couleurs personnalisées",
+    "customColoursHint": "Choisis huit couleurs ; toutes les autres en sont déduites.",
+    "lowContrast": "Le texte sur l'arrière-plan a un contraste de {contrast}:1 ; au moins 4,5:1 est recommandé pour lire confortablement.",
+    "advanced": "Avancé : modifier chaque couleur",
+    "changed_one": " ({count} modifiée)",
+    "changed_other": " ({count} modifiées)",
+    "advancedHint": "Les modifications ici s'ajoutent au thème ci-dessus et restent quand tu changes de thème.",
+    "resetAll": "Tout réinitialiser",
+    "reset": "Réinitialiser",
+    "language": "Langue",
+    "browserLanguage": "Langue de mon navigateur",
+    "changed_many": " ({count} modifiées)"
+  },
+  "accessibility": {
+    "textScale": {
+      "normal": "Normale",
+      "large": "Grande",
+      "larger": "Plus grande",
+      "largest": "La plus grande"
+    },
+    "filters": {
+      "none": "Aucun",
+      "protanopia": "Protanopie (rouge faible)",
+      "deuteranopia": "Deutéranopie (vert faible)",
+      "tritanopia": "Tritanopie (bleu faible)"
+    },
+    "intro": "Pour le daltonisme, les thèmes Adapté rouge-vert et Adapté bleu-jaune recolorent l'interface. Les options ci-dessous aident pour les couleurs que chacun choisit pour les étiquettes, les priorités et les rôles.",
+    "patterns": "Motifs sur les étiquettes",
+    "patternsHint": "Chaque étiquette reçoit son propre motif de rayures ou de points, pour qu'elles se distinguent par autre chose que la couleur.",
+    "ranks": "Rangs de priorité",
+    "ranksHint": "Affiche le rang de chaque priorité à côté de son nom, P1 étant la plus urgente.",
+    "filter": "Filtre de couleur pour les étiquettes, priorités et rôles",
+    "filterHint": "Décale les couleurs difficiles à distinguer vers d'autres plus faciles à voir.",
+    "textSize": "Taille du texte",
+    "motion": "Réduire les animations",
+    "motionSystem": "Comme mon appareil",
+    "motionOn": "Toujours réduire",
+    "motionOff": "Ne jamais réduire"
+  },
+  "simpleView": {
+    "intro": "Masque ce que tu n'utilises pas, sur tous les tableaux. Cela ne change que ce que tu vois : les données restent, et tout le monde continue de les voir. Ce qu'un serveur a désactivé est masqué pour tout le monde.",
+    "hideAll": "Masquer tout ce qui est facultatif",
+    "showAll": "Tout afficher"
+  },
+  "menu": {
+    "label": "Compte",
+    "preferences": "Préférences",
+    "settings": "Paramètres",
+    "logOut": "Se déconnecter",
+    "appearance": "Apparence",
+    "accessibility": "Accessibilité",
+    "simpleView": "Vue simple",
+    "sessions": "Sessions",
+    "dialogTitle": "Préférences et paramètres"
+  },
+  "sessions": {
+    "unknownDevice": "Appareil inconnu",
+    "browserOn": "{browser} sur {system}",
+    "intro": "Les appareils et navigateurs connectés à ton compte. En déconnecter un y met fin tout de suite, y compris aux tableaux qu'il a ouverts.",
+    "signOutFailed": "Impossible de déconnecter cette session",
+    "loadFailed": "Impossible de charger tes sessions",
+    "thisDevice": " · Cet appareil",
+    "activity": "Actif {active} · connecté le {signedIn}",
+    "signOut": "Déconnecter",
+    "signOutOthers": "Déconnecter tous les autres appareils"
+  },
+  "language": {
+    "request": "Demander une langue…",
+    "intro": "Ta langue n'est pas encore là ? Dis au développeur laquelle tu aimerais. Les traductions arrivent à mesure qu'on les demande.",
+    "which": "Langue",
+    "pick": "Choisir une langue…",
+    "note": "Note (facultatif)",
+    "notePlaceholder": "Autre chose à ajouter, par exemple si tu pourrais aider à traduire",
+    "send": "Envoyer la demande",
+    "sending": "Envoi…",
+    "sent": "Merci ! Ta demande a été envoyée au développeur.",
+    "failed": "La demande n'a pas pu être envoyée"
+  }
+}

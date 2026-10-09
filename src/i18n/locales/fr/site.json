@@ -1,0 +1,154 @@
+{
+  "nav": {
+    "main": "Menu principal",
+    "site": "Site",
+    "breadcrumbs": "Fil d'Ariane",
+    "guides": "Guides",
+    "faq": "FAQ",
+    "open": "Ouvrir KanbanCord",
+    "about": "À propos",
+    "support": "Soutenir",
+    "supportServer": "Serveur d'assistance",
+    "appDirectory": "Répertoire d'applications",
+    "status": "État",
+    "privacy": "Politique de confidentialité",
+    "terms": "Conditions d'utilisation",
+    "addToDiscord": "Ajouter à Discord"
+  },
+  "footer": {
+    "notAffiliated": "© {year} {operator}. {name} n'est ni affilié à Discord ni soutenu par Discord."
+  },
+  "landing": {
+    "metaTitle": "Tableaux kanban pour Discord",
+    "metaDescription": "Un tableau kanban qui vit sur ton serveur Discord : crée, déplace et assigne des tâches avec des commandes slash, reçois les mises à jour dans tes salons, et utilise le site pour la vue d'ensemble.",
+    "title": "Un tableau kanban qui vit sur ton serveur Discord",
+    "intro": "Planifie et suis le travail là où ta communauté discute déjà. Crée, déplace et assigne des tâches avec des commandes slash, et reçois les mises à jour dans tes salons. Le site est là quand tu veux la vue d'ensemble.",
+    "signIn": "Se connecter avec Discord",
+    "free": "Gratuit. Sans publicité. Sans pistage. Aussi dans le <link>répertoire d'applications de Discord</link>.",
+    "features": "Fonctionnalités",
+    "feature": {
+      "discord": {
+        "title": "Tout depuis Discord",
+        "text": "Crée des tableaux et des tâches, déplace-les et assigne-les, fixe des échéances et commente avec des commandes slash. Pas besoin de quitter la discussion."
+      },
+      "boards": {
+        "title": "De vrais tableaux kanban",
+        "text": "Des colonnes et des tâches avec étiquettes, priorités, dates d'échéance, responsables, commentaires, listes de contrôle, images et vidéos."
+      },
+      "permissions": {
+        "title": "Tes permissions Discord",
+        "text": "L'accès suit les rôles de ton serveur dès le départ, et s'ajuste finement par tableau et par personne sur le site."
+      },
+      "updates": {
+        "title": "Des mises à jour, pas du bruit",
+        "text": "Publie les changements dans les salons choisis et reçois des messages privés sur tes tâches, sans jamais être notifié deux fois pour la même chose."
+      },
+      "website": {
+        "title": "La vue d'ensemble, quand tu la veux",
+        "text": "Le site montre des tableaux entiers d'un coup d'œil et regroupe les réglages fins, chaque changement étant visible en direct par tous."
+      },
+      "comfort": {
+        "title": "Pensé pour être agréable",
+        "text": "Des thèmes, dont des thèmes à fort contraste et adaptés au daltonisme, la taille du texte, et un mode simple pour les petites équipes."
+      }
+    },
+    "stepsTitle": "Prêt en une minute",
+    "step1": "<strong>Ajoute le bot</strong> à ton serveur.",
+    "step2": "<strong>Crée un tableau</strong> avec <code>/board create</code>.",
+    "step3": "<strong>Ajoute des tâches</strong> avec <code>/task create</code>, et lance <code>/help</code> pour voir le reste."
+  },
+  "about": {
+    "metaTitle": "À propos",
+    "metaDescription": "KanbanCord est un tableau kanban qui vit sur ton serveur Discord : utilise-le entièrement avec le bot, et sers-toi du site pour la vue d'ensemble et les réglages fins.",
+    "title": "À propos de {name}",
+    "p1": "{name} est un tableau kanban qui vit sur ton serveur Discord. L'idée est simple : ta communauté discute déjà sur Discord, alors la planification devrait s'y faire aussi. Crée des tableaux et des colonnes, ajoute des tâches, fais-les avancer, assigne des personnes, mets des étiquettes, des priorités et des dates d'échéance, et discute-en dans les commentaires, le tout avec les commandes slash du bot, sans quitter la discussion. Les mises à jour arrivent dans les salons que tu choisis et, pour tes propres tâches, par message privé.",
+    "p2": "La plupart des gens n'ont besoin de rien d'autre. Le site est là quand tu veux voir tout le tableau d'un coup d'œil, ou régler les choses finement : des permissions détaillées par tableau et par personne, les étiquettes et niveaux de priorité d'un tableau, les fonctionnalités qu'utilise un serveur, exactement ce dont tu es averti, et le journal de toutes les modifications.",
+    "p3": "Il suit dès le départ les rôles et permissions Discord de ton serveur, pour que les bonnes personnes voient et modifient les bons tableaux sans rien configurer deux fois.",
+    "madeByTitle": "Fait par une seule personne",
+    "madeBy": "{name} est développé et géré par {operator}. Il est gratuit, sans publicité, et ne vend ni ne piste tes données (voir la <privacy>Politique de confidentialité</privacy>, en anglais). Tu as trouvé un problème ou tu as une idée ? Utilise <code>/report</code> dans Discord. Des questions, ou envie d'entendre parler des nouveautés ? Rejoins le <server>serveur d'assistance</server>. Si tu veux aider à couvrir les frais, va voir <support>Soutenir</support>.",
+    "findTitle": "Le trouver sur Discord",
+    "find": "{name} a sa propre page dans le <directory>répertoire d'applications de Discord</directory>, d'où tu peux l'ajouter à un serveur directement depuis Discord. Si le site, le bot et tout ce qu'il y a derrière fonctionnent, ainsi que les maintenances prévues, c'est sur la <status>page d'état</status>.",
+    "startTitle": "Commencer",
+    "start1": "Ajoute le bot à ton serveur.",
+    "start2": "Crée un tableau avec <code>/board create</code>, puis ajoute des tâches avec <code>/task create</code>.",
+    "start3": "Lance <code>/help</code> pour voir tout ce que le bot sait faire.",
+    "questions": "Des questions ? Consulte la <faq>FAQ</faq>."
+  },
+  "support": {
+    "metaTitle": "Soutenir",
+    "metaDescription": "KanbanCord est gratuit pour tout le monde. Si tu veux aider à couvrir ses frais, tu peux faire un don volontaire sur Ko-fi.",
+    "title": "Soutenir {name}",
+    "p1": "{name} est gratuit, sans publicité ni offre payante, et ça restera ainsi. C'est un projet personnel, développé et géré par {operator}.",
+    "p2": "S'il est utile à ton serveur et que tu veux aider à couvrir ses frais, comme le nom de domaine et les serveurs dont il aura besoin s'il grandit, tu peux faire un don sur Ko-fi.",
+    "kofi": "Soutenir sur Ko-fi",
+    "goodToKnow": "Bon à savoir",
+    "voluntary": "Les dons sont entièrement volontaires. Tout le monde a le même {name}, qu'on donne ou non.",
+    "buysNothing": "Un don n'achète ni fonctionnalités, ni limites, ni rôles, ni assistance prioritaire, ni rien d'autre.",
+    "payments": "Les paiements passent par Ko-fi et PayPal, jamais par {name}. Nous ne relions pas les dons à ton compte Discord.",
+    "refunds": "Les dons ne sont en principe pas remboursables. Si tu as donné par erreur, écris à <email>{email}</email> et nous ferons ce que nous pouvons.",
+    "notDonating": "Ne pas donner, c'est tout à fait normal. Parler de {name} autour de toi, ou signaler un bug avec <code>/report</code>, aide aussi."
+  },
+  "faq": {
+    "metaTitle": "FAQ",
+    "metaDescription": "Les réponses sur KanbanCord : prix, ajout du bot, permissions, commandes Discord, notifications, envois de fichiers et tes données.",
+    "title": "Questions fréquentes",
+    "free": {
+      "q": "{name} est-il gratuit ?",
+      "a": "Oui. Il n'y a ni offre payante ni publicité, et tes données ne sont pas vendues."
+    },
+    "start": {
+      "q": "Par où commencer ?",
+      "a": "Ajoute le bot, puis lance <code>/guide</code> dans Discord pour être guidé pas à pas. Les <guides>guides</guides> couvrent tout, d'une liste de tâches partagée aux rappels et aux permissions."
+    },
+    "website": {
+      "q": "Ai-je besoin du site ?",
+      "a": "Non. {name} est conçu pour s'utiliser entièrement depuis Discord : créer des tableaux, des colonnes et des tâches, les déplacer et les assigner, mettre des étiquettes, des priorités et des dates d'échéance, commenter et choisir tes notifications, le tout avec des commandes slash. Le site sert quand tu veux voir tout le tableau d'un coup d'œil, ou régler finement les paramètres."
+    },
+    "add": {
+      "q": "Comment l'ajouter à mon serveur ?",
+      "a": "Utilise « Ajouter à Discord » en bas de n'importe quelle page, et choisis le serveur. Tu dois y avoir la permission « Gérer le serveur ». Crée ensuite un premier tableau avec <code>/board create</code> et ajoute des tâches avec <code>/task create</code>."
+    },
+    "access": {
+      "q": "Qui peut voir et modifier mes tableaux ?",
+      "a": "Par défaut, cela suit les rôles et permissions Discord de ton serveur : les administrateurs et modérateurs peuvent gérer les tableaux, les membres peuvent travailler sur les tâches. Les administrateurs du serveur peuvent changer cela pour tout le serveur ou par tableau, dans les paramètres du serveur et des tableaux."
+    },
+    "servers": {
+      "q": "Pourquoi la connexion demande-t-elle la liste de mes serveurs ?",
+      "a": "Pour que {name} puisse montrer lesquels de tes serveurs tu peux gérer et où ajouter le bot. Il ne lit pas tes messages."
+    },
+    "discord": {
+      "q": "Que puis-je faire depuis Discord ?",
+      "a": "Tout ce dont tu as besoin au quotidien : créer, voir, renommer et archiver des tableaux ; ajouter, renommer, réordonner et supprimer des colonnes ; créer, modifier, déplacer et supprimer des tâches ; assigner des personnes et des rôles ; mettre des étiquettes, des priorités et des dates d'échéance ; lire et écrire des commentaires ; choisir tes propres notifications avec <code>/notifications</code> ; et, pour les gestionnaires du serveur, configurer les salons de mises à jour avec <code>/kanbancord</code>. Lance <code>/help</code> dans Discord pour voir chaque commande."
+    },
+    "websiteOnly": {
+      "q": "Qu'est-ce qui nécessite le site ?",
+      "a": "Les réglages fins et la vue d'ensemble : voir tout un tableau d'un coup, les règles de permissions par tableau et par personne, les étiquettes et niveaux de priorité d'un tableau, les fonctionnalités qu'utilise un serveur, exactement ce dont tu es averti, les thèmes et options d'accessibilité, l'envoi d'images et de vidéos, et la consultation du journal des modifications."
+    },
+    "notifications": {
+      "q": "Comment fonctionnent les notifications ?",
+      "a": "Un serveur peut faire publier des mises à jour par le bot dans des salons choisis, et refléter son journal des modifications dans un salon ; les publications de mises à jour peuvent montrer toute la tâche avec des boutons pour la déplacer, assigner des personnes ou la modifier directement. Tu peux aussi recevoir des messages privés sur les tâches qui te sont assignées, que tu as créées ou que tu suis, y compris des rappels quand elles arrivent à échéance. Si un salon t'a déjà mentionné pour quelque chose, tu ne reçois pas en plus de message privé. Choisis ce que tu reçois avec <code>/notifications</code>, ou plus en détail dans Paramètres → Notifications sur le site. Les gestionnaires du serveur configurent les salons avec <code>/kanbancord</code>."
+    },
+    "uploads": {
+      "q": "Où sont stockées les images et vidéos envoyées ?",
+      "a": "Sur Imgur. Toute personne ayant le lien peut les voir, alors n'envoie rien de privé."
+    },
+    "data": {
+      "q": "Comment supprimer mes données ?",
+      "a": "Déconnecte-toi partout dans Paramètres → Sessions, et demande-nous de supprimer le reste à <email>{email}</email>. Les administrateurs du serveur peuvent supprimer des tableaux, et retirer le bot d'un serveur arrête la synchronisation de ce serveur. Les détails sont dans la <privacy>Politique de confidentialité</privacy> (en anglais)."
+    },
+    "help": {
+      "q": "J'ai trouvé un bug, j'ai une idée ou j'ai besoin d'aide.",
+      "a": "Rejoins le <server>serveur d'assistance de {name}</server> pour poser des questions et entendre parler des nouveautés, ou utilise <code>/report</code> dans Discord pour envoyer un signalement directement au développeur."
+    }
+  },
+  "guides": {
+    "metaTitle": "Guides",
+    "metaDescription": "Guides de KanbanCord : tableaux kanban, listes de tâches et suivi des tâches dans Discord, du premier tableau aux rappels, flux et permissions.",
+    "title": "Guides",
+    "intro": "Comment planifier et suivre le travail sur ton serveur Discord avec {name} : tableaux kanban, listes de tâches partagées, tâches pour des personnes et des rôles, dates d'échéance et rappels. Presque tout se fait avec des commandes slash ; quelques guides couvrent le site.",
+    "inDiscord": "Tu as déjà ajouté le bot ? Lance <code>/guide</code> dans Discord pour suivre les mêmes étapes, cochées au fur et à mesure.",
+    "tryTitle": "Essaie-le sur ton serveur",
+    "try": "{name} est gratuit. Ajoute-le à ton serveur, puis lance <code>/guide</code> pour être guidé pas à pas directement dans Discord.",
+    "more": "Autres guides"
+  }
+}
