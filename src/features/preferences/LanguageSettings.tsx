@@ -12,7 +12,7 @@ const NOTE_MAX = 300
 /** Languages people can ask for: widely spoken ones, named in the language the website is shown in. */
 const REQUESTABLE = [
   'ar', 'bg', 'bn', 'ca', 'cs', 'da', 'de', 'el', 'es', 'es-419', 'et', 'fa', 'fi', 'fil', 'fr', 'he', 'hi', 'hr',
-  'hu', 'id', 'it', 'ja', 'ko', 'lt', 'lv', 'ms', 'nb', 'nl', 'pl', 'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sl', 'sr',
+  'hu', 'id', 'it', 'ja', 'ko', 'lt', 'lv', 'ms', 'nb', 'nl', 'pl', 'pt', 'pt-BR', 'ro', 'ru', 'sk', 'sl', 'sr',
   'sv', 'sw', 'ta', 'th', 'tr', 'uk', 'ur', 'vi', 'zh-Hans', 'zh-Hant',
 ]
 
