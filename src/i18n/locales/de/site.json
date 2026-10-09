@@ -64,6 +64,8 @@
     "p1": "{name} ist ein Kanban-Board direkt auf deinem Discord-Server. Die Idee ist einfach: Deine Community schreibt schon in Discord, also sollte dort auch geplant werden. Erstelle Boards und Spalten, füge Aufgaben hinzu, schiebe sie weiter, weise Personen zu, setze Labels, Prioritäten und Fälligkeitsdaten und besprich sie in Kommentaren, alles mit den Slash-Befehlen des Bots, ohne den Chat zu verlassen. Updates kommen in den Kanälen an, die du wählst, und für deine eigenen Aufgaben per Direktnachricht.",
     "p2": "Die meisten brauchen nie etwas anderes. Die Website ist da, wenn du das ganze Board auf einen Blick sehen oder etwas feinjustieren willst: genaue Berechtigungen je Board und je Person, die Labels und Prioritätsstufen eines Boards, welche Funktionen ein Server nutzt, worüber genau du benachrichtigt wirst, und das Audit-Log aller Änderungen.",
     "p3": "Es folgt von Anfang an den Discord-Rollen und -Berechtigungen deines Servers, sodass die richtigen Leute die richtigen Boards sehen und ändern, ohne dass du etwas doppelt einrichten musst.",
+    "simpleTitle": "Nur, was du auswählst",
+    "simple": "Neue Server starten im <strong>einfachen Modus</strong>: Boards, Spalten und Aufgaben mit Titel und Beschreibung. Zuständige, Fälligkeitsdaten mit Erinnerungen, Prioritäten, Labels, Kommentare und eigene Berechtigungen bleiben ausgeschaltet, bis ein Server-Manager sie mit <code>/kanbancord features</code> oder in den Servereinstellungen auf der Website einschaltet. Ausgeschaltete Funktionen werden nirgends angezeigt, weder in Discord noch auf der Website: Es erscheinen nur die, die du auswählst. Jedes Board kann Funktionen für sich wieder ausschalten, und alle können unter Einstellungen → Einfache Ansicht für sich selbst noch mehr ausblenden. Ausschalten blendet eine Funktion nur aus; gelöscht wird nichts.",
     "madeByTitle": "Von einer Person gemacht",
     "madeBy": "{name} wird von {operator} entwickelt und betrieben. Es ist kostenlos, hat keine Werbung und verkauft oder verfolgt deine Daten nicht (siehe die <privacy>Datenschutzerklärung</privacy>). Ein Problem gefunden oder eine Idee? Nutze <code>/report</code> in Discord. Fragen, oder du willst von neuen Funktionen erfahren? Tritt dem <server>Support-Server</server> bei. Wenn du bei den Kosten helfen möchtest, sieh dir <support>Unterstützen</support> an.",
     "findTitle": "Auf Discord finden",
@@ -72,7 +74,9 @@
     "start1": "Füge den Bot zu deinem Server hinzu.",
     "start2": "Erstelle ein Board mit <code>/board create</code> und füge dann Aufgaben mit <code>/task create</code> hinzu.",
     "start3": "Führe <code>/help</code> aus, um alles zu sehen, was der Bot kann.",
-    "questions": "Fragen? Sieh dir die <faq>FAQ</faq> an."
+    "questions": "Fragen? Sieh dir die <faq>FAQ</faq> an.",
+    "translationsTitle": "Übersetzungen",
+    "translations": "Die Übersetzungen dieser Website wurden mithilfe generativer KI erstellt. Sollten Ihnen Fehler oder verbesserungswürdige Formulierungen auffallen, sind wir für einen Hinweis über <code>/report</code> in Discord oder per E-Mail an <email>{contact}</email> dankbar."
   },
   "support": {
     "metaTitle": "Unterstützen",
