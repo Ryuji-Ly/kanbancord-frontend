@@ -64,6 +64,8 @@
     "p1": "{name} je kanban nástenka priamo na tvojom Discord serveri. Myšlienka je jednoduchá: tvoja komunita sa už rozpráva na Discorde, tak nech sa tam aj plánuje. Vytváraj nástenky a stĺpce, pridávaj úlohy, posúvaj ich ďalej, priraďuj ľudí, nastavuj štítky, priority a termíny a diskutuj o nich v komentároch, všetko príkazmi s lomkou, bez opustenia chatu. Novinky prichádzajú do kanálov, ktoré si vyberieš, a o tvojich vlastných úlohách aj súkromnou správou.",
     "p2": "Väčšina ľudí nič viac nepotrebuje. Web je tu, keď chceš vidieť celú nástenku naraz alebo niečo doladiť: podrobné oprávnenia pre nástenky aj jednotlivých ľudí, štítky a úrovne priority, ktoré nástenka ponúka, ktoré funkcie server používa, presne aké novinky dostávaš, a denník všetkých zmien.",
     "p3": "Od začiatku sa riadi rolami a oprávneniami Discordu na tvojom serveri, takže správni ľudia vidia a menia správne nástenky bez toho, aby sa čokoľvek nastavovalo dvakrát.",
+    "simpleTitle": "Len to, čo si vyberieš",
+    "simple": "Nové servery začínajú v <strong>jednoduchom režime</strong>: nástenky, stĺpce a úlohy s názvom a popisom. Riešitelia, termíny s pripomienkami, priority, štítky, komentáre a vlastné oprávnenia zostávajú vypnuté, kým ich správca servera nezapne príkazom <code>/kanbancord features</code> alebo v nastaveniach servera na webe. Vypnuté funkcie sa nikde nezobrazujú, ani v Discorde, ani na webe: objavia sa len tie, ktoré si vyberieš. Každá nástenka si môže funkcie pre seba znova vypnúť a každý si môže pre seba skryť ešte viac v Predvoľby → Jednoduché zobrazenie. Vypnutie funkcie ju len skryje; nič sa neodstráni.",
     "madeByTitle": "Robí to jeden človek",
     "madeBy": "{name} vytvára a prevádzkuje {operator}. Je zadarmo, bez reklám a tvoje údaje nepredáva ani nesleduje (pozri <privacy>Zásady ochrany súkromia</privacy>). Našiel sa problém alebo máš nápad? Použi <code>/report</code> v Discorde. Máš otázky alebo chceš vedieť o novinkách? Pridaj sa na <server>server podpory</server>. Ak chceš pomôcť s nákladmi, pozri <support>Podporu</support>.",
     "findTitle": "Nájdeš ho na Discorde",
@@ -72,7 +74,9 @@
     "start1": "Pridaj bota na svoj server.",
     "start2": "Vytvor nástenku príkazom <code>/board create</code> a potom pridaj úlohy príkazom <code>/task create</code>.",
     "start3": "Spusti <code>/help</code> a uvidíš všetko, čo bot dokáže.",
-    "questions": "Otázky? Pozri <faq>Časté otázky</faq>."
+    "questions": "Otázky? Pozri <faq>Časté otázky</faq>.",
+    "translationsTitle": "Preklady",
+    "translations": "Preklady tejto webovej stránky boli vytvorené s pomocou generatívnej umelej inteligencie. Ak si všimnete chybu alebo formuláciu, ktorú by bolo možné vylepšiť, budeme vďační, ak nám to oznámite prostredníctvom <code>/report</code> v Discorde alebo e-mailom na adresu <email>{contact}</email>."
   },
   "support": {
     "metaTitle": "Podpora",

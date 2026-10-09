@@ -11,6 +11,8 @@ export const SITE = {
   country: 'Belgium',
   /** For privacy and legal requests. */
   email: 'privacy@kanbancord.com',
+  /** For questions, feedback and corrections to the translations. */
+  contactEmail: 'contact@kanbancord.com',
   donationUrl: 'https://ko-fi.com/ryujily',
   supportServerUrl: 'https://discord.gg/SDr4ujFPGR',
   /** The bot's own page in Discord's App Directory. */

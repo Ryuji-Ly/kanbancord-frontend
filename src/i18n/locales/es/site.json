@@ -64,6 +64,8 @@
     "p1": "{name} es un tablero kanban que vive en tu servidor de Discord. La idea es sencilla: tu comunidad ya habla en Discord, así que la planificación también debería estar allí. Crea tableros y columnas, añade tareas, hazlas avanzar, asigna personas, pon etiquetas, prioridades y fechas límite, y coméntalas, todo con los comandos de barra del bot, sin salir del chat. Las novedades llegan a los canales que elijas y, para tus propias tareas, por mensaje directo.",
     "p2": "La mayoría de la gente nunca necesita nada más. La web está ahí cuando quieres ver el tablero entero de un vistazo, o hacer ajustes finos: permisos detallados por tablero y por persona, las etiquetas y niveles de prioridad que ofrece un tablero, qué funciones usa un servidor, exactamente de qué novedades se te avisa, y el registro de cada cambio.",
     "p3": "Sigue los roles y permisos de Discord de tu servidor desde el principio, así que las personas adecuadas ven y cambian los tableros adecuados sin configurar nada dos veces.",
+    "simpleTitle": "Solo lo que eliges",
+    "simple": "Los servidores nuevos empiezan en <strong>modo simple</strong>: tableros, columnas y tareas con título y descripción. Los responsables, las fechas límite con recordatorios, las prioridades, las etiquetas, los comentarios y los permisos personalizados siguen desactivados hasta que un gestor del servidor los activa con <code>/kanbancord features</code> o en los ajustes del servidor en la web. Las funciones desactivadas no se muestran en ningún sitio, ni en Discord ni en la web: solo aparecen las que eliges. Cada tablero puede volver a desactivar funciones para sí mismo, y cada persona puede ocultar más para sí misma en Preferencias → Vista simple. Desactivar una función solo la oculta; no se elimina nada.",
     "madeByTitle": "Hecho por una sola persona",
     "madeBy": "{name} lo crea y lo mantiene {operator}. Es gratis, no tiene anuncios y no vende ni rastrea tus datos (consulta la <privacy>Política de privacidad</privacy>). ¿Has encontrado un problema o tienes una idea? Usa <code>/report</code> en Discord. ¿Tienes preguntas o quieres enterarte de las novedades? Únete al <server>servidor de soporte</server>. Si quieres ayudar con sus costes, consulta <support>Apoyar</support>.",
     "findTitle": "Encuéntralo en Discord",
@@ -72,7 +74,9 @@
     "start1": "Añade el bot a tu servidor.",
     "start2": "Crea un tablero con <code>/board create</code> y después añade tareas con <code>/task create</code>.",
     "start3": "Ejecuta <code>/help</code> para ver todo lo que puede hacer el bot.",
-    "questions": "¿Tienes preguntas? Consulta las <faq>preguntas frecuentes</faq>."
+    "questions": "¿Tienes preguntas? Consulta las <faq>preguntas frecuentes</faq>.",
+    "translationsTitle": "Traducciones",
+    "translations": "Las traducciones de este sitio web se han elaborado con la ayuda de inteligencia artificial generativa. Si advierte algún error o alguna expresión mejorable, le agradeceríamos que nos lo comunicara mediante <code>/report</code> en Discord o por correo electrónico a <email>{contact}</email>."
   },
   "support": {
     "metaTitle": "Apoyar",

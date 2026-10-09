@@ -64,6 +64,8 @@
     "p1": "{name} est un tableau kanban qui vit sur ton serveur Discord. L'idée est simple : ta communauté discute déjà sur Discord, alors la planification devrait s'y faire aussi. Crée des tableaux et des colonnes, ajoute des tâches, fais-les avancer, assigne des personnes, mets des étiquettes, des priorités et des dates d'échéance, et discute-en dans les commentaires, le tout avec les commandes slash du bot, sans quitter la discussion. Les mises à jour arrivent dans les salons que tu choisis et, pour tes propres tâches, par message privé.",
     "p2": "La plupart des gens n'ont besoin de rien d'autre. Le site est là quand tu veux voir tout le tableau d'un coup d'œil, ou régler les choses finement : des permissions détaillées par tableau et par personne, les étiquettes et niveaux de priorité d'un tableau, les fonctionnalités qu'utilise un serveur, exactement ce dont tu es averti, et le journal de toutes les modifications.",
     "p3": "Il suit dès le départ les rôles et permissions Discord de ton serveur, pour que les bonnes personnes voient et modifient les bons tableaux sans rien configurer deux fois.",
+    "simpleTitle": "Seulement ce que tu choisis",
+    "simple": "Les nouveaux serveurs démarrent en <strong>mode simple</strong> : des tableaux, des colonnes, et des tâches avec un titre et une description. Les responsables, les dates d'échéance avec rappels, les priorités, les étiquettes, les commentaires et les permissions personnalisées restent désactivés jusqu'à ce qu'un gestionnaire du serveur les active avec <code>/kanbancord features</code> ou dans les paramètres du serveur sur le site. Les fonctionnalités désactivées ne s'affichent nulle part, ni dans Discord ni sur le site : seules celles que tu choisis apparaissent. Chaque tableau peut de nouveau désactiver des fonctionnalités pour lui-même, et chacun peut en masquer davantage pour soi dans Préférences → Vue simple. Désactiver une fonctionnalité ne fait que la masquer ; rien n'est supprimé.",
     "madeByTitle": "Fait par une seule personne",
     "madeBy": "{name} est développé et géré par {operator}. Il est gratuit, sans publicité, et ne vend ni ne piste tes données (voir la <privacy>Politique de confidentialité</privacy>, en anglais). Tu as trouvé un problème ou tu as une idée ? Utilise <code>/report</code> dans Discord. Des questions, ou envie d'entendre parler des nouveautés ? Rejoins le <server>serveur d'assistance</server>. Si tu veux aider à couvrir les frais, va voir <support>Soutenir</support>.",
     "findTitle": "Le trouver sur Discord",
@@ -72,7 +74,9 @@
     "start1": "Ajoute le bot à ton serveur.",
     "start2": "Crée un tableau avec <code>/board create</code>, puis ajoute des tâches avec <code>/task create</code>.",
     "start3": "Lance <code>/help</code> pour voir tout ce que le bot sait faire.",
-    "questions": "Des questions ? Consulte la <faq>FAQ</faq>."
+    "questions": "Des questions ? Consulte la <faq>FAQ</faq>.",
+    "translationsTitle": "Traductions",
+    "translations": "Les traductions de ce site ont été réalisées avec l'aide de l'intelligence artificielle générative. Si vous remarquez une erreur ou une formulation perfectible, nous vous serions reconnaissants de nous le signaler via <code>/report</code> dans Discord ou par e-mail à <email>{contact}</email>."
   },
   "support": {
     "metaTitle": "Soutenir",

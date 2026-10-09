@@ -64,6 +64,8 @@
     "p1": "{name} is a kanban board that lives in your Discord server. The idea is simple: your community already talks in Discord, so planning should happen there too. Create boards and columns, add tasks, move them along, assign people, set labels, priorities and due dates, and discuss them in comments, all with the bot's slash commands, without leaving the chat. Updates arrive in the channels you choose and, for your own tasks, by direct message.",
     "p2": "Most people never need anything else. The website is there when you want the whole board at a glance, or to fine-tune things: detailed permissions per board and per person, the labels and priority levels a board offers, which features a server uses, exactly which updates you are told about, and the audit log of every change.",
     "p3": "It follows your server's Discord roles and permissions from the start, so the right people see and change the right boards without setting anything up twice.",
+    "simpleTitle": "Only what you choose",
+    "simple": "New servers start in <strong>simple mode</strong>: boards, columns, and tasks with a title and a description. Assignees, due dates with reminders, priorities, labels, comments and custom permissions stay off until a server manager switches them on with <code>/kanbancord features</code> or in the server settings on the website. Features that are off are not shown anywhere, in Discord or on the website: only the ones you choose appear. Each board can switch features off again for itself, and everyone can hide more for themselves under Preferences → Simple view. Switching a feature off only hides it; nothing is deleted.",
     "madeByTitle": "Made by one person",
     "madeBy": "{name} is built and run by {operator}. It is free, has no ads, and does not sell or track your data (see the <privacy>Privacy Policy</privacy>). Found a problem or have an idea? Use <code>/report</code> in Discord. Questions, or want to hear about new features? Join the <server>support server</server>. If you would like to help with its costs, see <support>Support</support>.",
     "findTitle": "Find it on Discord",
@@ -72,7 +74,9 @@
     "start1": "Add the bot to your server.",
     "start2": "Create a board with <code>/board create</code>, then add tasks with <code>/task create</code>.",
     "start3": "Run <code>/help</code> to see everything the bot can do.",
-    "questions": "Questions? See the <faq>FAQ</faq>."
+    "questions": "Questions? See the <faq>FAQ</faq>.",
+    "translationsTitle": "Translations",
+    "translations": "The translations of this website were produced with the help of generative AI. Should you notice an error or a wording that could be improved, we would be grateful if you let us know via <code>/report</code> in Discord or by email at <email>{contact}</email>."
   },
   "support": {
     "metaTitle": "Support",

@@ -12,6 +12,11 @@ export function AboutPage() {
       <p>{t('site.about.p2')}</p>
       <p>{t('site.about.p3')}</p>
 
+      <h2>{t('site.about.simpleTitle')}</h2>
+      <p>
+        <Trans k="site.about.simple" />
+      </p>
+
       <h2>{t('site.about.madeByTitle')}</h2>
       <p>
         <Trans
@@ -49,6 +54,15 @@ export function AboutPage() {
       </ol>
       <p>
         <Trans k="site.about.questions" tags={{ faq: <Link to="/faq" /> }} />
+      </p>
+
+      <h2>{t('site.about.translationsTitle')}</h2>
+      <p>
+        <Trans
+          k="site.about.translations"
+          values={{ contact: SITE.contactEmail }}
+          tags={{ email: <a href={`mailto:${SITE.contactEmail}`} /> }}
+        />
       </p>
     </PublicLayout>
   )

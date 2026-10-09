@@ -80,6 +80,10 @@ reach the developer by direct message.
 - `npm run check:i18n` checks each language against English: every message present, with the same placeholders,
   tags and plural forms. It also runs on every push.
 
+The current translations were produced with the help of generative AI. If you notice an error or a wording that could be
+improved, please let us know with `/report` in Discord or by email at
+[contact@kanbancord.com](mailto:contact@kanbancord.com).
+
 ## License
 
 [MIT](LICENSE) © Ryuji Ly. KanbanCord is not affiliated with or endorsed by Discord.
