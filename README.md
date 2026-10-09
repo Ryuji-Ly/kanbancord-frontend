@@ -77,6 +77,8 @@ reach the developer by direct message.
   `_few` or `_many` where the language has them).
 - Slash commands such as `/task create` stay in English: they are the bot's commands.
 - The Privacy Policy and Terms of Service are only in English.
+- `npm run check:i18n` checks each language against English: every message present, with the same placeholders,
+  tags and plural forms. It also runs on every push.
 
 ## License
 

@@ -1,0 +1,154 @@
+{
+  "nav": {
+    "main": "Hauptmenü",
+    "site": "Website",
+    "breadcrumbs": "Brotkrümelnavigation",
+    "guides": "Anleitungen",
+    "faq": "FAQ",
+    "open": "KanbanCord öffnen",
+    "about": "Über",
+    "support": "Unterstützen",
+    "supportServer": "Support-Server",
+    "appDirectory": "App-Verzeichnis",
+    "status": "Status",
+    "privacy": "Datenschutzerklärung",
+    "terms": "Nutzungsbedingungen",
+    "addToDiscord": "Zu Discord hinzufügen"
+  },
+  "footer": {
+    "notAffiliated": "© {year} {operator}. {name} steht in keiner Verbindung zu Discord und wird nicht von Discord unterstützt."
+  },
+  "landing": {
+    "metaTitle": "Kanban-Boards für Discord",
+    "metaDescription": "Ein Kanban-Board direkt auf deinem Discord-Server: Aufgaben mit Slash-Befehlen erstellen, verschieben und zuweisen, Updates in deinen Kanälen bekommen und die Website für den Überblick nutzen.",
+    "title": "Ein Kanban-Board direkt auf deinem Discord-Server",
+    "intro": "Plane und verfolge Arbeit dort, wo deine Community ohnehin schreibt. Erstelle, verschiebe und vergib Aufgaben mit Slash-Befehlen und bekomme Updates in deinen Kanälen. Die Website ist da, wenn du den Überblick willst.",
+    "signIn": "Mit Discord anmelden",
+    "free": "Kostenlos. Keine Werbung. Kein Tracking. Auch im <link>App-Verzeichnis von Discord</link>.",
+    "features": "Funktionen",
+    "feature": {
+      "discord": {
+        "title": "Alles aus Discord heraus",
+        "text": "Boards und Aufgaben erstellen, verschieben und zuweisen, Fälligkeitsdaten setzen und kommentieren, mit Slash-Befehlen. Du musst den Chat nicht verlassen."
+      },
+      "boards": {
+        "title": "Echte Kanban-Boards",
+        "text": "Spalten und Aufgaben mit Labels, Prioritäten, Fälligkeitsdaten, Zuständigen, Kommentaren, Checklisten, Bildern und Videos."
+      },
+      "permissions": {
+        "title": "Deine Discord-Berechtigungen",
+        "text": "Der Zugriff folgt von Anfang an deinen Serverrollen und lässt sich auf der Website je Board und je Person feinjustieren."
+      },
+      "updates": {
+        "title": "Updates statt Lärm",
+        "text": "Änderungen in ausgewählten Kanälen posten und Direktnachrichten zu deinen Aufgaben bekommen, nie zweimal für dasselbe angepingt."
+      },
+      "website": {
+        "title": "Der Überblick, wenn du ihn brauchst",
+        "text": "Die Website zeigt ganze Boards auf einen Blick und enthält die Feineinstellungen, wobei jede Änderung für alle sofort sichtbar ist."
+      },
+      "comfort": {
+        "title": "Angenehm zu benutzen",
+        "text": "Designs, darunter kontrastreiche und farbenblindfreundliche, Textgröße und ein einfacher Modus für kleine Teams."
+      }
+    },
+    "stepsTitle": "In einer Minute startklar",
+    "step1": "<strong>Füge den Bot</strong> zu deinem Server hinzu.",
+    "step2": "<strong>Erstelle ein Board</strong> mit <code>/board create</code>.",
+    "step3": "<strong>Füge Aufgaben hinzu</strong> mit <code>/task create</code> und führe <code>/help</code> aus, um den Rest zu sehen."
+  },
+  "about": {
+    "metaTitle": "Über",
+    "metaDescription": "KanbanCord ist ein Kanban-Board direkt auf deinem Discord-Server: komplett über den Bot nutzbar, mit der Website für den Überblick und Feineinstellungen.",
+    "title": "Über {name}",
+    "p1": "{name} ist ein Kanban-Board direkt auf deinem Discord-Server. Die Idee ist einfach: Deine Community schreibt schon in Discord, also sollte dort auch geplant werden. Erstelle Boards und Spalten, füge Aufgaben hinzu, schiebe sie weiter, weise Personen zu, setze Labels, Prioritäten und Fälligkeitsdaten und besprich sie in Kommentaren, alles mit den Slash-Befehlen des Bots, ohne den Chat zu verlassen. Updates kommen in den Kanälen an, die du wählst, und für deine eigenen Aufgaben per Direktnachricht.",
+    "p2": "Die meisten brauchen nie etwas anderes. Die Website ist da, wenn du das ganze Board auf einen Blick sehen oder etwas feinjustieren willst: genaue Berechtigungen je Board und je Person, die Labels und Prioritätsstufen eines Boards, welche Funktionen ein Server nutzt, worüber genau du benachrichtigt wirst, und das Audit-Log aller Änderungen.",
+    "p3": "Es folgt von Anfang an den Discord-Rollen und -Berechtigungen deines Servers, sodass die richtigen Leute die richtigen Boards sehen und ändern, ohne dass du etwas doppelt einrichten musst.",
+    "madeByTitle": "Von einer Person gemacht",
+    "madeBy": "{name} wird von {operator} entwickelt und betrieben. Es ist kostenlos, hat keine Werbung und verkauft oder verfolgt deine Daten nicht (siehe die <privacy>Datenschutzerklärung</privacy>). Ein Problem gefunden oder eine Idee? Nutze <code>/report</code> in Discord. Fragen, oder du willst von neuen Funktionen erfahren? Tritt dem <server>Support-Server</server> bei. Wenn du bei den Kosten helfen möchtest, sieh dir <support>Unterstützen</support> an.",
+    "findTitle": "Auf Discord finden",
+    "find": "{name} hat eine eigene Seite im <directory>App-Verzeichnis von Discord</directory>, wo du es direkt aus Discord heraus zu einem Server hinzufügen kannst. Ob die Website, der Bot und alles dahinter laufen, und geplante Wartungen, stehen auf der <status>Statusseite</status>.",
+    "startTitle": "Loslegen",
+    "start1": "Füge den Bot zu deinem Server hinzu.",
+    "start2": "Erstelle ein Board mit <code>/board create</code> und füge dann Aufgaben mit <code>/task create</code> hinzu.",
+    "start3": "Führe <code>/help</code> aus, um alles zu sehen, was der Bot kann.",
+    "questions": "Fragen? Sieh dir die <faq>FAQ</faq> an."
+  },
+  "support": {
+    "metaTitle": "Unterstützen",
+    "metaDescription": "KanbanCord ist für alle kostenlos. Wenn du bei den Kosten helfen möchtest, kannst du auf Ko-fi freiwillig spenden.",
+    "title": "{name} unterstützen",
+    "p1": "{name} ist kostenlos, hat keine Werbung und keine kostenpflichtigen Pläne, und das bleibt so. Es ist ein persönliches Projekt, entwickelt und betrieben von {operator}.",
+    "p2": "Wenn es deinem Server nützt und du bei den Kosten helfen möchtest, etwa für die Domain und die Server, die es braucht, wenn es wächst, kannst du auf Ko-fi spenden.",
+    "kofi": "Auf Ko-fi unterstützen",
+    "goodToKnow": "Gut zu wissen",
+    "voluntary": "Spenden sind völlig freiwillig. Alle bekommen dasselbe {name}, ob sie spenden oder nicht.",
+    "buysNothing": "Eine Spende kauft keine Funktionen, Limits, Rollen, bevorzugten Support oder sonst etwas.",
+    "payments": "Zahlungen werden von Ko-fi und PayPal abgewickelt, nie von {name}. Wir verknüpfen Spenden nicht mit deinem Discord-Konto.",
+    "refunds": "Spenden werden grundsätzlich nicht erstattet. Wenn du versehentlich gespendet hast, schreib an <email>{email}</email>, und wir tun, was wir können.",
+    "notDonating": "Nicht zu spenden ist völlig in Ordnung. Anderen von {name} zu erzählen oder einen Fehler mit <code>/report</code> zu melden, hilft auch."
+  },
+  "faq": {
+    "metaTitle": "FAQ",
+    "metaDescription": "Antworten zu KanbanCord: Kosten, den Bot hinzufügen, Berechtigungen, Discord-Befehle, Benachrichtigungen, Uploads und deine Daten.",
+    "title": "Häufige Fragen",
+    "free": {
+      "q": "Ist {name} kostenlos?",
+      "a": "Ja. Es gibt keine kostenpflichtigen Pläne, keine Werbung, und deine Daten werden nicht verkauft."
+    },
+    "start": {
+      "q": "Wo fange ich an?",
+      "a": "Füge den Bot hinzu und führe dann <code>/guide</code> in Discord aus, um Schritt für Schritt durchgeführt zu werden. Die <guides>Anleitungen</guides> decken alles ab, von einer gemeinsamen To-do-Liste bis zu Erinnerungen und Berechtigungen."
+    },
+    "website": {
+      "q": "Brauche ich die Website?",
+      "a": "Nein. {name} ist dafür gemacht, komplett aus Discord heraus genutzt zu werden: Boards, Spalten und Aufgaben erstellen, verschieben und zuweisen, Labels, Prioritäten und Fälligkeitsdaten setzen, kommentieren und deine Benachrichtigungen wählen, alles mit Slash-Befehlen. Die Website ist für den Fall, dass du das ganze Board auf einen Blick sehen oder Einstellungen feinjustieren willst."
+    },
+    "add": {
+      "q": "Wie füge ich es meinem Server hinzu?",
+      "a": "Nutze „Zu Discord hinzufügen“ unten auf jeder Seite und wähle den Server. Du brauchst dort die Berechtigung „Server verwalten“. Erstelle dann ein erstes Board mit <code>/board create</code> und füge Aufgaben mit <code>/task create</code> hinzu."
+    },
+    "access": {
+      "q": "Wer kann meine Boards sehen und ändern?",
+      "a": "Standardmäßig folgt es den Discord-Rollen und -Berechtigungen deines Servers: Administratoren und Moderatoren können Boards verwalten, Mitglieder können mit Aufgaben arbeiten. Server-Administratoren können das für den ganzen Server oder je Board ändern, in den Server- und Board-Einstellungen."
+    },
+    "servers": {
+      "q": "Warum fragt die Anmeldung nach meiner Serverliste?",
+      "a": "Damit {name} zeigen kann, welche deiner Server du verwalten und zu welchen du den Bot hinzufügen kannst. Deine Nachrichten werden nicht gelesen."
+    },
+    "discord": {
+      "q": "Was kann ich in Discord tun?",
+      "a": "Alles, was du im Alltag brauchst: Boards erstellen, ansehen, umbenennen und archivieren; Spalten hinzufügen, umbenennen, umsortieren und löschen; Aufgaben erstellen, bearbeiten, verschieben und löschen; Personen und Rollen zuweisen; Labels, Prioritäten und Fälligkeitsdaten setzen; Kommentare lesen und schreiben; deine eigenen Benachrichtigungen mit <code>/notifications</code> wählen; und, für Server-Manager, Update-Kanäle mit <code>/kanbancord</code> einrichten. Führe <code>/help</code> in Discord aus, um jeden Befehl zu sehen."
+    },
+    "websiteOnly": {
+      "q": "Wofür braucht man die Website?",
+      "a": "Für Feineinstellungen und den Überblick: ein ganzes Board auf einmal sehen, Berechtigungsregeln je Board und je Person, die Labels und Prioritätsstufen eines Boards, welche Funktionen ein Server nutzt, worüber genau du benachrichtigt wirst, Designs und Barrierefreiheit, Bilder und Videos hochladen und das Audit-Log durchsuchen."
+    },
+    "notifications": {
+      "q": "Wie funktionieren Benachrichtigungen?",
+      "a": "Ein Server kann den Bot Updates in ausgewählten Kanälen posten lassen und sein Audit-Log in einem Kanal spiegeln; Update-Posts können die ganze Aufgabe mit Schaltflächen zeigen, um sie direkt dort zu verschieben, Personen zuzuweisen oder sie zu bearbeiten. Du kannst außerdem Direktnachrichten zu Aufgaben bekommen, denen du zugewiesen bist, die du erstellt hast oder denen du folgst, auch Erinnerungen, wenn sie fällig sind. Wenn ein Kanal dich schon zu etwas erwähnt hat, bekommst du dazu keine zusätzliche Direktnachricht. Wähle, was du bekommst, mit <code>/notifications</code> oder genauer unter Konto → Benachrichtigungen auf der Website. Server-Manager richten Kanäle mit <code>/kanbancord</code> ein."
+    },
+    "uploads": {
+      "q": "Wo werden hochgeladene Bilder und Videos gespeichert?",
+      "a": "Auf Imgur. Jeder mit dem Link kann sie sehen, also lade nichts Privates hoch."
+    },
+    "data": {
+      "q": "Wie entferne ich meine Daten?",
+      "a": "Melde dich unter Konto → Sitzungen überall ab und bitte uns unter <email>{email}</email>, den Rest zu löschen. Server-Administratoren können Boards löschen, und wenn der Bot von einem Server entfernt wird, synchronisiert er diesen Server nicht mehr. Details stehen in der <privacy>Datenschutzerklärung</privacy>."
+    },
+    "help": {
+      "q": "Ich habe einen Fehler gefunden, eine Idee oder brauche Hilfe.",
+      "a": "Tritt dem <server>{name}-Support-Server</server> bei, um Fragen zu stellen und von neuen Funktionen zu erfahren, oder nutze <code>/report</code> in Discord, um eine Meldung direkt an den Entwickler zu senden."
+    }
+  },
+  "guides": {
+    "metaTitle": "Anleitungen",
+    "metaDescription": "Anleitungen zu KanbanCord: Kanban-Boards, To-do-Listen und Aufgabenverwaltung in Discord, vom ersten Board bis zu Erinnerungen, Feeds und Berechtigungen.",
+    "title": "Anleitungen",
+    "intro": "So planst und verfolgst du Arbeit auf deinem Discord-Server mit {name}: Kanban-Boards, gemeinsame To-do-Listen, Aufgaben für Personen und Rollen, Fälligkeitsdaten und Erinnerungen. Fast alles passiert mit Slash-Befehlen; einige Anleitungen behandeln die Website.",
+    "inDiscord": "Den Bot schon hinzugefügt? Führe <code>/guide</code> in Discord aus, um dieselben Schritte abzuhaken, während du sie erledigst.",
+    "tryTitle": "Probier es auf deinem Server aus",
+    "try": "{name} ist kostenlos. Füge es deinem Server hinzu und führe dann <code>/guide</code> aus, um dich direkt in Discord Schritt für Schritt führen zu lassen.",
+    "more": "Weitere Anleitungen"
+  }
+}

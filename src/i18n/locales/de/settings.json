@@ -1,0 +1,87 @@
+{
+  "boardFeatures": {
+    "title": "Einfacher Modus",
+    "intro": "Schalte aus, was dieses Board nicht braucht; andere Boards bleiben unberührt. Ausgeschaltetes wird ausgeblendet, die Daten bleiben erhalten. Änderungen hier gelten sofort.",
+    "everything": "Alles, was der Server erlaubt",
+    "offForServer": "Für den ganzen Server ausgeschaltet, in den Servereinstellungen."
+  },
+  "board": {
+    "loadFailed": "Die Board-Einstellungen konnten nicht geladen werden"
+  },
+  "boardNotifications": {
+    "intro": "Die Update-Feeds, die über dieses Board posten. Jeder folgt seinen eigenen Einstellungen aus den Benachrichtigungen des Servers, bis du hier etwas änderst, nur für dieses Board. Änderungen werden sofort gespeichert.",
+    "noFeeds": "Kein Feed postet über dieses Board. Server-Manager fügen Feeds in den Einstellungen des Servers hinzu.",
+    "followsFeed": "Folgt den Einstellungen des Feeds.",
+    "changes_one": "{count} Änderung für dieses Board.",
+    "changes_other": "{count} Änderungen für dieses Board.",
+    "useFeed": "Einstellungen des Feeds verwenden",
+    "changed": "geändert"
+  },
+  "threads": {
+    "updatesBoth": "Den Thread und den Kanal",
+    "updatesThread": "Nur den Thread",
+    "updatesChannel": "Nur den Kanal",
+    "title": "Aufgaben-Threads",
+    "intro": "Gib jeder Aufgabe einen eigenen Thread zur Diskussion, in einem der Update-Feed-Kanäle dieses Boards. Ein Thread trägt den Titel seiner Aufgabe und wird archiviert, wenn die Aufgabe gelöscht oder archiviert wird. Die Updates des Feeds zur Aufgabe, auch neue Kommentare, werden dort gepostet, wie du es unten wählst; im Thread geschriebene Nachrichten bleiben in Discord. Änderungen werden sofort gespeichert.",
+    "noFeed": "Dieses Board hat noch keinen Update-Feed. Füge einen in den Benachrichtigungseinstellungen des Servers hinzu oder mit <code>/kanbancord feed</code> in Discord, und schalte die Threads dann hier ein.",
+    "perTask": "Ein Thread pro Aufgabe",
+    "notWorking": "An, aber ohne Wirkung: Der gewählte Kanal hat keinen Feed mehr für dieses Board. Wähle einen anderen Feed-Kanal.",
+    "perTaskHint": "Jede Aufgabe bekommt ihren Thread, sobald das nächste Mal etwas mit ihr passiert.",
+    "channel": "Kanal",
+    "channelWithoutFeed": "Ein Kanal ohne Feed für dieses Board",
+    "botCannot": " (der Bot kann hier keine Threads erstellen)",
+    "updatesGoTo": "Die Updates einer Aufgabe gehen in",
+    "private": "Private Threads",
+    "privateNotPossible": "In diesem Kanal nicht möglich: Private Threads brauchen einen Textkanal, in dem der Bot private Threads erstellen darf.",
+    "privateHint": "Nur wer die Aufgabe erstellt hat und die Zuständigen sind im Thread, dazu die Moderatoren des Servers. Neue Zuständige werden hinzugefügt.",
+    "cannotMake": "Der Bot kann in #{channel} keine Threads erstellen, daher bekommen Aufgaben keine neuen Threads. Gib ihm dort „Kanäle ansehen“, „Nachrichten in Threads senden“ und „Öffentliche Threads erstellen“, oder wähle einen anderen Kanal.",
+    "cannotMakePrivate": "Der Bot kann in #{channel} keine privaten Threads erstellen, daher bekommen Aufgaben keine neuen Threads. Gib ihm dort „Kanäle ansehen“, „Nachrichten in Threads senden“ und „Private Threads erstellen“, oder wähle einen anderen Kanal."
+  },
+  "usage_one": "{count} Aufgabe",
+  "usage_other": "{count} Aufgaben",
+  "colourOf": "Farbe von {name}",
+  "labels": {
+    "intro": "Labels, mit denen die Aufgaben dieses Boards markiert werden können. Änderungen hier gelten sofort.",
+    "none": "Noch keine Labels.",
+    "name": "Name des Labels",
+    "newColour": "Farbe des neuen Labels",
+    "newPlaceholder": "Neues Label, z. B. Frontend",
+    "add": "Label hinzufügen",
+    "deleteTitle": "Label löschen",
+    "deleteConfirm": "<strong>{name}</strong> von diesem Board löschen?",
+    "deleteUsage_one": " Es wird von der {count} Aufgabe entfernt, die es nutzt.",
+    "deleteUsage_other": " Es wird von den {count} Aufgaben entfernt, die es nutzen."
+  },
+  "priorities": {
+    "title": "Prioritäten",
+    "intro": "Prioritätsstufen, die dringendste zuerst. Eine Aufgabe hat höchstens eine. Änderungen hier gelten sofort.",
+    "none": "Keine Prioritätsstufen. Aufgaben auf diesem Board haben keine Priorität.",
+    "moveUp": "{name} nach oben verschieben",
+    "moveDown": "{name} nach unten verschieben",
+    "name": "Name der Priorität",
+    "newColour": "Farbe der neuen Stufe",
+    "newPlaceholder": "Neue Stufe, wird unten angefügt",
+    "add": "Stufe hinzufügen",
+    "deleteTitle": "Prioritätsstufe löschen",
+    "deleteConfirm": "<strong>{name}</strong> löschen?",
+    "deleteUsage_one": " Die {count} Aufgabe mit dieser Priorität hat dann keine mehr.",
+    "deleteUsage_other": " Die {count} Aufgaben mit dieser Priorität haben dann keine mehr."
+  },
+  "features": {
+    "intro": "Der einfache Modus beschränkt Boards auf das Wesentliche: Spalten und Aufgaben mit Titel und Beschreibung. Schalte nur ein, was dieser Server braucht. Ausgeschaltetes wird ausgeblendet, die Daten bleiben erhalten.",
+    "enableEverything": "Alles einschalten",
+    "openFirst": "{description} Schalte zuerst die offenen Berechtigungen aus.",
+    "open": "Offene Berechtigungen",
+    "openLabel": "Alle dürfen alles",
+    "customFirst": "Schalte zuerst die eigenen Berechtigungen aus: Ihre Regeln bleiben für später erhalten.",
+    "openHint": "Jeder, der auf diesem Server schreiben kann, darf Spalten, Aufgaben, Labels und Prioritätsstufen erstellen, ändern, verschieben und löschen, unabhängig von den Rollen. Die Verwaltung des Servers, Board-Berechtigungen, das Löschen oder Archivieren von Boards und das Audit-Log bleiben bei den Managern.",
+    "confirmTitle": "Offene Berechtigungen einschalten?",
+    "turnOn": "Einschalten",
+    "turningOn": "Wird eingeschaltet …",
+    "confirm": "Jeder, der auf diesem Server schreiben kann, darf dann Spalten, Aufgaben, Labels und Prioritätsstufen erstellen, ändern, verschieben und löschen, unabhängig von den Rollen. Am besten für eine kleine Gruppe, die sich vertraut."
+  },
+  "dialog": {
+    "sections": "Bereiche: {title}",
+    "close": "{title} schließen"
+  }
+}
