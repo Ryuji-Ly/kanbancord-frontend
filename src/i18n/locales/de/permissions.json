@@ -139,5 +139,31 @@
     "locked": " (gesperrt)",
     "remove": "Berechtigung entfernen",
     "removeNamed": "{name} entfernen"
+  },
+  "presets": {
+    "title": "Schnelleinrichtung",
+    "intro": "Lege in einem Schritt fest, wer Boards serverweit sehen und bearbeiten kann. Das ändert nur die Regeln für @everyone und die gewählte Rolle; alle anderen Regeln bleiben, wie sie sind.",
+    "introBoard": "Lege in einem Schritt fest, wer dieses Board sehen und bearbeiten kann. Das ändert nur die Regeln dieses Boards für @everyone und die gewählte Rolle.",
+    "EVERYONE": {
+      "label": "Alle arbeiten mit",
+      "description": "Die Standards: Was jemand darf, folgt seinen Discord-Berechtigungen."
+    },
+    "MEMBERS_VIEW": {
+      "label": "Mitglieder sehen, das Team bearbeitet",
+      "description": "Alle sehen die Boards; nur die Team-Rolle kann Aufgaben hinzufügen, verschieben und ändern."
+    },
+    "STAFF_ONLY": {
+      "label": "Nur das Team",
+      "description": "Nur die Team-Rolle sieht die Boards und alles darin."
+    },
+    "staffRole": "Team-Rolle",
+    "pickRole": "Rolle wählen…",
+    "apply": "Anwenden",
+    "applied_one": "Angewendet: {count} Regel geändert.",
+    "applied_other": "Angewendet: {count} Regeln geändert.",
+    "unchanged": "Schon so eingerichtet: nichts geändert.",
+    "failed": "Die Einrichtung konnte nicht angewendet werden: {error}",
+    "inDraft": "Angewendet. Speichere die Änderungen, um sie zu behalten.",
+    "inDraftCreate": "Angewendet. Es gilt, sobald das Board erstellt ist."
   }
 }

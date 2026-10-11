@@ -428,6 +428,22 @@ export async function deletePermission(
   if (!response.ok) throw new Error(await parseError(response))
 }
 
+export type PresetResult = { created: number; changed: number; removed: number }
+
+/** Applies a one-step permission setup to the server or one board; see PermissionPresetService. */
+export async function applyPermissionPreset(
+  serverId: string,
+  body: { preset: string; scopeType: PermissionScopeType; scopeId?: string; staffRoleId?: string | null },
+): Promise<PresetResult> {
+  const response = await apiFetch(`/api/servers/${serverId}/permissions/presets`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  })
+  if (!response.ok) throw new Error(await parseError(response))
+  return response.json()
+}
+
 export async function fetchPermissionCatalog(
   serverId: string,
 ): Promise<KanbanCatalogEntry[]> {

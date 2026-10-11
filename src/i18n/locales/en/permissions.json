@@ -139,5 +139,31 @@
     "locked": " (locked)",
     "remove": "Remove permission",
     "removeNamed": "Remove {name}"
+  },
+  "presets": {
+    "title": "Quick setup",
+    "intro": "Set who can see and work with boards, server-wide, in one step. This only changes the rules for @everyone and the role you pick; other rules stay as they are.",
+    "introBoard": "Set who can see and work with this board in one step. This only changes this board's rules for @everyone and the role you pick.",
+    "EVERYONE": {
+      "label": "Everyone contributes",
+      "description": "The defaults: what people may do follows their Discord permissions."
+    },
+    "MEMBERS_VIEW": {
+      "label": "Members view, staff edit",
+      "description": "Everyone can see the boards; only the staff role can add, move and change tasks."
+    },
+    "STAFF_ONLY": {
+      "label": "Staff only",
+      "description": "Only the staff role can see the boards and everything in them."
+    },
+    "staffRole": "Staff role",
+    "pickRole": "Choose a role…",
+    "apply": "Apply",
+    "applied_one": "Applied: {count} rule changed.",
+    "applied_other": "Applied: {count} rules changed.",
+    "unchanged": "Already set up this way: nothing changed.",
+    "failed": "Could not apply the setup: {error}",
+    "inDraft": "Applied. Save changes to keep it.",
+    "inDraftCreate": "Applied. It takes effect when the board is created."
   }
 }

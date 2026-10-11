@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import { FiPlus } from 'react-icons/fi'
 import { t } from '../../../i18n'
 import type { GrantedToGroup, KanbanCatalogEntry } from '../../../services/permissionsService'
@@ -7,6 +8,8 @@ import { PermissionGroupRow } from './PermissionGroupRow'
 type PermissionsSectionProps = {
   canEditPermissions: boolean
   helperText?: string
+  /** One-step setups, shown above the rules. */
+  presets?: ReactNode
   /** Shows the Expand/Collapse toggle and heading; off where the section has a page of its own. */
   collapsible?: boolean
   permissionsCollapsed: boolean
@@ -37,6 +40,7 @@ type PermissionsSectionProps = {
 export function PermissionsSection({
   canEditPermissions,
   helperText,
+  presets,
   collapsible = true,
   permissionsCollapsed,
   permissionsLoading,
@@ -88,6 +92,7 @@ export function PermissionsSection({
       )}
       {!permissionsCollapsed && !permissionsLoading && (
         <>
+          {presets}
           <div className="kc-perms-toolbar">
             <input
               className="kc-perms-filter"

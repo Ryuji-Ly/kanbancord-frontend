@@ -138,5 +138,30 @@
     "locked": " (잠김)",
     "remove": "권한 제거",
     "removeNamed": "{name} 제거"
+  },
+  "presets": {
+    "title": "빠른 설정",
+    "intro": "서버 전체에서 누가 보드를 보고 다룰 수 있는지 한 번에 정해요. @everyone과 고른 역할의 규칙만 바뀌고, 다른 규칙은 그대로예요.",
+    "introBoard": "이 보드를 누가 보고 다룰 수 있는지 한 번에 정해요. 이 보드에서 @everyone과 고른 역할의 규칙만 바뀌어요.",
+    "EVERYONE": {
+      "label": "모두 참여",
+      "description": "기본값이에요. 할 수 있는 일은 각자의 Discord 권한을 따라요."
+    },
+    "MEMBERS_VIEW": {
+      "label": "멤버는 보기, 스태프는 편집",
+      "description": "모두 보드를 볼 수 있고, 스태프 역할만 작업을 추가하고 옮기고 바꿀 수 있어요."
+    },
+    "STAFF_ONLY": {
+      "label": "스태프 전용",
+      "description": "스태프 역할만 보드와 그 안의 모든 것을 볼 수 있어요."
+    },
+    "staffRole": "스태프 역할",
+    "pickRole": "역할 선택…",
+    "apply": "적용",
+    "applied_other": "적용했어요. 규칙 {count}개가 바뀌었어요.",
+    "unchanged": "이미 이렇게 설정되어 있어서 바뀐 게 없어요.",
+    "failed": "설정을 적용하지 못했어요: {error}",
+    "inDraft": "적용했어요. 변경 사항을 저장해야 유지돼요.",
+    "inDraftCreate": "적용했어요. 보드를 만들 때 적용돼요."
   }
 }

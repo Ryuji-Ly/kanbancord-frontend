@@ -8,6 +8,7 @@ import {
   DISCORD_FLAG_NAMES,
   DISCORD_PERM_IMPORTANCE,
   KANBAN_PERM_INFO,
+  applyPermissionPreset,
   fetchServerPermissions,
   groupPermissionsByGrantedTo,
   type PermissionEntry,
@@ -22,6 +23,8 @@ import { FeaturesSettings } from '../serverSettings/FeaturesSettings'
 import { NO_FEATURES } from '../../services/featuresService'
 import { ServerSettingsDialog, type ServerSettingsSection } from '../serverSettings/ServerSettingsDialog'
 import { PermissionsSection } from '../../components/dashboard/permissions/PermissionsSection'
+import { PermissionPresetPicker } from '../../components/dashboard/permissions/PermissionPresetPicker'
+import type { PermissionPreset } from '../../components/dashboard/permissions/permissionPresets'
 import { AccessCheckPanel } from '../accessCheck/AccessCheckPanel'
 import { buildInheritedBoardPermissionDrafts } from '../../components/dashboard/boards/boardPermissionDraft'
 import { DeleteGroupModal } from '../../components/dashboard/DeleteGroupModal'
@@ -286,6 +289,28 @@ export function ServerWorkspace({ serverId, server, showError, showToast }: Serv
     )
   }
 
+  // ── One-step permission setups, server-wide ─────────────────────────────
+  const [presetBusy, setPresetBusy] = useState(false)
+  const [presetMessage, setPresetMessage] = useState('')
+
+  async function applyServerPreset(preset: PermissionPreset, staffRoleId: string | null) {
+    setPresetBusy(true)
+    setPresetMessage('')
+    try {
+      const result = await applyPermissionPreset(serverId, { preset, scopeType: 'SERVER', staffRoleId })
+      await Promise.all([
+        queryClient.invalidateQueries({ queryKey: serverKeys.permissions(serverId) }),
+        queryClient.invalidateQueries({ queryKey: serverKeys.access(serverId) }),
+      ])
+      const count = result.created + result.changed + result.removed
+      setPresetMessage(count === 0 ? t('permissions.presets.unchanged') : t('permissions.presets.applied', { count }))
+    } catch (error) {
+      showError(t('permissions.presets.failed', { error: error instanceof Error ? error.message : String(error) }))
+    } finally {
+      setPresetBusy(false)
+    }
+  }
+
   // ── Board create / settings modal ───────────────────────────────────────
   const [boardEditor, setBoardEditor] = useState<BoardEditor | null>(null)
 
@@ -413,6 +438,9 @@ export function ServerWorkspace({ serverId, server, showError, showToast }: Serv
         <PermissionsSection
           canEditPermissions
           collapsible={false}
+          presets={
+            <PermissionPresetPicker roles={serverRoles} busy={presetBusy} message={presetMessage} onApply={applyServerPreset} />
+          }
           permissionsCollapsed={false}
           permissionsLoading={permissionsQuery.isPending}
           permFilter={permFilter}

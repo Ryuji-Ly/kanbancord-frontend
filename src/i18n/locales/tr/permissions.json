@@ -139,5 +139,31 @@
     "locked": " (kilitli)",
     "remove": "İzni kaldır",
     "removeNamed": "Kaldır: {name}"
+  },
+  "presets": {
+    "title": "Hızlı kurulum",
+    "intro": "Sunucu genelinde panoları kimlerin görebileceğini ve kullanabileceğini tek adımda belirleyin. Yalnızca @everyone ve seçtiğiniz rolün kuralları değişir; diğer kurallar olduğu gibi kalır.",
+    "introBoard": "Bu panoyu kimlerin görebileceğini ve kullanabileceğini tek adımda belirleyin. Yalnızca bu panonun @everyone ve seçtiğiniz rol için olan kuralları değişir.",
+    "EVERYONE": {
+      "label": "Herkes katkıda bulunur",
+      "description": "Varsayılanlar: kimin neyi yapabileceği Discord izinlerine göre belirlenir."
+    },
+    "MEMBERS_VIEW": {
+      "label": "Üyeler görür, ekip düzenler",
+      "description": "Panoları herkes görür; görev eklemeyi, taşımayı ve değiştirmeyi yalnızca ekip rolü yapabilir."
+    },
+    "STAFF_ONLY": {
+      "label": "Yalnızca ekip",
+      "description": "Panoları ve içindeki her şeyi yalnızca ekip rolü görür."
+    },
+    "staffRole": "Ekip rolü",
+    "pickRole": "Bir rol seçin…",
+    "apply": "Uygula",
+    "applied_one": "Uygulandı: {count} kural değişti.",
+    "applied_other": "Uygulandı: {count} kural değişti.",
+    "unchanged": "Zaten böyle ayarlı: hiçbir şey değişmedi.",
+    "failed": "Kurulum uygulanamadı: {error}",
+    "inDraft": "Uygulandı. Korumak için değişiklikleri kaydedin.",
+    "inDraftCreate": "Uygulandı. Pano oluşturulduğunda geçerli olur."
   }
 }
