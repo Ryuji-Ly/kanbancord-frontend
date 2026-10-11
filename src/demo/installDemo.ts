@@ -1,4 +1,5 @@
 import { KANBAN_PERM_INFO } from '../services/permissionsService'
+import { presetChanges, type PermissionPreset } from '../components/dashboard/permissions/permissionPresets'
 import * as data from './demoData'
 
 /**
@@ -139,6 +140,42 @@ const serverRules = [
   isImmutable: rule.key === 'ADMIN',
 }))
 
+/** A one-step setup applied to the server's rules, as the API does it. */
+function applyServerPreset(body: { preset: PermissionPreset; staffRoleId?: string | null }) {
+  const result = { created: 0, changed: 0, removed: 0 }
+  for (const change of presetChanges(body.preset, data.SERVER_ID, body.staffRoleId ?? null)) {
+    const index = serverRules.findIndex(
+      (rule) => rule.subjectType === 'ROLE' && rule.subjectId === change.roleId && rule.kanbanPermissionKey === change.key,
+    )
+    if (change.state === null) {
+      if (index >= 0) {
+        serverRules.splice(index, 1)
+        result.removed++
+      }
+    } else if (index >= 0) {
+      if (serverRules[index].state !== change.state) {
+        serverRules[index] = { ...serverRules[index], state: change.state }
+        result.changed++
+      }
+    } else {
+      serverRules.push({
+        id: Math.max(0, ...serverRules.map((rule) => rule.id)) + 1,
+        scopeType: 'SERVER',
+        scopeId: data.SERVER_ID,
+        subjectType: 'ROLE',
+        subjectId: change.roleId,
+        kanbanPermissionId: permissionId(change.key),
+        kanbanPermissionKey: change.key,
+        state: change.state,
+        priority: 100,
+        isImmutable: false,
+      })
+      result.created++
+    }
+  }
+  return result
+}
+
 const members = data.PEOPLE.map((person, index) => ({
   id: index + 1,
   serverId: data.SERVER_ID,
@@ -198,11 +235,14 @@ function accessCheck(query: URLSearchParams) {
   const owner = userId === data.ME
   const flags = new Set(roles.flatMap((roleId) => ROLE_FLAGS[roleId] ?? []))
   if (owner) flags.add('8')
+  // @everyone is its own layer beneath the other roles, as in the API (and Discord).
   const subjects: Record<string, Set<string>> = {
     DISCORD_PERMISSION: flags,
-    ROLE: new Set(roles),
+    EVERYONE: new Set([data.SERVER_ID]),
+    ROLE: new Set(roleIds),
     USER: new Set(userId ? [userId] : []),
   }
+  const storedType: Record<string, string> = { EVERYONE: 'ROLE' }
   const ref = (rule: (typeof serverRules)[number]) => ({
     ruleId: rule.id,
     scope: 'SERVER',
@@ -218,9 +258,9 @@ function accessCheck(query: URLSearchParams) {
     builtIn: false,
   })
   const trace = (key: string) =>
-    ['DISCORD_PERMISSION', 'ROLE', 'USER']
-      .map((tier) => serverRules.filter((rule) => rule.subjectType === tier && rule.kanbanPermissionKey === key
-        && subjects[tier].has(rule.subjectId)))
+    ['DISCORD_PERMISSION', 'EVERYONE', 'ROLE', 'USER']
+      .map((tier) => serverRules.filter((rule) => rule.subjectType === (storedType[tier] ?? tier)
+        && rule.kanbanPermissionKey === key && subjects[tier].has(rule.subjectId)))
       .filter((rules) => rules.length > 0)
       .map((rules) => ({ rules, decider: rules.find((rule) => rule.state === 'DENY') ?? rules[0] }))
   const adminLayers = trace('ADMIN')
@@ -317,6 +357,7 @@ const ROUTES: [string, RegExp, Handler][] = [
     boards: Object.fromEntries(data.BOARDS.map((board) => [board.boardId, Object.fromEntries(data.BOARD_KEYS.map((key) => [key, true]))])),
   })],
   ['GET', /^\/api\/servers\/\d+\/permissions\/catalog$/, () => catalog],
+  ['POST', /^\/api\/servers\/\d+\/permissions\/presets$/, (_m, { body }) => applyServerPreset(body as { preset: PermissionPreset; staffRoleId?: string | null })],
   ['GET', /^\/api\/servers\/\d+\/permissions$/, (_m, { query }) => (query.get('scopeType') === 'BOARD' ? [] : serverRules)],
   ['GET', /^\/api\/servers\/\d+\/roles$/, () => data.ROLES.map((role) => ({ ...role, serverId: data.SERVER_ID }))],
   ['GET', /^\/api\/servers\/\d+\/members$/, () => members],

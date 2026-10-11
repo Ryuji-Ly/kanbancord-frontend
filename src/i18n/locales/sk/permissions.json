@@ -141,5 +141,33 @@
     "locked": " (zamknuté)",
     "remove": "Odobrať oprávnenie",
     "removeNamed": "Odobrať {name}"
+  },
+  "presets": {
+    "title": "Rýchle nastavenie",
+    "intro": "Jedným krokom urč, kto môže na celom serveri vidieť nástenky a pracovať s nimi. Zmenia sa len pravidlá pre @everyone a vybranú rolu; ostatné pravidlá zostanú, ako sú.",
+    "introBoard": "Jedným krokom urč, kto môže vidieť túto nástenku a pracovať s ňou. Zmenia sa len pravidlá tejto nástenky pre @everyone a vybranú rolu.",
+    "EVERYONE": {
+      "label": "Všetci prispievajú",
+      "description": "Predvolené: čo kto môže robiť, sa riadi jeho oprávneniami Discordu."
+    },
+    "MEMBERS_VIEW": {
+      "label": "Členovia vidia, tím upravuje",
+      "description": "Nástenky vidia všetci; pridávať, presúvať a meniť úlohy môže len rola tímu."
+    },
+    "STAFF_ONLY": {
+      "label": "Len tím",
+      "description": "Nástenky a všetko v nich vidí len rola tímu."
+    },
+    "staffRole": "Rola tímu",
+    "pickRole": "Vyber rolu…",
+    "apply": "Použiť",
+    "applied_one": "Použité: zmenené {count} pravidlo.",
+    "applied_few": "Použité: zmenené {count} pravidlá.",
+    "applied_many": "Použité: zmenených {count} pravidiel.",
+    "applied_other": "Použité: zmenených {count} pravidiel.",
+    "unchanged": "Už je to tak nastavené: nič sa nezmenilo.",
+    "failed": "Nastavenie sa nepodarilo použiť: {error}",
+    "inDraft": "Použité. Ulož zmeny, aby sa zachovalo.",
+    "inDraftCreate": "Použité. Začne platiť pri vytvorení nástenky."
   }
 }

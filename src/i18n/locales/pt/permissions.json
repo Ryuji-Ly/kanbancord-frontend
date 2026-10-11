@@ -140,5 +140,32 @@
     "locked": " (bloqueada)",
     "remove": "Retirar permissão",
     "removeNamed": "Retirar {name}"
+  },
+  "presets": {
+    "title": "Configuração rápida",
+    "intro": "Define num só passo quem pode ver os quadros e trabalhar neles, em todo o servidor. Só muda as regras para @everyone e para o cargo que escolheres; as outras regras ficam como estão.",
+    "introBoard": "Define num só passo quem pode ver este quadro e trabalhar nele. Só muda as regras deste quadro para @everyone e para o cargo que escolheres.",
+    "EVERYONE": {
+      "label": "Todos contribuem",
+      "description": "As predefinições: o que cada um pode fazer segue as suas permissões do Discord."
+    },
+    "MEMBERS_VIEW": {
+      "label": "Os membros veem, a equipa edita",
+      "description": "Todos veem os quadros; só o cargo da equipa pode adicionar, mover e alterar tarefas."
+    },
+    "STAFF_ONLY": {
+      "label": "Só a equipa",
+      "description": "Só o cargo da equipa vê os quadros e tudo o que têm."
+    },
+    "staffRole": "Cargo da equipa",
+    "pickRole": "Escolhe um cargo…",
+    "apply": "Aplicar",
+    "applied_one": "Aplicado: {count} regra alterada.",
+    "applied_many": "Aplicado: {count} regras alteradas.",
+    "applied_other": "Aplicado: {count} regras alteradas.",
+    "unchanged": "Já estava assim: nada mudou.",
+    "failed": "Não foi possível aplicar a configuração: {error}",
+    "inDraft": "Aplicado. Guarda as alterações para o manter.",
+    "inDraftCreate": "Aplicado. Entra em vigor quando o quadro for criado."
   }
 }

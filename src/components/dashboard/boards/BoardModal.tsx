@@ -3,6 +3,8 @@ import { SectionNav } from '../../SectionNav'
 import { AddEntryModal } from '../AddEntryModal'
 import { DeleteGroupModal } from '../DeleteGroupModal'
 import { PermissionsSection } from '../permissions/PermissionsSection'
+import { PermissionPresetPicker } from '../permissions/PermissionPresetPicker'
+import { applyPresetToDraft, everyoneRole, presetChanges, type PermissionPreset } from '../permissions/permissionPresets'
 import { permissionRankWeight } from '../permissionRank'
 import {
   boardPermissionCatalogEntries,
@@ -95,6 +97,7 @@ export function BoardModal({
   const [permissionsCollapsed, setPermissionsCollapsed] = useState(false)
   const [expandedPermissionGroups, setExpandedPermissionGroups] = useState<Set<string>>(new Set())
   const [permFilter, setPermFilter] = useState('')
+  const [presetMessage, setPresetMessage] = useState('')
   const [openAddGroupKey, setOpenAddGroupKey] = useState('')
   const [newPermId, setNewPermId] = useState<number | ''>('')
   const [newPermState, setNewPermState] = useState<'ALLOW' | 'DENY'>('ALLOW')
@@ -110,6 +113,18 @@ export function BoardModal({
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
 
   const boardCatalog = useMemo(() => boardPermissionCatalogEntries(catalogEntries), [catalogEntries])
+
+  /** A one-step setup, applied to the draft: saved with the rest when the board is saved. */
+  function applyPreset(preset: PermissionPreset, staffRoleId: string | null) {
+    const everyoneId = everyoneRole(serverRoles)?.roleId ?? board?.serverId
+    if (!everyoneId) return
+    const catalogIdByKey = new Map(boardCatalog.map((entry) => [entry.key, entry.permissionId]))
+    const scopeId = board?.boardId ? String(board.boardId) : '__draft_board__'
+    setDraftPermissions((prev) =>
+      applyPresetToDraft(prev, presetChanges(preset, everyoneId, staffRoleId), catalogIdByKey, scopeId),
+    )
+    setPresetMessage(mode === 'create' ? t('permissions.presets.inDraftCreate') : t('permissions.presets.inDraft'))
+  }
   const roleMap = useMemo(() => new Map(serverRoles.map((role) => [role.roleId, role.name])), [serverRoles])
   const memberMap = useMemo(
     () => new Map(serverMembers.map((member) => [member.userId, member.displayName ?? member.nickname ?? member.userId])),
@@ -427,6 +442,14 @@ export function BoardModal({
                   <section className="kc-board-modal-section">
                     <PermissionsSection
                       canEditPermissions={canEditPermissions}
+                      presets={
+                        <PermissionPresetPicker
+                          roles={serverRoles}
+                          board
+                          message={presetMessage}
+                          onApply={applyPreset}
+                        />
+                      }
                       helperText={
                         mode === 'create' ? t('dashboard.boardModal.adjustInherited') : undefined
                       }

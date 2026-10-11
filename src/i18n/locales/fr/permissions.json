@@ -140,5 +140,32 @@
     "locked": " (verrouillée)",
     "remove": "Retirer la permission",
     "removeNamed": "Retirer {name}"
+  },
+  "presets": {
+    "title": "Configuration rapide",
+    "intro": "Choisis en une étape qui peut voir les tableaux et travailler dessus, sur tout le serveur. Ça ne change que les règles pour @everyone et le rôle choisi ; les autres règles restent telles quelles.",
+    "introBoard": "Choisis en une étape qui peut voir ce tableau et travailler dessus. Ça ne change que les règles de ce tableau pour @everyone et le rôle choisi.",
+    "EVERYONE": {
+      "label": "Tout le monde contribue",
+      "description": "Les réglages par défaut : ce que chacun peut faire suit ses permissions Discord."
+    },
+    "MEMBERS_VIEW": {
+      "label": "Les membres voient, l'équipe modifie",
+      "description": "Tout le monde voit les tableaux ; seul le rôle d'équipe peut ajouter, déplacer et modifier des tâches."
+    },
+    "STAFF_ONLY": {
+      "label": "Équipe uniquement",
+      "description": "Seul le rôle d'équipe voit les tableaux et tout ce qu'ils contiennent."
+    },
+    "staffRole": "Rôle d'équipe",
+    "pickRole": "Choisir un rôle…",
+    "apply": "Appliquer",
+    "applied_one": "Appliqué : {count} règle modifiée.",
+    "applied_many": "Appliqué : {count} règles modifiées.",
+    "applied_other": "Appliqué : {count} règles modifiées.",
+    "unchanged": "Déjà configuré ainsi : rien n'a changé.",
+    "failed": "Impossible d'appliquer la configuration : {error}",
+    "inDraft": "Appliqué. Enregistre les modifications pour le garder.",
+    "inDraftCreate": "Appliqué. Ça prend effet à la création du tableau."
   }
 }

@@ -140,5 +140,32 @@
     "locked": " (bloqueado)",
     "remove": "Quitar permiso",
     "removeNamed": "Quitar {name}"
+  },
+  "presets": {
+    "title": "Configuración rápida",
+    "intro": "Decide en un paso quién puede ver los tableros y trabajar en ellos, en todo el servidor. Solo cambia las reglas de @everyone y del rol que elijas; las demás reglas se quedan como están.",
+    "introBoard": "Decide en un paso quién puede ver este tablero y trabajar en él. Solo cambia las reglas de este tablero para @everyone y el rol que elijas.",
+    "EVERYONE": {
+      "label": "Todos colaboran",
+      "description": "Lo predeterminado: lo que cada uno puede hacer sigue sus permisos de Discord."
+    },
+    "MEMBERS_VIEW": {
+      "label": "Los miembros ven, el staff edita",
+      "description": "Todos ven los tableros; solo el rol de staff puede añadir, mover y cambiar tareas."
+    },
+    "STAFF_ONLY": {
+      "label": "Solo el staff",
+      "description": "Solo el rol de staff ve los tableros y todo lo que contienen."
+    },
+    "staffRole": "Rol de staff",
+    "pickRole": "Elige un rol…",
+    "apply": "Aplicar",
+    "applied_one": "Aplicado: {count} regla cambiada.",
+    "applied_many": "Aplicado: {count} reglas cambiadas.",
+    "applied_other": "Aplicado: {count} reglas cambiadas.",
+    "unchanged": "Ya estaba así: no ha cambiado nada.",
+    "failed": "No se ha podido aplicar la configuración: {error}",
+    "inDraft": "Aplicado. Guarda los cambios para conservarlo.",
+    "inDraftCreate": "Aplicado. Se aplicará al crear el tablero."
   }
 }
