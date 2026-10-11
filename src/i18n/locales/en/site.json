@@ -52,6 +52,8 @@
         "text": "Themes including high contrast and colour-blind friendly ones, text size, and a simple mode for small teams."
       }
     },
+    "usesTitle": "Not just for work",
+    "uses": "KanbanCord works just as well for the lists you keep with the people closest to you: plans to make, films to watch, books to read, things to buy. Make a board in a small server, keep it in simple mode, and tick things off together.",
     "stepsTitle": "Start in a minute",
     "step1": "<strong>Add the bot</strong> to your server.",
     "step2": "<strong>Create a board</strong> with <code>/board create</code>.",

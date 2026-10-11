@@ -52,6 +52,8 @@
         "text": "Témy vrátane vysokého kontrastu a tém pre farboslepých, veľkosť textu a jednoduchý režim pre malé tímy."
       }
     },
+    "usesTitle": "Nielen na prácu",
+    "uses": "KanbanCord sa rovnako hodí aj na zoznamy, ktoré si vedieš s najbližšími: plány, filmy na pozretie, knihy na prečítanie, veci na kúpu. Vytvor si nástenku na malom serveri, nechaj ju v jednoduchom režime a odškrtávajte veci spolu.",
     "stepsTitle": "Začni za minútu",
     "step1": "<strong>Pridaj bota</strong> na svoj server.",
     "step2": "<strong>Vytvor nástenku</strong> príkazom <code>/board create</code>.",

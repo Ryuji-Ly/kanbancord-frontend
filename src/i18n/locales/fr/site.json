@@ -52,6 +52,8 @@
         "text": "Des thèmes, dont des thèmes à fort contraste et adaptés au daltonisme, la taille du texte, et un mode simple pour les petites équipes."
       }
     },
+    "usesTitle": "Pas seulement pour le travail",
+    "uses": "KanbanCord convient tout aussi bien aux listes que tu tiens avec tes proches \u0001 des sorties à prévoir, des films à voir, des livres à lire, des choses à acheter. Crée un tableau dans un petit serveur, reste en mode simple et cochez les choses ensemble.",
     "stepsTitle": "Prêt en une minute",
     "step1": "<strong>Ajoute le bot</strong> à ton serveur.",
     "step2": "<strong>Crée un tableau</strong> avec <code>/board create</code>.",

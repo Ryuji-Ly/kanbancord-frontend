@@ -52,6 +52,8 @@
         "text": "Yüksek kontrast ve renk körlüğüne uygun temalar dahil temalar, metin boyutu ve küçük ekipler için sade mod."
       }
     },
+    "usesTitle": "Sadece iş için değil",
+    "uses": "KanbanCord, en yakınlarınızla birlikte tuttuğunuz listeler için de aynı derecede iyi çalışır: yapılacak planlar, izlenecek filmler, okunacak kitaplar, alınacak şeyler. Küçük bir sunucuda bir pano oluşturun, sade modda bırakın ve her şeyi birlikte tamamlayın.",
     "stepsTitle": "Bir dakikada başlayın",
     "step1": "<strong>Botu sunucunuza ekleyin</strong>.",
     "step2": "<code>/board create</code> ile <strong>bir pano oluşturun</strong>.",

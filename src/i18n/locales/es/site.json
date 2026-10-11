@@ -52,6 +52,8 @@
         "text": "Temas, incluidos uno de alto contraste y otros aptos para el daltonismo, tamaño del texto y un modo simple para equipos pequeños."
       }
     },
+    "usesTitle": "No solo para el trabajo",
+    "uses": "KanbanCord funciona igual de bien para las listas que compartes con tu gente más cercana: planes por hacer, películas por ver, libros por leer, cosas por comprar. Crea un tablero en un servidor pequeño, mantenlo en modo simple y tachad las cosas juntos.",
     "stepsTitle": "Empieza en un minuto",
     "step1": "<strong>Añade el bot</strong> a tu servidor.",
     "step2": "<strong>Crea un tablero</strong> con <code>/board create</code>.",
