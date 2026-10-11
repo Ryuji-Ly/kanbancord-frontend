@@ -12,7 +12,7 @@ export function PrivacyPage() {
       path="/privacy"
     >
       <h1>Privacy Policy</h1>
-      <p className="kc-muted">Last updated {SITE.legalUpdated}</p>
+      <p className="kc-muted">Last updated {SITE.privacyUpdated}</p>
 
       <p>
         This policy explains what personal data {SITE.name} (the website at {SITE.url} and the {SITE.name} Discord bot)
@@ -85,6 +85,12 @@ export function PrivacyPage() {
           <strong>Server member data</strong>, for members who have not used {SITE.name}: so a server's permissions and
           assignments work for everyone in it. This is the legitimate interest of the server that added the bot, and ours
           in providing it (Article 6(1)(f)). You can object: see "Your rights" below.
+        </li>
+        <li>
+          <strong>To understand and improve {SITE.name}</strong>: the operator may look at how boards are used, including
+          what they contain, to learn what people use {SITE.name} for and to make it better for them. What is seen is
+          never shared, published, sold or used for anything else. This is our legitimate interest in improving the
+          service (Article 6(1)(f)).
         </li>
       </ul>
       <p>We never sell your data, use it for advertising, or share it beyond what is described here.</p>

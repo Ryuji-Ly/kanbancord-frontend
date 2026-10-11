@@ -12,7 +12,7 @@ export function TermsPage() {
       path="/terms"
     >
       <h1>Terms of Service</h1>
-      <p className="kc-muted">Last updated {SITE.legalUpdated}</p>
+      <p className="kc-muted">Last updated {SITE.termsUpdated}</p>
 
       <p>
         These terms apply to {SITE.name}: the website at {SITE.url} and the {SITE.name} Discord bot (together, "the

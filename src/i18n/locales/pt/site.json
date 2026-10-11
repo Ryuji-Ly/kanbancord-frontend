@@ -52,6 +52,8 @@
         "text": "Temas, incluindo de alto contraste e adequados ao daltonismo, tamanho do texto, e um modo simples para equipas pequenas."
       }
     },
+    "usesTitle": "Não só para o trabalho",
+    "uses": "O KanbanCord funciona igualmente bem para as listas que partilhas com as pessoas mais próximas: planos a fazer, filmes para ver, livros para ler, coisas para comprar. Cria um quadro num servidor pequeno, mantém-no em modo simples e vão riscando as coisas juntos.",
     "stepsTitle": "Pronto num minuto",
     "step1": "<strong>Adiciona o bot</strong> ao teu servidor.",
     "step2": "<strong>Cria um quadro</strong> com <code>/board create</code>.",

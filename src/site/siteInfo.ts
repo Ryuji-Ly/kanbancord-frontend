@@ -27,8 +27,10 @@ export const SITE = {
   },
   /** The unrelated bot that happens to share the name, mentioned in the About page's story. */
   sameNameBotUrl: 'https://discord.com/discovery/applications/1301269207073165444',
-  /** When the Privacy Policy and Terms of Service last changed. */
-  legalUpdated: '25 September 2026',
+  /** When the Privacy Policy last changed. */
+  privacyUpdated: '11 October 2026',
+  /** When the Terms of Service last changed. */
+  termsUpdated: '25 September 2026',
 }
 
 /** The values messages about the site fill in: {name}, {operator} and {email}. */

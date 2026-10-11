@@ -50,6 +50,11 @@ export function LandingPage({ onLogin }: { onLogin: () => void }) {
         ))}
       </section>
 
+      <section className="kc-landing-uses">
+        <h2>{t('site.landing.usesTitle')}</h2>
+        <p>{t('site.landing.uses')}</p>
+      </section>
+
       <section className="kc-landing-steps">
         <h2>{t('site.landing.stepsTitle')}</h2>
         <ol>

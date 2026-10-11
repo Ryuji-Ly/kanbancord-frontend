@@ -52,6 +52,8 @@
         "text": "Designs, darunter kontrastreiche und farbenblindfreundliche, Textgröße und ein einfacher Modus für kleine Teams."
       }
     },
+    "usesTitle": "Nicht nur für die Arbeit",
+    "uses": "KanbanCord eignet sich genauso für die Listen, die du mit deinen engsten Leuten führst: Pläne, Filme, die ihr sehen wollt, Bücher zum Lesen, Dinge zum Kaufen. Erstelle ein Board in einem kleinen Server, bleib im einfachen Modus und hakt die Dinge gemeinsam ab.",
     "stepsTitle": "In einer Minute startklar",
     "step1": "<strong>Füge den Bot</strong> zu deinem Server hinzu.",
     "step2": "<strong>Erstelle ein Board</strong> mit <code>/board create</code>.",
