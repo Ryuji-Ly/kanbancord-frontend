@@ -61,7 +61,7 @@
       },
       "blueYellow": {
         "label": "Blau-Gelb-sicher",
-        "description": "Für Tritanopie: Türkis für Erfolg, Rot für Gefahr, Pink für Warnungen."
+        "description": "Für Tritanopie: Türkis für Erfolg, Rot für Gefahr, Gelb für Warnungen."
       }
     },
     "theme": "Design",

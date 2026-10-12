@@ -61,7 +61,7 @@
       },
       "blueYellow": {
         "label": "Mavi-sarı renk körlüğüne uygun",
-        "description": "Tritanopi için: başarı için turkuaz, tehlike için kırmızı, uyarılar için pembe."
+        "description": "Tritanopi için: başarı için turkuaz, tehlike için kırmızı, uyarılar için sarı."
       }
     },
     "theme": "Tema",

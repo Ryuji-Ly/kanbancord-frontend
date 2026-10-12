@@ -61,7 +61,7 @@
       },
       "blueYellow": {
         "label": "Apto para azul-amarillo",
-        "description": "Para tritanopia: turquesa para el éxito, rojo para el peligro, rosa para los avisos."
+        "description": "Para tritanopia: turquesa para el éxito, rojo para el peligro, amarillo para los avisos."
       }
     },
     "theme": "Tema",
