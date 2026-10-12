@@ -64,6 +64,22 @@ npm run build   # type-checks, builds, and prerenders the public pages
 
 Pushes to `main` build a Docker image (nginx serving the built site) and publish it to the GitHub Container Registry.
 
+## Discord Activity
+
+The same app also runs inside Discord as an Activity, opened from a voice or text channel
+(`src/activity/`). Discord serves it from `<client id>.discordsays.com` through its own proxy, signs
+the user in, and lets the page reach other hosts only through URL mappings. In the Developer
+Portal, under Activities → URL Mappings:
+
+| Prefix | Target |
+| --- | --- |
+| `/` | `kanbancord.com` |
+| `/kc-api` | `api.kanbancord.com` |
+| `/discord-cdn` | `cdn.discordapp.com` |
+| `/imgur` | `i.imgur.com` |
+
+The API allows the Activity's origin by itself, from the Discord client id it is configured with.
+
 ## Translating
 
 Every piece of text the website shows is in [`src/i18n/locales/en`](src/i18n/locales/en), one JSON file per area. To
