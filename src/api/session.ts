@@ -1,4 +1,5 @@
 import { useSyncExternalStore } from 'react'
+import { isActivity } from '../activity/detect'
 import { t } from '../i18n'
 import { apiUrl, parseError } from './http'
 import type { AuthResponse, MeResponse } from '../types/auth'
@@ -9,6 +10,9 @@ import type { AuthResponse, MeResponse } from '../types/auth'
  * The access token lives only in memory, so scripts that run on the page later cannot find it in
  * storage. It is short-lived and renewed with the refresh cookie, which is httpOnly and sent only to
  * the API's auth endpoints. A new tab or a reload therefore starts by refreshing.
+ *
+ * Inside the Discord Activity the cookie cannot be relied on, so the refresh token is kept in memory
+ * as well, for as long as the Activity is open; Discord signs the user in again when it is reopened.
  */
 export type SessionState =
   | { status: 'loading' }
@@ -31,6 +35,8 @@ let state: SessionState = { status: 'loading' }
 /** Bumped on every sign-in and sign-out, so a refresh that was already under way cannot undo them. */
 let generation = 0
 let refreshing: Promise<SessionState> | null = null
+/** The Activity's refresh token; the website's is in the cookie instead. */
+let activityRefreshToken: string | null = null
 const listeners = new Set<() => void>()
 
 // Tabs tell each other when someone signs in or out, so every tab shows the same state.
@@ -58,9 +64,25 @@ function signedIn(auth: AuthResponse): SessionState {
   }
 }
 
+type ActivityAuthResponse = { session: AuthResponse; refreshToken: string | null }
+
+function postActivity(path: string, body: unknown): Promise<Response> {
+  return fetch(apiUrl(`/api/auth/activity/${path}`), {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  })
+}
+
 async function requestRefresh(): Promise<SessionState> {
   const startedAt = generation
-  const response = await fetch(apiUrl('/api/auth/refresh'), { method: 'POST', credentials: 'include' })
+  if (isActivity() && !activityRefreshToken) {
+    setState({ status: 'signedOut', reason: null })
+    return state
+  }
+  const response = isActivity()
+    ? await postActivity('refresh', { refreshToken: activityRefreshToken })
+    : await fetch(apiUrl('/api/auth/refresh'), { method: 'POST', credentials: 'include' })
   if (generation !== startedAt) return state
   if (response.status === 401) {
     // Only a session that existed can have expired; a visitor who never signed in sees no message.
@@ -70,7 +92,14 @@ async function requestRefresh(): Promise<SessionState> {
   if (!response.ok) {
     throw new Error(await parseError(response))
   }
-  setState(signedIn((await response.json()) as AuthResponse))
+  if (isActivity()) {
+    const refreshed = (await response.json()) as ActivityAuthResponse
+    // Null when the API could not resend a token it rotated moments ago; the current one still works.
+    activityRefreshToken = refreshed.refreshToken ?? activityRefreshToken
+    setState(signedIn(refreshed.session))
+  } else {
+    setState(signedIn((await response.json()) as AuthResponse))
+  }
   return state
 }
 
@@ -140,17 +169,39 @@ export async function signInWithDiscordCode(code: string, redirectUri: string): 
     throw new Error(await parseError(response))
   }
   const auth = (await response.json()) as AuthResponse
+  completeSignIn(auth)
+  channel?.postMessage('signed-in')
+  return auth.user
+}
+
+/** Completes a sign-in inside the Discord Activity, with the code Discord's `authorize` returned. */
+export async function signInWithActivityCode(code: string): Promise<MeResponse> {
+  const response = await postActivity('exchange', { code })
+  if (!response.ok) {
+    throw new Error(await parseError(response))
+  }
+  const auth = (await response.json()) as ActivityAuthResponse
+  activityRefreshToken = auth.refreshToken
+  completeSignIn(auth.session)
+  return auth.session.user
+}
+
+function completeSignIn(auth: AuthResponse) {
   generation++
   loaded = Promise.resolve(signedIn(auth))
   setState(signedIn(auth))
-  channel?.postMessage('signed-in')
-  return auth.user
 }
 
 /** Signs out this browser's session on the server, then everywhere in this browser. */
 export async function signOut(): Promise<void> {
   try {
-    await fetch(apiUrl('/api/auth/logout'), { method: 'POST', credentials: 'include' })
+    if (isActivity()) {
+      const refreshToken = activityRefreshToken
+      activityRefreshToken = null
+      if (refreshToken) await postActivity('logout', { refreshToken })
+    } else {
+      await fetch(apiUrl('/api/auth/logout'), { method: 'POST', credentials: 'include' })
+    }
   } finally {
     generation++
     setState({ status: 'signedOut', reason: 'loggedOut' })

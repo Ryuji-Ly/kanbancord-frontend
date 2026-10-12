@@ -9,6 +9,8 @@ import { removeLegacyTokens } from './services/authService'
 import { applyPreferences, cachedPreferences } from './features/preferences/preferencesModel'
 import { startI18n } from './i18n'
 import { I18nProvider } from './i18n/I18nProvider'
+import { isActivity } from './activity/detect'
+import { startActivity } from './activity/activity'
 
 removeLegacyTokens()
 // The theme this browser last used, before anything renders, so the page does not flash the default.
@@ -37,6 +39,11 @@ if (import.meta.env.DEV && import.meta.env.MODE === 'demo') {
     installDemo()
     void render()
   })
+} else if (isActivity()) {
+  // Inside Discord: connect and sign in first, so the app opens on the user's boards.
+  void startActivity()
+    .catch((error: unknown) => console.error('Could not start the Discord Activity', error))
+    .finally(() => void render())
 } else {
   void render()
 }

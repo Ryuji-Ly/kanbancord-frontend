@@ -21,6 +21,7 @@ import {
 } from '../features/dashboard/dashboardModel'
 import { ServerWorkspace } from '../features/dashboard/ServerWorkspace'
 import { useDashboardSession } from '../features/dashboard/useDashboardSession'
+import { activityGuildId } from '../activity/activity'
 
 /** Discord guild lists change rarely; refresh them every 10 minutes while the dashboard is open. */
 const GUILD_REFRESH_MS = 10 * 60_000
@@ -29,7 +30,8 @@ export function DashboardPage() {
   const navigate = useNavigate()
   const session = useDashboardSession()
   const { toasts, showToast } = useToasts()
-  const [chosenServerId, setChosenServerId] = useState(loadSelectedServerId)
+  // Opened as an Activity in a server: that server, otherwise the one chosen last time.
+  const [chosenServerId, setChosenServerId] = useState(() => activityGuildId() ?? loadSelectedServerId())
 
   const userId = session.me ? String(session.me.userId) : ''
   const guildsQuery = useQuery({

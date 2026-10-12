@@ -1,6 +1,8 @@
 import { t } from '../../i18n'
 import { useCallback, useEffect, useState } from 'react'
 import { signOut, useSession } from '../../api/session'
+import { isActivity } from '../../activity/detect'
+import { signInThroughDiscord } from '../../activity/activity'
 import {
   clearCallbackQuery,
   clearOAuthSessionState,
@@ -94,6 +96,13 @@ export function useDashboardSession() {
 
   function login() {
     setBanner(null)
+    if (isActivity()) {
+      // Discord signs the user in itself; its sign-in page cannot open inside the Activity.
+      signInThroughDiscord().catch((error: unknown) => {
+        setBanner({ text: error instanceof Error ? error.message : t('dashboard.session.loginFailed'), type: 'error' })
+      })
+      return
+    }
     startDiscordLogin((text) => {
       if (text) setBanner({ text, type: 'error' })
     })
