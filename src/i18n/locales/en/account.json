@@ -61,7 +61,7 @@
       },
       "blueYellow": {
         "label": "Blue-yellow safe",
-        "description": "For tritanopia: teal for success, red for danger, pink for warnings."
+        "description": "For tritanopia: teal for success, red for danger, yellow for warnings."
       }
     },
     "theme": "Theme",

@@ -61,7 +61,7 @@
       },
       "blueYellow": {
         "label": "Adapté bleu-jaune",
-        "description": "Pour la tritanopie : turquoise pour le succès, rouge pour le danger, rose pour les avertissements."
+        "description": "Pour la tritanopie : turquoise pour le succès, rouge pour le danger, jaune pour les avertissements."
       }
     },
     "theme": "Thème",

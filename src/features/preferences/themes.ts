@@ -161,18 +161,23 @@ export const PRESETS: Preset[] = [
     extra: { '--kc-border': '#ffffff', '--kc-control-border': '#ffffff', '--kc-subtle': '#e5e5e5', '--kc-faint': '#bdbdbd' },
   },
   {
-    // Okabe–Ito colours: sky blue for success and orange for danger stay apart with protanopia and deuteranopia.
+    // Okabe–Ito colours: sky blue for success, vermillion for danger and yellow for warning stay apart
+    // with protanopia and deuteranopia (orange against yellow did not), and a light rose accent does
+    // not pass for the blue of success as lavender does. Simulated, every pair of these is at least
+    // 20 apart (CIEDE2000).
     id: 'red-green',
     label: 'account.appearance.presets.redGreen.label',
     description: 'account.appearance.presets.redGreen.description',
-    core: { ...DARK_CORE, success: '#56b4e9', danger: '#e69f00', warning: '#f0e442' },
+    core: { ...DARK_CORE, accent: '#fda4af', success: '#56b4e9', danger: '#d55e00', warning: '#f0e442' },
   },
   {
-    // Tritanopia confuses blue with green and yellow with violet; red against teal stays clear.
+    // Tritanopia confuses blue with green and yellow with violet; red against teal stays clear, and
+    // amber for warning stays apart from both and from the lavender accent. Simulated, every pair of
+    // these is at least 24 apart (CIEDE2000).
     id: 'blue-yellow',
     label: 'account.appearance.presets.blueYellow.label',
     description: 'account.appearance.presets.blueYellow.description',
-    core: { ...DARK_CORE, accent: '#f9a8d4', success: '#2dd4bf', danger: '#ef4444', warning: '#f472b6' },
+    core: { ...DARK_CORE, success: '#2dd4bf', danger: '#ef4444', warning: '#fbbf24' },
   },
 ]
 
