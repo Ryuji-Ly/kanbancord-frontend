@@ -479,6 +479,8 @@ export function ServerWorkspace({ serverId, server, showError, showToast }: Serv
     settingsSections.push({
       key: 'audit',
       label: t('dashboard.settings.auditLog'),
+      // Long, with its own filters and paging: a page of its own.
+      separate: true,
       content: <AuditLogSection serverId={serverId} boards={boardsQuery.data ?? []} members={serverMembers} roles={serverRoles} />,
     })
   }
