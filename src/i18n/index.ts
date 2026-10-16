@@ -46,6 +46,9 @@ export const LANGUAGES: string[] = [
 
 const STORAGE_KEY = 'kc.language'
 let current: { language: string; messages: Tree } = { language: 'en', messages: en }
+/** Languages the platform knows the reader uses, before the browser's: Discord's, inside the Activity. */
+let platformLanguages: string[] = []
+let started = false
 const listeners = new Set<() => void>()
 
 /** The language the website is shown in, such as 'en'. */
@@ -95,8 +98,18 @@ export async function chooseLanguage(code: string | null): Promise<void> {
   await switchTo(code ?? preferredLanguage())
 }
 
+/**
+ * A language the platform says the reader uses, such as their Discord language inside the Activity.
+ * It goes before the browser's; a language picked by hand still goes before both.
+ */
+export async function setPlatformLanguage(tag: string | null): Promise<void> {
+  platformLanguages = tag ? [tag] : []
+  if (started && !chosenLanguage()) await switchTo(preferredLanguage())
+}
+
 /** Loads the reader's language before the app first renders, so English does not flash first. */
 export async function startI18n(): Promise<void> {
+  started = true
   await switchTo(chosenLanguage() ?? preferredLanguage())
 }
 
@@ -192,7 +205,8 @@ async function loadTranslation(code: string): Promise<Tree> {
 }
 
 function browserLanguages(): readonly string[] {
-  return typeof navigator === 'undefined' ? [] : navigator.languages ?? [navigator.language]
+  const browser = typeof navigator === 'undefined' ? [] : navigator.languages ?? [navigator.language]
+  return [...platformLanguages, ...browser]
 }
 
 function baseOf(tag: string): string {

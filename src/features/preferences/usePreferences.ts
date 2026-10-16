@@ -4,7 +4,11 @@ import { useSession } from '../../api/session'
 import { patchPreferences } from '../../services/meService'
 import type { MeResponse } from '../../types/auth'
 import { useMe } from '../session/sessionQueries'
+import { chooseLanguage, chosenLanguage, LANGUAGES } from '../../i18n'
 import { applyPreferences, cachePreferences, type Preferences } from './preferencesModel'
+
+/** The saved value for following the browser; null would remove the setting instead. */
+export const FOLLOW_BROWSER = 'auto'
 
 /** The signed-in user's preferences, or none when signed out or not loaded yet. */
 export function usePreferences(): Preferences | undefined {
@@ -50,6 +54,20 @@ export function useApplyPreferences() {
   const session = useSession()
   const preferences = usePreferences()
   const signedOut = session.status === 'signedOut'
+  const { mutate: save } = useSavePreferences()
+
+  // The language goes with the account: on every device and browser, and in the Discord Activity,
+  // which keeps its own storage. This browser keeps a copy, so the next visit starts in it at once.
+  useEffect(() => {
+    if (signedOut || !preferences) return
+    if (preferences.language) {
+      const saved = LANGUAGES.includes(preferences.language) ? preferences.language : null
+      if (saved !== chosenLanguage()) void chooseLanguage(saved)
+    } else if (chosenLanguage()) {
+      // Picked on this browser before the choice was saved with the account: keep it, now everywhere.
+      save({ language: chosenLanguage()! })
+    }
+  }, [preferences, signedOut, save])
 
   useEffect(() => {
     if (signedOut) {
