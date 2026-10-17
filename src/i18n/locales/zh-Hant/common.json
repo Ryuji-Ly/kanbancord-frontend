@@ -1,0 +1,59 @@
+{
+  "features": {
+    "labels": {
+      "label": "標籤",
+      "description": "任務上的彩色標籤，依看板管理。",
+      "show": "顯示標籤"
+    },
+    "priorities": {
+      "label": "優先順序",
+      "description": "每個任務的優先順序，從 Critical 到 Ignorable。",
+      "show": "顯示優先順序"
+    },
+    "assignees": {
+      "label": "負責人",
+      "description": "將任務指派給成員。",
+      "show": "顯示負責人"
+    },
+    "comments": {
+      "label": "留言",
+      "description": "每個任務下的討論。",
+      "show": "顯示留言"
+    },
+    "dueDates": {
+      "label": "截止日期",
+      "description": "每個任務需要完成的日期和時間。",
+      "show": "顯示截止日期"
+    },
+    "permissions": {
+      "label": "自訂權限",
+      "description": "依伺服器和看板設定誰可以做什麼。關閉時，存取權限沿用 Discord 權限。",
+      "show": "顯示自訂權限"
+    }
+  },
+  "requestFailed": "要求失敗（{status}）",
+  "notSignedIn": "你尚未登入。",
+  "cancel": "取消",
+  "close": "關閉",
+  "loginWithDiscord": "使用 Discord 登入",
+  "deleting": "正在刪除…",
+  "loading": "載入中...",
+  "saving": "正在儲存…",
+  "change": "變更",
+  "closeModal": "關閉對話框",
+  "save": "儲存",
+  "applying": "正在套用…",
+  "name": "名稱",
+  "description": "說明",
+  "saveChanges": "儲存變更",
+  "add": "新增",
+  "delete": "刪除",
+  "deletingDots": "正在刪除...",
+  "confirmNamed": "確認{title}",
+  "creatingDots": "正在建立...",
+  "creating": "正在建立…",
+  "adding": "正在新增…",
+  "savingDots": "正在儲存...",
+  "changeNotSaved": "無法儲存變更",
+  "loadingEllipsis": "載入中…"
+}

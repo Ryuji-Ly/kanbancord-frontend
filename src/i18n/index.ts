@@ -227,9 +227,20 @@ const LATIN_AMERICA = new Set([
   'VE', '419',
 ])
 
-/** The website's regional variant for a tag: es-MX → es-419 when the website has it. */
+/** Chinese written in traditional characters: by script (zh-Hant) or by region (zh-TW, zh-HK, zh-MO). */
+const TRADITIONAL_CHINESE = new Set(['HANT', 'TW', 'HK', 'MO'])
+
+/**
+ * The website's regional variant for a tag: es-MX → es-419, and Chinese by its script, which
+ * browsers and Discord usually give as a region (zh-CN → zh-Hans, zh-TW → zh-Hant, plain zh → zh-Hans).
+ */
 function regionalVariant(tag: string): string | undefined {
-  const [base, region] = tag.split('-')
+  const [base, ...rest] = tag.split('-')
+  if (base.toLowerCase() === 'zh') {
+    const traditional = rest.some((part) => TRADITIONAL_CHINESE.has(part.toUpperCase()))
+    return LANGUAGES.find((code) => code === (traditional ? 'zh-Hant' : 'zh-Hans'))
+  }
+  const region = rest[0]
   if (!region) return undefined
   if (base.toLowerCase() === 'es' && LATIN_AMERICA.has(region.toUpperCase())) {
     return LANGUAGES.find((code) => code === 'es-419')
@@ -239,7 +250,7 @@ function regionalVariant(tag: string): string | undefined {
 
 /**
  * The first of the browser's languages the website has: exactly (pt-BR), by its region's variant
- * (es-MX → es-419), or by its base (fr-BE → fr, pt-PT → pt).
+ * (es-MX → es-419, zh-TW → zh-Hant), or by its base (fr-BE → fr, pt-PT → pt).
  */
 function preferredLanguage(): string {
   for (const tag of browserLanguages()) {

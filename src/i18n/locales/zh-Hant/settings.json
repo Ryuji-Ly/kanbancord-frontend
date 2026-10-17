@@ -1,0 +1,83 @@
+{
+  "boardFeatures": {
+    "title": "簡潔模式",
+    "intro": "關閉這個看板不需要的功能；其他看板不受影響。關閉功能只會隱藏它並保留資料。此處的變更立即生效。",
+    "everything": "伺服器允許的所有功能",
+    "offForServer": "已在伺服器設定中為整個伺服器關閉。"
+  },
+  "board": {
+    "loadFailed": "無法載入看板設定"
+  },
+  "boardNotifications": {
+    "intro": "張貼這個看板動態的更新推播。在你於此處變更之前，每個推播都沿用伺服器通知中的自身設定；此處的變更只對這個看板生效。變更會立即儲存。",
+    "noFeeds": "沒有推播張貼這個看板的動態。伺服器管理者可在伺服器設定中新增推播。",
+    "followsFeed": "沿用推播的設定。",
+    "changes_other": "這個看板有 {count} 項變更。",
+    "useFeed": "使用推播的設定",
+    "changed": "已變更"
+  },
+  "threads": {
+    "updatesBoth": "討論串和頻道",
+    "updatesThread": "僅討論串",
+    "updatesChannel": "僅頻道",
+    "title": "任務討論串",
+    "intro": "在這個看板的某個更新推播頻道中，為每個任務開設討論用的討論串。討論串名稱會跟著任務標題，任務被刪除或封存時討論串也會封存。推播關於該任務的更新（包括新留言）會依下方的選擇張貼到討論串中；在討論串裡寫的訊息會保留在 Discord 中。變更會立即儲存。",
+    "noFeed": "這個看板還沒有更新推播。請在伺服器的通知設定中新增，或在 Discord 中使用 <code>/kanbancord feed</code>，然後在這裡開啟討論串。",
+    "perTask": "每個任務一個討論串",
+    "notWorking": "已開啟但無法運作：選取的頻道已沒有這個看板的推播。請選擇另一個推播頻道。",
+    "perTaskHint": "每個任務會在下次有變化時取得討論串。",
+    "channel": "頻道",
+    "channelWithoutFeed": "沒有這個看板推播的頻道",
+    "botCannot": "（機器人無法在此建立討論串）",
+    "updatesGoTo": "任務的更新傳送到",
+    "private": "私人討論串",
+    "privateNotPossible": "在這個頻道無法使用：私人討論串需要一個機器人可以建立私人討論串的文字頻道。",
+    "privateHint": "討論串中只有任務建立者和負責人，以及伺服器管理員。新的負責人會被加入。",
+    "cannotMake": "機器人無法在 #{channel} 中建立討論串，因此任務不會取得新的討論串。請在那裡授予它「檢視頻道」「在討論串中傳送訊息」和「建立公開討論串」權限，或選擇其他頻道。",
+    "cannotMakePrivate": "機器人無法在 #{channel} 中建立私人討論串，因此任務不會取得新的討論串。請在那裡授予它「檢視頻道」「在討論串中傳送訊息」和「建立私人討論串」權限，或選擇其他頻道。"
+  },
+  "usage_other": "{count} 個任務",
+  "colourOf": "{name}的顏色",
+  "labels": {
+    "intro": "這個看板的任務可以使用的標籤。此處的變更立即生效。",
+    "none": "還沒有標籤。",
+    "name": "標籤名稱",
+    "newColour": "新標籤的顏色",
+    "newPlaceholder": "新標籤，例如 frontend",
+    "add": "新增標籤",
+    "deleteTitle": "刪除標籤",
+    "deleteConfirm": "從這個看板刪除<strong>{name}</strong>？",
+    "deleteUsage_other": " 它將從使用它的 {count} 個任務上移除。"
+  },
+  "priorities": {
+    "title": "優先順序",
+    "intro": "優先順序等級，最緊急的在前。一個任務最多一個。此處的變更立即生效。",
+    "none": "沒有優先順序等級。這個看板上的任務沒有優先順序。",
+    "moveUp": "上移{name}",
+    "moveDown": "下移{name}",
+    "name": "優先順序名稱",
+    "newColour": "新等級的顏色",
+    "newPlaceholder": "新等級，加到最後面",
+    "add": "新增等級",
+    "deleteTitle": "刪除優先順序等級",
+    "deleteConfirm": "刪除<strong>{name}</strong>？",
+    "deleteUsage_other": " 使用此優先順序的 {count} 個任務將不再有優先順序。"
+  },
+  "features": {
+    "intro": "簡潔模式讓看板只保留基本內容：欄，以及有標題和說明的任務。只開啟這個伺服器需要的功能。關閉功能只會隱藏它並保留資料。",
+    "enableEverything": "全部開啟",
+    "openFirst": "{description} 請先關閉開放權限。",
+    "open": "開放權限",
+    "openLabel": "所有人都可以做任何事",
+    "customFirst": "請先關閉自訂權限：其規則會保留，以便你再次開啟時使用。",
+    "openHint": "所有能在這個伺服器發言的人，無論身分組為何，都可以建立、變更、移動和刪除欄、任務、標籤和優先順序等級。管理伺服器、看板權限、刪除或封存看板以及變更紀錄仍由管理者負責。",
+    "confirmTitle": "開啟開放權限？",
+    "turnOn": "開啟",
+    "turningOn": "正在開啟...",
+    "confirm": "所有能在這個伺服器發言的人，無論身分組為何，都將能夠建立、變更、移動和刪除欄、任務、標籤和優先順序等級。最適合彼此信任的小團體。"
+  },
+  "dialog": {
+    "sections": "{title}區段",
+    "close": "關閉{title}"
+  }
+}

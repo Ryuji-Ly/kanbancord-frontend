@@ -1,0 +1,68 @@
+{
+  "categories": {
+    "SERVER": "伺服器",
+    "BOARD": "看板",
+    "COLUMN": "欄",
+    "TASK": "任務",
+    "COMMENT": "留言",
+    "LABEL": "標籤和優先順序"
+  },
+  "flags": {
+    "VIEW_CHANNEL": "檢視頻道",
+    "MANAGE_GUILD": "管理伺服器",
+    "VIEW_AUDIT_LOG": "檢視審核日誌"
+  },
+  "everyoneWith": "所有擁有「{permission}」的人",
+  "personally": "{name}（個人）",
+  "where": {
+    "default": "預設",
+    "board": "這個看板",
+    "server": "伺服器"
+  },
+  "why": {
+    "owner": "允許：伺服器擁有者可以做任何事",
+    "admin": "允許：管理員可以做任何事",
+    "adminRule": "允許：管理員可以做任何事（{subject}）",
+    "open": "允許：開放權限讓所有能發言的人都可以這麼做",
+    "none": "拒絕：沒有規則允許",
+    "byDefault": "依據{subject}的預設值：{result}",
+    "byBoard": "依據看板對{subject}的規則：{result}",
+    "byServer": "依據伺服器對{subject}的規則：{result}"
+  },
+  "allowed": "允許",
+  "denied": "拒絕",
+  "intro": "查看某人可以做什麼，以及每件事由哪條規則決定。選擇一位成員，從其身分組開始，再新增或移除身分組，看看會有什麼變化。也可以只檢查一組身分組。",
+  "introBoard": "查看某人在這個看板上可以做什麼，以及每件事由哪條規則決定。選擇一位成員，從其身分組開始，再新增或移除身分組，看看會有什麼變化。也可以只檢查一組身分組。",
+  "check": "檢查",
+  "aMember": "成員",
+  "rolesOnly": "僅身分組",
+  "searchMembers": "依名稱搜尋成員",
+  "whereLabel": "範圍",
+  "serverWide": "整個伺服器",
+  "someonesRoles": "{name}的身分組",
+  "theirRoles": "其身分組",
+  "unknownRole": "未知的身分組",
+  "without": "不含{role}",
+  "thisRole": "這個身分組",
+  "addRole": "新增身分組",
+  "addRoleOption": "新增身分組…",
+  "whatIf": "正以與實際不同的身分組顯示{name}。",
+  "them": "此人",
+  "realRoles": "使用實際身分組",
+  "start": "在上方搜尋成員，或選擇「僅身分組」。",
+  "failed": "檢查失敗",
+  "notes": {
+    "serverWide": "整個伺服器：適用於所有沒有自己規則的看板。",
+    "customOff": "自訂權限已關閉，因此適用預設值：也就是每項 Discord 權限所允許的內容。",
+    "open": "開放權限已開啟：所有能檢視頻道並傳送訊息的人都可以使用看板。",
+    "notMember": "{name}不在伺服器中，因此只計算針對此人的規則。",
+    "discord": "此處相關的 Discord 權限：{permissions}。"
+  },
+  "thisPerson": "此人",
+  "show": "顯示",
+  "allowedCount_other": "允許（{count}）",
+  "deniedCount_other": "拒絕（{count}）",
+  "outweighs": "優先於：{rules}",
+  "overriddenAllow": "允許{subject}（{where}）",
+  "overriddenDeny": "拒絕{subject}（{where}）"
+}

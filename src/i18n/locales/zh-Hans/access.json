@@ -1,0 +1,68 @@
+{
+  "categories": {
+    "SERVER": "服务器",
+    "BOARD": "看板",
+    "COLUMN": "列",
+    "TASK": "任务",
+    "COMMENT": "评论",
+    "LABEL": "标签和优先级"
+  },
+  "flags": {
+    "VIEW_CHANNEL": "查看频道",
+    "MANAGE_GUILD": "管理服务器",
+    "VIEW_AUDIT_LOG": "查看审核日志"
+  },
+  "everyoneWith": "所有拥有{permission}的人",
+  "personally": "{name}（个人）",
+  "where": {
+    "default": "默认",
+    "board": "此看板",
+    "server": "服务器"
+  },
+  "why": {
+    "owner": "允许：服务器所有者可以做任何事",
+    "admin": "允许：管理员可以做任何事",
+    "adminRule": "允许：管理员可以做任何事（{subject}）",
+    "open": "允许：开放权限让所有能发言的人都可以这样做",
+    "none": "拒绝：没有规则允许",
+    "byDefault": "依据{subject}的默认设置：{result}",
+    "byBoard": "依据看板对{subject}的规则：{result}",
+    "byServer": "依据服务器对{subject}的规则：{result}"
+  },
+  "allowed": "允许",
+  "denied": "拒绝",
+  "intro": "查看某人可以做什么，以及每件事由哪条规则决定。选择一位成员，从其身份组开始，再添加或移除身份组，看看会有什么变化。也可以只检查一组身份组。",
+  "introBoard": "查看某人在此看板上可以做什么，以及每件事由哪条规则决定。选择一位成员，从其身份组开始，再添加或移除身份组，看看会有什么变化。也可以只检查一组身份组。",
+  "check": "检查",
+  "aMember": "成员",
+  "rolesOnly": "仅身份组",
+  "searchMembers": "按名称搜索成员",
+  "whereLabel": "范围",
+  "serverWide": "整个服务器",
+  "someonesRoles": "{name}的身份组",
+  "theirRoles": "其身份组",
+  "unknownRole": "未知身份组",
+  "without": "不含{role}",
+  "thisRole": "此身份组",
+  "addRole": "添加身份组",
+  "addRoleOption": "添加身份组…",
+  "whatIf": "正在以与实际不同的身份组显示{name}。",
+  "them": "此人",
+  "realRoles": "使用实际身份组",
+  "start": "在上方搜索成员，或选择“仅身份组”。",
+  "failed": "检查失败",
+  "notes": {
+    "serverWide": "整个服务器：适用于所有没有自己规则的看板。",
+    "customOff": "自定义权限已关闭，因此适用默认设置：即每项 Discord 权限所允许的内容。",
+    "open": "开放权限已开启：所有能查看频道并发送消息的人都可以使用看板。",
+    "notMember": "{name}不在服务器中，因此只计算针对此人的规则。",
+    "discord": "此处相关的 Discord 权限：{permissions}。"
+  },
+  "thisPerson": "此人",
+  "show": "显示",
+  "allowedCount_other": "允许（{count}）",
+  "deniedCount_other": "拒绝（{count}）",
+  "outweighs": "优先于：{rules}",
+  "overriddenAllow": "允许{subject}（{where}）",
+  "overriddenDeny": "拒绝{subject}（{where}）"
+}

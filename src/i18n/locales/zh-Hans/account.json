@@ -1,0 +1,146 @@
+{
+  "appearance": {
+    "groups": {
+      "surfaces": "界面层",
+      "controls": "控件",
+      "text": "文字",
+      "brand": "品牌与强调色",
+      "status": "状态",
+      "permissions": "权限规则"
+    },
+    "core": {
+      "background": {
+        "label": "背景",
+        "hint": "位于所有内容之后"
+      },
+      "surface": {
+        "label": "面板",
+        "hint": "面板、列和卡片"
+      },
+      "text": {
+        "label": "文字",
+        "hint": "正文；标题和提示由此推导"
+      },
+      "accent": {
+        "label": "强调色",
+        "hint": "高亮、焦点框、标题色调"
+      },
+      "primary": {
+        "label": "主色",
+        "hint": "主要按钮和链接"
+      },
+      "success": {
+        "label": "成功",
+        "hint": "确认和允许规则"
+      },
+      "danger": {
+        "label": "危险",
+        "hint": "错误、删除按钮和拒绝规则"
+      },
+      "warning": {
+        "label": "警告",
+        "hint": "提醒和高亮"
+      }
+    },
+    "presets": {
+      "dark": {
+        "label": "深色",
+        "description": "默认。"
+      },
+      "light": {
+        "label": "浅色",
+        "description": "浅色背景上的深色文字。"
+      },
+      "highContrast": {
+        "label": "高对比度",
+        "description": "纯黑白加醒目边框，适合视力较弱的人。"
+      },
+      "redGreen": {
+        "label": "红绿色盲友好",
+        "description": "适用于红色盲和绿色盲：蓝色表示成功，橙色表示危险。"
+      },
+      "blueYellow": {
+        "label": "蓝黄色盲友好",
+        "description": "适用于蓝色盲：青色表示成功，红色表示危险，黄色表示警告。"
+      }
+    },
+    "theme": "主题",
+    "custom": "自定义",
+    "customHint": "你自己的颜色，以上方主题为起点。",
+    "customColours": "自定义颜色",
+    "customColoursHint": "设置八种颜色；其余颜色都由它们推算。",
+    "lowContrast": "文字与背景的对比度为 {contrast}:1；建议至少 4.5:1 以便舒适阅读。",
+    "advanced": "高级：编辑每种颜色",
+    "changed_other": "（已更改 {count} 项）",
+    "advancedHint": "此处的更改叠加在上方主题之上，切换主题后仍会保留。",
+    "resetAll": "全部重置",
+    "reset": "重置",
+    "language": "语言",
+    "browserLanguage": "浏览器语言"
+  },
+  "accessibility": {
+    "textScale": {
+      "normal": "标准",
+      "large": "大",
+      "larger": "较大",
+      "largest": "最大"
+    },
+    "filters": {
+      "none": "无",
+      "protanopia": "红色盲（红色弱）",
+      "deuteranopia": "绿色盲（绿色弱）",
+      "tritanopia": "蓝色盲（蓝色弱）"
+    },
+    "intro": "针对色盲，“红绿色盲友好”和“蓝黄色盲友好”主题会重新为界面着色。下面的选项可帮助区分人们为标签、优先级和身份组选择的颜色。",
+    "patterns": "标签图案",
+    "patternsHint": "每个标签都有自己的条纹或圆点图案，让标签不只靠颜色区分。",
+    "ranks": "优先级排名",
+    "ranksHint": "在每个优先级名称旁显示其排名，P1 最紧急。",
+    "filter": "标签、优先级和身份组的颜色滤镜",
+    "filterHint": "把难以分辨的颜色调整为更容易看清的颜色。",
+    "textSize": "文字大小",
+    "motion": "减少动态效果",
+    "motionSystem": "跟随设备设置",
+    "motionOn": "始终减少",
+    "motionOff": "从不减少"
+  },
+  "simpleView": {
+    "intro": "在所有看板上隐藏你不用的内容。这只改变你自己看到的：数据仍然保留，其他人照常可见。服务器关闭的功能对所有人都隐藏。",
+    "hideAll": "隐藏所有可选内容",
+    "showAll": "全部显示"
+  },
+  "menu": {
+    "label": "账户",
+    "preferences": "偏好设置",
+    "settings": "设置",
+    "logOut": "退出登录",
+    "appearance": "外观",
+    "accessibility": "无障碍",
+    "simpleView": "简洁视图",
+    "sessions": "会话",
+    "dialogTitle": "偏好设置和设置"
+  },
+  "sessions": {
+    "unknownDevice": "未知设备",
+    "browserOn": "{system} 上的 {browser}",
+    "intro": "已登录你账户的设备和浏览器。退出其中一个会立即结束该会话，包括在那里打开的看板。",
+    "signOutFailed": "无法退出该会话",
+    "loadFailed": "无法加载你的会话",
+    "thisDevice": " · 此设备",
+    "activity": "活跃于 {active} · 登录于 {signedIn}",
+    "signOut": "退出",
+    "signOutOthers": "退出所有其他设备"
+  },
+  "language": {
+    "request": "申请语言…",
+    "intro": "还没有你的语言？告诉开发者你想要哪种。翻译会根据大家的请求添加。",
+    "which": "语言",
+    "pick": "选择语言…",
+    "note": "备注（可选）",
+    "notePlaceholder": "任何补充，例如你是否能帮忙翻译",
+    "send": "发送申请",
+    "sending": "正在发送…",
+    "sent": "谢谢！你的申请已发送给开发者。",
+    "failed": "无法发送申请"
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "boardFeatures": {
+    "title": "简洁模式",
+    "intro": "关闭此看板不需要的功能；其他看板不受影响。关闭功能只会隐藏它并保留数据。此处的更改立即生效。",
+    "everything": "服务器允许的全部功能",
+    "offForServer": "已在服务器设置中为整个服务器关闭。"
+  },
+  "board": {
+    "loadFailed": "无法加载看板设置"
+  },
+  "boardNotifications": {
+    "intro": "发布此看板动态的更新推送。在你于此处更改之前，每个推送都沿用服务器通知中的自身设置；此处的更改只对此看板生效。更改会立即保存。",
+    "noFeeds": "没有推送发布此看板的动态。服务器管理者可在服务器设置中添加推送。",
+    "followsFeed": "沿用推送的设置。",
+    "changes_other": "此看板有 {count} 项更改。",
+    "useFeed": "使用推送的设置",
+    "changed": "已更改"
+  },
+  "threads": {
+    "updatesBoth": "子区和频道",
+    "updatesThread": "仅子区",
+    "updatesChannel": "仅频道",
+    "title": "任务子区",
+    "intro": "在此看板的某个更新推送频道中，为每个任务开设讨论用的子区。子区名称跟随任务标题，任务被删除或归档时子区也会归档。推送关于该任务的更新（包括新评论）会按下方的选择发布到子区中；在子区里写的消息保留在 Discord 中。更改会立即保存。",
+    "noFeed": "此看板还没有更新推送。请在服务器的通知设置中添加，或在 Discord 中使用 <code>/kanbancord feed</code>，然后在这里开启子区。",
+    "perTask": "每个任务一个子区",
+    "notWorking": "已开启但无法使用：所选频道已没有此看板的推送。请选择另一个推送频道。",
+    "perTaskHint": "每个任务会在下次发生变化时获得子区。",
+    "channel": "频道",
+    "channelWithoutFeed": "没有此看板推送的频道",
+    "botCannot": "（机器人无法在此创建子区）",
+    "updatesGoTo": "任务更新发送到",
+    "private": "私密子区",
+    "privateNotPossible": "在此频道不可用：私密子区需要一个机器人可以创建私密子区的文字频道。",
+    "privateHint": "子区中只有任务创建者和负责人，以及服务器管理员。新的负责人会被加入。",
+    "cannotMake": "机器人无法在 #{channel} 中创建子区，因此任务不会获得新子区。请在那里授予它“查看频道”“在子区中发送消息”和“创建公开子区”权限，或选择其他频道。",
+    "cannotMakePrivate": "机器人无法在 #{channel} 中创建私密子区，因此任务不会获得新子区。请在那里授予它“查看频道”“在子区中发送消息”和“创建私密子区”权限，或选择其他频道。"
+  },
+  "usage_other": "{count} 个任务",
+  "colourOf": "{name}的颜色",
+  "labels": {
+    "intro": "此看板的任务可以使用的标签。此处的更改立即生效。",
+    "none": "还没有标签。",
+    "name": "标签名称",
+    "newColour": "新标签的颜色",
+    "newPlaceholder": "新标签，例如 frontend",
+    "add": "添加标签",
+    "deleteTitle": "删除标签",
+    "deleteConfirm": "从此看板删除<strong>{name}</strong>？",
+    "deleteUsage_other": " 它将从使用它的 {count} 个任务上移除。"
+  },
+  "priorities": {
+    "title": "优先级",
+    "intro": "优先级级别，最紧急的在前。一个任务最多有一个。此处的更改立即生效。",
+    "none": "没有优先级级别。此看板上的任务没有优先级。",
+    "moveUp": "上移{name}",
+    "moveDown": "下移{name}",
+    "name": "优先级名称",
+    "newColour": "新级别的颜色",
+    "newPlaceholder": "新级别，添加到末尾",
+    "add": "添加级别",
+    "deleteTitle": "删除优先级级别",
+    "deleteConfirm": "删除<strong>{name}</strong>？",
+    "deleteUsage_other": " 使用此优先级的 {count} 个任务将不再有优先级。"
+  },
+  "features": {
+    "intro": "简洁模式让看板只保留基本内容：列，以及有标题和描述的任务。只开启此服务器需要的功能。关闭功能只会隐藏它并保留数据。",
+    "enableEverything": "全部开启",
+    "openFirst": "{description} 请先关闭开放权限。",
+    "open": "开放权限",
+    "openLabel": "所有人都可以做任何事",
+    "customFirst": "请先关闭自定义权限：其规则会保留，以便你再次开启时使用。",
+    "openHint": "所有能在此服务器发言的人，无论身份组如何，都可以创建、更改、移动和删除列、任务、标签和优先级级别。管理服务器、看板权限、删除或归档看板以及变更记录仍由管理者负责。",
+    "confirmTitle": "开启开放权限？",
+    "turnOn": "开启",
+    "turningOn": "正在开启...",
+    "confirm": "所有能在此服务器发言的人，无论身份组如何，都将能够创建、更改、移动和删除列、任务、标签和优先级级别。最适合彼此信任的小团体。"
+  },
+  "dialog": {
+    "sections": "{title}分区",
+    "close": "关闭{title}"
+  }
+}

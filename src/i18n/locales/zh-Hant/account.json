@@ -1,0 +1,146 @@
+{
+  "appearance": {
+    "groups": {
+      "surfaces": "介面層",
+      "controls": "控制項",
+      "text": "文字",
+      "brand": "品牌與強調色",
+      "status": "狀態",
+      "permissions": "權限規則"
+    },
+    "core": {
+      "background": {
+        "label": "背景",
+        "hint": "位於所有內容之後"
+      },
+      "surface": {
+        "label": "面板",
+        "hint": "面板、欄和卡片"
+      },
+      "text": {
+        "label": "文字",
+        "hint": "內文；標題和提示由此推導"
+      },
+      "accent": {
+        "label": "強調色",
+        "hint": "醒目提示、焦點框、標題色調"
+      },
+      "primary": {
+        "label": "主色",
+        "hint": "主要按鈕和連結"
+      },
+      "success": {
+        "label": "成功",
+        "hint": "確認和允許規則"
+      },
+      "danger": {
+        "label": "危險",
+        "hint": "錯誤、刪除按鈕和拒絕規則"
+      },
+      "warning": {
+        "label": "警告",
+        "hint": "提醒和醒目提示"
+      }
+    },
+    "presets": {
+      "dark": {
+        "label": "深色",
+        "description": "預設值。"
+      },
+      "light": {
+        "label": "淺色",
+        "description": "淺色背景上的深色文字。"
+      },
+      "highContrast": {
+        "label": "高對比",
+        "description": "純黑白加上醒目框線，適合視力較弱的人。"
+      },
+      "redGreen": {
+        "label": "紅綠色盲友善",
+        "description": "適用於紅色盲和綠色盲：藍色表示成功，橘色表示危險。"
+      },
+      "blueYellow": {
+        "label": "藍黃色盲友善",
+        "description": "適用於藍色盲：青色表示成功，紅色表示危險，黃色表示警告。"
+      }
+    },
+    "theme": "主題",
+    "custom": "自訂",
+    "customHint": "你自己的顏色，以上方主題為起點。",
+    "customColours": "自訂顏色",
+    "customColoursHint": "設定八種顏色；其餘顏色都由它們推算。",
+    "lowContrast": "文字與背景的對比為 {contrast}:1；建議至少 4.5:1 以便舒適閱讀。",
+    "advanced": "進階：編輯每種顏色",
+    "changed_other": "（已變更 {count} 項）",
+    "advancedHint": "此處的變更會疊加在上方主題之上，切換主題後仍會保留。",
+    "resetAll": "全部重設",
+    "reset": "重設",
+    "language": "語言",
+    "browserLanguage": "瀏覽器的語言"
+  },
+  "accessibility": {
+    "textScale": {
+      "normal": "標準",
+      "large": "大",
+      "larger": "較大",
+      "largest": "最大"
+    },
+    "filters": {
+      "none": "無",
+      "protanopia": "紅色盲（紅色弱）",
+      "deuteranopia": "綠色盲（綠色弱）",
+      "tritanopia": "藍色盲（藍色弱）"
+    },
+    "intro": "針對色盲，「紅綠色盲友善」和「藍黃色盲友善」主題會重新為介面上色。下面的選項可協助分辨人們為標籤、優先順序和身分組選擇的顏色。",
+    "patterns": "標籤圖案",
+    "patternsHint": "每個標籤都有自己的條紋或圓點圖案，讓標籤不只靠顏色區分。",
+    "ranks": "優先順序排名",
+    "ranksHint": "在每個優先順序名稱旁顯示其排名，P1 最緊急。",
+    "filter": "標籤、優先順序和身分組的色彩濾鏡",
+    "filterHint": "將難以分辨的顏色調整為更容易看清的顏色。",
+    "textSize": "文字大小",
+    "motion": "減少動態效果",
+    "motionSystem": "依照裝置設定",
+    "motionOn": "一律減少",
+    "motionOff": "永不減少"
+  },
+  "simpleView": {
+    "intro": "在所有看板上隱藏你不用的內容。這只會改變你自己看到的：資料仍然保留，其他人照常可見。伺服器關閉的功能對所有人都隱藏。",
+    "hideAll": "隱藏所有選用內容",
+    "showAll": "全部顯示"
+  },
+  "menu": {
+    "label": "帳號",
+    "preferences": "偏好設定",
+    "settings": "設定",
+    "logOut": "登出",
+    "appearance": "外觀",
+    "accessibility": "無障礙",
+    "simpleView": "簡潔檢視",
+    "sessions": "工作階段",
+    "dialogTitle": "偏好設定與設定"
+  },
+  "sessions": {
+    "unknownDevice": "不明裝置",
+    "browserOn": "{system} 上的 {browser}",
+    "intro": "已登入你帳號的裝置和瀏覽器。登出其中一個會立即結束該工作階段，包括在那裡開啟的看板。",
+    "signOutFailed": "無法登出該工作階段",
+    "loadFailed": "無法載入你的工作階段",
+    "thisDevice": " · 這部裝置",
+    "activity": "活動於 {active} · 登入於 {signedIn}",
+    "signOut": "登出",
+    "signOutOthers": "登出所有其他裝置"
+  },
+  "language": {
+    "request": "申請語言…",
+    "intro": "還沒有你的語言嗎？告訴開發者你想要哪一種。翻譯會依大家的要求新增。",
+    "which": "語言",
+    "pick": "選擇語言…",
+    "note": "備註（選填）",
+    "notePlaceholder": "任何補充，例如你是否能幫忙翻譯",
+    "send": "送出申請",
+    "sending": "正在送出…",
+    "sent": "謝謝！你的申請已送給開發者。",
+    "failed": "無法送出申請"
+  }
+}
