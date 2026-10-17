@@ -1,0 +1,83 @@
+{
+  "boardFeatures": {
+    "title": "Chế độ đơn giản",
+    "intro": "Tắt những gì bảng này không cần; các bảng khác không bị ảnh hưởng. Tắt một tính năng sẽ ẩn nó và giữ lại dữ liệu. Thay đổi ở đây có hiệu lực ngay.",
+    "everything": "Mọi thứ máy chủ cho phép",
+    "offForServer": "Đã tắt cho toàn máy chủ, trong cài đặt máy chủ."
+  },
+  "board": {
+    "loadFailed": "Không thể tải cài đặt bảng"
+  },
+  "boardNotifications": {
+    "intro": "Các luồng cập nhật đăng về bảng này. Mỗi luồng theo cài đặt riêng từ thông báo của máy chủ cho đến khi bạn thay đổi gì đó ở đây, chỉ cho bảng này. Thay đổi được lưu ngay.",
+    "noFeeds": "Không có luồng nào đăng về bảng này. Người quản lý máy chủ thêm luồng trong cài đặt máy chủ.",
+    "followsFeed": "Theo cài đặt của luồng.",
+    "changes_other": "{count} thay đổi cho bảng này.",
+    "useFeed": "Dùng cài đặt của luồng",
+    "changed": "đã đổi"
+  },
+  "threads": {
+    "updatesBoth": "Chủ đề và kênh",
+    "updatesThread": "Chỉ chủ đề",
+    "updatesChannel": "Chỉ kênh",
+    "title": "Chủ đề của công việc",
+    "intro": "Cho mỗi công việc một chủ đề riêng để thảo luận, trong một kênh luồng cập nhật của bảng này. Chủ đề lấy theo tiêu đề công việc và được lưu trữ khi công việc bị xóa hoặc lưu trữ. Các cập nhật của luồng về công việc, gồm cả bình luận mới, được đăng vào đó theo lựa chọn bên dưới; tin nhắn viết trong chủ đề vẫn ở lại Discord. Thay đổi được lưu ngay.",
+    "noFeed": "Bảng này chưa có luồng cập nhật. Hãy thêm trong cài đặt thông báo của máy chủ, hoặc bằng <code>/kanbancord feed</code> trong Discord, rồi bật chủ đề ở đây.",
+    "perTask": "Mỗi công việc một chủ đề",
+    "notWorking": "Đang bật nhưng không hoạt động: kênh đã chọn không còn luồng cho bảng này. Hãy chọn kênh luồng khác.",
+    "perTaskHint": "Mỗi công việc sẽ có chủ đề khi có điều gì xảy ra với nó lần tới.",
+    "channel": "Kênh",
+    "channelWithoutFeed": "Một kênh không có luồng cho bảng này",
+    "botCannot": " (bot không thể tạo chủ đề ở đây)",
+    "updatesGoTo": "Cập nhật của công việc được gửi đến",
+    "private": "Chủ đề riêng tư",
+    "privateNotPossible": "Không thể trong kênh này: chủ đề riêng tư cần một kênh văn bản nơi bot được tạo chủ đề riêng tư.",
+    "privateHint": "Chỉ người tạo và người phụ trách công việc ở trong chủ đề, cùng với điều hành viên máy chủ. Người phụ trách mới sẽ được thêm vào.",
+    "cannotMake": "Bot không thể tạo chủ đề trong #{channel}, nên công việc sẽ không có chủ đề mới. Hãy cấp cho bot Xem Kênh, Gửi Tin Nhắn Trong Chủ Đề và Tạo Chủ Đề Công Khai ở đó, hoặc chọn kênh khác.",
+    "cannotMakePrivate": "Bot không thể tạo chủ đề riêng tư trong #{channel}, nên công việc sẽ không có chủ đề mới. Hãy cấp cho bot Xem Kênh, Gửi Tin Nhắn Trong Chủ Đề và Tạo Chủ Đề Riêng Tư ở đó, hoặc chọn kênh khác."
+  },
+  "usage_other": "{count} công việc",
+  "colourOf": "Màu của {name}",
+  "labels": {
+    "intro": "Các nhãn có thể gắn cho công việc của bảng này. Thay đổi ở đây có hiệu lực ngay.",
+    "none": "Chưa có nhãn nào.",
+    "name": "Tên nhãn",
+    "newColour": "Màu của nhãn mới",
+    "newPlaceholder": "Nhãn mới, ví dụ frontend",
+    "add": "Thêm nhãn",
+    "deleteTitle": "Xóa nhãn",
+    "deleteConfirm": "Xóa <strong>{name}</strong> khỏi bảng này?",
+    "deleteUsage_other": " Nhãn sẽ bị gỡ khỏi {count} công việc đang dùng nó."
+  },
+  "priorities": {
+    "title": "Mức ưu tiên",
+    "intro": "Các mức ưu tiên, gấp nhất trước. Mỗi công việc có tối đa một mức. Thay đổi ở đây có hiệu lực ngay.",
+    "none": "Không có mức ưu tiên. Công việc trên bảng này không có mức ưu tiên.",
+    "moveUp": "Chuyển {name} lên",
+    "moveDown": "Chuyển {name} xuống",
+    "name": "Tên mức ưu tiên",
+    "newColour": "Màu của mức mới",
+    "newPlaceholder": "Mức mới, thêm vào cuối",
+    "add": "Thêm mức",
+    "deleteTitle": "Xóa mức ưu tiên",
+    "deleteConfirm": "Xóa <strong>{name}</strong>?",
+    "deleteUsage_other": " {count} công việc có mức ưu tiên này sẽ không còn mức ưu tiên."
+  },
+  "features": {
+    "intro": "Chế độ đơn giản giữ bảng ở mức cơ bản: cột, và công việc có tiêu đề cùng mô tả. Chỉ bật những gì máy chủ này cần. Tắt một tính năng sẽ ẩn nó và giữ lại dữ liệu.",
+    "enableEverything": "Bật tất cả",
+    "openFirst": "{description} Hãy tắt quyền mở trước.",
+    "open": "Quyền mở",
+    "openLabel": "Ai cũng được làm mọi thứ",
+    "customFirst": "Hãy tắt quyền tùy chỉnh trước: các quy tắc của nó được giữ lại cho khi bạn bật lại.",
+    "openHint": "Ai có thể chat trong máy chủ này đều được tạo, sửa, di chuyển và xóa cột, công việc, nhãn và mức ưu tiên, bất kể vai trò. Việc quản lý máy chủ, quyền của bảng, xóa hoặc lưu trữ bảng và nhật ký thay đổi vẫn thuộc về người quản lý.",
+    "confirmTitle": "Bật quyền mở?",
+    "turnOn": "Bật",
+    "turningOn": "Đang bật...",
+    "confirm": "Ai có thể chat trong máy chủ này đều sẽ được tạo, sửa, di chuyển và xóa cột, công việc, nhãn và mức ưu tiên, bất kể vai trò. Phù hợp nhất cho một nhóm nhỏ tin tưởng lẫn nhau."
+  },
+  "dialog": {
+    "sections": "Các mục của {title}",
+    "close": "Đóng {title}"
+  }
+}

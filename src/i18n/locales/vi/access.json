@@ -1,0 +1,68 @@
+{
+  "categories": {
+    "SERVER": "Máy chủ",
+    "BOARD": "Bảng",
+    "COLUMN": "Cột",
+    "TASK": "Công việc",
+    "COMMENT": "Bình luận",
+    "LABEL": "Nhãn và mức ưu tiên"
+  },
+  "flags": {
+    "VIEW_CHANNEL": "Xem Kênh",
+    "MANAGE_GUILD": "Quản Lý Máy Chủ",
+    "VIEW_AUDIT_LOG": "Xem Nhật Ký Kiểm Tra"
+  },
+  "everyoneWith": "mọi người có quyền {permission}",
+  "personally": "{name} (cá nhân)",
+  "where": {
+    "default": "mặc định",
+    "board": "bảng này",
+    "server": "máy chủ"
+  },
+  "why": {
+    "owner": "Được phép: chủ máy chủ được làm mọi thứ",
+    "admin": "Được phép: quản trị viên được làm mọi thứ",
+    "adminRule": "Được phép: quản trị viên được làm mọi thứ ({subject})",
+    "open": "Được phép: quyền mở cho phép mọi người có thể chat làm việc này",
+    "none": "Bị từ chối: không có quy tắc nào cho phép",
+    "byDefault": "{result} theo mặc định cho {subject}",
+    "byBoard": "{result} theo quy tắc của bảng cho {subject}",
+    "byServer": "{result} theo quy tắc của máy chủ cho {subject}"
+  },
+  "allowed": "Được phép",
+  "denied": "Bị từ chối",
+  "intro": "Xem một người được làm gì và quy tắc nào quyết định từng việc. Chọn một thành viên để bắt đầu từ vai trò của họ, rồi thêm hoặc bớt vai trò để xem điều gì thay đổi. Hoặc chỉ kiểm tra một nhóm vai trò.",
+  "introBoard": "Xem một người được làm gì trên bảng này và quy tắc nào quyết định từng việc. Chọn một thành viên để bắt đầu từ vai trò của họ, rồi thêm hoặc bớt vai trò để xem điều gì thay đổi. Hoặc chỉ kiểm tra một nhóm vai trò.",
+  "check": "Kiểm tra",
+  "aMember": "Một thành viên",
+  "rolesOnly": "Chỉ vai trò",
+  "searchMembers": "Tìm thành viên theo tên",
+  "whereLabel": "Ở đâu",
+  "serverWide": "Toàn máy chủ",
+  "someonesRoles": "Vai trò của {name}",
+  "theirRoles": "Vai trò của họ",
+  "unknownRole": "Vai trò không xác định",
+  "without": "Không có {role}",
+  "thisRole": "vai trò này",
+  "addRole": "Thêm vai trò",
+  "addRoleOption": "Thêm vai trò…",
+  "whatIf": "Đang hiển thị {name} với vai trò khác với thực tế.",
+  "them": "người này",
+  "realRoles": "Dùng vai trò thật",
+  "start": "Tìm một thành viên ở trên, hoặc chọn Chỉ vai trò.",
+  "failed": "Kiểm tra thất bại",
+  "notes": {
+    "serverWide": "Toàn máy chủ: những gì áp dụng trên mọi bảng không có quy tắc riêng.",
+    "customOff": "Quyền tùy chỉnh đang tắt, nên áp dụng mặc định: những gì mỗi quyền Discord cho phép.",
+    "open": "Quyền mở đang bật: ai xem được kênh và gửi được tin nhắn đều có thể làm việc với bảng.",
+    "notMember": "{name} không ở trong máy chủ, nên chỉ quy tắc dành riêng cho họ được tính.",
+    "discord": "Quyền Discord có ảnh hưởng ở đây: {permissions}."
+  },
+  "thisPerson": "Người này",
+  "show": "Hiện",
+  "allowedCount_other": "Được phép ({count})",
+  "deniedCount_other": "Bị từ chối ({count})",
+  "outweighs": "Được ưu tiên hơn: {rules}",
+  "overriddenAllow": "Cho phép {subject} ({where})",
+  "overriddenDeny": "Từ chối {subject} ({where})"
+}

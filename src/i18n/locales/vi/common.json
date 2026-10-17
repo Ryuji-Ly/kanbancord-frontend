@@ -1,0 +1,59 @@
+{
+  "features": {
+    "labels": {
+      "label": "Nhãn",
+      "description": "Nhãn có màu gắn trên công việc, quản lý riêng cho từng bảng.",
+      "show": "Hiện nhãn"
+    },
+    "priorities": {
+      "label": "Mức ưu tiên",
+      "description": "Mức ưu tiên cho mỗi công việc, từ Critical đến Ignorable.",
+      "show": "Hiện mức ưu tiên"
+    },
+    "assignees": {
+      "label": "Người phụ trách",
+      "description": "Giao công việc cho thành viên.",
+      "show": "Hiện người phụ trách"
+    },
+    "comments": {
+      "label": "Bình luận",
+      "description": "Thảo luận trên mỗi công việc.",
+      "show": "Hiện bình luận"
+    },
+    "dueDates": {
+      "label": "Hạn chót",
+      "description": "Ngày giờ mà mỗi công việc cần hoàn thành.",
+      "show": "Hiện hạn chót"
+    },
+    "permissions": {
+      "label": "Quyền tùy chỉnh",
+      "description": "Chỉnh ai được làm gì, cho từng máy chủ và từng bảng. Khi tắt, quyền truy cập theo quyền Discord.",
+      "show": "Hiện quyền tùy chỉnh"
+    }
+  },
+  "requestFailed": "Yêu cầu thất bại ({status})",
+  "notSignedIn": "Bạn chưa đăng nhập.",
+  "cancel": "Hủy",
+  "close": "Đóng",
+  "loginWithDiscord": "Đăng nhập bằng Discord",
+  "deleting": "Đang xóa…",
+  "loading": "Đang tải...",
+  "saving": "Đang lưu…",
+  "change": "Thay đổi",
+  "closeModal": "Đóng hộp thoại",
+  "save": "Lưu",
+  "applying": "Đang áp dụng…",
+  "name": "Tên",
+  "description": "Mô tả",
+  "saveChanges": "Lưu thay đổi",
+  "add": "Thêm",
+  "delete": "Xóa",
+  "deletingDots": "Đang xóa...",
+  "confirmNamed": "Xác nhận {title}",
+  "creatingDots": "Đang tạo...",
+  "creating": "Đang tạo…",
+  "adding": "Đang thêm…",
+  "savingDots": "Đang lưu...",
+  "changeNotSaved": "Không thể lưu thay đổi",
+  "loadingEllipsis": "Đang tải…"
+}

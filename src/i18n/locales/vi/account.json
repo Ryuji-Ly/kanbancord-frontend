@@ -1,0 +1,146 @@
+{
+  "appearance": {
+    "groups": {
+      "surfaces": "Bề mặt",
+      "controls": "Điều khiển",
+      "text": "Chữ",
+      "brand": "Thương hiệu và điểm nhấn",
+      "status": "Trạng thái",
+      "permissions": "Quy tắc quyền"
+    },
+    "core": {
+      "background": {
+        "label": "Nền",
+        "hint": "Phía sau mọi thứ"
+      },
+      "surface": {
+        "label": "Bề mặt",
+        "hint": "Bảng điều khiển, cột và thẻ"
+      },
+      "text": {
+        "label": "Chữ",
+        "hint": "Chữ nội dung; tiêu đề và gợi ý được suy ra từ đây"
+      },
+      "accent": {
+        "label": "Điểm nhấn",
+        "hint": "Phần làm nổi bật, viền tiêu điểm, sắc tiêu đề"
+      },
+      "primary": {
+        "label": "Chính",
+        "hint": "Nút và liên kết chính"
+      },
+      "success": {
+        "label": "Thành công",
+        "hint": "Xác nhận và quy tắc cho phép"
+      },
+      "danger": {
+        "label": "Nguy hiểm",
+        "hint": "Lỗi, nút xóa và quy tắc từ chối"
+      },
+      "warning": {
+        "label": "Cảnh báo",
+        "hint": "Lưu ý và phần làm nổi bật"
+      }
+    },
+    "presets": {
+      "dark": {
+        "label": "Tối",
+        "description": "Mặc định."
+      },
+      "light": {
+        "label": "Sáng",
+        "description": "Chữ tối trên nền sáng."
+      },
+      "highContrast": {
+        "label": "Tương phản cao",
+        "description": "Đen trắng thuần với viền rõ, dành cho người thị lực kém."
+      },
+      "redGreen": {
+        "label": "An toàn đỏ-lục",
+        "description": "Cho mù màu đỏ và lục: xanh dương cho thành công, cam cho nguy hiểm."
+      },
+      "blueYellow": {
+        "label": "An toàn lam-vàng",
+        "description": "Cho mù màu lam: xanh mòng két cho thành công, đỏ cho nguy hiểm, vàng cho cảnh báo."
+      }
+    },
+    "theme": "Giao diện",
+    "custom": "Tùy chỉnh",
+    "customHint": "Màu của riêng bạn, bắt đầu từ giao diện ở trên.",
+    "customColours": "Màu tùy chỉnh",
+    "customColoursHint": "Đặt tám màu; mọi màu khác sẽ được tính từ chúng.",
+    "lowContrast": "Chữ so với nền có độ tương phản {contrast}:1; nên tối thiểu 4.5:1 để đọc thoải mái.",
+    "advanced": "Nâng cao: sửa từng màu",
+    "changed_other": " (đã đổi {count})",
+    "advancedHint": "Thay đổi ở đây áp dụng chồng lên giao diện ở trên và được giữ lại khi bạn đổi giao diện.",
+    "resetAll": "Đặt lại tất cả",
+    "reset": "Đặt lại",
+    "language": "Ngôn ngữ",
+    "browserLanguage": "Ngôn ngữ của trình duyệt"
+  },
+  "accessibility": {
+    "textScale": {
+      "normal": "Bình thường",
+      "large": "Lớn",
+      "larger": "Lớn hơn",
+      "largest": "Lớn nhất"
+    },
+    "filters": {
+      "none": "Không",
+      "protanopia": "Mù màu đỏ (protanopia)",
+      "deuteranopia": "Mù màu lục (deuteranopia)",
+      "tritanopia": "Mù màu lam (tritanopia)"
+    },
+    "intro": "Với người mù màu, giao diện An toàn đỏ-lục và An toàn lam-vàng tô lại màu cho toàn bộ giao diện. Các tùy chọn dưới đây giúp với những màu mà mọi người chọn cho nhãn, mức ưu tiên và vai trò.",
+    "patterns": "Họa tiết trên nhãn",
+    "patternsHint": "Mỗi nhãn có họa tiết sọc hoặc chấm riêng, để các nhãn khác nhau không chỉ ở màu.",
+    "ranks": "Thứ hạng ưu tiên",
+    "ranksHint": "Hiện thứ hạng của mỗi mức ưu tiên cạnh tên, P1 là gấp nhất.",
+    "filter": "Bộ lọc màu cho nhãn, mức ưu tiên và vai trò",
+    "filterHint": "Đổi những màu khó phân biệt sang màu dễ nhìn hơn.",
+    "textSize": "Cỡ chữ",
+    "motion": "Giảm chuyển động",
+    "motionSystem": "Theo thiết bị của tôi",
+    "motionOn": "Luôn giảm",
+    "motionOff": "Không bao giờ giảm"
+  },
+  "simpleView": {
+    "intro": "Ẩn những gì bạn không dùng, trên mọi bảng. Điều này chỉ thay đổi những gì bạn thấy: dữ liệu vẫn còn, và mọi người khác vẫn thấy. Tính năng mà máy chủ đã tắt sẽ bị ẩn với tất cả.",
+    "hideAll": "Ẩn mọi thứ không bắt buộc",
+    "showAll": "Hiện tất cả"
+  },
+  "menu": {
+    "label": "Tài khoản",
+    "preferences": "Tùy chọn",
+    "settings": "Cài đặt",
+    "logOut": "Đăng xuất",
+    "appearance": "Diện mạo",
+    "accessibility": "Trợ năng",
+    "simpleView": "Chế độ xem đơn giản",
+    "sessions": "Phiên đăng nhập",
+    "dialogTitle": "Tùy chọn và cài đặt"
+  },
+  "sessions": {
+    "unknownDevice": "Thiết bị không xác định",
+    "browserOn": "{browser} trên {system}",
+    "intro": "Các thiết bị và trình duyệt đang đăng nhập vào tài khoản của bạn. Đăng xuất một phiên sẽ kết thúc nó ngay, kể cả bảng đang mở ở đó.",
+    "signOutFailed": "Không thể đăng xuất phiên đó",
+    "loadFailed": "Không thể tải các phiên của bạn",
+    "thisDevice": " · Thiết bị này",
+    "activity": "Hoạt động {active} · đăng nhập {signedIn}",
+    "signOut": "Đăng xuất",
+    "signOutOthers": "Đăng xuất mọi thiết bị khác"
+  },
+  "language": {
+    "request": "Yêu cầu ngôn ngữ…",
+    "intro": "Chưa có ngôn ngữ của bạn? Hãy cho nhà phát triển biết bạn muốn ngôn ngữ nào. Bản dịch được thêm khi có người yêu cầu.",
+    "which": "Ngôn ngữ",
+    "pick": "Chọn ngôn ngữ…",
+    "note": "Ghi chú (không bắt buộc)",
+    "notePlaceholder": "Điều gì muốn thêm, ví dụ bạn có thể giúp dịch không",
+    "send": "Gửi yêu cầu",
+    "sending": "Đang gửi…",
+    "sent": "Cảm ơn! Yêu cầu của bạn đã được gửi đến nhà phát triển.",
+    "failed": "Không thể gửi yêu cầu"
+  }
+}

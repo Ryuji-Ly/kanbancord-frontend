@@ -1,0 +1,166 @@
+{
+  "nav": {
+    "main": "Chính",
+    "site": "Trang web",
+    "breadcrumbs": "Đường dẫn",
+    "guides": "Hướng dẫn",
+    "faq": "Câu hỏi thường gặp",
+    "open": "Mở KanbanCord",
+    "about": "Giới thiệu",
+    "support": "Ủng hộ",
+    "supportServer": "Máy chủ hỗ trợ",
+    "appDirectory": "Danh mục ứng dụng",
+    "status": "Trạng thái",
+    "privacy": "Chính sách quyền riêng tư",
+    "terms": "Điều khoản dịch vụ",
+    "addToDiscord": "Thêm vào Discord"
+  },
+  "footer": {
+    "notAffiliated": "© {year} {operator}. {name} không liên kết với và không được Discord xác nhận."
+  },
+  "landing": {
+    "metaTitle": "Bảng kanban cho Discord",
+    "metaDescription": "Một bảng kanban sống ngay trong máy chủ Discord của bạn: tạo, di chuyển và giao công việc bằng lệnh gạch chéo, nhận cập nhật trong kênh, và dùng trang web để xem toàn cảnh.",
+    "title": "Bảng kanban sống ngay trong máy chủ Discord của bạn",
+    "intro": "Lên kế hoạch và theo dõi công việc ngay nơi cộng đồng của bạn đang trò chuyện. Tạo, di chuyển và giao công việc bằng lệnh gạch chéo, và nhận cập nhật trong các kênh của bạn. Trang web luôn sẵn sàng khi bạn muốn xem toàn cảnh.",
+    "signIn": "Đăng nhập bằng Discord",
+    "free": "Miễn phí. Không quảng cáo. Không theo dõi. Cũng có trong <link>Danh mục ứng dụng của Discord</link>.",
+    "features": "Tính năng",
+    "feature": {
+      "discord": {
+        "title": "Mọi thứ từ Discord",
+        "text": "Tạo bảng và công việc, di chuyển và giao việc, đặt hạn chót và bình luận bằng lệnh gạch chéo. Không cần rời khỏi cuộc trò chuyện."
+      },
+      "boards": {
+        "title": "Bảng kanban thực thụ",
+        "text": "Cột và công việc với nhãn, mức ưu tiên, hạn chót, người phụ trách, bình luận, danh sách kiểm tra, hình ảnh và video."
+      },
+      "permissions": {
+        "title": "Quyền Discord của bạn",
+        "text": "Quyền truy cập theo vai trò trên máy chủ ngay từ đầu, và có thể tinh chỉnh cho từng bảng và từng người trên trang web."
+      },
+      "updates": {
+        "title": "Cập nhật, không phải ồn ào",
+        "text": "Đăng thay đổi vào các kênh đã chọn và nhận tin nhắn trực tiếp về công việc của bạn, không bao giờ bị nhắc hai lần cho cùng một việc."
+      },
+      "website": {
+        "title": "Toàn cảnh, khi bạn cần",
+        "text": "Trang web hiển thị toàn bộ bảng trong nháy mắt và chứa các tinh chỉnh, mọi thay đổi đều cập nhật trực tiếp cho tất cả."
+      },
+      "comfort": {
+        "title": "Được làm để thoải mái",
+        "text": "Giao diện gồm cả tương phản cao và thân thiện với người mù màu, cỡ chữ, và chế độ đơn giản cho nhóm nhỏ."
+      }
+    },
+    "usesTitle": "Không chỉ cho công việc",
+    "uses": "KanbanCord cũng hợp với những danh sách bạn giữ cùng người thân thiết: kế hoạch cần làm, phim cần xem, sách cần đọc, đồ cần mua. Tạo một bảng trong máy chủ nhỏ, giữ ở chế độ đơn giản và cùng nhau đánh dấu hoàn thành.",
+    "stepsTitle": "Bắt đầu trong một phút",
+    "step1": "<strong>Thêm bot</strong> vào máy chủ của bạn.",
+    "step2": "<strong>Tạo bảng</strong> bằng <code>/board create</code>.",
+    "step3": "<strong>Thêm công việc</strong> bằng <code>/task create</code>, và dùng <code>/help</code> để xem phần còn lại."
+  },
+  "about": {
+    "metaTitle": "Giới thiệu",
+    "metaDescription": "KanbanCord là bảng kanban sống trong máy chủ Discord của bạn: dùng hoàn toàn qua bot, và dùng trang web để xem toàn cảnh và tinh chỉnh.",
+    "title": "Giới thiệu {name}",
+    "p1": "{name} là một bảng kanban sống trong máy chủ Discord của bạn. Ý tưởng rất đơn giản: cộng đồng của bạn đã trò chuyện trên Discord, nên việc lên kế hoạch cũng nên diễn ra ở đó. Tạo bảng và cột, thêm công việc, đẩy chúng tiến lên, giao người, đặt nhãn, mức ưu tiên và hạn chót, và thảo luận trong bình luận, tất cả bằng lệnh gạch chéo của bot, không cần rời cuộc trò chuyện. Cập nhật được gửi đến các kênh bạn chọn và, với công việc của bạn, qua tin nhắn trực tiếp.",
+    "p2": "Phần lớn mọi người không cần gì thêm. Trang web có ích khi bạn muốn xem cả bảng trong nháy mắt, hoặc tinh chỉnh: quyền chi tiết cho từng bảng và từng người, nhãn và mức ưu tiên của bảng, tính năng máy chủ sử dụng, chính xác những cập nhật bạn nhận, và nhật ký mọi thay đổi.",
+    "p3": "Ngay từ đầu, nó tuân theo vai trò và quyền Discord của máy chủ, nên đúng người sẽ thấy và sửa đúng bảng mà không phải thiết lập gì hai lần.",
+    "simpleTitle": "Chỉ những gì bạn chọn",
+    "simple": "Máy chủ mới bắt đầu ở <strong>chế độ đơn giản</strong>: bảng, cột và công việc có tiêu đề cùng mô tả. Người phụ trách, hạn chót có nhắc nhở, mức ưu tiên, nhãn, bình luận và quyền tùy chỉnh vẫn tắt cho đến khi người quản lý máy chủ bật chúng bằng <code>/kanbancord features</code> hoặc trong cài đặt máy chủ trên trang web. Tính năng đang tắt không hiện ở đâu cả, dù trong Discord hay trên trang web: chỉ những gì bạn chọn mới xuất hiện. Mỗi bảng có thể tự tắt lại tính năng, và ai cũng có thể ẩn thêm cho riêng mình ở Tùy chọn → Chế độ xem đơn giản. Tắt một tính năng chỉ ẩn nó; không có gì bị xóa.",
+    "madeByTitle": "Do một người làm",
+    "madeBy": "{name} được xây dựng và vận hành bởi {operator}. Nó miễn phí, không quảng cáo, không bán và không theo dõi dữ liệu của bạn (xem <privacy>Chính sách quyền riêng tư</privacy>). Gặp lỗi hoặc có ý tưởng? Dùng <code>/report</code> trong Discord. Có câu hỏi, hoặc muốn biết về tính năng mới? Tham gia <server>máy chủ hỗ trợ</server>. Nếu bạn muốn góp phần chi phí, xem <support>Ủng hộ</support>.",
+    "findTitle": "Tìm nó trên Discord",
+    "find": "{name} có trang riêng trong <directory>Danh mục ứng dụng của Discord</directory>, nơi bạn có thể thêm vào máy chủ ngay từ Discord. Trang web, bot và mọi thứ phía sau có đang hoạt động hay không, cùng lịch bảo trì, được hiển thị trên <status>trang trạng thái</status>.",
+    "startTitle": "Bắt đầu",
+    "start1": "Thêm bot vào máy chủ của bạn.",
+    "start2": "Tạo bảng bằng <code>/board create</code>, rồi thêm công việc bằng <code>/task create</code>.",
+    "start3": "Dùng <code>/help</code> để xem mọi thứ bot có thể làm.",
+    "questions": "Có câu hỏi? Xem <faq>câu hỏi thường gặp</faq>.",
+    "translationsTitle": "Bản dịch",
+    "translations": "Bản dịch của trang web này được thực hiện với sự hỗ trợ của AI tạo sinh. Nếu bạn thấy lỗi hoặc cách diễn đạt có thể cải thiện, chúng tôi rất biết ơn nếu bạn báo qua <code>/report</code> trong Discord hoặc email <email>{contact}</email>.",
+    "storyTitle": "Câu chuyện ra đời",
+    "story1": "KanbanCord bắt đầu từ một dự án nhóm ở đại học trong năm học 2024–2025. Môn học yêu cầu chúng tôi dùng bản cài OpenProject của trường, và thực tế chúng tôi chỉ dùng bảng kanban của nó, cộng với phần ghi thời gian mà môn học yêu cầu. Nó liên tục gây khó chịu: cứ vài phút lại sập, và tệ nhất là vừa chạy lại mà bạn thử làm gì đó thì nó lại sập tiếp. Nó còn liên tục đăng xuất chúng tôi. Ngoài thời gian ở trường, nhóm chúng tôi vốn đã phối hợp mọi thứ trên Discord.",
+    "story2": "Nửa đùa nửa thật, tôi nói mình có thể làm một công cụ tốt hơn mớ hỗn độn này, và vài bạn trong nhóm bảo tôi cứ làm đi. Tôi đã có khá nhiều kinh nghiệm làm bot Discord bằng discord.js, nên sau vài tuần suy nghĩ, một phần vì muốn chứng minh, tôi đã tạo một ứng dụng mới trong Discord Developer Portal khi dự án vẫn đang diễn ra. Ý tưởng rất đơn giản: một bảng kanban sống ngay nơi chúng tôi đang trò chuyện. Đó cũng là lý do KanbanCord trước hết là một công cụ kanban chứ không phải bộ quản lý dự án đầy đủ: nó làm đúng phần chúng tôi thật sự cần, và làm ngay nơi mọi người đã ở sẵn.",
+    "story3": "Là sinh viên, tôi làm nó lúc có lúc không, xen giữa khá nhiều lần trì hoãn. Khoảng một năm sau khi bắt đầu, tôi phát hiện có một bot khác trùng tên y hệt, do j4asper tạo. Hai ứng dụng Discord của chúng tôi được tạo cách nhau chỉ sáu ngày: <other>của họ</other> vào ngày 30 tháng 10 năm 2024, của tôi vào ngày 5 tháng 11 năm 2024. Nếu bạn tìm KanbanCord trong Discord, rất có thể bạn sẽ gặp bot của họ; trang web này và bot bạn thêm từ đây là do {operator} làm.",
+    "story4": "Phần khó nhất là phần nền móng: làm sao để bảng, cột, công việc và quyền khớp với máy chủ, vai trò và thành viên của chính Discord. Để mô hình miền đúng, tôi phải thử nghiệm và làm lại rất nhiều: bỏ đi những gì không cần và thêm các bảng dữ liệu cùng trường mà tầm nhìn của tôi đòi hỏi, khi tôi liên tục nghĩ ra thêm những điều công cụ kanban có thể làm. Thành thật mà nói, đó là khoảng 80% công sức. Khi cấu trúc đã ổn định, phần còn lại ghép lại nhanh đến bất ngờ: với một thiết kế vững chắc, AI tạo sinh thực sự hữu ích cho việc xây dựng tính năng, vì nó bám theo cấu trúc sẵn có và có ít lỗi lớn hơn hẳn phải tự tìm và sửa.",
+    "story5": "Toàn bộ dự án là mã nguồn mở: <bot>bot</bot>, <website>trang web</website> và <api>API</api> đều có kho lưu trữ riêng trên GitHub."
+  },
+  "support": {
+    "metaTitle": "Ủng hộ",
+    "metaDescription": "KanbanCord miễn phí cho mọi người. Nếu bạn muốn góp phần chi phí, bạn có thể ủng hộ tự nguyện qua Ko-fi.",
+    "title": "Ủng hộ {name}",
+    "p1": "{name} miễn phí, không quảng cáo và không có gói trả phí, và sẽ luôn như vậy. Đây là dự án cá nhân, do {operator} xây dựng và vận hành.",
+    "p2": "Nếu nó hữu ích cho máy chủ của bạn và bạn muốn góp phần chi phí, như tên miền và các máy chủ sẽ cần khi nó phát triển, bạn có thể ủng hộ qua Ko-fi.",
+    "kofi": "Ủng hộ trên Ko-fi",
+    "goodToKnow": "Nên biết",
+    "voluntary": "Ủng hộ hoàn toàn tự nguyện. Mọi người đều nhận cùng một {name}, dù có ủng hộ hay không.",
+    "buysNothing": "Ủng hộ không mua được tính năng, giới hạn, vai trò, hỗ trợ ưu tiên hay bất cứ thứ gì khác.",
+    "payments": "Thanh toán do Ko-fi và PayPal xử lý, không bao giờ do {name}. Chúng tôi không liên kết khoản ủng hộ với tài khoản Discord của bạn.",
+    "refunds": "Theo nguyên tắc, khoản ủng hộ không được hoàn lại. Nếu bạn ủng hộ nhầm, hãy email <email>{email}</email> và chúng tôi sẽ cố gắng hết sức.",
+    "notDonating": "Không ủng hộ cũng hoàn toàn ổn. Giới thiệu {name} cho người khác, hoặc báo lỗi bằng <code>/report</code>, cũng là giúp đỡ."
+  },
+  "faq": {
+    "metaTitle": "Câu hỏi thường gặp",
+    "metaDescription": "Giải đáp về KanbanCord: giá, thêm bot, quyền, lệnh Discord, thông báo, tải lên và dữ liệu của bạn.",
+    "title": "Câu hỏi thường gặp",
+    "free": {
+      "q": "{name} có miễn phí không?",
+      "a": "Có. Không có gói trả phí, không quảng cáo, và dữ liệu của bạn không bị bán."
+    },
+    "start": {
+      "q": "Tôi bắt đầu từ đâu?",
+      "a": "Thêm bot, rồi dùng <code>/guide</code> trong Discord để được hướng dẫn từng bước. <guides>Các hướng dẫn</guides> bao quát mọi thứ, từ danh sách việc cần làm chung đến nhắc nhở và quyền."
+    },
+    "website": {
+      "q": "Tôi có cần trang web không?",
+      "a": "Không. {name} được làm để dùng hoàn toàn từ Discord: tạo bảng, cột và công việc, di chuyển và giao việc, đặt nhãn, mức ưu tiên và hạn chót, bình luận và chọn thông báo, tất cả bằng lệnh gạch chéo. Trang web dành cho khi bạn muốn xem cả bảng trong nháy mắt, hoặc tinh chỉnh cài đặt."
+    },
+    "add": {
+      "q": "Làm sao để thêm vào máy chủ của tôi?",
+      "a": "Dùng \"Thêm vào Discord\" ở cuối bất kỳ trang nào và chọn máy chủ. Bạn cần quyền Quản Lý Máy Chủ ở đó. Sau đó tạo bảng đầu tiên bằng <code>/board create</code> và thêm công việc bằng <code>/task create</code>."
+    },
+    "access": {
+      "q": "Ai có thể xem và thay đổi bảng của tôi?",
+      "a": "Mặc định, nó theo vai trò và quyền Discord của máy chủ: quản trị viên và điều hành viên có thể quản lý bảng, thành viên có thể làm việc với công việc. Quản trị viên máy chủ có thể thay đổi điều này cho toàn máy chủ hoặc từng bảng, trong cài đặt máy chủ và bảng."
+    },
+    "servers": {
+      "q": "Vì sao khi đăng nhập lại hỏi danh sách máy chủ của tôi?",
+      "a": "Để {name} có thể hiện những máy chủ bạn quản lý được và có thể thêm bot. Nó không đọc tin nhắn của bạn."
+    },
+    "discord": {
+      "q": "Tôi có thể làm gì từ Discord?",
+      "a": "Mọi thứ bạn cần hằng ngày: tạo, xem, đổi tên và lưu trữ bảng; thêm, đổi tên, sắp xếp lại và xóa cột; tạo, sửa, di chuyển và xóa công việc; giao người và vai trò; đặt nhãn, mức ưu tiên và hạn chót; đọc và viết bình luận; chọn thông báo của riêng bạn bằng <code>/notifications</code>; và người quản lý máy chủ có thể thiết lập kênh cập nhật bằng <code>/kanbancord</code>. Dùng <code>/help</code> trong Discord để xem mọi lệnh."
+    },
+    "websiteOnly": {
+      "q": "Cần trang web cho việc gì?",
+      "a": "Tinh chỉnh và toàn cảnh: xem cả bảng cùng lúc, quy tắc quyền cho từng bảng và từng người, nhãn và mức ưu tiên của bảng, tính năng máy chủ sử dụng, chính xác những cập nhật bạn nhận, giao diện và tùy chọn trợ năng, tải lên hình ảnh và video, và duyệt nhật ký thay đổi."
+    },
+    "notifications": {
+      "q": "Thông báo hoạt động thế nào?",
+      "a": "Máy chủ có thể cho bot đăng cập nhật vào các kênh đã chọn và sao chép nhật ký thay đổi vào một kênh; bài cập nhật có thể hiện toàn bộ công việc kèm nút để di chuyển, giao người hoặc sửa ngay tại chỗ. Bạn cũng có thể nhận tin nhắn trực tiếp về công việc được giao cho bạn, do bạn tạo hoặc bạn theo dõi, kể cả nhắc nhở khi đến hạn. Nếu một kênh đã nhắc đến bạn về việc gì đó, bạn sẽ không nhận thêm tin nhắn trực tiếp về việc đó. Chọn những gì bạn nhận bằng <code>/notifications</code>, hoặc chi tiết hơn ở Cài đặt → Thông báo trên trang web. Người quản lý máy chủ thiết lập kênh bằng <code>/kanbancord</code>."
+    },
+    "uploads": {
+      "q": "Hình ảnh và video tải lên được lưu ở đâu?",
+      "a": "Trên Imgur. Ai có liên kết cũng xem được, nên đừng tải lên thứ gì riêng tư."
+    },
+    "data": {
+      "q": "Làm sao để xóa dữ liệu của tôi?",
+      "a": "Đăng xuất ở mọi nơi trong Cài đặt → Phiên đăng nhập, và yêu cầu chúng tôi xóa phần còn lại qua <email>{email}</email>. Quản trị viên máy chủ có thể xóa bảng, và gỡ bot khỏi máy chủ sẽ dừng đồng bộ máy chủ đó. Chi tiết có trong <privacy>Chính sách quyền riêng tư</privacy>."
+    },
+    "help": {
+      "q": "Tôi tìm thấy lỗi, có ý tưởng, hoặc cần trợ giúp.",
+      "a": "Tham gia <server>máy chủ hỗ trợ {name}</server> để đặt câu hỏi và biết về tính năng mới, hoặc dùng <code>/report</code> trong Discord để gửi báo cáo thẳng đến nhà phát triển."
+    }
+  },
+  "guides": {
+    "metaTitle": "Hướng dẫn",
+    "metaDescription": "Hướng dẫn KanbanCord: bảng kanban, danh sách việc cần làm và theo dõi công việc trong Discord, từ bảng đầu tiên đến nhắc nhở, luồng cập nhật và quyền.",
+    "title": "Hướng dẫn",
+    "intro": "Cách lên kế hoạch và theo dõi công việc trong máy chủ Discord với {name}: bảng kanban, danh sách việc cần làm chung, công việc cho người và vai trò, hạn chót và nhắc nhở. Hầu hết mọi thứ đều làm bằng lệnh gạch chéo; một vài hướng dẫn nói về trang web.",
+    "inDiscord": "Đã thêm bot rồi? Dùng <code>/guide</code> trong Discord để xem các bước tương tự, được đánh dấu khi bạn hoàn thành.",
+    "tryTitle": "Thử ngay trong máy chủ của bạn",
+    "try": "{name} miễn phí. Thêm vào máy chủ của bạn, rồi dùng <code>/guide</code> để được hướng dẫn từng bước ngay trong Discord.",
+    "more": "Hướng dẫn khác"
+  }
+}
