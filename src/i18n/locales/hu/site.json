@@ -1,0 +1,166 @@
+{
+  "nav": {
+    "main": "Fő",
+    "site": "Webhely",
+    "breadcrumbs": "Morzsamenü",
+    "guides": "Útmutatók",
+    "faq": "GYIK",
+    "open": "KanbanCord megnyitása",
+    "about": "Rólunk",
+    "support": "Támogatás",
+    "supportServer": "Támogatói szerver",
+    "appDirectory": "Alkalmazáskönyvtár",
+    "status": "Állapot",
+    "privacy": "Adatvédelmi irányelvek",
+    "terms": "Felhasználási feltételek",
+    "addToDiscord": "Hozzáadás a Discordhoz"
+  },
+  "footer": {
+    "notAffiliated": "© {year} {operator}. A {name} nem áll kapcsolatban a Discorddal, és a Discord nem támogatja."
+  },
+  "landing": {
+    "metaTitle": "Kanbantáblák a Discordhoz",
+    "metaDescription": "Kanbantábla, amely a Discord-szervereden él: hozz létre, helyezz át és rendelj hozzá feladatokat perjeles parancsokkal, kapj frissítéseket a csatornáidban, és használd a webhelyet az átfogó képhez.",
+    "title": "Kanbantábla, amely a Discord-szervereden él",
+    "intro": "Tervezd és kövesd a munkát ott, ahol a közösséged már beszélget. Hozz létre, helyezz át és rendelj hozzá feladatokat perjeles parancsokkal, és kapj frissítéseket a csatornáidban. A webhely ott van, ha a teljes képet szeretnéd látni.",
+    "signIn": "Bejelentkezés Discorddal",
+    "free": "Ingyenes. Reklámok nélkül. Követés nélkül. A <link>Discord alkalmazáskönyvtárában</link> is megtalálható.",
+    "features": "Funkciók",
+    "feature": {
+      "discord": {
+        "title": "Minden a Discordból",
+        "text": "Hozz létre táblákat és feladatokat, helyezd át és rendeld hozzá őket, állíts be határidőket és szólj hozzá perjeles parancsokkal. Nem kell elhagynod a csevegést."
+      },
+      "boards": {
+        "title": "Igazi kanbantáblák",
+        "text": "Oszlopok és feladatok címkékkel, prioritásokkal, határidőkkel, felelősökkel, hozzászólásokkal, ellenőrzőlistákkal, képekkel és videókkal."
+      },
+      "permissions": {
+        "title": "A Discord-jogosultságaid",
+        "text": "A hozzáférés eleve a szervered rangjait követi, és a webhelyen táblánként és személyenként finomhangolható."
+      },
+      "updates": {
+        "title": "Frissítések, nem zaj",
+        "text": "Küldd a módosításokat kiválasztott csatornákba, és kapj közvetlen üzeneteket a feladataidról, anélkül hogy egy dologért kétszer megemlítenének."
+      },
+      "website": {
+        "title": "Az átfogó kép, ha kell",
+        "text": "A webhely egy pillantással mutatja a teljes táblákat, és itt van a finomhangolás is, minden módosítás élőben mindenkinek."
+      },
+      "comfort": {
+        "title": "Kényelmes használatra tervezve",
+        "text": "Témák, köztük nagy kontrasztú és színtévesztőbarát változatok, szövegméret, és egyszerű mód kis csapatoknak."
+      }
+    },
+    "usesTitle": "Nem csak munkára",
+    "uses": "A KanbanCord ugyanolyan jól működik azokhoz a listákhoz, amelyeket a hozzád legközelebb állókkal vezetsz: tervek, megnézendő filmek, elolvasandó könyvek, megveendő dolgok. Hozz létre egy táblát egy kis szerveren, hagyd egyszerű módban, és pipáljátok ki együtt a dolgokat.",
+    "stepsTitle": "Kezdd el egy perc alatt",
+    "step1": "<strong>Add hozzá a botot</strong> a szerveredhez.",
+    "step2": "<strong>Hozz létre egy táblát</strong> a <code>/board create</code> paranccsal.",
+    "step3": "<strong>Adj hozzá feladatokat</strong> a <code>/task create</code> paranccsal, és a <code>/help</code> megmutatja a többit."
+  },
+  "about": {
+    "metaTitle": "Rólunk",
+    "metaDescription": "A KanbanCord egy kanbantábla, amely a Discord-szervereden él: teljes egészében a bottal használhatod, a webhelyet pedig az átfogó képhez és a finomhangoláshoz.",
+    "title": "A {name} bemutatása",
+    "p1": "A {name} egy kanbantábla, amely a Discord-szervereden él. Az ötlet egyszerű: a közösséged már a Discordon beszélget, így a tervezésnek is ott a helye. Hozz létre táblákat és oszlopokat, adj hozzá feladatokat, vidd őket előre, rendelj hozzá embereket, állíts be címkéket, prioritásokat és határidőket, és beszéljétek meg őket hozzászólásokban, mindezt a bot perjeles parancsaival, a csevegés elhagyása nélkül. A frissítések a választott csatornákba érkeznek, a saját feladataidról pedig közvetlen üzenetben.",
+    "p2": "A legtöbb embernek soha nincs szüksége másra. A webhely akkor hasznos, ha egy pillantással látni szeretnéd az egész táblát, vagy finomhangolnál: részletes jogosultságok táblánként és személyenként, a tábla címkéi és prioritási szintjei, a szerver által használt funkciók, pontosan mely frissítésekről értesülsz, és minden módosítás változásnaplója.",
+    "p3": "Kezdettől fogva a szervered Discord-rangjait és -jogosultságait követi, így a megfelelő emberek látják és módosítják a megfelelő táblákat, anélkül hogy bármit kétszer kellene beállítani.",
+    "simpleTitle": "Csak amit választasz",
+    "simple": "Az új szerverek <strong>egyszerű módban</strong> indulnak: táblák, oszlopok, és feladatok címmel és leírással. A felelősök, az emlékeztetős határidők, a prioritások, a címkék, a hozzászólások és az egyéni jogosultságok kikapcsolva maradnak, amíg a szerver egy kezelője be nem kapcsolja őket a <code>/kanbancord features</code> paranccsal vagy a webhely szerverbeállításaiban. A kikapcsolt funkciók sehol sem jelennek meg, sem a Discordban, sem a webhelyen: csak az látszik, amit választasz. Minden tábla újra kikapcsolhat funkciókat magának, és bárki elrejthet még többet magának a Preferenciák → Egyszerű nézet alatt. Egy funkció kikapcsolása csak elrejti; semmi sem törlődik.",
+    "madeByTitle": "Egyetlen ember készíti",
+    "madeBy": "A {name} fejlesztője és üzemeltetője {operator}. Ingyenes, nincsenek benne reklámok, és nem adja el és nem követi az adataidat (lásd az <privacy>Adatvédelmi irányelveket</privacy>). Hibát találtál, vagy van egy ötleted? Használd a <code>/report</code> parancsot a Discordban. Kérdésed van, vagy hallanál az új funkciókról? Csatlakozz a <server>támogatói szerverhez</server>. Ha segítenél a költségekben, nézd meg a <support>Támogatás</support> oldalt.",
+    "findTitle": "Keresd meg a Discordon",
+    "find": "A {name} saját oldallal rendelkezik a <directory>Discord alkalmazáskönyvtárában</directory>, ahonnan közvetlenül a Discordból adhatod hozzá egy szerverhez. Hogy a webhely, a bot és minden mögöttük működik-e, és van-e tervezett karbantartás, az <status>állapotoldalon</status> láthatod.",
+    "startTitle": "Első lépések",
+    "start1": "Add hozzá a botot a szerveredhez.",
+    "start2": "Hozz létre egy táblát a <code>/board create</code> paranccsal, majd adj hozzá feladatokat a <code>/task create</code> paranccsal.",
+    "start3": "A <code>/help</code> megmutatja mindazt, amire a bot képes.",
+    "questions": "Kérdésed van? Nézd meg a <faq>GYIK</faq> oldalt.",
+    "translationsTitle": "Fordítások",
+    "translations": "A webhely fordításai generatív MI segítségével készültek. Ha hibát vagy javítható megfogalmazást veszel észre, hálásak lennénk, ha jeleznéd a Discordban a <code>/report</code> paranccsal vagy e-mailben: <email>{contact}</email>.",
+    "storyTitle": "Hogyan született",
+    "story1": "A KanbanCord egy egyetemi csoportos projekttel kezdődött a 2024–2025-ös tanévben. A kurzus előírta, hogy az egyetem saját OpenProject-telepítését használjuk, és a gyakorlatban csak a kanbantábláját használtuk, meg a kurzus által kért időnyilvántartást. Állandó bosszúság forrása volt: néhány percenként összeomlott, és a legrosszabb időkben abban a pillanatban, amikor újra elindult és próbáltál csinálni valamit, megint összeomlott. Ráadásul folyton kijelentkeztetett minket. Az egyetemen töltött időn kívül a csoportunk úgyis mindent a Discordon egyeztetett.",
+    "story2": "Félig viccből azt mondtam, hogy jobb eszközt tudnék építeni ennél a katyvasznál, és néhány csapattársam azt mondta, vágjak bele. Már bőven volt tapasztalatom Discord-botok építésében a discord.js-szel, így néhány hét gondolkodás után, részben puszta dacból, létrehoztam egy új alkalmazást a Discord Developer Portalon, még a projekt ideje alatt. Az ötlet egyszerű volt: egy kanbantábla, amely ott él, ahol már beszélgettünk. Ezért is elsősorban kanbaneszköz a KanbanCord, és nem teljes projektmenedzsment-csomag: azt a részt végzi el, amire valóban szükségünk volt, és ott, ahol az emberek már vannak.",
+    "story3": "Diákként időnként dolgoztam rajta, közben bőven halogatva. Nagyjából egy évvel a kezdés után megtudtam, hogy létezik egy másik bot pontosan ugyanezzel a névvel, j4asper készítette. A Discord-alkalmazásainkat mindössze hat nap különbséggel hozták létre: <other>az övét</other> 2024. október 30-án, az enyémet 2024. november 5-én. Ha rákeresel a KanbanCordra a Discordban, könnyen lehet, hogy az övébe futsz bele; ez a webhely és az innen hozzáadható bot {operator} munkája.",
+    "story4": "Messze a legnehezebb rész az alapozás volt: hogyan illeszkedjenek a táblák, oszlopok, feladatok és jogosultságok a Discord saját szervereihez, rangjaihoz és tagjaihoz. A tartománymodellek helyes kialakítása rengeteg kísérletezést és újraépítést igényelt: kivágtam, ami nem kellett, és hozzáadtam a táblákat és mezőket, amelyeket az elképzelésem megkívánt, miközben folyton újabb dolgok jutottak eszembe, amire a kanbaneszköz képes lehetne. Őszintén szólva ez volt a munka nagyjából 80%-a. Amint a szerkezet kialakult, a többi meglepően gyorsan összeállt: szilárd tervvel a generatív MI valóban hasznos lett a funkciók építésében, mert követte a meglévő szerkezetet, és sokkal kevesebb nagy hibát kellett kézzel megtalálni és kijavítani.",
+    "story5": "Az egész projekt nyílt forráskódú: a <bot>bot</bot>, a <website>webhely</website> és az <api>API</api> mind saját tárolóval rendelkezik a GitHubon."
+  },
+  "support": {
+    "metaTitle": "Támogatás",
+    "metaDescription": "A KanbanCord mindenkinek ingyenes. Ha segítenél a költségeiben, önkéntes adományt adhatsz a Ko-fin.",
+    "title": "A {name} támogatása",
+    "p1": "A {name} ingyenes, nincsenek benne reklámok és fizetős csomagok, és ez így is marad. Személyes projekt, amelyet {operator} fejleszt és üzemeltet.",
+    "p2": "Ha hasznos a szervered számára, és segítenél a költségeiben, például a domainben és a szerverekben, amelyekre a növekedéshez szükség lesz, adományt adhatsz a Ko-fin.",
+    "kofi": "Támogatás a Ko-fin",
+    "goodToKnow": "Jó tudni",
+    "voluntary": "Az adományok teljesen önkéntesek. Mindenki ugyanazt a {name} szolgáltatást kapja, akár adományoz, akár nem.",
+    "buysNothing": "Az adomány nem vásárol funkciókat, korlátokat, rangokat, kiemelt támogatást vagy bármi mást.",
+    "payments": "A fizetéseket a Ko-fi és a PayPal kezeli, soha nem a {name}. Az adományokat nem kapcsoljuk a Discord-fiókodhoz.",
+    "refunds": "Az adományok főszabály szerint nem téríthetők vissza. Ha tévedésből adományoztál, írj ide: <email>{email}</email>, és megtesszük, amit tudunk.",
+    "notDonating": "Teljesen rendben van, ha nem adományozol. Az is segít, ha másoknak is meséled a {name} létezését, vagy ha a <code>/report</code> paranccsal hibát jelentesz."
+  },
+  "faq": {
+    "metaTitle": "GYIK",
+    "metaDescription": "Válaszok a KanbanCordról: ár, a bot hozzáadása, jogosultságok, Discord-parancsok, értesítések, feltöltések és az adataid.",
+    "title": "Gyakran ismételt kérdések",
+    "free": {
+      "q": "Ingyenes a {name}?",
+      "a": "Igen. Nincsenek fizetős csomagok, sem reklámok, és az adataidat nem adjuk el."
+    },
+    "start": {
+      "q": "Hol kezdjem?",
+      "a": "Add hozzá a botot, majd futtasd a <code>/guide</code> parancsot a Discordban egy lépésenkénti bemutatóért. Az <guides>útmutatók</guides> mindent lefednek a közös teendőlistától az emlékeztetőkig és jogosultságokig."
+    },
+    "website": {
+      "q": "Szükségem van a webhelyre?",
+      "a": "Nem. A {name} úgy készült, hogy teljes egészében a Discordból lehessen használni: táblák, oszlopok és feladatok létrehozása, áthelyezése és hozzárendelése, címkék, prioritások és határidők beállítása, hozzászólás és az értesítések kiválasztása, mind perjeles parancsokkal. A webhely arra való, ha egy pillantással látni szeretnéd az egész táblát, vagy finomhangolnád a beállításokat."
+    },
+    "add": {
+      "q": "Hogyan adom hozzá a szerveremhez?",
+      "a": "Használd bármelyik oldal alján a „Hozzáadás a Discordhoz” gombot, és válaszd ki a szervert. Ott a Szerver kezelése jogosultságra van szükséged. Ezután hozz létre egy első táblát a <code>/board create</code> paranccsal, és adj hozzá feladatokat a <code>/task create</code> paranccsal."
+    },
+    "access": {
+      "q": "Ki láthatja és módosíthatja a tábláimat?",
+      "a": "Alapértelmezés szerint a szervered Discord-rangjait és -jogosultságait követi: az adminisztrátorok és moderátorok kezelhetik a táblákat, a tagok dolgozhatnak a feladatokkal. A szerver adminisztrátorai ezt az egész szerverre vagy táblánként módosíthatják a szerver- és táblabeállításokban."
+    },
+    "servers": {
+      "q": "Miért kéri a bejelentkezés a szervereim listáját?",
+      "a": "Hogy a {name} megmutathassa, mely szervereidet kezelheted és melyekhez adhatod hozzá a botot. Az üzeneteidet nem olvassa."
+    },
+    "discord": {
+      "q": "Mit tehetek a Discordból?",
+      "a": "Mindent, ami a mindennapokhoz kell: táblák létrehozása, megtekintése, átnevezése és archiválása; oszlopok hozzáadása, átnevezése, átrendezése és törlése; feladatok létrehozása, szerkesztése, áthelyezése és törlése; emberek és rangok hozzárendelése; címkék, prioritások és határidők beállítása; hozzászólások olvasása és írása; a saját értesítéseid kiválasztása a <code>/notifications</code> paranccsal; a szerver kezelőinek pedig frissítési csatornák beállítása a <code>/kanbancord</code> paranccsal. Az összes parancsért futtasd a <code>/help</code> parancsot a Discordban."
+    },
+    "websiteOnly": {
+      "q": "Mihez kell a webhely?",
+      "a": "A finomhangoláshoz és az átfogó képhez: egy teljes tábla egyszerre látása, jogosultsági szabályok táblánként és személyenként, a tábla címkéi és prioritási szintjei, a szerver által használt funkciók, pontosan mely frissítésekről értesülsz, témák és akadálymentességi beállítások, képek és videók feltöltése, valamint a változásnapló böngészése."
+    },
+    "notifications": {
+      "q": "Hogyan működnek az értesítések?",
+      "a": "Egy szerver beállíthatja, hogy a bot frissítéseket küldjön kiválasztott csatornákba, és a változásnaplót egy csatornába tükrözze; a frissítési bejegyzések a teljes feladatot mutathatják, gombokkal az áthelyezéshez, felelősök hozzárendeléséhez vagy szerkesztéshez helyben. Közvetlen üzeneteket is kaphatsz a hozzád rendelt, általad létrehozott vagy követett feladatokról, a határidő-emlékeztetőkkel együtt. Ha egy csatorna már megemlített valamiért, arról nem kapsz közvetlen üzenetet is. Hogy mit kapsz, azt a <code>/notifications</code> paranccsal választhatod ki, vagy részletesebben a webhelyen a Beállítások → Értesítések alatt. A szerver kezelői a <code>/kanbancord</code> paranccsal állítják be a csatornákat."
+    },
+    "uploads": {
+      "q": "Hol tárolódnak a feltöltött képek és videók?",
+      "a": "Az Imguron. Bárki láthatja őket, akinél megvan a hivatkozás, ezért ne tölts fel semmi privátot."
+    },
+    "data": {
+      "q": "Hogyan törölhetem az adataimat?",
+      "a": "Jelentkezz ki mindenhol a Beállítások → Munkamenetek alatt, a többi törlését pedig kérd tőlünk itt: <email>{email}</email>. A szerver adminisztrátorai törölhetik a táblákat, és ha a botot eltávolítják egy szerverről, az leállítja annak a szervernek a szinkronizálását. A részletek az <privacy>Adatvédelmi irányelvekben</privacy> találhatók."
+    },
+    "help": {
+      "q": "Hibát találtam, van egy ötletem, vagy segítségre van szükségem.",
+      "a": "Csatlakozz a <server>{name} támogatói szerveréhez</server>, hogy kérdezz és hallj az új funkciókról, vagy használd a <code>/report</code> parancsot a Discordban, hogy közvetlenül a fejlesztőnek küldj jelentést."
+    }
+  },
+  "guides": {
+    "metaTitle": "Útmutatók",
+    "metaDescription": "Útmutatók a KanbanCordhoz: kanbantáblák, teendőlisták és feladatkövetés a Discordban, az első táblától az emlékeztetőkig, hírfolyamokig és jogosultságokig.",
+    "title": "Útmutatók",
+    "intro": "Hogyan tervezd és kövesd a munkát a Discord-szervereden a {name} segítségével: kanbantáblák, közös teendőlisták, feladatok embereknek és rangoknak, határidők és emlékeztetők. Szinte minden perjeles parancsokkal történik; néhány útmutató a webhelyről szól.",
+    "inDiscord": "Már hozzáadtad a botot? Futtasd a <code>/guide</code> parancsot a Discordban ugyanezekért a lépésekért, menet közben kipipálva.",
+    "tryTitle": "Próbáld ki a szervereden",
+    "try": "A {name} ingyenes. Add hozzá a szerveredhez, majd futtasd a <code>/guide</code> parancsot egy lépésenkénti bemutatóért, közvetlenül a Discordban.",
+    "more": "További útmutatók"
+  }
+}

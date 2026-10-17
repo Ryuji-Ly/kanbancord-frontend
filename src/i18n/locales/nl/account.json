@@ -1,0 +1,147 @@
+{
+  "appearance": {
+    "groups": {
+      "surfaces": "Vlakken",
+      "controls": "Bedieningselementen",
+      "text": "Tekst",
+      "brand": "Merk en accenten",
+      "status": "Status",
+      "permissions": "Rechtenregels"
+    },
+    "core": {
+      "background": {
+        "label": "Achtergrond",
+        "hint": "Achter alles"
+      },
+      "surface": {
+        "label": "Vlak",
+        "hint": "Panelen, kolommen en kaarten"
+      },
+      "text": {
+        "label": "Tekst",
+        "hint": "Lopende tekst; koppen en hints worden ervan afgeleid"
+      },
+      "accent": {
+        "label": "Accent",
+        "hint": "Markeringen, focusranden, tint van koppen"
+      },
+      "primary": {
+        "label": "Primair",
+        "hint": "Hoofdknoppen en links"
+      },
+      "success": {
+        "label": "Gelukt",
+        "hint": "Bevestigingen en toestaan-regels"
+      },
+      "danger": {
+        "label": "Gevaar",
+        "hint": "Fouten, verwijderknoppen en weigeren-regels"
+      },
+      "warning": {
+        "label": "Waarschuwing",
+        "hint": "Waarschuwingen en markeringen"
+      }
+    },
+    "presets": {
+      "dark": {
+        "label": "Donker",
+        "description": "De standaard."
+      },
+      "light": {
+        "label": "Licht",
+        "description": "Donkere tekst op lichte vlakken."
+      },
+      "highContrast": {
+        "label": "Hoog contrast",
+        "description": "Puur zwart en wit met duidelijke randen, voor slechtzienden."
+      },
+      "redGreen": {
+        "label": "Rood-groen veilig",
+        "description": "Voor protanopie en deuteranopie: blauw voor gelukt, oranje voor gevaar."
+      },
+      "blueYellow": {
+        "label": "Blauw-geel veilig",
+        "description": "Voor tritanopie: groenblauw voor gelukt, rood voor gevaar, geel voor waarschuwingen."
+      }
+    },
+    "theme": "Thema",
+    "custom": "Aangepast",
+    "customHint": "Je eigen kleuren, uitgaande van het thema hierboven.",
+    "customColours": "Aangepaste kleuren",
+    "customColoursHint": "Stel acht kleuren in; alle andere kleuren worden daaruit afgeleid.",
+    "lowContrast": "Tekst heeft tegen de achtergrond een contrast van {contrast}:1; minstens 4.5:1 wordt aanbevolen om prettig te lezen.",
+    "advanced": "Geavanceerd: elke kleur bewerken",
+    "changed_one": " ({count} gewijzigd)",
+    "changed_other": " ({count} gewijzigd)",
+    "advancedHint": "Wijzigingen hier gelden bovenop het thema hierboven en blijven als je van thema wisselt.",
+    "resetAll": "Alles terugzetten",
+    "reset": "Terugzetten",
+    "language": "Taal",
+    "browserLanguage": "De taal van mijn browser"
+  },
+  "accessibility": {
+    "textScale": {
+      "normal": "Normaal",
+      "large": "Groot",
+      "larger": "Groter",
+      "largest": "Grootst"
+    },
+    "filters": {
+      "none": "Geen",
+      "protanopia": "Protanopie (rood zwak)",
+      "deuteranopia": "Deuteranopie (groen zwak)",
+      "tritanopia": "Tritanopie (blauw zwak)"
+    },
+    "intro": "Bij kleurenblindheid kleuren de thema's Rood-groen veilig en Blauw-geel veilig de interface opnieuw in. De opties hieronder helpen bij de kleuren die mensen kiezen voor labels, prioriteiten en rollen.",
+    "patterns": "Patronen op labels",
+    "patternsHint": "Elk label krijgt een eigen streep- of stippenpatroon, zodat labels niet alleen in kleur verschillen.",
+    "ranks": "Prioriteitsrang",
+    "ranksHint": "Toont de rang van elke prioriteit naast de naam, waarbij P1 het dringendst is.",
+    "filter": "Kleurfilter voor labels, prioriteiten en rollen",
+    "filterHint": "Verschuift kleuren die moeilijk uit elkaar te houden zijn naar kleuren die beter te zien zijn.",
+    "textSize": "Tekstgrootte",
+    "motion": "Beweging beperken",
+    "motionSystem": "Mijn apparaat volgen",
+    "motionOn": "Altijd beperken",
+    "motionOff": "Nooit beperken"
+  },
+  "simpleView": {
+    "intro": "Verberg wat je niet gebruikt, op elk bord. Dit verandert alleen wat jij ziet: de gegevens blijven, en alle anderen zien ze nog. Wat een server heeft uitgezet, is voor iedereen verborgen.",
+    "hideAll": "Alles wat optioneel is verbergen",
+    "showAll": "Alles tonen"
+  },
+  "menu": {
+    "label": "Account",
+    "preferences": "Voorkeuren",
+    "settings": "Instellingen",
+    "logOut": "Uitloggen",
+    "appearance": "Weergave",
+    "accessibility": "Toegankelijkheid",
+    "simpleView": "Eenvoudige weergave",
+    "sessions": "Sessies",
+    "dialogTitle": "Voorkeuren en instellingen"
+  },
+  "sessions": {
+    "unknownDevice": "Onbekend apparaat",
+    "browserOn": "{browser} op {system}",
+    "intro": "Apparaten en browsers die in je account zijn ingelogd. Een ervan uitloggen beëindigt die meteen, inclusief een bord dat daar open staat.",
+    "signOutFailed": "Kon die sessie niet uitloggen",
+    "loadFailed": "Kon je sessies niet laden",
+    "thisDevice": " · Dit apparaat",
+    "activity": "Actief {active} · ingelogd {signedIn}",
+    "signOut": "Uitloggen",
+    "signOutOthers": "Alle andere apparaten uitloggen"
+  },
+  "language": {
+    "request": "Een taal aanvragen…",
+    "intro": "Staat je taal er nog niet bij? Laat de ontwikkelaar weten welke je wilt. Vertalingen worden toegevoegd als mensen erom vragen.",
+    "which": "Taal",
+    "pick": "Kies een taal…",
+    "note": "Opmerking (optioneel)",
+    "notePlaceholder": "Iets toe te voegen, bijvoorbeeld of je kunt helpen vertalen",
+    "send": "Aanvraag versturen",
+    "sending": "Versturen…",
+    "sent": "Bedankt! Je aanvraag is naar de ontwikkelaar gestuurd.",
+    "failed": "De aanvraag kon niet worden verstuurd"
+  }
+}

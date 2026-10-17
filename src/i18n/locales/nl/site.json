@@ -1,0 +1,166 @@
+{
+  "nav": {
+    "main": "Hoofdmenu",
+    "site": "Site",
+    "breadcrumbs": "Kruimelpad",
+    "guides": "Handleidingen",
+    "faq": "Veelgestelde vragen",
+    "open": "KanbanCord openen",
+    "about": "Over",
+    "support": "Steunen",
+    "supportServer": "Supportserver",
+    "appDirectory": "App-directory",
+    "status": "Status",
+    "privacy": "Privacybeleid",
+    "terms": "Servicevoorwaarden",
+    "addToDiscord": "Toevoegen aan Discord"
+  },
+  "footer": {
+    "notAffiliated": "© {year} {operator}. {name} is niet verbonden aan of goedgekeurd door Discord."
+  },
+  "landing": {
+    "metaTitle": "Kanbanborden voor Discord",
+    "metaDescription": "Een kanbanbord dat in je Discord-server woont: maak, verplaats en wijs taken toe met slash-commando's, krijg updates in je kanalen en gebruik de website voor het grote geheel.",
+    "title": "Een kanbanbord dat in je Discord-server woont",
+    "intro": "Plan en volg werk waar je community al praat. Maak, verplaats en wijs taken toe met slash-commando's, en krijg updates in je kanalen. De website is er als je het hele plaatje wilt zien.",
+    "signIn": "Inloggen met Discord",
+    "free": "Gratis. Geen advertenties. Geen tracking. Ook in de <link>App-directory van Discord</link>.",
+    "features": "Functies",
+    "feature": {
+      "discord": {
+        "title": "Alles vanuit Discord",
+        "text": "Maak borden en taken, verplaats ze en wijs ze toe, stel deadlines in en reageer met slash-commando's. Je hoeft de chat niet te verlaten."
+      },
+      "boards": {
+        "title": "Echte kanbanborden",
+        "text": "Kolommen en taken met labels, prioriteiten, deadlines, toegewezen personen, opmerkingen, checklists, afbeeldingen en video's."
+      },
+      "permissions": {
+        "title": "Je Discord-rechten",
+        "text": "De toegang volgt meteen je serverrollen, en is op de website per bord en per persoon fijn af te stellen."
+      },
+      "updates": {
+        "title": "Updates, geen ruis",
+        "text": "Post wijzigingen in gekozen kanalen en krijg directe berichten over je taken, zonder ooit twee keer voor hetzelfde gepingd te worden."
+      },
+      "website": {
+        "title": "Het grote geheel, als je dat wilt",
+        "text": "De website toont hele borden in één oogopslag en bevat de fijnafstelling, met elke wijziging live voor iedereen."
+      },
+      "comfort": {
+        "title": "Gemaakt om prettig te zijn",
+        "text": "Thema's, waaronder hoog contrast en kleurenblindvriendelijke, tekstgrootte, en een eenvoudige modus voor kleine teams."
+      }
+    },
+    "usesTitle": "Niet alleen voor werk",
+    "uses": "KanbanCord werkt net zo goed voor de lijstjes die je bijhoudt met de mensen die het dichtst bij je staan: plannen om te maken, films om te kijken, boeken om te lezen, dingen om te kopen. Maak een bord in een kleine server, houd het in de eenvoudige modus en vink samen dingen af.",
+    "stepsTitle": "Begin in een minuut",
+    "step1": "<strong>Voeg de bot toe</strong> aan je server.",
+    "step2": "<strong>Maak een bord</strong> met <code>/board create</code>.",
+    "step3": "<strong>Voeg taken toe</strong> met <code>/task create</code>, en gebruik <code>/help</code> om de rest te zien."
+  },
+  "about": {
+    "metaTitle": "Over",
+    "metaDescription": "KanbanCord is een kanbanbord dat in je Discord-server woont: gebruik het volledig via de bot, en de website voor het grote geheel en de fijnafstelling.",
+    "title": "Over {name}",
+    "p1": "{name} is een kanbanbord dat in je Discord-server woont. Het idee is simpel: je community praat al in Discord, dus daar hoort de planning ook te gebeuren. Maak borden en kolommen, voeg taken toe, schuif ze door, wijs mensen toe, stel labels, prioriteiten en deadlines in en bespreek ze in opmerkingen, allemaal met de slash-commando's van de bot, zonder de chat te verlaten. Updates komen in de kanalen die je kiest en, voor je eigen taken, via een direct bericht.",
+    "p2": "De meeste mensen hebben nooit iets anders nodig. De website is er als je het hele bord in één oogopslag wilt zien, of dingen wilt fijnafstellen: gedetailleerde rechten per bord en per persoon, de labels en prioriteitsniveaus die een bord biedt, welke functies een server gebruikt, precies over welke updates je hoort, en het wijzigingslogboek van elke wijziging.",
+    "p3": "Het volgt vanaf het begin de Discord-rollen en -rechten van je server, zodat de juiste mensen de juiste borden zien en wijzigen zonder dat je iets twee keer hoeft in te stellen.",
+    "simpleTitle": "Alleen wat je kiest",
+    "simple": "Nieuwe servers beginnen in de <strong>eenvoudige modus</strong>: borden, kolommen, en taken met een titel en een beschrijving. Toegewezen personen, deadlines met herinneringen, prioriteiten, labels, opmerkingen en aangepaste rechten blijven uit tot een serverbeheerder ze aanzet met <code>/kanbancord features</code> of in de serverinstellingen op de website. Functies die uit staan, worden nergens getoond, niet in Discord en niet op de website: alleen wat je kiest verschijnt. Elk bord kan functies voor zichzelf weer uitzetten, en iedereen kan voor zichzelf meer verbergen onder Voorkeuren → Eenvoudige weergave. Een functie uitzetten verbergt hem alleen; er wordt niets verwijderd.",
+    "madeByTitle": "Gemaakt door één persoon",
+    "madeBy": "{name} wordt gebouwd en gerund door {operator}. Het is gratis, heeft geen advertenties en verkoopt of volgt je gegevens niet (zie het <privacy>Privacybeleid</privacy>). Een probleem gevonden of een idee? Gebruik <code>/report</code> in Discord. Vragen, of wil je horen over nieuwe functies? Word lid van de <server>supportserver</server>. Wil je helpen met de kosten, kijk dan bij <support>Steunen</support>.",
+    "findTitle": "Vind het op Discord",
+    "find": "{name} heeft een eigen pagina in de <directory>App-directory van Discord</directory>, waar je het rechtstreeks vanuit Discord aan een server kunt toevoegen. Of de website, de bot en alles daarachter draaien, en eventueel gepland onderhoud, zie je op de <status>statuspagina</status>.",
+    "startTitle": "Aan de slag",
+    "start1": "Voeg de bot toe aan je server.",
+    "start2": "Maak een bord met <code>/board create</code>, en voeg dan taken toe met <code>/task create</code>.",
+    "start3": "Gebruik <code>/help</code> om alles te zien wat de bot kan.",
+    "questions": "Vragen? Zie de <faq>veelgestelde vragen</faq>.",
+    "translationsTitle": "Vertalingen",
+    "translations": "De vertalingen van deze website zijn gemaakt met hulp van generatieve AI. Zie je een fout of een formulering die beter kan, dan stellen we het op prijs als je het ons laat weten via <code>/report</code> in Discord of per e-mail op <email>{contact}</email>.",
+    "storyTitle": "Hoe het ontstond",
+    "story1": "KanbanCord begon met een groepsproject aan de universiteit in het studiejaar 2024–2025. Voor het vak moesten we de eigen OpenProject-installatie van de universiteit gebruiken, en in de praktijk gebruikten we alleen het kanbanbord, plus de urenregistratie die het vak vroeg. Het was een constante bron van ergernis: het crashte om de paar minuten, en op zijn slechtst crashte het opnieuw zodra het weer online was en je iets probeerde te doen. Ook werden we steeds uitgelogd. Buiten de tijd op de campus regelde onze groep toch al alles via Discord.",
+    "story2": "Half als grap zei ik dat ik een beter hulpmiddel kon bouwen dan deze puinhoop, en een paar teamgenoten zeiden dat ik het moest doen. Ik had al veel ervaring met het bouwen van Discord-bots met discord.js, dus na een paar weken nadenken, en deels uit pure koppigheid, maakte ik een nieuwe applicatie aan in de Discord Developer Portal terwijl het project nog liep. Het idee was simpel: een kanbanbord dat woont waar we al praatten. Daarom is KanbanCord ook in de eerste plaats een kanbantool en geen complete suite voor projectmanagement: het doet het deel dat we echt nodig hadden, en doet dat waar mensen al zijn.",
+    "story3": "Als student werkte ik er af en toe aan, met flink wat uitstelgedrag tussendoor. Ongeveer een jaar nadat ik ermee begon, ontdekte ik dat er een andere bot met precies dezelfde naam bestaat, gemaakt door j4asper. Onze Discord-applicaties zijn maar zes dagen na elkaar aangemaakt: <other>die van hen</other> op 30 oktober 2024, de mijne op 5 november 2024. Als je in Discord naar KanbanCord zoekt, kom je misschien die van hen tegen; deze website, en de bot die je hiervandaan kunt toevoegen, zijn die van {operator}.",
+    "story4": "Verreweg het moeilijkste was het fundament: hoe borden, kolommen, taken en rechten moesten samenwerken met de eigen servers, rollen en leden van Discord. De domeinmodellen goed krijgen kostte veel experimenteren en opnieuw bouwen: weghalen wat niet nodig was en de tabellen en velden toevoegen die mijn visie vroeg, terwijl ik steeds meer bedacht wat de kanbantool kon doen. Eerlijk gezegd was dat zo'n 80% van het werk. Toen de structuur eenmaal stond, kwam de rest verrassend snel samen: met een stevig ontwerp werd generatieve AI echt nuttig voor het bouwen van functies, omdat die de bestaande structuur volgde en er veel minder grote fouten met de hand te vinden en te herstellen waren.",
+    "story5": "Het hele project is open source: de <bot>bot</bot>, de <website>website</website> en de <api>API</api> hebben elk een eigen repository op GitHub."
+  },
+  "support": {
+    "metaTitle": "Steunen",
+    "metaDescription": "KanbanCord is gratis voor iedereen. Wil je helpen met de kosten, dan kun je een vrijwillige donatie doen via Ko-fi.",
+    "title": "{name} steunen",
+    "p1": "{name} is gratis, heeft geen advertenties en geen betaalde abonnementen, en dat blijft zo. Het is een persoonlijk project, gebouwd en gerund door {operator}.",
+    "p2": "Is het nuttig voor je server en wil je helpen met de kosten, zoals het domein en de servers die nodig zijn als het groeit, dan kun je een donatie doen via Ko-fi.",
+    "kofi": "Steunen via Ko-fi",
+    "goodToKnow": "Goed om te weten",
+    "voluntary": "Donaties zijn volledig vrijwillig. Iedereen krijgt hetzelfde {name}, of je nu doneert of niet.",
+    "buysNothing": "Met een donatie koop je geen functies, limieten, rollen, voorrang bij support of wat dan ook.",
+    "payments": "Betalingen worden afgehandeld door Ko-fi en PayPal, nooit door {name}. We koppelen donaties niet aan je Discord-account.",
+    "refunds": "Donaties worden in principe niet terugbetaald. Heb je per ongeluk gedoneerd, mail dan naar <email>{email}</email> en we doen wat we kunnen.",
+    "notDonating": "Niet doneren is helemaal prima. Anderen over {name} vertellen, of een bug melden met <code>/report</code>, helpt ook."
+  },
+  "faq": {
+    "metaTitle": "Veelgestelde vragen",
+    "metaDescription": "Antwoorden over KanbanCord: prijs, de bot toevoegen, rechten, Discord-commando's, meldingen, uploads en je gegevens.",
+    "title": "Veelgestelde vragen",
+    "free": {
+      "q": "Is {name} gratis?",
+      "a": "Ja. Er zijn geen betaalde abonnementen, geen advertenties, en je gegevens worden niet verkocht."
+    },
+    "start": {
+      "q": "Waar begin ik?",
+      "a": "Voeg de bot toe en gebruik dan <code>/guide</code> in Discord voor een stap-voor-stapuitleg. De <guides>handleidingen</guides> behandelen alles, van een gedeelde takenlijst tot herinneringen en rechten."
+    },
+    "website": {
+      "q": "Heb ik de website nodig?",
+      "a": "Nee. {name} is gemaakt om volledig vanuit Discord te gebruiken: borden, kolommen en taken maken, verplaatsen en toewijzen, labels, prioriteiten en deadlines instellen, reageren en je meldingen kiezen, allemaal met slash-commando's. De website is voor als je het hele bord in één oogopslag wilt zien, of instellingen wilt fijnafstellen."
+    },
+    "add": {
+      "q": "Hoe voeg ik het toe aan mijn server?",
+      "a": "Gebruik \"Toevoegen aan Discord\" onderaan elke pagina en kies de server. Je hebt daar het recht Server beheren nodig. Maak daarna een eerste bord met <code>/board create</code> en voeg taken toe met <code>/task create</code>."
+    },
+    "access": {
+      "q": "Wie kan mijn borden zien en wijzigen?",
+      "a": "Standaard volgt het de Discord-rollen en -rechten van je server: beheerders en moderators kunnen borden beheren, leden kunnen met taken werken. Serverbeheerders kunnen dit voor de hele server of per bord wijzigen, in de server- en bordinstellingen."
+    },
+    "servers": {
+      "q": "Waarom vraagt het inloggen om mijn lijst met servers?",
+      "a": "Zodat {name} kan tonen welke van je servers je kunt beheren en de bot aan kunt toevoegen. Het leest je berichten niet."
+    },
+    "discord": {
+      "q": "Wat kan ik vanuit Discord doen?",
+      "a": "Alles wat je dagelijks nodig hebt: borden maken, bekijken, hernoemen en archiveren; kolommen toevoegen, hernoemen, herschikken en verwijderen; taken maken, bewerken, verplaatsen en verwijderen; mensen en rollen toewijzen; labels, prioriteiten en deadlines instellen; opmerkingen lezen en schrijven; je eigen meldingen kiezen met <code>/notifications</code>; en, voor serverbeheerders, updatekanalen instellen met <code>/kanbancord</code>. Gebruik <code>/help</code> in Discord voor alle commando's."
+    },
+    "websiteOnly": {
+      "q": "Waarvoor heb je de website nodig?",
+      "a": "Fijnafstelling en het grote geheel: een heel bord in één keer zien, rechtenregels per bord en per persoon, de labels en prioriteitsniveaus die een bord biedt, welke functies een server gebruikt, precies over welke updates je hoort, thema's en toegankelijkheidsopties, afbeeldingen en video's uploaden, en het wijzigingslogboek doorzoeken."
+    },
+    "notifications": {
+      "q": "Hoe werken meldingen?",
+      "a": "Een server kan de bot updates laten posten in gekozen kanalen, en het wijzigingslogboek in één kanaal laten spiegelen; updateposts kunnen de hele taak tonen met knoppen om hem ter plekke te verplaatsen, mensen toe te wijzen of te bewerken. Je kunt ook directe berichten krijgen over taken die aan je zijn toegewezen, die je hebt gemaakt of die je volgt, inclusief herinneringen als de deadline nadert. Als een kanaal je al over iets heeft vermeld, krijg je daar niet ook nog een direct bericht over. Kies wat je krijgt met <code>/notifications</code>, of uitgebreider onder Instellingen → Meldingen op de website. Serverbeheerders stellen kanalen in met <code>/kanbancord</code>."
+    },
+    "uploads": {
+      "q": "Waar worden geüploade afbeeldingen en video's opgeslagen?",
+      "a": "Op Imgur. Iedereen met de link kan ze zien, dus upload niets wat privé is."
+    },
+    "data": {
+      "q": "Hoe verwijder ik mijn gegevens?",
+      "a": "Log overal uit onder Instellingen → Sessies, en vraag ons de rest te verwijderen via <email>{email}</email>. Serverbeheerders kunnen borden verwijderen, en als je de bot uit een server haalt, stopt hij met het synchroniseren van die server. Details staan in het <privacy>Privacybeleid</privacy>."
+    },
+    "help": {
+      "q": "Ik heb een bug gevonden, heb een idee, of heb hulp nodig.",
+      "a": "Word lid van de <server>supportserver van {name}</server> om vragen te stellen en over nieuwe functies te horen, of gebruik <code>/report</code> in Discord om een melding rechtstreeks naar de ontwikkelaar te sturen."
+    }
+  },
+  "guides": {
+    "metaTitle": "Handleidingen",
+    "metaDescription": "Handleidingen voor KanbanCord: kanbanborden, takenlijsten en taken bijhouden in Discord, van je eerste bord tot herinneringen, feeds en rechten.",
+    "title": "Handleidingen",
+    "intro": "Hoe je met {name} werk plant en bijhoudt in je Discord-server: kanbanborden, gedeelde takenlijsten, taken voor mensen en rollen, deadlines en herinneringen. Bijna alles gaat met slash-commando's; een paar handleidingen gaan over de website.",
+    "inDiscord": "De bot al toegevoegd? Gebruik <code>/guide</code> in Discord voor dezelfde stappen, afgevinkt terwijl je bezig bent.",
+    "tryTitle": "Probeer het in je server",
+    "try": "{name} is gratis. Voeg het toe aan je server en gebruik dan <code>/guide</code> voor een stap-voor-stapuitleg, gewoon in Discord.",
+    "more": "Meer handleidingen"
+  }
+}

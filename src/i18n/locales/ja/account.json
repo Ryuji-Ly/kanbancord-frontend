@@ -1,0 +1,146 @@
+{
+  "appearance": {
+    "groups": {
+      "surfaces": "背景と面",
+      "controls": "コントロール",
+      "text": "テキスト",
+      "brand": "ブランドとアクセント",
+      "status": "ステータス",
+      "permissions": "権限ルール"
+    },
+    "core": {
+      "background": {
+        "label": "背景",
+        "hint": "すべての後ろ"
+      },
+      "surface": {
+        "label": "面",
+        "hint": "パネル、列、カード"
+      },
+      "text": {
+        "label": "テキスト",
+        "hint": "本文。見出しとヒントはここから決まります"
+      },
+      "accent": {
+        "label": "アクセント",
+        "hint": "ハイライト、フォーカスリング、見出しの色合い"
+      },
+      "primary": {
+        "label": "メイン",
+        "hint": "主なボタンとリンク"
+      },
+      "success": {
+        "label": "成功",
+        "hint": "確認と許可ルール"
+      },
+      "danger": {
+        "label": "危険",
+        "hint": "エラー、削除ボタン、拒否ルール"
+      },
+      "warning": {
+        "label": "警告",
+        "hint": "注意とハイライト"
+      }
+    },
+    "presets": {
+      "dark": {
+        "label": "ダーク",
+        "description": "デフォルト。"
+      },
+      "light": {
+        "label": "ライト",
+        "description": "明るい面に暗い文字。"
+      },
+      "highContrast": {
+        "label": "ハイコントラスト",
+        "description": "純粋な黒と白に太い枠線。弱視の方向け。"
+      },
+      "redGreen": {
+        "label": "赤緑に配慮",
+        "description": "1型・2型色覚向け：成功は青、危険はオレンジ。"
+      },
+      "blueYellow": {
+        "label": "青黄に配慮",
+        "description": "3型色覚向け：成功はティール、危険は赤、警告は黄色。"
+      }
+    },
+    "theme": "テーマ",
+    "custom": "カスタム",
+    "customHint": "上のテーマをもとにした自分だけの色。",
+    "customColours": "カスタムカラー",
+    "customColoursHint": "8 色を設定すると、他のすべての色はそこから決まります。",
+    "lowContrast": "背景に対する文字のコントラストは {contrast}:1 です。快適に読むには 4.5:1 以上をおすすめします。",
+    "advanced": "詳細：すべての色を編集",
+    "changed_other": "（{count} 件変更）",
+    "advancedHint": "ここでの変更は上のテーマの上に適用され、テーマを切り替えても残ります。",
+    "resetAll": "すべてリセット",
+    "reset": "リセット",
+    "language": "言語",
+    "browserLanguage": "ブラウザの言語"
+  },
+  "accessibility": {
+    "textScale": {
+      "normal": "標準",
+      "large": "大",
+      "larger": "より大きく",
+      "largest": "最大"
+    },
+    "filters": {
+      "none": "なし",
+      "protanopia": "1型色覚（赤が弱い）",
+      "deuteranopia": "2型色覚（緑が弱い）",
+      "tritanopia": "3型色覚（青が弱い）"
+    },
+    "intro": "色覚の多様性には、「赤緑に配慮」と「青黄に配慮」のテーマが画面の色を変えます。下のオプションは、ラベル・優先度・ロールに人が選んだ色を見やすくします。",
+    "patterns": "ラベルの模様",
+    "patternsHint": "ラベルごとに縞やドットの模様が付き、色以外でも区別できます。",
+    "ranks": "優先度の順位",
+    "ranksHint": "各優先度の名前の横に順位を表示します。P1 が最も緊急です。",
+    "filter": "ラベル・優先度・ロールのカラーフィルター",
+    "filterHint": "見分けにくい色を、見分けやすい色にずらします。",
+    "textSize": "文字の大きさ",
+    "motion": "動きを減らす",
+    "motionSystem": "デバイスの設定に従う",
+    "motionOn": "常に減らす",
+    "motionOff": "減らさない"
+  },
+  "simpleView": {
+    "intro": "使わないものを、すべてのボードで非表示にします。変わるのはあなたの見え方だけです：データは残り、他の人には引き続き表示されます。サーバーがオフにした機能は全員に対して非表示です。",
+    "hideAll": "任意の項目をすべて非表示",
+    "showAll": "すべて表示"
+  },
+  "menu": {
+    "label": "アカウント",
+    "preferences": "表示設定",
+    "settings": "設定",
+    "logOut": "ログアウト",
+    "appearance": "外観",
+    "accessibility": "アクセシビリティ",
+    "simpleView": "シンプル表示",
+    "sessions": "セッション",
+    "dialogTitle": "表示設定と設定"
+  },
+  "sessions": {
+    "unknownDevice": "不明なデバイス",
+    "browserOn": "{system} の {browser}",
+    "intro": "あなたのアカウントにログインしているデバイスとブラウザです。ログアウトさせるとすぐに終了し、開いているボードも閉じられます。",
+    "signOutFailed": "そのセッションをログアウトできませんでした",
+    "loadFailed": "セッションを読み込めませんでした",
+    "thisDevice": " · このデバイス",
+    "activity": "最終利用 {active} · ログイン {signedIn}",
+    "signOut": "ログアウト",
+    "signOutOthers": "他のすべてのデバイスからログアウト"
+  },
+  "language": {
+    "request": "言語をリクエスト…",
+    "intro": "あなたの言語がまだありませんか？希望する言語を開発者に伝えてください。翻訳はリクエストに応じて追加されます。",
+    "which": "言語",
+    "pick": "言語を選択…",
+    "note": "メモ（任意）",
+    "notePlaceholder": "翻訳を手伝えるかどうかなど、補足があれば",
+    "send": "リクエストを送信",
+    "sending": "送信中…",
+    "sent": "ありがとうございます！リクエストを開発者に送りました。",
+    "failed": "リクエストを送信できませんでした"
+  }
+}

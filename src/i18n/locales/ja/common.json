@@ -1,0 +1,59 @@
+{
+  "features": {
+    "labels": {
+      "label": "ラベル",
+      "description": "タスクに付ける色付きのタグ。ボードごとに管理します。",
+      "show": "ラベルを表示"
+    },
+    "priorities": {
+      "label": "優先度",
+      "description": "各タスクの優先度。Critical から Ignorable まで。",
+      "show": "優先度を表示"
+    },
+    "assignees": {
+      "label": "担当者",
+      "description": "メンバーをタスクに割り当てます。",
+      "show": "担当者を表示"
+    },
+    "comments": {
+      "label": "コメント",
+      "description": "各タスクについての話し合い。",
+      "show": "コメントを表示"
+    },
+    "dueDates": {
+      "label": "期限",
+      "description": "各タスクの期限の日時。",
+      "show": "期限を表示"
+    },
+    "permissions": {
+      "label": "カスタム権限",
+      "description": "誰が何をできるかを、サーバーごと・ボードごとに設定します。オフの間は Discord の権限に従います。",
+      "show": "カスタム権限を表示"
+    }
+  },
+  "requestFailed": "リクエストに失敗しました（{status}）",
+  "notSignedIn": "ログインしていません。",
+  "cancel": "キャンセル",
+  "close": "閉じる",
+  "loginWithDiscord": "Discord でログイン",
+  "deleting": "削除中…",
+  "loading": "読み込み中...",
+  "saving": "保存中…",
+  "change": "変更",
+  "closeModal": "ダイアログを閉じる",
+  "save": "保存",
+  "applying": "適用中…",
+  "name": "名前",
+  "description": "説明",
+  "saveChanges": "変更を保存",
+  "add": "追加",
+  "delete": "削除",
+  "deletingDots": "削除中...",
+  "confirmNamed": "{title}を確認",
+  "creatingDots": "作成中...",
+  "creating": "作成中…",
+  "adding": "追加中…",
+  "savingDots": "保存中...",
+  "changeNotSaved": "変更を保存できませんでした",
+  "loadingEllipsis": "読み込み中…"
+}

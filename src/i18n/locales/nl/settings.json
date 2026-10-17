@@ -1,0 +1,87 @@
+{
+  "boardFeatures": {
+    "title": "Eenvoudige modus",
+    "intro": "Zet uit wat dit bord niet nodig heeft; andere borden merken er niets van. Iets uitzetten verbergt het en bewaart de gegevens. Wijzigingen hier gelden meteen.",
+    "everything": "Alles wat de server toestaat",
+    "offForServer": "Uitgezet voor de hele server, in de serverinstellingen."
+  },
+  "board": {
+    "loadFailed": "Kon de bordinstellingen niet laden"
+  },
+  "boardNotifications": {
+    "intro": "De updatefeeds die over dit bord posten. Elke feed volgt zijn eigen instellingen uit de meldingen van de server tot je hier iets wijzigt, alleen voor dit bord. Wijzigingen worden meteen opgeslagen.",
+    "noFeeds": "Geen enkele feed post over dit bord. Serverbeheerders voegen feeds toe in de serverinstellingen.",
+    "followsFeed": "Volgt de instellingen van de feed.",
+    "changes_one": "{count} wijziging voor dit bord.",
+    "changes_other": "{count} wijzigingen voor dit bord.",
+    "useFeed": "De instellingen van de feed gebruiken",
+    "changed": "gewijzigd"
+  },
+  "threads": {
+    "updatesBoth": "De thread en het kanaal",
+    "updatesThread": "Alleen de thread",
+    "updatesChannel": "Alleen het kanaal",
+    "title": "Taakthreads",
+    "intro": "Geef elke taak een eigen thread voor overleg, in een van de updatefeedkanalen van dit bord. Een thread volgt de titel van zijn taak en wordt gearchiveerd als de taak wordt verwijderd of gearchiveerd. De updates van de feed over de taak, inclusief nieuwe opmerkingen, worden erin gepost zoals je hieronder kiest; berichten die in de thread worden geschreven, blijven in Discord. Wijzigingen worden meteen opgeslagen.",
+    "noFeed": "Dit bord heeft nog geen updatefeed. Voeg er een toe in de meldingsinstellingen van de server, of met <code>/kanbancord feed</code> in Discord, en zet hier daarna threads aan.",
+    "perTask": "Een thread per taak",
+    "notWorking": "Aan, maar werkt niet: het gekozen kanaal heeft geen feed meer voor dit bord. Kies een ander feedkanaal.",
+    "perTaskHint": "Elke taak krijgt zijn thread wanneer er de volgende keer iets mee gebeurt.",
+    "channel": "Kanaal",
+    "channelWithoutFeed": "Een kanaal zonder feed voor dit bord",
+    "botCannot": " (de bot kan hier geen threads maken)",
+    "updatesGoTo": "De updates van een taak gaan naar",
+    "private": "Privéthreads",
+    "privateNotPossible": "Niet mogelijk in dit kanaal: privéthreads hebben een tekstkanaal nodig waar de bot privéthreads mag maken.",
+    "privateHint": "Alleen de maker en de toegewezen personen van de taak zitten in de thread, plus de moderators van de server. Nieuwe toegewezen personen worden toegevoegd.",
+    "cannotMake": "De bot kan geen threads maken in #{channel}, dus taken krijgen geen nieuwe threads. Geef hem daar Kanalen bekijken, Berichten versturen in threads en Openbare threads maken, of kies een ander kanaal.",
+    "cannotMakePrivate": "De bot kan geen privéthreads maken in #{channel}, dus taken krijgen geen nieuwe threads. Geef hem daar Kanalen bekijken, Berichten versturen in threads en Privéthreads maken, of kies een ander kanaal."
+  },
+  "usage_one": "{count} taak",
+  "usage_other": "{count} taken",
+  "colourOf": "Kleur van {name}",
+  "labels": {
+    "intro": "Labels die je op de taken van dit bord kunt zetten. Wijzigingen hier gelden meteen.",
+    "none": "Nog geen labels.",
+    "name": "Labelnaam",
+    "newColour": "Kleur van het nieuwe label",
+    "newPlaceholder": "Nieuw label, bijv. frontend",
+    "add": "Label toevoegen",
+    "deleteTitle": "Label verwijderen",
+    "deleteConfirm": "<strong>{name}</strong> van dit bord verwijderen?",
+    "deleteUsage_one": " Het wordt gehaald van de {count} taak die het gebruikt.",
+    "deleteUsage_other": " Het wordt gehaald van de {count} taken die het gebruiken."
+  },
+  "priorities": {
+    "title": "Prioriteiten",
+    "intro": "Prioriteitsniveaus, de dringendste eerst. Een taak heeft er hoogstens één. Wijzigingen hier gelden meteen.",
+    "none": "Geen prioriteitsniveaus. Taken op dit bord hebben geen prioriteit.",
+    "moveUp": "{name} omhoog",
+    "moveDown": "{name} omlaag",
+    "name": "Naam van de prioriteit",
+    "newColour": "Kleur van het nieuwe niveau",
+    "newPlaceholder": "Nieuw niveau, onderaan toegevoegd",
+    "add": "Niveau toevoegen",
+    "deleteTitle": "Prioriteitsniveau verwijderen",
+    "deleteConfirm": "<strong>{name}</strong> verwijderen?",
+    "deleteUsage_one": " De {count} taak met deze prioriteit heeft er dan geen.",
+    "deleteUsage_other": " De {count} taken met deze prioriteit hebben er dan geen."
+  },
+  "features": {
+    "intro": "De eenvoudige modus houdt borden bij de basis: kolommen, en taken met een titel en beschrijving. Zet alleen aan wat deze server nodig heeft. Iets uitzetten verbergt het en bewaart de gegevens.",
+    "enableEverything": "Alles aanzetten",
+    "openFirst": "{description} Zet eerst open rechten uit.",
+    "open": "Open rechten",
+    "openLabel": "Iedereen mag alles",
+    "customFirst": "Zet eerst aangepaste rechten uit: hun regels worden bewaard voor als je terugschakelt.",
+    "openHint": "Iedereen die in deze server kan praten, mag kolommen, taken, labels en prioriteitsniveaus maken, wijzigen, verplaatsen en verwijderen, welke rollen ze ook hebben. Het beheer van de server, bordrechten, borden verwijderen of archiveren en het wijzigingslogboek blijven bij de beheerders.",
+    "confirmTitle": "Open rechten aanzetten?",
+    "turnOn": "Aanzetten",
+    "turningOn": "Aanzetten...",
+    "confirm": "Iedereen die in deze server kan praten, kan dan kolommen, taken, labels en prioriteitsniveaus maken, wijzigen, verplaatsen en verwijderen, welke rollen ze ook hebben. Het beste voor een kleine groep die elkaar vertrouwt."
+  },
+  "dialog": {
+    "sections": "Onderdelen van {title}",
+    "close": "{title} sluiten"
+  }
+}

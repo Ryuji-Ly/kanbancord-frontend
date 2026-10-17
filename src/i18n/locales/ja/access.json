@@ -1,0 +1,68 @@
+{
+  "categories": {
+    "SERVER": "サーバー",
+    "BOARD": "ボード",
+    "COLUMN": "列",
+    "TASK": "タスク",
+    "COMMENT": "コメント",
+    "LABEL": "ラベルと優先度"
+  },
+  "flags": {
+    "VIEW_CHANNEL": "チャンネルを見る",
+    "MANAGE_GUILD": "サーバー管理",
+    "VIEW_AUDIT_LOG": "監査ログを表示"
+  },
+  "everyoneWith": "{permission}を持つ全員",
+  "personally": "{name}（個人）",
+  "where": {
+    "default": "デフォルト",
+    "board": "このボード",
+    "server": "サーバー"
+  },
+  "why": {
+    "owner": "許可：サーバーオーナーはすべてできます",
+    "admin": "許可：管理者はすべてできます",
+    "adminRule": "許可：管理者はすべてできます（{subject}）",
+    "open": "許可：オープン権限により、発言できる全員がこれをできます",
+    "none": "拒否：これを許可するルールがありません",
+    "byDefault": "{subject}のデフォルトにより{result}",
+    "byBoard": "{subject}に対するボードのルールにより{result}",
+    "byServer": "{subject}に対するサーバーのルールにより{result}"
+  },
+  "allowed": "許可",
+  "denied": "拒否",
+  "intro": "誰が何をできるか、そしてそれぞれをどのルールが決めているかを確認します。メンバーを選んでそのロールから始め、ロールを追加・削除すると何が変わるかがわかります。ロールの組み合わせだけを確認することもできます。",
+  "introBoard": "このボードで誰が何をできるか、そしてそれぞれをどのルールが決めているかを確認します。メンバーを選んでそのロールから始め、ロールを追加・削除すると何が変わるかがわかります。ロールの組み合わせだけを確認することもできます。",
+  "check": "確認",
+  "aMember": "メンバー",
+  "rolesOnly": "ロールのみ",
+  "searchMembers": "名前でメンバーを検索",
+  "whereLabel": "場所",
+  "serverWide": "サーバー全体",
+  "someonesRoles": "{name}のロール",
+  "theirRoles": "その人のロール",
+  "unknownRole": "不明なロール",
+  "without": "{role}なし",
+  "thisRole": "このロール",
+  "addRole": "ロールを追加",
+  "addRoleOption": "ロールを追加…",
+  "whatIf": "{name}を実際とは異なるロールで表示しています。",
+  "them": "この人",
+  "realRoles": "実際のロールを使う",
+  "start": "上でメンバーを検索するか、「ロールのみ」を選んでください。",
+  "failed": "確認に失敗しました",
+  "notes": {
+    "serverWide": "サーバー全体：独自のルールを持たないすべてのボードに適用される内容です。",
+    "customOff": "カスタム権限がオフなので、デフォルトが適用されます：各 Discord 権限で許可される内容です。",
+    "open": "オープン権限がオンです：チャンネルを見てメッセージを送信できる全員がボードを操作できます。",
+    "notMember": "{name}はサーバーにいないため、本人個人へのルールだけが有効です。",
+    "discord": "ここで関係する Discord 権限：{permissions}。"
+  },
+  "thisPerson": "この人",
+  "show": "表示",
+  "allowedCount_other": "許可（{count}）",
+  "deniedCount_other": "拒否（{count}）",
+  "outweighs": "優先されるルール：{rules}",
+  "overriddenAllow": "{subject}に許可（{where}）",
+  "overriddenDeny": "{subject}に拒否（{where}）"
+}

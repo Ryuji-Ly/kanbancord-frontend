@@ -1,0 +1,70 @@
+{
+  "categories": {
+    "SERVER": "Szerver",
+    "BOARD": "Táblák",
+    "COLUMN": "Oszlopok",
+    "TASK": "Feladatok",
+    "COMMENT": "Hozzászólások",
+    "LABEL": "Címkék és prioritások"
+  },
+  "flags": {
+    "VIEW_CHANNEL": "Csatornák megtekintése",
+    "MANAGE_GUILD": "Szerver kezelése",
+    "VIEW_AUDIT_LOG": "Audit napló megtekintése"
+  },
+  "everyoneWith": "mindenki, akinek megvan: {permission}",
+  "personally": "{name} személyesen",
+  "where": {
+    "default": "alapértelmezés",
+    "board": "ez a tábla",
+    "server": "szerver"
+  },
+  "why": {
+    "owner": "Engedélyezve: a szerver tulajdonosa mindent megtehet",
+    "admin": "Engedélyezve: az adminisztrátorok mindent megtehetnek",
+    "adminRule": "Engedélyezve: az adminisztrátorok mindent megtehetnek ({subject})",
+    "open": "Engedélyezve: a nyílt jogosultságok miatt ezt mindenki megteheti, aki írhat",
+    "none": "Tiltva: egyetlen szabály sem engedélyezi",
+    "byDefault": "{result} – alapértelmezés erre: {subject}",
+    "byBoard": "{result} – a tábla szabálya erre: {subject}",
+    "byServer": "{result} – a szerver szabálya erre: {subject}"
+  },
+  "allowed": "Engedélyezve",
+  "denied": "Tiltva",
+  "intro": "Nézd meg, ki mit tehet, és melyik szabály dönt az egyes dolgokról. Válassz egy tagot, hogy a rangjaiból indulj ki, majd adj hozzá vagy vegyél el rangokat, hogy lásd, mi változna. Vagy ellenőrizz csak egy rangkészletet.",
+  "introBoard": "Nézd meg, ki mit tehet ezen a táblán, és melyik szabály dönt az egyes dolgokról. Válassz egy tagot, hogy a rangjaiból indulj ki, majd adj hozzá vagy vegyél el rangokat, hogy lásd, mi változna. Vagy ellenőrizz csak egy rangkészletet.",
+  "check": "Ellenőrzés",
+  "aMember": "Egy tag",
+  "rolesOnly": "Csak rangok",
+  "searchMembers": "Tagok keresése név szerint",
+  "whereLabel": "Hol",
+  "serverWide": "Az egész szerveren",
+  "someonesRoles": "{name} rangjai",
+  "theirRoles": "A rangjai",
+  "unknownRole": "Ismeretlen rang",
+  "without": "{role} nélkül",
+  "thisRole": "ez a rang",
+  "addRole": "Rang hozzáadása",
+  "addRoleOption": "Rang hozzáadása…",
+  "whatIf": "{name} a valóditól eltérő rangokkal látható.",
+  "them": "ő",
+  "realRoles": "A valódi rangjai",
+  "start": "Keress fent egy tagot, vagy válaszd a Csak rangok lehetőséget.",
+  "failed": "Az ellenőrzés sikertelen",
+  "notes": {
+    "serverWide": "Az egész szerveren: ami minden olyan táblára vonatkozik, amelynek nincsenek saját szabályai.",
+    "customOff": "Az egyéni jogosultságok ki vannak kapcsolva, így az alapértelmezések érvényesek: amit az egyes Discord-jogosultságok engedélyeznek.",
+    "open": "A nyílt jogosultságok be vannak kapcsolva: aki láthatja a csatornákat és üzenetet küldhet, dolgozhat a táblákkal.",
+    "notMember": "{name} nincs a szerveren, ezért csak a személyesen rá vonatkozó szabályok számítanak.",
+    "discord": "Az itt számító Discord-jogosultságok: {permissions}."
+  },
+  "thisPerson": "Ez a személy",
+  "show": "Megjelenítés",
+  "allowedCount_one": "Engedélyezve ({count})",
+  "allowedCount_other": "Engedélyezve ({count})",
+  "deniedCount_one": "Tiltva ({count})",
+  "deniedCount_other": "Tiltva ({count})",
+  "outweighs": "Felülírja: {rules}",
+  "overriddenAllow": "Engedélyezés neki: {subject} ({where})",
+  "overriddenDeny": "Tiltás neki: {subject} ({where})"
+}

@@ -1,0 +1,59 @@
+{
+  "features": {
+    "labels": {
+      "label": "Labels",
+      "description": "Gekleurde labels op taken, per bord beheerd.",
+      "show": "Labels tonen"
+    },
+    "priorities": {
+      "label": "Prioriteiten",
+      "description": "Een prioriteitsniveau op elke taak, van Critical tot Ignorable.",
+      "show": "Prioriteiten tonen"
+    },
+    "assignees": {
+      "label": "Toegewezen personen",
+      "description": "Leden aan taken toewijzen.",
+      "show": "Toegewezen personen tonen"
+    },
+    "comments": {
+      "label": "Opmerkingen",
+      "description": "Overleg bij elke taak.",
+      "show": "Opmerkingen tonen"
+    },
+    "dueDates": {
+      "label": "Deadlines",
+      "description": "Een datum en tijd waarop elke taak klaar moet zijn.",
+      "show": "Deadlines tonen"
+    },
+    "permissions": {
+      "label": "Aangepaste rechten",
+      "description": "Bepaal wie wat mag, per server en per bord. Zolang dit uit staat, volgt de toegang de Discord-rechten.",
+      "show": "Aangepaste rechten tonen"
+    }
+  },
+  "requestFailed": "Verzoek mislukt ({status})",
+  "notSignedIn": "Je bent niet ingelogd.",
+  "cancel": "Annuleren",
+  "close": "Sluiten",
+  "loginWithDiscord": "Inloggen met Discord",
+  "deleting": "Verwijderen…",
+  "loading": "Laden...",
+  "saving": "Opslaan…",
+  "change": "Wijzigen",
+  "closeModal": "Venster sluiten",
+  "save": "Opslaan",
+  "applying": "Toepassen…",
+  "name": "Naam",
+  "description": "Beschrijving",
+  "saveChanges": "Wijzigingen opslaan",
+  "add": "Toevoegen",
+  "delete": "Verwijderen",
+  "deletingDots": "Verwijderen...",
+  "confirmNamed": "{title} bevestigen",
+  "creatingDots": "Maken...",
+  "creating": "Maken…",
+  "adding": "Toevoegen…",
+  "savingDots": "Opslaan...",
+  "changeNotSaved": "De wijziging kon niet worden opgeslagen",
+  "loadingEllipsis": "Laden…"
+}

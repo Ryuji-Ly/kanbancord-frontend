@@ -1,0 +1,147 @@
+{
+  "appearance": {
+    "groups": {
+      "surfaces": "Felületek",
+      "controls": "Vezérlők",
+      "text": "Szöveg",
+      "brand": "Márka és kiemelések",
+      "status": "Állapot",
+      "permissions": "Jogosultsági szabályok"
+    },
+    "core": {
+      "background": {
+        "label": "Háttér",
+        "hint": "Minden mögött"
+      },
+      "surface": {
+        "label": "Felület",
+        "hint": "Panelek, oszlopok és kártyák"
+      },
+      "text": {
+        "label": "Szöveg",
+        "hint": "Törzsszöveg; a címsorok és tippek ebből következnek"
+      },
+      "accent": {
+        "label": "Kiemelés",
+        "hint": "Kiemelések, fókuszkeretek, címsorok árnyalata"
+      },
+      "primary": {
+        "label": "Elsődleges",
+        "hint": "Fő gombok és hivatkozások"
+      },
+      "success": {
+        "label": "Siker",
+        "hint": "Megerősítések és engedélyező szabályok"
+      },
+      "danger": {
+        "label": "Veszély",
+        "hint": "Hibák, törlés gombok és tiltó szabályok"
+      },
+      "warning": {
+        "label": "Figyelmeztetés",
+        "hint": "Figyelmeztetések és kiemelések"
+      }
+    },
+    "presets": {
+      "dark": {
+        "label": "Sötét",
+        "description": "Az alapértelmezés."
+      },
+      "light": {
+        "label": "Világos",
+        "description": "Sötét szöveg világos felületeken."
+      },
+      "highContrast": {
+        "label": "Nagy kontraszt",
+        "description": "Tiszta fekete és fehér erős keretekkel, gyengénlátóknak."
+      },
+      "redGreen": {
+        "label": "Vörös-zöld barát",
+        "description": "Protanópiához és deuteranópiához: kék a sikerhez, narancs a veszélyhez."
+      },
+      "blueYellow": {
+        "label": "Kék-sárga barát",
+        "description": "Tritanópiához: kékeszöld a sikerhez, piros a veszélyhez, sárga a figyelmeztetésekhez."
+      }
+    },
+    "theme": "Téma",
+    "custom": "Egyéni",
+    "customHint": "Saját színek, a fenti témából kiindulva.",
+    "customColours": "Egyéni színek",
+    "customColoursHint": "Állíts be nyolc színt; az összes többi ezekből következik.",
+    "lowContrast": "A szöveg kontrasztja a háttérhez képest {contrast}:1; a kényelmes olvasáshoz legalább 4.5:1 ajánlott.",
+    "advanced": "Haladó: minden szín szerkesztése",
+    "changed_one": " ({count} módosítva)",
+    "changed_other": " ({count} módosítva)",
+    "advancedHint": "Az itteni módosítások a fenti témára épülnek, és téma váltásakor is megmaradnak.",
+    "resetAll": "Összes visszaállítása",
+    "reset": "Visszaállítás",
+    "language": "Nyelv",
+    "browserLanguage": "A böngészőm nyelve"
+  },
+  "accessibility": {
+    "textScale": {
+      "normal": "Normál",
+      "large": "Nagy",
+      "larger": "Nagyobb",
+      "largest": "Legnagyobb"
+    },
+    "filters": {
+      "none": "Nincs",
+      "protanopia": "Protanópia (vörösgyengeség)",
+      "deuteranopia": "Deuteranópia (zöldgyengeség)",
+      "tritanopia": "Tritanópia (kékgyengeség)"
+    },
+    "intro": "Színtévesztéshez a Vörös-zöld barát és a Kék-sárga barát téma átszínezi a felületet. Az alábbi beállítások a címkékhez, prioritásokhoz és rangokhoz választott színeken segítenek.",
+    "patterns": "Minták a címkéken",
+    "patternsHint": "Minden címke saját csíkos vagy pöttyös mintát kap, így nem csak színben különböznek.",
+    "ranks": "Prioritási sorrend",
+    "ranksHint": "Minden prioritás neve mellett megjeleníti a sorszámát; a P1 a legsürgősebb.",
+    "filter": "Színszűrő címkékhez, prioritásokhoz és rangokhoz",
+    "filterHint": "A nehezen megkülönböztethető színeket könnyebben látható színekké tolja el.",
+    "textSize": "Szövegméret",
+    "motion": "Mozgás csökkentése",
+    "motionSystem": "Az eszközöm beállítása szerint",
+    "motionOn": "Mindig csökkentse",
+    "motionOff": "Soha ne csökkentse"
+  },
+  "simpleView": {
+    "intro": "Rejtsd el, amit nem használsz, minden táblán. Ez csak azt változtatja meg, amit te látsz: az adatok megmaradnak, és mindenki más továbbra is látja őket. Amit egy szerver kikapcsolt, az mindenki elől rejtve van.",
+    "hideAll": "Minden opcionális elrejtése",
+    "showAll": "Minden megjelenítése"
+  },
+  "menu": {
+    "label": "Fiók",
+    "preferences": "Preferenciák",
+    "settings": "Beállítások",
+    "logOut": "Kijelentkezés",
+    "appearance": "Megjelenés",
+    "accessibility": "Akadálymentesség",
+    "simpleView": "Egyszerű nézet",
+    "sessions": "Munkamenetek",
+    "dialogTitle": "Preferenciák és beállítások"
+  },
+  "sessions": {
+    "unknownDevice": "Ismeretlen eszköz",
+    "browserOn": "{browser} – {system}",
+    "intro": "A fiókodba bejelentkezett eszközök és böngészők. Ha kijelentkezteted az egyiket, azonnal megszűnik, a rajta megnyitott táblával együtt.",
+    "signOutFailed": "Nem sikerült kijelentkeztetni azt a munkamenetet",
+    "loadFailed": "Nem sikerült betölteni a munkameneteidet",
+    "thisDevice": " · Ez az eszköz",
+    "activity": "Aktív: {active} · bejelentkezve: {signedIn}",
+    "signOut": "Kijelentkeztetés",
+    "signOutOthers": "Kijelentkeztetés minden más eszközön"
+  },
+  "language": {
+    "request": "Nyelv kérése…",
+    "intro": "Még nincs itt a nyelved? Mondd meg a fejlesztőnek, melyiket szeretnéd. A fordítások aszerint kerülnek fel, ahogy kérik őket.",
+    "which": "Nyelv",
+    "pick": "Válassz nyelvet…",
+    "note": "Megjegyzés (nem kötelező)",
+    "notePlaceholder": "Bármi, amit hozzátennél, például hogy tudnál-e segíteni a fordításban",
+    "send": "Kérés elküldése",
+    "sending": "Küldés…",
+    "sent": "Köszönjük! A kérésedet elküldtük a fejlesztőnek.",
+    "failed": "Nem sikerült elküldeni a kérést"
+  }
+}

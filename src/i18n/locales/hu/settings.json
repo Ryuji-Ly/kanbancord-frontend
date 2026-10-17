@@ -1,0 +1,87 @@
+{
+  "boardFeatures": {
+    "title": "Egyszerű mód",
+    "intro": "Kapcsold ki, amire ennek a táblának nincs szüksége; a többi táblát ez nem érinti. A kikapcsolás elrejti a funkciót, és megtartja az adatait. Az itteni módosítások azonnal érvényesek.",
+    "everything": "Minden, amit a szerver engedélyez",
+    "offForServer": "Az egész szerveren kikapcsolva, a szerverbeállításokban."
+  },
+  "board": {
+    "loadFailed": "Nem sikerült betölteni a tábla beállításait"
+  },
+  "boardNotifications": {
+    "intro": "A frissítési hírfolyamok, amelyek erről a tábláról írnak. Mindegyik a szerver értesítéseiben megadott saját beállításait követi, amíg itt nem módosítasz valamit, csak erre a táblára. A módosítások azonnal mentődnek.",
+    "noFeeds": "Egy hírfolyam sem ír erről a tábláról. A szerver kezelői a szerverbeállításokban adnak hozzá hírfolyamokat.",
+    "followsFeed": "A hírfolyam beállításait követi.",
+    "changes_one": "{count} módosítás ehhez a táblához.",
+    "changes_other": "{count} módosítás ehhez a táblához.",
+    "useFeed": "A hírfolyam beállításainak használata",
+    "changed": "módosítva"
+  },
+  "threads": {
+    "updatesBoth": "A szál és a csatorna",
+    "updatesThread": "Csak a szál",
+    "updatesChannel": "Csak a csatorna",
+    "title": "Feladatszálak",
+    "intro": "Adj minden feladatnak saját szálat a megbeszéléshez, a tábla egyik frissítési hírfolyam-csatornájában. A szál követi a feladata címét, és archiválódik, amikor a feladatot törlik vagy archiválják. A hírfolyam frissítései a feladatról, az új hozzászólásokkal együtt, az alább választott módon jelennek meg benne; a szálban írt üzenetek a Discordban maradnak. A módosítások azonnal mentődnek.",
+    "noFeed": "Ennek a táblának még nincs frissítési hírfolyama. Adj hozzá egyet a szerver értesítési beállításaiban, vagy a Discordban a <code>/kanbancord feed</code> paranccsal, majd itt kapcsold be a szálakat.",
+    "perTask": "Feladatonként egy szál",
+    "notWorking": "Bekapcsolva, de nem működik: a kiválasztott csatornának már nincs hírfolyama ehhez a táblához. Válassz másik hírfolyam-csatornát.",
+    "perTaskHint": "Minden feladat akkor kapja meg a szálát, amikor legközelebb történik vele valami.",
+    "channel": "Csatorna",
+    "channelWithoutFeed": "Csatorna, amelynek nincs hírfolyama ehhez a táblához",
+    "botCannot": " (a bot itt nem tud szálat létrehozni)",
+    "updatesGoTo": "Egy feladat frissítései ide kerülnek",
+    "private": "Privát szálak",
+    "privateNotPossible": "Ebben a csatornában nem lehetséges: a privát szálakhoz olyan szöveges csatorna kell, ahol a bot privát szálakat hozhat létre.",
+    "privateHint": "A szálban csak a feladat létrehozója és felelősei vannak, valamint a szerver moderátorai. Az új felelősök bekerülnek.",
+    "cannotMake": "A bot nem tud szálat létrehozni itt: #{channel}, így a feladatok nem kapnak új szálakat. Add meg neki ott a Csatornák megtekintése, az Üzenetek küldése szálakban és a Nyilvános szálak létrehozása jogot, vagy válassz másik csatornát.",
+    "cannotMakePrivate": "A bot nem tud privát szálat létrehozni itt: #{channel}, így a feladatok nem kapnak új szálakat. Add meg neki ott a Csatornák megtekintése, az Üzenetek küldése szálakban és a Privát szálak létrehozása jogot, vagy válassz másik csatornát."
+  },
+  "usage_one": "{count} feladat",
+  "usage_other": "{count} feladat",
+  "colourOf": "Szín: {name}",
+  "labels": {
+    "intro": "Címkék, amelyekkel a tábla feladatai megjelölhetők. Az itteni módosítások azonnal érvényesek.",
+    "none": "Még nincsenek címkék.",
+    "name": "Címke neve",
+    "newColour": "Az új címke színe",
+    "newPlaceholder": "Új címke, pl. frontend",
+    "add": "Címke hozzáadása",
+    "deleteTitle": "Címke törlése",
+    "deleteConfirm": "Törlöd erről a tábláról: <strong>{name}</strong>?",
+    "deleteUsage_one": " Lekerül arról az {count} feladatról, amely használja.",
+    "deleteUsage_other": " Lekerül arról a {count} feladatról, amely használja."
+  },
+  "priorities": {
+    "title": "Prioritások",
+    "intro": "Prioritási szintek, a legsürgősebbel kezdve. Egy feladatnak legfeljebb egy lehet. Az itteni módosítások azonnal érvényesek.",
+    "none": "Nincsenek prioritási szintek. A tábla feladatainak nincs prioritása.",
+    "moveUp": "Feljebb: {name}",
+    "moveDown": "Lejjebb: {name}",
+    "name": "Prioritás neve",
+    "newColour": "Az új szint színe",
+    "newPlaceholder": "Új szint, a végére kerül",
+    "add": "Szint hozzáadása",
+    "deleteTitle": "Prioritási szint törlése",
+    "deleteConfirm": "Törlöd ezt: <strong>{name}</strong>?",
+    "deleteUsage_one": " Az ilyen prioritású {count} feladatnak nem lesz prioritása.",
+    "deleteUsage_other": " Az ilyen prioritású {count} feladatnak nem lesz prioritása."
+  },
+  "features": {
+    "intro": "Az egyszerű mód a lényegre szorítja a táblákat: oszlopok, és feladatok címmel és leírással. Csak azt kapcsold be, amire ennek a szervernek szüksége van. A kikapcsolás elrejti a funkciót, és megtartja az adatait.",
+    "enableEverything": "Minden bekapcsolása",
+    "openFirst": "{description} Előbb kapcsold ki a nyílt jogosultságokat.",
+    "open": "Nyílt jogosultságok",
+    "openLabel": "Mindenki mindent megtehet",
+    "customFirst": "Előbb kapcsold ki az egyéni jogosultságokat: a szabályaik megmaradnak arra az esetre, ha visszakapcsolod őket.",
+    "openHint": "Aki írhat ezen a szerveren, rangjától függetlenül létrehozhat, módosíthat, áthelyezhet és törölhet oszlopokat, feladatokat, címkéket és prioritási szinteket. A szerver kezelése, a táblák jogosultságai, a táblák törlése vagy archiválása és a változásnapló a kezelőknél marad.",
+    "confirmTitle": "Bekapcsolod a nyílt jogosultságokat?",
+    "turnOn": "Bekapcsolás",
+    "turningOn": "Bekapcsolás...",
+    "confirm": "Aki írhat ezen a szerveren, rangjától függetlenül létrehozhat, módosíthat, áthelyezhet és törölhet majd oszlopokat, feladatokat, címkéket és prioritási szinteket. Leginkább kis, egymásban megbízó csoportoknak való."
+  },
+  "dialog": {
+    "sections": "{title} – részek",
+    "close": "{title} bezárása"
+  }
+}

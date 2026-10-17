@@ -1,0 +1,70 @@
+{
+  "categories": {
+    "SERVER": "Server",
+    "BOARD": "Borden",
+    "COLUMN": "Kolommen",
+    "TASK": "Taken",
+    "COMMENT": "Opmerkingen",
+    "LABEL": "Labels en prioriteiten"
+  },
+  "flags": {
+    "VIEW_CHANNEL": "Kanalen bekijken",
+    "MANAGE_GUILD": "Server beheren",
+    "VIEW_AUDIT_LOG": "Auditlogboek bekijken"
+  },
+  "everyoneWith": "iedereen met {permission}",
+  "personally": "{name} persoonlijk",
+  "where": {
+    "default": "standaard",
+    "board": "dit bord",
+    "server": "server"
+  },
+  "why": {
+    "owner": "Toegestaan: de servereigenaar mag alles",
+    "admin": "Toegestaan: beheerders mogen alles",
+    "adminRule": "Toegestaan: beheerders mogen alles ({subject})",
+    "open": "Toegestaan: met open rechten mag iedereen die kan praten dit",
+    "none": "Geweigerd: geen enkele regel staat het toe",
+    "byDefault": "{result} door de standaard voor {subject}",
+    "byBoard": "{result} door de regel van het bord voor {subject}",
+    "byServer": "{result} door de regel van de server voor {subject}"
+  },
+  "allowed": "Toegestaan",
+  "denied": "Geweigerd",
+  "intro": "Zie wat iemand mag, en welke regel elk ding bepaalt. Kies een lid om met diens rollen te beginnen, en voeg rollen toe of haal ze weg om te zien wat er zou veranderen. Of controleer alleen een set rollen.",
+  "introBoard": "Zie wat iemand op dit bord mag, en welke regel elk ding bepaalt. Kies een lid om met diens rollen te beginnen, en voeg rollen toe of haal ze weg om te zien wat er zou veranderen. Of controleer alleen een set rollen.",
+  "check": "Controleren",
+  "aMember": "Een lid",
+  "rolesOnly": "Alleen rollen",
+  "searchMembers": "Leden zoeken op naam",
+  "whereLabel": "Waar",
+  "serverWide": "Hele server",
+  "someonesRoles": "Rollen van {name}",
+  "theirRoles": "Hun rollen",
+  "unknownRole": "Onbekende rol",
+  "without": "Zonder {role}",
+  "thisRole": "deze rol",
+  "addRole": "Rol toevoegen",
+  "addRoleOption": "Rol toevoegen…",
+  "whatIf": "{name} wordt getoond met andere rollen dan die deze persoon heeft.",
+  "them": "deze persoon",
+  "realRoles": "Hun echte rollen gebruiken",
+  "start": "Zoek hierboven een lid, of kies Alleen rollen.",
+  "failed": "De controle is mislukt",
+  "notes": {
+    "serverWide": "Hele server: wat geldt op elk bord zonder eigen regels.",
+    "customOff": "Aangepaste rechten staan uit, dus de standaarden gelden: wat elk Discord-recht toestaat.",
+    "open": "Open rechten staan aan: iedereen die kanalen kan bekijken en berichten kan versturen, mag met de borden werken.",
+    "notMember": "{name} zit niet in de server, dus alleen regels voor deze persoon zelf tellen.",
+    "discord": "Discord-rechten die hier meetellen: {permissions}."
+  },
+  "thisPerson": "Deze persoon",
+  "show": "Tonen",
+  "allowedCount_one": "Toegestaan ({count})",
+  "allowedCount_other": "Toegestaan ({count})",
+  "deniedCount_one": "Geweigerd ({count})",
+  "deniedCount_other": "Geweigerd ({count})",
+  "outweighs": "Weegt zwaarder dan: {rules}",
+  "overriddenAllow": "Toestaan voor {subject} ({where})",
+  "overriddenDeny": "Weigeren voor {subject} ({where})"
+}

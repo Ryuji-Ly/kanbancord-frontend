@@ -1,0 +1,59 @@
+{
+  "features": {
+    "labels": {
+      "label": "Címkék",
+      "description": "Színes címkék a feladatokon, táblánként kezelve.",
+      "show": "Címkék megjelenítése"
+    },
+    "priorities": {
+      "label": "Prioritások",
+      "description": "Prioritási szint minden feladaton, a Criticaltól az Ignorable-ig.",
+      "show": "Prioritások megjelenítése"
+    },
+    "assignees": {
+      "label": "Felelősök",
+      "description": "Tagok hozzárendelése a feladatokhoz.",
+      "show": "Felelősök megjelenítése"
+    },
+    "comments": {
+      "label": "Hozzászólások",
+      "description": "Megbeszélés minden feladatnál.",
+      "show": "Hozzászólások megjelenítése"
+    },
+    "dueDates": {
+      "label": "Határidők",
+      "description": "Dátum és időpont, amikorra minden feladatnak el kell készülnie.",
+      "show": "Határidők megjelenítése"
+    },
+    "permissions": {
+      "label": "Egyéni jogosultságok",
+      "description": "Szerverenként és táblánként szabályozható, hogy ki mit tehet. Amíg ki van kapcsolva, a hozzáférés a Discord-jogosultságokat követi.",
+      "show": "Egyéni jogosultságok megjelenítése"
+    }
+  },
+  "requestFailed": "A kérés sikertelen ({status})",
+  "notSignedIn": "Nem vagy bejelentkezve.",
+  "cancel": "Mégse",
+  "close": "Bezárás",
+  "loginWithDiscord": "Bejelentkezés Discorddal",
+  "deleting": "Törlés…",
+  "loading": "Betöltés...",
+  "saving": "Mentés…",
+  "change": "Módosítás",
+  "closeModal": "Ablak bezárása",
+  "save": "Mentés",
+  "applying": "Alkalmazás…",
+  "name": "Név",
+  "description": "Leírás",
+  "saveChanges": "Módosítások mentése",
+  "add": "Hozzáadás",
+  "delete": "Törlés",
+  "deletingDots": "Törlés...",
+  "confirmNamed": "Megerősítés: {title}",
+  "creatingDots": "Létrehozás...",
+  "creating": "Létrehozás…",
+  "adding": "Hozzáadás…",
+  "savingDots": "Mentés...",
+  "changeNotSaved": "A módosítást nem sikerült menteni",
+  "loadingEllipsis": "Betöltés…"
+}
