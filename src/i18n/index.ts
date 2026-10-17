@@ -67,10 +67,18 @@ export function formatLocale(): string | undefined {
   return current.language === 'en' ? undefined : current.language
 }
 
+/**
+ * Where a language has regional variants on the website, the plain code is one region's: these
+ * name it by that region ("Español de España" next to "Español de Latinoamérica").
+ */
+const REGION_OF_PLAIN: Record<string, string> = { es: 'es-ES', pt: 'pt-PT' }
+
 /** A language's name in that language ("Français"), for choosing it. */
 export function languageName(code: string): string {
+  const hasVariants = LANGUAGES.some((other) => other !== code && baseOf(other) === code)
+  const named = hasVariants ? (REGION_OF_PLAIN[code] ?? code) : code
   try {
-    const name = new Intl.DisplayNames([code], { type: 'language' }).of(code) ?? code
+    const name = new Intl.DisplayNames([code], { type: 'language' }).of(named) ?? code
     return name.charAt(0).toLocaleUpperCase(code) + name.slice(1)
   } catch {
     return code
@@ -213,11 +221,32 @@ function baseOf(tag: string): string {
   return tag.toLowerCase().split('-')[0]
 }
 
-/** The first of the browser's languages the website has: exactly (pt-BR), or by its base (fr-BE → fr). */
+/** Countries whose Spanish is Latin American, so es-MX, es-AR and the like read es-419. */
+const LATIN_AMERICA = new Set([
+  'AR', 'BO', 'CL', 'CO', 'CR', 'CU', 'DO', 'EC', 'GT', 'HN', 'MX', 'NI', 'PA', 'PE', 'PR', 'PY', 'SV', 'US', 'UY',
+  'VE', '419',
+])
+
+/** The website's regional variant for a tag: es-MX → es-419 when the website has it. */
+function regionalVariant(tag: string): string | undefined {
+  const [base, region] = tag.split('-')
+  if (!region) return undefined
+  if (base.toLowerCase() === 'es' && LATIN_AMERICA.has(region.toUpperCase())) {
+    return LANGUAGES.find((code) => code === 'es-419')
+  }
+  return undefined
+}
+
+/**
+ * The first of the browser's languages the website has: exactly (pt-BR), by its region's variant
+ * (es-MX → es-419), or by its base (fr-BE → fr, pt-PT → pt).
+ */
 function preferredLanguage(): string {
   for (const tag of browserLanguages()) {
     const exact = LANGUAGES.find((code) => code.toLowerCase() === tag.toLowerCase())
     if (exact) return exact
+    const variant = regionalVariant(tag)
+    if (variant) return variant
     const base = LANGUAGES.find((code) => code.toLowerCase() === baseOf(tag))
     if (base) return base
   }

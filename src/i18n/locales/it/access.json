@@ -1,0 +1,72 @@
+{
+  "categories": {
+    "SERVER": "Server",
+    "BOARD": "Bacheche",
+    "COLUMN": "Colonne",
+    "TASK": "Attività",
+    "COMMENT": "Commenti",
+    "LABEL": "Etichette e priorità"
+  },
+  "flags": {
+    "VIEW_CHANNEL": "Visualizza canali",
+    "MANAGE_GUILD": "Gestisci server",
+    "VIEW_AUDIT_LOG": "Visualizza registro attività"
+  },
+  "everyoneWith": "chiunque abbia {permission}",
+  "personally": "{name} personalmente",
+  "where": {
+    "default": "predefinito",
+    "board": "questa bacheca",
+    "server": "server"
+  },
+  "why": {
+    "owner": "Consentito: il proprietario del server può fare tutto",
+    "admin": "Consentito: gli amministratori possono fare tutto",
+    "adminRule": "Consentito: gli amministratori possono fare tutto ({subject})",
+    "open": "Consentito: i permessi aperti lo permettono a chiunque possa scrivere",
+    "none": "Negato: nessuna regola lo consente",
+    "byDefault": "{result} dall'impostazione predefinita per {subject}",
+    "byBoard": "{result} dalla regola della bacheca per {subject}",
+    "byServer": "{result} dalla regola del server per {subject}"
+  },
+  "allowed": "Consentito",
+  "denied": "Negato",
+  "intro": "Guarda cosa può fare qualcuno e quale regola decide ogni cosa. Scegli un membro per partire dai suoi ruoli, poi aggiungi o togli ruoli per vedere cosa cambierebbe. Oppure verifica un insieme di ruoli da solo.",
+  "introBoard": "Guarda cosa può fare qualcuno su questa bacheca e quale regola decide ogni cosa. Scegli un membro per partire dai suoi ruoli, poi aggiungi o togli ruoli per vedere cosa cambierebbe. Oppure verifica un insieme di ruoli da solo.",
+  "check": "Verifica",
+  "aMember": "Un membro",
+  "rolesOnly": "Solo ruoli",
+  "searchMembers": "Cerca i membri per nome",
+  "whereLabel": "Dove",
+  "serverWide": "In tutto il server",
+  "someonesRoles": "Ruoli di {name}",
+  "theirRoles": "I suoi ruoli",
+  "unknownRole": "Ruolo sconosciuto",
+  "without": "Senza {role}",
+  "thisRole": "questo ruolo",
+  "addRole": "Aggiungi un ruolo",
+  "addRoleOption": "Aggiungi un ruolo…",
+  "whatIf": "Mostra {name} con ruoli diversi da quelli che ha.",
+  "them": "questa persona",
+  "realRoles": "Usa i suoi ruoli reali",
+  "start": "Cerca un membro qui sopra o scegli Solo ruoli.",
+  "failed": "La verifica non è riuscita",
+  "notes": {
+    "serverWide": "In tutto il server: ciò che vale su ogni bacheca senza regole proprie.",
+    "customOff": "I permessi personalizzati sono disattivati, quindi valgono le impostazioni predefinite: ciò che consente ogni permesso di Discord.",
+    "open": "I permessi aperti sono attivi: chiunque possa visualizzare i canali e inviare messaggi può lavorare con le bacheche.",
+    "notMember": "{name} non è nel server, quindi contano solo le regole per questa persona.",
+    "discord": "Permessi di Discord rilevanti qui: {permissions}."
+  },
+  "thisPerson": "Questa persona",
+  "show": "Mostra",
+  "allowedCount_one": "Consentiti ({count})",
+  "allowedCount_many": "Consentiti ({count})",
+  "allowedCount_other": "Consentiti ({count})",
+  "deniedCount_one": "Negati ({count})",
+  "deniedCount_many": "Negati ({count})",
+  "deniedCount_other": "Negati ({count})",
+  "outweighs": "Prevale su: {rules}",
+  "overriddenAllow": "Consenti per {subject} ({where})",
+  "overriddenDeny": "Nega per {subject} ({where})"
+}

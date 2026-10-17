@@ -1,0 +1,166 @@
+{
+  "nav": {
+    "main": "Principale",
+    "site": "Sito",
+    "breadcrumbs": "Percorso",
+    "guides": "Guide",
+    "faq": "Domande frequenti",
+    "open": "Apri KanbanCord",
+    "about": "Informazioni",
+    "support": "Sostieni",
+    "supportServer": "Server di supporto",
+    "appDirectory": "App Directory",
+    "status": "Stato",
+    "privacy": "Informativa sulla privacy",
+    "terms": "Termini di servizio",
+    "addToDiscord": "Aggiungi a Discord"
+  },
+  "footer": {
+    "notAffiliated": "© {year} {operator}. {name} non è affiliato a Discord né approvato da Discord."
+  },
+  "landing": {
+    "metaTitle": "Bacheche kanban per Discord",
+    "metaDescription": "Una bacheca kanban che vive nel tuo server Discord: crea, sposta e assegna attività con i comandi slash, ricevi aggiornamenti nei tuoi canali e usa il sito web per avere il quadro completo.",
+    "title": "Una bacheca kanban che vive nel tuo server Discord",
+    "intro": "Pianifica e segui il lavoro dove la tua community parla già. Crea, sposta e assegna attività con i comandi slash e ricevi gli aggiornamenti nei tuoi canali. Il sito web c'è quando vuoi il quadro completo.",
+    "signIn": "Accedi con Discord",
+    "free": "Gratuito. Senza pubblicità. Senza tracciamento. Anche nell'<link>App Directory di Discord</link>.",
+    "features": "Funzionalità",
+    "feature": {
+      "discord": {
+        "title": "Tutto da Discord",
+        "text": "Crea bacheche e attività, spostale e assegnale, imposta le scadenze e commenta con i comandi slash. Senza uscire dalla chat."
+      },
+      "boards": {
+        "title": "Vere bacheche kanban",
+        "text": "Colonne e attività con etichette, priorità, scadenze, assegnatari, commenti, liste di controllo, immagini e video."
+      },
+      "permissions": {
+        "title": "I tuoi permessi di Discord",
+        "text": "L'accesso segue fin da subito i ruoli del tuo server e si può regolare per bacheca e per persona sul sito web."
+      },
+      "updates": {
+        "title": "Aggiornamenti, non rumore",
+        "text": "Pubblica le modifiche nei canali scelti e ricevi messaggi diretti sulle tue attività, senza mai essere menzionato due volte per la stessa cosa."
+      },
+      "website": {
+        "title": "Il quadro completo, quando lo vuoi",
+        "text": "Il sito web mostra intere bacheche a colpo d'occhio e contiene le impostazioni di dettaglio, con ogni modifica in tempo reale per tutti."
+      },
+      "comfort": {
+        "title": "Fatto per essere comodo",
+        "text": "Temi, anche ad alto contrasto e adatti al daltonismo, dimensione del testo e una modalità semplice per i piccoli team."
+      }
+    },
+    "usesTitle": "Non solo per il lavoro",
+    "uses": "KanbanCord funziona altrettanto bene per le liste che tieni con le persone a te più vicine: progetti da realizzare, film da vedere, libri da leggere, cose da comprare. Crea una bacheca in un piccolo server, lasciala in modalità semplice e spuntate le cose insieme.",
+    "stepsTitle": "Inizia in un minuto",
+    "step1": "<strong>Aggiungi il bot</strong> al tuo server.",
+    "step2": "<strong>Crea una bacheca</strong> con <code>/board create</code>.",
+    "step3": "<strong>Aggiungi attività</strong> con <code>/task create</code> ed esegui <code>/help</code> per vedere il resto."
+  },
+  "about": {
+    "metaTitle": "Informazioni",
+    "metaDescription": "KanbanCord è una bacheca kanban che vive nel tuo server Discord: usala interamente con il bot e usa il sito web per il quadro completo e le impostazioni di dettaglio.",
+    "title": "Informazioni su {name}",
+    "p1": "{name} è una bacheca kanban che vive nel tuo server Discord. L'idea è semplice: la tua community parla già su Discord, quindi anche la pianificazione dovrebbe avvenire lì. Crea bacheche e colonne, aggiungi attività, falle avanzare, assegna persone, imposta etichette, priorità e scadenze e discutine nei commenti, tutto con i comandi slash del bot, senza uscire dalla chat. Gli aggiornamenti arrivano nei canali che scegli e, per le tue attività, in messaggio diretto.",
+    "p2": "Alla maggior parte delle persone non serve altro. Il sito web c'è quando vuoi vedere l'intera bacheca a colpo d'occhio o regolare i dettagli: permessi precisi per bacheca e per persona, le etichette e i livelli di priorità di una bacheca, quali funzioni usa un server, esattamente quali aggiornamenti ricevi e il registro di ogni modifica.",
+    "p3": "Segue fin dall'inizio i ruoli e i permessi di Discord del tuo server, così le persone giuste vedono e modificano le bacheche giuste senza dover configurare niente due volte.",
+    "simpleTitle": "Solo ciò che scegli",
+    "simple": "I nuovi server partono in <strong>modalità semplice</strong>: bacheche, colonne e attività con titolo e descrizione. Assegnatari, scadenze con promemoria, priorità, etichette, commenti e permessi personalizzati restano disattivati finché chi gestisce il server non li attiva con <code>/kanbancord features</code> o nelle impostazioni del server sul sito web. Le funzioni disattivate non compaiono da nessuna parte, né in Discord né sul sito web: appaiono solo quelle che scegli. Ogni bacheca può disattivare di nuovo delle funzioni per sé, e ognuno può nasconderne altre per sé in Preferenze → Vista semplice. Disattivare una funzione la nasconde soltanto; non viene eliminato niente.",
+    "madeByTitle": "Fatto da una sola persona",
+    "madeBy": "{name} è sviluppato e gestito da {operator}. È gratuito, non ha pubblicità e non vende né traccia i tuoi dati (vedi l'<privacy>Informativa sulla privacy</privacy>). Hai trovato un problema o hai un'idea? Usa <code>/report</code> in Discord. Domande, o vuoi sapere delle nuove funzioni? Unisciti al <server>server di supporto</server>. Se vuoi contribuire alle spese, vedi <support>Sostieni</support>.",
+    "findTitle": "Trovalo su Discord",
+    "find": "{name} ha una propria pagina nell'<directory>App Directory di Discord</directory>, da cui puoi aggiungerlo a un server direttamente da Discord. Se il sito web, il bot e tutto ciò che c'è dietro funzionano, e qualsiasi manutenzione programmata, è indicato nella <status>pagina di stato</status>.",
+    "startTitle": "Inizia",
+    "start1": "Aggiungi il bot al tuo server.",
+    "start2": "Crea una bacheca con <code>/board create</code>, poi aggiungi attività con <code>/task create</code>.",
+    "start3": "Esegui <code>/help</code> per vedere tutto ciò che il bot sa fare.",
+    "questions": "Domande? Consulta le <faq>domande frequenti</faq>.",
+    "translationsTitle": "Traduzioni",
+    "translations": "Le traduzioni di questo sito web sono state realizzate con l'aiuto dell'intelligenza artificiale generativa. Qualora notasse un errore o una formulazione migliorabile, Le saremmo grati se volesse segnalarcelo tramite <code>/report</code> in Discord o via e-mail all'indirizzo <email>{contact}</email>.",
+    "storyTitle": "Com'è nato",
+    "story1": "KanbanCord è nato da un progetto di gruppo all'università, nell'anno accademico 2024–2025. Il corso ci obbligava a usare l'installazione di OpenProject dell'università e, in pratica, usavamo solo la sua bacheca kanban, più la registrazione delle ore richiesta dal corso. Era una fonte continua di attriti: si bloccava ogni pochi minuti e, nei momenti peggiori, appena tornava su e provavi a fare qualcosa, si bloccava di nuovo. Inoltre continuava a disconnetterci. A parte il tempo passato in università, il nostro gruppo coordinava già tutto su Discord.",
+    "story2": "Un po' per scherzo dissi che avrei potuto costruire uno strumento migliore di quel disastro, e alcuni compagni di gruppo mi dissero di farlo. Avevo già molta esperienza nella creazione di bot Discord con discord.js, così, dopo averci pensato per qualche settimana, e in parte per puro dispetto, creai una nuova applicazione nel Discord Developer Portal mentre il progetto era ancora in corso. L'idea era semplice: una bacheca kanban che vive dove stavamo già parlando. È anche per questo che KanbanCord è prima di tutto uno strumento kanban e non una suite completa di gestione dei progetti: fa la parte di cui avevamo davvero bisogno, e la fa dove le persone sono già.",
+    "story3": "Da studente ci ho lavorato a periodi, con parecchia procrastinazione nel mezzo. Dopo circa un anno di sviluppo ho scoperto che esiste un altro bot con lo stesso identico nome, creato da j4asper. Le nostre applicazioni Discord sono state create a soli sei giorni di distanza: <other>la sua</other> il 30 ottobre 2024, la mia il 5 novembre 2024. Se cerchi KanbanCord su Discord, potresti benissimo trovare la sua; questo sito web, e il bot che puoi aggiungere da qui, sono quelli creati da {operator}.",
+    "story4": "La parte di gran lunga più difficile sono state le fondamenta: come bacheche, colonne, attività e permessi dovessero integrarsi con i server, i ruoli e i membri di Discord. Mettere a punto i modelli di dominio ha richiesto molti esperimenti e ricostruzioni: togliere ciò che non serviva e aggiungere le tabelle e i campi che la mia idea richiedeva, man mano che mi venivano in mente altre cose che lo strumento kanban poteva fare. Sinceramente, è stato circa l'80% del lavoro. Una volta definita la struttura, il resto è venuto sorprendentemente in fretta: con un progetto solido alla base, l'intelligenza artificiale generativa è diventata davvero utile per sviluppare le funzioni, perché seguiva la struttura esistente e c'erano molti meno errori grossi da trovare e correggere a mano.",
+    "story5": "L'intero progetto è open source: il <bot>bot</bot>, il <website>sito web</website> e l'<api>API</api> hanno ciascuno il proprio repository su GitHub."
+  },
+  "support": {
+    "metaTitle": "Sostieni",
+    "metaDescription": "KanbanCord è gratuito per tutti. Se vuoi contribuire alle sue spese, puoi lasciare una donazione volontaria su Ko-fi.",
+    "title": "Sostieni {name}",
+    "p1": "{name} è gratuito, non ha pubblicità né piani a pagamento, e resterà così. È un progetto personale, sviluppato e gestito da {operator}.",
+    "p2": "Se è utile al tuo server e vuoi contribuire alle sue spese, come il dominio e i server di cui avrà bisogno se cresce, puoi lasciare una donazione su Ko-fi.",
+    "kofi": "Sostieni su Ko-fi",
+    "goodToKnow": "Buono a sapersi",
+    "voluntary": "Le donazioni sono del tutto volontarie. Tutti ricevono lo stesso {name}, che donino o no.",
+    "buysNothing": "Una donazione non compra funzioni, limiti, ruoli, assistenza prioritaria né nient'altro.",
+    "payments": "I pagamenti sono gestiti da Ko-fi e PayPal, mai da {name}. Non colleghiamo le donazioni al tuo account Discord.",
+    "refunds": "Di norma le donazioni non sono rimborsabili. Se hai donato per errore, scrivi a <email>{email}</email> e faremo il possibile.",
+    "notDonating": "Non donare va benissimo. Anche parlare di {name} ad altri, o segnalare un bug con <code>/report</code>, è d'aiuto."
+  },
+  "faq": {
+    "metaTitle": "Domande frequenti",
+    "metaDescription": "Risposte su KanbanCord: costi, aggiunta del bot, permessi, comandi di Discord, notifiche, caricamenti e i tuoi dati.",
+    "title": "Domande frequenti",
+    "free": {
+      "q": "{name} è gratuito?",
+      "a": "Sì. Non ci sono piani a pagamento né pubblicità, e i tuoi dati non vengono venduti."
+    },
+    "start": {
+      "q": "Da dove comincio?",
+      "a": "Aggiungi il bot, poi esegui <code>/guide</code> in Discord per una guida passo passo. Le <guides>guide</guides> coprono tutto, da una lista di cose da fare condivisa ai promemoria e ai permessi."
+    },
+    "website": {
+      "q": "Mi serve il sito web?",
+      "a": "No. {name} è pensato per essere usato interamente da Discord: crea bacheche, colonne e attività, spostale e assegnale, imposta etichette, priorità e scadenze, commenta e scegli le tue notifiche, tutto con i comandi slash. Il sito web serve quando vuoi vedere l'intera bacheca a colpo d'occhio o regolare le impostazioni di dettaglio."
+    },
+    "add": {
+      "q": "Come lo aggiungo al mio server?",
+      "a": "Usa \"Aggiungi a Discord\" in fondo a qualsiasi pagina e scegli il server. Lì ti serve il permesso Gestisci server. Poi crea una prima bacheca con <code>/board create</code> e aggiungi attività con <code>/task create</code>."
+    },
+    "access": {
+      "q": "Chi può vedere e modificare le mie bacheche?",
+      "a": "Per impostazione predefinita segue i ruoli e i permessi di Discord del tuo server: amministratori e moderatori possono gestire le bacheche, i membri possono lavorare con le attività. Gli amministratori del server possono cambiarlo per l'intero server o per singola bacheca, nelle impostazioni del server e della bacheca."
+    },
+    "servers": {
+      "q": "Perché l'accesso chiede l'elenco dei miei server?",
+      "a": "Così {name} può mostrare quali dei tuoi server puoi gestire e a quali puoi aggiungere il bot. Non legge i tuoi messaggi."
+    },
+    "discord": {
+      "q": "Cosa posso fare da Discord?",
+      "a": "Tutto ciò che ti serve ogni giorno: creare, visualizzare, rinominare e archiviare bacheche; aggiungere, rinominare, riordinare ed eliminare colonne; creare, modificare, spostare ed eliminare attività; assegnare persone e ruoli; impostare etichette, priorità e scadenze; leggere e scrivere commenti; scegliere le tue notifiche con <code>/notifications</code>; e, per chi gestisce il server, configurare i canali di aggiornamento con <code>/kanbancord</code>. Esegui <code>/help</code> in Discord per vedere tutti i comandi."
+    },
+    "websiteOnly": {
+      "q": "Cosa richiede il sito web?",
+      "a": "Le impostazioni di dettaglio e il quadro completo: vedere un'intera bacheca in una volta, regole dei permessi per bacheca e per persona, le etichette e i livelli di priorità di una bacheca, quali funzioni usa un server, esattamente quali aggiornamenti ricevi, temi e opzioni di accessibilità, il caricamento di immagini e video e la consultazione del registro delle modifiche."
+    },
+    "notifications": {
+      "q": "Come funzionano le notifiche?",
+      "a": "Un server può far pubblicare al bot gli aggiornamenti nei canali scelti e rispecchiare il proprio registro delle modifiche in uno di essi; i messaggi di aggiornamento possono mostrare l'intera attività con pulsanti per spostarla, assegnare persone o modificarla direttamente lì. Puoi anche ricevere messaggi diretti sulle attività che ti sono assegnate, che hai creato o che segui, compresi i promemoria quando sono in scadenza. Se un canale ti ha già menzionato per qualcosa, non ricevi anche un messaggio diretto. Scegli cosa ricevere con <code>/notifications</code>, o più nel dettaglio in Impostazioni → Notifiche sul sito web. Chi gestisce il server configura i canali con <code>/kanbancord</code>."
+    },
+    "uploads": {
+      "q": "Dove vengono salvati le immagini e i video caricati?",
+      "a": "Su Imgur. Chiunque abbia il link può vederli, quindi non caricare niente di privato."
+    },
+    "data": {
+      "q": "Come cancello i miei dati?",
+      "a": "Disconnettiti ovunque in Impostazioni → Sessioni e chiedici di eliminare il resto a <email>{email}</email>. Gli amministratori del server possono eliminare le bacheche, e rimuovere il bot da un server ne interrompe la sincronizzazione. I dettagli sono nell'<privacy>Informativa sulla privacy</privacy>."
+    },
+    "help": {
+      "q": "Ho trovato un bug, ho un'idea o mi serve aiuto.",
+      "a": "Unisciti al <server>server di supporto di {name}</server> per fare domande e sapere delle nuove funzioni, oppure usa <code>/report</code> in Discord per inviare una segnalazione direttamente allo sviluppatore."
+    }
+  },
+  "guides": {
+    "metaTitle": "Guide",
+    "metaDescription": "Guide a KanbanCord: bacheche kanban, liste di cose da fare e monitoraggio delle attività in Discord, dalla tua prima bacheca ai promemoria, ai feed e ai permessi.",
+    "title": "Guide",
+    "intro": "Come pianificare e seguire il lavoro nel tuo server Discord con {name}: bacheche kanban, liste di cose da fare condivise, attività per persone e ruoli, scadenze e promemoria. Quasi tutto avviene con i comandi slash; alcune guide riguardano il sito web.",
+    "inDiscord": "Hai già aggiunto il bot? Esegui <code>/guide</code> in Discord per gli stessi passaggi, spuntati man mano.",
+    "tryTitle": "Provalo nel tuo server",
+    "try": "{name} è gratuito. Aggiungilo al tuo server, poi esegui <code>/guide</code> per una guida passo passo direttamente in Discord.",
+    "more": "Altre guide"
+  }
+}

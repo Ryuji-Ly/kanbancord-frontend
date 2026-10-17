@@ -1,0 +1,91 @@
+{
+  "boardFeatures": {
+    "title": "Modalità semplice",
+    "intro": "Disattiva ciò di cui questa bacheca non ha bisogno; le altre bacheche non cambiano. Disattivare qualcosa lo nasconde e ne conserva i dati. Le modifiche qui si applicano subito.",
+    "everything": "Tutto ciò che il server consente",
+    "offForServer": "Disattivato per l'intero server, nelle impostazioni del server."
+  },
+  "board": {
+    "loadFailed": "Non è stato possibile caricare le impostazioni della bacheca"
+  },
+  "boardNotifications": {
+    "intro": "I feed di aggiornamenti che pubblicano su questa bacheca. Ognuno segue le proprie impostazioni dalle notifiche del server finché non cambi qualcosa qui, solo per questa bacheca. Le modifiche vengono salvate subito.",
+    "noFeeds": "Nessun feed pubblica su questa bacheca. Chi gestisce il server aggiunge i feed nelle impostazioni del server.",
+    "followsFeed": "Segue le impostazioni del feed.",
+    "changes_one": "{count} modifica per questa bacheca.",
+    "changes_many": "{count} modifiche per questa bacheca.",
+    "changes_other": "{count} modifiche per questa bacheca.",
+    "useFeed": "Usa le impostazioni del feed",
+    "changed": "modificato"
+  },
+  "threads": {
+    "updatesBoth": "Il thread e il canale",
+    "updatesThread": "Solo il thread",
+    "updatesChannel": "Solo il canale",
+    "title": "Thread delle attività",
+    "intro": "Dai a ogni attività il proprio thread di discussione, in uno dei canali dei feed di aggiornamenti di questa bacheca. Un thread segue il titolo della sua attività e viene archiviato quando l'attività viene eliminata o archiviata. Gli aggiornamenti del feed sull'attività, compresi i nuovi commenti, vengono pubblicati lì come scegli qui sotto; i messaggi scritti nel thread restano in Discord. Le modifiche vengono salvate subito.",
+    "noFeed": "Questa bacheca non ha ancora un feed di aggiornamenti. Aggiungine uno nelle impostazioni delle notifiche del server, o con <code>/kanbancord feed</code> in Discord, poi attiva i thread qui.",
+    "perTask": "Un thread per attività",
+    "notWorking": "Attivo, ma non funziona: il canale scelto non ha più un feed per questa bacheca. Scegli un altro canale con un feed.",
+    "perTaskHint": "Ogni attività riceve il proprio thread la prossima volta che le succede qualcosa.",
+    "channel": "Canale",
+    "channelWithoutFeed": "Un canale senza feed per questa bacheca",
+    "botCannot": " (il bot non può creare thread qui)",
+    "updatesGoTo": "Gli aggiornamenti di un'attività vanno in",
+    "private": "Thread privati",
+    "privateNotPossible": "Non è possibile in questo canale: i thread privati richiedono un canale testuale in cui il bot possa creare thread privati.",
+    "privateHint": "Nel thread ci sono solo chi ha creato l'attività e i suoi assegnatari, più i moderatori del server. I nuovi assegnatari vengono aggiunti.",
+    "cannotMake": "Il bot non può creare thread in #{channel}, quindi le attività non ricevono nuovi thread. Dagli lì Visualizza canale, Invia messaggi nei thread e Crea thread pubblici, oppure scegli un altro canale.",
+    "cannotMakePrivate": "Il bot non può creare thread privati in #{channel}, quindi le attività non ricevono nuovi thread. Dagli lì Visualizza canale, Invia messaggi nei thread e Crea thread privati, oppure scegli un altro canale."
+  },
+  "usage_one": "{count} attività",
+  "usage_many": "{count} attività",
+  "usage_other": "{count} attività",
+  "colourOf": "Colore di {name}",
+  "labels": {
+    "intro": "Le etichette che si possono mettere sulle attività di questa bacheca. Le modifiche qui si applicano subito.",
+    "none": "Ancora nessuna etichetta.",
+    "name": "Nome dell'etichetta",
+    "newColour": "Colore della nuova etichetta",
+    "newPlaceholder": "Nuova etichetta, ad es. frontend",
+    "add": "Aggiungi un'etichetta",
+    "deleteTitle": "Elimina l'etichetta",
+    "deleteConfirm": "Eliminare <strong>{name}</strong> da questa bacheca?",
+    "deleteUsage_one": " Verrà tolta dall'attività che la usa ({count}).",
+    "deleteUsage_many": " Verrà tolta dalle {count} attività che la usano.",
+    "deleteUsage_other": " Verrà tolta dalle {count} attività che la usano."
+  },
+  "priorities": {
+    "title": "Priorità",
+    "intro": "I livelli di priorità, dal più urgente. Un'attività ne ha al massimo uno. Le modifiche qui si applicano subito.",
+    "none": "Nessun livello di priorità. Le attività di questa bacheca non hanno priorità.",
+    "moveUp": "Sposta {name} in su",
+    "moveDown": "Sposta {name} in giù",
+    "name": "Nome della priorità",
+    "newColour": "Colore del nuovo livello",
+    "newPlaceholder": "Nuovo livello, aggiunto in fondo",
+    "add": "Aggiungi un livello",
+    "deleteTitle": "Elimina il livello di priorità",
+    "deleteConfirm": "Eliminare <strong>{name}</strong>?",
+    "deleteUsage_one": " L'attività con questa priorità ({count}) resterà senza priorità.",
+    "deleteUsage_many": " Le {count} attività con questa priorità resteranno senza priorità.",
+    "deleteUsage_other": " Le {count} attività con questa priorità resteranno senza priorità."
+  },
+  "features": {
+    "intro": "La modalità semplice riduce le bacheche all'essenziale: colonne e attività con titolo e descrizione. Attiva solo ciò di cui questo server ha bisogno. Disattivare qualcosa lo nasconde e ne conserva i dati.",
+    "enableEverything": "Attiva tutto",
+    "openFirst": "{description} Disattiva prima i permessi aperti.",
+    "open": "Permessi aperti",
+    "openLabel": "Tutti possono fare tutto",
+    "customFirst": "Disattiva prima i permessi personalizzati: le loro regole vengono conservate per quando li riattivi.",
+    "openHint": "Chiunque possa scrivere in questo server può creare, modificare, spostare ed eliminare colonne, attività, etichette e livelli di priorità, qualunque siano i suoi ruoli. La gestione del server, i permessi delle bacheche, l'eliminazione o l'archiviazione delle bacheche e il registro delle modifiche restano a chi gestisce il server.",
+    "confirmTitle": "Attivare i permessi aperti?",
+    "turnOn": "Attiva",
+    "turningOn": "Attivazione...",
+    "confirm": "Chiunque possa scrivere in questo server potrà creare, modificare, spostare ed eliminare colonne, attività, etichette e livelli di priorità, qualunque siano i suoi ruoli. Ideale per un piccolo gruppo che si fida a vicenda."
+  },
+  "dialog": {
+    "sections": "Sezioni di {title}",
+    "close": "Chiudi {title}"
+  }
+}

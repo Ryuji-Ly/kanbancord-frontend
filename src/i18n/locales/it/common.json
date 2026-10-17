@@ -1,0 +1,59 @@
+{
+  "features": {
+    "labels": {
+      "label": "Etichette",
+      "description": "Etichette colorate sulle attività, gestite per bacheca.",
+      "show": "Mostra le etichette"
+    },
+    "priorities": {
+      "label": "Priorità",
+      "description": "Un livello di priorità per ogni attività, da Critica a Ignorabile.",
+      "show": "Mostra le priorità"
+    },
+    "assignees": {
+      "label": "Assegnatari",
+      "description": "Assegna i membri alle attività.",
+      "show": "Mostra gli assegnatari"
+    },
+    "comments": {
+      "label": "Commenti",
+      "description": "Una discussione su ogni attività.",
+      "show": "Mostra i commenti"
+    },
+    "dueDates": {
+      "label": "Scadenze",
+      "description": "Una data e un'ora di scadenza per ogni attività.",
+      "show": "Mostra le scadenze"
+    },
+    "permissions": {
+      "label": "Permessi personalizzati",
+      "description": "Decidi chi può fare cosa, per server e per bacheca. Se disattivati, l'accesso segue i permessi di Discord.",
+      "show": "Mostra i permessi personalizzati"
+    }
+  },
+  "requestFailed": "Richiesta non riuscita ({status})",
+  "notSignedIn": "Non hai effettuato l'accesso.",
+  "cancel": "Annulla",
+  "close": "Chiudi",
+  "loginWithDiscord": "Accedi con Discord",
+  "deleting": "Eliminazione…",
+  "loading": "Caricamento...",
+  "saving": "Salvataggio…",
+  "change": "Cambia",
+  "closeModal": "Chiudi la finestra",
+  "save": "Salva",
+  "applying": "Applicazione…",
+  "name": "Nome",
+  "description": "Descrizione",
+  "saveChanges": "Salva le modifiche",
+  "add": "Aggiungi",
+  "delete": "Elimina",
+  "deletingDots": "Eliminazione...",
+  "confirmNamed": "Conferma: {title}",
+  "creatingDots": "Creazione...",
+  "creating": "Creazione…",
+  "adding": "Aggiunta…",
+  "savingDots": "Salvataggio...",
+  "changeNotSaved": "Non è stato possibile salvare la modifica",
+  "loadingEllipsis": "Caricamento…"
+}
