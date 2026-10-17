@@ -1,0 +1,95 @@
+{
+  "boardFeatures": {
+    "title": "Jednoduchý režim",
+    "intro": "Vypni, co tato nástěnka nepotřebuje; ostatní nástěnky to neovlivní. Vypnutím se věc skryje a její data zůstanou. Změny zde platí okamžitě.",
+    "everything": "Vše, co server dovoluje",
+    "offForServer": "Vypnuto pro celý server, v nastavení serveru."
+  },
+  "board": {
+    "loadFailed": "Nastavení nástěnky se nepodařilo načíst"
+  },
+  "boardNotifications": {
+    "intro": "Feedy aktualizací, které píšou o této nástěnce. Každý se řídí vlastním nastavením z oznámení serveru, dokud tady něco nezměníš, jen pro tuto nástěnku. Změny se ukládají okamžitě.",
+    "noFeeds": "O této nástěnce nepíše žádný feed. Správci serveru přidávají feedy v nastavení serveru.",
+    "followsFeed": "Řídí se nastavením feedu.",
+    "changes_one": "{count} změna pro tuto nástěnku.",
+    "changes_few": "{count} změny pro tuto nástěnku.",
+    "changes_many": "{count} změny pro tuto nástěnku.",
+    "changes_other": "{count} změn pro tuto nástěnku.",
+    "useFeed": "Použít nastavení feedu",
+    "changed": "změněno"
+  },
+  "threads": {
+    "updatesBoth": "Vlákno i kanál",
+    "updatesThread": "Jen vlákno",
+    "updatesChannel": "Jen kanál",
+    "title": "Vlákna úkolů",
+    "intro": "Dej každému úkolu vlastní vlákno na diskuzi, v jednom z kanálů feedů této nástěnky. Vlákno přebírá název úkolu a archivuje se, když je úkol smazán nebo archivován. Aktualizace feedu o úkolu, včetně nových komentářů, se do něj posílají podle volby níže; zprávy napsané ve vlákně zůstávají v Discordu. Změny se ukládají okamžitě.",
+    "noFeed": "Tato nástěnka zatím nemá feed aktualizací. Přidej ho v nastavení oznámení serveru nebo příkazem <code>/kanbancord feed</code> v Discordu a pak tady zapni vlákna.",
+    "perTask": "Vlákno pro každý úkol",
+    "notWorking": "Zapnuto, ale nefunguje: vybraný kanál už pro tuto nástěnku nemá feed. Vyber jiný kanál s feedem.",
+    "perTaskHint": "Každý úkol dostane vlákno, až se s ním příště něco stane.",
+    "channel": "Kanál",
+    "channelWithoutFeed": "Kanál bez feedu pro tuto nástěnku",
+    "botCannot": " (bot tu nemůže vytvářet vlákna)",
+    "updatesGoTo": "Aktualizace úkolu jdou do",
+    "private": "Soukromá vlákna",
+    "privateNotPossible": "V tomto kanálu to nejde: soukromá vlákna potřebují textový kanál, kde bot smí vytvářet soukromá vlákna.",
+    "privateHint": "Ve vlákně jsou jen autor úkolu a jeho řešitelé, plus moderátoři serveru. Noví řešitelé se přidávají.",
+    "cannotMake": "Bot nemůže vytvářet vlákna v #{channel}, takže úkoly nedostanou nová vlákna. Dej mu tam Zobrazit kanály, Posílat zprávy ve vláknech a Vytvářet veřejná vlákna, nebo vyber jiný kanál.",
+    "cannotMakePrivate": "Bot nemůže vytvářet soukromá vlákna v #{channel}, takže úkoly nedostanou nová vlákna. Dej mu tam Zobrazit kanály, Posílat zprávy ve vláknech a Vytvářet soukromá vlákna, nebo vyber jiný kanál."
+  },
+  "usage_one": "{count} úkol",
+  "usage_few": "{count} úkoly",
+  "usage_many": "{count} úkolu",
+  "usage_other": "{count} úkolů",
+  "colourOf": "Barva: {name}",
+  "labels": {
+    "intro": "Štítky, které lze dávat na úkoly této nástěnky. Změny zde platí okamžitě.",
+    "none": "Zatím žádné štítky.",
+    "name": "Název štítku",
+    "newColour": "Barva nového štítku",
+    "newPlaceholder": "Nový štítek, např. frontend",
+    "add": "Přidat štítek",
+    "deleteTitle": "Smazat štítek",
+    "deleteConfirm": "Smazat <strong>{name}</strong> z této nástěnky?",
+    "deleteUsage_one": " Odebere se z {count} úkolu, který ho používá.",
+    "deleteUsage_few": " Odebere se ze {count} úkolů, které ho používají.",
+    "deleteUsage_many": " Odebere se z {count} úkolu, které ho používají.",
+    "deleteUsage_other": " Odebere se z {count} úkolů, které ho používají."
+  },
+  "priorities": {
+    "title": "Priority",
+    "intro": "Úrovně priority, od nejnaléhavější. Úkol má nejvýše jednu. Změny zde platí okamžitě.",
+    "none": "Žádné úrovně priority. Úkoly na této nástěnce nemají prioritu.",
+    "moveUp": "Posunout {name} nahoru",
+    "moveDown": "Posunout {name} dolů",
+    "name": "Název priority",
+    "newColour": "Barva nové úrovně",
+    "newPlaceholder": "Nová úroveň, přidá se na konec",
+    "add": "Přidat úroveň",
+    "deleteTitle": "Smazat úroveň priority",
+    "deleteConfirm": "Smazat <strong>{name}</strong>?",
+    "deleteUsage_one": " {count} úkol s touto prioritou zůstane bez priority.",
+    "deleteUsage_few": " {count} úkoly s touto prioritou zůstanou bez priority.",
+    "deleteUsage_many": " {count} úkolu s touto prioritou zůstane bez priority.",
+    "deleteUsage_other": " {count} úkolů s touto prioritou zůstane bez priority."
+  },
+  "features": {
+    "intro": "Jednoduchý režim drží nástěnky u základů: sloupce a úkoly s názvem a popisem. Zapni jen to, co tento server potřebuje. Vypnutím se věc skryje a její data zůstanou.",
+    "enableEverything": "Zapnout vše",
+    "openFirst": "{description} Nejdřív vypni otevřená oprávnění.",
+    "open": "Otevřená oprávnění",
+    "openLabel": "Každý smí všechno",
+    "customFirst": "Nejdřív vypni vlastní oprávnění: jejich pravidla zůstanou uložená pro případ, že je znovu zapneš.",
+    "openHint": "Každý, kdo může na tomto serveru psát, smí vytvářet, měnit, přesouvat a mazat sloupce, úkoly, štítky a úrovně priority bez ohledu na role. Správa serveru, oprávnění nástěnek, mazání či archivace nástěnek a protokol změn zůstávají správcům.",
+    "confirmTitle": "Zapnout otevřená oprávnění?",
+    "turnOn": "Zapnout",
+    "turningOn": "Zapínání...",
+    "confirm": "Každý, kdo může na tomto serveru psát, bude moci vytvářet, měnit, přesouvat a mazat sloupce, úkoly, štítky a úrovně priority bez ohledu na role. Nejlepší pro malou skupinu, která si navzájem věří."
+  },
+  "dialog": {
+    "sections": "Části: {title}",
+    "close": "Zavřít: {title}"
+  }
+}

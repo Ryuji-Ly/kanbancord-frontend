@@ -1,0 +1,149 @@
+{
+  "appearance": {
+    "groups": {
+      "surfaces": "Plochy",
+      "controls": "Ovládací prvky",
+      "text": "Text",
+      "brand": "Značka a akcenty",
+      "status": "Stav",
+      "permissions": "Pravidla oprávnění"
+    },
+    "core": {
+      "background": {
+        "label": "Pozadí",
+        "hint": "Za vším"
+      },
+      "surface": {
+        "label": "Plocha",
+        "hint": "Panely, sloupce a karty"
+      },
+      "text": {
+        "label": "Text",
+        "hint": "Hlavní text; nadpisy a nápovědy se odvozují z něj"
+      },
+      "accent": {
+        "label": "Akcent",
+        "hint": "Zvýraznění, rámečky fokusu, odstín nadpisů"
+      },
+      "primary": {
+        "label": "Hlavní",
+        "hint": "Hlavní tlačítka a odkazy"
+      },
+      "success": {
+        "label": "Úspěch",
+        "hint": "Potvrzení a povolující pravidla"
+      },
+      "danger": {
+        "label": "Nebezpečí",
+        "hint": "Chyby, tlačítka mazání a zamítající pravidla"
+      },
+      "warning": {
+        "label": "Varování",
+        "hint": "Upozornění a zvýraznění"
+      }
+    },
+    "presets": {
+      "dark": {
+        "label": "Tmavý",
+        "description": "Výchozí."
+      },
+      "light": {
+        "label": "Světlý",
+        "description": "Tmavý text na světlých plochách."
+      },
+      "highContrast": {
+        "label": "Vysoký kontrast",
+        "description": "Čistě černá a bílá s výraznými okraji, pro slabozraké."
+      },
+      "redGreen": {
+        "label": "Bezpečný pro červenou a zelenou",
+        "description": "Pro protanopii a deuteranopii: modrá pro úspěch, oranžová pro nebezpečí."
+      },
+      "blueYellow": {
+        "label": "Bezpečný pro modrou a žlutou",
+        "description": "Pro tritanopii: tyrkysová pro úspěch, červená pro nebezpečí, žlutá pro varování."
+      }
+    },
+    "theme": "Motiv",
+    "custom": "Vlastní",
+    "customHint": "Tvoje vlastní barvy, vycházející z motivu výše.",
+    "customColours": "Vlastní barvy",
+    "customColoursHint": "Nastav osm barev; všechny ostatní se z nich dopočítají.",
+    "lowContrast": "Kontrast textu vůči pozadí je {contrast}:1; pro pohodlné čtení se doporučuje alespoň 4.5:1.",
+    "advanced": "Pokročilé: upravit každou barvu",
+    "changed_one": " ({count} změněna)",
+    "changed_few": " ({count} změněny)",
+    "changed_many": " ({count} změněno)",
+    "changed_other": " ({count} změněno)",
+    "advancedHint": "Změny zde se aplikují nad motiv výše a zůstanou i po změně motivu.",
+    "resetAll": "Obnovit vše",
+    "reset": "Obnovit",
+    "language": "Jazyk",
+    "browserLanguage": "Jazyk mého prohlížeče"
+  },
+  "accessibility": {
+    "textScale": {
+      "normal": "Normální",
+      "large": "Velký",
+      "larger": "Větší",
+      "largest": "Největší"
+    },
+    "filters": {
+      "none": "Žádný",
+      "protanopia": "Protanopie (slabé vnímání červené)",
+      "deuteranopia": "Deuteranopie (slabé vnímání zelené)",
+      "tritanopia": "Tritanopie (slabé vnímání modré)"
+    },
+    "intro": "Při barvosleposti přebarví rozhraní motivy Bezpečný pro červenou a zelenou a Bezpečný pro modrou a žlutou. Možnosti níže pomáhají s barvami, které lidé volí pro štítky, priority a role.",
+    "patterns": "Vzory na štítcích",
+    "patternsHint": "Každý štítek dostane vlastní vzor pruhů nebo teček, takže se štítky liší nejen barvou.",
+    "ranks": "Pořadí priorit",
+    "ranksHint": "Zobrazí pořadí každé priority vedle jejího názvu; P1 je nejnaléhavější.",
+    "filter": "Barevný filtr pro štítky, priority a role",
+    "filterHint": "Posune těžko rozlišitelné barvy k lépe viditelným.",
+    "textSize": "Velikost textu",
+    "motion": "Omezit pohyb",
+    "motionSystem": "Podle mého zařízení",
+    "motionOn": "Vždy omezit",
+    "motionOff": "Nikdy neomezovat"
+  },
+  "simpleView": {
+    "intro": "Skryj, co nepoužíváš, na každé nástěnce. Mění to jen to, co vidíš ty: data zůstávají a všichni ostatní je stále vidí. Co server vypnul, je skryté pro všechny.",
+    "hideAll": "Skrýt vše volitelné",
+    "showAll": "Zobrazit vše"
+  },
+  "menu": {
+    "label": "Účet",
+    "preferences": "Předvolby",
+    "settings": "Nastavení",
+    "logOut": "Odhlásit se",
+    "appearance": "Vzhled",
+    "accessibility": "Přístupnost",
+    "simpleView": "Jednoduché zobrazení",
+    "sessions": "Relace",
+    "dialogTitle": "Předvolby a nastavení"
+  },
+  "sessions": {
+    "unknownDevice": "Neznámé zařízení",
+    "browserOn": "{browser} v systému {system}",
+    "intro": "Zařízení a prohlížeče přihlášené k tvému účtu. Odhlášením jednoho z nich se relace hned ukončí, včetně nástěnky, která je tam otevřená.",
+    "signOutFailed": "Tuto relaci se nepodařilo odhlásit",
+    "loadFailed": "Tvoje relace se nepodařilo načíst",
+    "thisDevice": " · Toto zařízení",
+    "activity": "Aktivní {active} · přihlášeno {signedIn}",
+    "signOut": "Odhlásit",
+    "signOutOthers": "Odhlásit všechna ostatní zařízení"
+  },
+  "language": {
+    "request": "Požádat o jazyk…",
+    "intro": "Tvůj jazyk tu ještě není? Napiš vývojáři, který bys chtěl. Překlady se přidávají podle toho, o co lidé žádají.",
+    "which": "Jazyk",
+    "pick": "Vyber jazyk…",
+    "note": "Poznámka (nepovinné)",
+    "notePlaceholder": "Cokoli dalšího, třeba jestli bys mohl pomoci s překladem",
+    "send": "Odeslat žádost",
+    "sending": "Odesílání…",
+    "sent": "Díky! Tvoje žádost byla odeslána vývojáři.",
+    "failed": "Žádost se nepodařilo odeslat"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "features": {
+    "labels": {
+      "label": "Štítky",
+      "description": "Barevné štítky na úkolech, spravované pro každou nástěnku.",
+      "show": "Zobrazit štítky"
+    },
+    "priorities": {
+      "label": "Priority",
+      "description": "Úroveň priority u každého úkolu, od Critical po Ignorable.",
+      "show": "Zobrazit priority"
+    },
+    "assignees": {
+      "label": "Řešitelé",
+      "description": "Přiřazování členů k úkolům.",
+      "show": "Zobrazit řešitele"
+    },
+    "comments": {
+      "label": "Komentáře",
+      "description": "Diskuze u každého úkolu.",
+      "show": "Zobrazit komentáře"
+    },
+    "dueDates": {
+      "label": "Termíny",
+      "description": "Datum a čas, do kdy má být každý úkol hotový.",
+      "show": "Zobrazit termíny"
+    },
+    "permissions": {
+      "label": "Vlastní oprávnění",
+      "description": "Nastav, kdo co smí, pro celý server i pro každou nástěnku. Dokud jsou vypnutá, přístup se řídí oprávněními Discordu.",
+      "show": "Zobrazit vlastní oprávnění"
+    }
+  },
+  "requestFailed": "Požadavek selhal ({status})",
+  "notSignedIn": "Nejsi přihlášen.",
+  "cancel": "Zrušit",
+  "close": "Zavřít",
+  "loginWithDiscord": "Přihlásit se přes Discord",
+  "deleting": "Mazání…",
+  "loading": "Načítání...",
+  "saving": "Ukládání…",
+  "change": "Změnit",
+  "closeModal": "Zavřít okno",
+  "save": "Uložit",
+  "applying": "Použití…",
+  "name": "Název",
+  "description": "Popis",
+  "saveChanges": "Uložit změny",
+  "add": "Přidat",
+  "delete": "Smazat",
+  "deletingDots": "Mazání...",
+  "confirmNamed": "Potvrdit: {title}",
+  "creatingDots": "Vytváření...",
+  "creating": "Vytváření…",
+  "adding": "Přidávání…",
+  "savingDots": "Ukládání...",
+  "changeNotSaved": "Změnu se nepodařilo uložit",
+  "loadingEllipsis": "Načítání…"
+}
