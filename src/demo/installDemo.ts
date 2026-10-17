@@ -18,7 +18,17 @@ const json = (body: unknown, status = 200) =>
     headers: { 'content-type': 'application/json' },
   })
 
-const me = { userId: data.ME, username: 'alex', globalName: 'Alex', avatarUrl: undefined, preferences: {} }
+// Preferences last for the browser session, like an account's, so a cleared language choice can
+// be seen coming back from them.
+const PREFERENCES_KEY = 'kc.demo.preferences'
+function loadDemoPreferences(): Record<string, unknown> {
+  try {
+    return JSON.parse(sessionStorage.getItem(PREFERENCES_KEY) ?? '{}') as Record<string, unknown>
+  } catch {
+    return {}
+  }
+}
+const me = { userId: data.ME, username: 'alex', globalName: 'Alex', avatarUrl: undefined, preferences: loadDemoPreferences() }
 const allowed = (keys: string[]) =>
   Object.fromEntries(keys.map((key) => [key, { allowed: true, sourceTier: 'ROLE', sourceScopeType: 'SERVER' }]))
 
@@ -335,8 +345,21 @@ const ROUTES: [string, RegExp, Handler][] = [
   ['GET', /^\/api\/me$/, () => me],
   ['GET', /^\/api\/me\/guilds$/, () => [{ id: data.SERVER_ID, name: 'Pixel Forge', icon: null, owner: true, permissions: '8' }]],
   ['GET', /^\/api\/me\/servers$/, () => [{ serverId: data.SERVER_ID, name: 'Pixel Forge', botPresent: true, ownerId: data.ME }]],
-  ['GET', /^\/api\/me\/preferences$/, () => ({})],
-  ['PATCH', /^\/api\/me\/preferences$/, (_m, { body }) => body ?? {}],
+  ['GET', /^\/api\/me\/preferences$/, () => me.preferences],
+  ['PATCH', /^\/api\/me\/preferences$/, (_m, { body }) => {
+    const merged: Record<string, unknown> = { ...me.preferences }
+    for (const [key, value] of Object.entries((body ?? {}) as Record<string, unknown>)) {
+      if (value === null) delete merged[key]
+      else merged[key] = value
+    }
+    me.preferences = merged
+    try {
+      sessionStorage.setItem(PREFERENCES_KEY, JSON.stringify(merged))
+    } catch {
+      // Not kept past a reload, which only matters for trying it out.
+    }
+    return merged
+  }],
   ['GET', /^\/api\/me\/sessions$/, () => []],
   ['GET', /^\/api\/me\/notifications$/, () => ({
     dmMode: 'UNLESS_PINGED',

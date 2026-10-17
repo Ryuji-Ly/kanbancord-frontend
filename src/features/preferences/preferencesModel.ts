@@ -21,6 +21,8 @@ export type AccessibilityPreference = {
 export type SimpleViewPreference = Partial<Record<Exclude<FeatureKey, 'PERMISSIONS'>, boolean>>
 
 export type Preferences = {
+  /** The website's language, or 'auto' to follow the browser (and Discord, in the Activity). */
+  language?: string
   theme?: ThemePreference
   accessibility?: AccessibilityPreference
   simpleView?: SimpleViewPreference

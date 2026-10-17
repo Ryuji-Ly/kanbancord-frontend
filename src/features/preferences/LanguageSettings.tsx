@@ -3,7 +3,9 @@ import { useMutation } from '@tanstack/react-query'
 import { readableError } from '../../api/http'
 import { chooseLanguage, chosenLanguage, language, LANGUAGES, languageName, t } from '../../i18n'
 import { requestLanguage } from '../../services/meService'
+import { useSession } from '../../api/session'
 import { clearPendingAccountDialog, reopenAccountDialog } from '../account/accountDialog'
+import { FOLLOW_BROWSER, useSavePreferences } from './usePreferences'
 
 /** The value of the "Request a language…" entry in the list. */
 const REQUEST = '__request'
@@ -17,11 +19,14 @@ const REQUESTABLE = [
 ]
 
 /**
- * The website's language: the browser's, or one picked here (remembered on this browser). Someone
- * missing theirs can ask for it; the request goes to the developer.
+ * The website's language: the browser's, or one picked here, saved with the account so it follows
+ * the user to every device and into the Discord Activity (and remembered on this browser either
+ * way). Someone missing theirs can ask for it; the request goes to the developer.
  */
 export function LanguageSettings() {
   const [chosen, setChosen] = useState(chosenLanguage)
+  const signedIn = useSession().status === 'signedIn'
+  const save = useSavePreferences()
   const [requesting, setRequesting] = useState(false)
 
   return (
@@ -39,6 +44,7 @@ export function LanguageSettings() {
           setRequesting(false)
           const code = event.target.value || null
           setChosen(code)
+          if (signedIn) save.mutate({ language: code ?? FOLLOW_BROWSER })
           // The app is drawn afresh in the new language; this dialog opens again where it was.
           const before = language()
           reopenAccountDialog('appearance')

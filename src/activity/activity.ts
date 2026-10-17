@@ -1,5 +1,6 @@
 import type { DiscordSDK } from '@discord/embedded-app-sdk'
 import { signInWithActivityCode } from '../api/session'
+import { setPlatformLanguage } from '../i18n'
 import { API_BASE_URL, DISCORD_CLIENT_ID, DISCORD_SCOPES } from '../config/env'
 
 /**
@@ -45,6 +46,12 @@ export async function startActivity(): Promise<void> {
   openLinksInBrowser()
   await sdk.ready()
   await signInThroughDiscord().catch(() => undefined)
+  // Discord's language goes before the device's, which in the Discord app is often the operating
+  // system's instead. A language picked on the website still comes first.
+  await sdk.commands
+    .userSettingsGetLocale()
+    .then(({ locale }) => setPlatformLanguage(locale))
+    .catch(() => undefined)
 }
 
 /** Asks Discord to sign the user in; the first time, Discord asks them to allow it. */
