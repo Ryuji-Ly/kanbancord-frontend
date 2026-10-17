@@ -1,0 +1,166 @@
+{
+  "nav": {
+    "main": "Huvudmeny",
+    "site": "Webbplats",
+    "breadcrumbs": "Brödsmulor",
+    "guides": "Guider",
+    "faq": "Vanliga frågor",
+    "open": "Öppna KanbanCord",
+    "about": "Om",
+    "support": "Stöd",
+    "supportServer": "Supportserver",
+    "appDirectory": "Appkatalog",
+    "status": "Status",
+    "privacy": "Integritetspolicy",
+    "terms": "Användarvillkor",
+    "addToDiscord": "Lägg till i Discord"
+  },
+  "footer": {
+    "notAffiliated": "© {year} {operator}. {name} är inte anknutet till eller godkänt av Discord."
+  },
+  "landing": {
+    "metaTitle": "Kanbantavlor för Discord",
+    "metaDescription": "En kanbantavla som bor på din Discord-server: skapa, flytta och tilldela uppgifter med snedstreckskommandon, få uppdateringar i dina kanaler och använd webbplatsen för helheten.",
+    "title": "En kanbantavla som bor på din Discord-server",
+    "intro": "Planera och följ arbetet där din community redan pratar. Skapa, flytta och tilldela uppgifter med snedstreckskommandon och få uppdateringar i dina kanaler. Webbplatsen finns där när du vill se helheten.",
+    "signIn": "Logga in med Discord",
+    "free": "Gratis. Ingen reklam. Ingen spårning. Finns även i <link>Discords appkatalog</link>.",
+    "features": "Funktioner",
+    "feature": {
+      "discord": {
+        "title": "Allt från Discord",
+        "text": "Skapa tavlor och uppgifter, flytta och tilldela dem, sätt förfallodatum och kommentera med snedstreckskommandon. Du behöver inte lämna chatten."
+      },
+      "boards": {
+        "title": "Riktiga kanbantavlor",
+        "text": "Kolumner och uppgifter med etiketter, prioriteter, förfallodatum, tilldelade, kommentarer, checklistor, bilder och videor."
+      },
+      "permissions": {
+        "title": "Dina Discord-behörigheter",
+        "text": "Åtkomsten följer serverns roller från början och kan finjusteras per tavla och per person på webbplatsen."
+      },
+      "updates": {
+        "title": "Uppdateringar, inte brus",
+        "text": "Publicera ändringar i valda kanaler och få direktmeddelanden om dina uppgifter, utan att någonsin pingas två gånger för samma sak."
+      },
+      "website": {
+        "title": "Helheten, när du vill",
+        "text": "Webbplatsen visar hela tavlor i en blick och rymmer finjusteringen, med varje ändring live för alla."
+      },
+      "comfort": {
+        "title": "Gjord för att vara bekväm",
+        "text": "Teman, bland annat hög kontrast och färgblindvänliga, textstorlek och ett enkelt läge för små team."
+      }
+    },
+    "usesTitle": "Inte bara för jobbet",
+    "uses": "KanbanCord fungerar lika bra för listorna du har med dem som står dig närmast: planer att göra, filmer att se, böcker att läsa, saker att köpa. Skapa en tavla på en liten server, låt den vara i enkelt läge och bocka av saker tillsammans.",
+    "stepsTitle": "Kom igång på en minut",
+    "step1": "<strong>Lägg till boten</strong> på din server.",
+    "step2": "<strong>Skapa en tavla</strong> med <code>/board create</code>.",
+    "step3": "<strong>Lägg till uppgifter</strong> med <code>/task create</code>, och använd <code>/help</code> för att se resten."
+  },
+  "about": {
+    "metaTitle": "Om",
+    "metaDescription": "KanbanCord är en kanbantavla som bor på din Discord-server: använd den helt via boten och webbplatsen för helheten och finjusteringen.",
+    "title": "Om {name}",
+    "p1": "{name} är en kanbantavla som bor på din Discord-server. Idén är enkel: din community pratar redan på Discord, så planeringen bör ske där också. Skapa tavlor och kolumner, lägg till uppgifter, flytta dem framåt, tilldela personer, sätt etiketter, prioriteter och förfallodatum och diskutera dem i kommentarer, allt med botens snedstreckskommandon, utan att lämna chatten. Uppdateringar kommer i de kanaler du väljer och, för dina egna uppgifter, som direktmeddelanden.",
+    "p2": "De flesta behöver aldrig något annat. Webbplatsen finns där när du vill se hela tavlan i en blick eller finjustera saker: detaljerade behörigheter per tavla och per person, de etiketter och prioritetsnivåer en tavla har, vilka funktioner en server använder, exakt vilka uppdateringar du får höra om och ändringsloggen över varje ändring.",
+    "p3": "Den följer serverns Discord-roller och behörigheter från början, så att rätt personer ser och ändrar rätt tavlor utan att något behöver ställas in två gånger.",
+    "simpleTitle": "Bara det du väljer",
+    "simple": "Nya servrar börjar i <strong>enkelt läge</strong>: tavlor, kolumner och uppgifter med titel och beskrivning. Tilldelade, förfallodatum med påminnelser, prioriteter, etiketter, kommentarer och anpassade behörigheter är avstängda tills en serveradministratör slår på dem med <code>/kanbancord features</code> eller i serverinställningarna på webbplatsen. Funktioner som är avstängda visas ingenstans, varken i Discord eller på webbplatsen: bara det du väljer syns. Varje tavla kan stänga av funktioner igen för sig själv, och alla kan dölja mer för sig själva under Preferenser → Enkel vy. Att stänga av en funktion döljer den bara; inget tas bort.",
+    "madeByTitle": "Gjord av en person",
+    "madeBy": "{name} byggs och drivs av {operator}. Den är gratis, har ingen reklam och säljer eller spårar inte din data (se <privacy>Integritetspolicyn</privacy>). Har du hittat ett problem eller fått en idé? Använd <code>/report</code> i Discord. Frågor, eller vill du höra om nya funktioner? Gå med i <server>supportservern</server>. Om du vill hjälpa till med kostnaderna, se <support>Stöd</support>.",
+    "findTitle": "Hitta den på Discord",
+    "find": "{name} har en egen sida i <directory>Discords appkatalog</directory>, där du kan lägga till den på en server direkt från Discord. Om webbplatsen, boten och allt bakom dem är igång, och eventuellt planerat underhåll, ser du på <status>statussidan</status>.",
+    "startTitle": "Kom igång",
+    "start1": "Lägg till boten på din server.",
+    "start2": "Skapa en tavla med <code>/board create</code> och lägg sedan till uppgifter med <code>/task create</code>.",
+    "start3": "Använd <code>/help</code> för att se allt boten kan göra.",
+    "questions": "Frågor? Se <faq>vanliga frågor</faq>.",
+    "translationsTitle": "Översättningar",
+    "translations": "Översättningarna på den här webbplatsen har tagits fram med hjälp av generativ AI. Om du ser ett fel eller en formulering som kan bli bättre blir vi tacksamma om du hör av dig via <code>/report</code> i Discord eller via e-post till <email>{contact}</email>.",
+    "storyTitle": "Hur det började",
+    "story1": "KanbanCord började med ett grupprojekt på universitetet läsåret 2024–2025. Kursen krävde att vi använde universitetets egen OpenProject-installation, och i praktiken använde vi bara dess kanbantavla, plus den tidrapportering som kursen bad om. Det var en ständig källa till irritation: det kraschade med några minuters mellanrum, och när det var som värst kraschade det igen i samma stund som det kom upp och man försökte göra något. Dessutom loggade det ut oss hela tiden. Utanför tiden på campus samordnade vår grupp ändå allt på Discord.",
+    "story2": "Halvt på skämt sa jag att jag kunde bygga ett bättre verktyg än den här röran, och några i gruppen sa åt mig att köra. Jag hade redan gott om erfarenhet av att bygga Discord-botar med discord.js, så efter några veckors funderande, delvis av ren trots, skapade jag en ny applikation i Discord Developer Portal medan projektet fortfarande pågick. Idén var enkel: en kanbantavla som bor där vi redan pratade. Det är också därför KanbanCord i första hand är ett kanbanverktyg och inte en komplett svit för projektledning: den gör den del vi faktiskt behövde, och gör det där folk redan är.",
+    "story3": "Som student arbetade jag med den till och från, med en hel del prokrastinering emellan. Ungefär ett år in i bygget fick jag veta att det finns en annan bot med exakt samma namn, gjord av j4asper. Våra Discord-applikationer skapades med bara sex dagars mellanrum: <other>deras</other> den 30 oktober 2024, min den 5 november 2024. Om du söker efter KanbanCord i Discord kan du mycket väl hitta deras; den här webbplatsen, och boten du kan lägga till härifrån, är de som är gjorda av {operator}.",
+    "story4": "Det överlägset svåraste var grunden: hur tavlor, kolumner, uppgifter och behörigheter skulle passa ihop med Discords egna servrar, roller och medlemmar. Att få domänmodellerna rätt krävde mycket experimenterande och ombyggnad: att skära bort det som inte behövdes och lägga till de tabeller och fält som min vision krävde, allteftersom jag kom på mer som kanbanverktyget kunde göra. Ärligt talat var det ungefär 80 % av arbetet. När strukturen väl var på plats föll resten på plats förvånansvärt snabbt: med en stabil design blev generativ AI verkligen till hjälp för att bygga funktioner, eftersom den följde den befintliga strukturen och det blev mycket färre stora fel att hitta och rätta för hand.",
+    "story5": "Hela projektet är öppen källkod: <bot>boten</bot>, <website>webbplatsen</website> och <api>API:t</api> har var sitt repository på GitHub."
+  },
+  "support": {
+    "metaTitle": "Stöd",
+    "metaDescription": "KanbanCord är gratis för alla. Om du vill hjälpa till med kostnaderna kan du ge en frivillig donation via Ko-fi.",
+    "title": "Stöd {name}",
+    "p1": "{name} är gratis, har ingen reklam och inga betalplaner, och så kommer det att förbli. Det är ett personligt projekt som byggs och drivs av {operator}.",
+    "p2": "Om den är användbar för din server och du vill hjälpa till med kostnaderna, som domänen och servrarna den kommer att behöva om den växer, kan du ge en donation via Ko-fi.",
+    "kofi": "Stöd via Ko-fi",
+    "goodToKnow": "Bra att veta",
+    "voluntary": "Donationer är helt frivilliga. Alla får samma {name}, oavsett om de donerar eller inte.",
+    "buysNothing": "En donation köper inga funktioner, gränser, roller, prioriterad support eller något annat.",
+    "payments": "Betalningar hanteras av Ko-fi och PayPal, aldrig av {name}. Vi kopplar inte donationer till ditt Discord-konto.",
+    "refunds": "Donationer återbetalas som regel inte. Om du donerade av misstag, mejla <email>{email}</email> så gör vi vad vi kan.",
+    "notDonating": "Det är helt okej att inte donera. Att berätta för andra om {name}, eller att rapportera en bugg med <code>/report</code>, hjälper också."
+  },
+  "faq": {
+    "metaTitle": "Vanliga frågor",
+    "metaDescription": "Svar om KanbanCord: pris, att lägga till boten, behörigheter, Discord-kommandon, aviseringar, uppladdningar och din data.",
+    "title": "Vanliga frågor",
+    "free": {
+      "q": "Är {name} gratis?",
+      "a": "Ja. Det finns inga betalplaner, ingen reklam, och din data säljs inte."
+    },
+    "start": {
+      "q": "Var börjar jag?",
+      "a": "Lägg till boten och använd sedan <code>/guide</code> i Discord för en genomgång steg för steg. <guides>Guiderna</guides> täcker allt från en delad att göra-lista till påminnelser och behörigheter."
+    },
+    "website": {
+      "q": "Behöver jag webbplatsen?",
+      "a": "Nej. {name} är byggd för att användas helt från Discord: skapa tavlor, kolumner och uppgifter, flytta och tilldela dem, sätt etiketter, prioriteter och förfallodatum, kommentera och välj dina aviseringar, allt med snedstreckskommandon. Webbplatsen är till för när du vill se hela tavlan i en blick eller finjustera inställningar."
+    },
+    "add": {
+      "q": "Hur lägger jag till den på min server?",
+      "a": "Använd ”Lägg till i Discord” längst ned på valfri sida och välj servern. Du behöver behörigheten Hantera server där. Skapa sedan en första tavla med <code>/board create</code> och lägg till uppgifter med <code>/task create</code>."
+    },
+    "access": {
+      "q": "Vem kan se och ändra mina tavlor?",
+      "a": "Som standard följer det serverns Discord-roller och behörigheter: administratörer och moderatorer kan hantera tavlor, medlemmar kan arbeta med uppgifter. Serverns administratörer kan ändra detta för hela servern eller per tavla, i server- och tavelinställningarna."
+    },
+    "servers": {
+      "q": "Varför ber inloggningen om min serverlista?",
+      "a": "Så att {name} kan visa vilka av dina servrar du kan hantera och lägga till boten på. Den läser inte dina meddelanden."
+    },
+    "discord": {
+      "q": "Vad kan jag göra från Discord?",
+      "a": "Allt du behöver i vardagen: skapa, visa, byta namn på och arkivera tavlor; lägga till, byta namn på, ändra ordning på och ta bort kolumner; skapa, redigera, flytta och ta bort uppgifter; tilldela personer och roller; sätta etiketter, prioriteter och förfallodatum; läsa och skriva kommentarer; välja dina egna aviseringar med <code>/notifications</code>; och, för serveradministratörer, ställa in uppdateringskanaler med <code>/kanbancord</code>. Använd <code>/help</code> i Discord för alla kommandon."
+    },
+    "websiteOnly": {
+      "q": "Vad kräver webbplatsen?",
+      "a": "Finjustering och helheten: att se en hel tavla på en gång, behörighetsregler per tavla och per person, de etiketter och prioritetsnivåer en tavla har, vilka funktioner en server använder, exakt vilka uppdateringar du får höra om, teman och tillgänglighetsalternativ, uppladdning av bilder och videor och att bläddra i ändringsloggen."
+    },
+    "notifications": {
+      "q": "Hur fungerar aviseringar?",
+      "a": "En server kan låta boten publicera uppdateringar i valda kanaler och spegla ändringsloggen i en kanal; uppdateringsinlägg kan visa hela uppgiften med knappar för att flytta den, tilldela personer eller redigera den direkt. Du kan också få direktmeddelanden om uppgifter som du är tilldelad, har skapat eller följer, inklusive påminnelser när de förfaller. Om en kanal redan har nämnt dig om något får du inte ett direktmeddelande om det också. Välj vad du får med <code>/notifications</code>, eller mer detaljerat under Inställningar → Aviseringar på webbplatsen. Serveradministratörer ställer in kanaler med <code>/kanbancord</code>."
+    },
+    "uploads": {
+      "q": "Var lagras uppladdade bilder och videor?",
+      "a": "På Imgur. Alla som har länken kan se dem, så ladda inte upp något privat."
+    },
+    "data": {
+      "q": "Hur tar jag bort min data?",
+      "a": "Logga ut överallt under Inställningar → Sessioner och be oss ta bort resten på <email>{email}</email>. Serverns administratörer kan ta bort tavlor, och om boten tas bort från en server slutar den synkronisera den servern. Detaljer finns i <privacy>Integritetspolicyn</privacy>."
+    },
+    "help": {
+      "q": "Jag har hittat en bugg, har en idé eller behöver hjälp.",
+      "a": "Gå med i <server>supportservern för {name}</server> för att ställa frågor och höra om nya funktioner, eller använd <code>/report</code> i Discord för att skicka en rapport direkt till utvecklaren."
+    }
+  },
+  "guides": {
+    "metaTitle": "Guider",
+    "metaDescription": "Guider till KanbanCord: kanbantavlor, att göra-listor och uppgiftsuppföljning i Discord, från din första tavla till påminnelser, flöden och behörigheter.",
+    "title": "Guider",
+    "intro": "Så planerar och följer du arbetet på din Discord-server med {name}: kanbantavlor, delade att göra-listor, uppgifter för personer och roller, förfallodatum och påminnelser. Nästan allt sker med snedstreckskommandon; några guider handlar om webbplatsen.",
+    "inDiscord": "Har du redan lagt till boten? Använd <code>/guide</code> i Discord för samma steg, avbockade allteftersom.",
+    "tryTitle": "Prova på din server",
+    "try": "{name} är gratis. Lägg till den på din server och använd sedan <code>/guide</code> för en genomgång steg för steg, direkt i Discord.",
+    "more": "Fler guider"
+  }
+}

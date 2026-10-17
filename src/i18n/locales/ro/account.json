@@ -1,0 +1,148 @@
+{
+  "appearance": {
+    "groups": {
+      "surfaces": "Suprafețe",
+      "controls": "Comenzi",
+      "text": "Text",
+      "brand": "Marcă și accente",
+      "status": "Stare",
+      "permissions": "Reguli de permisiuni"
+    },
+    "core": {
+      "background": {
+        "label": "Fundal",
+        "hint": "În spatele tuturor"
+      },
+      "surface": {
+        "label": "Suprafață",
+        "hint": "Panouri laterale, coloane și carduri"
+      },
+      "text": {
+        "label": "Text",
+        "hint": "Textul principal; titlurile și indiciile derivă din el"
+      },
+      "accent": {
+        "label": "Accent",
+        "hint": "Evidențieri, contururi de focus, nuanța titlurilor"
+      },
+      "primary": {
+        "label": "Principal",
+        "hint": "Butoanele și linkurile principale"
+      },
+      "success": {
+        "label": "Succes",
+        "hint": "Confirmări și reguli de permitere"
+      },
+      "danger": {
+        "label": "Pericol",
+        "hint": "Erori, butoane de ștergere și reguli de refuz"
+      },
+      "warning": {
+        "label": "Avertisment",
+        "hint": "Avertismente și evidențieri"
+      }
+    },
+    "presets": {
+      "dark": {
+        "label": "Întunecat",
+        "description": "Implicit."
+      },
+      "light": {
+        "label": "Luminos",
+        "description": "Text închis pe suprafețe deschise."
+      },
+      "highContrast": {
+        "label": "Contrast ridicat",
+        "description": "Negru și alb pur cu contururi puternice, pentru vedere slabă."
+      },
+      "redGreen": {
+        "label": "Sigur pentru roșu-verde",
+        "description": "Pentru protanopie și deuteranopie: albastru pentru succes, portocaliu pentru pericol."
+      },
+      "blueYellow": {
+        "label": "Sigur pentru albastru-galben",
+        "description": "Pentru tritanopie: turcoaz pentru succes, roșu pentru pericol, galben pentru avertismente."
+      }
+    },
+    "theme": "Temă",
+    "custom": "Personalizată",
+    "customHint": "Culorile tale, pornind de la tema de mai sus.",
+    "customColours": "Culori personalizate",
+    "customColoursHint": "Setează opt culori; toate celelalte sunt deduse din ele.",
+    "lowContrast": "Textul are un contrast de {contrast}:1 față de fundal; pentru o citire confortabilă se recomandă cel puțin 4.5:1.",
+    "advanced": "Avansat: editează fiecare culoare",
+    "changed_one": " ({count} modificată)",
+    "changed_few": " ({count} modificate)",
+    "changed_other": " ({count} de modificate)",
+    "advancedHint": "Modificările de aici se aplică peste tema de mai sus și rămân când schimbi tema.",
+    "resetAll": "Resetează tot",
+    "reset": "Resetează",
+    "language": "Limbă",
+    "browserLanguage": "Limba browserului meu"
+  },
+  "accessibility": {
+    "textScale": {
+      "normal": "Normal",
+      "large": "Mare",
+      "larger": "Mai mare",
+      "largest": "Cel mai mare"
+    },
+    "filters": {
+      "none": "Niciunul",
+      "protanopia": "Protanopie (roșu slab)",
+      "deuteranopia": "Deuteranopie (verde slab)",
+      "tritanopia": "Tritanopie (albastru slab)"
+    },
+    "intro": "Pentru daltonism, temele Sigur pentru roșu-verde și Sigur pentru albastru-galben recolorează interfața. Opțiunile de mai jos ajută la culorile pe care oamenii le aleg pentru etichete, priorități și roluri.",
+    "patterns": "Modele pe etichete",
+    "patternsHint": "Fiecare etichetă primește propriul model cu dungi sau puncte, astfel încât etichetele să difere nu doar prin culoare.",
+    "ranks": "Ranguri de prioritate",
+    "ranksHint": "Afișează rangul fiecărei priorități lângă nume; P1 este cea mai urgentă.",
+    "filter": "Filtru de culoare pentru etichete, priorități și roluri",
+    "filterHint": "Mută culorile greu de deosebit spre altele mai ușor de văzut.",
+    "textSize": "Dimensiunea textului",
+    "motion": "Reduce mișcarea",
+    "motionSystem": "Ca pe dispozitivul meu",
+    "motionOn": "Redu mereu",
+    "motionOff": "Nu reduce niciodată"
+  },
+  "simpleView": {
+    "intro": "Ascunde ce nu folosești, pe fiecare panou. Asta schimbă doar ce vezi tu: datele rămân, iar toți ceilalți le văd în continuare. Ce a dezactivat un server este ascuns pentru toată lumea.",
+    "hideAll": "Ascunde tot ce e opțional",
+    "showAll": "Afișează tot"
+  },
+  "menu": {
+    "label": "Cont",
+    "preferences": "Preferințe",
+    "settings": "Setări",
+    "logOut": "Deconectează-te",
+    "appearance": "Aspect",
+    "accessibility": "Accesibilitate",
+    "simpleView": "Vizualizare simplă",
+    "sessions": "Sesiuni",
+    "dialogTitle": "Preferințe și setări"
+  },
+  "sessions": {
+    "unknownDevice": "Dispozitiv necunoscut",
+    "browserOn": "{browser} pe {system}",
+    "intro": "Dispozitivele și browserele conectate la contul tău. Deconectarea unuia îl închide imediat, inclusiv orice panou deschis acolo.",
+    "signOutFailed": "Sesiunea nu a putut fi deconectată",
+    "loadFailed": "Sesiunile tale nu au putut fi încărcate",
+    "thisDevice": " · Acest dispozitiv",
+    "activity": "Activă {active} · conectată {signedIn}",
+    "signOut": "Deconectează",
+    "signOutOthers": "Deconectează toate celelalte dispozitive"
+  },
+  "language": {
+    "request": "Cere o limbă…",
+    "intro": "Limba ta nu e încă aici? Spune-i dezvoltatorului pe care ți-o dorești. Traducerile se adaugă pe măsură ce oamenii le cer.",
+    "which": "Limbă",
+    "pick": "Alege o limbă…",
+    "note": "Notă (opțional)",
+    "notePlaceholder": "Orice ai de adăugat, de exemplu dacă ai putea ajuta la traducere",
+    "send": "Trimite cererea",
+    "sending": "Se trimite…",
+    "sent": "Mulțumim! Cererea ta a fost trimisă dezvoltatorului.",
+    "failed": "Cererea nu a putut fi trimisă"
+  }
+}

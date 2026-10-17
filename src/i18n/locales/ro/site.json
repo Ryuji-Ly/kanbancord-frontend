@@ -1,0 +1,166 @@
+{
+  "nav": {
+    "main": "Principal",
+    "site": "Site",
+    "breadcrumbs": "Fir de navigare",
+    "guides": "Ghiduri",
+    "faq": "Întrebări frecvente",
+    "open": "Deschide KanbanCord",
+    "about": "Despre",
+    "support": "Susține",
+    "supportServer": "Server de asistență",
+    "appDirectory": "Directorul de aplicații",
+    "status": "Stare",
+    "privacy": "Politica de confidențialitate",
+    "terms": "Termeni și condiții",
+    "addToDiscord": "Adaugă în Discord"
+  },
+  "footer": {
+    "notAffiliated": "© {year} {operator}. {name} nu este afiliat cu Discord și nici susținut de acesta."
+  },
+  "landing": {
+    "metaTitle": "Panouri kanban pentru Discord",
+    "metaDescription": "Un panou kanban care trăiește pe serverul tău de Discord: creează, mută și atribuie sarcini cu comenzi slash, primește actualizări în canale și folosește site-ul pentru imaginea de ansamblu.",
+    "title": "Un panou kanban care trăiește pe serverul tău de Discord",
+    "intro": "Planifică și urmărește munca acolo unde comunitatea ta deja vorbește. Creează, mută și atribuie sarcini cu comenzi slash și primește actualizări în canale. Site-ul e acolo când vrei să vezi totul.",
+    "signIn": "Autentifică-te cu Discord",
+    "free": "Gratuit. Fără reclame. Fără urmărire. Și în <link>directorul de aplicații Discord</link>.",
+    "features": "Funcții",
+    "feature": {
+      "discord": {
+        "title": "Totul din Discord",
+        "text": "Creează panouri și sarcini, mută-le și atribuie-le, setează termene și comentează cu comenzi slash. Nu e nevoie să ieși din chat."
+      },
+      "boards": {
+        "title": "Panouri kanban adevărate",
+        "text": "Coloane și sarcini cu etichete, priorități, termene limită, responsabili, comentarii, liste de verificare, imagini și videoclipuri."
+      },
+      "permissions": {
+        "title": "Permisiunile tale din Discord",
+        "text": "Accesul urmează din start rolurile serverului și poate fi ajustat pe site pentru fiecare panou și fiecare persoană."
+      },
+      "updates": {
+        "title": "Actualizări, nu zgomot",
+        "text": "Publică modificările în canalele alese și primește mesaje directe despre sarcinile tale, fără să fii menționat de două ori pentru același lucru."
+      },
+      "website": {
+        "title": "Imaginea de ansamblu, când o vrei",
+        "text": "Site-ul arată panouri întregi dintr-o privire și găzduiește setările fine, cu fiecare modificare live pentru toată lumea."
+      },
+      "comfort": {
+        "title": "Făcut să fie confortabil",
+        "text": "Teme, inclusiv cu contrast ridicat și potrivite pentru daltonism, dimensiunea textului și un mod simplu pentru echipe mici."
+      }
+    },
+    "usesTitle": "Nu doar pentru muncă",
+    "uses": "KanbanCord merge la fel de bine pentru listele pe care le ții cu cei mai apropiați: planuri de făcut, filme de văzut, cărți de citit, lucruri de cumpărat. Fă un panou pe un server mic, lasă-l în modul simplu și bifați lucrurile împreună.",
+    "stepsTitle": "Începe într-un minut",
+    "step1": "<strong>Adaugă botul</strong> pe serverul tău.",
+    "step2": "<strong>Creează un panou</strong> cu <code>/board create</code>.",
+    "step3": "<strong>Adaugă sarcini</strong> cu <code>/task create</code> și folosește <code>/help</code> ca să vezi restul."
+  },
+  "about": {
+    "metaTitle": "Despre",
+    "metaDescription": "KanbanCord este un panou kanban care trăiește pe serverul tău de Discord: îl folosești în întregime prin bot, iar site-ul îți oferă imaginea de ansamblu și setările fine.",
+    "title": "Despre {name}",
+    "p1": "{name} este un panou kanban care trăiește pe serverul tău de Discord. Ideea e simplă: comunitatea ta vorbește deja pe Discord, așa că și planificarea ar trebui să aibă loc acolo. Creează panouri și coloane, adaugă sarcini, du-le mai departe, atribuie oameni, setează etichete, priorități și termene și discută-le în comentarii, totul cu comenzile slash ale botului, fără să ieși din chat. Actualizările ajung în canalele alese și, pentru sarcinile tale, prin mesaj direct.",
+    "p2": "Majoritatea oamenilor nu au nevoie de altceva. Site-ul e acolo când vrei să vezi tot panoul dintr-o privire sau să ajustezi lucruri: permisiuni detaliate pe panouri și persoane, etichetele și nivelurile de prioritate ale unui panou, funcțiile folosite de un server, exact despre ce actualizări afli și jurnalul tuturor modificărilor.",
+    "p3": "Urmează de la început rolurile și permisiunile Discord ale serverului tău, așa că oamenii potriviți văd și modifică panourile potrivite, fără să configurezi ceva de două ori.",
+    "simpleTitle": "Doar ce alegi",
+    "simple": "Serverele noi încep în <strong>modul simplu</strong>: panouri, coloane și sarcini cu titlu și descriere. Responsabilii, termenele limită cu mementouri, prioritățile, etichetele, comentariile și permisiunile personalizate rămân dezactivate până când un administrator al serverului le activează cu <code>/kanbancord features</code> sau în setările serverului de pe site. Funcțiile dezactivate nu apar nicăieri, nici în Discord, nici pe site: apare doar ce alegi. Fiecare panou poate dezactiva din nou funcții pentru sine și oricine poate ascunde mai mult pentru sine din Preferințe → Vizualizare simplă. Dezactivarea unei funcții doar o ascunde; nu se șterge nimic.",
+    "madeByTitle": "Făcut de o singură persoană",
+    "madeBy": "{name} este construit și administrat de {operator}. Este gratuit, nu are reclame și nu îți vinde și nu îți urmărește datele (vezi <privacy>Politica de confidențialitate</privacy>). Ai găsit o problemă sau ai o idee? Folosește <code>/report</code> în Discord. Ai întrebări sau vrei să afli de funcțiile noi? Intră pe <server>serverul de asistență</server>. Dacă vrei să ajuți cu costurile, vezi <support>Susține</support>.",
+    "findTitle": "Găsește-l pe Discord",
+    "find": "{name} are o pagină proprie în <directory>directorul de aplicații Discord</directory>, de unde îl poți adăuga pe un server direct din Discord. Dacă site-ul, botul și tot ce e în spatele lor funcționează, precum și eventualele lucrări de mentenanță planificate, vezi pe <status>pagina de stare</status>.",
+    "startTitle": "Primii pași",
+    "start1": "Adaugă botul pe serverul tău.",
+    "start2": "Creează un panou cu <code>/board create</code>, apoi adaugă sarcini cu <code>/task create</code>.",
+    "start3": "Folosește <code>/help</code> ca să vezi tot ce poate face botul.",
+    "questions": "Ai întrebări? Vezi <faq>întrebările frecvente</faq>.",
+    "translationsTitle": "Traduceri",
+    "translations": "Traducerile acestui site au fost realizate cu ajutorul inteligenței artificiale generative. Dacă observi o greșeală sau o formulare care ar putea fi îmbunătățită, ți-am fi recunoscători dacă ne-ai anunța prin <code>/report</code> în Discord sau pe e-mail la <email>{contact}</email>.",
+    "storyTitle": "Cum a apărut",
+    "story1": "KanbanCord a pornit de la un proiect de grup la facultate, în anul universitar 2024–2025. Cursul ne cerea să folosim instalarea OpenProject a universității, iar în practică foloseam doar panoul ei kanban, plus pontajul cerut de curs. Era o sursă constantă de frustrare: se bloca la câteva minute, iar în cele mai rele momente, imediat ce repornea și încercai să faci ceva, se bloca din nou. Ne și deconecta mereu. În afara timpului petrecut în campus, grupul nostru coordona oricum totul pe Discord.",
+    "story2": "Pe jumătate în glumă, am zis că aș putea construi o unealtă mai bună decât haosul ăsta, iar câțiva colegi de echipă mi-au zis să mă apuc. Aveam deja destulă experiență cu boți de Discord făcuți în discord.js, așa că, după câteva săptămâni de gândire și parțial din pură încăpățânare, am creat o aplicație nouă în Discord Developer Portal cât timp proiectul încă era în desfășurare. Ideea era simplă: un panou kanban care trăiește acolo unde vorbeam deja. De aceea KanbanCord este în primul rând o unealtă kanban, nu o suită completă de management de proiect: face partea de care chiar aveam nevoie și o face acolo unde oamenii sunt deja.",
+    "story3": "Ca student, am lucrat la el cu pauze, cu destulă amânare între ele. La aproximativ un an după ce am început, am aflat că există un alt bot cu exact același nume, făcut de j4asper. Aplicațiile noastre de Discord au fost create la doar șase zile distanță: <other>a lor</other> pe 30 octombrie 2024, a mea pe 5 noiembrie 2024. Dacă cauți KanbanCord în Discord, s-ar putea să dai peste a lor; acest site și botul pe care îl poți adăuga de aici sunt cele făcute de {operator}.",
+    "story4": "De departe cea mai grea parte a fost fundația: cum să se potrivească panourile, coloanele, sarcinile și permisiunile cu serverele, rolurile și membrii Discord. Ca modelele de domeniu să iasă bine a fost nevoie de multă experimentare și reconstruire: am tăiat ce nu era necesar și am adăugat tabelele și câmpurile cerute de viziunea mea, pe măsură ce mă gândeam la tot mai multe lucruri pe care le-ar putea face unealta. Sincer, asta a fost cam 80% din muncă. Odată stabilită structura, restul s-a legat surprinzător de repede: cu un design solid, inteligența artificială generativă a devenit cu adevărat utilă la construirea funcțiilor, pentru că urma structura existentă și erau mult mai puține greșeli mari de găsit și corectat de mână.",
+    "story5": "Întregul proiect este open source: <bot>botul</bot>, <website>site-ul</website> și <api>API-ul</api> au fiecare propriul depozit pe GitHub."
+  },
+  "support": {
+    "metaTitle": "Susține",
+    "metaDescription": "KanbanCord este gratuit pentru toată lumea. Dacă vrei să ajuți cu costurile, poți lăsa o donație voluntară pe Ko-fi.",
+    "title": "Susține {name}",
+    "p1": "{name} este gratuit, fără reclame și fără planuri plătite, și așa va rămâne. Este un proiect personal, construit și administrat de {operator}.",
+    "p2": "Dacă îi este util serverului tău și vrei să ajuți cu costurile, cum ar fi domeniul și serverele de care va avea nevoie dacă crește, poți lăsa o donație pe Ko-fi.",
+    "kofi": "Susține pe Ko-fi",
+    "goodToKnow": "Bine de știut",
+    "voluntary": "Donațiile sunt complet voluntare. Toată lumea primește același {name}, fie că donează, fie că nu.",
+    "buysNothing": "O donație nu cumpără funcții, limite, roluri, asistență prioritară sau altceva.",
+    "payments": "Plățile sunt procesate de Ko-fi și PayPal, niciodată de {name}. Nu legăm donațiile de contul tău de Discord.",
+    "refunds": "Ca regulă, donațiile nu se rambursează. Dacă ai donat din greșeală, scrie la <email>{email}</email> și vom face ce putem.",
+    "notDonating": "E perfect în regulă să nu donezi. Și dacă le spui altora despre {name} sau raportezi o eroare cu <code>/report</code>, ajuți."
+  },
+  "faq": {
+    "metaTitle": "Întrebări frecvente",
+    "metaDescription": "Răspunsuri despre KanbanCord: preț, adăugarea botului, permisiuni, comenzi Discord, notificări, încărcări și datele tale.",
+    "title": "Întrebări frecvente",
+    "free": {
+      "q": "Este {name} gratuit?",
+      "a": "Da. Nu există planuri plătite, nici reclame, iar datele tale nu sunt vândute."
+    },
+    "start": {
+      "q": "De unde încep?",
+      "a": "Adaugă botul, apoi folosește <code>/guide</code> în Discord pentru un tur pas cu pas. <guides>Ghidurile</guides> acoperă totul, de la o listă de sarcini comună la mementouri și permisiuni."
+    },
+    "website": {
+      "q": "Am nevoie de site?",
+      "a": "Nu. {name} este construit ca să fie folosit în întregime din Discord: creezi panouri, coloane și sarcini, le muți și le atribui, setezi etichete, priorități și termene, comentezi și îți alegi notificările, totul cu comenzi slash. Site-ul e pentru când vrei să vezi tot panoul dintr-o privire sau să ajustezi setările."
+    },
+    "add": {
+      "q": "Cum îl adaug pe serverul meu?",
+      "a": "Folosește „Adaugă în Discord” din partea de jos a oricărei pagini și alege serverul. Ai nevoie acolo de permisiunea Gestionează serverul. Apoi creează un prim panou cu <code>/board create</code> și adaugă sarcini cu <code>/task create</code>."
+    },
+    "access": {
+      "q": "Cine poate vedea și modifica panourile mele?",
+      "a": "Implicit, urmează rolurile și permisiunile Discord ale serverului tău: administratorii și moderatorii pot gestiona panourile, membrii pot lucra cu sarcinile. Administratorii serverului pot schimba asta pentru tot serverul sau pentru fiecare panou, în setările serverului și ale panoului."
+    },
+    "servers": {
+      "q": "De ce autentificarea cere lista serverelor mele?",
+      "a": "Ca {name} să-ți poată arăta ce servere poți gestiona și pe care poți adăuga botul. Nu îți citește mesajele."
+    },
+    "discord": {
+      "q": "Ce pot face din Discord?",
+      "a": "Tot ce îți trebuie zi de zi: să creezi, să vezi, să redenumești și să arhivezi panouri; să adaugi, să redenumești, să reordonezi și să ștergi coloane; să creezi, să editezi, să muți și să ștergi sarcini; să atribui persoane și roluri; să setezi etichete, priorități și termene; să citești și să scrii comentarii; să-ți alegi notificările cu <code>/notifications</code>; iar administratorii serverului pot configura canale de actualizări cu <code>/kanbancord</code>. Folosește <code>/help</code> în Discord pentru toate comenzile."
+    },
+    "websiteOnly": {
+      "q": "Pentru ce e nevoie de site?",
+      "a": "Pentru setările fine și imaginea de ansamblu: vederea unui panou întreg deodată, reguli de permisiuni pe panouri și persoane, etichetele și nivelurile de prioritate ale unui panou, funcțiile folosite de server, exact despre ce actualizări afli, teme și opțiuni de accesibilitate, încărcarea imaginilor și videoclipurilor și răsfoirea jurnalului de modificări."
+    },
+    "notifications": {
+      "q": "Cum funcționează notificările?",
+      "a": "Un server poate pune botul să publice actualizări în canalele alese și să reflecte jurnalul de modificări într-un canal; postările de actualizare pot arăta sarcina întreagă cu butoane pentru a o muta, a atribui persoane sau a o edita pe loc. Poți primi și mesaje directe despre sarcinile atribuite ție, create de tine sau pe care le urmărești, inclusiv mementouri când se apropie termenul. Dacă un canal te-a menționat deja pentru ceva, nu primești și un mesaj direct despre asta. Alege ce primești cu <code>/notifications</code> sau, mai detaliat, în Setări → Notificări pe site. Administratorii serverului configurează canalele cu <code>/kanbancord</code>."
+    },
+    "uploads": {
+      "q": "Unde sunt stocate imaginile și videoclipurile încărcate?",
+      "a": "Pe Imgur. Oricine are linkul le poate vedea, așa că nu încărca nimic privat."
+    },
+    "data": {
+      "q": "Cum îmi șterg datele?",
+      "a": "Deconectează-te peste tot din Setări → Sesiuni și cere-ne să ștergem restul la <email>{email}</email>. Administratorii serverului pot șterge panouri, iar eliminarea botului de pe un server oprește sincronizarea acelui server. Detaliile sunt în <privacy>Politica de confidențialitate</privacy>."
+    },
+    "help": {
+      "q": "Am găsit o eroare, am o idee sau am nevoie de ajutor.",
+      "a": "Intră pe <server>serverul de asistență {name}</server> ca să pui întrebări și să afli de funcțiile noi sau folosește <code>/report</code> în Discord ca să trimiți un raport direct dezvoltatorului."
+    }
+  },
+  "guides": {
+    "metaTitle": "Ghiduri",
+    "metaDescription": "Ghiduri pentru KanbanCord: panouri kanban, liste de sarcini și urmărirea sarcinilor în Discord, de la primul panou la mementouri, fluxuri și permisiuni.",
+    "title": "Ghiduri",
+    "intro": "Cum să planifici și să urmărești munca pe serverul tău de Discord cu {name}: panouri kanban, liste de sarcini comune, sarcini pentru persoane și roluri, termene limită și mementouri. Aproape totul se face cu comenzi slash; câteva ghiduri sunt despre site.",
+    "inDiscord": "Ai adăugat deja botul? Folosește <code>/guide</code> în Discord pentru aceiași pași, bifați pe măsură ce avansezi.",
+    "tryTitle": "Încearcă-l pe serverul tău",
+    "try": "{name} este gratuit. Adaugă-l pe serverul tău, apoi folosește <code>/guide</code> pentru un tur pas cu pas, direct în Discord.",
+    "more": "Mai multe ghiduri"
+  }
+}

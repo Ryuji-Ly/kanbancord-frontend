@@ -1,0 +1,147 @@
+{
+  "appearance": {
+    "groups": {
+      "surfaces": "Ytor",
+      "controls": "Kontroller",
+      "text": "Text",
+      "brand": "Varumärke och accenter",
+      "status": "Status",
+      "permissions": "Behörighetsregler"
+    },
+    "core": {
+      "background": {
+        "label": "Bakgrund",
+        "hint": "Bakom allt"
+      },
+      "surface": {
+        "label": "Yta",
+        "hint": "Paneler, kolumner och kort"
+      },
+      "text": {
+        "label": "Text",
+        "hint": "Brödtext; rubriker och tips härleds från den"
+      },
+      "accent": {
+        "label": "Accent",
+        "hint": "Markeringar, fokusramar, rubrikernas ton"
+      },
+      "primary": {
+        "label": "Primär",
+        "hint": "Huvudknappar och länkar"
+      },
+      "success": {
+        "label": "Lyckat",
+        "hint": "Bekräftelser och tillåt-regler"
+      },
+      "danger": {
+        "label": "Fara",
+        "hint": "Fel, ta bort-knappar och neka-regler"
+      },
+      "warning": {
+        "label": "Varning",
+        "hint": "Varningar och markeringar"
+      }
+    },
+    "presets": {
+      "dark": {
+        "label": "Mörkt",
+        "description": "Standard."
+      },
+      "light": {
+        "label": "Ljust",
+        "description": "Mörk text på ljusa ytor."
+      },
+      "highContrast": {
+        "label": "Hög kontrast",
+        "description": "Rent svart och vitt med tydliga kanter, för nedsatt syn."
+      },
+      "redGreen": {
+        "label": "Röd-grön-säkert",
+        "description": "För protanopi och deuteranopi: blått för lyckat, orange för fara."
+      },
+      "blueYellow": {
+        "label": "Blå-gul-säkert",
+        "description": "För tritanopi: blågrönt för lyckat, rött för fara, gult för varningar."
+      }
+    },
+    "theme": "Tema",
+    "custom": "Anpassat",
+    "customHint": "Dina egna färger, med temat ovan som utgångspunkt.",
+    "customColours": "Anpassade färger",
+    "customColoursHint": "Ställ in åtta färger; alla andra färger räknas fram från dem.",
+    "lowContrast": "Texten har kontrasten {contrast}:1 mot bakgrunden; minst 4.5:1 rekommenderas för bekväm läsning.",
+    "advanced": "Avancerat: redigera varje färg",
+    "changed_one": " ({count} ändrad)",
+    "changed_other": " ({count} ändrade)",
+    "advancedHint": "Ändringar här läggs ovanpå temat ovan och finns kvar när du byter tema.",
+    "resetAll": "Återställ allt",
+    "reset": "Återställ",
+    "language": "Språk",
+    "browserLanguage": "Min webbläsares språk"
+  },
+  "accessibility": {
+    "textScale": {
+      "normal": "Normal",
+      "large": "Stor",
+      "larger": "Större",
+      "largest": "Störst"
+    },
+    "filters": {
+      "none": "Inget",
+      "protanopia": "Protanopi (svag för rött)",
+      "deuteranopia": "Deuteranopi (svag för grönt)",
+      "tritanopia": "Tritanopi (svag för blått)"
+    },
+    "intro": "För färgblindhet färgar temana Röd-grön-säkert och Blå-gul-säkert om gränssnittet. Alternativen nedan hjälper med de färger som folk väljer för etiketter, prioriteter och roller.",
+    "patterns": "Mönster på etiketter",
+    "patternsHint": "Varje etikett får ett eget rand- eller prickmönster, så att etiketter skiljer sig åt med mer än färg.",
+    "ranks": "Prioritetsrang",
+    "ranksHint": "Visar varje prioritets rang bredvid namnet, där P1 är mest brådskande.",
+    "filter": "Färgfilter för etiketter, prioriteter och roller",
+    "filterHint": "Flyttar färger som är svåra att skilja åt till färger som är lättare att se.",
+    "textSize": "Textstorlek",
+    "motion": "Minska rörelse",
+    "motionSystem": "Följ min enhet",
+    "motionOn": "Minska alltid",
+    "motionOff": "Minska aldrig"
+  },
+  "simpleView": {
+    "intro": "Dölj det du inte använder, på varje tavla. Det här ändrar bara vad du ser: datan finns kvar och alla andra ser den fortfarande. Det som en server har stängt av är dolt för alla.",
+    "hideAll": "Dölj allt valfritt",
+    "showAll": "Visa allt"
+  },
+  "menu": {
+    "label": "Konto",
+    "preferences": "Preferenser",
+    "settings": "Inställningar",
+    "logOut": "Logga ut",
+    "appearance": "Utseende",
+    "accessibility": "Tillgänglighet",
+    "simpleView": "Enkel vy",
+    "sessions": "Sessioner",
+    "dialogTitle": "Preferenser och inställningar"
+  },
+  "sessions": {
+    "unknownDevice": "Okänd enhet",
+    "browserOn": "{browser} på {system}",
+    "intro": "Enheter och webbläsare som är inloggade på ditt konto. Om du loggar ut en av dem avslutas den direkt, inklusive en tavla som är öppen där.",
+    "signOutFailed": "Kunde inte logga ut den sessionen",
+    "loadFailed": "Kunde inte läsa in dina sessioner",
+    "thisDevice": " · Den här enheten",
+    "activity": "Aktiv {active} · inloggad {signedIn}",
+    "signOut": "Logga ut",
+    "signOutOthers": "Logga ut alla andra enheter"
+  },
+  "language": {
+    "request": "Önska ett språk…",
+    "intro": "Finns inte ditt språk här än? Berätta för utvecklaren vilket du vill ha. Översättningar läggs till när folk ber om dem.",
+    "which": "Språk",
+    "pick": "Välj ett språk…",
+    "note": "Kommentar (valfritt)",
+    "notePlaceholder": "Något att tillägga, till exempel om du kan hjälpa till att översätta",
+    "send": "Skicka önskemål",
+    "sending": "Skickar…",
+    "sent": "Tack! Ditt önskemål har skickats till utvecklaren.",
+    "failed": "Önskemålet kunde inte skickas"
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "boardFeatures": {
+    "title": "Enkelt läge",
+    "intro": "Stäng av det som den här tavlan inte behöver; andra tavlor påverkas inte. Att stänga av något döljer det och behåller datan. Ändringar här gäller direkt.",
+    "everything": "Allt som servern tillåter",
+    "offForServer": "Avstängt för hela servern, i serverinställningarna."
+  },
+  "board": {
+    "loadFailed": "Kunde inte läsa in tavlans inställningar"
+  },
+  "boardNotifications": {
+    "intro": "Uppdateringsflödena som skriver om den här tavlan. Vart och ett följer sina egna inställningar från serverns aviseringar tills du ändrar något här, bara för den här tavlan. Ändringar sparas direkt.",
+    "noFeeds": "Inget flöde skriver om den här tavlan. Serverns administratörer lägger till flöden i serverinställningarna.",
+    "followsFeed": "Följer flödets inställningar.",
+    "changes_one": "{count} ändring för den här tavlan.",
+    "changes_other": "{count} ändringar för den här tavlan.",
+    "useFeed": "Använd flödets inställningar",
+    "changed": "ändrad"
+  },
+  "threads": {
+    "updatesBoth": "Tråden och kanalen",
+    "updatesThread": "Bara tråden",
+    "updatesChannel": "Bara kanalen",
+    "title": "Uppgiftstrådar",
+    "intro": "Ge varje uppgift en egen tråd för diskussion, i en av tavlans kanaler för uppdateringsflöden. En tråd följer uppgiftens titel och arkiveras när uppgiften tas bort eller arkiveras. Flödets uppdateringar om uppgiften, inklusive nya kommentarer, publiceras i den som du väljer nedan; meddelanden som skrivs i tråden stannar i Discord. Ändringar sparas direkt.",
+    "noFeed": "Den här tavlan har inget uppdateringsflöde än. Lägg till ett i serverns aviseringsinställningar, eller med <code>/kanbancord feed</code> i Discord, och slå sedan på trådar här.",
+    "perTask": "En tråd per uppgift",
+    "notWorking": "På, men fungerar inte: den valda kanalen har inte längre något flöde för den här tavlan. Välj en annan flödeskanal.",
+    "perTaskHint": "Varje uppgift får sin tråd nästa gång något händer med den.",
+    "channel": "Kanal",
+    "channelWithoutFeed": "En kanal utan flöde för den här tavlan",
+    "botCannot": " (boten kan inte skapa trådar här)",
+    "updatesGoTo": "En uppgifts uppdateringar går till",
+    "private": "Privata trådar",
+    "privateNotPossible": "Inte möjligt i den här kanalen: privata trådar kräver en textkanal där boten får skapa privata trådar.",
+    "privateHint": "Bara uppgiftens skapare och tilldelade finns i tråden, plus serverns moderatorer. Nya tilldelade läggs till.",
+    "cannotMake": "Boten kan inte skapa trådar i #{channel}, så uppgifter får inga nya trådar. Ge den Visa kanaler, Skicka meddelanden i trådar och Skapa offentliga trådar där, eller välj en annan kanal.",
+    "cannotMakePrivate": "Boten kan inte skapa privata trådar i #{channel}, så uppgifter får inga nya trådar. Ge den Visa kanaler, Skicka meddelanden i trådar och Skapa privata trådar där, eller välj en annan kanal."
+  },
+  "usage_one": "{count} uppgift",
+  "usage_other": "{count} uppgifter",
+  "colourOf": "Färg för {name}",
+  "labels": {
+    "intro": "Etiketter som den här tavlans uppgifter kan märkas med. Ändringar här gäller direkt.",
+    "none": "Inga etiketter än.",
+    "name": "Etikettens namn",
+    "newColour": "Den nya etikettens färg",
+    "newPlaceholder": "Ny etikett, t.ex. frontend",
+    "add": "Lägg till etikett",
+    "deleteTitle": "Ta bort etikett",
+    "deleteConfirm": "Ta bort <strong>{name}</strong> från den här tavlan?",
+    "deleteUsage_one": " Den tas bort från den {count} uppgift som använder den.",
+    "deleteUsage_other": " Den tas bort från de {count} uppgifter som använder den."
+  },
+  "priorities": {
+    "title": "Prioriteter",
+    "intro": "Prioritetsnivåer, den mest brådskande först. En uppgift har högst en. Ändringar här gäller direkt.",
+    "none": "Inga prioritetsnivåer. Uppgifterna på den här tavlan har ingen prioritet.",
+    "moveUp": "Flytta upp {name}",
+    "moveDown": "Flytta ned {name}",
+    "name": "Prioritetens namn",
+    "newColour": "Den nya nivåns färg",
+    "newPlaceholder": "Ny nivå, läggs till sist",
+    "add": "Lägg till nivå",
+    "deleteTitle": "Ta bort prioritetsnivå",
+    "deleteConfirm": "Ta bort <strong>{name}</strong>?",
+    "deleteUsage_one": " Den {count} uppgift som har den här prioriteten blir utan.",
+    "deleteUsage_other": " De {count} uppgifter som har den här prioriteten blir utan."
+  },
+  "features": {
+    "intro": "Enkelt läge håller tavlorna till det viktigaste: kolumner, och uppgifter med titel och beskrivning. Slå bara på det som den här servern behöver. Att stänga av något döljer det och behåller datan.",
+    "enableEverything": "Slå på allt",
+    "openFirst": "{description} Stäng av öppna behörigheter först.",
+    "open": "Öppna behörigheter",
+    "openLabel": "Alla får göra allt",
+    "customFirst": "Stäng av anpassade behörigheter först: deras regler sparas tills du slår på dem igen.",
+    "openHint": "Alla som kan skriva på den här servern får skapa, ändra, flytta och ta bort kolumner, uppgifter, etiketter och prioritetsnivåer, oavsett roller. Att hantera servern, tavlornas behörigheter, ta bort eller arkivera tavlor och ändringsloggen ligger kvar hos administratörerna.",
+    "confirmTitle": "Slå på öppna behörigheter?",
+    "turnOn": "Slå på",
+    "turningOn": "Slår på...",
+    "confirm": "Alla som kan skriva på den här servern kommer att kunna skapa, ändra, flytta och ta bort kolumner, uppgifter, etiketter och prioritetsnivåer, oavsett roller. Passar bäst för en liten grupp som litar på varandra."
+  },
+  "dialog": {
+    "sections": "Delar av {title}",
+    "close": "Stäng {title}"
+  }
+}

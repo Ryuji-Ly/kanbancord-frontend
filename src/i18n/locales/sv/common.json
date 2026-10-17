@@ -1,0 +1,59 @@
+{
+  "features": {
+    "labels": {
+      "label": "Etiketter",
+      "description": "Färgade etiketter på uppgifter, hanterade per tavla.",
+      "show": "Visa etiketter"
+    },
+    "priorities": {
+      "label": "Prioriteter",
+      "description": "En prioritetsnivå på varje uppgift, från Critical till Ignorable.",
+      "show": "Visa prioriteter"
+    },
+    "assignees": {
+      "label": "Tilldelade",
+      "description": "Tilldela medlemmar till uppgifter.",
+      "show": "Visa tilldelade"
+    },
+    "comments": {
+      "label": "Kommentarer",
+      "description": "Diskussion på varje uppgift.",
+      "show": "Visa kommentarer"
+    },
+    "dueDates": {
+      "label": "Förfallodatum",
+      "description": "Ett datum och en tid då varje uppgift ska vara klar.",
+      "show": "Visa förfallodatum"
+    },
+    "permissions": {
+      "label": "Anpassade behörigheter",
+      "description": "Bestäm vem som får göra vad, per server och per tavla. När det är avstängt följer åtkomsten Discord-behörigheterna.",
+      "show": "Visa anpassade behörigheter"
+    }
+  },
+  "requestFailed": "Begäran misslyckades ({status})",
+  "notSignedIn": "Du är inte inloggad.",
+  "cancel": "Avbryt",
+  "close": "Stäng",
+  "loginWithDiscord": "Logga in med Discord",
+  "deleting": "Tar bort…",
+  "loading": "Läser in...",
+  "saving": "Sparar…",
+  "change": "Ändra",
+  "closeModal": "Stäng fönstret",
+  "save": "Spara",
+  "applying": "Tillämpar…",
+  "name": "Namn",
+  "description": "Beskrivning",
+  "saveChanges": "Spara ändringar",
+  "add": "Lägg till",
+  "delete": "Ta bort",
+  "deletingDots": "Tar bort...",
+  "confirmNamed": "Bekräfta {title}",
+  "creatingDots": "Skapar...",
+  "creating": "Skapar…",
+  "adding": "Lägger till…",
+  "savingDots": "Sparar...",
+  "changeNotSaved": "Ändringen kunde inte sparas",
+  "loadingEllipsis": "Läser in…"
+}

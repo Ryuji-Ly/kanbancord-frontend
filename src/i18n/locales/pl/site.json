@@ -1,0 +1,166 @@
+{
+  "nav": {
+    "main": "Główna",
+    "site": "Witryna",
+    "breadcrumbs": "Ścieżka nawigacji",
+    "guides": "Poradniki",
+    "faq": "FAQ",
+    "open": "Otwórz KanbanCord",
+    "about": "O projekcie",
+    "support": "Wesprzyj",
+    "supportServer": "Serwer pomocy",
+    "appDirectory": "Katalog aplikacji",
+    "status": "Status",
+    "privacy": "Polityka prywatności",
+    "terms": "Warunki korzystania",
+    "addToDiscord": "Dodaj do Discorda"
+  },
+  "footer": {
+    "notAffiliated": "© {year} {operator}. {name} nie jest powiązany z Discordem ani przez niego wspierany."
+  },
+  "landing": {
+    "metaTitle": "Tablice kanban dla Discorda",
+    "metaDescription": "Tablica kanban, która mieszka na twoim serwerze Discord: twórz, przenoś i przypisuj zadania poleceniami z ukośnikiem, dostawaj aktualizacje na kanałach, a pełny obraz miej na stronie.",
+    "title": "Tablica kanban, która mieszka na twoim serwerze Discord",
+    "intro": "Planuj i śledź pracę tam, gdzie twoja społeczność już rozmawia. Twórz, przenoś i przypisuj zadania poleceniami z ukośnikiem i dostawaj aktualizacje na kanałach. Strona jest pod ręką, gdy chcesz zobaczyć całość.",
+    "signIn": "Zaloguj się przez Discorda",
+    "free": "Za darmo. Bez reklam. Bez śledzenia. Także w <link>katalogu aplikacji Discorda</link>.",
+    "features": "Funkcje",
+    "feature": {
+      "discord": {
+        "title": "Wszystko z Discorda",
+        "text": "Twórz tablice i zadania, przenoś je i przypisuj, ustawiaj terminy i komentuj poleceniami z ukośnikiem. Bez wychodzenia z czatu."
+      },
+      "boards": {
+        "title": "Prawdziwe tablice kanban",
+        "text": "Kolumny i zadania z etykietami, priorytetami, terminami, osobami przypisanymi, komentarzami, listami kontrolnymi, obrazami i filmami."
+      },
+      "permissions": {
+        "title": "Twoje uprawnienia z Discorda",
+        "text": "Dostęp od razu wynika z ról na serwerze, a na stronie można go dopracować dla każdej tablicy i każdej osoby."
+      },
+      "updates": {
+        "title": "Aktualizacje, nie szum",
+        "text": "Publikuj zmiany na wybranych kanałach i dostawaj wiadomości prywatne o swoich zadaniach, nigdy dwa razy oznaczany w tej samej sprawie."
+      },
+      "website": {
+        "title": "Pełny obraz, kiedy chcesz",
+        "text": "Strona pokazuje całe tablice na pierwszy rzut oka i mieści szczegółowe ustawienia, a każda zmiana jest widoczna na żywo dla wszystkich."
+      },
+      "comfort": {
+        "title": "Stworzone z myślą o wygodzie",
+        "text": "Motywy, w tym wysokokontrastowe i przyjazne daltonistom, rozmiar tekstu i tryb prosty dla małych zespołów."
+      }
+    },
+    "usesTitle": "Nie tylko do pracy",
+    "uses": "KanbanCord sprawdza się równie dobrze przy listach prowadzonych z najbliższymi: plany do zrobienia, filmy do obejrzenia, książki do przeczytania, rzeczy do kupienia. Załóż tablicę na małym serwerze, zostaw ją w trybie prostym i odhaczajcie wszystko razem.",
+    "stepsTitle": "Zacznij w minutę",
+    "step1": "<strong>Dodaj bota</strong> do swojego serwera.",
+    "step2": "<strong>Utwórz tablicę</strong> poleceniem <code>/board create</code>.",
+    "step3": "<strong>Dodaj zadania</strong> poleceniem <code>/task create</code>, a <code>/help</code> pokaże resztę."
+  },
+  "about": {
+    "metaTitle": "O projekcie",
+    "metaDescription": "KanbanCord to tablica kanban, która mieszka na twoim serwerze Discord: obsłużysz ją w całości botem, a stronę wykorzystasz do pełnego obrazu i szczegółowych ustawień.",
+    "title": "O {name}",
+    "p1": "{name} to tablica kanban, która mieszka na twoim serwerze Discord. Pomysł jest prosty: twoja społeczność już rozmawia na Discordzie, więc tam też powinno odbywać się planowanie. Twórz tablice i kolumny, dodawaj zadania, przesuwaj je dalej, przypisuj ludzi, ustawiaj etykiety, priorytety i terminy i omawiaj je w komentarzach, wszystko poleceniami bota z ukośnikiem, bez wychodzenia z czatu. Aktualizacje trafiają na wybrane kanały, a o twoich zadaniach także w wiadomościach prywatnych.",
+    "p2": "Większość osób nie potrzebuje niczego więcej. Strona przydaje się, gdy chcesz zobaczyć całą tablicę naraz albo coś dopracować: szczegółowe uprawnienia dla tablic i osób, etykiety i poziomy priorytetu tablicy, funkcje używane przez serwer, dokładnie to, o jakich aktualizacjach dostajesz powiadomienia, i dziennik wszystkich zmian.",
+    "p3": "Od początku korzysta z ról i uprawnień Discorda na twoim serwerze, więc właściwe osoby widzą i zmieniają właściwe tablice, bez ustawiania czegokolwiek dwa razy.",
+    "simpleTitle": "Tylko to, co wybierzesz",
+    "simple": "Nowe serwery zaczynają w <strong>trybie prostym</strong>: tablice, kolumny i zadania z tytułem i opisem. Osoby przypisane, terminy z przypomnieniami, priorytety, etykiety, komentarze i uprawnienia niestandardowe pozostają wyłączone, dopóki zarządzający serwerem nie włączy ich poleceniem <code>/kanbancord features</code> lub w ustawieniach serwera na stronie. Wyłączone funkcje nie są nigdzie pokazywane, ani w Discordzie, ani na stronie: widać tylko to, co wybierzesz. Każda tablica może znowu wyłączyć funkcje dla siebie, a każdy może ukryć więcej dla siebie w Preferencje → Widok uproszczony. Wyłączenie funkcji tylko ją ukrywa; nic nie jest usuwane.",
+    "madeByTitle": "Tworzone przez jedną osobę",
+    "madeBy": "{name} tworzy i utrzymuje {operator}. Jest darmowy, nie ma reklam i nie sprzedaje ani nie śledzi twoich danych (zobacz <privacy>Politykę prywatności</privacy>). Znalazłeś problem lub masz pomysł? Użyj <code>/report</code> w Discordzie. Masz pytania albo chcesz wiedzieć o nowych funkcjach? Dołącz do <server>serwera pomocy</server>. Jeśli chcesz pomóc w kosztach, zajrzyj do sekcji <support>Wesprzyj</support>.",
+    "findTitle": "Znajdź go na Discordzie",
+    "find": "{name} ma własną stronę w <directory>katalogu aplikacji Discorda</directory>, skąd dodasz go do serwera bezpośrednio z Discorda. Czy strona, bot i wszystko za nimi działa, oraz informacje o planowanych pracach znajdziesz na <status>stronie statusu</status>.",
+    "startTitle": "Pierwsze kroki",
+    "start1": "Dodaj bota do swojego serwera.",
+    "start2": "Utwórz tablicę poleceniem <code>/board create</code>, a potem dodaj zadania poleceniem <code>/task create</code>.",
+    "start3": "Użyj <code>/help</code>, aby zobaczyć wszystko, co potrafi bot.",
+    "questions": "Pytania? Zajrzyj do <faq>FAQ</faq>.",
+    "translationsTitle": "Tłumaczenia",
+    "translations": "Tłumaczenia tej strony powstały przy pomocy generatywnej sztucznej inteligencji. Jeśli zauważysz błąd lub sformułowanie, które można poprawić, będziemy wdzięczni za informację przez <code>/report</code> w Discordzie lub e-mailem na <email>{contact}</email>.",
+    "storyTitle": "Jak to się zaczęło",
+    "story1": "KanbanCord zaczął się od grupowego projektu na uczelni w roku akademickim 2024–2025. Przedmiot wymagał korzystania z uczelnianej instalacji OpenProject, a w praktyce używaliśmy tylko jej tablicy kanban i ewidencji czasu, której wymagał przedmiot. Było to nieustanne źródło frustracji: system padał co kilka minut, a w najgorszych chwilach, gdy tylko wstał i próbowało się coś zrobić, padał znowu. Do tego ciągle nas wylogowywał. Poza czasem spędzanym na uczelni nasza grupa i tak koordynowała wszystko na Discordzie.",
+    "story2": "Pół żartem powiedziałem, że zbuduję lepsze narzędzie niż ten bałagan, a kilku kolegów z zespołu powiedziało, żebym spróbował. Miałem już spore doświadczenie w tworzeniu botów na Discorda w discord.js, więc po kilku tygodniach namysłu, częściowo z czystej przekory, utworzyłem nową aplikację w Discord Developer Portal, gdy projekt jeszcze trwał. Pomysł był prosty: tablica kanban, która mieszka tam, gdzie już rozmawialiśmy. Dlatego KanbanCord jest przede wszystkim narzędziem kanban, a nie pełnym pakietem do zarządzania projektami: robi to, czego naprawdę potrzebowaliśmy, i to tam, gdzie ludzie już są.",
+    "story3": "Jako student pracowałem nad nim z przerwami, sporo przy tym odkładając na później. Mniej więcej rok po rozpoczęciu dowiedziałem się, że istnieje inny bot o dokładnie tej samej nazwie, stworzony przez j4asper. Nasze aplikacje na Discordzie powstały w odstępie zaledwie sześciu dni: <other>tamta</other> 30 października 2024, moja 5 listopada 2024. Jeśli wyszukasz KanbanCord w Discordzie, możesz trafić na tamtą; ta strona i bot, którego stąd dodasz, są dziełem {operator}.",
+    "story4": "Zdecydowanie najtrudniejszy był fundament: jak tablice, kolumny, zadania i uprawnienia mają współgrać z serwerami, rolami i członkami samego Discorda. Dopracowanie modeli domenowych wymagało mnóstwa eksperymentów i przebudów: wycinania tego, co niepotrzebne, i dodawania tabel i pól, których wymagała moja wizja, w miarę jak wymyślałem kolejne rzeczy, które mogłoby robić to narzędzie. Szczerze mówiąc, to było około 80% pracy. Gdy struktura się ustaliła, reszta poszła zaskakująco szybko: przy solidnym projekcie generatywna sztuczna inteligencja naprawdę pomagała w budowaniu funkcji, bo trzymała się istniejącej struktury, a dużych błędów do ręcznego wyszukiwania i poprawiania było znacznie mniej.",
+    "story5": "Cały projekt jest otwartoźródłowy: <bot>bot</bot>, <website>strona</website> i <api>API</api> mają własne repozytoria na GitHubie."
+  },
+  "support": {
+    "metaTitle": "Wesprzyj",
+    "metaDescription": "KanbanCord jest darmowy dla wszystkich. Jeśli chcesz pomóc w kosztach, możesz przekazać dobrowolną darowiznę na Ko-fi.",
+    "title": "Wesprzyj {name}",
+    "p1": "{name} jest darmowy, nie ma reklam ani płatnych planów i tak zostanie. To osobisty projekt, tworzony i utrzymywany przez {operator}.",
+    "p2": "Jeśli przydaje się na twoim serwerze i chcesz pomóc w kosztach, takich jak domena i serwery, których będzie potrzebował, gdy urośnie, możesz przekazać darowiznę na Ko-fi.",
+    "kofi": "Wesprzyj na Ko-fi",
+    "goodToKnow": "Warto wiedzieć",
+    "voluntary": "Darowizny są całkowicie dobrowolne. Każdy dostaje ten sam {name}, niezależnie od tego, czy wspiera, czy nie.",
+    "buysNothing": "Darowizna nie kupuje funkcji, limitów, ról, priorytetowej pomocy ani niczego innego.",
+    "payments": "Płatności obsługują Ko-fi i PayPal, nigdy {name}. Nie łączymy darowizn z twoim kontem Discord.",
+    "refunds": "Darowizny co do zasady nie podlegają zwrotowi. Jeśli wpłaciłeś przez pomyłkę, napisz na <email>{email}</email>, a zrobimy, co się da.",
+    "notDonating": "Brak darowizny jest w zupełności w porządku. Opowiadanie innym o {name} czy zgłoszenie błędu przez <code>/report</code> też pomaga."
+  },
+  "faq": {
+    "metaTitle": "FAQ",
+    "metaDescription": "Odpowiedzi o KanbanCord: cena, dodawanie bota, uprawnienia, polecenia w Discordzie, powiadomienia, przesyłane pliki i twoje dane.",
+    "title": "Najczęściej zadawane pytania",
+    "free": {
+      "q": "Czy {name} jest darmowy?",
+      "a": "Tak. Nie ma płatnych planów ani reklam, a twoje dane nie są sprzedawane."
+    },
+    "start": {
+      "q": "Od czego zacząć?",
+      "a": "Dodaj bota, a potem użyj <code>/guide</code> w Discordzie, aby przejść przez wszystko krok po kroku. <guides>Poradniki</guides> obejmują wszystko, od wspólnej listy zadań po przypomnienia i uprawnienia."
+    },
+    "website": {
+      "q": "Czy potrzebuję strony?",
+      "a": "Nie. {name} jest zbudowany tak, by korzystać z niego w całości z Discorda: tworzenie tablic, kolumn i zadań, przenoszenie i przypisywanie ich, ustawianie etykiet, priorytetów i terminów, komentowanie i wybór powiadomień, wszystko poleceniami z ukośnikiem. Strona jest na wypadek, gdy chcesz zobaczyć całą tablicę naraz albo dopracować ustawienia."
+    },
+    "add": {
+      "q": "Jak dodać go do serwera?",
+      "a": "Użyj „Dodaj do Discorda” na dole dowolnej strony i wybierz serwer. Potrzebujesz tam uprawnienia Zarządzanie serwerem. Potem utwórz pierwszą tablicę poleceniem <code>/board create</code> i dodaj zadania poleceniem <code>/task create</code>."
+    },
+    "access": {
+      "q": "Kto może widzieć i zmieniać moje tablice?",
+      "a": "Domyślnie wynika to z ról i uprawnień Discorda na twoim serwerze: administratorzy i moderatorzy mogą zarządzać tablicami, członkowie mogą pracować z zadaniami. Administratorzy serwera mogą to zmienić dla całego serwera lub każdej tablicy, w ustawieniach serwera i tablicy."
+    },
+    "servers": {
+      "q": "Dlaczego logowanie prosi o listę moich serwerów?",
+      "a": "Aby {name} mógł pokazać, którymi serwerami możesz zarządzać i do których możesz dodać bota. Nie czyta twoich wiadomości."
+    },
+    "discord": {
+      "q": "Co mogę zrobić z Discorda?",
+      "a": "Wszystko, czego potrzebujesz na co dzień: tworzyć, wyświetlać, zmieniać nazwy i archiwizować tablice; dodawać, zmieniać nazwy, porządkować i usuwać kolumny; tworzyć, edytować, przenosić i usuwać zadania; przypisywać osoby i role; ustawiać etykiety, priorytety i terminy; czytać i pisać komentarze; wybierać własne powiadomienia poleceniem <code>/notifications</code>; a zarządzający serwerem mogą ustawić kanały aktualizacji poleceniem <code>/kanbancord</code>. Wszystkie polecenia zobaczysz po użyciu <code>/help</code> w Discordzie."
+    },
+    "websiteOnly": {
+      "q": "Do czego potrzebna jest strona?",
+      "a": "Do szczegółowych ustawień i pełnego obrazu: widoku całej tablicy naraz, reguł uprawnień dla tablic i osób, etykiet i poziomów priorytetu tablicy, funkcji używanych przez serwer, dokładnego wyboru, o jakich aktualizacjach się dowiadujesz, motywów i opcji dostępności, przesyłania obrazów i filmów oraz przeglądania dziennika zmian."
+    },
+    "notifications": {
+      "q": "Jak działają powiadomienia?",
+      "a": "Serwer może kazać botowi publikować aktualizacje na wybranych kanałach i powielać dziennik zmian na jednym kanale; posty z aktualizacjami mogą pokazywać całe zadanie z przyciskami do przenoszenia go, przypisywania osób lub edycji na miejscu. Możesz też dostawać wiadomości prywatne o zadaniach, do których jesteś przypisany, które utworzyłeś lub obserwujesz, w tym przypomnienia o terminach. Jeśli kanał już cię w jakiejś sprawie oznaczył, nie dostaniesz o tym dodatkowo wiadomości prywatnej. Wybierz, co dostajesz, poleceniem <code>/notifications</code> albo dokładniej w Ustawienia → Powiadomienia na stronie. Zarządzający serwerem ustawiają kanały poleceniem <code>/kanbancord</code>."
+    },
+    "uploads": {
+      "q": "Gdzie są przechowywane przesłane obrazy i filmy?",
+      "a": "Na Imgurze. Każdy, kto ma link, może je zobaczyć, więc nie przesyłaj niczego prywatnego."
+    },
+    "data": {
+      "q": "Jak usunąć moje dane?",
+      "a": "Wyloguj się wszędzie w Ustawienia → Sesje i poproś nas o usunięcie reszty pod adresem <email>{email}</email>. Administratorzy serwera mogą usuwać tablice, a usunięcie bota z serwera zatrzymuje synchronizację tego serwera. Szczegóły znajdziesz w <privacy>Polityce prywatności</privacy>."
+    },
+    "help": {
+      "q": "Znalazłem błąd, mam pomysł albo potrzebuję pomocy.",
+      "a": "Dołącz do <server>serwera pomocy {name}</server>, aby zadawać pytania i dowiadywać się o nowych funkcjach, albo użyj <code>/report</code> w Discordzie, aby wysłać zgłoszenie bezpośrednio do twórcy."
+    }
+  },
+  "guides": {
+    "metaTitle": "Poradniki",
+    "metaDescription": "Poradniki do KanbanCord: tablice kanban, listy zadań i śledzenie zadań w Discordzie, od pierwszej tablicy po przypomnienia, strumienie i uprawnienia.",
+    "title": "Poradniki",
+    "intro": "Jak planować i śledzić pracę na serwerze Discord z {name}: tablice kanban, wspólne listy zadań, zadania dla osób i ról, terminy i przypomnienia. Prawie wszystko odbywa się poleceniami z ukośnikiem; kilka poradników dotyczy strony.",
+    "inDiscord": "Bot już dodany? Użyj <code>/guide</code> w Discordzie, aby zobaczyć te same kroki, odhaczane na bieżąco.",
+    "tryTitle": "Wypróbuj na swoim serwerze",
+    "try": "{name} jest darmowy. Dodaj go do swojego serwera i użyj <code>/guide</code>, aby przejść przez wszystko krok po kroku, bezpośrednio w Discordzie.",
+    "more": "Więcej poradników"
+  }
+}

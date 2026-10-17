@@ -1,0 +1,91 @@
+{
+  "boardFeatures": {
+    "title": "Mod simplu",
+    "intro": "Dezactivează ce nu-i trebuie acestui panou; celelalte panouri nu sunt afectate. Dezactivarea ascunde funcția și îi păstrează datele. Modificările de aici se aplică imediat.",
+    "everything": "Tot ce permite serverul",
+    "offForServer": "Dezactivat pentru tot serverul, în setările serverului."
+  },
+  "board": {
+    "loadFailed": "Setările panoului nu au putut fi încărcate"
+  },
+  "boardNotifications": {
+    "intro": "Fluxurile de actualizări care publică despre acest panou. Fiecare urmează propriile setări din notificările serverului până când schimbi ceva aici, doar pentru acest panou. Modificările se salvează imediat.",
+    "noFeeds": "Niciun flux nu publică despre acest panou. Administratorii serverului adaugă fluxuri în setările serverului.",
+    "followsFeed": "Urmează setările fluxului.",
+    "changes_one": "{count} modificare pentru acest panou.",
+    "changes_few": "{count} modificări pentru acest panou.",
+    "changes_other": "{count} de modificări pentru acest panou.",
+    "useFeed": "Folosește setările fluxului",
+    "changed": "modificat"
+  },
+  "threads": {
+    "updatesBoth": "Firul și canalul",
+    "updatesThread": "Doar firul",
+    "updatesChannel": "Doar canalul",
+    "title": "Firele sarcinilor",
+    "intro": "Dă fiecărei sarcini propriul fir de discuție, într-unul dintre canalele fluxurilor de actualizări ale acestui panou. Un fir preia titlul sarcinii și este arhivat când sarcina este ștearsă sau arhivată. Actualizările fluxului despre sarcină, inclusiv comentariile noi, sunt publicate în el cum alegi mai jos; mesajele scrise în fir rămân în Discord. Modificările se salvează imediat.",
+    "noFeed": "Acest panou nu are încă un flux de actualizări. Adaugă unul în setările de notificări ale serverului sau cu <code>/kanbancord feed</code> în Discord, apoi activează firele aici.",
+    "perTask": "Un fir pentru fiecare sarcină",
+    "notWorking": "Activat, dar nu funcționează: canalul ales nu mai are un flux pentru acest panou. Alege alt canal cu flux.",
+    "perTaskHint": "Fiecare sarcină își primește firul data viitoare când i se întâmplă ceva.",
+    "channel": "Canal",
+    "channelWithoutFeed": "Un canal fără flux pentru acest panou",
+    "botCannot": " (botul nu poate crea fire aici)",
+    "updatesGoTo": "Actualizările unei sarcini ajung în",
+    "private": "Fire private",
+    "privateNotPossible": "Nu este posibil în acest canal: firele private au nevoie de un canal text în care botul poate crea fire private.",
+    "privateHint": "În fir sunt doar creatorul și responsabilii sarcinii, plus moderatorii serverului. Responsabilii noi sunt adăugați.",
+    "cannotMake": "Botul nu poate crea fire în #{channel}, deci sarcinile nu primesc fire noi. Dă-i acolo Vizualizează canalele, Trimite mesaje în fire și Creează fire publice sau alege alt canal.",
+    "cannotMakePrivate": "Botul nu poate crea fire private în #{channel}, deci sarcinile nu primesc fire noi. Dă-i acolo Vizualizează canalele, Trimite mesaje în fire și Creează fire private sau alege alt canal."
+  },
+  "usage_one": "{count} sarcină",
+  "usage_few": "{count} sarcini",
+  "usage_other": "{count} de sarcini",
+  "colourOf": "Culoarea pentru {name}",
+  "labels": {
+    "intro": "Etichetele care pot fi puse pe sarcinile acestui panou. Modificările de aici se aplică imediat.",
+    "none": "Nicio etichetă încă.",
+    "name": "Numele etichetei",
+    "newColour": "Culoarea etichetei noi",
+    "newPlaceholder": "Etichetă nouă, de ex. frontend",
+    "add": "Adaugă eticheta",
+    "deleteTitle": "Șterge eticheta",
+    "deleteConfirm": "Ștergi <strong>{name}</strong> de pe acest panou?",
+    "deleteUsage_one": " Va fi scoasă de pe {count} sarcină care o folosește.",
+    "deleteUsage_few": " Va fi scoasă de pe cele {count} sarcini care o folosesc.",
+    "deleteUsage_other": " Va fi scoasă de pe cele {count} de sarcini care o folosesc."
+  },
+  "priorities": {
+    "title": "Priorități",
+    "intro": "Niveluri de prioritate, cele mai urgente primele. O sarcină are cel mult unul. Modificările de aici se aplică imediat.",
+    "none": "Niciun nivel de prioritate. Sarcinile de pe acest panou nu au prioritate.",
+    "moveUp": "Mută {name} mai sus",
+    "moveDown": "Mută {name} mai jos",
+    "name": "Numele priorității",
+    "newColour": "Culoarea nivelului nou",
+    "newPlaceholder": "Nivel nou, adăugat la final",
+    "add": "Adaugă nivel",
+    "deleteTitle": "Șterge nivelul de prioritate",
+    "deleteConfirm": "Ștergi <strong>{name}</strong>?",
+    "deleteUsage_one": " {count} sarcină cu această prioritate va rămâne fără prioritate.",
+    "deleteUsage_few": " Cele {count} sarcini cu această prioritate vor rămâne fără prioritate.",
+    "deleteUsage_other": " Cele {count} de sarcini cu această prioritate vor rămâne fără prioritate."
+  },
+  "features": {
+    "intro": "Modul simplu păstrează panourile la esențial: coloane și sarcini cu titlu și descriere. Activează doar ce îi trebuie acestui server. Dezactivarea ascunde funcția și îi păstrează datele.",
+    "enableEverything": "Activează tot",
+    "openFirst": "{description} Dezactivează mai întâi permisiunile deschise.",
+    "open": "Permisiuni deschise",
+    "openLabel": "Oricine poate face orice",
+    "customFirst": "Dezactivează mai întâi permisiunile personalizate: regulile lor sunt păstrate pentru când le reactivezi.",
+    "openHint": "Oricine poate scrie pe acest server poate crea, modifica, muta și șterge coloane, sarcini, etichete și niveluri de prioritate, indiferent de roluri. Gestionarea serverului, permisiunile panourilor, ștergerea sau arhivarea panourilor și jurnalul de modificări rămân la administratori.",
+    "confirmTitle": "Activezi permisiunile deschise?",
+    "turnOn": "Activează",
+    "turningOn": "Se activează...",
+    "confirm": "Oricine poate scrie pe acest server va putea crea, modifica, muta și șterge coloane, sarcini, etichete și niveluri de prioritate, indiferent de roluri. Potrivit pentru un grup mic în care toți au încredere unii în alții."
+  },
+  "dialog": {
+    "sections": "Secțiunile {title}",
+    "close": "Închide {title}"
+  }
+}

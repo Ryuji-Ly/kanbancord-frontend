@@ -1,0 +1,95 @@
+{
+  "boardFeatures": {
+    "title": "Tryb prosty",
+    "intro": "Wyłącz to, czego ta tablica nie potrzebuje; inne tablice nie są zmieniane. Wyłączenie czegoś ukrywa to i zachowuje dane. Zmiany tutaj obowiązują od razu.",
+    "everything": "Wszystko, na co pozwala serwer",
+    "offForServer": "Wyłączone dla całego serwera, w ustawieniach serwera."
+  },
+  "board": {
+    "loadFailed": "Nie udało się wczytać ustawień tablicy"
+  },
+  "boardNotifications": {
+    "intro": "Strumienie aktualizacji publikujące o tej tablicy. Każdy z nich korzysta z własnych ustawień z powiadomień serwera, dopóki czegoś tu nie zmienisz, tylko dla tej tablicy. Zmiany zapisują się od razu.",
+    "noFeeds": "Żaden strumień nie publikuje o tej tablicy. Zarządzający serwerem dodają strumienie w ustawieniach serwera.",
+    "followsFeed": "Korzysta z ustawień strumienia.",
+    "changes_one": "{count} zmiana dla tej tablicy.",
+    "changes_few": "{count} zmiany dla tej tablicy.",
+    "changes_many": "{count} zmian dla tej tablicy.",
+    "changes_other": "{count} zmiany dla tej tablicy.",
+    "useFeed": "Użyj ustawień strumienia",
+    "changed": "zmienione"
+  },
+  "threads": {
+    "updatesBoth": "Wątek i kanał",
+    "updatesThread": "Tylko wątek",
+    "updatesChannel": "Tylko kanał",
+    "title": "Wątki zadań",
+    "intro": "Daj każdemu zadaniu własny wątek do dyskusji, na jednym z kanałów strumieni aktualizacji tej tablicy. Wątek przyjmuje tytuł zadania i jest archiwizowany, gdy zadanie zostanie usunięte lub zarchiwizowane. Aktualizacje strumienia o zadaniu, w tym nowe komentarze, są w nim publikowane tak, jak wybierzesz poniżej; wiadomości napisane w wątku zostają w Discordzie. Zmiany zapisują się od razu.",
+    "noFeed": "Ta tablica nie ma jeszcze strumienia aktualizacji. Dodaj go w ustawieniach powiadomień serwera albo poleceniem <code>/kanbancord feed</code> w Discordzie, a potem włącz tu wątki.",
+    "perTask": "Wątek dla każdego zadania",
+    "notWorking": "Włączone, ale nie działa: wybrany kanał nie ma już strumienia dla tej tablicy. Wybierz inny kanał ze strumieniem.",
+    "perTaskHint": "Każde zadanie dostaje swój wątek, gdy następnym razem coś się z nim stanie.",
+    "channel": "Kanał",
+    "channelWithoutFeed": "Kanał bez strumienia dla tej tablicy",
+    "botCannot": " (bot nie może tu tworzyć wątków)",
+    "updatesGoTo": "Aktualizacje zadania trafiają do",
+    "private": "Wątki prywatne",
+    "privateNotPossible": "Niemożliwe na tym kanale: wątki prywatne wymagają kanału tekstowego, na którym bot może tworzyć wątki prywatne.",
+    "privateHint": "W wątku są tylko twórca zadania i osoby przypisane oraz moderatorzy serwera. Nowe osoby przypisane są dodawane.",
+    "cannotMake": "Bot nie może tworzyć wątków na #{channel}, więc zadania nie dostają nowych wątków. Daj mu tam Wyświetlanie kanałów, Wysyłanie wiadomości w wątkach i Tworzenie wątków publicznych albo wybierz inny kanał.",
+    "cannotMakePrivate": "Bot nie może tworzyć wątków prywatnych na #{channel}, więc zadania nie dostają nowych wątków. Daj mu tam Wyświetlanie kanałów, Wysyłanie wiadomości w wątkach i Tworzenie wątków prywatnych albo wybierz inny kanał."
+  },
+  "usage_one": "{count} zadanie",
+  "usage_few": "{count} zadania",
+  "usage_many": "{count} zadań",
+  "usage_other": "{count} zadania",
+  "colourOf": "Kolor: {name}",
+  "labels": {
+    "intro": "Etykiety, którymi można oznaczać zadania tej tablicy. Zmiany tutaj obowiązują od razu.",
+    "none": "Nie ma jeszcze etykiet.",
+    "name": "Nazwa etykiety",
+    "newColour": "Kolor nowej etykiety",
+    "newPlaceholder": "Nowa etykieta, np. frontend",
+    "add": "Dodaj etykietę",
+    "deleteTitle": "Usuń etykietę",
+    "deleteConfirm": "Usunąć <strong>{name}</strong> z tej tablicy?",
+    "deleteUsage_one": " Zostanie usunięta z {count} zadania, które jej używa.",
+    "deleteUsage_few": " Zostanie usunięta z {count} zadań, które jej używają.",
+    "deleteUsage_many": " Zostanie usunięta z {count} zadań, które jej używają.",
+    "deleteUsage_other": " Zostanie usunięta z {count} zadania, które jej używają."
+  },
+  "priorities": {
+    "title": "Priorytety",
+    "intro": "Poziomy priorytetu, od najpilniejszego. Zadanie ma najwyżej jeden. Zmiany tutaj obowiązują od razu.",
+    "none": "Brak poziomów priorytetu. Zadania na tej tablicy nie mają priorytetu.",
+    "moveUp": "Przesuń {name} w górę",
+    "moveDown": "Przesuń {name} w dół",
+    "name": "Nazwa priorytetu",
+    "newColour": "Kolor nowego poziomu",
+    "newPlaceholder": "Nowy poziom, dodawany na końcu",
+    "add": "Dodaj poziom",
+    "deleteTitle": "Usuń poziom priorytetu",
+    "deleteConfirm": "Usunąć <strong>{name}</strong>?",
+    "deleteUsage_one": " {count} zadanie z tym priorytetem nie będzie miało priorytetu.",
+    "deleteUsage_few": " {count} zadania z tym priorytetem nie będą miały priorytetu.",
+    "deleteUsage_many": " {count} zadań z tym priorytetem nie będzie miało priorytetu.",
+    "deleteUsage_other": " {count} zadania z tym priorytetem nie będzie miało priorytetu."
+  },
+  "features": {
+    "intro": "Tryb prosty ogranicza tablice do podstaw: kolumn i zadań z tytułem i opisem. Włącz tylko to, czego ten serwer potrzebuje. Wyłączenie czegoś ukrywa to i zachowuje dane.",
+    "enableEverything": "Włącz wszystko",
+    "openFirst": "{description} Najpierw wyłącz otwarte uprawnienia.",
+    "open": "Otwarte uprawnienia",
+    "openLabel": "Każdy może wszystko",
+    "customFirst": "Najpierw wyłącz uprawnienia niestandardowe: ich reguły zostaną zachowane na wypadek, gdybyś je ponownie włączył.",
+    "openHint": "Każdy, kto może pisać na tym serwerze, może tworzyć, zmieniać, przenosić i usuwać kolumny, zadania, etykiety i poziomy priorytetu, niezależnie od ról. Zarządzanie serwerem, uprawnienia tablic, usuwanie lub archiwizacja tablic i dziennik zmian zostają w rękach zarządzających.",
+    "confirmTitle": "Włączyć otwarte uprawnienia?",
+    "turnOn": "Włącz",
+    "turningOn": "Włączanie...",
+    "confirm": "Każdy, kto może pisać na tym serwerze, będzie mógł tworzyć, zmieniać, przenosić i usuwać kolumny, zadania, etykiety i poziomy priorytetu, niezależnie od ról. Najlepsze dla małej grupy, która sobie ufa."
+  },
+  "dialog": {
+    "sections": "Sekcje: {title}",
+    "close": "Zamknij: {title}"
+  }
+}

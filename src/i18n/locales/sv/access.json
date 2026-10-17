@@ -1,0 +1,70 @@
+{
+  "categories": {
+    "SERVER": "Server",
+    "BOARD": "Tavlor",
+    "COLUMN": "Kolumner",
+    "TASK": "Uppgifter",
+    "COMMENT": "Kommentarer",
+    "LABEL": "Etiketter och prioriteter"
+  },
+  "flags": {
+    "VIEW_CHANNEL": "Visa kanaler",
+    "MANAGE_GUILD": "Hantera server",
+    "VIEW_AUDIT_LOG": "Visa granskningslogg"
+  },
+  "everyoneWith": "alla med {permission}",
+  "personally": "{name} personligen",
+  "where": {
+    "default": "standard",
+    "board": "den här tavlan",
+    "server": "server"
+  },
+  "why": {
+    "owner": "Tillåtet: serverns ägare får göra allt",
+    "admin": "Tillåtet: administratörer får göra allt",
+    "adminRule": "Tillåtet: administratörer får göra allt ({subject})",
+    "open": "Tillåtet: öppna behörigheter låter alla som kan skriva göra detta",
+    "none": "Nekat: ingen regel tillåter det",
+    "byDefault": "{result} av standarden för {subject}",
+    "byBoard": "{result} av tavlans regel för {subject}",
+    "byServer": "{result} av serverns regel för {subject}"
+  },
+  "allowed": "Tillåtet",
+  "denied": "Nekat",
+  "intro": "Se vad någon får göra och vilken regel som avgör varje sak. Välj en medlem för att utgå från medlemmens roller och lägg sedan till eller ta bort roller för att se vad som skulle ändras. Eller kontrollera bara en uppsättning roller.",
+  "introBoard": "Se vad någon får göra på den här tavlan och vilken regel som avgör varje sak. Välj en medlem för att utgå från medlemmens roller och lägg sedan till eller ta bort roller för att se vad som skulle ändras. Eller kontrollera bara en uppsättning roller.",
+  "check": "Kontrollera",
+  "aMember": "En medlem",
+  "rolesOnly": "Bara roller",
+  "searchMembers": "Sök medlemmar efter namn",
+  "whereLabel": "Var",
+  "serverWide": "Hela servern",
+  "someonesRoles": "Roller för {name}",
+  "theirRoles": "Medlemmens roller",
+  "unknownRole": "Okänd roll",
+  "without": "Utan {role}",
+  "thisRole": "den här rollen",
+  "addRole": "Lägg till en roll",
+  "addRoleOption": "Lägg till en roll…",
+  "whatIf": "{name} visas med andra roller än de som personen har.",
+  "them": "personen",
+  "realRoles": "Använd de riktiga rollerna",
+  "start": "Sök efter en medlem ovan, eller välj Bara roller.",
+  "failed": "Kontrollen misslyckades",
+  "notes": {
+    "serverWide": "Hela servern: det som gäller på varje tavla utan egna regler.",
+    "customOff": "Anpassade behörigheter är avstängda, så standarden gäller: det som varje Discord-behörighet tillåter.",
+    "open": "Öppna behörigheter är på: alla som kan visa kanaler och skicka meddelanden får arbeta med tavlorna.",
+    "notMember": "{name} är inte med på servern, så bara regler för personen själv räknas.",
+    "discord": "Discord-behörigheter som spelar roll här: {permissions}."
+  },
+  "thisPerson": "Den här personen",
+  "show": "Visa",
+  "allowedCount_one": "Tillåtet ({count})",
+  "allowedCount_other": "Tillåtet ({count})",
+  "deniedCount_one": "Nekat ({count})",
+  "deniedCount_other": "Nekat ({count})",
+  "outweighs": "Väger tyngre än: {rules}",
+  "overriddenAllow": "Tillåt för {subject} ({where})",
+  "overriddenDeny": "Neka för {subject} ({where})"
+}

@@ -1,0 +1,72 @@
+{
+  "categories": {
+    "SERVER": "Server",
+    "BOARD": "Panouri",
+    "COLUMN": "Coloane",
+    "TASK": "Sarcini",
+    "COMMENT": "Comentarii",
+    "LABEL": "Etichete și priorități"
+  },
+  "flags": {
+    "VIEW_CHANNEL": "Vizualizează canalele",
+    "MANAGE_GUILD": "Gestionează serverul",
+    "VIEW_AUDIT_LOG": "Vizualizează jurnalul de audit"
+  },
+  "everyoneWith": "toți cei cu {permission}",
+  "personally": "{name} personal",
+  "where": {
+    "default": "implicit",
+    "board": "acest panou",
+    "server": "server"
+  },
+  "why": {
+    "owner": "Permis: proprietarul serverului poate face orice",
+    "admin": "Permis: administratorii pot face orice",
+    "adminRule": "Permis: administratorii pot face orice ({subject})",
+    "open": "Permis: permisiunile deschise lasă pe oricine poate scrie să facă asta",
+    "none": "Refuzat: nicio regulă nu permite asta",
+    "byDefault": "{result} prin valoarea implicită pentru {subject}",
+    "byBoard": "{result} prin regula panoului pentru {subject}",
+    "byServer": "{result} prin regula serverului pentru {subject}"
+  },
+  "allowed": "Permis",
+  "denied": "Refuzat",
+  "intro": "Vezi ce poate face cineva și ce regulă decide fiecare lucru. Alege un membru ca să pornești de la rolurile lui, apoi adaugă sau elimină roluri ca să vezi ce s-ar schimba. Sau verifică doar un set de roluri.",
+  "introBoard": "Vezi ce poate face cineva pe acest panou și ce regulă decide fiecare lucru. Alege un membru ca să pornești de la rolurile lui, apoi adaugă sau elimină roluri ca să vezi ce s-ar schimba. Sau verifică doar un set de roluri.",
+  "check": "Verifică",
+  "aMember": "Un membru",
+  "rolesOnly": "Doar roluri",
+  "searchMembers": "Caută membri după nume",
+  "whereLabel": "Unde",
+  "serverWide": "Pe tot serverul",
+  "someonesRoles": "Rolurile lui {name}",
+  "theirRoles": "Rolurile sale",
+  "unknownRole": "Rol necunoscut",
+  "without": "Fără {role}",
+  "thisRole": "acest rol",
+  "addRole": "Adaugă un rol",
+  "addRoleOption": "Adaugă un rol…",
+  "whatIf": "{name} este afișat cu alte roluri decât are în realitate.",
+  "them": "această persoană",
+  "realRoles": "Folosește rolurile reale",
+  "start": "Caută un membru mai sus sau alege Doar roluri.",
+  "failed": "Verificarea a eșuat",
+  "notes": {
+    "serverWide": "Pe tot serverul: ce se aplică pe fiecare panou fără reguli proprii.",
+    "customOff": "Permisiunile personalizate sunt dezactivate, deci se aplică valorile implicite: ce permite fiecare permisiune Discord.",
+    "open": "Permisiunile deschise sunt activate: oricine poate vedea canalele și trimite mesaje poate lucra cu panourile.",
+    "notMember": "{name} nu este pe server, deci contează doar regulile pentru persoana respectivă.",
+    "discord": "Permisiuni Discord care contează aici: {permissions}."
+  },
+  "thisPerson": "Această persoană",
+  "show": "Afișează",
+  "allowedCount_one": "Permis ({count})",
+  "allowedCount_few": "Permis ({count})",
+  "allowedCount_other": "Permis ({count})",
+  "deniedCount_one": "Refuzat ({count})",
+  "deniedCount_few": "Refuzat ({count})",
+  "deniedCount_other": "Refuzat ({count})",
+  "outweighs": "Are prioritate față de: {rules}",
+  "overriddenAllow": "Permite pentru {subject} ({where})",
+  "overriddenDeny": "Refuză pentru {subject} ({where})"
+}

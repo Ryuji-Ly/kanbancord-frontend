@@ -1,0 +1,149 @@
+{
+  "appearance": {
+    "groups": {
+      "surfaces": "Powierzchnie",
+      "controls": "Kontrolki",
+      "text": "Tekst",
+      "brand": "Marka i akcenty",
+      "status": "Stan",
+      "permissions": "Reguły uprawnień"
+    },
+    "core": {
+      "background": {
+        "label": "Tło",
+        "hint": "Za wszystkim"
+      },
+      "surface": {
+        "label": "Powierzchnia",
+        "hint": "Panele, kolumny i karty"
+      },
+      "text": {
+        "label": "Tekst",
+        "hint": "Tekst główny; nagłówki i podpowiedzi wynikają z niego"
+      },
+      "accent": {
+        "label": "Akcent",
+        "hint": "Wyróżnienia, obwódki fokusu, odcień nagłówków"
+      },
+      "primary": {
+        "label": "Główny",
+        "hint": "Główne przyciski i linki"
+      },
+      "success": {
+        "label": "Sukces",
+        "hint": "Potwierdzenia i reguły zezwalające"
+      },
+      "danger": {
+        "label": "Zagrożenie",
+        "hint": "Błędy, przyciski usuwania i reguły odmawiające"
+      },
+      "warning": {
+        "label": "Ostrzeżenie",
+        "hint": "Ostrzeżenia i wyróżnienia"
+      }
+    },
+    "presets": {
+      "dark": {
+        "label": "Ciemny",
+        "description": "Domyślny."
+      },
+      "light": {
+        "label": "Jasny",
+        "description": "Ciemny tekst na jasnych powierzchniach."
+      },
+      "highContrast": {
+        "label": "Wysoki kontrast",
+        "description": "Czysta czerń i biel z wyraźnymi obramowaniami, dla osób słabowidzących."
+      },
+      "redGreen": {
+        "label": "Bezpieczny dla czerwieni i zieleni",
+        "description": "Dla protanopii i deuteranopii: niebieski dla sukcesu, pomarańczowy dla zagrożenia."
+      },
+      "blueYellow": {
+        "label": "Bezpieczny dla błękitu i żółci",
+        "description": "Dla tritanopii: morski dla sukcesu, czerwony dla zagrożenia, żółty dla ostrzeżeń."
+      }
+    },
+    "theme": "Motyw",
+    "custom": "Własny",
+    "customHint": "Twoje własne kolory, zaczynając od motywu powyżej.",
+    "customColours": "Własne kolory",
+    "customColoursHint": "Ustaw osiem kolorów; wszystkie pozostałe zostaną z nich wyliczone.",
+    "lowContrast": "Kontrast tekstu względem tła wynosi {contrast}:1; do wygodnego czytania zalecane jest co najmniej 4.5:1.",
+    "advanced": "Zaawansowane: edytuj każdy kolor",
+    "changed_one": " ({count} zmieniony)",
+    "changed_few": " ({count} zmienione)",
+    "changed_many": " ({count} zmienionych)",
+    "changed_other": " ({count} zmienionego)",
+    "advancedHint": "Zmiany tutaj nakładają się na motyw powyżej i zostają po zmianie motywu.",
+    "resetAll": "Przywróć wszystko",
+    "reset": "Przywróć",
+    "language": "Język",
+    "browserLanguage": "Język mojej przeglądarki"
+  },
+  "accessibility": {
+    "textScale": {
+      "normal": "Normalny",
+      "large": "Duży",
+      "larger": "Większy",
+      "largest": "Największy"
+    },
+    "filters": {
+      "none": "Brak",
+      "protanopia": "Protanopia (słabe widzenie czerwieni)",
+      "deuteranopia": "Deuteranopia (słabe widzenie zieleni)",
+      "tritanopia": "Tritanopia (słabe widzenie błękitu)"
+    },
+    "intro": "Przy daltonizmie motywy Bezpieczny dla czerwieni i zieleni oraz Bezpieczny dla błękitu i żółci zmieniają kolory interfejsu. Poniższe opcje pomagają z kolorami, które ludzie wybierają dla etykiet, priorytetów i ról.",
+    "patterns": "Wzory na etykietach",
+    "patternsHint": "Każda etykieta dostaje własny wzór pasków lub kropek, więc etykiety różnią się nie tylko kolorem.",
+    "ranks": "Rangi priorytetów",
+    "ranksHint": "Pokazuje rangę każdego priorytetu obok jego nazwy; P1 jest najpilniejszy.",
+    "filter": "Filtr kolorów dla etykiet, priorytetów i ról",
+    "filterHint": "Przesuwa trudne do odróżnienia kolory w stronę łatwiej rozpoznawalnych.",
+    "textSize": "Rozmiar tekstu",
+    "motion": "Ogranicz ruch",
+    "motionSystem": "Jak na moim urządzeniu",
+    "motionOn": "Zawsze ograniczaj",
+    "motionOff": "Nigdy nie ograniczaj"
+  },
+  "simpleView": {
+    "intro": "Ukryj to, czego nie używasz, na każdej tablicy. Zmienia to tylko to, co widzisz ty: dane zostają, a wszyscy inni nadal je widzą. To, co serwer wyłączył, jest ukryte dla wszystkich.",
+    "hideAll": "Ukryj wszystko opcjonalne",
+    "showAll": "Pokaż wszystko"
+  },
+  "menu": {
+    "label": "Konto",
+    "preferences": "Preferencje",
+    "settings": "Ustawienia",
+    "logOut": "Wyloguj się",
+    "appearance": "Wygląd",
+    "accessibility": "Dostępność",
+    "simpleView": "Widok uproszczony",
+    "sessions": "Sesje",
+    "dialogTitle": "Preferencje i ustawienia"
+  },
+  "sessions": {
+    "unknownDevice": "Nieznane urządzenie",
+    "browserOn": "{browser} na {system}",
+    "intro": "Urządzenia i przeglądarki zalogowane na twoje konto. Wylogowanie jednego z nich kończy sesję od razu, łącznie z otwartą tam tablicą.",
+    "signOutFailed": "Nie udało się wylogować tej sesji",
+    "loadFailed": "Nie udało się wczytać twoich sesji",
+    "thisDevice": " · To urządzenie",
+    "activity": "Aktywna {active} · zalogowano {signedIn}",
+    "signOut": "Wyloguj",
+    "signOutOthers": "Wyloguj wszystkie inne urządzenia"
+  },
+  "language": {
+    "request": "Poproś o język…",
+    "intro": "Nie ma jeszcze twojego języka? Napisz twórcy, którego potrzebujesz. Tłumaczenia są dodawane na prośbę użytkowników.",
+    "which": "Język",
+    "pick": "Wybierz język…",
+    "note": "Uwagi (opcjonalnie)",
+    "notePlaceholder": "Coś do dodania, na przykład czy możesz pomóc w tłumaczeniu",
+    "send": "Wyślij prośbę",
+    "sending": "Wysyłanie…",
+    "sent": "Dzięki! Twoja prośba została wysłana do twórcy.",
+    "failed": "Nie udało się wysłać prośby"
+  }
+}

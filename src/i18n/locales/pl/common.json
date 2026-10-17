@@ -1,0 +1,59 @@
+{
+  "features": {
+    "labels": {
+      "label": "Etykiety",
+      "description": "Kolorowe etykiety na zadaniach, zarządzane osobno dla każdej tablicy.",
+      "show": "Pokaż etykiety"
+    },
+    "priorities": {
+      "label": "Priorytety",
+      "description": "Poziom priorytetu każdego zadania, od Critical do Ignorable.",
+      "show": "Pokaż priorytety"
+    },
+    "assignees": {
+      "label": "Osoby przypisane",
+      "description": "Przypisywanie członków do zadań.",
+      "show": "Pokaż osoby przypisane"
+    },
+    "comments": {
+      "label": "Komentarze",
+      "description": "Dyskusja przy każdym zadaniu.",
+      "show": "Pokaż komentarze"
+    },
+    "dueDates": {
+      "label": "Terminy",
+      "description": "Data i godzina, na kiedy każde zadanie ma być gotowe.",
+      "show": "Pokaż terminy"
+    },
+    "permissions": {
+      "label": "Uprawnienia niestandardowe",
+      "description": "Ustal, kto co może robić, na serwerze i na każdej tablicy. Gdy są wyłączone, dostęp wynika z uprawnień Discorda.",
+      "show": "Pokaż uprawnienia niestandardowe"
+    }
+  },
+  "requestFailed": "Żądanie nie powiodło się ({status})",
+  "notSignedIn": "Nie jesteś zalogowany.",
+  "cancel": "Anuluj",
+  "close": "Zamknij",
+  "loginWithDiscord": "Zaloguj się przez Discorda",
+  "deleting": "Usuwanie…",
+  "loading": "Ładowanie...",
+  "saving": "Zapisywanie…",
+  "change": "Zmień",
+  "closeModal": "Zamknij okno",
+  "save": "Zapisz",
+  "applying": "Stosowanie…",
+  "name": "Nazwa",
+  "description": "Opis",
+  "saveChanges": "Zapisz zmiany",
+  "add": "Dodaj",
+  "delete": "Usuń",
+  "deletingDots": "Usuwanie...",
+  "confirmNamed": "Potwierdź: {title}",
+  "creatingDots": "Tworzenie...",
+  "creating": "Tworzenie…",
+  "adding": "Dodawanie…",
+  "savingDots": "Zapisywanie...",
+  "changeNotSaved": "Nie udało się zapisać zmiany",
+  "loadingEllipsis": "Ładowanie…"
+}

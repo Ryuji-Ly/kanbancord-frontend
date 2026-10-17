@@ -1,0 +1,59 @@
+{
+  "features": {
+    "labels": {
+      "label": "Etichete",
+      "description": "Etichete colorate pe sarcini, gestionate pentru fiecare panou.",
+      "show": "Afișează etichetele"
+    },
+    "priorities": {
+      "label": "Priorități",
+      "description": "Un nivel de prioritate pe fiecare sarcină, de la Critical la Ignorable.",
+      "show": "Afișează prioritățile"
+    },
+    "assignees": {
+      "label": "Responsabili",
+      "description": "Atribuie membri sarcinilor.",
+      "show": "Afișează responsabilii"
+    },
+    "comments": {
+      "label": "Comentarii",
+      "description": "Discuții la fiecare sarcină.",
+      "show": "Afișează comentariile"
+    },
+    "dueDates": {
+      "label": "Termene limită",
+      "description": "Data și ora până la care trebuie gata fiecare sarcină.",
+      "show": "Afișează termenele limită"
+    },
+    "permissions": {
+      "label": "Permisiuni personalizate",
+      "description": "Stabilește cine ce poate face, pe server și pe fiecare panou. Cât timp sunt dezactivate, accesul urmează permisiunile din Discord.",
+      "show": "Afișează permisiunile personalizate"
+    }
+  },
+  "requestFailed": "Cererea a eșuat ({status})",
+  "notSignedIn": "Nu ești autentificat.",
+  "cancel": "Anulează",
+  "close": "Închide",
+  "loginWithDiscord": "Autentifică-te cu Discord",
+  "deleting": "Se șterge…",
+  "loading": "Se încarcă...",
+  "saving": "Se salvează…",
+  "change": "Schimbă",
+  "closeModal": "Închide fereastra",
+  "save": "Salvează",
+  "applying": "Se aplică…",
+  "name": "Nume",
+  "description": "Descriere",
+  "saveChanges": "Salvează modificările",
+  "add": "Adaugă",
+  "delete": "Șterge",
+  "deletingDots": "Se șterge...",
+  "confirmNamed": "Confirmă: {title}",
+  "creatingDots": "Se creează...",
+  "creating": "Se creează…",
+  "adding": "Se adaugă…",
+  "savingDots": "Se salvează...",
+  "changeNotSaved": "Modificarea nu a putut fi salvată",
+  "loadingEllipsis": "Se încarcă…"
+}
