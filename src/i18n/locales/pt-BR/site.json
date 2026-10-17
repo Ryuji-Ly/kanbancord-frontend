@@ -1,0 +1,166 @@
+{
+  "nav": {
+    "main": "Principal",
+    "site": "Site",
+    "breadcrumbs": "Navegação",
+    "guides": "Guias",
+    "faq": "Perguntas frequentes",
+    "open": "Abrir o KanbanCord",
+    "about": "Sobre",
+    "support": "Apoiar",
+    "supportServer": "Servidor de suporte",
+    "appDirectory": "Diretório de Apps",
+    "status": "Status",
+    "privacy": "Política de Privacidade",
+    "terms": "Termos de Serviço",
+    "addToDiscord": "Adicionar ao Discord"
+  },
+  "footer": {
+    "notAffiliated": "© {year} {operator}. O {name} não é afiliado ao Discord nem endossado por ele."
+  },
+  "landing": {
+    "metaTitle": "Quadros kanban para o Discord",
+    "metaDescription": "Um quadro kanban que vive no seu servidor do Discord: crie, mova e atribua tarefas com comandos de barra, receba atualizações nos seus canais e use o site para ter a visão geral.",
+    "title": "Um quadro kanban que vive no seu servidor do Discord",
+    "intro": "Planeje e acompanhe o trabalho onde a sua comunidade já conversa. Crie, mova e atribua tarefas com comandos de barra e receba atualizações nos seus canais. O site está lá quando você quer ter a visão geral.",
+    "signIn": "Entrar com o Discord",
+    "free": "Grátis. Sem anúncios. Sem rastreamento. Também no <link>Diretório de Apps do Discord</link>.",
+    "features": "Recursos",
+    "feature": {
+      "discord": {
+        "title": "Tudo pelo Discord",
+        "text": "Crie quadros e tarefas, mova e atribua, defina prazos e comente com comandos de barra. Sem precisar sair do chat."
+      },
+      "boards": {
+        "title": "Quadros kanban de verdade",
+        "text": "Colunas e tarefas com etiquetas, prioridades, prazos, responsáveis, comentários, checklists, imagens e vídeos."
+      },
+      "permissions": {
+        "title": "Suas permissões do Discord",
+        "text": "O acesso segue os cargos do seu servidor desde o início e pode ser ajustado por quadro e por pessoa no site."
+      },
+      "updates": {
+        "title": "Atualizações, não barulho",
+        "text": "Publique as alterações nos canais escolhidos e receba mensagens diretas sobre as suas tarefas, sem nunca ser mencionado duas vezes pela mesma coisa."
+      },
+      "website": {
+        "title": "A visão geral, quando você quiser",
+        "text": "O site mostra quadros inteiros de relance e reúne os ajustes finos, com cada alteração ao vivo para todos."
+      },
+      "comfort": {
+        "title": "Feito para ser confortável",
+        "text": "Temas, incluindo de alto contraste e seguros para daltônicos, tamanho do texto e um modo simples para equipes pequenas."
+      }
+    },
+    "usesTitle": "Não é só para o trabalho",
+    "uses": "O KanbanCord funciona igualmente bem para as listas que você mantém com as pessoas mais próximas: planos para fazer, filmes para ver, livros para ler, coisas para comprar. Crie um quadro em um servidor pequeno, deixe no modo simples e vão riscando as coisas juntos.",
+    "stepsTitle": "Comece em um minuto",
+    "step1": "<strong>Adicione o bot</strong> ao seu servidor.",
+    "step2": "<strong>Crie um quadro</strong> com <code>/board create</code>.",
+    "step3": "<strong>Adicione tarefas</strong> com <code>/task create</code> e use <code>/help</code> para ver o resto."
+  },
+  "about": {
+    "metaTitle": "Sobre",
+    "metaDescription": "O KanbanCord é um quadro kanban que vive no seu servidor do Discord: use tudo pelo bot e use o site para a visão geral e os ajustes finos.",
+    "title": "Sobre o {name}",
+    "p1": "O {name} é um quadro kanban que vive no seu servidor do Discord. A ideia é simples: a sua comunidade já conversa no Discord, então o planejamento também deveria acontecer lá. Crie quadros e colunas, adicione tarefas, faça elas avançarem, atribua pessoas, defina etiquetas, prioridades e prazos e discuta tudo nos comentários, tudo com os comandos de barra do bot, sem sair do chat. As atualizações chegam nos canais que você escolher e, para as suas tarefas, por mensagem direta.",
+    "p2": "A maioria das pessoas nunca precisa de mais nada. O site está lá quando você quer ver o quadro inteiro de relance, ou ajustar os detalhes: permissões detalhadas por quadro e por pessoa, as etiquetas e os níveis de prioridade de um quadro, quais recursos um servidor usa, exatamente quais atualizações você recebe e o registro de todas as alterações.",
+    "p3": "Ele segue os cargos e as permissões do Discord do seu servidor desde o início, então as pessoas certas veem e alteram os quadros certos sem precisar configurar nada duas vezes.",
+    "simpleTitle": "Só o que você escolher",
+    "simple": "Os servidores novos começam no <strong>modo simples</strong>: quadros, colunas e tarefas com título e descrição. Responsáveis, prazos com lembretes, prioridades, etiquetas, comentários e permissões personalizadas ficam desativados até que alguém que gerencia o servidor os ative com <code>/kanbancord features</code> ou nas configurações do servidor no site. Os recursos desativados não aparecem em lugar nenhum, nem no Discord nem no site: só aparecem os que você escolher. Cada quadro pode desativar recursos de novo para si mesmo, e cada pessoa pode ocultar mais coisas para si em Preferências → Visão simples. Desativar um recurso só o oculta; nada é excluído.",
+    "madeByTitle": "Feito por uma pessoa só",
+    "madeBy": "O {name} é desenvolvido e mantido por {operator}. Ele é grátis, não tem anúncios e não vende nem rastreia seus dados (veja a <privacy>Política de Privacidade</privacy>). Encontrou um problema ou tem uma ideia? Use <code>/report</code> no Discord. Tem dúvidas ou quer saber das novidades? Entre no <server>servidor de suporte</server>. Se quiser ajudar com os custos, veja <support>Apoiar</support>.",
+    "findTitle": "Encontre no Discord",
+    "find": "O {name} tem uma página própria no <directory>Diretório de Apps do Discord</directory>, de onde você pode adicioná-lo a um servidor direto pelo Discord. Se o site, o bot e tudo o que está por trás deles estão funcionando, e qualquer manutenção programada, aparece na <status>página de status</status>.",
+    "startTitle": "Comece",
+    "start1": "Adicione o bot ao seu servidor.",
+    "start2": "Crie um quadro com <code>/board create</code> e depois adicione tarefas com <code>/task create</code>.",
+    "start3": "Use <code>/help</code> para ver tudo o que o bot sabe fazer.",
+    "questions": "Dúvidas? Veja as <faq>perguntas frequentes</faq>.",
+    "translationsTitle": "Traduções",
+    "translations": "As traduções deste site foram produzidas com a ajuda de inteligência artificial generativa. Caso note algum erro ou uma formulação que possa ser melhorada, agradeceríamos se nos avisasse pelo <code>/report</code> no Discord ou pelo e-mail <email>{contact}</email>.",
+    "storyTitle": "Como surgiu",
+    "story1": "O KanbanCord começou com um projeto em grupo da faculdade, no ano letivo de 2024–2025. A disciplina exigia que usássemos a instalação do OpenProject da própria universidade e, na prática, só usávamos o quadro kanban dele, além do registro de horas que a disciplina pedia. Era uma fonte constante de atrito: ele travava a cada poucos minutos e, no pior dos casos, assim que voltava e você tentava fazer qualquer coisa, travava de novo. Também vivia desconectando a gente. Fora o tempo que passávamos no campus, o nosso grupo já coordenava tudo pelo Discord.",
+    "story2": "Meio de brincadeira, eu disse que conseguiria criar uma ferramenta melhor do que aquela bagunça, e alguns colegas de grupo disseram para eu fazer isso. Eu já tinha bastante experiência criando bots do Discord com discord.js, então, depois de algumas semanas pensando no assunto, e em parte por pura birra, criei um novo aplicativo no Discord Developer Portal enquanto o projeto ainda estava em andamento. A ideia era simples: um quadro kanban que vive onde a gente já estava conversando. É também por isso que o KanbanCord é antes de tudo uma ferramenta kanban, e não uma suíte completa de gestão de projetos: ele faz a parte de que realmente precisávamos, e faz isso onde as pessoas já estão.",
+    "story3": "Como estudante, trabalhei nele de vez em quando, com bastante procrastinação no meio. Depois de cerca de um ano desenvolvendo, descobri que existe outro bot com exatamente o mesmo nome, feito por j4asper. Os nossos aplicativos do Discord foram criados com apenas seis dias de diferença: <other>o dele</other> em 30 de outubro de 2024, o meu em 5 de novembro de 2024. Se você pesquisar KanbanCord no Discord, pode muito bem encontrar o dele; este site, e o bot que você pode adicionar por ele, são os feitos por {operator}.",
+    "story4": "A parte mais difícil, de longe, foi a base: como quadros, colunas, tarefas e permissões deviam se encaixar com os servidores, cargos e membros do próprio Discord. Acertar os modelos de domínio exigiu muita experimentação e reconstrução: cortar o que não era necessário e adicionar as tabelas e os campos que a minha visão pedia, conforme eu ia pensando em mais coisas que a ferramenta kanban podia fazer. Sinceramente, isso foi uns 80% do trabalho. Depois que a estrutura ficou definida, o resto veio surpreendentemente rápido: com um design sólido como base, a inteligência artificial generativa passou a ajudar de verdade no desenvolvimento dos recursos, porque seguia a estrutura existente e havia bem menos erros grandes para encontrar e corrigir à mão.",
+    "story5": "O projeto inteiro é de código aberto: o <bot>bot</bot>, o <website>site</website> e a <api>API</api> têm cada um seu próprio repositório no GitHub."
+  },
+  "support": {
+    "metaTitle": "Apoiar",
+    "metaDescription": "O KanbanCord é grátis para todos. Se você quiser ajudar com os custos, pode deixar uma doação voluntária no Ko-fi.",
+    "title": "Apoie o {name}",
+    "p1": "O {name} é grátis, não tem anúncios nem planos pagos, e vai continuar assim. É um projeto pessoal, desenvolvido e mantido por {operator}.",
+    "p2": "Se ele é útil para o seu servidor e você quer ajudar com os custos, como o domínio e os servidores de que vai precisar se crescer, pode deixar uma doação no Ko-fi.",
+    "kofi": "Apoiar no Ko-fi",
+    "goodToKnow": "Bom saber",
+    "voluntary": "As doações são totalmente voluntárias. Todo mundo recebe o mesmo {name}, doando ou não.",
+    "buysNothing": "Uma doação não compra recursos, limites, cargos, suporte prioritário nem nada mais.",
+    "payments": "Os pagamentos são feitos pelo Ko-fi e pelo PayPal, nunca pelo {name}. Não ligamos as doações à sua conta do Discord.",
+    "refunds": "Por regra, as doações não são reembolsáveis. Se você doou por engano, mande um e-mail para <email>{email}</email> e faremos o que pudermos.",
+    "notDonating": "Não doar está totalmente certo. Falar do {name} para outras pessoas, ou relatar um bug com <code>/report</code>, também ajuda."
+  },
+  "faq": {
+    "metaTitle": "Perguntas frequentes",
+    "metaDescription": "Respostas sobre o KanbanCord: preço, como adicionar o bot, permissões, comandos do Discord, notificações, envios e os seus dados.",
+    "title": "Perguntas frequentes",
+    "free": {
+      "q": "O {name} é grátis?",
+      "a": "Sim. Não há planos pagos nem anúncios, e os seus dados não são vendidos."
+    },
+    "start": {
+      "q": "Por onde eu começo?",
+      "a": "Adicione o bot e depois use <code>/guide</code> no Discord para um passo a passo. Os <guides>guias</guides> cobrem tudo, desde uma lista de tarefas compartilhada até lembretes e permissões."
+    },
+    "website": {
+      "q": "Eu preciso do site?",
+      "a": "Não. O {name} foi feito para ser usado inteiramente pelo Discord: crie quadros, colunas e tarefas, mova e atribua, defina etiquetas, prioridades e prazos, comente e escolha suas notificações, tudo com comandos de barra. O site serve para quando você quer ver o quadro inteiro de relance, ou ajustar as configurações."
+    },
+    "add": {
+      "q": "Como adiciono o bot ao meu servidor?",
+      "a": "Use \"Adicionar ao Discord\" no fim de qualquer página e escolha o servidor. Você precisa da permissão Gerenciar servidor nele. Depois crie um primeiro quadro com <code>/board create</code> e adicione tarefas com <code>/task create</code>."
+    },
+    "access": {
+      "q": "Quem pode ver e alterar os meus quadros?",
+      "a": "Por padrão, segue os cargos e as permissões do Discord do seu servidor: administradores e moderadores podem gerenciar os quadros, e os membros podem trabalhar com as tarefas. Os administradores do servidor podem mudar isso para o servidor inteiro ou por quadro, nas configurações do servidor e do quadro."
+    },
+    "servers": {
+      "q": "Por que o login pede a lista dos meus servidores?",
+      "a": "Para o {name} poder mostrar quais dos seus servidores você pode gerenciar e em quais pode adicionar o bot. Ele não lê suas mensagens."
+    },
+    "discord": {
+      "q": "O que posso fazer pelo Discord?",
+      "a": "Tudo o que você precisa no dia a dia: criar, ver, renomear e arquivar quadros; adicionar, renomear, reordenar e excluir colunas; criar, editar, mover e excluir tarefas; atribuir pessoas e cargos; definir etiquetas, prioridades e prazos; ler e escrever comentários; escolher suas notificações com <code>/notifications</code>; e, para quem gerencia o servidor, configurar canais de atualização com <code>/kanbancord</code>. Use <code>/help</code> no Discord para ver todos os comandos."
+    },
+    "websiteOnly": {
+      "q": "O que precisa do site?",
+      "a": "Os ajustes finos e a visão geral: ver um quadro inteiro de uma vez, regras de permissão por quadro e por pessoa, as etiquetas e os níveis de prioridade de um quadro, quais recursos um servidor usa, exatamente quais atualizações você recebe, temas e opções de acessibilidade, envio de imagens e vídeos e a consulta do registro de alterações."
+    },
+    "notifications": {
+      "q": "Como funcionam as notificações?",
+      "a": "Um servidor pode fazer o bot publicar atualizações nos canais escolhidos e espelhar o registro de alterações em um deles; as publicações de atualização podem mostrar a tarefa inteira com botões para movê-la, atribuir pessoas ou editá-la ali mesmo. Você também pode receber mensagens diretas sobre tarefas atribuídas a você, criadas por você ou que você segue, incluindo lembretes quando o prazo estiver perto. Se um canal já mencionou você por algo, você não recebe também uma mensagem direta. Escolha o que receber com <code>/notifications</code>, ou com mais detalhes em Configurações → Notificações no site. Quem gerencia o servidor configura os canais com <code>/kanbancord</code>."
+    },
+    "uploads": {
+      "q": "Onde ficam guardados as imagens e os vídeos enviados?",
+      "a": "No Imgur. Qualquer pessoa com o link pode vê-los, então não envie nada privado."
+    },
+    "data": {
+      "q": "Como apago os meus dados?",
+      "a": "Desconecte-se de todos os lugares em Configurações → Sessões e peça para apagarmos o resto em <email>{email}</email>. Os administradores do servidor podem excluir quadros, e remover o bot de um servidor faz ele parar de sincronizar esse servidor. Os detalhes estão na <privacy>Política de Privacidade</privacy>."
+    },
+    "help": {
+      "q": "Encontrei um bug, tenho uma ideia ou preciso de ajuda.",
+      "a": "Entre no <server>servidor de suporte do {name}</server> para tirar dúvidas e saber das novidades, ou use <code>/report</code> no Discord para enviar um relato direto ao desenvolvedor."
+    }
+  },
+  "guides": {
+    "metaTitle": "Guias",
+    "metaDescription": "Guias do KanbanCord: quadros kanban, listas de tarefas e acompanhamento de tarefas no Discord, do seu primeiro quadro aos lembretes, feeds e permissões.",
+    "title": "Guias",
+    "intro": "Como planejar e acompanhar o trabalho no seu servidor do Discord com o {name}: quadros kanban, listas de tarefas compartilhadas, tarefas para pessoas e cargos, prazos e lembretes. Quase tudo acontece com comandos de barra; alguns guias tratam do site.",
+    "inDiscord": "Já adicionou o bot? Use <code>/guide</code> no Discord para os mesmos passos, marcados conforme você avança.",
+    "tryTitle": "Experimente no seu servidor",
+    "try": "O {name} é grátis. Adicione ao seu servidor e depois use <code>/guide</code> para um passo a passo direto no Discord.",
+    "more": "Mais guias"
+  }
+}

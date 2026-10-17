@@ -1,0 +1,91 @@
+{
+  "boardFeatures": {
+    "title": "Modo simples",
+    "intro": "Desative o que este quadro não precisa; os outros quadros não são afetados. Desativar algo oculta o recurso e mantém os dados dele. As alterações aqui valem na hora.",
+    "everything": "Tudo o que o servidor permite",
+    "offForServer": "Desativado para o servidor inteiro, nas configurações do servidor."
+  },
+  "board": {
+    "loadFailed": "Não foi possível carregar as configurações do quadro"
+  },
+  "boardNotifications": {
+    "intro": "Os feeds de atualizações que publicam sobre este quadro. Cada um segue as próprias configurações das notificações do servidor até você alterar algo aqui, só para este quadro. As alterações são salvas na hora.",
+    "noFeeds": "Nenhum feed publica sobre este quadro. Quem gerencia o servidor adiciona feeds nas configurações do servidor.",
+    "followsFeed": "Segue as configurações do feed.",
+    "changes_one": "{count} alteração para este quadro.",
+    "changes_many": "{count} alterações para este quadro.",
+    "changes_other": "{count} alterações para este quadro.",
+    "useFeed": "Usar as configurações do feed",
+    "changed": "alterado"
+  },
+  "threads": {
+    "updatesBoth": "O tópico e o canal",
+    "updatesThread": "Só o tópico",
+    "updatesChannel": "Só o canal",
+    "title": "Tópicos das tarefas",
+    "intro": "Dê a cada tarefa o próprio tópico de discussão, em um dos canais de feed de atualizações deste quadro. Um tópico acompanha o título da tarefa e é arquivado quando a tarefa é excluída ou arquivada. As atualizações do feed sobre a tarefa, incluindo novos comentários, são publicadas nele como você escolher abaixo; as mensagens escritas no tópico ficam no Discord. As alterações são salvas na hora.",
+    "noFeed": "Este quadro ainda não tem um feed de atualizações. Adicione um nas configurações de notificação do servidor, ou com <code>/kanbancord feed</code> no Discord, e depois ative os tópicos aqui.",
+    "perTask": "Um tópico por tarefa",
+    "notWorking": "Ativado, mas sem funcionar: o canal escolhido não tem mais um feed para este quadro. Escolha outro canal com feed.",
+    "perTaskHint": "Cada tarefa ganha seu tópico na próxima vez que algo acontecer com ela.",
+    "channel": "Canal",
+    "channelWithoutFeed": "Um canal sem feed para este quadro",
+    "botCannot": " (o bot não pode criar tópicos aqui)",
+    "updatesGoTo": "As atualizações de uma tarefa vão para",
+    "private": "Tópicos privados",
+    "privateNotPossible": "Não é possível neste canal: tópicos privados precisam de um canal de texto em que o bot possa criar tópicos privados.",
+    "privateHint": "Só quem criou a tarefa e os responsáveis por ela ficam no tópico, mais os moderadores do servidor. Novos responsáveis são adicionados.",
+    "cannotMake": "O bot não pode criar tópicos em #{channel}, então as tarefas não ganham novos tópicos. Dê a ele Ver canal, Enviar mensagens em tópicos e Criar tópicos públicos lá, ou escolha outro canal.",
+    "cannotMakePrivate": "O bot não pode criar tópicos privados em #{channel}, então as tarefas não ganham novos tópicos. Dê a ele Ver canal, Enviar mensagens em tópicos e Criar tópicos privados lá, ou escolha outro canal."
+  },
+  "usage_one": "{count} tarefa",
+  "usage_many": "{count} tarefas",
+  "usage_other": "{count} tarefas",
+  "colourOf": "Cor de {name}",
+  "labels": {
+    "intro": "As etiquetas que podem ser colocadas nas tarefas deste quadro. As alterações aqui valem na hora.",
+    "none": "Nenhuma etiqueta ainda.",
+    "name": "Nome da etiqueta",
+    "newColour": "Cor da nova etiqueta",
+    "newPlaceholder": "Nova etiqueta, p. ex. frontend",
+    "add": "Adicionar etiqueta",
+    "deleteTitle": "Excluir etiqueta",
+    "deleteConfirm": "Excluir <strong>{name}</strong> deste quadro?",
+    "deleteUsage_one": " Ela vai ser removida da {count} tarefa que a usa.",
+    "deleteUsage_many": " Ela vai ser removida das {count} tarefas que a usam.",
+    "deleteUsage_other": " Ela vai ser removida das {count} tarefas que a usam."
+  },
+  "priorities": {
+    "title": "Prioridades",
+    "intro": "Os níveis de prioridade, do mais urgente para o menos urgente. Uma tarefa tem no máximo um. As alterações aqui valem na hora.",
+    "none": "Nenhum nível de prioridade. As tarefas deste quadro não têm prioridade.",
+    "moveUp": "Mover {name} para cima",
+    "moveDown": "Mover {name} para baixo",
+    "name": "Nome da prioridade",
+    "newColour": "Cor do novo nível",
+    "newPlaceholder": "Novo nível, adicionado no fim",
+    "add": "Adicionar nível",
+    "deleteTitle": "Excluir nível de prioridade",
+    "deleteConfirm": "Excluir <strong>{name}</strong>?",
+    "deleteUsage_one": " A {count} tarefa com essa prioridade vai ficar sem prioridade.",
+    "deleteUsage_many": " As {count} tarefas com essa prioridade vão ficar sem prioridade.",
+    "deleteUsage_other": " As {count} tarefas com essa prioridade vão ficar sem prioridade."
+  },
+  "features": {
+    "intro": "O modo simples mantém os quadros no essencial: colunas, e tarefas com título e descrição. Ative só o que este servidor precisa. Desativar algo oculta o recurso e mantém os dados dele.",
+    "enableEverything": "Ativar tudo",
+    "openFirst": "{description} Desative as permissões abertas primeiro.",
+    "open": "Permissões abertas",
+    "openLabel": "Todos podem fazer tudo",
+    "customFirst": "Desative as permissões personalizadas primeiro: as regras delas são guardadas para quando você voltar a ativá-las.",
+    "openHint": "Todos que podem falar neste servidor podem criar, alterar, mover e excluir colunas, tarefas, etiquetas e níveis de prioridade, quaisquer que sejam seus cargos. Gerenciar o servidor, as permissões dos quadros, excluir ou arquivar quadros e o registro de alterações continuam com quem gerencia o servidor.",
+    "confirmTitle": "Ativar as permissões abertas?",
+    "turnOn": "Ativar",
+    "turningOn": "Ativando...",
+    "confirm": "Todos que podem falar neste servidor vão poder criar, alterar, mover e excluir colunas, tarefas, etiquetas e níveis de prioridade, quaisquer que sejam seus cargos. Ideal para um grupo pequeno em que todos confiam uns nos outros."
+  },
+  "dialog": {
+    "sections": "Seções de {title}",
+    "close": "Fechar {title}"
+  }
+}

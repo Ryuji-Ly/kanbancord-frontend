@@ -1,0 +1,59 @@
+{
+  "features": {
+    "labels": {
+      "label": "Etiquetas",
+      "description": "Etiquetas coloridas nas tarefas, gerenciadas por quadro.",
+      "show": "Mostrar etiquetas"
+    },
+    "priorities": {
+      "label": "Prioridades",
+      "description": "Um nível de prioridade para cada tarefa, de Crítica a Ignorável.",
+      "show": "Mostrar prioridades"
+    },
+    "assignees": {
+      "label": "Responsáveis",
+      "description": "Atribua membros às tarefas.",
+      "show": "Mostrar responsáveis"
+    },
+    "comments": {
+      "label": "Comentários",
+      "description": "Uma discussão em cada tarefa.",
+      "show": "Mostrar comentários"
+    },
+    "dueDates": {
+      "label": "Prazos",
+      "description": "Uma data e hora de entrega para cada tarefa.",
+      "show": "Mostrar prazos"
+    },
+    "permissions": {
+      "label": "Permissões personalizadas",
+      "description": "Defina quem pode fazer o quê, por servidor e por quadro. Quando desativadas, o acesso segue as permissões do Discord.",
+      "show": "Mostrar permissões personalizadas"
+    }
+  },
+  "requestFailed": "A solicitação falhou ({status})",
+  "notSignedIn": "Você não está conectado.",
+  "cancel": "Cancelar",
+  "close": "Fechar",
+  "loginWithDiscord": "Entrar com o Discord",
+  "deleting": "Excluindo…",
+  "loading": "Carregando...",
+  "saving": "Salvando…",
+  "change": "Alterar",
+  "closeModal": "Fechar janela",
+  "save": "Salvar",
+  "applying": "Aplicando…",
+  "name": "Nome",
+  "description": "Descrição",
+  "saveChanges": "Salvar alterações",
+  "add": "Adicionar",
+  "delete": "Excluir",
+  "deletingDots": "Excluindo...",
+  "confirmNamed": "Confirmar: {title}",
+  "creatingDots": "Criando...",
+  "creating": "Criando…",
+  "adding": "Adicionando…",
+  "savingDots": "Salvando...",
+  "changeNotSaved": "Não foi possível salvar a alteração",
+  "loadingEllipsis": "Carregando…"
+}

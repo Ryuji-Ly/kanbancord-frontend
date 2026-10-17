@@ -1,0 +1,72 @@
+{
+  "categories": {
+    "SERVER": "Servidor",
+    "BOARD": "Quadros",
+    "COLUMN": "Colunas",
+    "TASK": "Tarefas",
+    "COMMENT": "Comentários",
+    "LABEL": "Etiquetas e prioridades"
+  },
+  "flags": {
+    "VIEW_CHANNEL": "Ver canais",
+    "MANAGE_GUILD": "Gerenciar servidor",
+    "VIEW_AUDIT_LOG": "Ver registro de auditoria"
+  },
+  "everyoneWith": "todos com {permission}",
+  "personally": "{name} pessoalmente",
+  "where": {
+    "default": "padrão",
+    "board": "este quadro",
+    "server": "servidor"
+  },
+  "why": {
+    "owner": "Permitido: o dono do servidor pode fazer tudo",
+    "admin": "Permitido: administradores podem fazer tudo",
+    "adminRule": "Permitido: administradores podem fazer tudo ({subject})",
+    "open": "Permitido: as permissões abertas deixam todos que podem falar fazer isso",
+    "none": "Negado: nenhuma regra permite",
+    "byDefault": "{result} pelo padrão para {subject}",
+    "byBoard": "{result} pela regra do quadro para {subject}",
+    "byServer": "{result} pela regra do servidor para {subject}"
+  },
+  "allowed": "Permitido",
+  "denied": "Negado",
+  "intro": "Veja o que alguém pode fazer e qual regra decide cada coisa. Escolha um membro para partir dos cargos dele e depois adicione ou remova cargos para ver o que mudaria. Ou verifique um conjunto de cargos por si só.",
+  "introBoard": "Veja o que alguém pode fazer neste quadro e qual regra decide cada coisa. Escolha um membro para partir dos cargos dele e depois adicione ou remova cargos para ver o que mudaria. Ou verifique um conjunto de cargos por si só.",
+  "check": "Verificar",
+  "aMember": "Um membro",
+  "rolesOnly": "Só cargos",
+  "searchMembers": "Pesquisar membros pelo nome",
+  "whereLabel": "Onde",
+  "serverWide": "Em todo o servidor",
+  "someonesRoles": "Cargos de {name}",
+  "theirRoles": "Os cargos dele",
+  "unknownRole": "Cargo desconhecido",
+  "without": "Sem {role}",
+  "thisRole": "este cargo",
+  "addRole": "Adicionar um cargo",
+  "addRoleOption": "Adicionar um cargo…",
+  "whatIf": "Mostrando {name} com cargos diferentes dos que tem.",
+  "them": "essa pessoa",
+  "realRoles": "Usar os cargos reais",
+  "start": "Pesquise um membro acima ou escolha Só cargos.",
+  "failed": "A verificação falhou",
+  "notes": {
+    "serverWide": "Em todo o servidor: o que vale em cada quadro que não tem regras próprias.",
+    "customOff": "As permissões personalizadas estão desativadas, então valem os padrões: o que cada permissão do Discord permite.",
+    "open": "As permissões abertas estão ativadas: todos que podem ver canais e enviar mensagens podem trabalhar com os quadros.",
+    "notMember": "{name} não está no servidor, então só contam as regras para essa pessoa.",
+    "discord": "Permissões do Discord que importam aqui: {permissions}."
+  },
+  "thisPerson": "Esta pessoa",
+  "show": "Mostrar",
+  "allowedCount_one": "Permitidas ({count})",
+  "allowedCount_many": "Permitidas ({count})",
+  "allowedCount_other": "Permitidas ({count})",
+  "deniedCount_one": "Negadas ({count})",
+  "deniedCount_many": "Negadas ({count})",
+  "deniedCount_other": "Negadas ({count})",
+  "outweighs": "Prevalece sobre: {rules}",
+  "overriddenAllow": "Permitir para {subject} ({where})",
+  "overriddenDeny": "Negar para {subject} ({where})"
+}
