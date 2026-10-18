@@ -25,8 +25,6 @@ export const SITE = {
     website: 'https://github.com/Ryuji-Ly/kanbancord-frontend',
     api: 'https://github.com/Ryuji-Ly/kanbancord-api',
   },
-  /** The unrelated bot that happens to share the name, mentioned in the About page's story. */
-  sameNameBotUrl: 'https://discord.com/discovery/applications/1301269207073165444',
   /** When the Privacy Policy last changed. */
   privacyUpdated: '11 October 2026',
   /** When the Terms of Service last changed. */

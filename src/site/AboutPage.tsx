@@ -72,7 +72,7 @@ export function AboutPage() {
         <Trans
           k="site.about.story3"
           values={SITE_VALUES}
-          tags={{ other: <a href={SITE.sameNameBotUrl} target="_blank" rel="noopener noreferrer" /> }}
+          tags={{ other: <span /> }}
         />
       </p>
       <p>{t('site.about.story4')}</p>

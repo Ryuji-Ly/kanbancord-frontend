@@ -5,9 +5,9 @@ import { SITE, SITE_VALUES } from './siteInfo'
 import { isActivity } from '../activity/detect'
 
 /**
- * The footer on every page but the board itself: about, help, the bot's App Directory page, status,
+ * The footer on every page but the board itself: about, help, status,
  * donations and the legal documents. Inside the Discord Activity the app is already in Discord, so
- * the links for finding and adding it are left out.
+ * the link for adding it is left out.
  */
 export function SiteFooter() {
   const inDiscord = isActivity()
@@ -21,11 +21,6 @@ export function SiteFooter() {
         <a href={SITE.supportServerUrl} target="_blank" rel="noopener noreferrer">
           {t('site.nav.supportServer')}
         </a>
-        {!inDiscord && (
-          <a href={SITE.appDirectoryUrl} target="_blank" rel="noopener noreferrer">
-            {t('site.nav.appDirectory')}
-          </a>
-        )}
         <a href={SITE.statusUrl} target="_blank" rel="noopener noreferrer">
           {t('site.nav.status')}
         </a>
