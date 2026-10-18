@@ -91,5 +91,38 @@
   "dialog": {
     "sections": "Části: {title}",
     "close": "Zavřít: {title}"
+  },
+  "transfer": {
+    "exportTitle": "Export",
+    "exportIntro": "Stáhněte si tuto nástěnku jako soubor, abyste si ponechali kopii nebo ji importovali jako novou nástěnku zde či na jiném serveru. Podrobnosti, sloupce a úkoly jsou v něm vždy.",
+    "parts": {
+      "labels": "Štítky",
+      "priorities": "Priority",
+      "assignees": "Řešitelé",
+      "comments": "Komentáře",
+      "permissions": "Pravidla oprávnění"
+    },
+    "download": "Stáhnout",
+    "preparing": "Připravuje se...",
+    "exportFailed": "Nástěnku se nepodařilo exportovat",
+    "exportInActivity": "V Discordu nelze stahovat soubory. Exportujte nástěnku na webu.",
+    "import": "Importovat",
+    "importTitle": "Importovat nástěnku",
+    "importIntro": "Vytvořte novou nástěnku ze souboru exportovaného z KanbanCordu. Podrobnosti, sloupce a úkoly se přenesou vždy.",
+    "chooseFile": "Soubor nástěnky",
+    "notAFile": "Toto není soubor nástěnky KanbanCord.",
+    "fileSummary": "Sloupce: {columns} · Úkoly: {tasks}",
+    "name": "Název nové nástěnky",
+    "alsoBring": "Přenést také:",
+    "importing": "Importuje se...",
+    "importFailed": "Nástěnku se nepodařilo importovat",
+    "imported": "Nástěnka {name} byla vytvořena.",
+    "skipped": {
+      "assignees": "Vynechaní řešitelé, kteří nejsou na tomto serveru: {count}",
+      "roles": "Vynechaná přiřazení rolí, které na tomto serveru nejsou: {count}",
+      "permissions": "Vynechaná pravidla oprávnění, o někom, kdo tu není, nebo s více právy, než můžete udělit: {count}",
+      "commentAuthors": "Komentáře lidí, kteří nejsou na tomto serveru, nyní od vás se jménem autora: {count}"
+    },
+    "openBoard": "Otevřít nástěnku"
   }
 }

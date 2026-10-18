@@ -87,5 +87,38 @@
   "dialog": {
     "sections": "Secțiunile {title}",
     "close": "Închide {title}"
+  },
+  "transfer": {
+    "exportTitle": "Export",
+    "exportIntro": "Descarcă acest panou ca fișier, ca să păstrezi o copie sau să-l imporți ca panou nou, aici sau în alt server. Detaliile, coloanele și sarcinile sunt mereu incluse.",
+    "parts": {
+      "labels": "Etichete",
+      "priorities": "Priorități",
+      "assignees": "Responsabili",
+      "comments": "Comentarii",
+      "permissions": "Reguli de permisiuni"
+    },
+    "download": "Descarcă",
+    "preparing": "Se pregătește...",
+    "exportFailed": "Panoul nu a putut fi exportat",
+    "exportInActivity": "În Discord nu se pot descărca fișiere. Exportă panoul de pe site.",
+    "import": "Importă",
+    "importTitle": "Importă un panou",
+    "importIntro": "Creează un panou nou dintr-un fișier exportat din KanbanCord. Detaliile, coloanele și sarcinile sunt preluate mereu.",
+    "chooseFile": "Fișierul panoului",
+    "notAFile": "Acesta nu este un fișier de panou KanbanCord.",
+    "fileSummary": "Coloane: {columns} · Sarcini: {tasks}",
+    "name": "Numele panoului nou",
+    "alsoBring": "Preia și:",
+    "importing": "Se importă...",
+    "importFailed": "Panoul nu a putut fi importat",
+    "imported": "{name} a fost creat.",
+    "skipped": {
+      "assignees": "Responsabili omiși, deoarece nu sunt în acest server: {count}",
+      "roles": "Atribuiri de roluri omise, deoarece rolurile nu există în acest server: {count}",
+      "permissions": "Reguli de permisiuni omise, despre cineva care nu e aici sau cu mai mult decât poți acorda: {count}",
+      "commentAuthors": "Comentarii ale unor persoane care nu sunt în acest server, acum publicate de tine cu numele autorului: {count}"
+    },
+    "openBoard": "Deschide panoul"
   }
 }

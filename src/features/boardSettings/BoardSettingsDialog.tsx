@@ -17,6 +17,7 @@ import {
   useServerPermissions,
   useServerRoles,
 } from '../server/serverQueries'
+import { BoardExportSettings } from '../boardTransfer/BoardExportSettings'
 import { BoardFeaturesSettings } from './BoardFeaturesSettings'
 import { BoardNotificationsSettings } from './BoardNotificationsSettings'
 import { BoardThreadsSettings } from './BoardThreadsSettings'
@@ -35,7 +36,7 @@ type BoardSettingsDialogProps = {
 
 /**
  * A board's settings: details, permissions, simple mode, notifications, checking who may do what,
- * labels, priority levels, and archiving or deleting it.
+ * labels, priority levels, exporting it, and archiving or deleting it.
  * The same dialog opens from the board page and from the dashboard. Each part shows only what the
  * user may change; simple mode, labels and priorities save as they change, details and permissions
  * on Save.
@@ -189,6 +190,9 @@ export function BoardSettingsDialog({ serverId, boardId, onClose, onDeleted, sho
           canManage={access.managePriorities}
           mutations={catalogMutations}
         />
+      )}
+      {snapshot && snapshot.permissions.VIEW_TASK?.allowed && (
+        <BoardExportSettings serverId={serverId} boardId={boardId} snapshot={snapshot} />
       )}
     </BoardModal>
   )

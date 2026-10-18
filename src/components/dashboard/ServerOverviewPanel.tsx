@@ -14,6 +14,7 @@ type ServerOverviewPanelProps = {
   /** Opens the server settings; the cog is shown only when given. */
   onOpenSettings?: () => void
   onOpenCreateBoard: () => void
+  onOpenImportBoard: () => void
   onOpenBoard: (board: BoardEntry) => void
   onOpenBoardSettings: (board: BoardEntry) => void
 }
@@ -26,6 +27,7 @@ export function ServerOverviewPanel({
   boardCapabilities,
   onOpenSettings,
   onOpenCreateBoard,
+  onOpenImportBoard,
   onOpenBoard,
   onOpenBoardSettings,
 }: ServerOverviewPanelProps) {
@@ -57,6 +59,7 @@ export function ServerOverviewPanel({
         canCreateBoard={canCreateBoard}
         boardCapabilities={boardCapabilities}
         onOpenCreate={onOpenCreateBoard}
+        onOpenImport={onOpenImportBoard}
         onOpenBoard={onOpenBoard}
         onOpenSettings={onOpenBoardSettings}
       />

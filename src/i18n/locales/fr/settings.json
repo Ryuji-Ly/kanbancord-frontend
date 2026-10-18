@@ -87,5 +87,38 @@
     "sections": "Sections : {title}",
     "close": "Fermer : {title}"
   },
-  "usage_many": "{count} tâches"
+  "usage_many": "{count} tâches",
+  "transfer": {
+    "exportTitle": "Exporter",
+    "exportIntro": "Téléchargez ce tableau sous forme de fichier, pour en garder une copie ou l'importer comme nouveau tableau, ici ou dans un autre serveur. Ses détails, colonnes et tâches sont toujours inclus.",
+    "parts": {
+      "labels": "Étiquettes",
+      "priorities": "Priorités",
+      "assignees": "Responsables",
+      "comments": "Commentaires",
+      "permissions": "Règles de permission"
+    },
+    "download": "Télécharger",
+    "preparing": "Préparation…",
+    "exportFailed": "Le tableau n'a pas pu être exporté",
+    "exportInActivity": "Impossible de télécharger des fichiers dans Discord. Exportez plutôt le tableau sur le site.",
+    "import": "Importer",
+    "importTitle": "Importer un tableau",
+    "importIntro": "Créez un nouveau tableau à partir d'un fichier exporté de KanbanCord. Ses détails, colonnes et tâches sont toujours repris.",
+    "chooseFile": "Fichier du tableau",
+    "notAFile": "Ce n'est pas un fichier de tableau KanbanCord.",
+    "fileSummary": "Colonnes : {columns} · Tâches : {tasks}",
+    "name": "Nom du nouveau tableau",
+    "alsoBring": "Reprendre aussi :",
+    "importing": "Importation…",
+    "importFailed": "Le tableau n'a pas pu être importé",
+    "imported": "{name} a été créé.",
+    "skipped": {
+      "assignees": "Responsables non repris, car absents de ce serveur : {count}",
+      "roles": "Rôles assignés non repris, car ces rôles ne sont pas dans ce serveur : {count}",
+      "permissions": "Règles de permission non reprises, concernant quelqu'un d'absent ou accordant plus que vous ne pouvez : {count}",
+      "commentAuthors": "Commentaires de personnes absentes de ce serveur, désormais publiés par vous en nommant leur auteur : {count}"
+    },
+    "openBoard": "Ouvrir le tableau"
+  }
 }

@@ -521,6 +521,34 @@ pre {
       color: var(--kc-heading);
     }
   }
+
+  &-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: flex-end;
+  }
+}
+
+/* Importing and exporting boards: a tick box per part of the file. */
+.kc-transfer-parts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin: 4px 0 12px;
+}
+
+.kc-transfer-part {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.kc-transfer-skipped {
+  margin: 8px 0 0;
+  padding-left: 20px;
+  color: var(--kc-muted);
 }
 
 .kc-board-toolbar {

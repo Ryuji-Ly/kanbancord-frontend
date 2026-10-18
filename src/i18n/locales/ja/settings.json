@@ -79,5 +79,38 @@
   "dialog": {
     "sections": "{title}のセクション",
     "close": "{title}を閉じる"
+  },
+  "transfer": {
+    "exportTitle": "エクスポート",
+    "exportIntro": "このボードをファイルとしてダウンロードし、コピーとして保存したり、このサーバーや別のサーバーで新しいボードとしてインポートしたりできます。ボードの詳細、列、タスクは常に含まれます。",
+    "parts": {
+      "labels": "ラベル",
+      "priorities": "優先度",
+      "assignees": "担当者",
+      "comments": "コメント",
+      "permissions": "権限ルール"
+    },
+    "download": "ダウンロード",
+    "preparing": "準備しています...",
+    "exportFailed": "ボードをエクスポートできませんでした",
+    "exportInActivity": "Discordの中ではファイルをダウンロードできません。ウェブサイトでボードをエクスポートしてください。",
+    "import": "インポート",
+    "importTitle": "ボードをインポート",
+    "importIntro": "KanbanCordからエクスポートしたファイルで新しいボードを作成します。ボードの詳細、列、タスクは常に取り込まれます。",
+    "chooseFile": "ボードのファイル",
+    "notAFile": "KanbanCordのボードファイルではありません。",
+    "fileSummary": "列：{columns} · タスク：{tasks}",
+    "name": "新しいボードの名前",
+    "alsoBring": "一緒に取り込むもの：",
+    "importing": "インポートしています...",
+    "importFailed": "ボードをインポートできませんでした",
+    "imported": "{name} を作成しました。",
+    "skipped": {
+      "assignees": "このサーバーにいないため除外された担当者：{count}",
+      "roles": "ロールがこのサーバーにないため除外されたロールの割り当て：{count}",
+      "permissions": "ここにいない人に関するもの、または付与できる範囲を超えるため除外された権限ルール：{count}",
+      "commentAuthors": "このサーバーにいない人のコメント（書いた人の名前付きで、あなたの投稿として追加）：{count}"
+    },
+    "openBoard": "ボードを開く"
   }
 }

@@ -91,5 +91,38 @@
   "dialog": {
     "sections": "Sekcje: {title}",
     "close": "Zamknij: {title}"
+  },
+  "transfer": {
+    "exportTitle": "Eksport",
+    "exportIntro": "Pobierz tę tablicę jako plik, aby zachować kopię lub zaimportować ją jako nową tablicę tutaj albo na innym serwerze. Szczegóły, kolumny i zadania są zawsze dołączone.",
+    "parts": {
+      "labels": "Etykiety",
+      "priorities": "Priorytety",
+      "assignees": "Osoby przypisane",
+      "comments": "Komentarze",
+      "permissions": "Reguły uprawnień"
+    },
+    "download": "Pobierz",
+    "preparing": "Przygotowywanie...",
+    "exportFailed": "Nie udało się wyeksportować tablicy",
+    "exportInActivity": "W Discordzie nie można pobierać plików. Wyeksportuj tablicę na stronie.",
+    "import": "Importuj",
+    "importTitle": "Importuj tablicę",
+    "importIntro": "Utwórz nową tablicę z pliku wyeksportowanego z KanbanCord. Szczegóły, kolumny i zadania są przenoszone zawsze.",
+    "chooseFile": "Plik tablicy",
+    "notAFile": "To nie jest plik tablicy KanbanCord.",
+    "fileSummary": "Kolumny: {columns} · Zadania: {tasks}",
+    "name": "Nazwa nowej tablicy",
+    "alsoBring": "Przenieś również:",
+    "importing": "Importowanie...",
+    "importFailed": "Nie udało się zaimportować tablicy",
+    "imported": "Utworzono {name}.",
+    "skipped": {
+      "assignees": "Pominięte osoby przypisane, których nie ma na tym serwerze: {count}",
+      "roles": "Pominięte przypisania ról, których nie ma na tym serwerze: {count}",
+      "permissions": "Pominięte reguły uprawnień, dotyczące kogoś spoza serwera lub dające więcej, niż możesz nadać: {count}",
+      "commentAuthors": "Komentarze osób spoza tego serwera, teraz dodane przez ciebie z podpisem autora: {count}"
+    },
+    "openBoard": "Otwórz tablicę"
   }
 }

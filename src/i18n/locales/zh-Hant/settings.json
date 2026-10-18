@@ -79,5 +79,38 @@
   "dialog": {
     "sections": "{title}區段",
     "close": "關閉{title}"
+  },
+  "transfer": {
+    "exportTitle": "匯出",
+    "exportIntro": "將此看板下載為檔案，用來保留副本，或在此伺服器或其他伺服器中作為新看板匯入。看板的詳細資料、欄和任務一律包含在內。",
+    "parts": {
+      "labels": "標籤",
+      "priorities": "優先順序",
+      "assignees": "負責人",
+      "comments": "留言",
+      "permissions": "權限規則"
+    },
+    "download": "下載",
+    "preparing": "正在準備...",
+    "exportFailed": "無法匯出看板",
+    "exportInActivity": "無法在 Discord 內下載檔案。請改在網站上匯出看板。",
+    "import": "匯入",
+    "importTitle": "匯入看板",
+    "importIntro": "用從 KanbanCord 匯出的檔案建立新看板。看板的詳細資料、欄和任務一律會一起匯入。",
+    "chooseFile": "看板檔案",
+    "notAFile": "這不是 KanbanCord 看板檔案。",
+    "fileSummary": "欄：{columns} · 任務：{tasks}",
+    "name": "新看板的名稱",
+    "alsoBring": "同時匯入：",
+    "importing": "正在匯入...",
+    "importFailed": "無法匯入看板",
+    "imported": "已建立 {name}。",
+    "skipped": {
+      "assignees": "因不在此伺服器中而略過的負責人：{count}",
+      "roles": "因身分組不在此伺服器中而略過的身分組指派：{count}",
+      "permissions": "因涉及不在此處的人或超出你可授予的權限而略過的權限規則：{count}",
+      "commentAuthors": "不在此伺服器中的人所發表的留言，現在以你的名義發布並註明作者：{count}"
+    },
+    "openBoard": "開啟看板"
   }
 }

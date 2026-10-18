@@ -79,5 +79,38 @@
   "dialog": {
     "sections": "Các mục của {title}",
     "close": "Đóng {title}"
+  },
+  "transfer": {
+    "exportTitle": "Xuất",
+    "exportIntro": "Tải bảng này xuống dưới dạng tệp để giữ một bản sao, hoặc nhập nó thành bảng mới ở đây hay ở máy chủ khác. Thông tin, các cột và công việc của bảng luôn có trong tệp.",
+    "parts": {
+      "labels": "Nhãn",
+      "priorities": "Mức ưu tiên",
+      "assignees": "Người phụ trách",
+      "comments": "Bình luận",
+      "permissions": "Quy tắc quyền"
+    },
+    "download": "Tải xuống",
+    "preparing": "Đang chuẩn bị...",
+    "exportFailed": "Không thể xuất bảng",
+    "exportInActivity": "Không thể tải tệp xuống bên trong Discord. Hãy xuất bảng trên trang web.",
+    "import": "Nhập",
+    "importTitle": "Nhập bảng",
+    "importIntro": "Tạo bảng mới từ một tệp đã xuất từ KanbanCord. Thông tin, các cột và công việc của bảng luôn được mang theo.",
+    "chooseFile": "Tệp bảng",
+    "notAFile": "Đây không phải là tệp bảng KanbanCord.",
+    "fileSummary": "Cột: {columns} · Công việc: {tasks}",
+    "name": "Tên bảng mới",
+    "alsoBring": "Mang theo cả:",
+    "importing": "Đang nhập...",
+    "importFailed": "Không thể nhập bảng",
+    "imported": "Đã tạo {name}.",
+    "skipped": {
+      "assignees": "Người phụ trách bị bỏ qua vì không có trong máy chủ này: {count}",
+      "roles": "Vai trò được giao bị bỏ qua vì vai trò không có trong máy chủ này: {count}",
+      "permissions": "Quy tắc quyền bị bỏ qua, về người không có ở đây hoặc vượt quá quyền bạn có thể cấp: {count}",
+      "commentAuthors": "Bình luận của người không có trong máy chủ này, nay do bạn đăng kèm tên người viết: {count}"
+    },
+    "openBoard": "Mở bảng"
   }
 }

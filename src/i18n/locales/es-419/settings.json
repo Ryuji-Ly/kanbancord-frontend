@@ -87,5 +87,38 @@
     "sections": "Secciones: {title}",
     "close": "Cerrar: {title}"
   },
-  "usage_many": "{count} tareas"
+  "usage_many": "{count} tareas",
+  "transfer": {
+    "exportTitle": "Exportar",
+    "exportIntro": "Descarga este tablero como archivo, para guardar una copia o importarlo como tablero nuevo, aquí o en otro servidor. Siempre incluye sus detalles, columnas y tareas.",
+    "parts": {
+      "labels": "Etiquetas",
+      "priorities": "Prioridades",
+      "assignees": "Responsables",
+      "comments": "Comentarios",
+      "permissions": "Reglas de permisos"
+    },
+    "download": "Descargar",
+    "preparing": "Preparando…",
+    "exportFailed": "No se pudo exportar el tablero",
+    "exportInActivity": "No se pueden descargar archivos dentro de Discord. Exporta el tablero desde la web.",
+    "import": "Importar",
+    "importTitle": "Importar un tablero",
+    "importIntro": "Crea un tablero nuevo a partir de un archivo exportado de KanbanCord. Sus detalles, columnas y tareas siempre se incluyen.",
+    "chooseFile": "Archivo del tablero",
+    "notAFile": "Esto no es un archivo de tablero de KanbanCord.",
+    "fileSummary": "Columnas: {columns} · Tareas: {tasks}",
+    "name": "Nombre del tablero nuevo",
+    "alsoBring": "Incluir también:",
+    "importing": "Importando…",
+    "importFailed": "No se pudo importar el tablero",
+    "imported": "Se creó {name}.",
+    "skipped": {
+      "assignees": "Responsables omitidos por no estar en este servidor: {count}",
+      "roles": "Asignaciones de rol omitidas porque los roles no están en este servidor: {count}",
+      "permissions": "Reglas de permisos omitidas, sobre alguien que no está aquí o con más de lo que puedes conceder: {count}",
+      "commentAuthors": "Comentarios de personas que no están en este servidor, ahora publicados por ti indicando quién los escribió: {count}"
+    },
+    "openBoard": "Abrir el tablero"
+  }
 }

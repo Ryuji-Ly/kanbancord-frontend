@@ -83,5 +83,38 @@
   "dialog": {
     "sections": "Bölümler: {title}",
     "close": "Kapat: {title}"
+  },
+  "transfer": {
+    "exportTitle": "Dışa aktar",
+    "exportIntro": "Bu panoyu bir dosya olarak indir; bir kopyasını saklamak ya da burada veya başka bir sunucuda yeni bir pano olarak içe aktarmak için. Bilgileri, sütunları ve görevleri her zaman içindedir.",
+    "parts": {
+      "labels": "Etiketler",
+      "priorities": "Öncelikler",
+      "assignees": "Atananlar",
+      "comments": "Yorumlar",
+      "permissions": "İzin kuralları"
+    },
+    "download": "İndir",
+    "preparing": "Hazırlanıyor…",
+    "exportFailed": "Pano dışa aktarılamadı",
+    "exportInActivity": "Discord içinde dosya indirilemez. Panoyu web sitesinden dışa aktar.",
+    "import": "İçe aktar",
+    "importTitle": "Pano içe aktar",
+    "importIntro": "KanbanCord'dan dışa aktarılmış bir dosyadan yeni bir pano oluştur. Bilgileri, sütunları ve görevleri her zaman gelir.",
+    "chooseFile": "Pano dosyası",
+    "notAFile": "Bu bir KanbanCord pano dosyası değil.",
+    "fileSummary": "Sütunlar: {columns} · Görevler: {tasks}",
+    "name": "Yeni panonun adı",
+    "alsoBring": "Bunları da getir:",
+    "importing": "İçe aktarılıyor…",
+    "importFailed": "Pano içe aktarılamadı",
+    "imported": "{name} oluşturuldu.",
+    "skipped": {
+      "assignees": "Bu sunucuda olmadıkları için dışarıda bırakılan atananlar: {count}",
+      "roles": "Roller bu sunucuda olmadığı için dışarıda bırakılan rol atamaları: {count}",
+      "permissions": "Burada olmayan biriyle ilgili ya da verebileceğinden fazlasını veren, dışarıda bırakılan izin kuralları: {count}",
+      "commentAuthors": "Bu sunucuda olmayan kişilerin yorumları, artık yazanın adıyla senin adına paylaşıldı: {count}"
+    },
+    "openBoard": "Panoyu aç"
   }
 }

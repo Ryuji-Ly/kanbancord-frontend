@@ -87,5 +87,38 @@
   "dialog": {
     "sections": "Sezioni di {title}",
     "close": "Chiudi {title}"
+  },
+  "transfer": {
+    "exportTitle": "Esporta",
+    "exportIntro": "Scarica questa bacheca come file, per tenerne una copia o importarla come nuova bacheca, qui o in un altro server. Dettagli, colonne e attività sono sempre inclusi.",
+    "parts": {
+      "labels": "Etichette",
+      "priorities": "Priorità",
+      "assignees": "Assegnatari",
+      "comments": "Commenti",
+      "permissions": "Regole dei permessi"
+    },
+    "download": "Scarica",
+    "preparing": "Preparazione...",
+    "exportFailed": "Impossibile esportare la bacheca",
+    "exportInActivity": "Non è possibile scaricare file dentro Discord. Esporta la bacheca dal sito.",
+    "import": "Importa",
+    "importTitle": "Importa una bacheca",
+    "importIntro": "Crea una nuova bacheca da un file esportato da KanbanCord. Dettagli, colonne e attività vengono sempre inclusi.",
+    "chooseFile": "File della bacheca",
+    "notAFile": "Questo non è un file di bacheca KanbanCord.",
+    "fileSummary": "Colonne: {columns} · Attività: {tasks}",
+    "name": "Nome della nuova bacheca",
+    "alsoBring": "Includi anche:",
+    "importing": "Importazione...",
+    "importFailed": "Impossibile importare la bacheca",
+    "imported": "{name} è stata creata.",
+    "skipped": {
+      "assignees": "Assegnatari esclusi perché non sono in questo server: {count}",
+      "roles": "Ruoli assegnati esclusi perché i ruoli non sono in questo server: {count}",
+      "permissions": "Regole dei permessi escluse, su qualcuno che non è qui o con più di quanto puoi concedere: {count}",
+      "commentAuthors": "Commenti di persone che non sono in questo server, ora pubblicati da te con il nome di chi li ha scritti: {count}"
+    },
+    "openBoard": "Apri la bacheca"
   }
 }

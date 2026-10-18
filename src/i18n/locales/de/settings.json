@@ -83,5 +83,38 @@
   "dialog": {
     "sections": "Bereiche: {title}",
     "close": "{title} schließen"
+  },
+  "transfer": {
+    "exportTitle": "Exportieren",
+    "exportIntro": "Lade dieses Board als Datei herunter, um eine Kopie zu behalten oder es als neues Board zu importieren, hier oder in einem anderen Server. Details, Spalten und Aufgaben sind immer enthalten.",
+    "parts": {
+      "labels": "Labels",
+      "priorities": "Prioritäten",
+      "assignees": "Zuständige",
+      "comments": "Kommentare",
+      "permissions": "Berechtigungsregeln"
+    },
+    "download": "Herunterladen",
+    "preparing": "Wird vorbereitet …",
+    "exportFailed": "Das Board konnte nicht exportiert werden",
+    "exportInActivity": "In Discord können keine Dateien heruntergeladen werden. Exportiere das Board stattdessen auf der Website.",
+    "import": "Importieren",
+    "importTitle": "Ein Board importieren",
+    "importIntro": "Erstelle ein neues Board aus einer Datei, die aus KanbanCord exportiert wurde. Details, Spalten und Aufgaben kommen immer mit.",
+    "chooseFile": "Board-Datei",
+    "notAFile": "Das ist keine KanbanCord-Board-Datei.",
+    "fileSummary": "Spalten: {columns} · Aufgaben: {tasks}",
+    "name": "Name des neuen Boards",
+    "alsoBring": "Außerdem übernehmen:",
+    "importing": "Wird importiert …",
+    "importFailed": "Das Board konnte nicht importiert werden",
+    "imported": "{name} wurde erstellt.",
+    "skipped": {
+      "assignees": "Weggelassene Zuständige, da nicht in diesem Server: {count}",
+      "roles": "Weggelassene Rollenzuweisungen, da die Rollen nicht in diesem Server sind: {count}",
+      "permissions": "Weggelassene Berechtigungsregeln, zu jemandem außerhalb dieses Servers oder mit mehr Rechten, als du vergeben darfst: {count}",
+      "commentAuthors": "Kommentare von Personen außerhalb dieses Servers, jetzt von dir gepostet und mit Namen der Verfasser: {count}"
+    },
+    "openBoard": "Board öffnen"
   }
 }

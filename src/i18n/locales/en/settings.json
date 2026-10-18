@@ -83,5 +83,38 @@
   "dialog": {
     "sections": "{title} sections",
     "close": "Close {title}"
+  },
+  "transfer": {
+    "exportTitle": "Export",
+    "exportIntro": "Download this board as a file, to keep a copy or to import it as a new board, here or in another server. Its details, columns and tasks are always in it.",
+    "parts": {
+      "labels": "Labels",
+      "priorities": "Priorities",
+      "assignees": "Assignees",
+      "comments": "Comments",
+      "permissions": "Permission rules"
+    },
+    "download": "Download",
+    "preparing": "Preparing...",
+    "exportFailed": "The board could not be exported",
+    "exportInActivity": "Files cannot be downloaded inside Discord. Export the board on the website instead.",
+    "import": "Import",
+    "importTitle": "Import a board",
+    "importIntro": "Create a new board from a file exported from KanbanCord. Its details, columns and tasks always come along.",
+    "chooseFile": "Board file",
+    "notAFile": "This is not a KanbanCord board file.",
+    "fileSummary": "Columns: {columns} · Tasks: {tasks}",
+    "name": "Name of the new board",
+    "alsoBring": "Also bring in:",
+    "importing": "Importing...",
+    "importFailed": "The board could not be imported",
+    "imported": "{name} was created.",
+    "skipped": {
+      "assignees": "Assignees left out, as they are not in this server: {count}",
+      "roles": "Role assignments left out, as the roles are not in this server: {count}",
+      "permissions": "Permission rules left out, about someone not in this server or more than you may set: {count}",
+      "commentAuthors": "Comments by people not in this server, now posted by you and naming who wrote them: {count}"
+    },
+    "openBoard": "Open the board"
   }
 }

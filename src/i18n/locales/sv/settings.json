@@ -83,5 +83,38 @@
   "dialog": {
     "sections": "Delar av {title}",
     "close": "Stäng {title}"
+  },
+  "transfer": {
+    "exportTitle": "Exportera",
+    "exportIntro": "Ladda ner tavlan som en fil, för att spara en kopia eller importera den som en ny tavla, här eller på en annan server. Uppgifterna, kolumnerna och uppgifterna på tavlan följer alltid med.",
+    "parts": {
+      "labels": "Etiketter",
+      "priorities": "Prioriteter",
+      "assignees": "Tilldelade",
+      "comments": "Kommentarer",
+      "permissions": "Behörighetsregler"
+    },
+    "download": "Ladda ner",
+    "preparing": "Förbereder...",
+    "exportFailed": "Tavlan kunde inte exporteras",
+    "exportInActivity": "Det går inte att ladda ner filer i Discord. Exportera tavlan på webbplatsen i stället.",
+    "import": "Importera",
+    "importTitle": "Importera en tavla",
+    "importIntro": "Skapa en ny tavla från en fil som exporterats från KanbanCord. Tavlans uppgifter, kolumner och uppgifter följer alltid med.",
+    "chooseFile": "Tavelfil",
+    "notAFile": "Det här är ingen KanbanCord-tavelfil.",
+    "fileSummary": "Kolumner: {columns} · Uppgifter: {tasks}",
+    "name": "Den nya tavlans namn",
+    "alsoBring": "Ta även med:",
+    "importing": "Importerar...",
+    "importFailed": "Tavlan kunde inte importeras",
+    "imported": "{name} har skapats.",
+    "skipped": {
+      "assignees": "Utelämnade tilldelade, eftersom de inte är med på servern: {count}",
+      "roles": "Utelämnade rolltilldelningar, eftersom rollerna inte finns på servern: {count}",
+      "permissions": "Utelämnade behörighetsregler, om någon som inte är här eller med mer än du får ge: {count}",
+      "commentAuthors": "Kommentarer från personer som inte är med på servern, nu postade av dig med skribentens namn: {count}"
+    },
+    "openBoard": "Öppna tavlan"
   }
 }

@@ -79,5 +79,38 @@
   "dialog": {
     "sections": "섹션: {title}",
     "close": "닫기: {title}"
+  },
+  "transfer": {
+    "exportTitle": "내보내기",
+    "exportIntro": "이 보드를 파일로 내려받아 사본을 보관하거나, 이 서버나 다른 서버에서 새 보드로 가져올 수 있습니다. 보드 정보, 열, 작업은 항상 포함됩니다.",
+    "parts": {
+      "labels": "라벨",
+      "priorities": "우선순위",
+      "assignees": "담당자",
+      "comments": "댓글",
+      "permissions": "권한 규칙"
+    },
+    "download": "내려받기",
+    "preparing": "준비 중…",
+    "exportFailed": "보드를 내보내지 못했습니다",
+    "exportInActivity": "Discord 안에서는 파일을 내려받을 수 없습니다. 웹사이트에서 보드를 내보내세요.",
+    "import": "가져오기",
+    "importTitle": "보드 가져오기",
+    "importIntro": "KanbanCord에서 내보낸 파일로 새 보드를 만듭니다. 보드 정보, 열, 작업은 항상 함께 가져옵니다.",
+    "chooseFile": "보드 파일",
+    "notAFile": "KanbanCord 보드 파일이 아닙니다.",
+    "fileSummary": "열: {columns} · 작업: {tasks}",
+    "name": "새 보드 이름",
+    "alsoBring": "함께 가져올 항목:",
+    "importing": "가져오는 중…",
+    "importFailed": "보드를 가져오지 못했습니다",
+    "imported": "{name} 보드를 만들었습니다.",
+    "skipped": {
+      "assignees": "이 서버에 없어 제외된 담당자: {count}",
+      "roles": "역할이 이 서버에 없어 제외된 역할 배정: {count}",
+      "permissions": "여기 없는 사람에 대한 규칙이거나 내가 줄 수 있는 것보다 큰 권한이라 제외된 권한 규칙: {count}",
+      "commentAuthors": "이 서버에 없는 사람이 쓴 댓글로, 작성자 이름과 함께 내 이름으로 게시됨: {count}"
+    },
+    "openBoard": "보드 열기"
   }
 }

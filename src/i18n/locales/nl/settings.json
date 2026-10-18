@@ -83,5 +83,38 @@
   "dialog": {
     "sections": "Onderdelen van {title}",
     "close": "{title} sluiten"
+  },
+  "transfer": {
+    "exportTitle": "Exporteren",
+    "exportIntro": "Download dit bord als bestand, om een kopie te bewaren of het als nieuw bord te importeren, hier of in een andere server. De gegevens, kolommen en taken zitten er altijd in.",
+    "parts": {
+      "labels": "Labels",
+      "priorities": "Prioriteiten",
+      "assignees": "Toegewezen personen",
+      "comments": "Reacties",
+      "permissions": "Rechtenregels"
+    },
+    "download": "Downloaden",
+    "preparing": "Voorbereiden...",
+    "exportFailed": "Het bord kon niet worden geëxporteerd",
+    "exportInActivity": "In Discord kun je geen bestanden downloaden. Exporteer het bord op de website.",
+    "import": "Importeren",
+    "importTitle": "Een bord importeren",
+    "importIntro": "Maak een nieuw bord van een bestand dat uit KanbanCord is geëxporteerd. De gegevens, kolommen en taken komen altijd mee.",
+    "chooseFile": "Bordbestand",
+    "notAFile": "Dit is geen KanbanCord-bordbestand.",
+    "fileSummary": "Kolommen: {columns} · Taken: {tasks}",
+    "name": "Naam van het nieuwe bord",
+    "alsoBring": "Ook meenemen:",
+    "importing": "Importeren...",
+    "importFailed": "Het bord kon niet worden geïmporteerd",
+    "imported": "{name} is gemaakt.",
+    "skipped": {
+      "assignees": "Weggelaten toegewezen personen, omdat ze niet in deze server zitten: {count}",
+      "roles": "Weggelaten roltoewijzingen, omdat de rollen niet in deze server bestaan: {count}",
+      "permissions": "Weggelaten rechtenregels, over iemand die hier niet is of met meer dan jij mag geven: {count}",
+      "commentAuthors": "Reacties van mensen die niet in deze server zitten, nu door jou geplaatst met de naam van de schrijver: {count}"
+    },
+    "openBoard": "Bord openen"
   }
 }

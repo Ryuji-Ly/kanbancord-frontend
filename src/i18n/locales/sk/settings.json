@@ -91,5 +91,38 @@
     "sections": "Sekcie: {title}",
     "close": "Zavrieť: {title}"
   },
-  "usage_many": "{count} úloh"
+  "usage_many": "{count} úloh",
+  "transfer": {
+    "exportTitle": "Export",
+    "exportIntro": "Stiahnite si túto nástenku ako súbor, aby ste si nechali kópiu alebo ju importovali ako novú nástenku tu či na inom serveri. Podrobnosti, stĺpce a úlohy sú v ňom vždy.",
+    "parts": {
+      "labels": "Štítky",
+      "priorities": "Priority",
+      "assignees": "Riešitelia",
+      "comments": "Komentáre",
+      "permissions": "Pravidlá oprávnení"
+    },
+    "download": "Stiahnuť",
+    "preparing": "Pripravuje sa…",
+    "exportFailed": "Nástenku sa nepodarilo exportovať",
+    "exportInActivity": "V Discorde nemožno sťahovať súbory. Exportujte nástenku na webe.",
+    "import": "Importovať",
+    "importTitle": "Importovať nástenku",
+    "importIntro": "Vytvorte novú nástenku zo súboru exportovaného z KanbanCordu. Podrobnosti, stĺpce a úlohy sa prenesú vždy.",
+    "chooseFile": "Súbor nástenky",
+    "notAFile": "Toto nie je súbor nástenky KanbanCord.",
+    "fileSummary": "Stĺpce: {columns} · Úlohy: {tasks}",
+    "name": "Názov novej nástenky",
+    "alsoBring": "Preniesť aj:",
+    "importing": "Importuje sa…",
+    "importFailed": "Nástenku sa nepodarilo importovať",
+    "imported": "Nástenka {name} bola vytvorená.",
+    "skipped": {
+      "assignees": "Vynechaní riešitelia, ktorí nie sú na tomto serveri: {count}",
+      "roles": "Vynechané priradenia rolí, ktoré na tomto serveri nie sú: {count}",
+      "permissions": "Vynechané pravidlá oprávnení, o niekom, kto tu nie je, alebo s väčšími právami, než môžete udeliť: {count}",
+      "commentAuthors": "Komentáre ľudí, ktorí nie sú na tomto serveri, teraz od vás s menom autora: {count}"
+    },
+    "openBoard": "Otvoriť nástenku"
+  }
 }

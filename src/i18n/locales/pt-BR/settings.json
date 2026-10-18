@@ -87,5 +87,38 @@
   "dialog": {
     "sections": "Seções de {title}",
     "close": "Fechar {title}"
+  },
+  "transfer": {
+    "exportTitle": "Exportar",
+    "exportIntro": "Baixe este quadro como arquivo, para guardar uma cópia ou importá-lo como um quadro novo, aqui ou em outro servidor. Os detalhes, colunas e tarefas vão sempre junto.",
+    "parts": {
+      "labels": "Etiquetas",
+      "priorities": "Prioridades",
+      "assignees": "Responsáveis",
+      "comments": "Comentários",
+      "permissions": "Regras de permissão"
+    },
+    "download": "Baixar",
+    "preparing": "Preparando...",
+    "exportFailed": "Não foi possível exportar o quadro",
+    "exportInActivity": "Não é possível baixar arquivos dentro do Discord. Exporte o quadro pelo site.",
+    "import": "Importar",
+    "importTitle": "Importar um quadro",
+    "importIntro": "Crie um quadro novo a partir de um arquivo exportado do KanbanCord. Os detalhes, colunas e tarefas sempre vêm junto.",
+    "chooseFile": "Arquivo do quadro",
+    "notAFile": "Este não é um arquivo de quadro do KanbanCord.",
+    "fileSummary": "Colunas: {columns} · Tarefas: {tasks}",
+    "name": "Nome do quadro novo",
+    "alsoBring": "Trazer também:",
+    "importing": "Importando...",
+    "importFailed": "Não foi possível importar o quadro",
+    "imported": "{name} foi criado.",
+    "skipped": {
+      "assignees": "Responsáveis deixados de fora, por não estarem neste servidor: {count}",
+      "roles": "Atribuições de cargo deixadas de fora, porque os cargos não existem neste servidor: {count}",
+      "permissions": "Regras de permissão deixadas de fora, sobre alguém que não está aqui ou com mais do que você pode conceder: {count}",
+      "commentAuthors": "Comentários de pessoas que não estão neste servidor, agora publicados por você com o nome de quem escreveu: {count}"
+    },
+    "openBoard": "Abrir o quadro"
   }
 }

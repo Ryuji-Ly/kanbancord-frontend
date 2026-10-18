@@ -79,5 +79,38 @@
   "dialog": {
     "sections": "{title}分区",
     "close": "关闭{title}"
+  },
+  "transfer": {
+    "exportTitle": "导出",
+    "exportIntro": "将此看板下载为文件，用于保留副本，或在此服务器或其他服务器中作为新看板导入。看板的详情、列和任务始终包含在内。",
+    "parts": {
+      "labels": "标签",
+      "priorities": "优先级",
+      "assignees": "负责人",
+      "comments": "评论",
+      "permissions": "权限规则"
+    },
+    "download": "下载",
+    "preparing": "正在准备...",
+    "exportFailed": "无法导出看板",
+    "exportInActivity": "无法在 Discord 内下载文件。请改在网站上导出看板。",
+    "import": "导入",
+    "importTitle": "导入看板",
+    "importIntro": "用从 KanbanCord 导出的文件创建新看板。看板的详情、列和任务始终会一起导入。",
+    "chooseFile": "看板文件",
+    "notAFile": "这不是 KanbanCord 看板文件。",
+    "fileSummary": "列：{columns} · 任务：{tasks}",
+    "name": "新看板的名称",
+    "alsoBring": "同时导入：",
+    "importing": "正在导入...",
+    "importFailed": "无法导入看板",
+    "imported": "已创建 {name}。",
+    "skipped": {
+      "assignees": "因不在此服务器中而略过的负责人：{count}",
+      "roles": "因身份组不在此服务器中而略过的身份组指派：{count}",
+      "permissions": "因涉及不在此处的人或超出你可授予的权限而略过的权限规则：{count}",
+      "commentAuthors": "不在此服务器中的人发表的评论，现在以你的名义发布并注明作者：{count}"
+    },
+    "openBoard": "打开看板"
   }
 }

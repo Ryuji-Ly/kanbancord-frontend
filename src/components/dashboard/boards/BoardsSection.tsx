@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { FiPlus } from 'react-icons/fi'
+import { FiPlus, FiUpload } from 'react-icons/fi'
 import { t } from '../../../i18n'
 import type { BoardEntry } from '../../../services/boardsService'
 import { BoardCard } from './BoardCard'
@@ -20,6 +20,7 @@ type BoardsSectionProps = {
   canCreateBoard: boolean
   boardCapabilities: Record<string, BoardCapability>
   onOpenCreate: () => void
+  onOpenImport: () => void
   onOpenBoard: (board: BoardEntry) => void
   onOpenSettings: (board: BoardEntry) => void
 }
@@ -30,6 +31,7 @@ export function BoardsSection({
   canCreateBoard,
   boardCapabilities,
   onOpenCreate,
+  onOpenImport,
   onOpenBoard,
   onOpenSettings,
 }: BoardsSectionProps) {
@@ -60,9 +62,14 @@ export function BoardsSection({
           <p className="kc-muted">{t('dashboard.boards.intro')}</p>
         </div>
         {canCreateBoard && (
-          <button type="button" className="kc-btn kc-btn-primary" onClick={onOpenCreate}>
-            <FiPlus aria-hidden="true" /> {t('dashboard.boards.create')}
-          </button>
+          <div className="kc-board-section-actions">
+            <button type="button" className="kc-btn kc-btn-ghost" onClick={onOpenImport}>
+              <FiUpload aria-hidden="true" /> {t('settings.transfer.import')}
+            </button>
+            <button type="button" className="kc-btn kc-btn-primary" onClick={onOpenCreate}>
+              <FiPlus aria-hidden="true" /> {t('dashboard.boards.create')}
+            </button>
+          </div>
         )}
       </div>
 

@@ -19,6 +19,7 @@ import { AddEntryModal } from '../../components/dashboard/AddEntryModal'
 import { BoardModal } from '../../components/dashboard/boards/BoardModal'
 import { BoardSettingsDialog } from '../boardSettings/BoardSettingsDialog'
 import { AuditLogSection } from '../audit/AuditLogSection'
+import { ImportBoardDialog } from '../boardTransfer/ImportBoardDialog'
 import { FeaturesSettings } from '../serverSettings/FeaturesSettings'
 import { NO_FEATURES } from '../../services/featuresService'
 import { ServerSettingsDialog, type ServerSettingsSection } from '../serverSettings/ServerSettingsDialog'
@@ -95,6 +96,7 @@ export function ServerWorkspace({ serverId, server, showError, showToast }: Serv
 
   // ── Permission list ─────────────────────────────────────────────────────
   const [showSettings, setShowSettings] = useState(false)
+  const [importing, setImporting] = useState(false)
   const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set())
   const [permFilter, setPermFilter] = useState('')
   const [openAddGroupKey, setOpenAddGroupKey] = useState('')
@@ -495,6 +497,7 @@ export function ServerWorkspace({ serverId, server, showError, showToast }: Serv
         boardCapabilities={capabilities}
         onOpenSettings={settingsSections.length > 0 ? () => setShowSettings(true) : undefined}
         onOpenCreateBoard={() => void openCreateBoard()}
+        onOpenImportBoard={() => setImporting(true)}
         onOpenBoard={(board) => navigate(`/boards/${board.boardId}?serverId=${encodeURIComponent(serverId)}`)}
         onOpenBoardSettings={openBoardSettings}
       />
@@ -536,6 +539,15 @@ export function ServerWorkspace({ serverId, server, showError, showToast }: Serv
         onCyclePermState={cyclePermState}
         onSave={saveAddModal}
       />
+
+      {importing && (
+        <ImportBoardDialog
+          serverId={serverId}
+          onClose={() => setImporting(false)}
+          onImported={() => void queryClient.invalidateQueries({ queryKey: serverKeys.boards(serverId) })}
+          onOpenBoard={(boardId) => navigate(`/boards/${boardId}?serverId=${encodeURIComponent(serverId)}`)}
+        />
+      )}
 
       {settingsBoardId && (
         <BoardSettingsDialog

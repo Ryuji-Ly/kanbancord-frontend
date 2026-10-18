@@ -83,5 +83,38 @@
   "dialog": {
     "sections": "{title} – részek",
     "close": "{title} bezárása"
+  },
+  "transfer": {
+    "exportTitle": "Exportálás",
+    "exportIntro": "Töltsd le ezt a táblát fájlként, hogy legyen róla másolatod, vagy új táblaként importáld itt vagy egy másik szerveren. Az adatai, oszlopai és feladatai mindig benne vannak.",
+    "parts": {
+      "labels": "Címkék",
+      "priorities": "Prioritások",
+      "assignees": "Felelősök",
+      "comments": "Hozzászólások",
+      "permissions": "Jogosultsági szabályok"
+    },
+    "download": "Letöltés",
+    "preparing": "Előkészítés...",
+    "exportFailed": "A táblát nem sikerült exportálni",
+    "exportInActivity": "A Discordon belül nem lehet fájlokat letölteni. Exportáld a táblát a webhelyen.",
+    "import": "Importálás",
+    "importTitle": "Tábla importálása",
+    "importIntro": "Hozz létre új táblát egy KanbanCordból exportált fájlból. Az adatai, oszlopai és feladatai mindig átkerülnek.",
+    "chooseFile": "Táblafájl",
+    "notAFile": "Ez nem KanbanCord-táblafájl.",
+    "fileSummary": "Oszlopok: {columns} · Feladatok: {tasks}",
+    "name": "Az új tábla neve",
+    "alsoBring": "Ezeket is hozd át:",
+    "importing": "Importálás...",
+    "importFailed": "A táblát nem sikerült importálni",
+    "imported": "Létrejött: {name}.",
+    "skipped": {
+      "assignees": "Kihagyott felelősök, mert nincsenek ezen a szerveren: {count}",
+      "roles": "Kihagyott szerepkör-hozzárendelések, mert a szerepkörök nincsenek ezen a szerveren: {count}",
+      "permissions": "Kihagyott jogosultsági szabályok, valakiről, aki nincs itt, vagy többet adnának, mint amit adhatsz: {count}",
+      "commentAuthors": "Ezen a szerveren nem lévők hozzászólásai, most tőled, a szerző nevével: {count}"
+    },
+    "openBoard": "Tábla megnyitása"
   }
 }
