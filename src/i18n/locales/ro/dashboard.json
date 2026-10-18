@@ -1,6 +1,7 @@
 {
   "title": "Tablou de bord",
   "goToDashboard": "Mergi la tabloul de bord",
+  "presence": "Tot aici: {names}",
   "serverOverview": "Prezentarea serverului.",
   "serverSettings": "Setările serverului",
   "yourServers": "Serverele tale",

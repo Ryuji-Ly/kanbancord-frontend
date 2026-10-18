@@ -1,6 +1,7 @@
 {
   "title": "Irányítópult",
   "goToDashboard": "Ugrás az irányítópultra",
+  "presence": "Itt vannak még: {names}",
   "serverOverview": "Szerver áttekintése.",
   "serverSettings": "Szerverbeállítások",
   "yourServers": "Szervereid",

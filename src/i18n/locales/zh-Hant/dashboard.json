@@ -1,6 +1,7 @@
 {
   "title": "儀表板",
   "goToDashboard": "前往儀表板",
+  "presence": "也在這裡：{names}",
   "serverOverview": "伺服器總覽。",
   "serverSettings": "伺服器設定",
   "yourServers": "你的伺服器",

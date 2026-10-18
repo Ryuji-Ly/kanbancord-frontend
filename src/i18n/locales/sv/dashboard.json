@@ -1,6 +1,7 @@
 {
   "title": "Översikt",
   "goToDashboard": "Gå till översikten",
+  "presence": "Också här: {names}",
   "serverOverview": "Serveröversikt.",
   "serverSettings": "Serverinställningar",
   "yourServers": "Dina servrar",

@@ -1,6 +1,7 @@
 {
   "title": "Панель",
   "goToDashboard": "Перейти на панель",
+  "presence": "Також тут: {names}",
   "serverOverview": "Огляд сервера.",
   "serverSettings": "Налаштування сервера",
   "yourServers": "Ваші сервери",

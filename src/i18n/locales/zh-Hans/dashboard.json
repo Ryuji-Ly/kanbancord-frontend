@@ -1,6 +1,7 @@
 {
   "title": "控制面板",
   "goToDashboard": "前往控制面板",
+  "presence": "也在这里：{names}",
   "serverOverview": "服务器概览。",
   "serverSettings": "服务器设置",
   "yourServers": "你的服务器",

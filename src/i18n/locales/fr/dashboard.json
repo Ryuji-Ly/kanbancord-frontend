@@ -1,6 +1,7 @@
 {
   "title": "Tableau de bord",
   "goToDashboard": "Aller au tableau de bord",
+  "presence": "Aussi ici : {names}",
   "serverOverview": "Aperçu du serveur.",
   "serverSettings": "Paramètres du serveur",
   "yourServers": "Tes serveurs",

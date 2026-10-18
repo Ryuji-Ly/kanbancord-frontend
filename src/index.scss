@@ -199,6 +199,32 @@ pre {
   gap: 10px;
 }
 
+/* Who else has this Discord Activity session open: overlapping faces beside the user menu. */
+.kc-presence {
+  display: flex;
+  align-items: center;
+  padding-left: 8px;
+}
+
+.kc-presence-face {
+  width: 28px;
+  height: 28px;
+  margin-left: -8px;
+  border-radius: 50%;
+  border: 2px solid var(--kc-nav);
+  object-fit: cover;
+  background: var(--kc-control);
+}
+
+.kc-presence-initial {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--kc-text);
+}
+
 .kc-user-meta {
   display: flex;
   flex-direction: column;

@@ -1,6 +1,7 @@
 {
   "title": "Přehled",
   "goToDashboard": "Přejít na přehled",
+  "presence": "Také tady: {names}",
   "serverOverview": "Přehled serveru.",
   "serverSettings": "Nastavení serveru",
   "yourServers": "Tvoje servery",

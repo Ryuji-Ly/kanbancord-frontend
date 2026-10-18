@@ -1,6 +1,7 @@
 {
   "title": "Kontrol paneli",
   "goToDashboard": "Kontrol paneline git",
+  "presence": "Burada olanlar: {names}",
   "serverOverview": "Sunucuya genel bakış.",
   "serverSettings": "Sunucu ayarları",
   "yourServers": "Sunucularınız",

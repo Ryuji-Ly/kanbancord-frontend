@@ -1,6 +1,7 @@
 {
   "title": "Dashboard",
   "goToDashboard": "Naar het dashboard",
+  "presence": "Ook hier: {names}",
   "serverOverview": "Serveroverzicht.",
   "serverSettings": "Serverinstellingen",
   "yourServers": "Jouw servers",

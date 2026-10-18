@@ -54,6 +54,39 @@ export async function startActivity(): Promise<void> {
     .catch(() => undefined)
 }
 
+/** Someone in the same Activity session, as Discord describes them. */
+export type ActivityParticipant = { id: string; name: string; avatarUrl: string | null }
+
+type SdkParticipant = { id: string; username: string; global_name?: string | null; nickname?: string; avatar?: string | null }
+
+function toParticipant(p: SdkParticipant): ActivityParticipant {
+  return {
+    id: p.id,
+    name: p.nickname || p.global_name || p.username,
+    avatarUrl: p.avatar ? `https://cdn.discordapp.com/avatars/${p.id}/${p.avatar}.png?size=64` : null,
+  }
+}
+
+/**
+ * Calls `onChange` with everyone who has this Activity session open, now and whenever someone joins
+ * or leaves. Only this session: people on the website, or in another call's Activity, are not in it.
+ * Returns a function that stops listening.
+ */
+export function watchParticipants(onChange: (participants: ActivityParticipant[]) => void): () => void {
+  const client = sdk
+  if (!client) return () => undefined
+  let stopped = false
+  const update = ({ participants }: { participants: SdkParticipant[] }) => {
+    if (!stopped) onChange(participants.map(toParticipant))
+  }
+  void client.commands.getInstanceConnectedParticipants().then(update).catch(() => undefined)
+  void client.subscribe('ACTIVITY_INSTANCE_PARTICIPANTS_UPDATE', update).catch(() => undefined)
+  return () => {
+    stopped = true
+    void client.unsubscribe('ACTIVITY_INSTANCE_PARTICIPANTS_UPDATE', update).catch(() => undefined)
+  }
+}
+
 /** Asks Discord to sign the user in; the first time, Discord asks them to allow it. */
 export async function signInThroughDiscord(): Promise<void> {
   if (!sdk) throw new Error('The Discord Activity has not started')

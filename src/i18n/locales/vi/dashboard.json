@@ -1,6 +1,7 @@
 {
   "title": "Tổng quan",
   "goToDashboard": "Đến trang tổng quan",
+  "presence": "Cũng đang ở đây: {names}",
   "serverOverview": "Tổng quan máy chủ.",
   "serverSettings": "Cài đặt máy chủ",
   "yourServers": "Máy chủ của bạn",

@@ -1,6 +1,7 @@
 {
   "title": "대시보드",
   "goToDashboard": "대시보드로 가기",
+  "presence": "함께 있는 사람: {names}",
   "serverOverview": "서버 개요.",
   "serverSettings": "서버 설정",
   "yourServers": "내 서버",

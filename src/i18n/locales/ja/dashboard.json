@@ -1,6 +1,7 @@
 {
   "title": "ダッシュボード",
   "goToDashboard": "ダッシュボードへ",
+  "presence": "一緒にいる人: {names}",
   "serverOverview": "サーバーの概要。",
   "serverSettings": "サーバーの設定",
   "yourServers": "あなたのサーバー",

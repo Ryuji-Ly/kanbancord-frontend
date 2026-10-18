@@ -1,6 +1,7 @@
 {
   "title": "Dashboard",
   "goToDashboard": "Zum Dashboard",
+  "presence": "Ebenfalls hier: {names}",
   "serverOverview": "Serverübersicht.",
   "serverSettings": "Servereinstellungen",
   "yourServers": "Deine Server",

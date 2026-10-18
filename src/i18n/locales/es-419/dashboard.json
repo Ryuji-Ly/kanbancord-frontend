@@ -1,6 +1,7 @@
 {
   "title": "Panel",
   "goToDashboard": "Ir al panel",
+  "presence": "También aquí: {names}",
   "serverOverview": "Resumen del servidor.",
   "serverSettings": "Configuración del servidor",
   "yourServers": "Tus servidores",

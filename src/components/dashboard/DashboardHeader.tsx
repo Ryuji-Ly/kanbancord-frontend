@@ -1,3 +1,4 @@
+import { ActivityPresence } from '../../activity/ActivityPresence'
 import { UserMenu } from '../../features/account/UserMenu'
 import { t } from '../../i18n'
 import type { HeaderUser } from './types'
@@ -39,6 +40,7 @@ export function DashboardHeader({
       </button>
 
       <div className="kc-user-block">
+        <ActivityPresence selfId={me?.userId} />
         {isAuthenticated && me ? (
           <UserMenu me={me} onLogout={onLogout} />
         ) : (

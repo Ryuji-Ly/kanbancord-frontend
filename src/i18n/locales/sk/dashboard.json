@@ -1,6 +1,7 @@
 {
   "title": "Prehľad",
   "goToDashboard": "Prejsť na prehľad",
+  "presence": "Tiež tu: {names}",
   "serverOverview": "Prehľad servera.",
   "serverSettings": "Nastavenia servera",
   "yourServers": "Tvoje servery",

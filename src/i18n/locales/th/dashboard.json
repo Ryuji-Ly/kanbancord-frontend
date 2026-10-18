@@ -1,6 +1,7 @@
 {
   "title": "แดชบอร์ด",
   "goToDashboard": "ไปที่แดชบอร์ด",
+  "presence": "อยู่ที่นี่ด้วย: {names}",
   "serverOverview": "ภาพรวมเซิร์ฟเวอร์",
   "serverSettings": "การตั้งค่าเซิร์ฟเวอร์",
   "yourServers": "เซิร์ฟเวอร์ของคุณ",
