@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { Suspense, useEffect, useMemo, useState } from 'react'
 import { filtersFromParams, isFiltering, matchesFilters, paramsWithFilters, type BoardFilters } from '../features/board/boardFilters'
 import { BoardFilterBar } from '../features/board/components/BoardFilterBar'
 import { FiSettings } from 'react-icons/fi'
@@ -43,9 +43,12 @@ import { AddColumn } from '../features/board/components/AddColumn'
 import { BoardColumn } from '../features/board/components/BoardColumn'
 import { ConfirmDialog } from '../features/board/components/ConfirmDialog'
 import { CreateTaskModal } from '../features/board/components/CreateTaskModal'
-import { BoardSettingsDialog } from '../features/boardSettings/BoardSettingsDialog'
 import { usePreferences } from '../features/preferences/usePreferences'
 import { TaskPanel } from '../features/board/components/TaskPanel'
+import { lazyNamed } from '../components/lazyNamed'
+
+// Opens on a click: loaded then.
+const BoardSettingsDialog = lazyNamed(() => import('../features/boardSettings/BoardSettingsDialog'), 'BoardSettingsDialog')
 
 export function BoardPage() {
   const { boardId = '' } = useParams()
@@ -478,14 +481,16 @@ export function BoardPage() {
         )}
 
         {showSettings && (
-          <BoardSettingsDialog
-            serverId={serverId}
-            boardId={boardId}
-            onClose={() => setShowSettings(false)}
-            onDeleted={() => navigate('/')}
-            showToast={showToast}
-            showError={(text) => showToast(text, 'error')}
-          />
+          <Suspense fallback={null}>
+            <BoardSettingsDialog
+              serverId={serverId}
+              boardId={boardId}
+              onClose={() => setShowSettings(false)}
+              onDeleted={() => navigate('/')}
+              showToast={showToast}
+              showError={(text) => showToast(text, 'error')}
+            />
+          </Suspense>
         )}
 
         {deleteTargetTask && (

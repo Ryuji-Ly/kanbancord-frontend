@@ -1,5 +1,5 @@
-import { useDeferredValue, useMemo, useState } from 'react'
-import { ServerNotificationsSettings } from '../notifications/ServerNotificationsSettings'
+import { Suspense, useDeferredValue, useMemo, useState } from 'react'
+import { lazyNamed } from '../../components/lazyNamed'
 import { useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from 'react-router-dom'
 import { t } from '../../i18n'
@@ -15,20 +15,10 @@ import {
   type SubjectLookups,
 } from '../../services/permissionsService'
 import type { DiscordGuild } from '../../types/auth'
-import { AddEntryModal } from '../../components/dashboard/AddEntryModal'
-import { BoardModal } from '../../components/dashboard/boards/BoardModal'
-import { BoardSettingsDialog } from '../boardSettings/BoardSettingsDialog'
-import { AuditLogSection } from '../audit/AuditLogSection'
-import { ImportBoardDialog } from '../boardTransfer/ImportBoardDialog'
-import { FeaturesSettings } from '../serverSettings/FeaturesSettings'
 import { NO_FEATURES } from '../../services/featuresService'
-import { ServerSettingsDialog, type ServerSettingsSection } from '../serverSettings/ServerSettingsDialog'
-import { PermissionsSection } from '../../components/dashboard/permissions/PermissionsSection'
-import { PermissionPresetPicker } from '../../components/dashboard/permissions/PermissionPresetPicker'
+import type { ServerSettingsSection } from '../serverSettings/ServerSettingsDialog'
 import type { PermissionPreset } from '../../components/dashboard/permissions/permissionPresets'
-import { AccessCheckPanel } from '../accessCheck/AccessCheckPanel'
 import { buildInheritedBoardPermissionDrafts } from '../../components/dashboard/boards/boardPermissionDraft'
-import { DeleteGroupModal } from '../../components/dashboard/DeleteGroupModal'
 import { permissionRankWeight } from '../../components/dashboard/permissionRank'
 import { ServerOverviewPanel } from '../../components/dashboard/ServerOverviewPanel'
 import type { BoardModalConfig, DeleteGroupTarget } from '../../components/dashboard/types'
@@ -45,6 +35,20 @@ import {
 } from '../server/serverQueries'
 import { actorRankWeight, boardCapabilities } from './dashboardModel'
 import { useServerMutations } from './serverMutations'
+
+// Dialogs and settings open on a click, so they are loaded then, not with the dashboard.
+const ServerNotificationsSettings = lazyNamed(() => import('../notifications/ServerNotificationsSettings'), 'ServerNotificationsSettings')
+const AddEntryModal = lazyNamed(() => import('../../components/dashboard/AddEntryModal'), 'AddEntryModal')
+const BoardModal = lazyNamed(() => import('../../components/dashboard/boards/BoardModal'), 'BoardModal')
+const BoardSettingsDialog = lazyNamed(() => import('../boardSettings/BoardSettingsDialog'), 'BoardSettingsDialog')
+const AuditLogSection = lazyNamed(() => import('../audit/AuditLogSection'), 'AuditLogSection')
+const ImportBoardDialog = lazyNamed(() => import('../boardTransfer/ImportBoardDialog'), 'ImportBoardDialog')
+const FeaturesSettings = lazyNamed(() => import('../serverSettings/FeaturesSettings'), 'FeaturesSettings')
+const ServerSettingsDialog = lazyNamed(() => import('../serverSettings/ServerSettingsDialog'), 'ServerSettingsDialog')
+const PermissionsSection = lazyNamed(() => import('../../components/dashboard/permissions/PermissionsSection'), 'PermissionsSection')
+const PermissionPresetPicker = lazyNamed(() => import('../../components/dashboard/permissions/PermissionPresetPicker'), 'PermissionPresetPicker')
+const AccessCheckPanel = lazyNamed(() => import('../accessCheck/AccessCheckPanel'), 'AccessCheckPanel')
+const DeleteGroupModal = lazyNamed(() => import('../../components/dashboard/DeleteGroupModal'), 'DeleteGroupModal')
 
 type RuleState = 'ALLOW' | 'DENY'
 
@@ -502,6 +506,8 @@ export function ServerWorkspace({ serverId, server, showError, showToast }: Serv
         onOpenBoardSettings={openBoardSettings}
       />
 
+      <Suspense fallback={null}>
+
       {showSettings && settingsSections.length > 0 && (
         <ServerSettingsDialog serverName={server.name} sections={settingsSections} onClose={() => setShowSettings(false)} />
       )}
@@ -586,6 +592,7 @@ export function ServerWorkspace({ serverId, server, showError, showToast }: Serv
           onDelete={removeBoard}
         />
       )}
+      </Suspense>
     </>
   )
 }

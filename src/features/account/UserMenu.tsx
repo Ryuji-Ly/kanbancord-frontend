@@ -1,15 +1,12 @@
-import { useEffect, useRef, useState } from 'react'
+import { Suspense, useEffect, useRef, useState } from 'react'
+import { lazyNamed } from '../../components/lazyNamed'
 import { FiChevronDown, FiLogOut, FiSettings, FiSliders } from 'react-icons/fi'
 import { t } from '../../i18n'
 import type { HeaderUser } from '../../components/dashboard/types'
-import { AccessibilitySettings } from '../preferences/AccessibilitySettings'
-import { AppearanceSettings } from '../preferences/AppearanceSettings'
-import { SimpleViewSettings } from '../preferences/SimpleViewSettings'
-import { usePreferences, useSavePreferences } from '../preferences/usePreferences'
-import { ServerSettingsDialog } from '../serverSettings/ServerSettingsDialog'
-import { MyNotificationsSettings } from '../notifications/MyNotificationsSettings'
 import { clearPendingAccountDialog, pendingAccountDialog } from './accountDialog'
-import { SessionsSettings } from './SessionsSettings'
+
+// Opens on a click: loaded then, not with every page.
+const AccountSettingsDialog = lazyNamed(() => import('./AccountSettingsDialog'), 'AccountSettingsDialog')
 
 type UserMenuProps = {
   me: NonNullable<HeaderUser>
@@ -22,8 +19,6 @@ export function UserMenu({ me, onLogout }: UserMenuProps) {
   // The section the dialog opens on, or null while it is closed.
   const [dialog, setDialog] = useState<string | null>(pendingAccountDialog)
   const menuRef = useRef<HTMLDivElement | null>(null)
-  const preferences = usePreferences()
-  const save = useSavePreferences()
   const name = me.globalName || me.username
 
   useEffect(() => clearPendingAccountDialog(), [])
@@ -96,51 +91,9 @@ export function UserMenu({ me, onLogout }: UserMenuProps) {
       )}
 
       {dialog && (
-        <ServerSettingsDialog
-          serverName={name}
-          title={t('account.menu.dialogTitle')}
-          initialKey={dialog}
-          onClose={() => setDialog(null)}
-          sections={[
-            {
-              key: 'appearance',
-              group: t('account.menu.preferences'),
-              label: t('account.menu.appearance'),
-              content: <AppearanceSettings theme={preferences?.theme} onChange={(theme) => save.mutate({ theme })} />,
-            },
-            {
-              key: 'accessibility',
-              group: t('account.menu.preferences'),
-              label: t('account.menu.accessibility'),
-              content: (
-                <AccessibilitySettings
-                  accessibility={preferences?.accessibility}
-                  onChange={(accessibility) => save.mutate({ accessibility })}
-                />
-              ),
-            },
-            {
-              key: 'simple-view',
-              group: t('account.menu.preferences'),
-              label: t('account.menu.simpleView'),
-              content: (
-                <SimpleViewSettings simpleView={preferences?.simpleView} onChange={(simpleView) => save.mutate({ simpleView })} />
-              ),
-            },
-            {
-              key: 'notifications',
-              group: t('account.menu.settings'),
-              label: t('dashboard.settings.notifications'),
-              content: <MyNotificationsSettings />,
-            },
-            {
-              key: 'sessions',
-              group: t('account.menu.settings'),
-              label: t('account.menu.sessions'),
-              content: <SessionsSettings />,
-            },
-          ]}
-        />
+        <Suspense fallback={null}>
+          <AccountSettingsDialog name={name} section={dialog} onClose={() => setDialog(null)} />
+        </Suspense>
       )}
     </div>
   )
