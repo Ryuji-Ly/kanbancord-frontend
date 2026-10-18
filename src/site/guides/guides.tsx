@@ -1,4 +1,5 @@
 import type { ComponentType } from 'react'
+import { ActivityGuide } from './ActivityGuide'
 import { AssignTasksGuide } from './AssignTasksGuide'
 import { DueDatesGuide } from './DueDatesGuide'
 import { FeedsThreadsGuide } from './FeedsThreadsGuide'
@@ -19,6 +20,7 @@ const PAGES: Record<string, ComponentType> = {
   'board-posts-and-feeds': PostsFeedsGuide,
   'feeds-and-threads': FeedsThreadsGuide,
   'roles-and-permissions': PermissionsGuide,
+  'discord-activity': ActivityGuide,
   'website-board': WebsiteGuide,
 }
 

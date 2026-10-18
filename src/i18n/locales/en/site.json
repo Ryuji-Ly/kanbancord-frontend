@@ -43,8 +43,8 @@
         "text": "Post changes to chosen channels and get direct messages about your tasks, never pinged twice for one thing."
       },
       "website": {
-        "title": "The big picture, when you want it",
-        "text": "The website shows whole boards at a glance and holds the fine-tuning, with every change live for everyone."
+        "title": "Inside Discord, or on the website",
+        "text": "Open whole boards in a call as a Discord Activity, or on the website: drag and drop, fine-tuning, and every change live for everyone."
       },
       "comfort": {
         "title": "Made to be comfortable",
@@ -64,6 +64,7 @@
     "title": "About {name}",
     "p1": "{name} is a kanban board that lives in your Discord server. The idea is simple: your community already talks in Discord, so planning should happen there too. Create boards and columns, add tasks, move them along, assign people, set labels, priorities and due dates, and discuss them in comments, all with the bot's slash commands, without leaving the chat. Updates arrive in the channels you choose and, for your own tasks, by direct message.",
     "p2": "Most people never need anything else. The website is there when you want the whole board at a glance, or to fine-tune things: detailed permissions per board and per person, the labels and priority levels a board offers, which features a server uses, exactly which updates you are told about, and the audit log of every change.",
+    "activity": "You can also open your boards inside Discord itself with the <strong>KanbanCord Activity</strong>: start it in a voice call to plan together on the same board, or on your own from any text channel. It does everything the website does, and Discord signs you in. See <guide>the Activity guide</guide>.",
     "p3": "It follows your server's Discord roles and permissions from the start, so the right people see and change the right boards without setting anything up twice.",
     "simpleTitle": "Only what you choose",
     "simple": "New servers start in <strong>simple mode</strong>: boards, columns, and tasks with a title and a description. Assignees, due dates with reminders, priorities, labels, comments and custom permissions stay off until a server manager switches them on with <code>/kanbancord features</code> or in the server settings on the website. Features that are off are not shown anywhere, in Discord or on the website: only the ones you choose appear. Each board can switch features off again for itself, and everyone can hide more for themselves under Preferences → Simple view. Switching a feature off only hides it; nothing is deleted.",

@@ -43,8 +43,8 @@
         "text": "Publica as alterações nos canais escolhidos e recebe mensagens diretas sobre as tuas tarefas, sem nunca seres mencionado duas vezes pela mesma coisa."
       },
       "website": {
-        "title": "A visão geral, quando a quiseres",
-        "text": "O site mostra quadros inteiros num relance e guarda os ajustes finos, com cada alteração visível em direto para todos."
+        "title": "Dentro do Discord, ou no site",
+        "text": "Abra quadros completos numa chamada como atividade do Discord, ou no site: arrastar e largar, ajustes finos e cada alteração em direto para todos."
       },
       "comfort": {
         "title": "Feito para ser confortável",
@@ -64,6 +64,7 @@
     "title": "Sobre o {name}",
     "p1": "O {name} é um quadro kanban que vive no teu servidor do Discord. A ideia é simples: a tua comunidade já conversa no Discord, por isso o planeamento também devia acontecer lá. Cria quadros e colunas, adiciona tarefas, faz-as avançar, atribui pessoas, define etiquetas, prioridades e prazos, e discute-as nos comentários, tudo com os comandos de barra do bot, sem sair da conversa. As atualizações chegam aos canais que escolheres e, para as tuas próprias tarefas, por mensagem direta.",
     "p2": "A maioria das pessoas nunca precisa de mais nada. O site está lá quando quiseres ver o quadro inteiro num relance, ou afinar as coisas: permissões detalhadas por quadro e por pessoa, as etiquetas e os níveis de prioridade de um quadro, as funcionalidades que um servidor usa, exatamente do que és avisado, e o registo de todas as alterações.",
+    "activity": "Também pode abrir os seus quadros dentro do próprio Discord com a <strong>atividade do KanbanCord</strong>: inicie-a numa chamada de voz para planearem juntos no mesmo quadro, ou sozinho a partir de qualquer canal de texto. Faz tudo o que o site faz, e o Discord identifica-o. Veja <guide>o guia da atividade</guide>.",
     "p3": "Segue desde o início os cargos e as permissões do Discord do teu servidor, para que as pessoas certas vejam e alterem os quadros certos sem configurares nada duas vezes.",
     "simpleTitle": "Só o que escolhes",
     "simple": "Os servidores novos começam em <strong>modo simples</strong>: quadros, colunas, e tarefas com título e descrição. Os responsáveis, os prazos com lembretes, as prioridades, as etiquetas, os comentários e as permissões personalizadas ficam desativados até um gestor do servidor os ativar com <code>/kanbancord features</code> ou nas definições do servidor no site. As funcionalidades desativadas não aparecem em lado nenhum, nem no Discord nem no site: só aparecem as que escolhes. Cada quadro pode voltar a desativar funcionalidades para si, e cada pessoa pode ocultar mais para si própria em Preferências → Vista simples. Desativar uma funcionalidade só a oculta; nada é eliminado.",

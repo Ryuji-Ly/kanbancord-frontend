@@ -319,6 +319,34 @@
     "trackTitle": "Minden nyomon követése",
     "track": "Minden módosítás, beleértve a jogosultságok módosítását és a funkciók be- vagy kikapcsolását, rögzítésre kerül a webhely változásnaplójában, azzal együtt, hogy ki tette, és hogy a Discordból vagy a webhelyről jött-e."
   },
+  "activity": {
+    "title": "A Discord-tevékenység: a tábláid a Discordon belül",
+    "description": "Nyisd meg a KanbanCord-tábláidat közvetlenül a Discordban a KanbanCord-tevékenységgel, hanghívásban vagy bármelyik szöveges csatornán, húzással és mindennel, amit a webhely tud.",
+    "summary": "Nyisd meg a tábláidat hívásban vagy bármelyik csatornán, a Discord elhagyása nélkül.",
+    "intro": "A KanbanCord-tevékenység a webhely, a Discordon belül megnyitva. Indítsd el egy hanghívásban, hogy közösen tervezzetek ugyanazon a táblán, vagy egyedül bármelyik szöveges csatornáról. Nincs mit telepíteni, és külön bejelentkezés sincs: a Discord bejelentkeztet.",
+    "startTitle": "Így indíthatod",
+    "start": [
+      "<strong>Hangcsatornán</strong>: lépj be a hívásba, nyisd meg a tevékenységek menüt (a rakéta gomb), és válaszd a KanbanCordot. A hívásban mindenki csatlakozhat.",
+      "<strong>Szöveges csatornán</strong>: nyisd meg az alkalmazásindítót az üzenetmező mellett, és válaszd a KanbanCordot.",
+      "Az első alkalommal a Discord megkérdezi, hogy a KanbanCord megtudhatja-e, ki vagy. Utána azonnal megnyílik."
+    ],
+    "screenAlt": "A Discordban megnyitott KanbanCord-tevékenység egy táblával, amelynek oszlopai: To Do, In Progress és Done.",
+    "screenCaption": "Egy tábla a tevékenységben, hívásban megnyitva.",
+    "whatTitle": "Mit tehetsz",
+    "what": [
+      "<strong>A szervereden nyílik meg</strong>: szerveren elindítva rögtön annak tábláit mutatja.",
+      "<strong>Minden, amit a webhely tud</strong>: húzás, keresés és szűrők, a feladatpanel, valamint a tábla- és szerverbeállítások.",
+      "<strong>Élőben mindenkinek</strong>: ha bárki áthelyez egy kártyát, a tevékenységben, a webhelyen vagy paranccsal, mindenkinél azonnal átkerül.",
+      "<strong>Látod, ki van veled</strong>: felül megjelennek az ugyanabban a tevékenységben lévők profilképei.",
+      "<strong>Ugyanazok a jogosultságok</strong>, mint mindenhol: pontosan azt látod és módosíthatod, amit a webhelyen és parancsokkal is."
+    ],
+    "goodTitle": "Jó tudni",
+    "good": [
+      "A Discord nyelvét használja, hacsak nem választottál másikat a webhelyen.",
+      "A más oldalakra mutató linkek a böngésződben nyílnak meg. A Discord előbb rákérdez, ahogy a csevegésben lévő linkeknél is.",
+      "A tevékenységben végzett változtatások ugyanúgy bekerülnek a változásnaplóba, mint bármely más."
+    ]
+  },
   "website": {
     "title": "A webhely: minden tábla egy pillantással",
     "description": "A KanbanCord webhelye teljes táblákat mutat húzással és ejtéssel, kereséssel és szűrőkkel, ellenőrzőlistákkal, képekkel és videókkal, mindezt élőben a Discorddal.",

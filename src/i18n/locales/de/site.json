@@ -43,8 +43,8 @@
         "text": "Änderungen in ausgewählten Kanälen posten und Direktnachrichten zu deinen Aufgaben bekommen, nie zweimal für dasselbe angepingt."
       },
       "website": {
-        "title": "Der Überblick, wenn du ihn brauchst",
-        "text": "Die Website zeigt ganze Boards auf einen Blick und enthält die Feineinstellungen, wobei jede Änderung für alle sofort sichtbar ist."
+        "title": "In Discord oder auf der Website",
+        "text": "Öffne ganze Boards als Discord-Aktivität in einem Anruf oder auf der Website: Drag-and-drop, Feineinstellungen und jede Änderung live für alle."
       },
       "comfort": {
         "title": "Angenehm zu benutzen",
@@ -64,6 +64,7 @@
     "title": "Über {name}",
     "p1": "{name} ist ein Kanban-Board direkt auf deinem Discord-Server. Die Idee ist einfach: Deine Community schreibt schon in Discord, also sollte dort auch geplant werden. Erstelle Boards und Spalten, füge Aufgaben hinzu, schiebe sie weiter, weise Personen zu, setze Labels, Prioritäten und Fälligkeitsdaten und besprich sie in Kommentaren, alles mit den Slash-Befehlen des Bots, ohne den Chat zu verlassen. Updates kommen in den Kanälen an, die du wählst, und für deine eigenen Aufgaben per Direktnachricht.",
     "p2": "Die meisten brauchen nie etwas anderes. Die Website ist da, wenn du das ganze Board auf einen Blick sehen oder etwas feinjustieren willst: genaue Berechtigungen je Board und je Person, die Labels und Prioritätsstufen eines Boards, welche Funktionen ein Server nutzt, worüber genau du benachrichtigt wirst, und das Audit-Log aller Änderungen.",
+    "activity": "Du kannst deine Boards auch direkt in Discord öffnen, mit der <strong>KanbanCord-Aktivität</strong>: starte sie in einem Sprachanruf, um gemeinsam am selben Board zu planen, oder allein in einem beliebigen Textkanal. Sie kann alles, was die Website kann, und Discord meldet dich an. Mehr dazu im <guide>Leitfaden zur Aktivität</guide>.",
     "p3": "Es folgt von Anfang an den Discord-Rollen und -Berechtigungen deines Servers, sodass die richtigen Leute die richtigen Boards sehen und ändern, ohne dass du etwas doppelt einrichten musst.",
     "simpleTitle": "Nur, was du auswählst",
     "simple": "Neue Server starten im <strong>einfachen Modus</strong>: Boards, Spalten und Aufgaben mit Titel und Beschreibung. Zuständige, Fälligkeitsdaten mit Erinnerungen, Prioritäten, Labels, Kommentare und eigene Berechtigungen bleiben ausgeschaltet, bis ein Server-Manager sie mit <code>/kanbancord features</code> oder in den Servereinstellungen auf der Website einschaltet. Ausgeschaltete Funktionen werden nirgends angezeigt, weder in Discord noch auf der Website: Es erscheinen nur die, die du auswählst. Jedes Board kann Funktionen für sich wieder ausschalten, und alle können unter Einstellungen → Einfache Ansicht für sich selbst noch mehr ausblenden. Ausschalten blendet eine Funktion nur aus; gelöscht wird nichts.",

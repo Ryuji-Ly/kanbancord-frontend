@@ -319,6 +319,34 @@
     "trackTitle": "記錄一切",
     "track": "每項變更，包括權限的變更和功能的開啟或關閉，都會記錄在網站的變更紀錄中，連同是誰做的、來自 Discord 還是網站。"
   },
+  "activity": {
+    "title": "Discord 活動：在 Discord 中開啟你的看板",
+    "description": "透過 KanbanCord 活動，在語音通話或任何文字頻道中直接於 Discord 裡開啟 KanbanCord 看板，支援拖放以及網站的所有功能。",
+    "summary": "不必離開 Discord，在通話或任何頻道中開啟看板。",
+    "intro": "KanbanCord 活動就是在 Discord 中開啟的網站。在語音通話中啟動它，大家一起在同一個看板上規劃；也可以在任何文字頻道中獨自開啟。不需要安裝，也不需要另外登入：Discord 會幫你登入。",
+    "startTitle": "啟動方式",
+    "start": [
+      "<strong>在語音頻道中</strong>：加入通話，開啟活動選單（火箭按鈕），然後選擇 KanbanCord。通話中的所有人都可以加入。",
+      "<strong>在文字頻道中</strong>：開啟訊息框旁邊的應用程式啟動器，然後選擇 KanbanCord。",
+      "第一次使用時，Discord 會請你允許 KanbanCord 知道你是誰。之後就會直接開啟。"
+    ],
+    "screenAlt": "在 Discord 中開啟的 KanbanCord 活動，顯示一個包含 To Do、In Progress 和 Done 欄的看板。",
+    "screenCaption": "在通話中開啟的活動裡的看板。",
+    "whatTitle": "你可以做什麼",
+    "what": [
+      "<strong>在你的伺服器上開啟</strong>：在伺服器中啟動時，會直接顯示該伺服器的看板。",
+      "<strong>網站的所有功能</strong>：拖放、搜尋和篩選、任務面板，以及看板和伺服器設定。",
+      "<strong>對所有人即時同步</strong>：無論有人在活動中、網站上還是用指令移動卡片，所有人都會立刻看到。",
+      "<strong>看到誰和你在一起</strong>：同一活動中其他人的頭像會顯示在頂部。",
+      "<strong>權限處處相同</strong>：你能查看和變更的，與在網站上和用指令時完全一樣。"
+    ],
+    "goodTitle": "須知",
+    "good": [
+      "除非你在網站上選擇了語言，否則它會使用 Discord 的語言。",
+      "指向其他網站的連結會在瀏覽器中開啟。和聊天中的連結一樣，Discord 會先詢問你。",
+      "在活動中所做的變更和其他變更一樣，都會記錄在變更紀錄中。"
+    ]
+  },
   "website": {
     "title": "網站：一眼看遍每個看板",
     "description": "KanbanCord 網站呈現完整看板，支援拖放、搜尋和篩選、檢查清單、圖片和影片，並與 Discord 即時同步。",

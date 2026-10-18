@@ -43,8 +43,8 @@
         "text": "Publica los cambios en los canales que elijas y recibe mensajes directos sobre tus tareas, sin que nunca te mencionen dos veces por lo mismo."
       },
       "website": {
-        "title": "El conjunto, cuando lo quieras",
-        "text": "La web muestra tableros enteros de un vistazo y guarda los ajustes finos, con cada cambio en directo para todos."
+        "title": "Dentro de Discord, o en la web",
+        "text": "Abre tableros completos en una llamada como actividad de Discord, o en la web: arrastrar y soltar, ajustes finos y cada cambio en directo para todos."
       },
       "comfort": {
         "title": "Pensado para ser cómodo",
@@ -64,6 +64,7 @@
     "title": "Acerca de {name}",
     "p1": "{name} es un tablero kanban que vive en tu servidor de Discord. La idea es sencilla: tu comunidad ya habla en Discord, así que la planificación también debería estar allí. Crea tableros y columnas, agrega tareas, hazlas avanzar, asigna personas, pon etiquetas, prioridades y fechas límite, y coméntalas, todo con los comandos de barra del bot, sin salir del chat. Las novedades llegan a los canales que elijas y, para tus propias tareas, por mensaje directo.",
     "p2": "La mayoría de la gente nunca necesita nada más. La web está ahí cuando quieres ver el tablero entero de un vistazo, o hacer ajustes finos: permisos detallados por tablero y por persona, las etiquetas y niveles de prioridad que ofrece un tablero, qué funciones usa un servidor, exactamente de qué novedades se te avisa, y el registro de cada cambio.",
+    "activity": "También puedes abrir tus tableros dentro de Discord con la <strong>actividad de KanbanCord</strong>: iníciala en una llamada de voz para planificar juntos en el mismo tablero, o por tu cuenta desde cualquier canal de texto. Hace todo lo que hace la web, y Discord te identifica. Consulta <guide>la guía de la actividad</guide>.",
     "p3": "Sigue los roles y permisos de Discord de tu servidor desde el principio, así que las personas adecuadas ven y cambian los tableros adecuados sin configurar nada dos veces.",
     "simpleTitle": "Solo lo que eliges",
     "simple": "Los servidores nuevos empiezan en <strong>modo simple</strong>: tableros, columnas y tareas con título y descripción. Los responsables, las fechas límite con recordatorios, las prioridades, las etiquetas, los comentarios y los permisos personalizados siguen desactivados hasta que un gestor del servidor los activa con <code>/kanbancord features</code> o en la configuración del servidor en la web. Las funciones desactivadas no se muestran en ningún sitio, ni en Discord ni en la web: solo aparecen las que eliges. Cada tablero puede volver a desactivar funciones para sí mismo, y cada persona puede ocultar más para sí misma en Preferencias → Vista simple. Desactivar una función solo la oculta; no se elimina nada.",

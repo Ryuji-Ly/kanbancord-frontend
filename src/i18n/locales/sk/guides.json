@@ -319,6 +319,34 @@
     "trackTitle": "Prehľad o zmenách",
     "track": "Každá zmena, vrátane zmien oprávnení a zapínania či vypínania funkcií, sa zapíše do denníka zmien na webe, spolu s tým, kto ju urobil a či prišla z Discordu, alebo z webu."
   },
+  "activity": {
+    "title": "Aktivita Discordu: vaše nástenky priamo v Discorde",
+    "description": "Otvárajte nástenky KanbanCord priamo v Discorde s aktivitou KanbanCord, v hlasovom hovore alebo v ľubovoľnom textovom kanáli, s presúvaním a všetkým, čo dokáže web.",
+    "summary": "Otvárajte nástenky v hovore alebo v ľubovoľnom kanáli bez opustenia Discordu.",
+    "intro": "Aktivita KanbanCord je web otvorený v Discorde. Spustite ju v hlasovom hovore a plánujte spolu na tej istej nástenke, alebo sami z ľubovoľného textového kanála. Nič sa neinštaluje a neprihlasujete sa zvlášť: prihlási vás Discord.",
+    "startTitle": "Ako ju spustiť",
+    "start": [
+      "<strong>V hlasovom kanáli</strong>: pripojte sa k hovoru, otvorte ponuku aktivít (tlačidlo s raketou) a vyberte KanbanCord. Pripojiť sa môže každý v hovore.",
+      "<strong>V textovom kanáli</strong>: otvorte spúšťač aplikácií vedľa poľa na správu a vyberte KanbanCord.",
+      "Prvýkrát sa vás Discord opýta, či smie KanbanCord vedieť, kto ste. Potom sa otvára hneď."
+    ],
+    "screenAlt": "Aktivita KanbanCord otvorená v Discorde: nástenka so stĺpcami To Do, In Progress a Done.",
+    "screenCaption": "Nástenka v aktivite otvorenej v hovore.",
+    "whatTitle": "Čo môžete robiť",
+    "what": [
+      "<strong>Otvorí sa na vašom serveri</strong>: spustená na serveri hneď ukáže jeho nástenky.",
+      "<strong>Všetko, čo dokáže web</strong>: presúvanie, vyhľadávanie a filtre, panel úlohy a nastavenia nástenky aj servera.",
+      "<strong>Naživo pre všetkých</strong>: keď ktokoľvek presunie kartu, v aktivite, na webe alebo príkazom, presunie sa hneď všetkým.",
+      "<strong>Uvidíte, kto je s vami</strong>: hore sa zobrazia avatary všetkých ostatných v tej istej aktivite.",
+      "<strong>Rovnaké oprávnenia</strong> ako všade inde: vidíte a meníte presne to, čo na webe a príkazmi."
+    ],
+    "goodTitle": "Dobré vedieť",
+    "good": [
+      "Používa jazyk Discordu, ak ste si na webe nevybrali iný.",
+      "Odkazy na iné weby sa otvoria v prehliadači. Discord sa najprv opýta, rovnako ako pri odkazoch v chate.",
+      "Zmeny vykonané v aktivite sa zaznamenajú do denníka zmien ako všetky ostatné."
+    ]
+  },
   "website": {
     "title": "Web: každá nástenka naraz",
     "description": "Web KanbanCord ukáže celé nástenky s presúvaním myšou, vyhľadávaním a filtrami, zoznamami, obrázkami a videami, všetko naživo s Discordom.",

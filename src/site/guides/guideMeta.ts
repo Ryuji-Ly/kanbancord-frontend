@@ -21,6 +21,7 @@ export const GUIDE_META: GuideMeta[] = [
   { slug: 'board-posts-and-feeds', key: 'postsFeeds' },
   { slug: 'feeds-and-threads', key: 'feedsThreads' },
   { slug: 'roles-and-permissions', key: 'permissions' },
+  { slug: 'discord-activity', key: 'activity' },
   { slug: 'website-board', key: 'website' },
 ]
 

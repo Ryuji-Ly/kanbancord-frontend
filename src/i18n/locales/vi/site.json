@@ -43,8 +43,8 @@
         "text": "Đăng thay đổi vào các kênh đã chọn và nhận tin nhắn trực tiếp về công việc của bạn, không bao giờ bị nhắc hai lần cho cùng một việc."
       },
       "website": {
-        "title": "Toàn cảnh, khi bạn cần",
-        "text": "Trang web hiển thị toàn bộ bảng trong nháy mắt và chứa các tinh chỉnh, mọi thay đổi đều cập nhật trực tiếp cho tất cả."
+        "title": "Trong Discord, hoặc trên trang web",
+        "text": "Mở toàn bộ bảng trong cuộc gọi dưới dạng Hoạt động Discord, hoặc trên trang web: kéo thả, tinh chỉnh và mọi thay đổi hiển thị trực tiếp cho tất cả."
       },
       "comfort": {
         "title": "Được làm để thoải mái",
@@ -64,6 +64,7 @@
     "title": "Giới thiệu {name}",
     "p1": "{name} là một bảng kanban sống trong máy chủ Discord của bạn. Ý tưởng rất đơn giản: cộng đồng của bạn đã trò chuyện trên Discord, nên việc lên kế hoạch cũng nên diễn ra ở đó. Tạo bảng và cột, thêm công việc, đẩy chúng tiến lên, giao người, đặt nhãn, mức ưu tiên và hạn chót, và thảo luận trong bình luận, tất cả bằng lệnh gạch chéo của bot, không cần rời cuộc trò chuyện. Cập nhật được gửi đến các kênh bạn chọn và, với công việc của bạn, qua tin nhắn trực tiếp.",
     "p2": "Phần lớn mọi người không cần gì thêm. Trang web có ích khi bạn muốn xem cả bảng trong nháy mắt, hoặc tinh chỉnh: quyền chi tiết cho từng bảng và từng người, nhãn và mức ưu tiên của bảng, tính năng máy chủ sử dụng, chính xác những cập nhật bạn nhận, và nhật ký mọi thay đổi.",
+    "activity": "Bạn cũng có thể mở bảng ngay trong Discord với <strong>Hoạt động KanbanCord</strong>: khởi động trong cuộc gọi thoại để cùng lên kế hoạch trên một bảng, hoặc tự mở từ bất kỳ kênh văn bản nào. Nó làm được mọi thứ trang web làm được, và Discord đăng nhập cho bạn. Xem <guide>hướng dẫn về Hoạt động</guide>.",
     "p3": "Ngay từ đầu, nó tuân theo vai trò và quyền Discord của máy chủ, nên đúng người sẽ thấy và sửa đúng bảng mà không phải thiết lập gì hai lần.",
     "simpleTitle": "Chỉ những gì bạn chọn",
     "simple": "Máy chủ mới bắt đầu ở <strong>chế độ đơn giản</strong>: bảng, cột và công việc có tiêu đề cùng mô tả. Người phụ trách, hạn chót có nhắc nhở, mức ưu tiên, nhãn, bình luận và quyền tùy chỉnh vẫn tắt cho đến khi người quản lý máy chủ bật chúng bằng <code>/kanbancord features</code> hoặc trong cài đặt máy chủ trên trang web. Tính năng đang tắt không hiện ở đâu cả, dù trong Discord hay trên trang web: chỉ những gì bạn chọn mới xuất hiện. Mỗi bảng có thể tự tắt lại tính năng, và ai cũng có thể ẩn thêm cho riêng mình ở Tùy chọn → Chế độ xem đơn giản. Tắt một tính năng chỉ ẩn nó; không có gì bị xóa.",

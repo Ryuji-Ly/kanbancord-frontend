@@ -43,8 +43,8 @@
         "text": "Posielaj zmeny do vybraných kanálov a dostávaj súkromné správy o svojich úlohách, nikdy nie dvakrát kvôli tomu istému."
       },
       "website": {
-        "title": "Celkový prehľad, keď ho chceš",
-        "text": "Web ukáže celé nástenky naraz a skrýva jemné nastavenia, pričom každá zmena sa všetkým zobrazí hneď."
+        "title": "V Discorde alebo na webe",
+        "text": "Otvárajte celé nástenky v hovore ako aktivitu Discordu alebo na webe: presúvanie, jemné nastavenia a každá zmena naživo pre všetkých."
       },
       "comfort": {
         "title": "Pohodlné na používanie",
@@ -64,6 +64,7 @@
     "title": "O projekte {name}",
     "p1": "{name} je kanban nástenka priamo na tvojom Discord serveri. Myšlienka je jednoduchá: tvoja komunita sa už rozpráva na Discorde, tak nech sa tam aj plánuje. Vytváraj nástenky a stĺpce, pridávaj úlohy, posúvaj ich ďalej, priraďuj ľudí, nastavuj štítky, priority a termíny a diskutuj o nich v komentároch, všetko príkazmi s lomkou, bez opustenia chatu. Novinky prichádzajú do kanálov, ktoré si vyberieš, a o tvojich vlastných úlohách aj súkromnou správou.",
     "p2": "Väčšina ľudí nič viac nepotrebuje. Web je tu, keď chceš vidieť celú nástenku naraz alebo niečo doladiť: podrobné oprávnenia pre nástenky aj jednotlivých ľudí, štítky a úrovne priority, ktoré nástenka ponúka, ktoré funkcie server používa, presne aké novinky dostávaš, a denník všetkých zmien.",
+    "activity": "Nástenky môžete otvoriť aj priamo v Discorde s <strong>aktivitou KanbanCord</strong>: spustite ju v hlasovom hovore a plánujte spolu na tej istej nástenke, alebo sami z ľubovoľného textového kanála. Dokáže všetko, čo web, a prihlási vás Discord. Pozrite si <guide>sprievodcu aktivitou</guide>.",
     "p3": "Od začiatku sa riadi rolami a oprávneniami Discordu na tvojom serveri, takže správni ľudia vidia a menia správne nástenky bez toho, aby sa čokoľvek nastavovalo dvakrát.",
     "simpleTitle": "Len to, čo si vyberieš",
     "simple": "Nové servery začínajú v <strong>jednoduchom režime</strong>: nástenky, stĺpce a úlohy s názvom a popisom. Riešitelia, termíny s pripomienkami, priority, štítky, komentáre a vlastné oprávnenia zostávajú vypnuté, kým ich správca servera nezapne príkazom <code>/kanbancord features</code> alebo v nastaveniach servera na webe. Vypnuté funkcie sa nikde nezobrazujú, ani v Discorde, ani na webe: objavia sa len tie, ktoré si vyberieš. Každá nástenka si môže funkcie pre seba znova vypnúť a každý si môže pre seba skryť ešte viac v Predvoľby → Jednoduché zobrazenie. Vypnutie funkcie ju len skryje; nič sa neodstráni.",

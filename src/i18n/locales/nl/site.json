@@ -43,8 +43,8 @@
         "text": "Post wijzigingen in gekozen kanalen en krijg directe berichten over je taken, zonder ooit twee keer voor hetzelfde gepingd te worden."
       },
       "website": {
-        "title": "Het grote geheel, als je dat wilt",
-        "text": "De website toont hele borden in één oogopslag en bevat de fijnafstelling, met elke wijziging live voor iedereen."
+        "title": "In Discord, of op de website",
+        "text": "Open hele borden in een gesprek als Discord-activiteit, of op de website: slepen en neerzetten, fijnafstemming en elke wijziging live voor iedereen."
       },
       "comfort": {
         "title": "Gemaakt om prettig te zijn",
@@ -64,6 +64,7 @@
     "title": "Over {name}",
     "p1": "{name} is een kanbanbord dat in je Discord-server woont. Het idee is simpel: je community praat al in Discord, dus daar hoort de planning ook te gebeuren. Maak borden en kolommen, voeg taken toe, schuif ze door, wijs mensen toe, stel labels, prioriteiten en deadlines in en bespreek ze in opmerkingen, allemaal met de slash-commando's van de bot, zonder de chat te verlaten. Updates komen in de kanalen die je kiest en, voor je eigen taken, via een direct bericht.",
     "p2": "De meeste mensen hebben nooit iets anders nodig. De website is er als je het hele bord in één oogopslag wilt zien, of dingen wilt fijnafstellen: gedetailleerde rechten per bord en per persoon, de labels en prioriteitsniveaus die een bord biedt, welke functies een server gebruikt, precies over welke updates je hoort, en het wijzigingslogboek van elke wijziging.",
+    "activity": "Je kunt je borden ook in Discord zelf openen met de <strong>KanbanCord-activiteit</strong>: start haar in een spraakgesprek om samen op hetzelfde bord te plannen, of alleen vanuit elk tekstkanaal. Ze kan alles wat de website kan, en Discord meldt je aan. Zie <guide>de gids over de activiteit</guide>.",
     "p3": "Het volgt vanaf het begin de Discord-rollen en -rechten van je server, zodat de juiste mensen de juiste borden zien en wijzigen zonder dat je iets twee keer hoeft in te stellen.",
     "simpleTitle": "Alleen wat je kiest",
     "simple": "Nieuwe servers beginnen in de <strong>eenvoudige modus</strong>: borden, kolommen, en taken met een titel en een beschrijving. Toegewezen personen, deadlines met herinneringen, prioriteiten, labels, opmerkingen en aangepaste rechten blijven uit tot een serverbeheerder ze aanzet met <code>/kanbancord features</code> of in de serverinstellingen op de website. Functies die uit staan, worden nergens getoond, niet in Discord en niet op de website: alleen wat je kiest verschijnt. Elk bord kan functies voor zichzelf weer uitzetten, en iedereen kan voor zichzelf meer verbergen onder Voorkeuren → Eenvoudige weergave. Een functie uitzetten verbergt hem alleen; er wordt niets verwijderd.",

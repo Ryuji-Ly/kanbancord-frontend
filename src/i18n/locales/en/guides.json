@@ -319,6 +319,34 @@
     "trackTitle": "Keeping track",
     "track": "Every change, including changes to permissions and switching features on or off, is recorded in the audit log on the website, with who made it and whether it came from Discord or the website."
   },
+  "activity": {
+    "title": "The Discord Activity: your boards inside Discord",
+    "description": "Open your KanbanCord boards right inside Discord with the KanbanCord Activity, in a voice call or any text channel, with drag and drop and everything the website does.",
+    "summary": "Open your boards in a call or any channel, without leaving Discord.",
+    "intro": "The KanbanCord Activity is the website, opened inside Discord. Start it in a voice call to plan together on the same board, or on your own from any text channel. There is nothing to install and no separate sign-in: Discord signs you in.",
+    "startTitle": "Start it",
+    "start": [
+      "<strong>In a voice channel</strong>: join the call, open the Activities menu (the rocket button) and choose KanbanCord. Everyone in the call can join in.",
+      "<strong>In a text channel</strong>: open the app launcher beside the message box and choose KanbanCord.",
+      "The first time, Discord asks you to let KanbanCord know who you are. After that, it opens straight away."
+    ],
+    "screenAlt": "The KanbanCord Activity open in Discord, showing a board with the columns To Do, In Progress and Done.",
+    "screenCaption": "A board in the Activity, open in a call.",
+    "whatTitle": "What you can do",
+    "what": [
+      "<strong>Opens on your server</strong>: started in a server, it goes straight to that server's boards.",
+      "<strong>Everything the website does</strong>: drag and drop, search and filters, the task panel, and the board and server settings.",
+      "<strong>Live for everyone</strong>: when anyone moves a card, in the Activity, on the website or with a command, it moves for everyone straight away.",
+      "<strong>See who is with you</strong>: the faces of everyone else in the same Activity appear at the top.",
+      "<strong>The same permissions</strong> as everywhere else: you see and change exactly what you can on the website and with commands."
+    ],
+    "goodTitle": "Good to know",
+    "good": [
+      "It uses Discord's language, unless you picked one on the website.",
+      "Links to other sites open in your browser. Discord asks first, just as it does for links in chat.",
+      "Changes made in the Activity are recorded in the audit log like any other."
+    ]
+  },
   "website": {
     "title": "The website: every board at a glance",
     "description": "The KanbanCord website shows whole boards with drag and drop, search and filters, checklists, images and videos, all live with Discord.",

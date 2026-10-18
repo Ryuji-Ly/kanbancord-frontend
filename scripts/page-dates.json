@@ -1,6 +1,6 @@
 {
   "/about": {
-    "hash": "e6ed9873ffdfc3d5",
+    "hash": "a030958697f35481",
     "lastmod": "2026-10-18"
   },
   "/faq": {
@@ -20,43 +20,47 @@
     "lastmod": "2026-09-25"
   },
   "/guides": {
-    "hash": "0cdbd6454ddde969",
-    "lastmod": "2026-10-01"
+    "hash": "d08430d6e06e5878",
+    "lastmod": "2026-10-18"
   },
   "/guides/getting-started": {
-    "hash": "40e17cb73f700284",
-    "lastmod": "2026-10-01"
+    "hash": "bf1a9d4b1da32466",
+    "lastmod": "2026-10-18"
   },
   "/guides/discord-to-do-list": {
-    "hash": "684be98dc4231e18",
-    "lastmod": "2026-09-28"
+    "hash": "5394d948ef8eb545",
+    "lastmod": "2026-10-18"
   },
   "/guides/assign-tasks": {
-    "hash": "c693548c6abf25c0",
-    "lastmod": "2026-09-28"
+    "hash": "faf77d372b6c60ea",
+    "lastmod": "2026-10-18"
   },
   "/guides/due-dates-and-reminders": {
-    "hash": "9b2fd28f58146029",
-    "lastmod": "2026-09-28"
+    "hash": "ad5a47507a82e59a",
+    "lastmod": "2026-10-18"
   },
   "/guides/labels-and-priorities": {
-    "hash": "7bc2aa07dfadacbb",
-    "lastmod": "2026-09-28"
+    "hash": "246a1f1ebd5be550",
+    "lastmod": "2026-10-18"
   },
   "/guides/board-posts-and-feeds": {
-    "hash": "8f6b8d7379ed806a",
-    "lastmod": "2026-10-01"
+    "hash": "b8d16309f57172d8",
+    "lastmod": "2026-10-18"
   },
   "/guides/feeds-and-threads": {
-    "hash": "256ecc8b1cb7daf0",
-    "lastmod": "2026-10-01"
+    "hash": "0e3dad0abc0fccb6",
+    "lastmod": "2026-10-18"
   },
   "/guides/roles-and-permissions": {
-    "hash": "767014394d38f0be",
-    "lastmod": "2026-10-11"
+    "hash": "44ce5f4384a57f08",
+    "lastmod": "2026-10-18"
   },
   "/guides/website-board": {
-    "hash": "61baa23ad092b586",
-    "lastmod": "2026-09-28"
+    "hash": "1987a0e2f54bcfb4",
+    "lastmod": "2026-10-18"
+  },
+  "/guides/discord-activity": {
+    "hash": "3ab6c3cb74cc33d2",
+    "lastmod": "2026-10-18"
   }
 }

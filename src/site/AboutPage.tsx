@@ -10,6 +10,9 @@ export function AboutPage() {
       <h1>{t('site.about.title', SITE_VALUES)}</h1>
       <p>{t('site.about.p1', SITE_VALUES)}</p>
       <p>{t('site.about.p2')}</p>
+      <p>
+        <Trans k="site.about.activity" tags={{ guide: <Link to="/guides/discord-activity" /> }} />
+      </p>
       <p>{t('site.about.p3')}</p>
 
       <h2>{t('site.about.simpleTitle')}</h2>

@@ -319,6 +319,34 @@
     "trackTitle": "Tenere traccia",
     "track": "Ogni modifica, comprese le modifiche ai permessi e l'attivazione o disattivazione delle funzioni, viene registrata nel registro delle modifiche sul sito web, con chi l'ha fatta e se arrivava da Discord o dal sito web."
   },
+  "activity": {
+    "title": "L'attività Discord: le tue bacheche dentro Discord",
+    "description": "Apri le tue bacheche KanbanCord direttamente in Discord con l'attività KanbanCord, in una chiamata vocale o in qualsiasi canale testuale, con il trascinamento e tutto ciò che fa il sito.",
+    "summary": "Apri le tue bacheche in una chiamata o in qualsiasi canale, senza uscire da Discord.",
+    "intro": "L'attività KanbanCord è il sito, aperto dentro Discord. Avviala in una chiamata vocale per pianificare insieme sulla stessa bacheca, oppure da solo da qualsiasi canale testuale. Non c'è niente da installare né un accesso separato: ti fa accedere Discord.",
+    "startTitle": "Avviarla",
+    "start": [
+      "<strong>In un canale vocale</strong>: entra nella chiamata, apri il menu delle attività (il pulsante a forma di razzo) e scegli KanbanCord. Tutti nella chiamata possono unirsi.",
+      "<strong>In un canale testuale</strong>: apri il menu delle app accanto alla casella dei messaggi e scegli KanbanCord.",
+      "La prima volta, Discord ti chiede di permettere a KanbanCord di sapere chi sei. Poi si apre subito."
+    ],
+    "screenAlt": "L'attività KanbanCord aperta in Discord, con una bacheca con le colonne To Do, In Progress e Done.",
+    "screenCaption": "Una bacheca nell'attività, aperta in una chiamata.",
+    "whatTitle": "Cosa puoi fare",
+    "what": [
+      "<strong>Si apre sul tuo server</strong>: avviata in un server, mostra subito le sue bacheche.",
+      "<strong>Tutto ciò che fa il sito</strong>: trascinamento, ricerca e filtri, il pannello delle attività e le impostazioni della bacheca e del server.",
+      "<strong>In tempo reale per tutti</strong>: quando qualcuno sposta una scheda, nell'attività, sul sito o con un comando, si sposta subito per tutti.",
+      "<strong>Vedi chi è con te</strong>: in alto compaiono gli avatar di tutti gli altri nella stessa attività.",
+      "<strong>Gli stessi permessi</strong> di sempre: vedi e modifichi esattamente ciò che puoi sul sito e con i comandi."
+    ],
+    "goodTitle": "Buono a sapersi",
+    "good": [
+      "Usa la lingua di Discord, a meno che tu non ne abbia scelta una sul sito.",
+      "I link ad altri siti si aprono nel tuo browser. Discord chiede prima, come per i link in chat.",
+      "Le modifiche fatte nell'attività vengono registrate nel registro delle modifiche come tutte le altre."
+    ]
+  },
   "website": {
     "title": "Il sito web: ogni bacheca a colpo d'occhio",
     "description": "Il sito web di KanbanCord mostra intere bacheche con trascinamento, ricerca e filtri, liste di controllo, immagini e video, tutto in tempo reale con Discord.",

@@ -43,8 +43,8 @@
         "text": "Publikuj zmiany na wybranych kanałach i dostawaj wiadomości prywatne o swoich zadaniach, nigdy dwa razy oznaczany w tej samej sprawie."
       },
       "website": {
-        "title": "Pełny obraz, kiedy chcesz",
-        "text": "Strona pokazuje całe tablice na pierwszy rzut oka i mieści szczegółowe ustawienia, a każda zmiana jest widoczna na żywo dla wszystkich."
+        "title": "W Discordzie albo na stronie",
+        "text": "Otwieraj całe tablice w rozmowie jako aktywność Discord albo na stronie: przeciąganie, dokładne ustawienia i każda zmiana na żywo dla wszystkich."
       },
       "comfort": {
         "title": "Stworzone z myślą o wygodzie",
@@ -64,6 +64,7 @@
     "title": "O {name}",
     "p1": "{name} to tablica kanban, która mieszka na twoim serwerze Discord. Pomysł jest prosty: twoja społeczność już rozmawia na Discordzie, więc tam też powinno odbywać się planowanie. Twórz tablice i kolumny, dodawaj zadania, przesuwaj je dalej, przypisuj ludzi, ustawiaj etykiety, priorytety i terminy i omawiaj je w komentarzach, wszystko poleceniami bota z ukośnikiem, bez wychodzenia z czatu. Aktualizacje trafiają na wybrane kanały, a o twoich zadaniach także w wiadomościach prywatnych.",
     "p2": "Większość osób nie potrzebuje niczego więcej. Strona przydaje się, gdy chcesz zobaczyć całą tablicę naraz albo coś dopracować: szczegółowe uprawnienia dla tablic i osób, etykiety i poziomy priorytetu tablicy, funkcje używane przez serwer, dokładnie to, o jakich aktualizacjach dostajesz powiadomienia, i dziennik wszystkich zmian.",
+    "activity": "Tablice możesz też otworzyć w samym Discordzie dzięki <strong>aktywności KanbanCord</strong>: uruchom ją w rozmowie głosowej, aby planować razem na tej samej tablicy, albo samodzielnie z dowolnego kanału tekstowego. Potrafi wszystko, co strona, a logowaniem zajmuje się Discord. Zobacz <guide>przewodnik po aktywności</guide>.",
     "p3": "Od początku korzysta z ról i uprawnień Discorda na twoim serwerze, więc właściwe osoby widzą i zmieniają właściwe tablice, bez ustawiania czegokolwiek dwa razy.",
     "simpleTitle": "Tylko to, co wybierzesz",
     "simple": "Nowe serwery zaczynają w <strong>trybie prostym</strong>: tablice, kolumny i zadania z tytułem i opisem. Osoby przypisane, terminy z przypomnieniami, priorytety, etykiety, komentarze i uprawnienia niestandardowe pozostają wyłączone, dopóki zarządzający serwerem nie włączy ich poleceniem <code>/kanbancord features</code> lub w ustawieniach serwera na stronie. Wyłączone funkcje nie są nigdzie pokazywane, ani w Discordzie, ani na stronie: widać tylko to, co wybierzesz. Każda tablica może znowu wyłączyć funkcje dla siebie, a każdy może ukryć więcej dla siebie w Preferencje → Widok uproszczony. Wyłączenie funkcji tylko ją ukrywa; nic nie jest usuwane.",

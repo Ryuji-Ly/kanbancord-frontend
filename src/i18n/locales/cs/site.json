@@ -43,8 +43,8 @@
         "text": "Posílej změny do vybraných kanálů a dostávej soukromé zprávy o svých úkolech, aniž bys byl kvůli jedné věci zmíněn dvakrát."
       },
       "website": {
-        "title": "Celkový přehled, když ho chceš",
-        "text": "Web ukazuje celé nástěnky na první pohled a obsahuje podrobná nastavení, přičemž každá změna je živě vidět pro všechny."
+        "title": "V Discordu, nebo na webu",
+        "text": "Otevírejte celé nástěnky v hovoru jako aktivitu Discordu, nebo na webu: přetahování, jemné nastavení a každá změna živě pro všechny."
       },
       "comfort": {
         "title": "Navrženo pro pohodlí",
@@ -64,6 +64,7 @@
     "title": "O projektu {name}",
     "p1": "{name} je kanbanová nástěnka, která žije na tvém Discord serveru. Myšlenka je jednoduchá: tvoje komunita už mluví na Discordu, takže i plánování by mělo probíhat tam. Vytvářej nástěnky a sloupce, přidávej úkoly, posouvej je dál, přiřazuj lidi, nastavuj štítky, priority a termíny a diskutuj o nich v komentářích, to vše lomítkovými příkazy bota, bez opuštění chatu. Aktualizace přicházejí do kanálů, které zvolíš, a o tvých úkolech i soukromou zprávou.",
     "p2": "Většina lidí nic dalšího nepotřebuje. Web je tu, když chceš vidět celou nástěnku najednou nebo něco doladit: podrobná oprávnění pro nástěnky i osoby, štítky a úrovně priority nástěnky, funkce, které server používá, přesně o kterých aktualizacích se dozvídáš, a protokol všech změn.",
+    "activity": "Nástěnky můžete otevřít i přímo v Discordu s <strong>aktivitou KanbanCord</strong>: spusťte ji v hlasovém hovoru a plánujte společně na stejné nástěnce, nebo sami z libovolného textového kanálu. Umí vše, co web, a přihlásí vás Discord. Viz <guide>průvodce aktivitou</guide>.",
     "p3": "Od začátku se řídí rolemi a oprávněními Discordu na tvém serveru, takže správní lidé vidí a mění správné nástěnky a nic nemusíš nastavovat dvakrát.",
     "simpleTitle": "Jen to, co si vybereš",
     "simple": "Nové servery začínají v <strong>jednoduchém režimu</strong>: nástěnky, sloupce a úkoly s názvem a popisem. Řešitelé, termíny s připomínkami, priority, štítky, komentáře a vlastní oprávnění zůstávají vypnuté, dokud je správce serveru nezapne příkazem <code>/kanbancord features</code> nebo v nastavení serveru na webu. Vypnuté funkce se nikde nezobrazují, ani v Discordu, ani na webu: objeví se jen to, co si vybereš. Každá nástěnka si může funkce znovu vypnout pro sebe a každý si může skrýt víc pro sebe v Předvolbách → Jednoduché zobrazení. Vypnutí funkce ji jen skryje; nic se nemaže.",

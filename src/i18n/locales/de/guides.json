@@ -319,6 +319,34 @@
     "trackTitle": "Den Überblick behalten",
     "track": "Jede Änderung, auch Änderungen an Berechtigungen und das Ein- oder Ausschalten von Funktionen, wird im Audit-Log auf der Website festgehalten, mit wer sie gemacht hat und ob sie aus Discord oder von der Website kam."
   },
+  "activity": {
+    "title": "Die Discord-Aktivität: deine Boards in Discord",
+    "description": "Öffne deine KanbanCord-Boards direkt in Discord mit der KanbanCord-Aktivität, in einem Sprachanruf oder in jedem Textkanal, mit Drag-and-drop und allem, was die Website kann.",
+    "summary": "Öffne deine Boards in einem Anruf oder in jedem Kanal, ohne Discord zu verlassen.",
+    "intro": "Die KanbanCord-Aktivität ist die Website, geöffnet in Discord. Starte sie in einem Sprachanruf, um gemeinsam am selben Board zu planen, oder allein in einem beliebigen Textkanal. Es gibt nichts zu installieren und keine eigene Anmeldung: Discord meldet dich an.",
+    "startTitle": "So startest du sie",
+    "start": [
+      "<strong>In einem Sprachkanal</strong>: tritt dem Anruf bei, öffne das Aktivitäten-Menü (die Rakete) und wähle KanbanCord. Alle im Anruf können mitmachen.",
+      "<strong>In einem Textkanal</strong>: öffne den App-Starter neben dem Nachrichtenfeld und wähle KanbanCord.",
+      "Beim ersten Mal fragt Discord, ob KanbanCord erfahren darf, wer du bist. Danach öffnet sie sich sofort."
+    ],
+    "screenAlt": "Die KanbanCord-Aktivität in Discord mit einem Board mit den Spalten To Do, In Progress und Done.",
+    "screenCaption": "Ein Board in der Aktivität, geöffnet in einem Anruf.",
+    "whatTitle": "Was du tun kannst",
+    "what": [
+      "<strong>Öffnet sich auf deinem Server</strong>: in einem Server gestartet, zeigt sie direkt dessen Boards.",
+      "<strong>Alles, was die Website kann</strong>: Drag-and-drop, Suche und Filter, die Aufgabenansicht sowie die Board- und Servereinstellungen.",
+      "<strong>Live für alle</strong>: verschiebt jemand eine Karte, ob in der Aktivität, auf der Website oder per Befehl, bewegt sie sich sofort für alle.",
+      "<strong>Sieh, wer dabei ist</strong>: oben erscheinen die Profilbilder aller anderen in derselben Aktivität.",
+      "<strong>Dieselben Berechtigungen</strong> wie überall: du siehst und änderst genau das, was du auch auf der Website und mit Befehlen kannst."
+    ],
+    "goodTitle": "Gut zu wissen",
+    "good": [
+      "Sie verwendet die Sprache von Discord, außer du hast auf der Website eine gewählt.",
+      "Links zu anderen Seiten öffnen sich in deinem Browser. Discord fragt vorher, wie bei Links im Chat.",
+      "Änderungen in der Aktivität werden wie alle anderen im Audit-Log festgehalten."
+    ]
+  },
   "website": {
     "title": "Die Website: jedes Board auf einen Blick",
     "description": "Die KanbanCord-Website zeigt ganze Boards mit Drag & Drop, Suche und Filtern, Checklisten, Bildern und Videos, alles live mit Discord.",

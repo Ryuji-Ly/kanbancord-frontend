@@ -319,6 +319,34 @@
     "trackTitle": "Ha koll på allt",
     "track": "Varje ändring, inklusive ändringar av behörigheter och att slå på eller stänga av funktioner, registreras i ändringsloggen på webbplatsen, med vem som gjorde den och om den kom från Discord eller webbplatsen."
   },
+  "activity": {
+    "title": "Discord-aktiviteten: dina tavlor i Discord",
+    "description": "Öppna dina KanbanCord-tavlor direkt i Discord med KanbanCord-aktiviteten, i ett röstsamtal eller i valfri textkanal, med dra och släpp och allt som webbplatsen kan.",
+    "summary": "Öppna dina tavlor i ett samtal eller i valfri kanal, utan att lämna Discord.",
+    "intro": "KanbanCord-aktiviteten är webbplatsen, öppnad i Discord. Starta den i ett röstsamtal för att planera tillsammans på samma tavla, eller på egen hand från valfri textkanal. Det finns inget att installera och ingen separat inloggning: Discord loggar in dig.",
+    "startTitle": "Så startar du den",
+    "start": [
+      "<strong>I en röstkanal</strong>: gå med i samtalet, öppna aktivitetsmenyn (raketknappen) och välj KanbanCord. Alla i samtalet kan vara med.",
+      "<strong>I en textkanal</strong>: öppna appstartaren bredvid meddelanderutan och välj KanbanCord.",
+      "Första gången frågar Discord om KanbanCord får veta vem du är. Sedan öppnas den direkt."
+    ],
+    "screenAlt": "KanbanCord-aktiviteten öppen i Discord, med en tavla med kolumnerna To Do, In Progress och Done.",
+    "screenCaption": "En tavla i aktiviteten, öppnad i ett samtal.",
+    "whatTitle": "Vad du kan göra",
+    "what": [
+      "<strong>Öppnas på din server</strong>: startad på en server går den direkt till serverns tavlor.",
+      "<strong>Allt som webbplatsen kan</strong>: dra och släpp, sökning och filter, uppgiftspanelen samt inställningarna för tavlan och servern.",
+      "<strong>Live för alla</strong>: när någon flyttar ett kort, i aktiviteten, på webbplatsen eller med ett kommando, flyttas det direkt för alla.",
+      "<strong>Se vem som är med</strong>: överst visas profilbilderna för alla andra i samma aktivitet.",
+      "<strong>Samma behörigheter</strong> som överallt: du ser och ändrar precis det du kan på webbplatsen och med kommandon."
+    ],
+    "goodTitle": "Bra att veta",
+    "good": [
+      "Den använder Discords språk, om du inte har valt ett på webbplatsen.",
+      "Länkar till andra webbplatser öppnas i din webbläsare. Discord frågar först, precis som för länkar i chatten.",
+      "Ändringar som görs i aktiviteten registreras i ändringsloggen som alla andra."
+    ]
+  },
   "website": {
     "title": "Webbplatsen: varje tavla i en blick",
     "description": "KanbanCords webbplats visar hela tavlor med dra och släpp, sökning och filter, checklistor, bilder och videor, allt live med Discord.",

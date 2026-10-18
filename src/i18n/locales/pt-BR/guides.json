@@ -319,6 +319,34 @@
     "trackTitle": "Acompanhando tudo",
     "track": "Todas as alterações, incluindo alterações nas permissões e a ativação ou desativação de recursos, ficam registradas no registro de alterações no site, com quem fez e se veio do Discord ou do site."
   },
+  "activity": {
+    "title": "A atividade do Discord: seus quadros dentro do Discord",
+    "description": "Abra seus quadros do KanbanCord dentro do Discord com a atividade do KanbanCord, em uma chamada de voz ou em qualquer canal de texto, com arrastar e soltar e tudo o que o site faz.",
+    "summary": "Abra seus quadros em uma chamada ou em qualquer canal, sem sair do Discord.",
+    "intro": "A atividade do KanbanCord é o site, aberto dentro do Discord. Inicie-a em uma chamada de voz para planejar junto no mesmo quadro, ou sozinho em qualquer canal de texto. Não há nada para instalar nem login separado: o Discord faz o login para você.",
+    "startTitle": "Como iniciar",
+    "start": [
+      "<strong>Em um canal de voz</strong>: entre na chamada, abra o menu de atividades (o botão do foguete) e escolha KanbanCord. Todos na chamada podem participar.",
+      "<strong>Em um canal de texto</strong>: abra o inicializador de apps ao lado da caixa de mensagem e escolha KanbanCord.",
+      "Na primeira vez, o Discord pede para você permitir que o KanbanCord saiba quem você é. Depois disso, ela abre direto."
+    ],
+    "screenAlt": "A atividade do KanbanCord aberta no Discord, com um quadro com as colunas To Do, In Progress e Done.",
+    "screenCaption": "Um quadro na atividade, aberta em uma chamada.",
+    "whatTitle": "O que você pode fazer",
+    "what": [
+      "<strong>Abre no seu servidor</strong>: iniciada em um servidor, vai direto para os quadros dele.",
+      "<strong>Tudo o que o site faz</strong>: arrastar e soltar, busca e filtros, o painel da tarefa e as configurações do quadro e do servidor.",
+      "<strong>Ao vivo para todos</strong>: quando alguém move um cartão, na atividade, no site ou com um comando, ele se move na hora para todos.",
+      "<strong>Veja quem está com você</strong>: os avatares de todos os outros na mesma atividade aparecem no topo.",
+      "<strong>As mesmas permissões</strong> de sempre: você vê e altera exatamente o que pode no site e com comandos."
+    ],
+    "goodTitle": "Bom saber",
+    "good": [
+      "Ela usa o idioma do Discord, a menos que você tenha escolhido um no site.",
+      "Links para outros sites abrem no seu navegador. O Discord pergunta antes, como nos links do chat.",
+      "As alterações feitas na atividade ficam no registro de alterações como qualquer outra."
+    ]
+  },
   "website": {
     "title": "O site: todos os quadros de relance",
     "description": "O site do KanbanCord mostra quadros inteiros com arrastar e soltar, pesquisa e filtros, checklists, imagens e vídeos, tudo ao vivo com o Discord.",

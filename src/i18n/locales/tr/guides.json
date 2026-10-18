@@ -319,6 +319,34 @@
     "trackTitle": "Kayıt tutma",
     "track": "İzin değişiklikleri ve özelliklerin açılıp kapatılması dahil her değişiklik, kimin yaptığı ve Discord'dan mı yoksa web sitesinden mi geldiğiyle birlikte web sitesindeki değişiklik kaydına işlenir."
   },
+  "activity": {
+    "title": "Discord Etkinliği: panoların Discord içinde",
+    "description": "KanbanCord Etkinliği ile KanbanCord panolarını doğrudan Discord içinde, bir sesli aramada ya da herhangi bir metin kanalında aç; sürükle bırak dahil web sitesinin yaptığı her şey elinin altında.",
+    "summary": "Discord'dan ayrılmadan panolarını bir aramada ya da herhangi bir kanalda aç.",
+    "intro": "KanbanCord Etkinliği, Discord içinde açılan web sitesidir. Aynı panoda birlikte planlamak için bir sesli aramada başlat ya da herhangi bir metin kanalından tek başına aç. Kurulacak bir şey yok, ayrıca giriş yapmana da gerek yok: Discord seni giriş yaptırır.",
+    "startTitle": "Nasıl başlatılır",
+    "start": [
+      "<strong>Bir ses kanalında</strong>: aramaya katıl, Etkinlikler menüsünü (roket düğmesi) aç ve KanbanCord'u seç. Aramadaki herkes katılabilir.",
+      "<strong>Bir metin kanalında</strong>: mesaj kutusunun yanındaki uygulama başlatıcıyı aç ve KanbanCord'u seç.",
+      "İlk seferde Discord, KanbanCord'un kim olduğunu bilmesine izin vermeni ister. Sonrasında hemen açılır."
+    ],
+    "screenAlt": "Discord'da açık KanbanCord Etkinliği: To Do, In Progress ve Done sütunları olan bir pano.",
+    "screenCaption": "Bir aramada açılmış Etkinlik içinde bir pano.",
+    "whatTitle": "Neler yapabilirsin",
+    "what": [
+      "<strong>Sunucunda açılır</strong>: bir sunucuda başlatıldığında doğrudan o sunucunun panolarına gider.",
+      "<strong>Web sitesinin yaptığı her şey</strong>: sürükle bırak, arama ve filtreler, görev paneli, pano ve sunucu ayarları.",
+      "<strong>Herkes için canlı</strong>: biri bir kartı Etkinlikte, web sitesinde ya da bir komutla taşıdığında, herkes için anında taşınır.",
+      "<strong>Kimlerin yanında olduğunu gör</strong>: aynı Etkinlikteki diğer herkesin profil resmi üstte görünür.",
+      "<strong>Her yerdeki izinlerin aynısı</strong>: web sitesinde ve komutlarla neyi yapabiliyorsan tam olarak onu görür ve değiştirirsin."
+    ],
+    "goodTitle": "Bilmekte fayda var",
+    "good": [
+      "Web sitesinde bir dil seçmediysen Discord'un dilini kullanır.",
+      "Başka sitelere giden bağlantılar tarayıcında açılır. Discord, sohbetteki bağlantılarda olduğu gibi önce sorar.",
+      "Etkinlikte yapılan değişiklikler de diğerleri gibi değişiklik kaydına yazılır."
+    ]
+  },
   "website": {
     "title": "Web sitesi: her pano bir bakışta",
     "description": "KanbanCord web sitesi panoların tamamını sürükle-bırak, arama ve filtreler, kontrol listeleri, görseller ve videolarla, Discord ile canlı olarak eşitlenmiş şekilde gösterir.",

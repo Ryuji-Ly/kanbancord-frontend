@@ -319,6 +319,34 @@
     "trackTitle": "Śledzenie wszystkiego",
     "track": "Każda zmiana, łącznie ze zmianami uprawnień i włączaniem lub wyłączaniem funkcji, jest zapisywana w dzienniku zmian na stronie, z informacją, kto to zrobił i czy z Discorda, czy ze strony."
   },
+  "activity": {
+    "title": "Aktywność Discord: twoje tablice w Discordzie",
+    "description": "Otwieraj tablice KanbanCord bezpośrednio w Discordzie dzięki aktywności KanbanCord, w rozmowie głosowej lub dowolnym kanale tekstowym, z przeciąganiem i wszystkim, co potrafi strona.",
+    "summary": "Otwieraj tablice w rozmowie lub dowolnym kanale, nie wychodząc z Discorda.",
+    "intro": "Aktywność KanbanCord to strona otwarta w Discordzie. Uruchom ją w rozmowie głosowej, aby planować razem na tej samej tablicy, albo samodzielnie z dowolnego kanału tekstowego. Nie trzeba niczego instalować ani logować się osobno: Discord zaloguje cię sam.",
+    "startTitle": "Jak ją uruchomić",
+    "start": [
+      "<strong>Na kanale głosowym</strong>: dołącz do rozmowy, otwórz menu aktywności (przycisk z rakietą) i wybierz KanbanCord. Każdy w rozmowie może dołączyć.",
+      "<strong>Na kanale tekstowym</strong>: otwórz menu aplikacji obok pola wiadomości i wybierz KanbanCord.",
+      "Za pierwszym razem Discord poprosi o zgodę, by KanbanCord wiedział, kim jesteś. Potem otwiera się od razu."
+    ],
+    "screenAlt": "Aktywność KanbanCord otwarta w Discordzie: tablica z kolumnami To Do, In Progress i Done.",
+    "screenCaption": "Tablica w aktywności otwartej w rozmowie.",
+    "whatTitle": "Co możesz zrobić",
+    "what": [
+      "<strong>Otwiera się na twoim serwerze</strong>: uruchomiona na serwerze, od razu pokazuje jego tablice.",
+      "<strong>Wszystko, co potrafi strona</strong>: przeciąganie, wyszukiwanie i filtry, panel zadania oraz ustawienia tablicy i serwera.",
+      "<strong>Na żywo dla wszystkich</strong>: gdy ktoś przesunie kartę, w aktywności, na stronie czy poleceniem, od razu przesuwa się u wszystkich.",
+      "<strong>Zobacz, kto jest z tobą</strong>: u góry widać awatary wszystkich innych w tej samej aktywności.",
+      "<strong>Te same uprawnienia</strong> co wszędzie: widzisz i zmieniasz dokładnie to, co na stronie i poleceniami."
+    ],
+    "goodTitle": "Dobrze wiedzieć",
+    "good": [
+      "Używa języka Discorda, chyba że wybierzesz inny na stronie.",
+      "Linki do innych stron otwierają się w przeglądarce. Discord najpierw pyta, tak jak przy linkach na czacie.",
+      "Zmiany wprowadzone w aktywności trafiają do dziennika zmian jak wszystkie inne."
+    ]
+  },
   "website": {
     "title": "Strona: każda tablica na pierwszy rzut oka",
     "description": "Strona KanbanCord pokazuje całe tablice z przeciąganiem i upuszczaniem, wyszukiwaniem i filtrami, listami kontrolnymi, obrazami i filmami, wszystko na żywo z Discordem.",

@@ -43,8 +43,8 @@
         "text": "Publică modificările în canalele alese și primește mesaje directe despre sarcinile tale, fără să fii menționat de două ori pentru același lucru."
       },
       "website": {
-        "title": "Imaginea de ansamblu, când o vrei",
-        "text": "Site-ul arată panouri întregi dintr-o privire și găzduiește setările fine, cu fiecare modificare live pentru toată lumea."
+        "title": "În Discord sau pe site",
+        "text": "Deschide panouri întregi într-un apel, ca activitate Discord, sau pe site: tragere și plasare, reglaje fine și fiecare modificare în timp real pentru toți."
       },
       "comfort": {
         "title": "Făcut să fie confortabil",
@@ -64,6 +64,7 @@
     "title": "Despre {name}",
     "p1": "{name} este un panou kanban care trăiește pe serverul tău de Discord. Ideea e simplă: comunitatea ta vorbește deja pe Discord, așa că și planificarea ar trebui să aibă loc acolo. Creează panouri și coloane, adaugă sarcini, du-le mai departe, atribuie oameni, setează etichete, priorități și termene și discută-le în comentarii, totul cu comenzile slash ale botului, fără să ieși din chat. Actualizările ajung în canalele alese și, pentru sarcinile tale, prin mesaj direct.",
     "p2": "Majoritatea oamenilor nu au nevoie de altceva. Site-ul e acolo când vrei să vezi tot panoul dintr-o privire sau să ajustezi lucruri: permisiuni detaliate pe panouri și persoane, etichetele și nivelurile de prioritate ale unui panou, funcțiile folosite de un server, exact despre ce actualizări afli și jurnalul tuturor modificărilor.",
+    "activity": "Îți poți deschide panourile și direct în Discord, cu <strong>activitatea KanbanCord</strong>: pornește-o într-un apel vocal ca să planificați împreună pe același panou, sau singur din orice canal text. Face tot ce face site-ul, iar Discord te autentifică. Vezi <guide>ghidul activității</guide>.",
     "p3": "Urmează de la început rolurile și permisiunile Discord ale serverului tău, așa că oamenii potriviți văd și modifică panourile potrivite, fără să configurezi ceva de două ori.",
     "simpleTitle": "Doar ce alegi",
     "simple": "Serverele noi încep în <strong>modul simplu</strong>: panouri, coloane și sarcini cu titlu și descriere. Responsabilii, termenele limită cu mementouri, prioritățile, etichetele, comentariile și permisiunile personalizate rămân dezactivate până când un administrator al serverului le activează cu <code>/kanbancord features</code> sau în setările serverului de pe site. Funcțiile dezactivate nu apar nicăieri, nici în Discord, nici pe site: apare doar ce alegi. Fiecare panou poate dezactiva din nou funcții pentru sine și oricine poate ascunde mai mult pentru sine din Preferințe → Vizualizare simplă. Dezactivarea unei funcții doar o ascunde; nu se șterge nimic.",

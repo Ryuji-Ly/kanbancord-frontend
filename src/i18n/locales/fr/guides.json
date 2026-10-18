@@ -319,6 +319,34 @@
     "trackTitle": "Garder une trace",
     "track": "Chaque changement, y compris les changements de permissions et l'activation ou la désactivation de fonctionnalités, est enregistré dans le journal des modifications sur le site, avec qui l'a fait et s'il vient de Discord ou du site."
   },
+  "activity": {
+    "title": "L'activité Discord : vos tableaux dans Discord",
+    "description": "Ouvrez vos tableaux KanbanCord directement dans Discord avec l'activité KanbanCord, dans un appel vocal ou n'importe quel salon textuel, avec le glisser-déposer et tout ce que fait le site.",
+    "summary": "Ouvrez vos tableaux dans un appel ou un salon, sans quitter Discord.",
+    "intro": "L'activité KanbanCord, c'est le site, ouvert dans Discord. Lancez-la dans un appel vocal pour planifier ensemble sur le même tableau, ou seul depuis n'importe quel salon textuel. Rien à installer et pas de connexion à part : Discord vous connecte.",
+    "startTitle": "La lancer",
+    "start": [
+      "<strong>Dans un salon vocal</strong> : rejoignez l'appel, ouvrez le menu des activités (le bouton fusée) et choisissez KanbanCord. Tout le monde dans l'appel peut la rejoindre.",
+      "<strong>Dans un salon textuel</strong> : ouvrez le lanceur d'applications à côté de la zone de message et choisissez KanbanCord.",
+      "La première fois, Discord vous demande d'autoriser KanbanCord à savoir qui vous êtes. Ensuite, elle s'ouvre directement."
+    ],
+    "screenAlt": "L'activité KanbanCord ouverte dans Discord, avec un tableau aux colonnes To Do, In Progress et Done.",
+    "screenCaption": "Un tableau dans l'activité, ouverte dans un appel.",
+    "whatTitle": "Ce que vous pouvez faire",
+    "what": [
+      "<strong>S'ouvre sur votre serveur</strong> : lancée dans un serveur, elle affiche directement ses tableaux.",
+      "<strong>Tout ce que fait le site</strong> : glisser-déposer, recherche et filtres, le panneau des tâches, et les paramètres du tableau et du serveur.",
+      "<strong>En direct pour tous</strong> : quand quelqu'un déplace une carte, dans l'activité, sur le site ou avec une commande, elle bouge aussitôt pour tout le monde.",
+      "<strong>Voyez qui est là</strong> : les avatars des autres personnes dans la même activité s'affichent en haut.",
+      "<strong>Les mêmes permissions</strong> que partout : vous voyez et modifiez exactement ce que vous pouvez sur le site et avec les commandes."
+    ],
+    "goodTitle": "Bon à savoir",
+    "good": [
+      "Elle utilise la langue de Discord, sauf si vous en avez choisi une sur le site.",
+      "Les liens vers d'autres sites s'ouvrent dans votre navigateur. Discord demande d'abord, comme pour les liens dans le chat.",
+      "Les modifications faites dans l'activité sont enregistrées dans le journal des modifications comme les autres."
+    ]
+  },
   "website": {
     "title": "Le site : chaque tableau d'un coup d'œil",
     "description": "Le site KanbanCord montre des tableaux entiers avec glisser-déposer, recherche et filtres, listes de contrôle, images et vidéos, le tout en direct avec Discord.",

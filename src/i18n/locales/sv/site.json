@@ -43,8 +43,8 @@
         "text": "Publicera ändringar i valda kanaler och få direktmeddelanden om dina uppgifter, utan att någonsin pingas två gånger för samma sak."
       },
       "website": {
-        "title": "Helheten, när du vill",
-        "text": "Webbplatsen visar hela tavlor i en blick och rymmer finjusteringen, med varje ändring live för alla."
+        "title": "I Discord, eller på webbplatsen",
+        "text": "Öppna hela tavlor i ett samtal som en Discord-aktivitet, eller på webbplatsen: dra och släpp, finjustering och varje ändring live för alla."
       },
       "comfort": {
         "title": "Gjord för att vara bekväm",
@@ -64,6 +64,7 @@
     "title": "Om {name}",
     "p1": "{name} är en kanbantavla som bor på din Discord-server. Idén är enkel: din community pratar redan på Discord, så planeringen bör ske där också. Skapa tavlor och kolumner, lägg till uppgifter, flytta dem framåt, tilldela personer, sätt etiketter, prioriteter och förfallodatum och diskutera dem i kommentarer, allt med botens snedstreckskommandon, utan att lämna chatten. Uppdateringar kommer i de kanaler du väljer och, för dina egna uppgifter, som direktmeddelanden.",
     "p2": "De flesta behöver aldrig något annat. Webbplatsen finns där när du vill se hela tavlan i en blick eller finjustera saker: detaljerade behörigheter per tavla och per person, de etiketter och prioritetsnivåer en tavla har, vilka funktioner en server använder, exakt vilka uppdateringar du får höra om och ändringsloggen över varje ändring.",
+    "activity": "Du kan också öppna dina tavlor i själva Discord med <strong>KanbanCord-aktiviteten</strong>: starta den i ett röstsamtal för att planera tillsammans på samma tavla, eller på egen hand från valfri textkanal. Den kan allt som webbplatsen kan, och Discord loggar in dig. Se <guide>guiden om aktiviteten</guide>.",
     "p3": "Den följer serverns Discord-roller och behörigheter från början, så att rätt personer ser och ändrar rätt tavlor utan att något behöver ställas in två gånger.",
     "simpleTitle": "Bara det du väljer",
     "simple": "Nya servrar börjar i <strong>enkelt läge</strong>: tavlor, kolumner och uppgifter med titel och beskrivning. Tilldelade, förfallodatum med påminnelser, prioriteter, etiketter, kommentarer och anpassade behörigheter är avstängda tills en serveradministratör slår på dem med <code>/kanbancord features</code> eller i serverinställningarna på webbplatsen. Funktioner som är avstängda visas ingenstans, varken i Discord eller på webbplatsen: bara det du väljer syns. Varje tavla kan stänga av funktioner igen för sig själv, och alla kan dölja mer för sig själva under Preferenser → Enkel vy. Att stänga av en funktion döljer den bara; inget tas bort.",

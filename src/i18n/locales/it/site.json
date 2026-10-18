@@ -43,8 +43,8 @@
         "text": "Pubblica le modifiche nei canali scelti e ricevi messaggi diretti sulle tue attività, senza mai essere menzionato due volte per la stessa cosa."
       },
       "website": {
-        "title": "Il quadro completo, quando lo vuoi",
-        "text": "Il sito web mostra intere bacheche a colpo d'occhio e contiene le impostazioni di dettaglio, con ogni modifica in tempo reale per tutti."
+        "title": "Dentro Discord, o sul sito",
+        "text": "Apri intere bacheche in una chiamata come attività Discord, o sul sito: trascinamento, regolazioni fini e ogni modifica in tempo reale per tutti."
       },
       "comfort": {
         "title": "Fatto per essere comodo",
@@ -64,6 +64,7 @@
     "title": "Informazioni su {name}",
     "p1": "{name} è una bacheca kanban che vive nel tuo server Discord. L'idea è semplice: la tua community parla già su Discord, quindi anche la pianificazione dovrebbe avvenire lì. Crea bacheche e colonne, aggiungi attività, falle avanzare, assegna persone, imposta etichette, priorità e scadenze e discutine nei commenti, tutto con i comandi slash del bot, senza uscire dalla chat. Gli aggiornamenti arrivano nei canali che scegli e, per le tue attività, in messaggio diretto.",
     "p2": "Alla maggior parte delle persone non serve altro. Il sito web c'è quando vuoi vedere l'intera bacheca a colpo d'occhio o regolare i dettagli: permessi precisi per bacheca e per persona, le etichette e i livelli di priorità di una bacheca, quali funzioni usa un server, esattamente quali aggiornamenti ricevi e il registro di ogni modifica.",
+    "activity": "Puoi anche aprire le tue bacheche dentro Discord con l'<strong>attività KanbanCord</strong>: avviala in una chiamata vocale per pianificare insieme sulla stessa bacheca, oppure da solo da qualsiasi canale testuale. Fa tutto ciò che fa il sito, e ti fa accedere Discord. Vedi <guide>la guida all'attività</guide>.",
     "p3": "Segue fin dall'inizio i ruoli e i permessi di Discord del tuo server, così le persone giuste vedono e modificano le bacheche giuste senza dover configurare niente due volte.",
     "simpleTitle": "Solo ciò che scegli",
     "simple": "I nuovi server partono in <strong>modalità semplice</strong>: bacheche, colonne e attività con titolo e descrizione. Assegnatari, scadenze con promemoria, priorità, etichette, commenti e permessi personalizzati restano disattivati finché chi gestisce il server non li attiva con <code>/kanbancord features</code> o nelle impostazioni del server sul sito web. Le funzioni disattivate non compaiono da nessuna parte, né in Discord né sul sito web: appaiono solo quelle che scegli. Ogni bacheca può disattivare di nuovo delle funzioni per sé, e ognuno può nasconderne altre per sé in Preferenze → Vista semplice. Disattivare una funzione la nasconde soltanto; non viene eliminato niente.",

@@ -319,6 +319,34 @@
     "trackTitle": "Theo dõi mọi thứ",
     "track": "Mọi thay đổi, kể cả thay đổi quyền và bật hay tắt tính năng, đều được ghi trong nhật ký thay đổi trên trang web, kèm người thực hiện và việc đó đến từ Discord hay trang web."
   },
+  "activity": {
+    "title": "Hoạt động Discord: bảng của bạn ngay trong Discord",
+    "description": "Mở bảng KanbanCord ngay trong Discord với Hoạt động KanbanCord, trong cuộc gọi thoại hoặc bất kỳ kênh văn bản nào, với kéo thả và mọi thứ trang web làm được.",
+    "summary": "Mở bảng trong cuộc gọi hoặc bất kỳ kênh nào mà không rời Discord.",
+    "intro": "Hoạt động KanbanCord là trang web, được mở ngay trong Discord. Khởi động trong cuộc gọi thoại để cùng lên kế hoạch trên một bảng, hoặc tự mở từ bất kỳ kênh văn bản nào. Không cần cài đặt gì và không cần đăng nhập riêng: Discord đăng nhập cho bạn.",
+    "startTitle": "Cách khởi động",
+    "start": [
+      "<strong>Trong kênh thoại</strong>: tham gia cuộc gọi, mở menu Hoạt động (nút tên lửa) và chọn KanbanCord. Mọi người trong cuộc gọi đều có thể tham gia.",
+      "<strong>Trong kênh văn bản</strong>: mở trình khởi chạy ứng dụng cạnh ô nhập tin nhắn và chọn KanbanCord.",
+      "Lần đầu, Discord sẽ hỏi bạn có cho phép KanbanCord biết bạn là ai không. Sau đó, nó mở ngay."
+    ],
+    "screenAlt": "Hoạt động KanbanCord mở trong Discord, hiển thị một bảng với các cột To Do, In Progress và Done.",
+    "screenCaption": "Một bảng trong Hoạt động, được mở trong cuộc gọi.",
+    "whatTitle": "Bạn có thể làm gì",
+    "what": [
+      "<strong>Mở trên máy chủ của bạn</strong>: khởi động trong một máy chủ thì đi thẳng đến các bảng của máy chủ đó.",
+      "<strong>Mọi thứ trang web làm được</strong>: kéo thả, tìm kiếm và bộ lọc, bảng điều khiển công việc, cài đặt bảng và máy chủ.",
+      "<strong>Trực tiếp cho mọi người</strong>: khi ai đó di chuyển một thẻ, trong Hoạt động, trên trang web hay bằng lệnh, thẻ di chuyển ngay cho tất cả.",
+      "<strong>Thấy ai đang ở cùng bạn</strong>: ảnh đại diện của những người khác trong cùng Hoạt động hiện ở phía trên.",
+      "<strong>Quyền như mọi nơi</strong>: bạn xem và thay đổi đúng những gì bạn làm được trên trang web và bằng lệnh."
+    ],
+    "goodTitle": "Nên biết",
+    "good": [
+      "Nó dùng ngôn ngữ của Discord, trừ khi bạn đã chọn một ngôn ngữ trên trang web.",
+      "Liên kết đến trang khác mở trong trình duyệt của bạn. Discord sẽ hỏi trước, giống như với liên kết trong trò chuyện.",
+      "Những thay đổi trong Hoạt động được ghi vào nhật ký thay đổi như mọi thay đổi khác."
+    ]
+  },
   "website": {
     "title": "Trang web: mọi bảng trong nháy mắt",
     "description": "Trang web KanbanCord hiển thị toàn bộ bảng với kéo và thả, tìm kiếm và bộ lọc, danh sách kiểm tra, hình ảnh và video, tất cả cập nhật trực tiếp cùng Discord.",

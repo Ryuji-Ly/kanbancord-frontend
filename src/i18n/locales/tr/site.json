@@ -43,8 +43,8 @@
         "text": "Değişiklikleri seçtiğiniz kanallara gönderin ve görevleriniz hakkında doğrudan mesaj alın; aynı konu için asla iki kez bahsedilmez."
       },
       "website": {
-        "title": "İstediğinizde genel tablo",
-        "text": "Web sitesi panoların tamamını bir bakışta gösterir ve ince ayarları barındırır; her değişiklik herkese anında yansır."
+        "title": "Discord içinde ya da web sitesinde",
+        "text": "Panoların tamamını bir aramada Discord Etkinliği olarak ya da web sitesinde aç: sürükle bırak, ince ayarlar ve her değişiklik herkes için canlı."
       },
       "comfort": {
         "title": "Rahat kullanım için tasarlandı",
@@ -64,6 +64,7 @@
     "title": "{name} hakkında",
     "p1": "{name}, Discord sunucunuzda yer alan bir kanban panosudur. Fikir basit: topluluğunuz zaten Discord'da konuşuyor, öyleyse planlama da orada yapılmalı. Pano ve sütun oluşturun, görev ekleyin, görevleri ilerletin, kişileri atayın, etiket, öncelik ve son tarih belirleyin ve yorumlarda tartışın; tümünü botun eğik çizgi komutlarıyla, sohbetten ayrılmadan yapın. Güncellemeler seçtiğiniz kanallara, kendi görevleriniz için ise doğrudan mesajla gelir.",
     "p2": "Çoğu kişinin bundan fazlasına ihtiyacı olmaz. Panonun tamamını bir bakışta görmek veya ince ayar yapmak istediğinizde web sitesi hazırdır: pano ve kişi bazında ayrıntılı izinler, bir panonun sunduğu etiketler ve öncelik düzeyleri, bir sunucunun kullandığı özellikler, tam olarak hangi güncellemelerin size bildirileceği ve tüm değişikliklerin kaydı.",
+    "activity": "<strong>KanbanCord Etkinliği</strong> ile panolarını Discord'un içinde de açabilirsin: aynı panoda birlikte planlamak için bir sesli aramada başlat ya da herhangi bir metin kanalından tek başına aç. Web sitesinin yaptığı her şeyi yapar ve Discord seni giriş yaptırır. Ayrıntılar için <guide>Etkinlik rehberine</guide> bak.",
     "p3": "Baştan itibaren sunucunuzun Discord rollerini ve izinlerini izler; böylece hiçbir şeyi iki kez ayarlamadan doğru kişiler doğru panoları görür ve değiştirir.",
     "simpleTitle": "Yalnızca seçtikleriniz",
     "simple": "Yeni sunucular <strong>sade mod</strong> ile başlar: panolar, sütunlar ve başlığı ile açıklaması olan görevler. Atananlar, hatırlatmalı son tarihler, öncelikler, etiketler, yorumlar ve özel izinler, bir sunucu yöneticisi bunları <code>/kanbancord features</code> ile veya web sitesindeki sunucu ayarlarından açana kadar kapalı kalır. Kapalı özellikler ne Discord'da ne de web sitesinde hiçbir yerde gösterilmez: yalnızca seçtikleriniz görünür. Her pano özellikleri kendisi için yeniden kapatabilir ve herkes Tercihler → Sade görünüm bölümünden kendisi için daha fazlasını gizleyebilir. Bir özelliği kapatmak onu yalnızca gizler; hiçbir şey silinmez.",

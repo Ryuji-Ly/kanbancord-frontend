@@ -319,6 +319,34 @@
     "trackTitle": "Llevar el control",
     "track": "Cada cambio, incluidos los cambios de permisos y activar o desactivar funciones, queda en el registro de cambios de la web, con quién lo hizo y si vino de Discord o de la web."
   },
+  "activity": {
+    "title": "La actividad de Discord: tus tableros dentro de Discord",
+    "description": "Abre tus tableros de KanbanCord dentro de Discord con la actividad de KanbanCord, en una llamada de voz o en cualquier canal de texto, con arrastrar y soltar y todo lo que hace la web.",
+    "summary": "Abre tus tableros en una llamada o en cualquier canal, sin salir de Discord.",
+    "intro": "La actividad de KanbanCord es la web, abierta dentro de Discord. Iníciala en una llamada de voz para planificar juntos en el mismo tablero, o por tu cuenta desde cualquier canal de texto. No hay nada que instalar ni inicio de sesión aparte: Discord te identifica.",
+    "startTitle": "Cómo iniciarla",
+    "start": [
+      "<strong>En un canal de voz</strong>: únete a la llamada, abre el menú de actividades (el botón del cohete) y elige KanbanCord. Todos los de la llamada pueden unirse.",
+      "<strong>En un canal de texto</strong>: abre el lanzador de aplicaciones junto al cuadro de mensaje y elige KanbanCord.",
+      "La primera vez, Discord te pide que permitas a KanbanCord saber quién eres. Después se abre directamente."
+    ],
+    "screenAlt": "La actividad de KanbanCord abierta en Discord, con un tablero con las columnas To Do, In Progress y Done.",
+    "screenCaption": "Un tablero en la actividad, abierta en una llamada.",
+    "whatTitle": "Qué puedes hacer",
+    "what": [
+      "<strong>Se abre en tu servidor</strong>: iniciada en un servidor, va directamente a sus tableros.",
+      "<strong>Todo lo que hace la web</strong>: arrastrar y soltar, búsqueda y filtros, el panel de tareas y los ajustes del tablero y del servidor.",
+      "<strong>En directo para todos</strong>: cuando alguien mueve una tarjeta, en la actividad, en la web o con un comando, se mueve al instante para todos.",
+      "<strong>Mira quién está contigo</strong>: arriba aparecen los avatares de los demás en la misma actividad.",
+      "<strong>Los mismos permisos</strong> que en todas partes: ves y cambias exactamente lo que puedes en la web y con comandos."
+    ],
+    "goodTitle": "Conviene saber",
+    "good": [
+      "Usa el idioma de Discord, salvo que hayas elegido uno en la web.",
+      "Los enlaces a otros sitios se abren en tu navegador. Discord pregunta antes, igual que con los enlaces del chat.",
+      "Los cambios hechos en la actividad quedan en el registro de cambios como cualquier otro."
+    ]
+  },
   "website": {
     "title": "La web: cada tablero de un vistazo",
     "description": "La web de KanbanCord muestra tableros enteros con arrastrar y soltar, búsqueda y filtros, listas de verificación, imágenes y videos, todo en directo con Discord.",

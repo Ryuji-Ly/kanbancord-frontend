@@ -319,6 +319,34 @@
     "trackTitle": "Alles bijhouden",
     "track": "Elke wijziging, inclusief wijzigingen aan rechten en het aan- of uitzetten van functies, wordt vastgelegd in het wijzigingslogboek op de website, met wie het deed en of het vanuit Discord of vanaf de website kwam."
   },
+  "activity": {
+    "title": "De Discord-activiteit: je borden in Discord",
+    "description": "Open je KanbanCord-borden direct in Discord met de KanbanCord-activiteit, in een spraakgesprek of in elk tekstkanaal, met slepen en neerzetten en alles wat de website kan.",
+    "summary": "Open je borden in een gesprek of in elk kanaal, zonder Discord te verlaten.",
+    "intro": "De KanbanCord-activiteit is de website, geopend in Discord. Start haar in een spraakgesprek om samen op hetzelfde bord te plannen, of alleen vanuit elk tekstkanaal. Er is niets te installeren en geen aparte aanmelding: Discord meldt je aan.",
+    "startTitle": "Zo start je haar",
+    "start": [
+      "<strong>In een spraakkanaal</strong>: doe mee aan het gesprek, open het menu met activiteiten (de raketknop) en kies KanbanCord. Iedereen in het gesprek kan meedoen.",
+      "<strong>In een tekstkanaal</strong>: open de app-starter naast het berichtvak en kies KanbanCord.",
+      "De eerste keer vraagt Discord of KanbanCord mag weten wie je bent. Daarna opent ze meteen."
+    ],
+    "screenAlt": "De KanbanCord-activiteit geopend in Discord, met een bord met de kolommen To Do, In Progress en Done.",
+    "screenCaption": "Een bord in de activiteit, geopend in een gesprek.",
+    "whatTitle": "Wat je kunt doen",
+    "what": [
+      "<strong>Opent op je server</strong>: gestart in een server, gaat ze meteen naar de borden van die server.",
+      "<strong>Alles wat de website kan</strong>: slepen en neerzetten, zoeken en filters, het taakpaneel en de instellingen van bord en server.",
+      "<strong>Live voor iedereen</strong>: verschuift iemand een kaart, in de activiteit, op de website of met een opdracht, dan verschuift die meteen voor iedereen.",
+      "<strong>Zie wie er is</strong>: bovenaan verschijnen de avatars van iedereen in dezelfde activiteit.",
+      "<strong>Dezelfde rechten</strong> als overal: je ziet en wijzigt precies wat je ook op de website en met opdrachten kunt."
+    ],
+    "goodTitle": "Goed om te weten",
+    "good": [
+      "Ze gebruikt de taal van Discord, tenzij je op de website een taal hebt gekozen.",
+      "Links naar andere sites openen in je browser. Discord vraagt het eerst, net als bij links in de chat.",
+      "Wijzigingen in de activiteit worden net als alle andere vastgelegd in het wijzigingslogboek."
+    ]
+  },
   "website": {
     "title": "De website: elk bord in één oogopslag",
     "description": "De website van KanbanCord toont hele borden met slepen en neerzetten, zoeken en filters, checklists, afbeeldingen en video's, allemaal live met Discord.",

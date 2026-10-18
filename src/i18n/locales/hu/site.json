@@ -43,8 +43,8 @@
         "text": "Küldd a módosításokat kiválasztott csatornákba, és kapj közvetlen üzeneteket a feladataidról, anélkül hogy egy dologért kétszer megemlítenének."
       },
       "website": {
-        "title": "Az átfogó kép, ha kell",
-        "text": "A webhely egy pillantással mutatja a teljes táblákat, és itt van a finomhangolás is, minden módosítás élőben mindenkinek."
+        "title": "A Discordban vagy a webhelyen",
+        "text": "Nyiss meg teljes táblákat hívásban Discord-tevékenységként vagy a webhelyen: húzás, finomhangolás, és minden változás élőben mindenkinek."
       },
       "comfort": {
         "title": "Kényelmes használatra tervezve",
@@ -64,6 +64,7 @@
     "title": "A {name} bemutatása",
     "p1": "A {name} egy kanbantábla, amely a Discord-szervereden él. Az ötlet egyszerű: a közösséged már a Discordon beszélget, így a tervezésnek is ott a helye. Hozz létre táblákat és oszlopokat, adj hozzá feladatokat, vidd őket előre, rendelj hozzá embereket, állíts be címkéket, prioritásokat és határidőket, és beszéljétek meg őket hozzászólásokban, mindezt a bot perjeles parancsaival, a csevegés elhagyása nélkül. A frissítések a választott csatornákba érkeznek, a saját feladataidról pedig közvetlen üzenetben.",
     "p2": "A legtöbb embernek soha nincs szüksége másra. A webhely akkor hasznos, ha egy pillantással látni szeretnéd az egész táblát, vagy finomhangolnál: részletes jogosultságok táblánként és személyenként, a tábla címkéi és prioritási szintjei, a szerver által használt funkciók, pontosan mely frissítésekről értesülsz, és minden módosítás változásnaplója.",
+    "activity": "A tábláidat a Discordon belül is megnyithatod a <strong>KanbanCord-tevékenységgel</strong>: indítsd el egy hanghívásban, hogy közösen tervezzetek ugyanazon a táblán, vagy egyedül bármelyik szöveges csatornáról. Mindent tud, amit a webhely, és a Discord bejelentkeztet. Lásd <guide>a tevékenységről szóló útmutatót</guide>.",
     "p3": "Kezdettől fogva a szervered Discord-rangjait és -jogosultságait követi, így a megfelelő emberek látják és módosítják a megfelelő táblákat, anélkül hogy bármit kétszer kellene beállítani.",
     "simpleTitle": "Csak amit választasz",
     "simple": "Az új szerverek <strong>egyszerű módban</strong> indulnak: táblák, oszlopok, és feladatok címmel és leírással. A felelősök, az emlékeztetős határidők, a prioritások, a címkék, a hozzászólások és az egyéni jogosultságok kikapcsolva maradnak, amíg a szerver egy kezelője be nem kapcsolja őket a <code>/kanbancord features</code> paranccsal vagy a webhely szerverbeállításaiban. A kikapcsolt funkciók sehol sem jelennek meg, sem a Discordban, sem a webhelyen: csak az látszik, amit választasz. Minden tábla újra kikapcsolhat funkciókat magának, és bárki elrejthet még többet magának a Preferenciák → Egyszerű nézet alatt. Egy funkció kikapcsolása csak elrejti; semmi sem törlődik.",

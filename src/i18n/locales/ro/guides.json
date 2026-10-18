@@ -319,6 +319,34 @@
     "trackTitle": "Evidența tuturor",
     "track": "Fiecare modificare, inclusiv modificările permisiunilor și activarea sau dezactivarea funcțiilor, este înregistrată în jurnalul de modificări de pe site, împreună cu cine a făcut-o și dacă a venit din Discord sau de pe site."
   },
+  "activity": {
+    "title": "Activitatea Discord: panourile tale în Discord",
+    "description": "Deschide panourile KanbanCord direct în Discord cu activitatea KanbanCord, într-un apel vocal sau în orice canal text, cu tragere și plasare și tot ce face site-ul.",
+    "summary": "Deschide panourile într-un apel sau în orice canal, fără să părăsești Discord.",
+    "intro": "Activitatea KanbanCord este site-ul, deschis în Discord. Pornește-o într-un apel vocal ca să planificați împreună pe același panou, sau singur din orice canal text. Nu e nimic de instalat și nicio autentificare separată: Discord te autentifică.",
+    "startTitle": "Cum o pornești",
+    "start": [
+      "<strong>Într-un canal vocal</strong>: intră în apel, deschide meniul de activități (butonul cu racheta) și alege KanbanCord. Toți cei din apel se pot alătura.",
+      "<strong>Într-un canal text</strong>: deschide lansatorul de aplicații de lângă caseta de mesaj și alege KanbanCord.",
+      "Prima dată, Discord îți cere permisiunea ca KanbanCord să afle cine ești. După aceea se deschide imediat."
+    ],
+    "screenAlt": "Activitatea KanbanCord deschisă în Discord: un panou cu coloanele To Do, In Progress și Done.",
+    "screenCaption": "Un panou în activitate, deschisă într-un apel.",
+    "whatTitle": "Ce poți face",
+    "what": [
+      "<strong>Se deschide pe serverul tău</strong>: pornită într-un server, merge direct la panourile acestuia.",
+      "<strong>Tot ce face site-ul</strong>: tragere și plasare, căutare și filtre, panoul sarcinii și setările panoului și ale serverului.",
+      "<strong>În timp real pentru toți</strong>: când cineva mută un card, în activitate, pe site sau cu o comandă, se mută imediat pentru toată lumea.",
+      "<strong>Vezi cine e cu tine</strong>: sus apar avatarurile tuturor celorlalți din aceeași activitate.",
+      "<strong>Aceleași permisiuni</strong> ca peste tot: vezi și modifici exact ce poți pe site și cu comenzi."
+    ],
+    "goodTitle": "Bine de știut",
+    "good": [
+      "Folosește limba din Discord, dacă nu ai ales alta pe site.",
+      "Linkurile către alte site-uri se deschid în browser. Discord întreabă mai întâi, ca la linkurile din chat.",
+      "Modificările făcute în activitate sunt înregistrate în jurnalul de modificări, ca oricare altele."
+    ]
+  },
   "website": {
     "title": "Site-ul: fiecare panou dintr-o privire",
     "description": "Site-ul KanbanCord arată panouri întregi cu tragere și plasare, căutare și filtre, liste de verificare, imagini și videoclipuri, totul live cu Discord.",
