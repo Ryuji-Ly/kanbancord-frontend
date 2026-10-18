@@ -19,6 +19,7 @@
     "title": "Boards",
     "intro": "Kanban-Boards für diesen Server erstellen und einrichten.",
     "create": "Board erstellen",
+    "moreWays": "Weitere Möglichkeiten, ein Board zu erstellen",
     "searchPlaceholder": "Boards suchen …",
     "searchLabel": "Boards suchen",
     "filterLabel": "Boards nach Archivstatus filtern",

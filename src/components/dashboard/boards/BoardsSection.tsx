@@ -1,8 +1,8 @@
 import { useMemo, useState } from 'react'
-import { FiPlus, FiUpload } from 'react-icons/fi'
 import { t } from '../../../i18n'
 import type { BoardEntry } from '../../../services/boardsService'
 import { BoardCard } from './BoardCard'
+import { CreateBoardButton } from './CreateBoardButton'
 
 type BoardVisibilityFilter = 'active' | 'archived' | 'all'
 
@@ -61,16 +61,7 @@ export function BoardsSection({
           <h3>{t('dashboard.boards.title')}</h3>
           <p className="kc-muted">{t('dashboard.boards.intro')}</p>
         </div>
-        {canCreateBoard && (
-          <div className="kc-board-section-actions">
-            <button type="button" className="kc-btn kc-btn-ghost" onClick={onOpenImport}>
-              <FiUpload aria-hidden="true" /> {t('settings.transfer.import')}
-            </button>
-            <button type="button" className="kc-btn kc-btn-primary" onClick={onOpenCreate}>
-              <FiPlus aria-hidden="true" /> {t('dashboard.boards.create')}
-            </button>
-          </div>
-        )}
+        {canCreateBoard && <CreateBoardButton onCreate={onOpenCreate} onImport={onOpenImport} />}
       </div>
 
       <div className="kc-board-toolbar">

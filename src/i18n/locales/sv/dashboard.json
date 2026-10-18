@@ -19,6 +19,7 @@
     "title": "Tavlor",
     "intro": "Skapa och konfigurera kanbantavlor för den här servern.",
     "create": "Skapa tavla",
+    "moreWays": "Fler sätt att skapa en tavla",
     "searchPlaceholder": "Sök tavlor...",
     "searchLabel": "Sök tavlor",
     "filterLabel": "Filtrera tavlor efter arkivstatus",

@@ -19,6 +19,7 @@
     "title": "Quadros",
     "intro": "Cria e configura os quadros kanban deste servidor.",
     "create": "Criar quadro",
+    "moreWays": "Outras formas de criar um quadro",
     "searchPlaceholder": "Procurar quadros…",
     "searchLabel": "Procurar quadros",
     "filterLabel": "Filtrar quadros por estado de arquivo",

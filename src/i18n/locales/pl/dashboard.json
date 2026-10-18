@@ -19,6 +19,7 @@
     "title": "Tablice",
     "intro": "Twórz i konfiguruj tablice kanban dla tego serwera.",
     "create": "Utwórz tablicę",
+    "moreWays": "Inne sposoby utworzenia tablicy",
     "searchPlaceholder": "Szukaj tablic...",
     "searchLabel": "Szukaj tablic",
     "filterLabel": "Filtruj tablice według archiwizacji",

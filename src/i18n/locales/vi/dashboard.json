@@ -19,6 +19,7 @@
     "title": "Bảng",
     "intro": "Tạo và cấu hình bảng kanban cho máy chủ này.",
     "create": "Tạo bảng",
+    "moreWays": "Các cách khác để tạo bảng",
     "searchPlaceholder": "Tìm bảng...",
     "searchLabel": "Tìm bảng",
     "filterLabel": "Lọc bảng theo trạng thái lưu trữ",

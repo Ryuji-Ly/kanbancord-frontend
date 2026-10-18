@@ -19,6 +19,7 @@
     "title": "Táblák",
     "intro": "Kanbantáblák létrehozása és beállítása ehhez a szerverhez.",
     "create": "Tábla létrehozása",
+    "moreWays": "Tábla létrehozásának további módjai",
     "searchPlaceholder": "Táblák keresése...",
     "searchLabel": "Táblák keresése",
     "filterLabel": "Táblák szűrése archiválási állapot szerint",

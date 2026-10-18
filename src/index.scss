@@ -522,11 +522,25 @@ pre {
     }
   }
 
-  &-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    justify-content: flex-end;
+}
+
+/* A primary button with an arrow beside it for its other options, such as Create board ▾ Import. */
+.kc-split-btn {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+
+  &-main {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  &-more {
+    padding-left: 8px;
+    padding-right: 8px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left: 1px solid color-mix(in srgb, var(--kc-on-primary) 35%, transparent);
   }
 }
 

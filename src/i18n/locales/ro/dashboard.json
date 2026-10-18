@@ -19,6 +19,7 @@
     "title": "Panouri",
     "intro": "Creează și configurează panouri kanban pentru acest server.",
     "create": "Creează un panou",
+    "moreWays": "Alte moduri de a crea un panou",
     "searchPlaceholder": "Caută panouri...",
     "searchLabel": "Caută panouri",
     "filterLabel": "Filtrează panourile după arhivare",

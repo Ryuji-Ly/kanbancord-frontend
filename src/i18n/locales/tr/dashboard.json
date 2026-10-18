@@ -19,6 +19,7 @@
     "title": "Panolar",
     "intro": "Bu sunucunun kanban panolarını oluşturun ve yapılandırın.",
     "create": "Pano oluştur",
+    "moreWays": "Pano oluşturmanın diğer yolları",
     "searchPlaceholder": "Pano ara…",
     "searchLabel": "Pano ara",
     "filterLabel": "Panoları arşiv durumuna göre filtrele",

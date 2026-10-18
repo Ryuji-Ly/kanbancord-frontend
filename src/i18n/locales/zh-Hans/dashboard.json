@@ -19,6 +19,7 @@
     "title": "看板",
     "intro": "为此服务器创建和配置看板。",
     "create": "创建看板",
+    "moreWays": "创建看板的其他方式",
     "searchPlaceholder": "搜索看板...",
     "searchLabel": "搜索看板",
     "filterLabel": "按归档状态筛选看板",

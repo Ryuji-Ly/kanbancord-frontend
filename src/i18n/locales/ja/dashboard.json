@@ -19,6 +19,7 @@
     "title": "ボード",
     "intro": "このサーバーのかんばんボードを作成・設定します。",
     "create": "ボードを作成",
+    "moreWays": "ボードを作成するその他の方法",
     "searchPlaceholder": "ボードを検索...",
     "searchLabel": "ボードを検索",
     "filterLabel": "アーカイブ状態でボードを絞り込む",

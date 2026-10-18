@@ -19,6 +19,7 @@
     "title": "Tableaux",
     "intro": "Crée et configure les tableaux kanban de ce serveur.",
     "create": "Créer un tableau",
+    "moreWays": "Autres façons de créer un tableau",
     "searchPlaceholder": "Chercher des tableaux…",
     "searchLabel": "Chercher des tableaux",
     "filterLabel": "Filtrer les tableaux selon l'archivage",

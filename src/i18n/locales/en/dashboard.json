@@ -19,6 +19,7 @@
     "title": "Boards",
     "intro": "Create and configure kanban boards for this server.",
     "create": "Create Board",
+    "moreWays": "More ways to create a board",
     "searchPlaceholder": "Search boards...",
     "searchLabel": "Search boards",
     "filterLabel": "Filter boards by archived status",

@@ -19,6 +19,7 @@
     "title": "Bacheche",
     "intro": "Crea e configura le bacheche kanban di questo server.",
     "create": "Crea una bacheca",
+    "moreWays": "Altri modi per creare una bacheca",
     "searchPlaceholder": "Cerca le bacheche...",
     "searchLabel": "Cerca le bacheche",
     "filterLabel": "Filtra le bacheche per stato di archiviazione",

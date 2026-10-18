@@ -19,6 +19,7 @@
     "title": "보드",
     "intro": "이 서버의 칸반 보드를 만들고 설정해요.",
     "create": "보드 만들기",
+    "moreWays": "보드를 만드는 다른 방법",
     "searchPlaceholder": "보드 검색…",
     "searchLabel": "보드 검색",
     "filterLabel": "보관 상태로 보드 필터",

@@ -19,6 +19,7 @@
     "title": "看板",
     "intro": "為這個伺服器建立和設定看板。",
     "create": "建立看板",
+    "moreWays": "建立看板的其他方式",
     "searchPlaceholder": "搜尋看板...",
     "searchLabel": "搜尋看板",
     "filterLabel": "依封存狀態篩選看板",

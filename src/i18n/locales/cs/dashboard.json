@@ -19,6 +19,7 @@
     "title": "Nástěnky",
     "intro": "Vytvářej a nastavuj kanbanové nástěnky pro tento server.",
     "create": "Vytvořit nástěnku",
+    "moreWays": "Další způsoby vytvoření nástěnky",
     "searchPlaceholder": "Hledat nástěnky...",
     "searchLabel": "Hledat nástěnky",
     "filterLabel": "Filtrovat nástěnky podle archivace",

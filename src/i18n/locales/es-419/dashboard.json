@@ -19,6 +19,7 @@
     "title": "Tableros",
     "intro": "Crea y configura los tableros kanban de este servidor.",
     "create": "Crear tablero",
+    "moreWays": "Otras formas de crear un tablero",
     "searchPlaceholder": "Buscar tableros…",
     "searchLabel": "Buscar tableros",
     "filterLabel": "Filtrar tableros por estado de archivo",
