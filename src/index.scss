@@ -3844,6 +3844,7 @@ html[data-kc-reduce-motion="on"] {
 }
 
 .kc-public-header {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -4207,17 +4208,6 @@ select.kc-input {
   }
 }
 
-@media (max-width: 560px) {
-  // On a phone the logo alone stands for the name, leaving room for Updates and the page links.
-  .kc-public-brand-name {
-    display: none;
-  }
-
-  .kc-public-start {
-    gap: 12px;
-  }
-}
-
 @media (max-width: 480px) {
   .kc-public-nav {
     gap: 10px;
@@ -4562,22 +4552,95 @@ select.kc-input {
   margin-top: 10px;
 }
 
-/* The updates link sits beside the brand, apart from the page links on the right. */
+/* Updates and Roadmap sit beside the brand, apart from the page links on the right. */
 .kc-public-start {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 22px;
   min-width: 0;
 }
 
-.kc-public-updates {
-  color: var(--kc-text-dim);
-  text-decoration: none;
-  font-weight: 600;
+.kc-public-links {
+  display: flex;
+  align-items: center;
+  gap: 16px;
 
-  &:hover {
-    color: var(--kc-heading);
+  a {
+    color: var(--kc-text-dim);
+    text-decoration: none;
+    font-weight: 600;
+
+    &:hover {
+      color: var(--kc-heading);
+    }
   }
+}
+
+/* On narrow screens every link moves behind one menu button. */
+.kc-public-menu-button {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--kc-border);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--kc-heading);
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.kc-public-menu {
+  position: absolute;
+  z-index: 40;
+  top: 100%;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 16px 16px;
+  border-bottom: 1px solid var(--kc-border);
+  background: var(--kc-nav);
+  box-shadow: 0 12px 24px color-mix(in srgb, var(--kc-shadow) 40%, transparent);
+
+  > a:not(.kc-btn) {
+    padding: 12px 4px;
+    color: var(--kc-heading);
+    font-weight: 600;
+    font-size: 1.05rem;
+    text-decoration: none;
+    border-bottom: 1px solid var(--kc-border);
+  }
+
+  > .kc-btn {
+    margin-top: 10px;
+    justify-content: center;
+    text-decoration: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .kc-public-links,
+  .kc-public-nav {
+    display: none;
+  }
+
+  .kc-public-menu-button {
+    display: inline-flex;
+  }
+}
+
+@media (min-width: 721px) {
+  .kc-public-menu {
+    display: none;
+  }
+}
+
+/* Pages that show a board need more room than an article. */
+.kc-public-main--wide .kc-public-article {
+  max-width: 1280px;
 }
 
 /* Updates: one section per update, its date under its title. */
@@ -4604,4 +4667,110 @@ select.kc-input {
   margin: 4px 0 12px;
   color: var(--kc-text-dim);
   font-size: 0.9rem;
+}
+
+/* The roadmap: the board's columns side by side, scrolling sideways when they do not fit. */
+.kc-roadmap-board {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  margin: 24px 0;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.kc-roadmap-column {
+  flex: 0 0 280px;
+  padding: 12px;
+  border: 1px solid var(--kc-border);
+  border-radius: 12px;
+  background: var(--kc-panel);
+
+  h2 {
+    margin: 0 0 10px;
+    font-size: 1rem;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+}
+
+.kc-roadmap-count {
+  margin-left: 6px;
+  color: var(--kc-text-dim);
+  font-weight: 400;
+}
+
+.kc-roadmap-card {
+  border: 1px solid var(--kc-border);
+  border-radius: 10px;
+  background: var(--kc-surface);
+}
+
+.kc-roadmap-card-head {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  padding: 10px 12px;
+  border: 0;
+  background: none;
+  color: var(--kc-heading);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+
+  &:disabled {
+    cursor: default;
+  }
+}
+
+.kc-roadmap-card-title {
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.kc-roadmap-card-details {
+  padding: 0 12px 10px;
+  font-size: 0.92rem;
+}
+
+.kc-roadmap-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.kc-roadmap-chip {
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--chip, var(--kc-text-dim)) 22%, transparent);
+  color: var(--kc-heading);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.kc-roadmap-chip--priority {
+  border: 1px solid var(--chip, var(--kc-text-dim));
+}
+
+.kc-roadmap-add {
+  max-width: 640px;
+}
+
+.kc-roadmap-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+
+  .kc-field {
+    width: 100%;
+  }
 }

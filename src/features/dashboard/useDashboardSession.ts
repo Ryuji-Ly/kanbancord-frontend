@@ -10,6 +10,7 @@ import {
   getExpectedOAuthState,
   isOAuthInProgress,
   startDiscordLogin,
+  takeReturnPath,
 } from '../../services/authService'
 import { useMe } from '../session/sessionQueries'
 import { saveSelectedServerId } from './dashboardModel'
@@ -76,8 +77,14 @@ export function useDashboardSession() {
 
     exchangeDiscordCode(callback.code)
       .then(() => {
-        setBanner({ text: t('dashboard.session.loggedIn'), type: 'success' })
         clearCallbackQuery()
+        // Signing in from another page (the roadmap, say) goes back there.
+        const back = takeReturnPath()
+        if (back) {
+          window.location.replace(back)
+          return
+        }
+        setBanner({ text: t('dashboard.session.loggedIn'), type: 'success' })
       })
       .catch((error: unknown) => {
         setBanner({ text: error instanceof Error ? error.message : t('dashboard.session.loginFailed'), type: 'error' })

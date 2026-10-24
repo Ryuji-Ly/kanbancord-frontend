@@ -379,6 +379,12 @@ const ROUTES: [string, RegExp, Handler][] = [
     server: Object.fromEntries(data.SERVER_KEYS.map((key) => [key, true])),
     boards: Object.fromEntries(data.BOARDS.map((board) => [board.boardId, Object.fromEntries(data.BOARD_KEYS.map((key) => [key, true]))])),
   })],
+  ['GET', /^\/api\/public\/roadmap$/, () => DEMO_ROADMAP],
+  ['POST', /^\/api\/public\/roadmap\/issues$/, (_m, { body }) => {
+    const issue = { id: String(Date.now()), columnId: '1', labels: [], ...(body as { title: string; description?: string }) }
+    DEMO_ROADMAP.tasks = [issue, ...DEMO_ROADMAP.tasks]
+    return issue
+  }],
   ['GET', /^\/api\/servers\/\d+\/permissions\/catalog$/, () => catalog],
   ['POST', /^\/api\/servers\/\d+\/permissions\/presets$/, (_m, { body }) => applyServerPreset(body as { preset: PermissionPreset; staffRoleId?: string | null })],
   ['GET', /^\/api\/servers\/\d+\/permissions$/, (_m, { query }) => (query.get('scopeType') === 'BOARD' ? [] : serverRules)],
@@ -440,6 +446,29 @@ const ROUTES: [string, RegExp, Handler][] = [
     return feeds.find((feed) => feed.feedId === Number(m[1]))
   }],
 ]
+
+/** An example roadmap: KanbanCord's own board as it might look. */
+const DEMO_ROADMAP = {
+  name: 'KanbanCord',
+  description: 'What is next for KanbanCord',
+  issuesColumnId: '1',
+  columns: [
+    { id: '1', name: 'Issues' },
+    { id: '2', name: 'To Do' },
+    { id: '3', name: 'In Progress' },
+    { id: '4', name: 'Done' },
+  ],
+  tasks: [
+    { id: '11', columnId: '1', title: 'Due date picker is hard to use on phones', labels: [{ name: 'Bug', color: '#ef4444' }] },
+    { id: '21', columnId: '2', title: 'Import from CSV or a pasted list', labels: [{ name: 'Feature', color: '#3b82f6' }],
+      priority: { name: 'High', color: '#ea580c' }, description: 'Paste a list, **one task per line**, into a column.' },
+    { id: '22', columnId: '2', title: 'Per-assignee completion', labels: [{ name: 'Feature', color: '#3b82f6' }] },
+    { id: '31', columnId: '3', title: 'Public roadmap', labels: [{ name: 'Website', color: '#10b981' }],
+      priority: { name: 'Medium', color: '#ca8a04' } },
+    { id: '41', columnId: '4', title: 'Updates page', labels: [{ name: 'Website', color: '#10b981' }] },
+    { id: '42', columnId: '4', title: 'Board import and export', labels: [{ name: 'Feature', color: '#3b82f6' }] },
+  ] as { id: string; columnId: string; title: string; description?: string; labels: { name: string; color: string }[]; priority?: { name: string; color: string } }[],
+}
 
 function route(method: string, path: string) {
   for (const [routeMethod, pattern, handler] of ROUTES) {

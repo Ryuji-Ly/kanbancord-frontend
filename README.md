@@ -30,6 +30,10 @@ Discord through the bot; the website is there for the big picture and the finer 
 - **Your preferences**: notification choices, themes and accessibility options.
 - **Public pages and guides**: the [guides](https://kanbancord.com/guides), [FAQ](https://kanbancord.com/faq),
   privacy policy and terms, prerendered as plain HTML so they load fast and search engines can read them.
+- **Updates**: [what has changed](https://kanbancord.com/updates), one Markdown file per update in
+  `src/site/updates/entries/` (English only), prerendered with the other public pages.
+- **Roadmap**: [KanbanCord's own board](https://kanbancord.com/roadmap), readable by anyone; signed-in visitors can
+  add an issue. The board comes from the API (`KANBANCORD_ROADMAP_BOARD_ID`), so this page is not prerendered.
 
 ## Stack
 
