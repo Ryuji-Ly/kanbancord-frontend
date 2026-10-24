@@ -1402,6 +1402,12 @@ pre {
     flex-shrink: 0;
   }
 
+  // Delete and Archive on the left edge; Discard and Save pushed to the right.
+  &-footer-start {
+    display: flex;
+    gap: 10px;
+  }
+
   &-footer-actions {
     display: flex;
     gap: 10px;

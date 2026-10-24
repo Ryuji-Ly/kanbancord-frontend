@@ -399,7 +399,7 @@ export function TaskPanel({
 
       {(abilities.editTask || abilities.deleteTask || abilities.archiveTask) && (
         <div className="kc-task-panel-footer">
-          <div className="kc-task-panel-footer-actions">
+          <div className="kc-task-panel-footer-start">
             {abilities.deleteTask && (
               <button type="button" className="kc-btn kc-btn-danger" onClick={onRequestDelete} disabled={saving}>
                 {t('common.delete')}
