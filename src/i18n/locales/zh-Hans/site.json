@@ -108,6 +108,7 @@
     "emptyColumn": "暂无内容",
     "noDetails": "没有详细信息。",
     "addTitle": "报告问题或想法",
+    "report": "反馈",
     "addIntro": "发现了错误或有想法？把它添加到 Issues 列。每小时可以添加一条。",
     "signInIntro": "任何人都可以查看路线图。登录后即可在 Issues 列添加错误或想法。",
     "signIn": "使用 Discord 登录以添加",

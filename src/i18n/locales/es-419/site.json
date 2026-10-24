@@ -108,6 +108,7 @@
     "emptyColumn": "Nada por ahora",
     "noDetails": "Sin detalles.",
     "addTitle": "Reportar un problema o una idea",
+    "report": "Reportar",
     "addIntro": "¿Encontraste un error o tienes una idea? Agrégalo a la columna Issues. Puedes agregar uno por hora.",
     "signInIntro": "Cualquiera puede leer la hoja de ruta. Inicia sesión para agregar un error o una idea a su columna Issues.",
     "signIn": "Inicia sesión con Discord para agregar",

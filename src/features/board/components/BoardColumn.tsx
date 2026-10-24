@@ -44,7 +44,7 @@ type BoardColumnProps = {
 }
 
 /** How tall a column's tasks may be, in screen heights, before the rest is folded away. */
-const FOLD_SCREENS = 3
+const FOLD_SCREENS = 2
 
 /**
  * Whether a list is taller than {@link FOLD_SCREENS} screens, kept up to date as it or the window
@@ -101,7 +101,7 @@ export function BoardColumn({
 }: BoardColumnProps) {
   const [editingName, setEditingName] = useState<string | null>(null)
   const editing = canEdit && editingName !== null
-  // A very long column (a Done column with a hundred tasks, say) is folded at three screens, with a
+  // A very long column (a Done column with a hundred tasks, say) is folded at two screens, with a
   // button at the bottom to show the rest.
   const [list, setList] = useState<HTMLUListElement | null>(null)
   const tall = useTallerThanScreens(list)

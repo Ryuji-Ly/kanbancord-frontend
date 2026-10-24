@@ -108,6 +108,7 @@
     "emptyColumn": "Rien pour le moment",
     "noDetails": "Aucun détail.",
     "addTitle": "Signaler un problème ou une idée",
+    "report": "Signaler",
     "addIntro": "Un bug ou une idée ? Ajoutez-le dans la colonne Issues. Vous pouvez en ajouter un par heure.",
     "signInIntro": "Tout le monde peut lire la feuille de route. Connectez-vous pour ajouter un bug ou une idée dans sa colonne Issues.",
     "signIn": "Se connecter avec Discord pour ajouter",

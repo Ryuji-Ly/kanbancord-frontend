@@ -108,6 +108,7 @@
     "emptyColumn": "Ancora niente",
     "noDetails": "Nessun dettaglio.",
     "addTitle": "Segnala un problema o un’idea",
+    "report": "Segnala",
     "addIntro": "Hai trovato un bug o hai un’idea? Aggiungilo alla colonna Issues. Puoi aggiungerne uno all’ora.",
     "signInIntro": "Chiunque può leggere la roadmap. Accedi per aggiungere un bug o un’idea alla colonna Issues.",
     "signIn": "Accedi con Discord per aggiungere",

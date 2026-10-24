@@ -4720,8 +4720,42 @@ select.kc-input {
   border: 1px solid var(--chip, var(--kc-text-dim));
 }
 
+/* The title with the Report button beside it. */
+.kc-roadmap-heading {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  margin-bottom: 6px;
+
+  h1 {
+    margin: 0;
+  }
+
+  .kc-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+}
+
+/* Under the board, centred, for those who did not notice the button. */
 .kc-roadmap-add {
   max-width: 640px;
+  margin: 40px auto 0;
+  text-align: center;
+
+  .kc-roadmap-form {
+    align-items: center;
+  }
+
+  .kc-field {
+    text-align: left;
+  }
+}
+
+.kc-roadmap-dialog {
+  max-width: 560px;
 }
 
 .kc-roadmap-form {
@@ -4735,7 +4769,7 @@ select.kc-input {
   }
 }
 
-/* A column folded at three screens: its tasks fade out at the bottom, above a button for the rest. */
+/* A column folded at two screens: its tasks fade out at the bottom, above a button for the rest. */
 .kc-column-task-list--folded {
   max-height: var(--kc-fold-height, 300vh);
   overflow: hidden;

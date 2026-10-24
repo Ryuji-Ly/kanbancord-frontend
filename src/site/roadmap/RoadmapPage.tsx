@@ -1,4 +1,5 @@
-import { useMemo, useState, type CSSProperties, type FormEvent } from 'react'
+import { useEffect, useMemo, useState, type CSSProperties, type FormEvent } from 'react'
+import { FiMessageSquare } from 'react-icons/fi'
 import { createPortal } from 'react-dom'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { readableError } from '../../api/http'
@@ -81,7 +82,7 @@ function TaskDetails({ task, labels, priority, onClose }: {
 }
 
 /** Adding an issue: a form for those signed in, a way to sign in for everyone else. */
-function AddIssue() {
+function IssueForm() {
   const session = useSession()
   const queryClient = useQueryClient()
   const [title, setTitle] = useState('')
@@ -92,8 +93,7 @@ function AddIssue() {
   if (session.status === 'loading') return null
   if (session.status !== 'signedIn') {
     return (
-      <section className="kc-roadmap-add">
-        <h2>{t('site.roadmap.addTitle')}</h2>
+      <div className="kc-roadmap-form">
         <p className="kc-muted">{t('site.roadmap.signInIntro')}</p>
         {message && <p className="kc-banner">{message.text}</p>}
         <button
@@ -103,7 +103,7 @@ function AddIssue() {
         >
           {t('site.roadmap.signIn')}
         </button>
-      </section>
+      </div>
     )
   }
 
@@ -131,31 +131,54 @@ function AddIssue() {
   }
 
   return (
-    <section className="kc-roadmap-add">
-      <h2>{t('site.roadmap.addTitle')}</h2>
+    <form onSubmit={(event) => void submit(event)} className="kc-roadmap-form">
       <p className="kc-muted">{t('site.roadmap.addIntro')}</p>
-      <form onSubmit={(event) => void submit(event)} className="kc-roadmap-form">
-        <label className="kc-field">
-          <span className="kc-field-label">{t('site.roadmap.titleLabel')}</span>
-          <input className="kc-input" value={title} maxLength={200} required disabled={busy} onChange={(e) => setTitle(e.target.value)} />
-        </label>
-        <label className="kc-field">
-          <span className="kc-field-label">{t('site.roadmap.descriptionLabel')}</span>
-          <textarea
-            className="kc-input"
-            rows={4}
-            value={description}
-            maxLength={2000}
-            disabled={busy}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-        </label>
-        {message && <p className={message.error ? 'kc-banner' : 'kc-muted'}>{message.text}</p>}
-        <button type="submit" className="kc-btn kc-btn-primary" disabled={busy || !title.trim()}>
-          {busy ? t('site.roadmap.submitting') : t('site.roadmap.submit')}
-        </button>
-      </form>
-    </section>
+      <label className="kc-field">
+        <span className="kc-field-label">{t('site.roadmap.titleLabel')}</span>
+        <input className="kc-input" value={title} maxLength={200} required disabled={busy} onChange={(e) => setTitle(e.target.value)} />
+      </label>
+      <label className="kc-field">
+        <span className="kc-field-label">{t('site.roadmap.descriptionLabel')}</span>
+        <textarea
+          className="kc-input"
+          rows={4}
+          value={description}
+          maxLength={2000}
+          disabled={busy}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+      </label>
+      {message && <p className={message.error ? 'kc-banner' : 'kc-muted'}>{message.text}</p>}
+      <button type="submit" className="kc-btn kc-btn-primary" disabled={busy || !title.trim()}>
+        {busy ? t('site.roadmap.submitting') : t('site.roadmap.submit')}
+      </button>
+    </form>
+  )
+}
+
+/** The same form in a dialog, opened from the button beside the title. */
+function IssueDialog({ onClose }: { onClose: () => void }) {
+  useEffect(() => {
+    const onKey = (event: KeyboardEvent) => event.key === 'Escape' && onClose()
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
+  }, [onClose])
+
+  return createPortal(
+    <div className="kc-modal-overlay" role="dialog" aria-modal="true" aria-label={t('site.roadmap.addTitle')} onClick={onClose}>
+      <div className="kc-modal kc-roadmap-dialog" onClick={(event) => event.stopPropagation()}>
+        <div className="kc-modal-header">
+          <h3 className="kc-modal-title">{t('site.roadmap.addTitle')}</h3>
+          <button type="button" className="kc-modal-close" aria-label={t('common.close')} onClick={onClose}>
+            ×
+          </button>
+        </div>
+        <div className="kc-modal-body">
+          <IssueForm />
+        </div>
+      </div>
+    </div>,
+    document.body,
   )
 }
 
@@ -169,10 +192,20 @@ export function RoadmapPage() {
   const board = useMemo(() => (roadmap ? boardOf(roadmap) : null), [roadmap])
   const [openTaskId, setOpenTaskId] = useState<number | null>(null)
   const openTask = board?.tasks.find((task) => task.taskId === openTaskId) ?? null
+  const [reporting, setReporting] = useState(false)
+  const canReport = Boolean(roadmap?.issuesColumnId)
 
   return (
     <PublicLayout title={t('site.roadmap.metaTitle')} description={t('site.roadmap.metaDescription')} path="/roadmap" wide>
-      <h1>{t('site.roadmap.title')}</h1>
+      <div className="kc-roadmap-heading">
+        <h1>{t('site.roadmap.title')}</h1>
+        {canReport && (
+          <button type="button" className="kc-btn kc-btn-primary" onClick={() => setReporting(true)}>
+            <FiMessageSquare aria-hidden="true" />
+            {t('site.roadmap.report')}
+          </button>
+        )}
+      </div>
       <p>{t('site.roadmap.intro')}</p>
       {query.isPending && <p className="kc-muted">{t('site.roadmap.loading')}</p>}
       {(query.isError || (query.isSuccess && !roadmap)) && <p className="kc-muted">{t('site.roadmap.unavailable')}</p>}
@@ -224,7 +257,13 @@ export function RoadmapPage() {
               onClose={() => setOpenTaskId(null)}
             />
           )}
-          {roadmap.issuesColumnId && <AddIssue />}
+          {canReport && (
+            <section className="kc-roadmap-add">
+              <h2>{t('site.roadmap.addTitle')}</h2>
+              <IssueForm />
+            </section>
+          )}
+          {reporting && <IssueDialog onClose={() => setReporting(false)} />}
         </>
       )}
     </PublicLayout>

@@ -108,6 +108,7 @@
     "emptyColumn": "아직 없음",
     "noDetails": "자세한 내용이 없습니다.",
     "addTitle": "문제나 아이디어 알리기",
+    "report": "제보",
     "addIntro": "버그를 찾았거나 아이디어가 있나요? Issues 열에 추가하세요. 한 시간에 하나씩 추가할 수 있습니다.",
     "signInIntro": "누구나 로드맵을 볼 수 있습니다. 로그인하면 Issues 열에 버그나 아이디어를 추가할 수 있습니다.",
     "signIn": "Discord로 로그인해서 추가하기",
