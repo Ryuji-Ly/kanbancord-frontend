@@ -25,7 +25,10 @@
     "taskCreated": "Úloha vytvorená",
     "createTaskFailed": "Úlohu sa nepodarilo vytvoriť",
     "taskUpdated": "Úloha upravená",
-    "taskDeleted": "Úloha odstránená"
+    "taskDeleted": "Úloha odstránená",
+    "taskArchived": "Úloha archivovaná",
+    "taskRestored": "Úloha obnovená",
+    "tasksArchived": "Archivované úlohy: {count}"
   },
   "page": {
     "noContext": "Nie je zadaná žiadna nástenka. Otvor nástenku z prehľadu.",
@@ -48,7 +51,12 @@
     "deleteColumnTasks_one": "Odstráni sa aj {count} úloha v tomto stĺpci.",
     "deleteColumnTasks_few": "Odstránia sa aj {count} úlohy v tomto stĺpci.",
     "deleteColumnTasks_other": "Odstráni sa aj {count} úloh v tomto stĺpci.",
-    "deleteColumnTasks_many": "Odstráni sa aj {count} úloh v tomto stĺpci."
+    "deleteColumnTasks_many": "Odstráni sa aj {count} úloh v tomto stĺpci.",
+    "archiveColumnTasks": "Archivovať všetky úlohy",
+    "archiveColumnConfirm": "Archivovať všetky úlohy v stĺpci <strong>{name}</strong> ({count})? Zmiznú z nástenky, ale všetko si ponechajú a každú možno obnoviť cez filter Archivované úlohy.",
+    "showingArchived": "Zobrazujú sa archivované úlohy. Otvor úlohu a obnov ju.",
+    "loadingArchived": "Načítavajú sa archivované úlohy…",
+    "backToBoard": "Späť na nástenku"
   },
   "column": {
     "addNew": "+ Nový stĺpec",
@@ -56,7 +64,8 @@
     "options": "Možnosti stĺpca",
     "delete": "Odstrániť stĺpec",
     "addTask": "+ Pridať úlohu",
-    "showAll": "Zobraziť všetko ({count})"
+    "showAll": "Zobraziť všetko ({count})",
+    "archiveTasks": "Archivovať všetky úlohy"
   },
   "pickers": {
     "searchUser": "Hľadať člena",
@@ -95,7 +104,10 @@
     "otherCount_few": " · {count} filtre",
     "otherCount_other": " · {count} filtrov",
     "clear": "Zrušiť hľadanie a filtre",
-    "otherCount_many": " · {count} filtrov"
+    "otherCount_many": " · {count} filtrov",
+    "byArchived": "Úlohy na nástenke alebo archivované",
+    "boardTasks": "Na nástenke",
+    "archivedTasks": "Archivované úlohy"
   },
   "createTask": {
     "titleRequired": "Názov je povinný.",
@@ -165,6 +177,9 @@
     "discard": "Zahodiť",
     "waitForUploads": "Počkaj, kým sa dokončí nahrávanie",
     "uploading": "Nahráva sa…",
-    "noTaskSelected": "Nie je vybraná žiadna úloha."
+    "noTaskSelected": "Nie je vybraná žiadna úloha.",
+    "archive": "Archivovať",
+    "restore": "Obnoviť",
+    "archivedNote": "Táto úloha je archivovaná: nie je na nástenke a nedá sa meniť, kým nebude obnovená."
   }
 }

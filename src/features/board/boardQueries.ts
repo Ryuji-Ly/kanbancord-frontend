@@ -1,5 +1,5 @@
 import { t } from '../../i18n'
-import { useMutation, useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useOptimisticCache } from '../../api/useOptimisticCache'
 import { fetchBoardSnapshot, type BoardSnapshot } from '../../services/boardsService'
 import { createColumn, deleteColumn, moveColumn, updateColumn, type BoardColumnEntry } from '../../services/boardColumnsService'
@@ -18,7 +18,17 @@ import {
   updateTaskComment,
   type TaskCommentEntry,
 } from '../../services/taskCommentsService'
-import { createTask, deleteTask, moveTask, setTaskFollowing, updateTask, type TaskEntry } from '../../services/tasksService'
+import {
+  archiveColumnTasks,
+  createTask,
+  deleteTask,
+  fetchBoardTasks,
+  moveTask,
+  setTaskArchived,
+  setTaskFollowing,
+  updateTask,
+  type TaskEntry,
+} from '../../services/tasksService'
 import { snapshotWithColumnMoved, snapshotWithTaskMoved, sortCommentsByCreatedAt, type TaskDraft } from './boardModel'
 
 // ── Keys ─────────────────────────────────────────────────────────────────────
@@ -29,6 +39,7 @@ export const boardKeys = {
   snapshot: (serverId: string, boardId: string) => ['board', serverId, boardId, 'snapshot'] as const,
   comments: (serverId: string, boardId: string, taskId: number) =>
     ['board', serverId, boardId, 'comments', taskId] as const,
+  archived: (serverId: string, boardId: string) => ['board', serverId, boardId, 'archived'] as const,
 }
 
 // ── Queries ──────────────────────────────────────────────────────────────────
@@ -38,6 +49,15 @@ export function useBoardSnapshot(serverId: string, boardId: string) {
     queryKey: boardKeys.snapshot(serverId, boardId),
     queryFn: () => fetchBoardSnapshot(serverId, boardId),
     enabled: Boolean(serverId && boardId),
+  })
+}
+
+/** The board's archived tasks, which the snapshot leaves out; loaded only when they are shown. */
+export function useArchivedTasks(serverId: string, boardId: string, enabled: boolean) {
+  return useQuery({
+    queryKey: boardKeys.archived(serverId, boardId),
+    queryFn: () => fetchBoardTasks(serverId, boardId, { archived: true }),
+    enabled: enabled && Boolean(serverId && boardId),
   })
 }
 
@@ -83,6 +103,9 @@ export function taskFieldsFromDraft(draft: TaskDraft, fallbackTitle = ''): TaskF
 export function useBoardMutations(serverId: string, boardId: string) {
   const board = useOptimisticCache<BoardSnapshot>(boardKeys.snapshot(serverId, boardId))
   const settle = { onSettled: () => board.refresh() }
+  const queryClient = useQueryClient()
+  // Archiving moves tasks between the snapshot and the archived list, so both refresh.
+  const settleAll = { onSettled: () => queryClient.invalidateQueries({ queryKey: boardKeys.all(serverId, boardId) }) }
 
   const renameColumn = useMutation({
     // No position: sending one would also require MOVE_COLUMN.
@@ -225,6 +248,24 @@ export function useBoardMutations(serverId: string, boardId: string) {
     ...settle,
   })
 
+  const archiveTask = useMutation({
+    mutationFn: ({ task, archived }: { task: TaskEntry; archived: boolean }) =>
+      setTaskArchived(serverId, boardId, task.taskId, archived),
+    onSuccess: (updated) =>
+      board.set((snapshot) => {
+        const others = snapshot.tasks.filter((entry) => entry.taskId !== updated.taskId)
+        return { ...snapshot, tasks: updated.isArchived ? others : [...others, updated] }
+      }),
+    ...settleAll,
+  })
+
+  const archiveColumn = useMutation({
+    mutationFn: (column: BoardColumnEntry) => archiveColumnTasks(serverId, boardId, column.columnId),
+    onSuccess: (_count, column) =>
+      board.set((snapshot) => ({ ...snapshot, tasks: snapshot.tasks.filter((task) => task.columnId !== column.columnId) })),
+    ...settleAll,
+  })
+
   const assign = useMutation({
     mutationFn: ({ taskId, userId }: { taskId: number; userId: string }) =>
       createTaskAssignment(serverId, boardId, taskId, userId),
@@ -309,6 +350,8 @@ export function useBoardMutations(serverId: string, boardId: string) {
     assignRole,
     unassignRole,
     removeTask,
+    archiveTask,
+    archiveColumn,
     assign,
     unassign,
     follow,

@@ -21,7 +21,7 @@ type BoardFilterBarProps = {
 
 /** How many filters besides the search are set, for the summary while they are tucked away. */
 function activeFilterCount(filters: BoardFilters): number {
-  return [filters.assignee, filters.label, filters.priority, filters.due].filter(Boolean).length
+  return [filters.assignee, filters.label, filters.priority, filters.due, filters.archived].filter(Boolean).length
 }
 
 /**
@@ -128,6 +128,15 @@ export function BoardFilterBar({ filters, onChange, features, people, labels, pr
               <option value="none">{t('board.filters.noDueDate')}</option>
             </select>
           )}
+          <select
+            className="kc-input"
+            aria-label={t('board.filters.byArchived')}
+            value={filters.archived}
+            onChange={(event) => set({ archived: event.target.value as BoardFilters['archived'] })}
+          >
+            <option value="">{t('board.filters.boardTasks')}</option>
+            <option value="only">{t('board.filters.archivedTasks')}</option>
+          </select>
         </>
       )}
 

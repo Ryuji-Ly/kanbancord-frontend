@@ -20,7 +20,8 @@
     "LABEL_REMOVED": "任務移除了標籤",
     "COLUMN_CHANGED": "欄被建立、重新命名、移動或刪除",
     "BOARD_CHANGED": "看板被建立、重新命名、封存或刪除",
-    "BOARD_SETTINGS_CHANGED": "標籤、優先順序和看板功能已變更"
+    "BOARD_SETTINGS_CHANGED": "標籤、優先順序和看板功能已變更",
+    "TASK_ARCHIVED": "任務已封存或還原"
   },
   "categories": {
     "TASKS": "任務",

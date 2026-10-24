@@ -20,7 +20,8 @@
     "LABEL_REMOVED": "任务移除了标签",
     "COLUMN_CHANGED": "列被创建、重命名、移动或删除",
     "BOARD_CHANGED": "看板被创建、重命名、归档或删除",
-    "BOARD_SETTINGS_CHANGED": "标签、优先级和看板功能已更改"
+    "BOARD_SETTINGS_CHANGED": "标签、优先级和看板功能已更改",
+    "TASK_ARCHIVED": "任务已归档或恢复"
   },
   "categories": {
     "TASKS": "任务",

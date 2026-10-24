@@ -45,6 +45,7 @@
     "post": "Príspevok sa sám upraví pri každej zmene zoznamu, či už z Discordu, alebo z webu, takže kanál vždy ukazuje aktuálny stav. Pripni ho a bude fungovať ako zoznam úloh pripnutý hore v kanáli, ktorý nikto nemusí aktualizovať. Nikoho neoznačuje a jeden kanál môže mať viac zoznamov.",
     "tickTitle": "Odškrtávaj úlohy",
     "tick": "Vyber úlohu z ponuky príspevku, otvorí sa len tebe, a presuň ju do Done. Alebo spusti <code>/task move task:... column:Done</code>. Ak má tvoj server <postsFeeds>feed noviniek</postsFeeds> s tlačidlami, každá novinka ukazuje tlačidlo pre každý stĺpec, takže odškrtnúť úlohu je jedno kliknutie.",
+    "archive": "Done sa priveľmi predlžuje? <code>/column archive-tasks column:Done</code> naraz odoberie z nástenky všetky jeho úlohy. Archivované úlohy si ponechajú všetko: jednu vrátiš pomocou <code>/task restore</code>, alebo ich nájdeš na webe cez filter Archivované úlohy.",
     "sharedTitle": "Zdieľaný, nie osobný",
     "shared": "Nástenka patrí serveru, nie jednému človeku, a riadi sa rolami na Discorde: každý, kto ju má vidieť, ju vidí, a ty rozhoduješ, kto ju môže meniť. Preto sa hodí na úlohy tímu, prípravu podujatí komunity, zoznam stavieb na hernom serveri aj zadania študijnej skupiny.",
     "moreTitle": "Keď zoznam úloh nestačí",

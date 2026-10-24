@@ -97,5 +97,6 @@
   "viaDiscord": "prin Discord",
   "changeCount_one": "{count} modificare",
   "changeCount_few": "{count} modificări",
-  "changeCount_other": "{count} de modificări"
+  "changeCount_other": "{count} de modificări",
+  "columnTasksArchived": "a arhivat toate sarcinile: {column} ({count})"
 }

@@ -25,7 +25,10 @@
     "taskCreated": "Utworzono zadanie",
     "createTaskFailed": "Nie udało się utworzyć zadania",
     "taskUpdated": "Zaktualizowano zadanie",
-    "taskDeleted": "Usunięto zadanie"
+    "taskDeleted": "Usunięto zadanie",
+    "taskArchived": "Zarchiwizowano zadanie",
+    "taskRestored": "Przywrócono zadanie",
+    "tasksArchived": "Zarchiwizowane zadania: {count}"
   },
   "page": {
     "noContext": "Brak danych tablicy. Otwórz tablicę z panelu.",
@@ -48,7 +51,12 @@
     "deleteColumnTasks_one": "Zostanie też usunięte {count} zadanie z tej kolumny.",
     "deleteColumnTasks_few": "Zostaną też usunięte {count} zadania z tej kolumny.",
     "deleteColumnTasks_many": "Zostanie też usuniętych {count} zadań z tej kolumny.",
-    "deleteColumnTasks_other": "Zostanie też usunięte {count} zadania z tej kolumny."
+    "deleteColumnTasks_other": "Zostanie też usunięte {count} zadania z tej kolumny.",
+    "archiveColumnTasks": "Zarchiwizuj wszystkie zadania",
+    "archiveColumnConfirm": "Zarchiwizować wszystkie zadania w <strong>{name}</strong> ({count})? Znikną z tablicy, ale zachowają wszystko, a każde można przywrócić z filtra Zarchiwizowane zadania.",
+    "showingArchived": "Pokazano zarchiwizowane zadania. Otwórz jedno, aby je przywrócić.",
+    "loadingArchived": "Wczytywanie zarchiwizowanych zadań…",
+    "backToBoard": "Wróć do tablicy"
   },
   "column": {
     "addNew": "+ Dodaj nową kolumnę",
@@ -56,7 +64,8 @@
     "options": "Opcje kolumny",
     "delete": "Usuń kolumnę",
     "addTask": "+ Dodaj zadanie",
-    "showAll": "Pokaż wszystko ({count})"
+    "showAll": "Pokaż wszystko ({count})",
+    "archiveTasks": "Zarchiwizuj wszystkie zadania"
   },
   "pickers": {
     "searchUser": "Szukaj użytkownika",
@@ -95,7 +104,10 @@
     "otherCount_few": " · {count} filtry",
     "otherCount_many": " · {count} filtrów",
     "otherCount_other": " · {count} filtra",
-    "clear": "Wyczyść wyszukiwanie i filtry"
+    "clear": "Wyczyść wyszukiwanie i filtry",
+    "byArchived": "Zadania na tablicy lub zarchiwizowane",
+    "boardTasks": "Na tablicy",
+    "archivedTasks": "Zarchiwizowane zadania"
   },
   "createTask": {
     "titleRequired": "Tytuł zadania jest wymagany.",
@@ -165,6 +177,9 @@
     "discard": "Odrzuć",
     "waitForUploads": "Poczekaj, aż pliki się prześlą",
     "uploading": "Przesyłanie…",
-    "noTaskSelected": "Nie wybrano zadania."
+    "noTaskSelected": "Nie wybrano zadania.",
+    "archive": "Zarchiwizuj",
+    "restore": "Przywróć",
+    "archivedNote": "To zadanie jest zarchiwizowane: nie ma go na tablicy i nie można go zmienić, dopóki nie zostanie przywrócone."
   }
 }

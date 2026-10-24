@@ -24,7 +24,10 @@
     "taskCreated": "Tâche créée",
     "createTaskFailed": "Impossible de créer la tâche",
     "taskUpdated": "Tâche mise à jour",
-    "taskDeleted": "Tâche supprimée"
+    "taskDeleted": "Tâche supprimée",
+    "taskArchived": "Tâche archivée",
+    "taskRestored": "Tâche restaurée",
+    "tasksArchived": "Tâches archivées : {count}"
   },
   "page": {
     "noContext": "Aucun tableau indiqué. Ouvre un tableau depuis le tableau de bord.",
@@ -46,7 +49,12 @@
     "deleteColumn": "Supprimer la colonne",
     "deleteColumnTasks_one": "Cela supprimera aussi {count} tâche de cette colonne.",
     "deleteColumnTasks_other": "Cela supprimera aussi les {count} tâches de cette colonne.",
-    "deleteColumnTasks_many": "Cela supprimera aussi les {count} tâches de cette colonne."
+    "deleteColumnTasks_many": "Cela supprimera aussi les {count} tâches de cette colonne.",
+    "archiveColumnTasks": "Archiver toutes les tâches",
+    "archiveColumnConfirm": "Archiver toutes les tâches de <strong>{name}</strong> ({count}) ? Elles quittent le tableau mais gardent tout, et chacune peut être restaurée depuis le filtre Tâches archivées.",
+    "showingArchived": "Tâches archivées affichées. Ouvre-en une pour la restaurer.",
+    "loadingArchived": "Chargement des tâches archivées…",
+    "backToBoard": "Retour au tableau"
   },
   "column": {
     "addNew": "+ Nouvelle colonne",
@@ -54,7 +62,8 @@
     "options": "Options de la colonne",
     "delete": "Supprimer la colonne",
     "addTask": "+ Ajouter une tâche",
-    "showAll": "Tout afficher ({count})"
+    "showAll": "Tout afficher ({count})",
+    "archiveTasks": "Archiver toutes les tâches"
   },
   "pickers": {
     "searchUser": "Chercher un membre",
@@ -92,7 +101,10 @@
     "otherCount_one": " · {count} filtre",
     "otherCount_other": " · {count} filtres",
     "clear": "Effacer la recherche et les filtres",
-    "otherCount_many": " · {count} filtres"
+    "otherCount_many": " · {count} filtres",
+    "byArchived": "Tâches du tableau ou archivées",
+    "boardTasks": "Sur le tableau",
+    "archivedTasks": "Tâches archivées"
   },
   "createTask": {
     "titleRequired": "Le titre est obligatoire.",
@@ -161,6 +173,9 @@
     "discard": "Annuler les modifications",
     "waitForUploads": "Attends la fin de l'envoi des fichiers",
     "uploading": "Envoi…",
-    "noTaskSelected": "Aucune tâche sélectionnée."
+    "noTaskSelected": "Aucune tâche sélectionnée.",
+    "archive": "Archiver",
+    "restore": "Restaurer",
+    "archivedNote": "Cette tâche est archivée : elle n'est plus sur le tableau et ne peut pas être modifiée avant d'être restaurée."
   }
 }

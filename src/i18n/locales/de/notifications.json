@@ -20,7 +20,8 @@
     "LABEL_REMOVED": "Label von einer Aufgabe entfernt",
     "COLUMN_CHANGED": "Spalten erstellt, umbenannt, verschoben oder gelöscht",
     "BOARD_CHANGED": "Board erstellt, umbenannt, archiviert oder gelöscht",
-    "BOARD_SETTINGS_CHANGED": "Labels, Prioritätsstufen und Board-Funktionen geändert"
+    "BOARD_SETTINGS_CHANGED": "Labels, Prioritätsstufen und Board-Funktionen geändert",
+    "TASK_ARCHIVED": "Aufgabe archiviert oder wiederhergestellt"
   },
   "categories": {
     "TASKS": "Aufgaben",

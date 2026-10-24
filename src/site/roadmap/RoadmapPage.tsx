@@ -194,6 +194,7 @@ export function RoadmapPage() {
                 canMove={false}
                 canCreateTask={false}
                 canMoveTasks={false}
+                canArchiveTasks={false}
                 menuOpen={false}
                 isDragPlaceholder={false}
                 draggedTaskId={null}
@@ -203,6 +204,7 @@ export function RoadmapPage() {
                 onRename={none}
                 onToggleMenu={none}
                 onRequestDelete={none}
+                onRequestArchiveTasks={none}
                 onAddTask={none}
                 onOpenTask={(task) => setOpenTaskId(task.taskId)}
                 onColumnDragStart={none}

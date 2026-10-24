@@ -20,7 +20,8 @@
     "LABEL_REMOVED": "Štítek odebrán z úkolu",
     "COLUMN_CHANGED": "Sloupce vytvořeny, přejmenovány, přesunuty nebo smazány",
     "BOARD_CHANGED": "Nástěnka vytvořena, přejmenována, archivována nebo smazána",
-    "BOARD_SETTINGS_CHANGED": "Štítky, úrovně priority a funkce nástěnky změněny"
+    "BOARD_SETTINGS_CHANGED": "Štítky, úrovně priority a funkce nástěnky změněny",
+    "TASK_ARCHIVED": "Úkol archivován nebo obnoven"
   },
   "categories": {
     "TASKS": "Úkoly",

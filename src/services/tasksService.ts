@@ -134,6 +134,30 @@ export async function setTaskFollowing(
   if (!response.ok) throw new Error(await parseError(response))
 }
 
+/** Archives a task (off the board, unchangeable, kept) or restores it to the end of its column. */
+export async function setTaskArchived(
+  serverId: string,
+  boardId: string,
+  taskId: number,
+  archived: boolean,
+): Promise<TaskEntry> {
+  const response = await apiFetch(
+    `/api/servers/${serverId}/boards/${boardId}/tasks/${taskId}/archive?archived=${archived}`,
+    { method: 'PATCH' },
+  )
+  if (!response.ok) throw new Error(await parseError(response))
+  return response.json() as Promise<TaskEntry>
+}
+
+/** Archives every task in a column; returns how many. */
+export async function archiveColumnTasks(serverId: string, boardId: string, columnId: number): Promise<number> {
+  const response = await apiFetch(`/api/servers/${serverId}/boards/${boardId}/columns/${columnId}/archive-tasks`, {
+    method: 'POST',
+  })
+  if (!response.ok) throw new Error(await parseError(response))
+  return ((await response.json()) as { archived: number }).archived
+}
+
 export async function deleteTask(
   serverId: string,
   boardId: string,

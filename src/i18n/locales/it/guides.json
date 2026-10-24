@@ -45,6 +45,7 @@
     "post": "Il messaggio si modifica da solo ogni volta che la lista cambia, da Discord o dal sito web, quindi il canale mostra sempre lo stato attuale. Fissalo, e funziona come una lista di cose da fare fissata in cima al canale che nessuno deve tenere aggiornata. Non menziona nessuno, e più liste possono condividere un canale.",
     "tickTitle": "Spunta le attività",
     "tick": "Scegli un'attività dal menu del messaggio per aprirla in privato, poi spostala in Done. Oppure esegui <code>/task move task:... column:Done</code>. Se il tuo server ha un <postsFeeds>feed di aggiornamenti</postsFeeds> con pulsanti, ogni aggiornamento mostra un pulsante per colonna, quindi spuntare un'attività richiede un solo clic.",
+    "archive": "Done si allunga troppo? <code>/column archive-tasks column:Done</code> toglie tutte le sue attività dalla bacheca in un colpo. Le attività archiviate conservano tutto: riportane una con <code>/task restore</code>, o trovale sul sito con il filtro Attività archiviate.",
     "sharedTitle": "Condivisa, non personale",
     "shared": "Una bacheca appartiene al server, non a una singola persona, e segue i tuoi ruoli di Discord: chi deve vederla la vede, e sei tu a decidere chi può modificarla. Per questo è adatta alle attività di un team, all'organizzazione degli eventi di una community, alla lista di costruzioni di un server di gioco o ai compiti di un gruppo di studio.",
     "moreTitle": "Quando una lista di cose da fare non basta",

@@ -45,6 +45,7 @@
     "post": "De post bewerkt zichzelf zodra de lijst verandert, vanuit Discord of vanaf de website, dus het kanaal toont altijd de huidige stand. Pin het bericht vast, en het werkt als een vastgepinde takenlijst bovenaan het kanaal die niemand hoeft bij te houden. Hij vermeldt niemand, en meerdere lijsten kunnen een kanaal delen.",
     "tickTitle": "Taken afvinken",
     "tick": "Kies een taak in het menu van de post om hem alleen voor jezelf te openen en verplaats hem dan naar Done. Of gebruik <code>/task move task:... column:Done</code>. Heeft je server een <postsFeeds>updatefeed</postsFeeds> met knoppen, dan toont elke update een knop per kolom, zodat afvinken één klik is.",
+    "archive": "Wordt Done te lang? <code>/column archive-tasks column:Done</code> haalt alle taken erin in één keer van het bord. Gearchiveerde taken houden alles: haal er een terug met <code>/task restore</code>, of vind ze op de website met het filter Gearchiveerde taken.",
     "sharedTitle": "Gedeeld, niet persoonlijk",
     "shared": "Een bord is van de server, niet van één persoon, en volgt je Discord-rollen: wie het moet zien, ziet het, en jij bepaalt wie het mag wijzigen. Dat maakt het een goede keuze voor de taken van een team, de evenementenplanning van een community, de bouwlijst van een gameserver of de opdrachten van een studiegroep.",
     "moreTitle": "Als een takenlijst niet genoeg is",

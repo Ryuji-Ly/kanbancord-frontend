@@ -45,6 +45,7 @@
     "post": "A publicação edita-se sozinha sempre que a lista muda, a partir do Discord ou do site, por isso o canal mostra sempre o estado atual. Afixa-a, e funciona como uma lista afixada no topo do canal que ninguém tem de manter atualizada. Não menciona ninguém, e várias listas podem partilhar um canal.",
     "tickTitle": "Dar tarefas como feitas",
     "tick": "Escolhe uma tarefa no menu da publicação para a abrires só para ti, e depois move-a para Done. Ou usa <code>/task move task:... column:Done</code>. Se o teu servidor tiver um <postsFeeds>feed de atualizações</postsFeeds> com botões, cada atualização mostra um botão por coluna, por isso dar uma tarefa como feita é um clique.",
+    "archive": "O Done está a ficar longo? <code>/column archive-tasks column:Done</code> tira de uma vez todas as tarefas dele do quadro. As tarefas arquivadas mantêm tudo: traz uma de volta com <code>/task restore</code>, ou encontra-as no site com o filtro Tarefas arquivadas.",
     "sharedTitle": "Partilhada, não pessoal",
     "shared": "Um quadro pertence ao servidor, não a uma pessoa, e segue os teus cargos do Discord: todos os que o devem ver conseguem vê-lo, e és tu quem decide quem o pode alterar. Isso torna-o ideal para as tarefas de uma equipa, a organização de eventos de uma comunidade, a lista de construções de um servidor de jogos ou os trabalhos de um grupo de estudo.",
     "moreTitle": "Quando uma lista de tarefas não chega",

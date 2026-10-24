@@ -20,7 +20,8 @@
     "LABEL_REMOVED": "Label van een taak gehaald",
     "COLUMN_CHANGED": "Kolommen gemaakt, hernoemd, verplaatst of verwijderd",
     "BOARD_CHANGED": "Bord gemaakt, hernoemd, gearchiveerd of verwijderd",
-    "BOARD_SETTINGS_CHANGED": "Labels, prioriteitsniveaus en bordfuncties gewijzigd"
+    "BOARD_SETTINGS_CHANGED": "Labels, prioriteitsniveaus en bordfuncties gewijzigd",
+    "TASK_ARCHIVED": "Taak gearchiveerd of hersteld"
   },
   "categories": {
     "TASKS": "Taken",

@@ -23,7 +23,10 @@
     "taskCreated": "Aufgabe erstellt",
     "createTaskFailed": "Aufgabe konnte nicht erstellt werden",
     "taskUpdated": "Aufgabe aktualisiert",
-    "taskDeleted": "Aufgabe gelöscht"
+    "taskDeleted": "Aufgabe gelöscht",
+    "taskArchived": "Aufgabe archiviert",
+    "taskRestored": "Aufgabe wiederhergestellt",
+    "tasksArchived": "Aufgaben archiviert: {count}"
   },
   "page": {
     "noContext": "Kein Board angegeben. Öffne ein Board über das Dashboard.",
@@ -44,7 +47,12 @@
     "deleteConfirm": "<strong>{name}</strong> löschen? Das kann nicht rückgängig gemacht werden.",
     "deleteColumn": "Spalte löschen",
     "deleteColumnTasks_one": "Dabei wird auch {count} Aufgabe in dieser Spalte gelöscht.",
-    "deleteColumnTasks_other": "Dabei werden auch {count} Aufgaben in dieser Spalte gelöscht."
+    "deleteColumnTasks_other": "Dabei werden auch {count} Aufgaben in dieser Spalte gelöscht.",
+    "archiveColumnTasks": "Alle Aufgaben archivieren",
+    "archiveColumnConfirm": "Alle Aufgaben in <strong>{name}</strong> archivieren ({count})? Sie verschwinden vom Board, behalten aber alles und lassen sich einzeln über den Filter „Archivierte Aufgaben“ wiederherstellen.",
+    "showingArchived": "Archivierte Aufgaben werden angezeigt. Öffne eine, um sie wiederherzustellen.",
+    "loadingArchived": "Archivierte Aufgaben werden geladen…",
+    "backToBoard": "Zurück zum Board"
   },
   "column": {
     "addNew": "+ Neue Spalte",
@@ -52,7 +60,8 @@
     "options": "Spaltenoptionen",
     "delete": "Spalte löschen",
     "addTask": "+ Aufgabe hinzufügen",
-    "showAll": "Alle anzeigen ({count})"
+    "showAll": "Alle anzeigen ({count})",
+    "archiveTasks": "Alle Aufgaben archivieren"
   },
   "pickers": {
     "searchUser": "Mitglied suchen",
@@ -89,7 +98,10 @@
     "dragWaits": "Aufgaben lassen sich erst wieder ziehen, wenn die Filter zurückgesetzt sind",
     "otherCount_one": " · {count} Filter",
     "otherCount_other": " · {count} Filter",
-    "clear": "Suche und Filter zurücksetzen"
+    "clear": "Suche und Filter zurücksetzen",
+    "byArchived": "Aufgaben auf dem Board oder archivierte",
+    "boardTasks": "Auf dem Board",
+    "archivedTasks": "Archivierte Aufgaben"
   },
   "createTask": {
     "titleRequired": "Ein Titel ist erforderlich.",
@@ -157,6 +169,9 @@
     "discard": "Verwerfen",
     "waitForUploads": "Warte, bis die Dateien hochgeladen sind",
     "uploading": "Wird hochgeladen …",
-    "noTaskSelected": "Keine Aufgabe ausgewählt."
+    "noTaskSelected": "Keine Aufgabe ausgewählt.",
+    "archive": "Archivieren",
+    "restore": "Wiederherstellen",
+    "archivedNote": "Diese Aufgabe ist archiviert: Sie ist nicht mehr auf dem Board und kann erst nach dem Wiederherstellen geändert werden."
   }
 }

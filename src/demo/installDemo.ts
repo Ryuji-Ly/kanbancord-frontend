@@ -44,6 +44,7 @@ const EVENTS: [string, string, string, boolean, boolean | null, boolean, boolean
   ['TASK_DESCRIPTION', 'TASKS', 'Description changed', true, false, true, false],
   ['TASK_DUE', 'TASKS', 'Due date changed', true, true, true, true],
   ['TASK_PRIORITY', 'TASKS', 'Priority changed', true, false, true, false],
+  ['TASK_ARCHIVED', 'TASKS', 'Task archived or restored', true, false, true, false],
   ['DUE_SOON', 'TASKS', 'Due within a day (reminder)', false, true, true, true],
   ['OVERDUE', 'TASKS', 'Overdue (reminder)', false, true, true, true],
   ['USER_ASSIGNED', 'PEOPLE', 'Someone assigned', true, true, true, true],
@@ -91,6 +92,9 @@ let feeds = [
   },
 ]
 
+/** Tasks archived in the demo, which leave the board until restored. */
+const archivedTaskIds = new Set<number>()
+
 function snapshot(boardId: number) {
   const board = data.BOARDS.find((entry) => entry.boardId === boardId)
   if (!board) return null
@@ -101,7 +105,7 @@ function snapshot(boardId: number) {
   return {
     board,
     columns,
-    tasks: main ? data.TASKS : [],
+    tasks: main ? data.TASKS.filter((task) => !archivedTaskIds.has(task.taskId)) : [],
     assignments: main ? data.ASSIGNMENTS : [],
     roleAssignments: main ? data.ROLE_ASSIGNMENTS : [],
     labels: main ? data.LABELS : [],
@@ -395,6 +399,23 @@ const ROUTES: [string, RegExp, Handler][] = [
   })],
   ['GET', /^\/api\/servers\/\d+\/boards\/(\d+)$/, (m) => data.BOARDS.find((board) => board.boardId === Number(m[1]))],
   ['GET', /^\/api\/servers\/\d+\/boards\/(\d+)\/snapshot$/, (m) => snapshot(Number(m[1]))],
+  ['GET', /^\/api\/servers\/\d+\/boards\/\d+\/tasks$/, (_m, { query }) => ({
+    content: query.get('archived') === 'true'
+      ? data.TASKS.filter((task) => archivedTaskIds.has(task.taskId)).map((task) => ({ ...task, isArchived: true }))
+      : data.TASKS,
+  })],
+  ['PATCH', /^\/api\/servers\/\d+\/boards\/\d+\/tasks\/(\d+)\/archive$/, (m, { query }) => {
+    const task = data.TASKS.find((entry) => entry.taskId === Number(m[1]))
+    const archived = query.get('archived') !== 'false'
+    if (archived) archivedTaskIds.add(Number(m[1]))
+    else archivedTaskIds.delete(Number(m[1]))
+    return task && { ...task, isArchived: archived }
+  }],
+  ['POST', /^\/api\/servers\/\d+\/boards\/\d+\/columns\/(\d+)\/archive-tasks$/, (m) => {
+    const tasks = data.TASKS.filter((task) => task.columnId === Number(m[1]) && !archivedTaskIds.has(task.taskId))
+    tasks.forEach((task) => archivedTaskIds.add(task.taskId))
+    return { archived: tasks.length }
+  }],
   ['GET', /^\/api\/servers\/\d+\/boards\/\d+\/tasks\/(\d+)\/comments$/, (m) =>
     ({ content: Number(m[1]) === data.FEATURED_TASK ? data.COMMENTS : [] })],
   ['GET', /^\/api\/servers\/\d+\/boards\/(\d+)\/notifications$/, (m) => boardNotifications(Number(m[1]))],

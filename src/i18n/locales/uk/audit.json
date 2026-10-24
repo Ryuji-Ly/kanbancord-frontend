@@ -101,5 +101,6 @@
   "changeCount_one": "{count} зміна",
   "changeCount_few": "{count} зміни",
   "changeCount_many": "{count} змін",
-  "changeCount_other": "{count} зміни"
+  "changeCount_other": "{count} зміни",
+  "columnTasksArchived": "архівує всі завдання: {column} ({count})"
 }

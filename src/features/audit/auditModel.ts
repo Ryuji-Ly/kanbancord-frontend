@@ -35,6 +35,7 @@ export type AuditDescription = {
 /** Fields that change as a side effect and say nothing about what the person did. */
 const HIDDEN_FIELDS = new Set([
   'position', 'updatedAt', 'createdAt', 'editedByUsers', '_subject', '_column', '_fromColumn', 'columnId',
+  'isArchived',
 ])
 /** Fields holding the id of something else; shown as "#id". */
 const ID_FIELDS = new Set(['priorityId'])
@@ -175,6 +176,11 @@ export function describeAuditEntry(entry: AuditEntry, lookups: AuditLookups): Au
     }
     case 'COLUMN_MOVED':
       return { summary: t('audit.reordered', { thing: named(noun('BOARD_COLUMN')) }), fields }
+    case 'COLUMN_TASKS_ARCHIVED':
+      return {
+        summary: t('audit.columnTasksArchived', { column: named(noun('BOARD_COLUMN')), count: String(snapshot?.count ?? '?') }),
+        fields: [],
+      }
   }
 
   const verb = entry.action.slice(entry.action.lastIndexOf('_') + 1)

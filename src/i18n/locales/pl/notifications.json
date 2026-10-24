@@ -20,7 +20,8 @@
     "LABEL_REMOVED": "Usunięto etykietę z zadania",
     "COLUMN_CHANGED": "Kolumny utworzone, przemianowane, przeniesione lub usunięte",
     "BOARD_CHANGED": "Tablica utworzona, przemianowana, zarchiwizowana lub usunięta",
-    "BOARD_SETTINGS_CHANGED": "Zmieniono etykiety, poziomy priorytetu i funkcje tablicy"
+    "BOARD_SETTINGS_CHANGED": "Zmieniono etykiety, poziomy priorytetu i funkcje tablicy",
+    "TASK_ARCHIVED": "Zadanie zarchiwizowane lub przywrócone"
   },
   "categories": {
     "TASKS": "Zadania",

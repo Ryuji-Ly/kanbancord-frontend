@@ -25,7 +25,10 @@
     "taskCreated": "Задача создана",
     "createTaskFailed": "Не удалось создать задачу",
     "taskUpdated": "Задача обновлена",
-    "taskDeleted": "Задача удалена"
+    "taskDeleted": "Задача удалена",
+    "taskArchived": "Задача архивирована",
+    "taskRestored": "Задача восстановлена",
+    "tasksArchived": "Архивировано задач: {count}"
   },
   "page": {
     "noContext": "Доска не указана. Откройте доску из панели управления.",
@@ -48,7 +51,12 @@
     "deleteColumnTasks_one": "Вместе с ней будет удалена {count} задача из этой колонки.",
     "deleteColumnTasks_few": "Вместе с ней будут удалены {count} задачи из этой колонки.",
     "deleteColumnTasks_many": "Вместе с ней будут удалены {count} задач из этой колонки.",
-    "deleteColumnTasks_other": "Вместе с ней будут удалены {count} задачи из этой колонки."
+    "deleteColumnTasks_other": "Вместе с ней будут удалены {count} задачи из этой колонки.",
+    "archiveColumnTasks": "Архивировать все задачи",
+    "archiveColumnConfirm": "Архивировать все задачи в колонке <strong>{name}</strong> ({count})? Они исчезнут с доски, но сохранят всё, и каждую можно восстановить через фильтр «Архивные задачи».",
+    "showingArchived": "Показаны архивные задачи. Откройте задачу, чтобы восстановить её.",
+    "loadingArchived": "Загрузка архивных задач…",
+    "backToBoard": "Назад к доске"
   },
   "column": {
     "addNew": "+ Новая колонка",
@@ -56,7 +64,8 @@
     "options": "Параметры колонки",
     "delete": "Удалить колонку",
     "addTask": "+ Добавить задачу",
-    "showAll": "Показать все ({count})"
+    "showAll": "Показать все ({count})",
+    "archiveTasks": "Архивировать все задачи"
   },
   "pickers": {
     "searchUser": "Найти участника",
@@ -95,7 +104,10 @@
     "otherCount_few": " · {count} фильтра",
     "otherCount_many": " · {count} фильтров",
     "otherCount_other": " · {count} фильтра",
-    "clear": "Сбросить поиск и фильтры"
+    "clear": "Сбросить поиск и фильтры",
+    "byArchived": "Задачи на доске или в архиве",
+    "boardTasks": "На доске",
+    "archivedTasks": "Архивные задачи"
   },
   "createTask": {
     "titleRequired": "Нужно указать название.",
@@ -165,6 +177,9 @@
     "discard": "Отменить",
     "waitForUploads": "Дождитесь окончания загрузки",
     "uploading": "Загрузка…",
-    "noTaskSelected": "Задача не выбрана."
+    "noTaskSelected": "Задача не выбрана.",
+    "archive": "Архивировать",
+    "restore": "Восстановить",
+    "archivedNote": "Эта задача в архиве: её нет на доске, и её нельзя изменить, пока она не будет восстановлена."
   }
 }

@@ -20,7 +20,8 @@
     "LABEL_REMOVED": "Etichetta rimossa da un'attività",
     "COLUMN_CHANGED": "Colonne create, rinominate, spostate o eliminate",
     "BOARD_CHANGED": "Bacheca creata, rinominata, archiviata o eliminata",
-    "BOARD_SETTINGS_CHANGED": "Etichette, livelli di priorità e funzioni della bacheca modificati"
+    "BOARD_SETTINGS_CHANGED": "Etichette, livelli di priorità e funzioni della bacheca modificati",
+    "TASK_ARCHIVED": "Attività archiviata o ripristinata"
   },
   "categories": {
     "TASKS": "Attività",

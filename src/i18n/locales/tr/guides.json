@@ -45,6 +45,7 @@
     "post": "Gönderi, liste Discord'dan veya web sitesinden her değiştiğinde kendini düzenler; böylece kanal her zaman güncel durumu gösterir. Sabitlediğinizde, kimsenin güncel tutmak zorunda olmadığı, kanalın en üstüne sabitlenmiş bir yapılacaklar listesi gibi çalışır. Kimseden bahsetmez ve bir kanalda birden fazla liste bulunabilir.",
     "tickTitle": "Görevleri tamamlayın",
     "tick": "Bir görevi yalnızca size görünecek şekilde açmak için gönderinin menüsünden seçin, ardından Done sütununa taşıyın. Ya da <code>/task move task:... column:Done</code> komutunu çalıştırın. Sunucunuzda düğmeli bir <postsFeeds>güncelleme akışı</postsFeeds> varsa her güncellemede sütun başına bir düğme bulunur; böylece bir görevi tamamlamak tek bir tıklamadır.",
+    "archive": "Done çok mu uzadı? <code>/column archive-tasks column:Done</code> içindeki tüm görevleri tek seferde panodan kaldırır. Arşivlenen görevler her şeylerini korur: birini <code>/task restore</code> ile geri getirin ya da web sitesinde Arşivlenmiş görevler filtresiyle bulun.",
     "sharedTitle": "Kişisel değil, paylaşılan",
     "shared": "Bir pano tek bir kişiye değil, sunucuya aittir ve Discord rollerinizi izler: görmesi gereken herkes görür, kimin değiştirebileceğine ise siz karar verirsiniz. Bu nedenle bir ekibin görevleri, bir topluluğun etkinlik planlaması, bir oyun sunucusunun yapı listesi veya bir çalışma grubunun ödevleri için uygundur.",
     "moreTitle": "Bir yapılacaklar listesi yetmediğinde",

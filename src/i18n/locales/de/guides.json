@@ -45,6 +45,7 @@
     "post": "Der Post bearbeitet sich selbst, sobald sich die Liste ändert, ob über Discord oder die Website, sodass der Kanal immer den aktuellen Stand zeigt. Pinne ihn an, und er funktioniert wie eine oben im Kanal angepinnte To-do-Liste, die niemand aktuell halten muss. Er pingt niemanden an, und mehrere Listen können sich einen Kanal teilen.",
     "tickTitle": "Aufgaben abhaken",
     "tick": "Wähle eine Aufgabe im Menü des Posts, um sie nur für dich zu öffnen, und verschiebe sie dann nach Done. Oder führe <code>/task move task:... column:Done</code> aus. Hat dein Server einen <postsFeeds>Update-Feed</postsFeeds> mit Schaltflächen, zeigt jedes Update eine Schaltfläche pro Spalte, abhaken ist dann ein Klick.",
+    "archive": "Wird Done zu lang? <code>/column archive-tasks column:Done</code> nimmt alle Aufgaben darin auf einmal vom Board. Archivierte Aufgaben behalten alles: Hol eine mit <code>/task restore</code> zurück, oder finde sie auf der Website über den Filter „Archivierte Aufgaben“.",
     "sharedTitle": "Gemeinsam, nicht persönlich",
     "shared": "Ein Board gehört dem Server, nicht einer Person, und es folgt deinen Discord-Rollen: Alle, die es sehen sollen, können es sehen, und du entscheidest, wer es ändern darf. Damit passt es gut für die Aufgaben eines Teams, die Eventplanung einer Community, die Bauliste eines Gaming-Servers oder die Aufgaben einer Lerngruppe.",
     "moreTitle": "Wenn eine To-do-Liste nicht reicht",

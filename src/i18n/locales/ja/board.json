@@ -22,7 +22,10 @@
     "taskCreated": "タスクを作成しました",
     "createTaskFailed": "タスクを作成できませんでした",
     "taskUpdated": "タスクを更新しました",
-    "taskDeleted": "タスクを削除しました"
+    "taskDeleted": "タスクを削除しました",
+    "taskArchived": "タスクをアーカイブしました",
+    "taskRestored": "タスクを復元しました",
+    "tasksArchived": "アーカイブしたタスク：{count}"
   },
   "page": {
     "noContext": "ボードの情報がありません。ダッシュボードからボードを開いてください。",
@@ -42,7 +45,12 @@
     "deleteTask": "タスクを削除",
     "deleteConfirm": "<strong>{name}</strong>を削除しますか？元に戻せません。",
     "deleteColumn": "列を削除",
-    "deleteColumnTasks_other": "この列の {count} 件のタスクも削除されます。"
+    "deleteColumnTasks_other": "この列の {count} 件のタスクも削除されます。",
+    "archiveColumnTasks": "すべてのタスクをアーカイブ",
+    "archiveColumnConfirm": "<strong>{name}</strong>のタスクをすべてアーカイブしますか？（{count}）ボードからは消えますが内容はすべて残り、「アーカイブ済みのタスク」フィルターから1件ずつ復元できます。",
+    "showingArchived": "アーカイブ済みのタスクを表示しています。開くと復元できます。",
+    "loadingArchived": "アーカイブ済みのタスクを読み込み中…",
+    "backToBoard": "ボードに戻る"
   },
   "column": {
     "addNew": "＋ 新しい列を追加",
@@ -50,7 +58,8 @@
     "options": "列のオプション",
     "delete": "列を削除",
     "addTask": "＋ タスクを追加",
-    "showAll": "すべて表示（{count}）"
+    "showAll": "すべて表示（{count}）",
+    "archiveTasks": "すべてのタスクをアーカイブ"
   },
   "pickers": {
     "searchUser": "ユーザーを検索",
@@ -86,7 +95,10 @@
     "noDueDate": "期限なし",
     "dragWaits": "絞り込みを解除するまでタスクはドラッグできません",
     "otherCount_other": " · フィルター {count} 個",
-    "clear": "検索と絞り込みを解除"
+    "clear": "検索と絞り込みを解除",
+    "byArchived": "ボード上のタスクかアーカイブ済みか",
+    "boardTasks": "ボード上",
+    "archivedTasks": "アーカイブ済みのタスク"
   },
   "createTask": {
     "titleRequired": "タスクのタイトルは必須です。",
@@ -153,6 +165,9 @@
     "discard": "破棄",
     "waitForUploads": "ファイルのアップロードが終わるまでお待ちください",
     "uploading": "アップロード中…",
-    "noTaskSelected": "タスクが選択されていません。"
+    "noTaskSelected": "タスクが選択されていません。",
+    "archive": "アーカイブ",
+    "restore": "復元",
+    "archivedNote": "このタスクはアーカイブ済みです。ボードには表示されず、復元するまで変更できません。"
   }
 }

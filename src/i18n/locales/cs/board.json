@@ -25,7 +25,10 @@
     "taskCreated": "Úkol vytvořen",
     "createTaskFailed": "Úkol se nepodařilo vytvořit",
     "taskUpdated": "Úkol aktualizován",
-    "taskDeleted": "Úkol smazán"
+    "taskDeleted": "Úkol smazán",
+    "taskArchived": "Úkol archivován",
+    "taskRestored": "Úkol obnoven",
+    "tasksArchived": "Archivované úkoly: {count}"
   },
   "page": {
     "noContext": "Chybí údaje o nástěnce. Otevři nástěnku z přehledu.",
@@ -48,7 +51,12 @@
     "deleteColumnTasks_one": "Smaže se také {count} úkol v tomto sloupci.",
     "deleteColumnTasks_few": "Smažou se také {count} úkoly v tomto sloupci.",
     "deleteColumnTasks_many": "Smaže se také {count} úkolu v tomto sloupci.",
-    "deleteColumnTasks_other": "Smaže se také {count} úkolů v tomto sloupci."
+    "deleteColumnTasks_other": "Smaže se také {count} úkolů v tomto sloupci.",
+    "archiveColumnTasks": "Archivovat všechny úkoly",
+    "archiveColumnConfirm": "Archivovat všechny úkoly ve sloupci <strong>{name}</strong> ({count})? Zmizí z nástěnky, ale vše si ponechají a každý lze obnovit přes filtr Archivované úkoly.",
+    "showingArchived": "Zobrazují se archivované úkoly. Otevři úkol a obnov ho.",
+    "loadingArchived": "Načítání archivovaných úkolů…",
+    "backToBoard": "Zpět na nástěnku"
   },
   "column": {
     "addNew": "+ Přidat nový sloupec",
@@ -56,7 +64,8 @@
     "options": "Možnosti sloupce",
     "delete": "Smazat sloupec",
     "addTask": "+ Přidat úkol",
-    "showAll": "Zobrazit vše ({count})"
+    "showAll": "Zobrazit vše ({count})",
+    "archiveTasks": "Archivovat všechny úkoly"
   },
   "pickers": {
     "searchUser": "Hledat uživatele",
@@ -95,7 +104,10 @@
     "otherCount_few": " · {count} filtry",
     "otherCount_many": " · {count} filtru",
     "otherCount_other": " · {count} filtrů",
-    "clear": "Zrušit hledání a filtry"
+    "clear": "Zrušit hledání a filtry",
+    "byArchived": "Úkoly na nástěnce nebo archivované",
+    "boardTasks": "Na nástěnce",
+    "archivedTasks": "Archivované úkoly"
   },
   "createTask": {
     "titleRequired": "Název úkolu je povinný.",
@@ -165,6 +177,9 @@
     "discard": "Zahodit",
     "waitForUploads": "Počkej, než se soubory nahrají",
     "uploading": "Nahrávání…",
-    "noTaskSelected": "Není vybrán žádný úkol."
+    "noTaskSelected": "Není vybrán žádný úkol.",
+    "archive": "Archivovat",
+    "restore": "Obnovit",
+    "archivedNote": "Tento úkol je archivovaný: není na nástěnce a nelze ho měnit, dokud nebude obnoven."
   }
 }

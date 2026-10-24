@@ -89,5 +89,6 @@
   "onBoardName": " บน {board}",
   "viaDiscordHint": "ทำด้วยคำสั่งสแลชใน Discord",
   "viaDiscord": "ผ่าน Discord",
-  "changeCount_other": "{count} การเปลี่ยนแปลง"
+  "changeCount_other": "{count} การเปลี่ยนแปลง",
+  "columnTasksArchived": "เก็บถาวรงานทั้งหมดใน {column} ({count})"
 }

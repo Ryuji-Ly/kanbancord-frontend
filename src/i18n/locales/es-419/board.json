@@ -24,7 +24,10 @@
     "taskCreated": "Tarea creada",
     "createTaskFailed": "No se pudo crear la tarea",
     "taskUpdated": "Tarea actualizada",
-    "taskDeleted": "Tarea eliminada"
+    "taskDeleted": "Tarea eliminada",
+    "taskArchived": "Tarea archivada",
+    "taskRestored": "Tarea restaurada",
+    "tasksArchived": "Tareas archivadas: {count}"
   },
   "page": {
     "noContext": "No se indicó ningún tablero. Abre un tablero desde el panel.",
@@ -46,7 +49,12 @@
     "deleteColumn": "Eliminar columna",
     "deleteColumnTasks_one": "También se eliminará {count} tarea de esta columna.",
     "deleteColumnTasks_other": "También se eliminarán las {count} tareas de esta columna.",
-    "deleteColumnTasks_many": "También se eliminarán las {count} tareas de esta columna."
+    "deleteColumnTasks_many": "También se eliminarán las {count} tareas de esta columna.",
+    "archiveColumnTasks": "Archivar todas las tareas",
+    "archiveColumnConfirm": "¿Archivar todas las tareas de <strong>{name}</strong> ({count})? Salen del tablero pero lo conservan todo, y cada una se puede restaurar desde el filtro Tareas archivadas.",
+    "showingArchived": "Se muestran las tareas archivadas. Abre una para restaurarla.",
+    "loadingArchived": "Cargando tareas archivadas…",
+    "backToBoard": "Volver al tablero"
   },
   "column": {
     "addNew": "+ Nueva columna",
@@ -54,7 +62,8 @@
     "options": "Opciones de la columna",
     "delete": "Eliminar columna",
     "addTask": "+ Agregar tarea",
-    "showAll": "Mostrar todo ({count})"
+    "showAll": "Mostrar todo ({count})",
+    "archiveTasks": "Archivar todas las tareas"
   },
   "pickers": {
     "searchUser": "Buscar miembro",
@@ -92,7 +101,10 @@
     "otherCount_one": " · {count} filtro",
     "otherCount_other": " · {count} filtros",
     "clear": "Quitar la búsqueda y los filtros",
-    "otherCount_many": " · {count} filtros"
+    "otherCount_many": " · {count} filtros",
+    "byArchived": "Tareas del tablero o archivadas",
+    "boardTasks": "En el tablero",
+    "archivedTasks": "Tareas archivadas"
   },
   "createTask": {
     "titleRequired": "El título es obligatorio.",
@@ -161,6 +173,9 @@
     "discard": "Descartar",
     "waitForUploads": "Espera a que terminen de subirse los archivos",
     "uploading": "Subiendo…",
-    "noTaskSelected": "No hay ninguna tarea seleccionada."
+    "noTaskSelected": "No hay ninguna tarea seleccionada.",
+    "archive": "Archivar",
+    "restore": "Restaurar",
+    "archivedNote": "Esta tarea está archivada: no está en el tablero y no se puede cambiar hasta restaurarla."
   }
 }

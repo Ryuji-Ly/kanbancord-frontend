@@ -25,7 +25,10 @@
     "taskCreated": "Завдання створено",
     "createTaskFailed": "Не вдалося створити завдання",
     "taskUpdated": "Завдання оновлено",
-    "taskDeleted": "Завдання видалено"
+    "taskDeleted": "Завдання видалено",
+    "taskArchived": "Завдання архівовано",
+    "taskRestored": "Завдання відновлено",
+    "tasksArchived": "Архівовано завдань: {count}"
   },
   "page": {
     "noContext": "Бракує даних дошки. Відкрийте дошку з панелі.",
@@ -48,7 +51,12 @@
     "deleteColumnTasks_one": "Також буде видалено {count} завдання в цій колонці.",
     "deleteColumnTasks_few": "Також буде видалено {count} завдання в цій колонці.",
     "deleteColumnTasks_many": "Також буде видалено {count} завдань у цій колонці.",
-    "deleteColumnTasks_other": "Також буде видалено {count} завдання в цій колонці."
+    "deleteColumnTasks_other": "Також буде видалено {count} завдання в цій колонці.",
+    "archiveColumnTasks": "Архівувати всі завдання",
+    "archiveColumnConfirm": "Архівувати всі завдання в колонці <strong>{name}</strong> ({count})? Вони зникнуть з дошки, але збережуть усе, і кожне можна відновити через фільтр «Архівні завдання».",
+    "showingArchived": "Показано архівні завдання. Відкрийте завдання, щоб відновити його.",
+    "loadingArchived": "Завантаження архівних завдань…",
+    "backToBoard": "Назад до дошки"
   },
   "column": {
     "addNew": "+ Додати нову колонку",
@@ -56,7 +64,8 @@
     "options": "Параметри колонки",
     "delete": "Видалити колонку",
     "addTask": "+ Додати завдання",
-    "showAll": "Показати все ({count})"
+    "showAll": "Показати все ({count})",
+    "archiveTasks": "Архівувати всі завдання"
   },
   "pickers": {
     "searchUser": "Шукати користувача",
@@ -95,7 +104,10 @@
     "otherCount_few": " · {count} фільтри",
     "otherCount_many": " · {count} фільтрів",
     "otherCount_other": " · {count} фільтра",
-    "clear": "Скинути пошук і фільтри"
+    "clear": "Скинути пошук і фільтри",
+    "byArchived": "Завдання на дошці або в архіві",
+    "boardTasks": "На дошці",
+    "archivedTasks": "Архівні завдання"
   },
   "createTask": {
     "titleRequired": "Назва завдання обов’язкова.",
@@ -165,6 +177,9 @@
     "discard": "Скасувати",
     "waitForUploads": "Зачекайте, поки файли вивантажаться",
     "uploading": "Вивантаження…",
-    "noTaskSelected": "Завдання не вибрано."
+    "noTaskSelected": "Завдання не вибрано.",
+    "archive": "Архівувати",
+    "restore": "Відновити",
+    "archivedNote": "Це завдання в архіві: його немає на дошці, і його не можна змінити, доки його не відновлять."
   }
 }

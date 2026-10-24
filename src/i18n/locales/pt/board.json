@@ -24,7 +24,10 @@
     "taskCreated": "Tarefa criada",
     "createTaskFailed": "Não foi possível criar a tarefa",
     "taskUpdated": "Tarefa atualizada",
-    "taskDeleted": "Tarefa eliminada"
+    "taskDeleted": "Tarefa eliminada",
+    "taskArchived": "Tarefa arquivada",
+    "taskRestored": "Tarefa restaurada",
+    "tasksArchived": "Tarefas arquivadas: {count}"
   },
   "page": {
     "noContext": "Nenhum quadro indicado. Abre um quadro a partir do painel.",
@@ -46,7 +49,12 @@
     "deleteColumn": "Eliminar coluna",
     "deleteColumnTasks_one": "Também elimina {count} tarefa desta coluna.",
     "deleteColumnTasks_other": "Também elimina as {count} tarefas desta coluna.",
-    "deleteColumnTasks_many": "Também elimina as {count} tarefas desta coluna."
+    "deleteColumnTasks_many": "Também elimina as {count} tarefas desta coluna.",
+    "archiveColumnTasks": "Arquivar todas as tarefas",
+    "archiveColumnConfirm": "Arquivar todas as tarefas de <strong>{name}</strong> ({count})? Saem do quadro mas mantêm tudo, e cada uma pode ser restaurada a partir do filtro Tarefas arquivadas.",
+    "showingArchived": "A mostrar tarefas arquivadas. Abre uma para a restaurar.",
+    "loadingArchived": "A carregar tarefas arquivadas…",
+    "backToBoard": "Voltar ao quadro"
   },
   "column": {
     "addNew": "+ Nova coluna",
@@ -54,7 +62,8 @@
     "options": "Opções da coluna",
     "delete": "Eliminar coluna",
     "addTask": "+ Adicionar tarefa",
-    "showAll": "Mostrar tudo ({count})"
+    "showAll": "Mostrar tudo ({count})",
+    "archiveTasks": "Arquivar todas as tarefas"
   },
   "pickers": {
     "searchUser": "Procurar membro",
@@ -92,7 +101,10 @@
     "otherCount_one": " · {count} filtro",
     "otherCount_other": " · {count} filtros",
     "clear": "Limpar a pesquisa e os filtros",
-    "otherCount_many": " · {count} filtros"
+    "otherCount_many": " · {count} filtros",
+    "byArchived": "Tarefas no quadro ou arquivadas",
+    "boardTasks": "No quadro",
+    "archivedTasks": "Tarefas arquivadas"
   },
   "createTask": {
     "titleRequired": "O título é obrigatório.",
@@ -161,6 +173,9 @@
     "discard": "Descartar",
     "waitForUploads": "Espera que os ficheiros acabem de carregar",
     "uploading": "A carregar…",
-    "noTaskSelected": "Nenhuma tarefa selecionada."
+    "noTaskSelected": "Nenhuma tarefa selecionada.",
+    "archive": "Arquivar",
+    "restore": "Restaurar",
+    "archivedNote": "Esta tarefa está arquivada: saiu do quadro e não pode ser alterada até ser restaurada."
   }
 }

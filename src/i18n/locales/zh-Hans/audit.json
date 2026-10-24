@@ -89,5 +89,6 @@
   "onBoardName": "（{board}）",
   "viaDiscordHint": "通过 Discord 中的斜杠命令完成",
   "viaDiscord": "通过 Discord",
-  "changeCount_other": "{count} 项更改"
+  "changeCount_other": "{count} 项更改",
+  "columnTasksArchived": "归档了{column}中的所有任务（{count}）"
 }

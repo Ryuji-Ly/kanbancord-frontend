@@ -45,6 +45,7 @@
     "post": "A bejegyzés magától szerkesztődik, valahányszor a lista változik, akár a Discordból, akár a webhelyről, így a csatorna mindig a jelenlegi állapotot mutatja. Tűzd ki az üzenetet, és úgy működik, mint egy kitűzött teendőlista a csatorna tetején, amelyet senkinek sem kell naprakészen tartania. Senkit sem említ meg, és több lista is osztozhat egy csatornán.",
     "tickTitle": "Feladatok kipipálása",
     "tick": "Válassz egy feladatot a bejegyzés menüjében, hogy csak magadnak nyisd meg, majd helyezd át a Done oszlopba. Vagy használd a <code>/task move task:... column:Done</code> parancsot. Ha a szerverednek van gombokkal ellátott <postsFeeds>frissítési hírfolyama</postsFeeds>, minden frissítés oszloponként egy gombot mutat, így a kipipálás egyetlen kattintás.",
+    "archive": "Túl hosszú lett a Done? A <code>/column archive-tasks column:Done</code> egyszerre leveszi a tábláról az összes feladatát. Az archivált feladatok mindent megtartanak: egyet a <code>/task restore</code> paranccsal hozhatsz vissza, vagy megtalálod őket a weboldalon az Archivált feladatok szűrővel.",
     "sharedTitle": "Közös, nem személyes",
     "shared": "A tábla a szerveré, nem egy emberé, és a Discord-rangjaidat követi: aki lássa, az látja, és te döntöd el, ki módosíthatja. Ezért jó választás egy csapat feladataihoz, egy közösség eseménytervezéséhez, egy játékszerver építési listájához vagy egy tanulócsoport feladataihoz.",
     "moreTitle": "Ha egy teendőlista már nem elég",

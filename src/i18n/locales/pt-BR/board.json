@@ -24,7 +24,10 @@
     "taskCreated": "Tarefa criada",
     "createTaskFailed": "Não foi possível criar a tarefa",
     "taskUpdated": "Tarefa atualizada",
-    "taskDeleted": "Tarefa excluída"
+    "taskDeleted": "Tarefa excluída",
+    "taskArchived": "Tarefa arquivada",
+    "taskRestored": "Tarefa restaurada",
+    "tasksArchived": "Tarefas arquivadas: {count}"
   },
   "page": {
     "noContext": "Nenhum quadro indicado. Abra um quadro pelo painel.",
@@ -46,7 +49,12 @@
     "deleteColumn": "Excluir coluna",
     "deleteColumnTasks_one": "Isso também vai excluir {count} tarefa desta coluna.",
     "deleteColumnTasks_many": "Isso também vai excluir {count} tarefas desta coluna.",
-    "deleteColumnTasks_other": "Isso também vai excluir {count} tarefas desta coluna."
+    "deleteColumnTasks_other": "Isso também vai excluir {count} tarefas desta coluna.",
+    "archiveColumnTasks": "Arquivar todas as tarefas",
+    "archiveColumnConfirm": "Arquivar todas as tarefas de <strong>{name}</strong> ({count})? Elas saem do quadro, mas mantêm tudo, e cada uma pode ser restaurada pelo filtro Tarefas arquivadas.",
+    "showingArchived": "Mostrando tarefas arquivadas. Abra uma para restaurá-la.",
+    "loadingArchived": "Carregando tarefas arquivadas…",
+    "backToBoard": "Voltar ao quadro"
   },
   "column": {
     "addNew": "+ Adicionar coluna",
@@ -54,7 +62,8 @@
     "options": "Opções da coluna",
     "delete": "Excluir coluna",
     "addTask": "+ Adicionar uma tarefa",
-    "showAll": "Mostrar tudo ({count})"
+    "showAll": "Mostrar tudo ({count})",
+    "archiveTasks": "Arquivar todas as tarefas"
   },
   "pickers": {
     "searchUser": "Pesquisar usuário",
@@ -92,7 +101,10 @@
     "otherCount_one": " · {count} filtro",
     "otherCount_many": " · {count} filtros",
     "otherCount_other": " · {count} filtros",
-    "clear": "Limpar pesquisa e filtros"
+    "clear": "Limpar pesquisa e filtros",
+    "byArchived": "Tarefas no quadro ou arquivadas",
+    "boardTasks": "No quadro",
+    "archivedTasks": "Tarefas arquivadas"
   },
   "createTask": {
     "titleRequired": "O título da tarefa é obrigatório.",
@@ -161,6 +173,9 @@
     "discard": "Descartar",
     "waitForUploads": "Espere os arquivos terminarem de ser enviados",
     "uploading": "Enviando…",
-    "noTaskSelected": "Nenhuma tarefa selecionada."
+    "noTaskSelected": "Nenhuma tarefa selecionada.",
+    "archive": "Arquivar",
+    "restore": "Restaurar",
+    "archivedNote": "Esta tarefa está arquivada: saiu do quadro e não pode ser alterada até ser restaurada."
   }
 }

@@ -22,7 +22,10 @@
     "taskCreated": "Đã tạo công việc",
     "createTaskFailed": "Không thể tạo công việc",
     "taskUpdated": "Đã cập nhật công việc",
-    "taskDeleted": "Đã xóa công việc"
+    "taskDeleted": "Đã xóa công việc",
+    "taskArchived": "Đã lưu trữ công việc",
+    "taskRestored": "Đã khôi phục công việc",
+    "tasksArchived": "Công việc đã lưu trữ: {count}"
   },
   "page": {
     "noContext": "Thiếu thông tin bảng. Hãy mở bảng từ trang tổng quan.",
@@ -42,7 +45,12 @@
     "deleteTask": "Xóa công việc",
     "deleteConfirm": "Xóa <strong>{name}</strong>? Không thể hoàn tác.",
     "deleteColumn": "Xóa cột",
-    "deleteColumnTasks_other": "Thao tác này cũng sẽ xóa {count} công việc trong cột."
+    "deleteColumnTasks_other": "Thao tác này cũng sẽ xóa {count} công việc trong cột.",
+    "archiveColumnTasks": "Lưu trữ mọi công việc",
+    "archiveColumnConfirm": "Lưu trữ mọi công việc trong <strong>{name}</strong> ({count})? Chúng rời khỏi bảng nhưng vẫn giữ mọi thứ, và có thể khôi phục từng việc từ bộ lọc Công việc đã lưu trữ.",
+    "showingArchived": "Đang hiện công việc đã lưu trữ. Mở một công việc để khôi phục.",
+    "loadingArchived": "Đang tải công việc đã lưu trữ…",
+    "backToBoard": "Quay lại bảng"
   },
   "column": {
     "addNew": "+ Thêm cột mới",
@@ -50,7 +58,8 @@
     "options": "Tùy chọn cột",
     "delete": "Xóa cột",
     "addTask": "+ Thêm công việc",
-    "showAll": "Hiện tất cả ({count})"
+    "showAll": "Hiện tất cả ({count})",
+    "archiveTasks": "Lưu trữ mọi công việc"
   },
   "pickers": {
     "searchUser": "Tìm người dùng",
@@ -86,7 +95,10 @@
     "noDueDate": "Không có hạn chót",
     "dragWaits": "Có thể kéo công việc sau khi xóa bộ lọc",
     "otherCount_other": " · {count} bộ lọc",
-    "clear": "Xóa tìm kiếm và bộ lọc"
+    "clear": "Xóa tìm kiếm và bộ lọc",
+    "byArchived": "Công việc trên bảng hoặc đã lưu trữ",
+    "boardTasks": "Trên bảng",
+    "archivedTasks": "Công việc đã lưu trữ"
   },
   "createTask": {
     "titleRequired": "Tiêu đề công việc là bắt buộc.",
@@ -153,6 +165,9 @@
     "discard": "Bỏ",
     "waitForUploads": "Hãy đợi tệp tải lên xong",
     "uploading": "Đang tải lên…",
-    "noTaskSelected": "Chưa chọn công việc nào."
+    "noTaskSelected": "Chưa chọn công việc nào.",
+    "archive": "Lưu trữ",
+    "restore": "Khôi phục",
+    "archivedNote": "Công việc này đã được lưu trữ: không còn trên bảng và không thể thay đổi cho đến khi được khôi phục."
   }
 }

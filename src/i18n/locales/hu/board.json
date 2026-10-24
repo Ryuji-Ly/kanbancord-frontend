@@ -23,7 +23,10 @@
     "taskCreated": "Feladat létrehozva",
     "createTaskFailed": "Nem sikerült létrehozni a feladatot",
     "taskUpdated": "Feladat frissítve",
-    "taskDeleted": "Feladat törölve"
+    "taskDeleted": "Feladat törölve",
+    "taskArchived": "Feladat archiválva",
+    "taskRestored": "Feladat visszaállítva",
+    "tasksArchived": "Archivált feladatok: {count}"
   },
   "page": {
     "noContext": "Hiányoznak a tábla adatai. Nyiss meg egy táblát az irányítópultról.",
@@ -44,7 +47,12 @@
     "deleteConfirm": "Törlöd ezt: <strong>{name}</strong>? Ez nem vonható vissza.",
     "deleteColumn": "Oszlop törlése",
     "deleteColumnTasks_one": "Ez az oszlopban lévő {count} feladatot is törli.",
-    "deleteColumnTasks_other": "Ez az oszlopban lévő {count} feladatot is törli."
+    "deleteColumnTasks_other": "Ez az oszlopban lévő {count} feladatot is törli.",
+    "archiveColumnTasks": "Összes feladat archiválása",
+    "archiveColumnConfirm": "Archiválod a(z) <strong>{name}</strong> összes feladatát ({count})? Lekerülnek a tábláról, de mindenük megmarad, és egyenként visszaállíthatók az Archivált feladatok szűrővel.",
+    "showingArchived": "Archivált feladatok láthatók. Nyiss meg egyet a visszaállításhoz.",
+    "loadingArchived": "Archivált feladatok betöltése…",
+    "backToBoard": "Vissza a táblához"
   },
   "column": {
     "addNew": "+ Új oszlop hozzáadása",
@@ -52,7 +60,8 @@
     "options": "Oszlop beállításai",
     "delete": "Oszlop törlése",
     "addTask": "+ Feladat hozzáadása",
-    "showAll": "Az összes megjelenítése ({count})"
+    "showAll": "Az összes megjelenítése ({count})",
+    "archiveTasks": "Összes feladat archiválása"
   },
   "pickers": {
     "searchUser": "Felhasználó keresése",
@@ -89,7 +98,10 @@
     "dragWaits": "A feladatok húzása a szűrők törléséig várakozik",
     "otherCount_one": " · {count} szűrő",
     "otherCount_other": " · {count} szűrő",
-    "clear": "Keresés és szűrők törlése"
+    "clear": "Keresés és szűrők törlése",
+    "byArchived": "Feladatok a táblán vagy archiválva",
+    "boardTasks": "A táblán",
+    "archivedTasks": "Archivált feladatok"
   },
   "createTask": {
     "titleRequired": "A feladat címe kötelező.",
@@ -157,6 +169,9 @@
     "discard": "Elvetés",
     "waitForUploads": "Várd meg, amíg a fájlok feltöltése befejeződik",
     "uploading": "Feltöltés…",
-    "noTaskSelected": "Nincs kiválasztott feladat."
+    "noTaskSelected": "Nincs kiválasztott feladat.",
+    "archive": "Archiválás",
+    "restore": "Visszaállítás",
+    "archivedNote": "Ez a feladat archiválva van: nincs a táblán, és visszaállításig nem módosítható."
   }
 }

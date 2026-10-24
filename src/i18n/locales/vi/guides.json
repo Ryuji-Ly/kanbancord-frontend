@@ -45,6 +45,7 @@
     "post": "Bài đăng tự sửa mỗi khi danh sách thay đổi, từ Discord hay từ trang web, nên kênh luôn hiển thị trạng thái hiện tại. Ghim tin nhắn lại và nó hoạt động như một danh sách việc ghim ở đầu kênh mà không ai cần cập nhật. Nó không nhắc đến ai, và nhiều danh sách có thể dùng chung một kênh.",
     "tickTitle": "Đánh dấu xong",
     "tick": "Chọn một công việc trong menu của bài đăng để mở nó chỉ cho bạn, rồi chuyển sang Done. Hoặc dùng <code>/task move task:... column:Done</code>. Nếu máy chủ có <postsFeeds>luồng cập nhật</postsFeeds> kèm nút, mỗi cập nhật hiện một nút cho mỗi cột, nên đánh dấu xong chỉ mất một cú nhấp.",
+    "archive": "Done quá dài? <code>/column archive-tasks column:Done</code> đưa mọi công việc trong đó ra khỏi bảng cùng lúc. Công việc đã lưu trữ vẫn giữ mọi thứ: khôi phục từng việc bằng <code>/task restore</code>, hoặc tìm chúng trên trang web bằng bộ lọc Công việc đã lưu trữ.",
     "sharedTitle": "Dùng chung, không phải cá nhân",
     "shared": "Bảng thuộc về máy chủ, không phải một người, và tuân theo vai trò Discord của bạn: ai cần thấy sẽ thấy, và bạn quyết định ai được sửa. Vì vậy nó phù hợp cho công việc của một nhóm, kế hoạch sự kiện của cộng đồng, danh sách xây dựng của máy chủ game hay bài tập của nhóm học.",
     "moreTitle": "Khi danh sách việc là chưa đủ",

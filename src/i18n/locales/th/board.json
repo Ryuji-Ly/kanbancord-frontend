@@ -22,7 +22,10 @@
     "taskCreated": "สร้างงานแล้ว",
     "createTaskFailed": "ไม่สามารถสร้างงานได้",
     "taskUpdated": "อัปเดตงานแล้ว",
-    "taskDeleted": "ลบงานแล้ว"
+    "taskDeleted": "ลบงานแล้ว",
+    "taskArchived": "เก็บถาวรงานแล้ว",
+    "taskRestored": "กู้คืนงานแล้ว",
+    "tasksArchived": "งานที่เก็บถาวร: {count}"
   },
   "page": {
     "noContext": "ไม่มีข้อมูลบอร์ด โปรดเปิดบอร์ดจากแดชบอร์ด",
@@ -42,7 +45,12 @@
     "deleteTask": "ลบงาน",
     "deleteConfirm": "ลบ <strong>{name}</strong> ใช่ไหม การกระทำนี้ย้อนกลับไม่ได้",
     "deleteColumn": "ลบคอลัมน์",
-    "deleteColumnTasks_other": "งาน {count} งานในคอลัมน์นี้จะถูกลบไปด้วย"
+    "deleteColumnTasks_other": "งาน {count} งานในคอลัมน์นี้จะถูกลบไปด้วย",
+    "archiveColumnTasks": "เก็บถาวรงานทั้งหมด",
+    "archiveColumnConfirm": "เก็บถาวรงานทั้งหมดใน <strong>{name}</strong> ({count}) ใช่ไหม งานจะออกจากบอร์ดแต่ยังเก็บทุกอย่างไว้ และกู้คืนทีละงานได้จากตัวกรองงานที่เก็บถาวร",
+    "showingArchived": "กำลังแสดงงานที่เก็บถาวร เปิดงานเพื่อกู้คืน",
+    "loadingArchived": "กำลังโหลดงานที่เก็บถาวร…",
+    "backToBoard": "กลับไปที่บอร์ด"
   },
   "column": {
     "addNew": "+ เพิ่มคอลัมน์ใหม่",
@@ -50,7 +58,8 @@
     "options": "ตัวเลือกคอลัมน์",
     "delete": "ลบคอลัมน์",
     "addTask": "+ เพิ่มงาน",
-    "showAll": "แสดงทั้งหมด ({count})"
+    "showAll": "แสดงทั้งหมด ({count})",
+    "archiveTasks": "เก็บถาวรงานทั้งหมด"
   },
   "pickers": {
     "searchUser": "ค้นหาผู้ใช้",
@@ -86,7 +95,10 @@
     "noDueDate": "ไม่มีกำหนดส่ง",
     "dragWaits": "ลากงานได้หลังจากล้างตัวกรองแล้ว",
     "otherCount_other": " · ตัวกรอง {count} รายการ",
-    "clear": "ล้างการค้นหาและตัวกรอง"
+    "clear": "ล้างการค้นหาและตัวกรอง",
+    "byArchived": "งานบนบอร์ดหรือที่เก็บถาวร",
+    "boardTasks": "บนบอร์ด",
+    "archivedTasks": "งานที่เก็บถาวร"
   },
   "createTask": {
     "titleRequired": "ต้องระบุชื่องาน",
@@ -153,6 +165,9 @@
     "discard": "ละทิ้ง",
     "waitForUploads": "รอให้อัปโหลดไฟล์เสร็จก่อน",
     "uploading": "กำลังอัปโหลด…",
-    "noTaskSelected": "ยังไม่ได้เลือกงาน"
+    "noTaskSelected": "ยังไม่ได้เลือกงาน",
+    "archive": "เก็บถาวร",
+    "restore": "กู้คืน",
+    "archivedNote": "งานนี้ถูกเก็บถาวรแล้ว: ไม่อยู่บนบอร์ดและแก้ไขไม่ได้จนกว่าจะกู้คืน"
   }
 }

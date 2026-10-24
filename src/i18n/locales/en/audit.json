@@ -93,5 +93,6 @@
   "viaDiscordHint": "Done with a slash command in Discord",
   "viaDiscord": "via Discord",
   "changeCount_one": "{count} change",
-  "changeCount_other": "{count} changes"
+  "changeCount_other": "{count} changes",
+  "columnTasksArchived": "archived every task in {column} ({count})"
 }

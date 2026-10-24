@@ -24,7 +24,10 @@
     "taskCreated": "Attività creata",
     "createTaskFailed": "Non è stato possibile creare l'attività",
     "taskUpdated": "Attività aggiornata",
-    "taskDeleted": "Attività eliminata"
+    "taskDeleted": "Attività eliminata",
+    "taskArchived": "Attività archiviata",
+    "taskRestored": "Attività ripristinata",
+    "tasksArchived": "Attività archiviate: {count}"
   },
   "page": {
     "noContext": "Nessuna bacheca indicata. Apri una bacheca dalla dashboard.",
@@ -46,7 +49,12 @@
     "deleteColumn": "Elimina la colonna",
     "deleteColumnTasks_one": "Verrà eliminata anche {count} attività in questa colonna.",
     "deleteColumnTasks_many": "Verranno eliminate anche {count} attività in questa colonna.",
-    "deleteColumnTasks_other": "Verranno eliminate anche {count} attività in questa colonna."
+    "deleteColumnTasks_other": "Verranno eliminate anche {count} attività in questa colonna.",
+    "archiveColumnTasks": "Archivia tutte le attività",
+    "archiveColumnConfirm": "Archiviare tutte le attività di <strong>{name}</strong> ({count})? Lasciano la bacheca ma conservano tutto, e ognuna si può ripristinare dal filtro Attività archiviate.",
+    "showingArchived": "Sono mostrate le attività archiviate. Aprine una per ripristinarla.",
+    "loadingArchived": "Caricamento delle attività archiviate…",
+    "backToBoard": "Torna alla bacheca"
   },
   "column": {
     "addNew": "+ Aggiungi una colonna",
@@ -54,7 +62,8 @@
     "options": "Opzioni della colonna",
     "delete": "Elimina la colonna",
     "addTask": "+ Aggiungi un'attività",
-    "showAll": "Mostra tutto ({count})"
+    "showAll": "Mostra tutto ({count})",
+    "archiveTasks": "Archivia tutte le attività"
   },
   "pickers": {
     "searchUser": "Cerca un utente",
@@ -92,7 +101,10 @@
     "otherCount_one": " · {count} filtro",
     "otherCount_many": " · {count} filtri",
     "otherCount_other": " · {count} filtri",
-    "clear": "Cancella la ricerca e i filtri"
+    "clear": "Cancella la ricerca e i filtri",
+    "byArchived": "Attività sulla bacheca o archiviate",
+    "boardTasks": "Sulla bacheca",
+    "archivedTasks": "Attività archiviate"
   },
   "createTask": {
     "titleRequired": "Il titolo dell'attività è obbligatorio.",
@@ -161,6 +173,9 @@
     "discard": "Annulla le modifiche",
     "waitForUploads": "Attendi che il caricamento dei file sia finito",
     "uploading": "Caricamento…",
-    "noTaskSelected": "Nessuna attività selezionata."
+    "noTaskSelected": "Nessuna attività selezionata.",
+    "archive": "Archivia",
+    "restore": "Ripristina",
+    "archivedNote": "Questa attività è archiviata: non è più sulla bacheca e non si può modificare finché non viene ripristinata."
   }
 }
