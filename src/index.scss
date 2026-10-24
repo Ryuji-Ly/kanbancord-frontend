@@ -4638,9 +4638,9 @@ select.kc-input {
   }
 }
 
-/* Pages that show a board need more room than an article. */
+/* Pages that show a board use the whole width, as the board page does. */
 .kc-public-main--wide .kc-public-article {
-  max-width: 1280px;
+  max-width: none;
 }
 
 /* Updates: one section per update, its date under its title. */
@@ -4669,9 +4669,26 @@ select.kc-input {
   font-size: 0.9rem;
 }
 
-/* The roadmap is drawn with the board page's columns; it only needs room around it. */
-.kc-roadmap-board {
+/*
+ * The roadmap is drawn with the board page's columns. The article's text styles (heading margins,
+ * list indents, taller lines) are undone inside it, so it looks as the board page does.
+ */
+.kc-public-article .kc-roadmap-board {
   margin: 24px 0;
+  line-height: normal;
+
+  h3 {
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  ul {
+    padding-left: 0;
+  }
+
+  li + li {
+    margin-top: 0;
+  }
 }
 
 .kc-roadmap-details {
