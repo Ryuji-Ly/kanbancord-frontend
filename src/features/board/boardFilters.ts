@@ -15,11 +15,15 @@ export type BoardFilters = {
   /** '' any, 'none' for no priority, or a priority id. */
   priority: string
   due: '' | 'overdue' | 'week' | 'none'
+  /** '' the tasks on the board, 'only' its archived tasks instead. */
+  archived: '' | 'only'
 }
 
-export const NO_FILTERS: BoardFilters = { query: '', assignee: '', label: '', priority: '', due: '' }
+export const NO_FILTERS: BoardFilters = { query: '', assignee: '', label: '', priority: '', due: '', archived: '' }
 
-const PARAMS: Record<keyof BoardFilters, string> = { query: 'q', assignee: 'assignee', label: 'label', priority: 'priority', due: 'due' }
+const PARAMS: Record<keyof BoardFilters, string> = {
+  query: 'q', assignee: 'assignee', label: 'label', priority: 'priority', due: 'due', archived: 'archived',
+}
 const DUE_VALUES = new Set(['overdue', 'week', 'none'])
 
 export function filtersFromParams(params: URLSearchParams): BoardFilters {
@@ -30,6 +34,7 @@ export function filtersFromParams(params: URLSearchParams): BoardFilters {
     label: params.get(PARAMS.label) ?? '',
     priority: params.get(PARAMS.priority) ?? '',
     due: DUE_VALUES.has(due) ? (due as BoardFilters['due']) : '',
+    archived: params.get(PARAMS.archived) === 'only' ? 'only' : '',
   }
 }
 

@@ -24,7 +24,10 @@
     "taskCreated": "Sarcina a fost creată",
     "createTaskFailed": "Sarcina nu a putut fi creată",
     "taskUpdated": "Sarcina a fost actualizată",
-    "taskDeleted": "Sarcina a fost ștearsă"
+    "taskDeleted": "Sarcina a fost ștearsă",
+    "taskArchived": "Sarcina a fost arhivată",
+    "taskRestored": "Sarcina a fost restaurată",
+    "tasksArchived": "Sarcini arhivate: {count}"
   },
   "page": {
     "noContext": "Lipsesc datele panoului. Deschide un panou din tabloul de bord.",
@@ -46,7 +49,12 @@
     "deleteColumn": "Șterge coloana",
     "deleteColumnTasks_one": "Se va șterge și {count} sarcină din această coloană.",
     "deleteColumnTasks_few": "Se vor șterge și {count} sarcini din această coloană.",
-    "deleteColumnTasks_other": "Se vor șterge și {count} de sarcini din această coloană."
+    "deleteColumnTasks_other": "Se vor șterge și {count} de sarcini din această coloană.",
+    "archiveColumnTasks": "Arhivează toate sarcinile",
+    "archiveColumnConfirm": "Arhivezi toate sarcinile din <strong>{name}</strong> ({count})? Ies de pe panou, dar își păstrează totul și fiecare poate fi restaurată din filtrul Sarcini arhivate.",
+    "showingArchived": "Se afișează sarcinile arhivate. Deschide una ca s-o restaurezi.",
+    "loadingArchived": "Se încarcă sarcinile arhivate…",
+    "backToBoard": "Înapoi la panou"
   },
   "column": {
     "addNew": "+ Adaugă o coloană nouă",
@@ -54,7 +62,8 @@
     "options": "Opțiunile coloanei",
     "delete": "Șterge coloana",
     "addTask": "+ Adaugă o sarcină",
-    "showAll": "Afișează tot ({count})"
+    "showAll": "Afișează tot ({count})",
+    "archiveTasks": "Arhivează toate sarcinile"
   },
   "pickers": {
     "searchUser": "Caută utilizator",
@@ -92,7 +101,10 @@
     "otherCount_one": " · {count} filtru",
     "otherCount_few": " · {count} filtre",
     "otherCount_other": " · {count} de filtre",
-    "clear": "Șterge căutarea și filtrele"
+    "clear": "Șterge căutarea și filtrele",
+    "byArchived": "Sarcini de pe panou sau arhivate",
+    "boardTasks": "Pe panou",
+    "archivedTasks": "Sarcini arhivate"
   },
   "createTask": {
     "titleRequired": "Titlul sarcinii este obligatoriu.",
@@ -161,6 +173,9 @@
     "discard": "Renunță",
     "waitForUploads": "Așteaptă să se termine încărcarea fișierelor",
     "uploading": "Se încarcă…",
-    "noTaskSelected": "Nu este selectată nicio sarcină."
+    "noTaskSelected": "Nu este selectată nicio sarcină.",
+    "archive": "Arhivează",
+    "restore": "Restaurează",
+    "archivedNote": "Această sarcină este arhivată: nu mai e pe panou și nu poate fi modificată până nu e restaurată."
   }
 }

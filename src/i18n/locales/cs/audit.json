@@ -101,5 +101,6 @@
   "changeCount_one": "{count} změna",
   "changeCount_few": "{count} změny",
   "changeCount_many": "{count} změny",
-  "changeCount_other": "{count} změn"
+  "changeCount_other": "{count} změn",
+  "columnTasksArchived": "archivoval(a) všechny úkoly: {column} ({count})"
 }

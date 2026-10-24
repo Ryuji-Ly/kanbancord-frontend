@@ -20,7 +20,8 @@
     "LABEL_REMOVED": "Címke levéve egy feladatról",
     "COLUMN_CHANGED": "Oszlopok létrehozva, átnevezve, áthelyezve vagy törölve",
     "BOARD_CHANGED": "Tábla létrehozva, átnevezve, archiválva vagy törölve",
-    "BOARD_SETTINGS_CHANGED": "Címkék, prioritási szintek és táblafunkciók módosítva"
+    "BOARD_SETTINGS_CHANGED": "Címkék, prioritási szintek és táblafunkciók módosítva",
+    "TASK_ARCHIVED": "Feladat archiválva vagy visszaállítva"
   },
   "categories": {
     "TASKS": "Feladatok",

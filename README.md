@@ -20,7 +20,9 @@ Discord through the bot; the website is there for the big picture and the finer 
 ## What the website does
 
 - **Whole boards on one screen**: every column and task, with drag and drop, search and filters by label, priority,
-  assignee and due date. Changes appear live for everyone, in Discord too.
+  assignee and due date. Changes appear live for everyone, in Discord too. Long columns fold at three screens.
+- **Archiving**: take a task, or every task in a column, off the board while keeping it; the Archived tasks filter
+  shows them, and opening one restores it.
 - **Tasks in full**: descriptions with checklists, images and videos, assignees, labels, priorities, due dates and
   comments.
 - **Settings for each server and board**: features and simple mode, labels and priority levels, update feeds and what

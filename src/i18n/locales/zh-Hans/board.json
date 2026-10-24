@@ -22,7 +22,10 @@
     "taskCreated": "已创建任务",
     "createTaskFailed": "无法创建任务",
     "taskUpdated": "已更新任务",
-    "taskDeleted": "已删除任务"
+    "taskDeleted": "已删除任务",
+    "taskArchived": "已归档任务",
+    "taskRestored": "已恢复任务",
+    "tasksArchived": "已归档的任务：{count}"
   },
   "page": {
     "noContext": "缺少看板信息。请从控制面板打开看板。",
@@ -42,7 +45,12 @@
     "deleteTask": "删除任务",
     "deleteConfirm": "删除<strong>{name}</strong>？此操作无法撤销。",
     "deleteColumn": "删除列",
-    "deleteColumnTasks_other": "这也会删除此列中的 {count} 个任务。"
+    "deleteColumnTasks_other": "这也会删除此列中的 {count} 个任务。",
+    "archiveColumnTasks": "归档所有任务",
+    "archiveColumnConfirm": "归档<strong>{name}</strong>中的所有任务（{count}）？它们会离开看板，但所有内容都会保留，并可通过“已归档的任务”筛选逐个恢复。",
+    "showingArchived": "正在显示已归档的任务。打开一个即可恢复。",
+    "loadingArchived": "正在加载已归档的任务…",
+    "backToBoard": "返回看板"
   },
   "column": {
     "addNew": "+ 添加新列",
@@ -50,7 +58,8 @@
     "options": "列选项",
     "delete": "删除列",
     "addTask": "+ 添加任务",
-    "showAll": "显示全部（{count}）"
+    "showAll": "显示全部（{count}）",
+    "archiveTasks": "归档所有任务"
   },
   "pickers": {
     "searchUser": "搜索用户",
@@ -86,7 +95,10 @@
     "noDueDate": "无截止日期",
     "dragWaits": "清除筛选后才能拖动任务",
     "otherCount_other": " · {count} 个筛选条件",
-    "clear": "清除搜索和筛选"
+    "clear": "清除搜索和筛选",
+    "byArchived": "看板上的任务或已归档的任务",
+    "boardTasks": "看板上",
+    "archivedTasks": "已归档的任务"
   },
   "createTask": {
     "titleRequired": "任务标题为必填项。",
@@ -153,6 +165,9 @@
     "discard": "放弃",
     "waitForUploads": "请等待文件上传完成",
     "uploading": "正在上传…",
-    "noTaskSelected": "未选择任务。"
+    "noTaskSelected": "未选择任务。",
+    "archive": "归档",
+    "restore": "恢复",
+    "archivedNote": "此任务已归档：不在看板上，恢复之前无法更改。"
   }
 }

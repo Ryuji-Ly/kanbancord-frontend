@@ -13,6 +13,7 @@ import { DashboardHeader } from '../components/dashboard/DashboardHeader'
 import { ToastStack } from '../components/dashboard/ToastStack'
 import { useToasts } from '../hooks/useToasts'
 import {
+  archivedTaskAbilities,
   assigneeDirectory,
   boardAbilities,
   boardSettingsAccess,
@@ -30,6 +31,7 @@ import {
 } from '../features/board/boardModel'
 import {
   taskFieldsFromDraft,
+  useArchivedTasks,
   useBoardCatalogMutations,
   useBoardMutations,
   useBoardSnapshot,
@@ -103,9 +105,26 @@ export function BoardPage() {
   })
   const [deleteTargetTask, setDeleteTargetTask] = useState<TaskEntry | null>(null)
   const [deleteTaskError, setDeleteTaskError] = useState('')
+  const [archiveTargetColumn, setArchiveTargetColumn] = useState<BoardColumnEntry | null>(null)
+  const [archiveColumnError, setArchiveColumnError] = useState('')
+
+  // Search and filters, kept in the address so a filtered board can be shared.
+  const filters = useMemo(() => filtersFromParams(searchParams), [searchParams])
+  const filtering = isFiltering(filters)
+  const setFilters = (next: BoardFilters) => setSearchParams(paramsWithFilters(searchParams, next), { replace: true })
+  const showingArchived = filters.archived === 'only'
 
   // The panel shows the task as currently cached, so remote changes appear and a deleted task closes it.
-  const selectedTask = snapshot?.tasks.find((task) => task.taskId === selectedTaskId) ?? null
+  // Archived tasks are not in the snapshot: they are loaded when shown, or when a link opens one.
+  const selectedOnBoard = snapshot?.tasks.find((task) => task.taskId === selectedTaskId) ?? null
+  const archivedQuery = useArchivedTasks(
+    serverId,
+    boardId,
+    ready && (showingArchived || (selectedTaskId !== null && !selectedOnBoard)),
+  )
+  const archivedTasks = useMemo(() => archivedQuery.data ?? [], [archivedQuery.data])
+  const archivedByColumn = useMemo(() => groupTasksByColumn(archivedTasks), [archivedTasks])
+  const selectedTask = selectedOnBoard ?? archivedTasks.find((task) => task.taskId === selectedTaskId) ?? null
 
   const canAssign = abilities.assignSelf || abilities.assignOthers
   const membersQuery = useServerMembers(serverId, Boolean(me) && (canAssign || selectedTask !== null))
@@ -119,10 +138,6 @@ export function BoardPage() {
     return groups
   }, [snapshot, directory, shown.ASSIGNEES])
 
-  // Search and filters, kept in the address so a filtered board can be shared.
-  const filters = useMemo(() => filtersFromParams(searchParams), [searchParams])
-  const filtering = isFiltering(filters)
-  const setFilters = (next: BoardFilters) => setSearchParams(paramsWithFilters(searchParams, next), { replace: true })
   const peopleOnBoard = useMemo(() => {
     const unique = new Map<string, AssigneeMember>()
     Object.values(assigneesByTaskId).flat().forEach((person) => unique.set(person.userId, person))
@@ -137,8 +152,9 @@ export function BoardPage() {
     }
     return (task: TaskEntry) => matchesFilters(task, filters, facts)
   }, [filters, assigneesByTaskId, labelsByTaskId, me])
-  const totalTaskCount = snapshot?.tasks.length ?? 0
-  const shownTaskCount = filtering ? (snapshot?.tasks ?? []).filter(taskMatches).length : totalTaskCount
+  const listedTasks = showingArchived ? archivedTasks : (snapshot?.tasks ?? [])
+  const totalTaskCount = listedTasks.length
+  const shownTaskCount = filtering ? listedTasks.filter(taskMatches).length : totalTaskCount
 
   const drag = useBoardDragAndDrop({
     columns,
@@ -263,6 +279,32 @@ export function BoardPage() {
     })
   }
 
+  function setArchived(task: TaskEntry, archived: boolean) {
+    mutations.archiveTask.mutate(
+      { task, archived },
+      {
+        onSuccess: () => {
+          // An archived task leaves the board, so its panel closes; a restored one stays open.
+          if (archived && !showingArchived) setSelectedTaskId(null)
+          showToast(archived ? t('board.toast.taskArchived') : t('board.toast.taskRestored'), 'success')
+        },
+        onError: (err) => showToast(readableError(err, t('board.page.unknownError')), 'error'),
+      },
+    )
+  }
+
+  function archiveColumn() {
+    if (!archiveTargetColumn) return
+    setArchiveColumnError('')
+    mutations.archiveColumn.mutate(archiveTargetColumn, {
+      onSuccess: (count) => {
+        setArchiveTargetColumn(null)
+        showToast(t('board.toast.tasksArchived', { count }), 'success')
+      },
+      onError: (err) => setArchiveColumnError(String(err)),
+    })
+  }
+
   function assign(task: TaskEntry, userId: string) {
     const alreadyAssigned = (snapshot?.assignments ?? []).some(
       (assignment) => assignment.taskId === task.taskId && String(assignment.userId) === userId,
@@ -294,6 +336,7 @@ export function BoardPage() {
             : ''
   const loading = hasContext && !loadError && !ready
   const deleteColumnTaskCount = deleteTargetColumn ? (tasksByColumn[deleteTargetColumn.columnId] ?? []).length : 0
+  const archiveColumnTaskCount = archiveTargetColumn ? (tasksByColumn[archiveTargetColumn.columnId] ?? []).length : 0
 
   return (
     <>
@@ -311,7 +354,7 @@ export function BoardPage() {
         <div className="kc-board-subbar" role="banner" aria-label={t('board.page.titleBar')}>
           <h2>{board?.name ?? t('board.page.board')}</h2>
           {board?.isArchived && <span className="kc-board-archived-badge">{t('board.page.archived')}</span>}
-          {ready && board && totalTaskCount > 0 && (
+          {ready && board && (
             <BoardFilterBar
               filters={filters}
               onChange={setFilters}
@@ -352,6 +395,15 @@ export function BoardPage() {
             </p>
           )}
 
+          {ready && showingArchived && (
+            <p className="kc-banner kc-banner--success kc-archived-tasks-banner">
+              <span>{archivedQuery.isPending ? t('board.page.loadingArchived') : t('board.page.showingArchived')}</span>
+              <button type="button" className="kc-btn kc-btn-small kc-btn-ghost" onClick={() => setFilters({ ...filters, archived: '' })}>
+                {t('board.page.backToBoard')}
+              </button>
+            </p>
+          )}
+
           {ready && board && (
             <section className="kc-board-page-columns" aria-label={t('board.page.columns')}>
               {openMenuColumnId !== null && (
@@ -366,9 +418,11 @@ export function BoardPage() {
                 <BoardColumn
                   key={column.columnId}
                   column={column}
-                  tasks={filtering
-                    ? (drag.tasksForRender[column.columnId] ?? []).filter(taskMatches)
-                    : (drag.tasksForRender[column.columnId] ?? [])}
+                  tasks={showingArchived
+                    ? (archivedByColumn[column.columnId] ?? []).filter(taskMatches)
+                    : filtering
+                      ? (drag.tasksForRender[column.columnId] ?? []).filter(taskMatches)
+                      : (drag.tasksForRender[column.columnId] ?? [])}
                   assigneesByTaskId={assigneesByTaskId}
                   labelsByTaskId={labelsByTaskId}
                   prioritiesById={prioritiesById}
@@ -377,9 +431,10 @@ export function BoardPage() {
                   canEdit={abilities.editColumn}
                   canDelete={abilities.deleteColumn}
                   canMove={abilities.moveColumn}
-                  canCreateTask={abilities.createTask}
+                  canCreateTask={abilities.createTask && !showingArchived}
                   // With some tasks hidden, a drop position would be ambiguous: dragging waits for no filters.
                   canMoveTasks={abilities.moveTask && !filtering}
+                  canArchiveTasks={abilities.archiveTask && !showingArchived && (tasksByColumn[column.columnId] ?? []).length > 0}
                   menuOpen={openMenuColumnId === column.columnId}
                   isDragPlaceholder={drag.draggedColumnId === column.columnId}
                   draggedTaskId={drag.draggedTaskId}
@@ -392,6 +447,11 @@ export function BoardPage() {
                     setDeleteTargetColumn(column)
                     setOpenMenuColumnId(null)
                     setDeleteColumnError('')
+                  }}
+                  onRequestArchiveTasks={() => {
+                    setArchiveTargetColumn(column)
+                    setOpenMenuColumnId(null)
+                    setArchiveColumnError('')
                   }}
                   onAddTask={() => {
                     setCreateTaskError('')
@@ -422,7 +482,7 @@ export function BoardPage() {
             boardId={boardId}
             task={selectedTask}
             me={me}
-            abilities={abilities}
+            abilities={selectedTask.isArchived ? archivedTaskAbilities(abilities) : abilities}
             assignees={assigneesByTaskId[selectedTask.taskId] ?? []}
             members={members}
             priorities={snapshot?.priorities ?? []}
@@ -437,6 +497,8 @@ export function BoardPage() {
               setDeleteTargetTask(selectedTask)
               setDeleteTaskError('')
             }}
+            onSetArchived={(archived) => setArchived(selectedTask, archived)}
+            archiving={mutations.archiveTask.isPending}
             onAssign={(userId) => assign(selectedTask, userId)}
             onUnassign={(assignee) => unassign(selectedTask, assignee)}
             onAssignRole={(roleId) => mutations.assignRole.mutateAsync({ taskId: selectedTask.taskId, roleId })}
@@ -506,6 +568,25 @@ export function BoardPage() {
           >
             <p className="kc-modal-confirm-desc">
               <Trans k="board.page.deleteConfirm" values={{ name: deleteTargetTask.title }} />
+            </p>
+          </ConfirmDialog>
+        )}
+
+        {archiveTargetColumn && (
+          <ConfirmDialog
+            title={t('board.page.archiveColumnTasks')}
+            confirmLabel={t('board.page.archiveColumnTasks')}
+            busyLabel={t('common.applying')}
+            error={archiveColumnError}
+            busy={mutations.archiveColumn.isPending}
+            onCancel={() => {
+              setArchiveTargetColumn(null)
+              setArchiveColumnError('')
+            }}
+            onConfirm={archiveColumn}
+          >
+            <p className="kc-modal-confirm-desc">
+              <Trans k="board.page.archiveColumnConfirm" values={{ name: archiveTargetColumn.name, count: archiveColumnTaskCount }} />
             </p>
           </ConfirmDialog>
         )}

@@ -20,7 +20,8 @@
     "LABEL_REMOVED": "Štítok odobratý z úlohy",
     "COLUMN_CHANGED": "Stĺpce vytvorené, premenované, presunuté alebo odstránené",
     "BOARD_CHANGED": "Nástenka vytvorená, premenovaná, archivovaná alebo odstránená",
-    "BOARD_SETTINGS_CHANGED": "Zmena štítkov, úrovní priority a funkcií nástenky"
+    "BOARD_SETTINGS_CHANGED": "Zmena štítkov, úrovní priority a funkcií nástenky",
+    "TASK_ARCHIVED": "Úloha archivovaná alebo obnovená"
   },
   "categories": {
     "TASKS": "Úlohy",

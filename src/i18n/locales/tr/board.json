@@ -23,7 +23,10 @@
     "taskCreated": "Görev oluşturuldu",
     "createTaskFailed": "Görev oluşturulamadı",
     "taskUpdated": "Görev güncellendi",
-    "taskDeleted": "Görev silindi"
+    "taskDeleted": "Görev silindi",
+    "taskArchived": "Görev arşivlendi",
+    "taskRestored": "Görev geri yüklendi",
+    "tasksArchived": "Arşivlenen görevler: {count}"
   },
   "page": {
     "noContext": "Bir pano belirtilmedi. Kontrol panelinden bir pano açın.",
@@ -44,7 +47,12 @@
     "deleteConfirm": "<strong>{name}</strong> silinsin mi? Bu işlem geri alınamaz.",
     "deleteColumn": "Sütunu sil",
     "deleteColumnTasks_one": "Bu sütundaki {count} görev de silinecek.",
-    "deleteColumnTasks_other": "Bu sütundaki {count} görev de silinecek."
+    "deleteColumnTasks_other": "Bu sütundaki {count} görev de silinecek.",
+    "archiveColumnTasks": "Tüm görevleri arşivle",
+    "archiveColumnConfirm": "<strong>{name}</strong> içindeki tüm görevler arşivlensin mi ({count})? Panodan kalkarlar ama her şeylerini korurlar; her biri Arşivlenmiş görevler filtresinden geri yüklenebilir.",
+    "showingArchived": "Arşivlenmiş görevler gösteriliyor. Geri yüklemek için birini açın.",
+    "loadingArchived": "Arşivlenmiş görevler yükleniyor…",
+    "backToBoard": "Panoya dön"
   },
   "column": {
     "addNew": "+ Yeni sütun",
@@ -52,7 +60,8 @@
     "options": "Sütun seçenekleri",
     "delete": "Sütunu sil",
     "addTask": "+ Görev ekle",
-    "showAll": "Tümünü göster ({count})"
+    "showAll": "Tümünü göster ({count})",
+    "archiveTasks": "Tüm görevleri arşivle"
   },
   "pickers": {
     "searchUser": "Üye ara",
@@ -89,7 +98,10 @@
     "dragWaits": "Filtreler temizlendiğinde görevler yeniden sürüklenebilir",
     "otherCount_one": " · {count} filtre",
     "otherCount_other": " · {count} filtre",
-    "clear": "Aramayı ve filtreleri temizle"
+    "clear": "Aramayı ve filtreleri temizle",
+    "byArchived": "Panodaki veya arşivlenmiş görevler",
+    "boardTasks": "Panoda",
+    "archivedTasks": "Arşivlenmiş görevler"
   },
   "createTask": {
     "titleRequired": "Başlık zorunludur.",
@@ -157,6 +169,9 @@
     "discard": "Vazgeç",
     "waitForUploads": "Yüklemelerin bitmesini bekleyin",
     "uploading": "Yükleniyor…",
-    "noTaskSelected": "Seçili görev yok."
+    "noTaskSelected": "Seçili görev yok.",
+    "archive": "Arşivle",
+    "restore": "Geri yükle",
+    "archivedNote": "Bu görev arşivlendi: panoda değil ve geri yüklenene kadar değiştirilemez."
   }
 }

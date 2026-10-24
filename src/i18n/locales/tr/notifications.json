@@ -20,7 +20,8 @@
     "LABEL_REMOVED": "Görevden etiket kaldırıldı",
     "COLUMN_CHANGED": "Sütunlar oluşturuldu, yeniden adlandırıldı, taşındı veya silindi",
     "BOARD_CHANGED": "Pano oluşturuldu, yeniden adlandırıldı, arşivlendi veya silindi",
-    "BOARD_SETTINGS_CHANGED": "Panonun etiketleri, öncelik düzeyleri ve özellikleri değişti"
+    "BOARD_SETTINGS_CHANGED": "Panonun etiketleri, öncelik düzeyleri ve özellikleri değişti",
+    "TASK_ARCHIVED": "Görev arşivlendi veya geri yüklendi"
   },
   "categories": {
     "TASKS": "Görevler",

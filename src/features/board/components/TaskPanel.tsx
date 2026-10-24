@@ -39,6 +39,9 @@ type TaskPanelProps = {
   onClose: () => void
   onSave: (fields: TaskFields) => Promise<unknown>
   onRequestDelete: () => void
+  /** Archives the task, or restores it when it is archived. */
+  onSetArchived: (archived: boolean) => void
+  archiving: boolean
   onAssign: (userId: string) => Promise<unknown>
   onUnassign: (assignee: AssigneeMember) => Promise<unknown>
   onAssignRole: (roleId: string) => Promise<unknown>
@@ -72,6 +75,8 @@ export function TaskPanel({
   onClose,
   onSave,
   onRequestDelete,
+  onSetArchived,
+  archiving,
   onAssign,
   onUnassign,
   onAssignRole,
@@ -191,6 +196,7 @@ export function TaskPanel({
         }}
       >
         {error && <p className="kc-banner">{error}</p>}
+        {task.isArchived && <p className="kc-banner kc-banner--success">{t('board.panel.archivedNote')}</p>}
 
         {abilities.editTask ? (
           <>
@@ -391,13 +397,25 @@ export function TaskPanel({
         )}
       </div>
 
-      {(abilities.editTask || abilities.deleteTask) && (
+      {(abilities.editTask || abilities.deleteTask || abilities.archiveTask) && (
         <div className="kc-task-panel-footer">
-          {abilities.deleteTask && (
-            <button type="button" className="kc-btn kc-btn-danger" onClick={onRequestDelete} disabled={saving}>
-              {t('common.delete')}
-            </button>
-          )}
+          <div className="kc-task-panel-footer-actions">
+            {abilities.deleteTask && (
+              <button type="button" className="kc-btn kc-btn-danger" onClick={onRequestDelete} disabled={saving}>
+                {t('common.delete')}
+              </button>
+            )}
+            {abilities.archiveTask && (
+              <button
+                type="button"
+                className="kc-btn kc-btn-ghost"
+                onClick={() => onSetArchived(!task.isArchived)}
+                disabled={saving || archiving}
+              >
+                {task.isArchived ? t('board.panel.restore') : t('board.panel.archive')}
+              </button>
+            )}
+          </div>
           {abilities.editTask && (
             <div className="kc-task-panel-footer-actions">
               <button type="button" className="kc-btn kc-btn-ghost" onClick={onClose} disabled={saving}>

@@ -93,5 +93,6 @@
   "viaDiscordHint": "Perjeles paranccsal a Discordban",
   "viaDiscord": "Discordon át",
   "changeCount_one": "{count} módosítás",
-  "changeCount_other": "{count} módosítás"
+  "changeCount_other": "{count} módosítás",
+  "columnTasksArchived": "archiválta az összes feladatot: {column} ({count})"
 }

@@ -20,7 +20,8 @@
     "LABEL_REMOVED": "タスクからラベルを削除",
     "COLUMN_CHANGED": "列の作成・名前変更・移動・削除",
     "BOARD_CHANGED": "ボードの作成・名前変更・アーカイブ・削除",
-    "BOARD_SETTINGS_CHANGED": "ラベル・優先度レベル・ボードの機能の変更"
+    "BOARD_SETTINGS_CHANGED": "ラベル・優先度レベル・ボードの機能の変更",
+    "TASK_ARCHIVED": "タスクのアーカイブ・復元"
   },
   "categories": {
     "TASKS": "タスク",

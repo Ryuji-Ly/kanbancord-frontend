@@ -97,5 +97,6 @@
   "viaDiscord": "via Discord",
   "changeCount_one": "{count} modification",
   "changeCount_other": "{count} modifications",
-  "changeCount_many": "{count} modifications"
+  "changeCount_many": "{count} modifications",
+  "columnTasksArchived": "a archivé toutes les tâches : {column} ({count})"
 }

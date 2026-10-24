@@ -93,5 +93,6 @@
   "viaDiscordHint": "Gjort med ett snedstreckskommando i Discord",
   "viaDiscord": "via Discord",
   "changeCount_one": "{count} ändring",
-  "changeCount_other": "{count} ändringar"
+  "changeCount_other": "{count} ändringar",
+  "columnTasksArchived": "arkiverade alla uppgifter i {column} ({count})"
 }

@@ -101,5 +101,6 @@
   "changeCount_one": "{count} zmiana",
   "changeCount_few": "{count} zmiany",
   "changeCount_many": "{count} zmian",
-  "changeCount_other": "{count} zmiany"
+  "changeCount_other": "{count} zmiany",
+  "columnTasksArchived": "zarchiwizował(a) wszystkie zadania: {column} ({count})"
 }

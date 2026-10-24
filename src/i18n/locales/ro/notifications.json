@@ -20,7 +20,8 @@
     "LABEL_REMOVED": "Etichetă scoasă de pe o sarcină",
     "COLUMN_CHANGED": "Coloane create, redenumite, mutate sau șterse",
     "BOARD_CHANGED": "Panou creat, redenumit, arhivat sau șters",
-    "BOARD_SETTINGS_CHANGED": "Etichete, niveluri de prioritate și funcții ale panoului modificate"
+    "BOARD_SETTINGS_CHANGED": "Etichete, niveluri de prioritate și funcții ale panoului modificate",
+    "TASK_ARCHIVED": "Sarcină arhivată sau restaurată"
   },
   "categories": {
     "TASKS": "Sarcini",

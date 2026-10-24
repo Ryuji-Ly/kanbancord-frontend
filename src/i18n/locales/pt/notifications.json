@@ -20,7 +20,8 @@
     "LABEL_REMOVED": "Etiqueta retirada de uma tarefa",
     "COLUMN_CHANGED": "Colunas criadas, renomeadas, movidas ou eliminadas",
     "BOARD_CHANGED": "Quadro criado, renomeado, arquivado ou eliminado",
-    "BOARD_SETTINGS_CHANGED": "Etiquetas, níveis de prioridade e funcionalidades do quadro alterados"
+    "BOARD_SETTINGS_CHANGED": "Etiquetas, níveis de prioridade e funcionalidades do quadro alterados",
+    "TASK_ARCHIVED": "Tarefa arquivada ou restaurada"
   },
   "categories": {
     "TASKS": "Tarefas",

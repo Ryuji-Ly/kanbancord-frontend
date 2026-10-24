@@ -23,7 +23,10 @@
     "taskCreated": "Taak gemaakt",
     "createTaskFailed": "Kon de taak niet maken",
     "taskUpdated": "Taak bijgewerkt",
-    "taskDeleted": "Taak verwijderd"
+    "taskDeleted": "Taak verwijderd",
+    "taskArchived": "Taak gearchiveerd",
+    "taskRestored": "Taak hersteld",
+    "tasksArchived": "Taken gearchiveerd: {count}"
   },
   "page": {
     "noContext": "Bordgegevens ontbreken. Open een bord vanuit het dashboard.",
@@ -44,7 +47,12 @@
     "deleteConfirm": "<strong>{name}</strong> verwijderen? Dit kan niet ongedaan worden gemaakt.",
     "deleteColumn": "Kolom verwijderen",
     "deleteColumnTasks_one": "Dit verwijdert ook {count} taak in deze kolom.",
-    "deleteColumnTasks_other": "Dit verwijdert ook {count} taken in deze kolom."
+    "deleteColumnTasks_other": "Dit verwijdert ook {count} taken in deze kolom.",
+    "archiveColumnTasks": "Alle taken archiveren",
+    "archiveColumnConfirm": "Alle taken in <strong>{name}</strong> archiveren ({count})? Ze verdwijnen van het bord maar houden alles, en elke taak is te herstellen via het filter Gearchiveerde taken.",
+    "showingArchived": "Gearchiveerde taken worden getoond. Open een taak om die te herstellen.",
+    "loadingArchived": "Gearchiveerde taken laden…",
+    "backToBoard": "Terug naar het bord"
   },
   "column": {
     "addNew": "+ Nieuwe kolom toevoegen",
@@ -52,7 +60,8 @@
     "options": "Kolomopties",
     "delete": "Kolom verwijderen",
     "addTask": "+ Taak toevoegen",
-    "showAll": "Alles tonen ({count})"
+    "showAll": "Alles tonen ({count})",
+    "archiveTasks": "Alle taken archiveren"
   },
   "pickers": {
     "searchUser": "Gebruiker zoeken",
@@ -89,7 +98,10 @@
     "dragWaits": "Taken slepen kan pas als de filters zijn gewist",
     "otherCount_one": " · {count} filter",
     "otherCount_other": " · {count} filters",
-    "clear": "Zoekopdracht en filters wissen"
+    "clear": "Zoekopdracht en filters wissen",
+    "byArchived": "Taken op het bord of gearchiveerd",
+    "boardTasks": "Op het bord",
+    "archivedTasks": "Gearchiveerde taken"
   },
   "createTask": {
     "titleRequired": "Een taaktitel is verplicht.",
@@ -157,6 +169,9 @@
     "discard": "Verwerpen",
     "waitForUploads": "Wacht tot de bestanden klaar zijn met uploaden",
     "uploading": "Uploaden…",
-    "noTaskSelected": "Er is geen taak geselecteerd."
+    "noTaskSelected": "Er is geen taak geselecteerd.",
+    "archive": "Archiveren",
+    "restore": "Herstellen",
+    "archivedNote": "Deze taak is gearchiveerd: niet meer op het bord, en pas te wijzigen na herstellen."
   }
 }

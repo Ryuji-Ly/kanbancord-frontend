@@ -20,7 +20,8 @@
     "LABEL_REMOVED": "Gỡ nhãn khỏi công việc",
     "COLUMN_CHANGED": "Cột được tạo, đổi tên, di chuyển hoặc xóa",
     "BOARD_CHANGED": "Bảng được tạo, đổi tên, lưu trữ hoặc xóa",
-    "BOARD_SETTINGS_CHANGED": "Thay đổi nhãn, mức ưu tiên và tính năng của bảng"
+    "BOARD_SETTINGS_CHANGED": "Thay đổi nhãn, mức ưu tiên và tính năng của bảng",
+    "TASK_ARCHIVED": "Công việc được lưu trữ hoặc khôi phục"
   },
   "categories": {
     "TASKS": "Công việc",

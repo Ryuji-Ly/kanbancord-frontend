@@ -20,6 +20,8 @@ type BoardColumnProps = {
   canMove: boolean
   canCreateTask: boolean
   canMoveTasks: boolean
+  /** Whether the column's menu offers archiving all of its tasks. */
+  canArchiveTasks: boolean
   menuOpen: boolean
   /** The column being dragged renders as an empty slot where it would land. */
   isDragPlaceholder: boolean
@@ -30,6 +32,7 @@ type BoardColumnProps = {
   onRename: (name: string) => void
   onToggleMenu: () => void
   onRequestDelete: () => void
+  onRequestArchiveTasks: () => void
   onAddTask: () => void
   onOpenTask: (task: TaskEntry) => void
   onColumnDragStart: (event: DragEvent<HTMLElement>) => void
@@ -76,6 +79,7 @@ export function BoardColumn({
   canMove,
   canCreateTask,
   canMoveTasks,
+  canArchiveTasks,
   menuOpen,
   isDragPlaceholder,
   draggedTaskId,
@@ -85,6 +89,7 @@ export function BoardColumn({
   onRename,
   onToggleMenu,
   onRequestDelete,
+  onRequestArchiveTasks,
   onAddTask,
   onOpenTask,
   onColumnDragStart,
@@ -153,7 +158,7 @@ export function BoardColumn({
           </h3>
         )}
 
-        {canDelete && (
+        {(canDelete || canArchiveTasks) && (
           <div className="kc-column-menu-wrap" data-no-column-drag="true">
             <button
               className="kc-column-menu-btn"
@@ -168,11 +173,20 @@ export function BoardColumn({
             </button>
             {menuOpen && (
               <ul className="kc-column-menu-dropdown" role="menu">
-                <li role="none">
-                  <button role="menuitem" className="kc-column-menu-item kc-column-menu-item--danger" onClick={onRequestDelete}>
-                    {t('board.column.delete')}
-                  </button>
-                </li>
+                {canArchiveTasks && (
+                  <li role="none">
+                    <button role="menuitem" className="kc-column-menu-item" onClick={onRequestArchiveTasks}>
+                      {t('board.column.archiveTasks')}
+                    </button>
+                  </li>
+                )}
+                {canDelete && (
+                  <li role="none">
+                    <button role="menuitem" className="kc-column-menu-item kc-column-menu-item--danger" onClick={onRequestDelete}>
+                      {t('board.column.delete')}
+                    </button>
+                  </li>
+                )}
               </ul>
             )}
           </div>

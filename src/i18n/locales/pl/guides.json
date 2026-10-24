@@ -45,6 +45,7 @@
     "post": "Post edytuje się sam przy każdej zmianie listy, z Discorda lub ze strony, więc kanał zawsze pokazuje aktualny stan. Przypnij wiadomość, a zadziała jak przypięta lista zadań na górze kanału, której nikt nie musi aktualizować. Nikogo nie oznacza, a kilka list może dzielić jeden kanał.",
     "tickTitle": "Odhaczanie zadań",
     "tick": "Wybierz zadanie z menu posta, aby otworzyć je tylko dla siebie, a potem przenieś je do Done. Albo użyj <code>/task move task:... column:Done</code>. Jeśli twój serwer ma <postsFeeds>strumień aktualizacji</postsFeeds> z przyciskami, każda aktualizacja pokazuje przycisk dla każdej kolumny, więc odhaczenie to jedno kliknięcie.",
+    "archive": "Done robi się za długie? <code>/column archive-tasks column:Done</code> zdejmuje z tablicy wszystkie jego zadania naraz. Zarchiwizowane zadania zachowują wszystko: przywróć jedno za pomocą <code>/task restore</code> albo znajdź je na stronie filtrem Zarchiwizowane zadania.",
     "sharedTitle": "Wspólna, nie osobista",
     "shared": "Tablica należy do serwera, nie do jednej osoby, i korzysta z twoich ról w Discordzie: kto ma ją widzieć, ten widzi, a ty decydujesz, kto może ją zmieniać. Dzięki temu dobrze nadaje się do zadań zespołu, planowania wydarzeń społeczności, listy budów na serwerze gry czy zadań grupy nauki.",
     "moreTitle": "Gdy lista zadań nie wystarcza",

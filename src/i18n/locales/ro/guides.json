@@ -45,6 +45,7 @@
     "post": "Postarea se editează singură de fiecare dată când lista se schimbă, din Discord sau de pe site, așa că în canal se vede mereu starea actuală. Fixează mesajul și funcționează ca o listă de sarcini fixată în capul canalului, pe care nimeni nu trebuie s-o țină la zi. Nu menționează pe nimeni, iar mai multe liste pot împărți același canal.",
     "tickTitle": "Bifarea sarcinilor",
     "tick": "Alege o sarcină din meniul postării ca s-o deschizi doar pentru tine, apoi mut-o în Done. Sau folosește <code>/task move task:... column:Done</code>. Dacă serverul tău are un <postsFeeds>flux de actualizări</postsFeeds> cu butoane, fiecare actualizare arată câte un buton pentru fiecare coloană, așa că bifarea e un singur clic.",
+    "archive": "Done devine prea lungă? <code>/column archive-tasks column:Done</code> scoate de pe panou toate sarcinile din ea dintr-odată. Sarcinile arhivate își păstrează totul: adu una înapoi cu <code>/task restore</code> sau găsește-le pe site cu filtrul Sarcini arhivate.",
     "sharedTitle": "Comună, nu personală",
     "shared": "Un panou aparține serverului, nu unei persoane, și urmează rolurile tale din Discord: cine trebuie să-l vadă, îl vede, iar tu decizi cine îl poate schimba. Asta îl face potrivit pentru sarcinile unei echipe, planificarea evenimentelor unei comunități, lista de construcții a unui server de joc sau temele unui grup de studiu.",
     "moreTitle": "Când o listă de sarcini nu mai ajunge",

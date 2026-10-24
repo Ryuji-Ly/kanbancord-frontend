@@ -20,7 +20,8 @@
     "LABEL_REMOVED": "Etikett borttagen från en uppgift",
     "COLUMN_CHANGED": "Kolumner skapade, omdöpta, flyttade eller borttagna",
     "BOARD_CHANGED": "Tavla skapad, omdöpt, arkiverad eller borttagen",
-    "BOARD_SETTINGS_CHANGED": "Etiketter, prioritetsnivåer och tavlans funktioner ändrade"
+    "BOARD_SETTINGS_CHANGED": "Etiketter, prioritetsnivåer och tavlans funktioner ändrade",
+    "TASK_ARCHIVED": "Uppgift arkiverad eller återställd"
   },
   "categories": {
     "TASKS": "Uppgifter",

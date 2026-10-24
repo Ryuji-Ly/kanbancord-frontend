@@ -45,6 +45,7 @@
     "post": "La publicación se edita sola cada vez que la lista cambia, desde Discord o desde la web, así que el canal siempre muestra el estado actual. Fíjala y funcionará como una lista de tareas fijada arriba del canal que nadie tiene que mantener al día. No menciona a nadie, y varias listas pueden compartir canal.",
     "tickTitle": "Tacha tareas",
     "tick": "Elige una tarea en el menú de la publicación para abrirla en privado y muévela a Done. O ejecuta <code>/task move task:... column:Done</code>. Si tu servidor tiene un <postsFeeds>feed de novedades</postsFeeds> con botones, cada novedad muestra un botón por columna, así que tachar una tarea es un clic.",
+    "archive": "¿Done se está alargando? <code>/column archive-tasks column:Done</code> saca todas sus tareas del tablero de una vez. Las tareas archivadas lo conservan todo: recupera una con <code>/task restore</code>, o encuéntralas en la web con el filtro Tareas archivadas.",
     "sharedTitle": "Compartida, no personal",
     "shared": "Un tablero pertenece al servidor, no a una persona, y sigue tus roles de Discord: todos los que deben verlo lo ven, y tú decides quién puede cambiarlo. Eso lo hace ideal para las tareas de un equipo, la organización de eventos de una comunidad, la lista de construcciones de un servidor de juego o los trabajos de un grupo de estudio.",
     "moreTitle": "Cuando una lista de tareas no basta",

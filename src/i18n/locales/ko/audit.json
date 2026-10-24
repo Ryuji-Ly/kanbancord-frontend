@@ -89,5 +89,6 @@
   "onBoardName": " · {board}",
   "viaDiscordHint": "Discord의 슬래시 명령어로 한 변경이에요",
   "viaDiscord": "Discord에서",
-  "changeCount_other": "변경 {count}건"
+  "changeCount_other": "변경 {count}건",
+  "columnTasksArchived": "{column}의 모든 작업 보관 ({count})"
 }

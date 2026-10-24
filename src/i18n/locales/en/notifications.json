@@ -20,7 +20,8 @@
     "LABEL_REMOVED": "Label removed from a task",
     "COLUMN_CHANGED": "Columns created, renamed, moved or deleted",
     "BOARD_CHANGED": "Board created, renamed, archived or deleted",
-    "BOARD_SETTINGS_CHANGED": "Labels, priority levels and board features changed"
+    "BOARD_SETTINGS_CHANGED": "Labels, priority levels and board features changed",
+    "TASK_ARCHIVED": "Task archived or restored"
   },
   "categories": {
     "TASKS": "Tasks",

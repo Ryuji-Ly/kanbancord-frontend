@@ -20,7 +20,8 @@
     "LABEL_REMOVED": "Etiqueta quitada de una tarea",
     "COLUMN_CHANGED": "Columnas creadas, renombradas, movidas o eliminadas",
     "BOARD_CHANGED": "Tablero creado, renombrado, archivado o eliminado",
-    "BOARD_SETTINGS_CHANGED": "Etiquetas, niveles de prioridad y funciones del tablero cambiados"
+    "BOARD_SETTINGS_CHANGED": "Etiquetas, niveles de prioridad y funciones del tablero cambiados",
+    "TASK_ARCHIVED": "Tarea archivada o restaurada"
   },
   "categories": {
     "TASKS": "Tareas",

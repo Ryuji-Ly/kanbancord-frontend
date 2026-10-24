@@ -20,7 +20,8 @@
     "LABEL_REMOVED": "작업에서 라벨 제거",
     "COLUMN_CHANGED": "열 생성, 이름 변경, 이동, 삭제",
     "BOARD_CHANGED": "보드 생성, 이름 변경, 보관, 삭제",
-    "BOARD_SETTINGS_CHANGED": "보드의 라벨, 우선순위 단계, 기능 변경"
+    "BOARD_SETTINGS_CHANGED": "보드의 라벨, 우선순위 단계, 기능 변경",
+    "TASK_ARCHIVED": "작업 보관 또는 복원"
   },
   "categories": {
     "TASKS": "작업",

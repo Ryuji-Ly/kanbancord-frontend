@@ -23,7 +23,10 @@
     "taskCreated": "Uppgiften har skapats",
     "createTaskFailed": "Kunde inte skapa uppgiften",
     "taskUpdated": "Uppgiften har uppdaterats",
-    "taskDeleted": "Uppgiften har tagits bort"
+    "taskDeleted": "Uppgiften har tagits bort",
+    "taskArchived": "Uppgiften har arkiverats",
+    "taskRestored": "Uppgiften har återställts",
+    "tasksArchived": "Arkiverade uppgifter: {count}"
   },
   "page": {
     "noContext": "Uppgifter om tavlan saknas. Öppna en tavla från översikten.",
@@ -44,7 +47,12 @@
     "deleteConfirm": "Ta bort <strong>{name}</strong>? Det går inte att ångra.",
     "deleteColumn": "Ta bort kolumn",
     "deleteColumnTasks_one": "Det här tar också bort {count} uppgift i kolumnen.",
-    "deleteColumnTasks_other": "Det här tar också bort {count} uppgifter i kolumnen."
+    "deleteColumnTasks_other": "Det här tar också bort {count} uppgifter i kolumnen.",
+    "archiveColumnTasks": "Arkivera alla uppgifter",
+    "archiveColumnConfirm": "Arkivera alla uppgifter i <strong>{name}</strong> ({count})? De försvinner från tavlan men behåller allt, och var och en kan återställas via filtret Arkiverade uppgifter.",
+    "showingArchived": "Arkiverade uppgifter visas. Öppna en för att återställa den.",
+    "loadingArchived": "Läser in arkiverade uppgifter…",
+    "backToBoard": "Tillbaka till tavlan"
   },
   "column": {
     "addNew": "+ Lägg till ny kolumn",
@@ -52,7 +60,8 @@
     "options": "Kolumnalternativ",
     "delete": "Ta bort kolumn",
     "addTask": "+ Lägg till en uppgift",
-    "showAll": "Visa alla ({count})"
+    "showAll": "Visa alla ({count})",
+    "archiveTasks": "Arkivera alla uppgifter"
   },
   "pickers": {
     "searchUser": "Sök användare",
@@ -89,7 +98,10 @@
     "dragWaits": "Det går att dra uppgifter när filtren har rensats",
     "otherCount_one": " · {count} filter",
     "otherCount_other": " · {count} filter",
-    "clear": "Rensa sökning och filter"
+    "clear": "Rensa sökning och filter",
+    "byArchived": "Uppgifter på tavlan eller arkiverade",
+    "boardTasks": "På tavlan",
+    "archivedTasks": "Arkiverade uppgifter"
   },
   "createTask": {
     "titleRequired": "Uppgiften måste ha en titel.",
@@ -157,6 +169,9 @@
     "discard": "Släng",
     "waitForUploads": "Vänta tills filerna har laddats upp",
     "uploading": "Laddar upp…",
-    "noTaskSelected": "Ingen uppgift är vald."
+    "noTaskSelected": "Ingen uppgift är vald.",
+    "archive": "Arkivera",
+    "restore": "Återställ",
+    "archivedNote": "Den här uppgiften är arkiverad: den är inte på tavlan och kan inte ändras förrän den har återställts."
   }
 }

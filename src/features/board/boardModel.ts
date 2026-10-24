@@ -46,6 +46,7 @@ export type BoardAbilities = {
   createTask: boolean
   editTask: boolean
   deleteTask: boolean
+  archiveTask: boolean
   moveTask: boolean
   assignSelf: boolean
   assignOthers: boolean
@@ -85,6 +86,7 @@ export function boardAbilities(snapshot: BoardSnapshot | undefined): BoardAbilit
     createTask: can('CREATE_TASK'),
     editTask: can('EDIT_TASK'),
     deleteTask: can('DELETE_TASK'),
+    archiveTask: can('ARCHIVE_TASK'),
     moveTask: can('MOVE_TASK'),
     assignSelf: can('ASSIGN_TASK_SELF'),
     assignOthers: can('ASSIGN_TASK_OTHERS'),
@@ -95,6 +97,14 @@ export function boardAbilities(snapshot: BoardSnapshot | undefined): BoardAbilit
     createLabel: can('CREATE_LABEL'),
     managePriorities: can('MANAGE_PRIORITIES'),
   }
+}
+
+/**
+ * What can be done to an archived task: restore it or delete it, nothing else until it is restored.
+ */
+export function archivedTaskAbilities(abilities: BoardAbilities): BoardAbilities {
+  const none = Object.fromEntries(Object.keys(abilities).map((key) => [key, false])) as Omit<BoardAbilities, 'features'>
+  return { ...none, features: abilities.features, deleteTask: abilities.deleteTask, archiveTask: abilities.archiveTask }
 }
 
 /**

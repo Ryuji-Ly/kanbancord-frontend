@@ -93,5 +93,6 @@
   "viaDiscordHint": "Discord'da eğik çizgi komutuyla yapıldı",
   "viaDiscord": "Discord'dan",
   "changeCount_one": "{count} değişiklik",
-  "changeCount_other": "{count} değişiklik"
+  "changeCount_other": "{count} değişiklik",
+  "columnTasksArchived": "arşivledi: {column} içindeki tüm görevler ({count})"
 }

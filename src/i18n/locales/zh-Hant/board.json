@@ -22,7 +22,10 @@
     "taskCreated": "已建立任務",
     "createTaskFailed": "無法建立任務",
     "taskUpdated": "已更新任務",
-    "taskDeleted": "已刪除任務"
+    "taskDeleted": "已刪除任務",
+    "taskArchived": "已封存任務",
+    "taskRestored": "已還原任務",
+    "tasksArchived": "已封存的任務：{count}"
   },
   "page": {
     "noContext": "缺少看板資訊。請從儀表板開啟看板。",
@@ -42,7 +45,12 @@
     "deleteTask": "刪除任務",
     "deleteConfirm": "刪除<strong>{name}</strong>？此動作無法復原。",
     "deleteColumn": "刪除欄",
-    "deleteColumnTasks_other": "這也會刪除這一欄中的 {count} 個任務。"
+    "deleteColumnTasks_other": "這也會刪除這一欄中的 {count} 個任務。",
+    "archiveColumnTasks": "封存所有任務",
+    "archiveColumnConfirm": "封存<strong>{name}</strong>中的所有任務（{count}）？任務會離開看板，但所有內容都會保留，並可透過「已封存的任務」篩選逐一還原。",
+    "showingArchived": "正在顯示已封存的任務。開啟任務即可還原。",
+    "loadingArchived": "正在載入已封存的任務…",
+    "backToBoard": "返回看板"
   },
   "column": {
     "addNew": "+ 新增欄",
@@ -50,7 +58,8 @@
     "options": "欄選項",
     "delete": "刪除欄",
     "addTask": "+ 新增任務",
-    "showAll": "顯示全部（{count}）"
+    "showAll": "顯示全部（{count}）",
+    "archiveTasks": "封存所有任務"
   },
   "pickers": {
     "searchUser": "搜尋使用者",
@@ -86,7 +95,10 @@
     "noDueDate": "無截止日期",
     "dragWaits": "清除篩選後才能拖曳任務",
     "otherCount_other": " · {count} 個篩選條件",
-    "clear": "清除搜尋和篩選"
+    "clear": "清除搜尋和篩選",
+    "byArchived": "看板上的任務或已封存的任務",
+    "boardTasks": "看板上",
+    "archivedTasks": "已封存的任務"
   },
   "createTask": {
     "titleRequired": "任務標題為必填。",
@@ -153,6 +165,9 @@
     "discard": "捨棄",
     "waitForUploads": "請等候檔案上傳完成",
     "uploading": "正在上傳…",
-    "noTaskSelected": "未選取任務。"
+    "noTaskSelected": "未選取任務。",
+    "archive": "封存",
+    "restore": "還原",
+    "archivedNote": "此任務已封存：不在看板上，還原前無法變更。"
   }
 }

@@ -23,7 +23,10 @@
     "taskCreated": "Task created",
     "createTaskFailed": "Failed to create task",
     "taskUpdated": "Task updated",
-    "taskDeleted": "Task deleted"
+    "taskDeleted": "Task deleted",
+    "taskArchived": "Task archived",
+    "taskRestored": "Task restored",
+    "tasksArchived": "Tasks archived: {count}"
   },
   "page": {
     "noContext": "Missing board context. Please open a board from the dashboard.",
@@ -44,7 +47,12 @@
     "deleteConfirm": "Delete <strong>{name}</strong>? This cannot be undone.",
     "deleteColumn": "Delete Column",
     "deleteColumnTasks_one": "This will also delete {count} task in this column.",
-    "deleteColumnTasks_other": "This will also delete {count} tasks in this column."
+    "deleteColumnTasks_other": "This will also delete {count} tasks in this column.",
+    "archiveColumnTasks": "Archive all tasks",
+    "archiveColumnConfirm": "Archive every task in <strong>{name}</strong> ({count})? They leave the board but keep everything, and each can be restored from the Archived tasks filter.",
+    "showingArchived": "Showing archived tasks. Open one to restore it.",
+    "loadingArchived": "Loading archived tasks…",
+    "backToBoard": "Back to the board"
   },
   "column": {
     "addNew": "+ Add new column",
@@ -52,7 +60,8 @@
     "options": "Column options",
     "delete": "Delete column",
     "addTask": "+ Add a task",
-    "showAll": "Show all ({count})"
+    "showAll": "Show all ({count})",
+    "archiveTasks": "Archive all tasks"
   },
   "pickers": {
     "searchUser": "Search user",
@@ -89,7 +98,10 @@
     "dragWaits": "Dragging tasks waits until filters are cleared",
     "otherCount_one": " · {count} filter",
     "otherCount_other": " · {count} filters",
-    "clear": "Clear search and filters"
+    "clear": "Clear search and filters",
+    "byArchived": "Tasks on the board or archived",
+    "boardTasks": "On the board",
+    "archivedTasks": "Archived tasks"
   },
   "createTask": {
     "titleRequired": "Task title is required.",
@@ -157,6 +169,9 @@
     "discard": "Discard",
     "waitForUploads": "Wait for the files to finish uploading",
     "uploading": "Uploading…",
-    "noTaskSelected": "No task is selected."
+    "noTaskSelected": "No task is selected.",
+    "archive": "Archive",
+    "restore": "Restore",
+    "archivedNote": "This task is archived: it is off the board and cannot be changed until it is restored."
   }
 }

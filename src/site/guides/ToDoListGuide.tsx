@@ -33,6 +33,9 @@ export function ToDoListGuide() {
       <p>
         <GuideText k="guides.toDoList.tick" />
       </p>
+      <p>
+        <GuideText k="guides.toDoList.archive" />
+      </p>
 
       <h2>{t('guides.toDoList.sharedTitle')}</h2>
       <p>{t('guides.toDoList.shared')}</p>

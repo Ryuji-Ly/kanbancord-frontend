@@ -89,5 +89,6 @@
   "onBoardName": "（{board}）",
   "viaDiscordHint": "Discord のスラッシュコマンドで実行",
   "viaDiscord": "Discord から",
-  "changeCount_other": "{count} 件の変更"
+  "changeCount_other": "{count} 件の変更",
+  "columnTasksArchived": "{column}のタスクをすべてアーカイブしました（{count}）"
 }
