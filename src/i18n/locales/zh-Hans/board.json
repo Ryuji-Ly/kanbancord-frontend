@@ -49,7 +49,8 @@
     "namePlaceholder": "列名称...",
     "options": "列选项",
     "delete": "删除列",
-    "addTask": "+ 添加任务"
+    "addTask": "+ 添加任务",
+    "showAll": "显示全部（{count}）"
   },
   "pickers": {
     "searchUser": "搜索用户",

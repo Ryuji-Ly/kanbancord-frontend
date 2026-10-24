@@ -106,6 +106,7 @@
     "loading": "Roadmap wird geladen …",
     "unavailable": "Die Roadmap ist gerade nicht verfügbar.",
     "emptyColumn": "Noch nichts hier",
+    "noDetails": "Keine Details.",
     "addTitle": "Einen Fehler oder eine Idee melden",
     "addIntro": "Einen Fehler gefunden oder eine Idee? Füge sie in der Spalte Issues hinzu. Du kannst eine pro Stunde hinzufügen.",
     "signInIntro": "Alle können die Roadmap lesen. Melde dich an, um einen Fehler oder eine Idee in der Spalte Issues hinzuzufügen.",

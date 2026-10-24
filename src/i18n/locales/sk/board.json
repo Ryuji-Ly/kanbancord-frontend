@@ -55,7 +55,8 @@
     "namePlaceholder": "Názov stĺpca…",
     "options": "Možnosti stĺpca",
     "delete": "Odstrániť stĺpec",
-    "addTask": "+ Pridať úlohu"
+    "addTask": "+ Pridať úlohu",
+    "showAll": "Zobraziť všetko ({count})"
   },
   "pickers": {
     "searchUser": "Hľadať člena",

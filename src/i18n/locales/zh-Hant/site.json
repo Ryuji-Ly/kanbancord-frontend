@@ -106,6 +106,7 @@
     "loading": "正在載入路線圖...",
     "unavailable": "路線圖暫時無法查看。",
     "emptyColumn": "目前沒有內容",
+    "noDetails": "沒有詳細資訊。",
     "addTitle": "回報問題或想法",
     "addIntro": "發現錯誤或有想法嗎？把它新增到 Issues 欄。每小時可以新增一則。",
     "signInIntro": "任何人都能查看路線圖。登入後即可在 Issues 欄新增錯誤或想法。",

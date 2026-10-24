@@ -55,7 +55,8 @@
     "namePlaceholder": "Nazwa kolumny...",
     "options": "Opcje kolumny",
     "delete": "Usuń kolumnę",
-    "addTask": "+ Dodaj zadanie"
+    "addTask": "+ Dodaj zadanie",
+    "showAll": "Pokaż wszystko ({count})"
   },
   "pickers": {
     "searchUser": "Szukaj użytkownika",

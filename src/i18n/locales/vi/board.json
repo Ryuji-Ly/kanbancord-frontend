@@ -49,7 +49,8 @@
     "namePlaceholder": "Tên cột...",
     "options": "Tùy chọn cột",
     "delete": "Xóa cột",
-    "addTask": "+ Thêm công việc"
+    "addTask": "+ Thêm công việc",
+    "showAll": "Hiện tất cả ({count})"
   },
   "pickers": {
     "searchUser": "Tìm người dùng",

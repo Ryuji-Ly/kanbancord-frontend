@@ -53,7 +53,8 @@
     "namePlaceholder": "Nome della colonna...",
     "options": "Opzioni della colonna",
     "delete": "Elimina la colonna",
-    "addTask": "+ Aggiungi un'attività"
+    "addTask": "+ Aggiungi un'attività",
+    "showAll": "Mostra tutto ({count})"
   },
   "pickers": {
     "searchUser": "Cerca un utente",

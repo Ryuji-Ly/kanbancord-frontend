@@ -49,7 +49,8 @@
     "namePlaceholder": "열 이름…",
     "options": "열 옵션",
     "delete": "열 삭제",
-    "addTask": "+ 작업 추가"
+    "addTask": "+ 작업 추가",
+    "showAll": "모두 보기 ({count})"
   },
   "pickers": {
     "searchUser": "멤버 검색",

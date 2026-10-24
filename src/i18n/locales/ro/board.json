@@ -53,7 +53,8 @@
     "namePlaceholder": "Numele coloanei...",
     "options": "Opțiunile coloanei",
     "delete": "Șterge coloana",
-    "addTask": "+ Adaugă o sarcină"
+    "addTask": "+ Adaugă o sarcină",
+    "showAll": "Afișează tot ({count})"
   },
   "pickers": {
     "searchUser": "Caută utilizator",

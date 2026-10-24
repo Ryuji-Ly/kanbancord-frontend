@@ -106,6 +106,7 @@
     "loading": "Roadmap laden...",
     "unavailable": "De roadmap is nu niet beschikbaar.",
     "emptyColumn": "Nog niets",
+    "noDetails": "Geen details.",
     "addTitle": "Een probleem of idee melden",
     "addIntro": "Een bug gevonden of een idee? Voeg het toe aan de kolom Issues. Je kunt er één per uur toevoegen.",
     "signInIntro": "Iedereen kan de roadmap lezen. Meld je aan om een bug of idee aan de kolom Issues toe te voegen.",

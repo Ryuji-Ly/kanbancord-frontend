@@ -106,6 +106,7 @@
     "loading": "Loading the roadmap...",
     "unavailable": "The roadmap is not available right now.",
     "emptyColumn": "Nothing here yet",
+    "noDetails": "No details.",
     "addTitle": "Report an issue or an idea",
     "addIntro": "Found a bug or have an idea? Add it to the Issues column. You can add one an hour.",
     "signInIntro": "Anyone can read the roadmap. Sign in to add a bug or an idea to its Issues column.",

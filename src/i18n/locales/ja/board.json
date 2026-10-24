@@ -49,7 +49,8 @@
     "namePlaceholder": "列の名前...",
     "options": "列のオプション",
     "delete": "列を削除",
-    "addTask": "＋ タスクを追加"
+    "addTask": "＋ タスクを追加",
+    "showAll": "すべて表示（{count}）"
   },
   "pickers": {
     "searchUser": "ユーザーを検索",

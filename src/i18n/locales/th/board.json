@@ -49,7 +49,8 @@
     "namePlaceholder": "ชื่อคอลัมน์...",
     "options": "ตัวเลือกคอลัมน์",
     "delete": "ลบคอลัมน์",
-    "addTask": "+ เพิ่มงาน"
+    "addTask": "+ เพิ่มงาน",
+    "showAll": "แสดงทั้งหมด ({count})"
   },
   "pickers": {
     "searchUser": "ค้นหาผู้ใช้",

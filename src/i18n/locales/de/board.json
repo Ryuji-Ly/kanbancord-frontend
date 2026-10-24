@@ -51,7 +51,8 @@
     "namePlaceholder": "Name der Spalte …",
     "options": "Spaltenoptionen",
     "delete": "Spalte löschen",
-    "addTask": "+ Aufgabe hinzufügen"
+    "addTask": "+ Aufgabe hinzufügen",
+    "showAll": "Alle anzeigen ({count})"
   },
   "pickers": {
     "searchUser": "Mitglied suchen",

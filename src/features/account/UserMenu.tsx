@@ -1,6 +1,7 @@
 import { Suspense, useEffect, useRef, useState } from 'react'
 import { lazyNamed } from '../../components/lazyNamed'
-import { FiChevronDown, FiLogOut, FiSettings, FiSliders } from 'react-icons/fi'
+import { FiChevronDown, FiLogOut, FiMap, FiSettings, FiSliders, FiZap } from 'react-icons/fi'
+import { Link } from 'react-router-dom'
 import { t } from '../../i18n'
 import type { HeaderUser } from '../../components/dashboard/types'
 import { clearPendingAccountDialog, pendingAccountDialog } from './accountDialog'
@@ -76,6 +77,13 @@ export function UserMenu({ me, onLogout }: UserMenuProps) {
           <button type="button" role="menuitem" onClick={() => openDialog('notifications')}>
             <FiSettings aria-hidden="true" /> {t('account.menu.settings')}
           </button>
+          {/* On narrow screens the header has no room for these, so they are here too. */}
+          <Link to="/updates" role="menuitem" className="kc-user-menu-narrow" onClick={() => setOpen(false)}>
+            <FiZap aria-hidden="true" /> {t('site.nav.updates')}
+          </Link>
+          <Link to="/roadmap" role="menuitem" className="kc-user-menu-narrow" onClick={() => setOpen(false)}>
+            <FiMap aria-hidden="true" /> {t('site.nav.roadmap')}
+          </Link>
           <button
             type="button"
             role="menuitem"

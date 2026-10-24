@@ -106,6 +106,7 @@
     "loading": "Načítava sa plán…",
     "unavailable": "Plán teraz nie je k dispozícii.",
     "emptyColumn": "Zatiaľ nič",
+    "noDetails": "Bez podrobností.",
     "addTitle": "Nahlásiť problém alebo nápad",
     "addIntro": "Našli ste chybu alebo máte nápad? Pridajte ho do stĺpca Issues. Pridať môžete jeden za hodinu.",
     "signInIntro": "Plán si môže prečítať ktokoľvek. Prihláste sa a pridajte chybu alebo nápad do stĺpca Issues.",

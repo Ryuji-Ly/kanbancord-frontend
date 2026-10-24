@@ -53,7 +53,8 @@
     "namePlaceholder": "Nom de la colonne…",
     "options": "Options de la colonne",
     "delete": "Supprimer la colonne",
-    "addTask": "+ Ajouter une tâche"
+    "addTask": "+ Ajouter une tâche",
+    "showAll": "Tout afficher ({count})"
   },
   "pickers": {
     "searchUser": "Chercher un membre",

@@ -106,6 +106,7 @@
     "loading": "Wczytywanie planu rozwoju...",
     "unavailable": "Plan rozwoju jest teraz niedostępny.",
     "emptyColumn": "Na razie nic",
+    "noDetails": "Brak szczegółów.",
     "addTitle": "Zgłoś problem lub pomysł",
     "addIntro": "Znalazłeś błąd lub masz pomysł? Dodaj go do kolumny Issues. Możesz dodać jeden na godzinę.",
     "signInIntro": "Każdy może przeglądać plan rozwoju. Zaloguj się, aby dodać błąd lub pomysł do kolumny Issues.",

@@ -51,7 +51,8 @@
     "namePlaceholder": "Column name...",
     "options": "Column options",
     "delete": "Delete column",
-    "addTask": "+ Add a task"
+    "addTask": "+ Add a task",
+    "showAll": "Show all ({count})"
   },
   "pickers": {
     "searchUser": "Search user",

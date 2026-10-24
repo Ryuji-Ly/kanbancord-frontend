@@ -106,6 +106,7 @@
     "loading": "Đang tải lộ trình...",
     "unavailable": "Hiện không xem được lộ trình.",
     "emptyColumn": "Chưa có gì",
+    "noDetails": "Không có chi tiết.",
     "addTitle": "Báo lỗi hoặc góp ý",
     "addIntro": "Bạn tìm thấy lỗi hoặc có ý tưởng? Thêm vào cột Issues. Bạn có thể thêm một mục mỗi giờ.",
     "signInIntro": "Ai cũng có thể xem lộ trình. Đăng nhập để thêm lỗi hoặc ý tưởng vào cột Issues.",
