@@ -18,7 +18,26 @@ export function removeLegacyTokens(): void {
   }
 }
 
-export function startDiscordLogin(setMessage: (value: string) => void): void {
+/** Where to go once signed in, when signing in started on a page other than the dashboard. */
+const RETURN_KEY = 'kc-oauth-return'
+
+/** The page to go back to after signing in, if one was set; reading it forgets it. */
+export function takeReturnPath(): string | null {
+  try {
+    const path = sessionStorage.getItem(RETURN_KEY)
+    sessionStorage.removeItem(RETURN_KEY)
+    // Only this site's own pages.
+    return path && path.startsWith('/') && !path.startsWith('//') ? path : null
+  } catch {
+    return null
+  }
+}
+
+/**
+ * Sends the user to Discord to sign in. Discord always sends them back to the dashboard; with
+ * `returnTo`, they then go on to that page (such as the roadmap they signed in from).
+ */
+export function startDiscordLogin(setMessage: (value: string) => void, returnTo?: string): void {
   if (!DISCORD_CLIENT_ID) {
     setMessage('Missing VITE_DISCORD_CLIENT_ID in frontend environment.')
     return
@@ -27,6 +46,7 @@ export function startDiscordLogin(setMessage: (value: string) => void): void {
   const state = crypto.randomUUID()
   sessionStorage.setItem(OAUTH_STATE_KEY, state)
   sessionStorage.setItem(OAUTH_IN_PROGRESS_KEY, 'true')
+  if (returnTo) sessionStorage.setItem(RETURN_KEY, returnTo)
 
   const params = new URLSearchParams({
     client_id: DISCORD_CLIENT_ID,

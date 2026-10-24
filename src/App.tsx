@@ -10,6 +10,9 @@ import { PUBLIC_ROUTES } from './site/publicRoutes'
 // The board page brings drag and drop, the Markdown editor and the task panel: loaded only when a
 // board is opened, so the dashboard and the public pages start faster.
 const BoardPage = lazy(() => import('./pages/BoardPage').then((module) => ({ default: module.BoardPage })))
+// The roadmap's content comes from the API when it is opened, so it is not built ahead like the
+// other public pages.
+const RoadmapPage = lazy(() => import('./site/roadmap/RoadmapPage').then((module) => ({ default: module.RoadmapPage })))
 
 function App() {
   const session = useSession()
@@ -30,6 +33,14 @@ function App() {
         element={
           <Suspense fallback={null}>
             <BoardPage />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/roadmap"
+        element={
+          <Suspense fallback={null}>
+            <RoadmapPage />
           </Suspense>
         }
       />
