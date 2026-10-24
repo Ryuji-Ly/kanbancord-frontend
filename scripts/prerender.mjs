@@ -65,6 +65,7 @@ for (const path of PATHS) {
 function weight(path) {
   if (path === '/about' || path === '/guides') return { changefreq: 'monthly', priority: '0.8' }
   if (path === '/faq' || path.startsWith('/guides/')) return { changefreq: 'monthly', priority: '0.7' }
+  if (path === '/updates') return { changefreq: 'weekly', priority: '0.6' }
   if (path === '/support') return { changefreq: 'yearly', priority: '0.4' }
   return { changefreq: 'yearly', priority: '0.3' }
 }

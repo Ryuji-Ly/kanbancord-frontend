@@ -4,6 +4,7 @@
     "site": "Site",
     "breadcrumbs": "Kruimelpad",
     "guides": "Handleidingen",
+    "updates": "Nieuws",
     "faq": "Veelgestelde vragen",
     "open": "KanbanCord openen",
     "about": "Over",
@@ -85,6 +86,13 @@
     "story3": "Als student werkte ik er af en toe aan, met flink wat uitstelgedrag tussendoor. Ongeveer een jaar nadat ik ermee begon, ontdekte ik dat er een andere bot met precies dezelfde naam bestaat, gemaakt door j4asper. Onze Discord-applicaties zijn maar zes dagen na elkaar aangemaakt: <other>die van hen</other> op 30 oktober 2024, de mijne op 5 november 2024. Als je in Discord naar KanbanCord zoekt, kom je misschien die van hen tegen; deze website, en de bot die je hiervandaan kunt toevoegen, zijn die van {operator}.",
     "story4": "Verreweg het moeilijkste was het fundament: hoe borden, kolommen, taken en rechten moesten samenwerken met de eigen servers, rollen en leden van Discord. De domeinmodellen goed krijgen kostte veel experimenteren en opnieuw bouwen: weghalen wat niet nodig was en de tabellen en velden toevoegen die mijn visie vroeg, terwijl ik steeds meer bedacht wat de kanbantool kon doen. Eerlijk gezegd was dat zo'n 80% van het werk. Toen de structuur eenmaal stond, kwam de rest verrassend snel samen: met een stevig ontwerp werd generatieve AI echt nuttig voor het bouwen van functies, omdat die de bestaande structuur volgde en er veel minder grote fouten met de hand te vinden en te herstellen waren.",
     "story5": "Het hele project is open source: de <bot>bot</bot>, de <website>website</website> en de <api>API</api> hebben elk een eigen repository op GitHub."
+  },
+  "updates": {
+    "metaTitle": "Nieuws",
+    "metaDescription": "Wat er in KanbanCord is veranderd, het nieuwste eerst: nieuwe functies en verbeteringen aan de bot, de website en de Discord-activiteit.",
+    "title": "Nieuws",
+    "intro": "Wat er in KanbanCord is veranderd, het nieuwste eerst.",
+    "englishOnly": "Het nieuws is alleen in het Engels geschreven."
   },
   "support": {
     "metaTitle": "Steunen",

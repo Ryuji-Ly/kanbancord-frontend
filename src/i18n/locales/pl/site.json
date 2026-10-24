@@ -4,6 +4,7 @@
     "site": "Witryna",
     "breadcrumbs": "Ścieżka nawigacji",
     "guides": "Poradniki",
+    "updates": "Aktualności",
     "faq": "FAQ",
     "open": "Otwórz KanbanCord",
     "about": "O projekcie",
@@ -85,6 +86,13 @@
     "story3": "Jako student pracowałem nad nim z przerwami, sporo przy tym odkładając na później. Mniej więcej rok po rozpoczęciu dowiedziałem się, że istnieje inny bot o dokładnie tej samej nazwie, stworzony przez j4asper. Nasze aplikacje na Discordzie powstały w odstępie zaledwie sześciu dni: <other>tamta</other> 30 października 2024, moja 5 listopada 2024. Jeśli wyszukasz KanbanCord w Discordzie, możesz trafić na tamtą; ta strona i bot, którego stąd dodasz, są dziełem {operator}.",
     "story4": "Zdecydowanie najtrudniejszy był fundament: jak tablice, kolumny, zadania i uprawnienia mają współgrać z serwerami, rolami i członkami samego Discorda. Dopracowanie modeli domenowych wymagało mnóstwa eksperymentów i przebudów: wycinania tego, co niepotrzebne, i dodawania tabel i pól, których wymagała moja wizja, w miarę jak wymyślałem kolejne rzeczy, które mogłoby robić to narzędzie. Szczerze mówiąc, to było około 80% pracy. Gdy struktura się ustaliła, reszta poszła zaskakująco szybko: przy solidnym projekcie generatywna sztuczna inteligencja naprawdę pomagała w budowaniu funkcji, bo trzymała się istniejącej struktury, a dużych błędów do ręcznego wyszukiwania i poprawiania było znacznie mniej.",
     "story5": "Cały projekt jest otwartoźródłowy: <bot>bot</bot>, <website>strona</website> i <api>API</api> mają własne repozytoria na GitHubie."
+  },
+  "updates": {
+    "metaTitle": "Aktualności",
+    "metaDescription": "Co się zmieniło w KanbanCord, od najnowszych: nowe funkcje i ulepszenia bota, strony i aktywności Discord.",
+    "title": "Aktualności",
+    "intro": "Co się zmieniło w KanbanCord, od najnowszych.",
+    "englishOnly": "Aktualności są pisane tylko po angielsku."
   },
   "support": {
     "metaTitle": "Wesprzyj",

@@ -6,6 +6,7 @@ import { GuidesIndexPage } from './guides/GuidesIndexPage'
 import { GUIDES } from './guides/guides'
 import { PrivacyPage } from './legal/PrivacyPage'
 import { TermsPage } from './legal/TermsPage'
+import { UpdatesPage } from './updates/UpdatesPage'
 
 /**
  * The pages anyone can read without signing in. The app routes to them, and the build renders each
@@ -18,6 +19,7 @@ export const PUBLIC_ROUTES: { path: string; element: ReactElement }[] = [
   { path: '/support', element: <SupportPage /> },
   { path: '/privacy', element: <PrivacyPage /> },
   { path: '/terms', element: <TermsPage /> },
+  { path: '/updates', element: <UpdatesPage /> },
   { path: '/guides', element: <GuidesIndexPage /> },
   ...GUIDES.map((guide) => ({ path: `/guides/${guide.slug}`, element: <guide.Page /> })),
 ]

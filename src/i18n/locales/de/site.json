@@ -4,6 +4,7 @@
     "site": "Website",
     "breadcrumbs": "Brotkrümelnavigation",
     "guides": "Anleitungen",
+    "updates": "Neuigkeiten",
     "faq": "FAQ",
     "open": "KanbanCord öffnen",
     "about": "Über",
@@ -85,6 +86,13 @@
     "story3": "Während meines Studiums arbeitete ich mal mehr, mal weniger daran, mit reichlich Aufschieben dazwischen. Etwa ein Jahr nach Beginn erfuhr ich, dass es einen anderen Bot mit genau demselben Namen gibt, gemacht von j4asper. Unsere Discord-Anwendungen wurden nur sechs Tage nacheinander erstellt: <other>die andere</other> am 30. Oktober 2024, meine am 5. November 2024. Wenn du in Discord nach KanbanCord suchst, kann es gut sein, dass du auf den anderen stößt; diese Website und der Bot, den du von hier aus hinzufügen kannst, sind die von {operator}.",
     "story4": "Der mit Abstand schwierigste Teil war das Fundament: wie Boards, Spalten, Aufgaben und Berechtigungen mit Discords eigenen Servern, Rollen und Mitgliedern zusammenpassen sollten. Die Domänenmodelle richtig hinzubekommen, erforderte viel Experimentieren und Neubauen: weglassen, was nicht nötig war, und die Tabellen und Felder hinzufügen, die meine Vorstellung verlangte, während mir immer mehr einfiel, was das Kanban-Tool können könnte. Ehrlich gesagt waren das etwa 80 % der Arbeit. Als die Struktur einmal stand, ging der Rest überraschend schnell: Mit einem soliden Design war generative KI beim Bauen von Funktionen wirklich hilfreich, weil sie der bestehenden Struktur folgte und es viel weniger große Fehler gab, die ich von Hand finden und beheben musste.",
     "story5": "Das ganze Projekt ist Open Source: Der <bot>Bot</bot>, die <website>Website</website> und die <api>API</api> haben jeweils ein eigenes Repository auf GitHub."
+  },
+  "updates": {
+    "metaTitle": "Neuigkeiten",
+    "metaDescription": "Was sich an KanbanCord geändert hat, das Neueste zuerst: neue Funktionen und Verbesserungen an Bot, Website und Discord-Aktivität.",
+    "title": "Neuigkeiten",
+    "intro": "Was sich an KanbanCord geändert hat, das Neueste zuerst.",
+    "englishOnly": "Die Neuigkeiten gibt es nur auf Englisch."
   },
   "support": {
     "metaTitle": "Unterstützen",

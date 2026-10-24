@@ -4,6 +4,7 @@
     "site": "Sito",
     "breadcrumbs": "Percorso",
     "guides": "Guide",
+    "updates": "Novità",
     "faq": "Domande frequenti",
     "open": "Apri KanbanCord",
     "about": "Informazioni",
@@ -85,6 +86,13 @@
     "story3": "Da studente ci ho lavorato a periodi, con parecchia procrastinazione nel mezzo. Dopo circa un anno di sviluppo ho scoperto che esiste un altro bot con lo stesso identico nome, creato da j4asper. Le nostre applicazioni Discord sono state create a soli sei giorni di distanza: <other>la sua</other> il 30 ottobre 2024, la mia il 5 novembre 2024. Se cerchi KanbanCord su Discord, potresti benissimo trovare la sua; questo sito web, e il bot che puoi aggiungere da qui, sono quelli creati da {operator}.",
     "story4": "La parte di gran lunga più difficile sono state le fondamenta: come bacheche, colonne, attività e permessi dovessero integrarsi con i server, i ruoli e i membri di Discord. Mettere a punto i modelli di dominio ha richiesto molti esperimenti e ricostruzioni: togliere ciò che non serviva e aggiungere le tabelle e i campi che la mia idea richiedeva, man mano che mi venivano in mente altre cose che lo strumento kanban poteva fare. Sinceramente, è stato circa l'80% del lavoro. Una volta definita la struttura, il resto è venuto sorprendentemente in fretta: con un progetto solido alla base, l'intelligenza artificiale generativa è diventata davvero utile per sviluppare le funzioni, perché seguiva la struttura esistente e c'erano molti meno errori grossi da trovare e correggere a mano.",
     "story5": "L'intero progetto è open source: il <bot>bot</bot>, il <website>sito web</website> e l'<api>API</api> hanno ciascuno il proprio repository su GitHub."
+  },
+  "updates": {
+    "metaTitle": "Novità",
+    "metaDescription": "Cosa è cambiato in KanbanCord, dal più recente: nuove funzioni e miglioramenti del bot, del sito e dell'attività Discord.",
+    "title": "Novità",
+    "intro": "Cosa è cambiato in KanbanCord, dal più recente.",
+    "englishOnly": "Le novità sono scritte solo in inglese."
   },
   "support": {
     "metaTitle": "Sostieni",

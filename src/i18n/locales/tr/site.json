@@ -4,6 +4,7 @@
     "site": "Site",
     "breadcrumbs": "Konum",
     "guides": "Kılavuzlar",
+    "updates": "Güncellemeler",
     "faq": "SSS",
     "open": "KanbanCord'u aç",
     "about": "Hakkında",
@@ -85,6 +86,13 @@
     "story3": "Öğrenciyken üzerinde ara ara çalıştım, arada epey de erteledim. Geliştirmeye başlamamın üzerinden yaklaşık bir yıl geçtiğinde, j4asper tarafından yapılmış, birebir aynı ada sahip başka bir bot olduğunu öğrendim. Discord uygulamalarımız yalnızca altı gün arayla oluşturulmuş: <other>diğeri</other> 30 Ekim 2024'te, benimki 5 Kasım 2024'te. Discord'da KanbanCord'u ararsanız büyük ihtimalle diğerine rastlarsınız; bu web sitesi ve buradan ekleyebileceğiniz bot, {operator} tarafından yapılanlardır.",
     "story4": "Açık ara en zor kısım temeldi: panoların, sütunların, görevlerin ve izinlerin Discord'un kendi sunucuları, rolleri ve üyeleriyle nasıl uyum içinde olacağı. Alan modellerini doğru kurmak çok sayıda deneme ve yeniden yapım gerektirdi: kanban aracının neler yapabileceğine dair aklıma yeni şeyler geldikçe gereksiz olanları çıkarmak ve vizyonumun gerektirdiği tabloları ve alanları eklemek. Açıkçası bu, işin yaklaşık %80'iydi. Yapı oturduktan sonra geri kalanı şaşırtıcı derecede hızlı ilerledi: sağlam bir tasarım olunca üretken yapay zekâ özellik geliştirmede gerçekten faydalı oldu; çünkü mevcut yapıyı izliyordu ve elle bulup düzeltmem gereken büyük hatalar çok daha azdı.",
     "story5": "Projenin tamamı açık kaynaklıdır: <bot>bot</bot>, <website>web sitesi</website> ve <api>API</api>'nin her birinin GitHub'da kendi deposu vardır."
+  },
+  "updates": {
+    "metaTitle": "Güncellemeler",
+    "metaDescription": "KanbanCord'da neler değişti, en yeniden başlayarak: botta, web sitesinde ve Discord Etkinliği'nde yeni özellikler ve iyileştirmeler.",
+    "title": "Güncellemeler",
+    "intro": "KanbanCord'da neler değişti, en yeniden başlayarak.",
+    "englishOnly": "Güncellemeler yalnızca İngilizce yazılır."
   },
   "support": {
     "metaTitle": "Destek ol",

@@ -4,6 +4,7 @@
     "site": "Site",
     "breadcrumbs": "Fil d'Ariane",
     "guides": "Guides",
+    "updates": "Nouveautés",
     "faq": "FAQ",
     "open": "Ouvrir KanbanCord",
     "about": "À propos",
@@ -85,6 +86,13 @@
     "story3": "Pendant mes études, j'y ai travaillé par intermittence, avec pas mal de procrastination entre deux. Environ un an après avoir commencé, j'ai découvert qu'il existe un autre bot portant exactement le même nom, créé par j4asper. Nos applications Discord ont été créées à six jours d'intervalle : <other>l'autre</other> le 30 octobre 2024, la mienne le 5 novembre 2024. Si tu cherches KanbanCord dans Discord, il est fort possible que tu tombes sur l'autre ; ce site, et le bot que tu peux ajouter depuis ici, sont ceux créés par {operator}.",
     "story4": "La partie de loin la plus difficile, ce sont les fondations : comment les tableaux, les colonnes, les tâches et les permissions devaient s'articuler avec les serveurs, rôles et membres de Discord. Mettre au point les modèles de domaine a demandé énormément d'expérimentations et de reconstructions : retirer ce qui ne servait pas et ajouter les tables et les champs qu'exigeait ma vision, à mesure que je pensais à tout ce que l'outil kanban pourrait encore faire. Honnêtement, c'était environ 80 % du travail. Une fois la structure posée, le reste s'est fait étonnamment vite : avec une conception solide, l'IA générative est devenue vraiment utile pour créer des fonctionnalités, car elle suivait la structure existante et il y avait bien moins de grosses erreurs à repérer et corriger à la main.",
     "story5": "L'ensemble du projet est open source \u0001 le <bot>bot</bot>, le <website>site</website> et l'<api>API</api> ont chacun leur propre dépôt sur GitHub."
+  },
+  "updates": {
+    "metaTitle": "Nouveautés",
+    "metaDescription": "Ce qui a changé dans KanbanCord, du plus récent au plus ancien : nouvelles fonctionnalités et améliorations du bot, du site et de l'activité Discord.",
+    "title": "Nouveautés",
+    "intro": "Ce qui a changé dans KanbanCord, du plus récent au plus ancien.",
+    "englishOnly": "Les nouveautés sont rédigées en anglais uniquement."
   },
   "support": {
     "metaTitle": "Soutenir",

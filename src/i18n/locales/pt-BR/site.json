@@ -4,6 +4,7 @@
     "site": "Site",
     "breadcrumbs": "Navegação",
     "guides": "Guias",
+    "updates": "Novidades",
     "faq": "Perguntas frequentes",
     "open": "Abrir o KanbanCord",
     "about": "Sobre",
@@ -85,6 +86,13 @@
     "story3": "Como estudante, trabalhei nele de vez em quando, com bastante procrastinação no meio. Depois de cerca de um ano desenvolvendo, descobri que existe outro bot com exatamente o mesmo nome, feito por j4asper. Os nossos aplicativos do Discord foram criados com apenas seis dias de diferença: <other>o dele</other> em 30 de outubro de 2024, o meu em 5 de novembro de 2024. Se você pesquisar KanbanCord no Discord, pode muito bem encontrar o dele; este site, e o bot que você pode adicionar por ele, são os feitos por {operator}.",
     "story4": "A parte mais difícil, de longe, foi a base: como quadros, colunas, tarefas e permissões deviam se encaixar com os servidores, cargos e membros do próprio Discord. Acertar os modelos de domínio exigiu muita experimentação e reconstrução: cortar o que não era necessário e adicionar as tabelas e os campos que a minha visão pedia, conforme eu ia pensando em mais coisas que a ferramenta kanban podia fazer. Sinceramente, isso foi uns 80% do trabalho. Depois que a estrutura ficou definida, o resto veio surpreendentemente rápido: com um design sólido como base, a inteligência artificial generativa passou a ajudar de verdade no desenvolvimento dos recursos, porque seguia a estrutura existente e havia bem menos erros grandes para encontrar e corrigir à mão.",
     "story5": "O projeto inteiro é de código aberto: o <bot>bot</bot>, o <website>site</website> e a <api>API</api> têm cada um seu próprio repositório no GitHub."
+  },
+  "updates": {
+    "metaTitle": "Novidades",
+    "metaDescription": "O que mudou no KanbanCord, do mais recente para o mais antigo: novos recursos e melhorias do bot, do site e da atividade do Discord.",
+    "title": "Novidades",
+    "intro": "O que mudou no KanbanCord, do mais recente para o mais antigo.",
+    "englishOnly": "As novidades estão escritas apenas em inglês."
   },
   "support": {
     "metaTitle": "Apoiar",

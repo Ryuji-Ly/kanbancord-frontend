@@ -17,10 +17,15 @@ export function PublicLayout({ title, description, path, children }: PublicLayou
   return (
     <div className="kc-public">
       <header className="kc-public-header">
-        <Link to="/" className="kc-public-brand">
-          <img src="/images/kanbancord.png" alt="" width={32} height={32} />
-          KanbanCord
-        </Link>
+        <div className="kc-public-start">
+          <Link to="/" className="kc-public-brand" aria-label="KanbanCord">
+            <img src="/images/kanbancord.png" alt="" width={32} height={32} />
+            <span className="kc-public-brand-name">KanbanCord</span>
+          </Link>
+          <Link to="/updates" className="kc-public-updates">
+            {t('site.nav.updates')}
+          </Link>
+        </div>
         <nav className="kc-public-nav" aria-label={t('site.nav.main')}>
           <Link to="/guides">{t('site.nav.guides')}</Link>
           <Link to="/faq">{t('site.nav.faq')}</Link>

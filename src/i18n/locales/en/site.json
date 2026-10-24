@@ -4,6 +4,7 @@
     "site": "Site",
     "breadcrumbs": "Breadcrumbs",
     "guides": "Guides",
+    "updates": "Updates",
     "faq": "FAQ",
     "open": "Open KanbanCord",
     "about": "About",
@@ -85,6 +86,13 @@
     "story3": "As a student, I worked on it on and off, with plenty of procrastination in between. About a year into building it, I found out that another bot with the exact same name exists, made by j4asper. Our Discord applications were created just six days apart: <other>theirs</other> on 30 October 2024, mine on 5 November 2024. If you search for KanbanCord in Discord, you may well come across theirs; this website, and the bot you can add from it, are the ones made by {operator}.",
     "story4": "By far the hardest part was the foundation: how boards, columns, tasks and permissions should fit together with Discord's own servers, roles and members. Getting the domain models right took a lot of experimenting and rebuilding: cutting away what wasn't needed and adding the tables and fields my vision called for, as I kept thinking of more the kanban tool could do. Honestly, that was about 80% of the work. Once the structure was settled, the rest came together surprisingly quickly: with a solid design in place, generative AI became genuinely helpful for building features, because it followed the existing structure and there were far fewer large mistakes to find and fix by hand.",
     "story5": "The whole project is open source: the <bot>bot</bot>, the <website>website</website> and the <api>API</api> each have their own repository on GitHub."
+  },
+  "updates": {
+    "metaTitle": "Updates",
+    "metaDescription": "What has changed in KanbanCord, newest first: new features and improvements to the bot, the website and the Discord Activity.",
+    "title": "Updates",
+    "intro": "What has changed in KanbanCord, newest first.",
+    "englishOnly": "Updates are written in English only."
   },
   "support": {
     "metaTitle": "Support",

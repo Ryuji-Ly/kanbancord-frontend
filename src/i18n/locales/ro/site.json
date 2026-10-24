@@ -4,6 +4,7 @@
     "site": "Site",
     "breadcrumbs": "Fir de navigare",
     "guides": "Ghiduri",
+    "updates": "Noutăți",
     "faq": "Întrebări frecvente",
     "open": "Deschide KanbanCord",
     "about": "Despre",
@@ -85,6 +86,13 @@
     "story3": "Ca student, am lucrat la el cu pauze, cu destulă amânare între ele. La aproximativ un an după ce am început, am aflat că există un alt bot cu exact același nume, făcut de j4asper. Aplicațiile noastre de Discord au fost create la doar șase zile distanță: <other>a lor</other> pe 30 octombrie 2024, a mea pe 5 noiembrie 2024. Dacă cauți KanbanCord în Discord, s-ar putea să dai peste a lor; acest site și botul pe care îl poți adăuga de aici sunt cele făcute de {operator}.",
     "story4": "De departe cea mai grea parte a fost fundația: cum să se potrivească panourile, coloanele, sarcinile și permisiunile cu serverele, rolurile și membrii Discord. Ca modelele de domeniu să iasă bine a fost nevoie de multă experimentare și reconstruire: am tăiat ce nu era necesar și am adăugat tabelele și câmpurile cerute de viziunea mea, pe măsură ce mă gândeam la tot mai multe lucruri pe care le-ar putea face unealta. Sincer, asta a fost cam 80% din muncă. Odată stabilită structura, restul s-a legat surprinzător de repede: cu un design solid, inteligența artificială generativă a devenit cu adevărat utilă la construirea funcțiilor, pentru că urma structura existentă și erau mult mai puține greșeli mari de găsit și corectat de mână.",
     "story5": "Întregul proiect este open source: <bot>botul</bot>, <website>site-ul</website> și <api>API-ul</api> au fiecare propriul depozit pe GitHub."
+  },
+  "updates": {
+    "metaTitle": "Noutăți",
+    "metaDescription": "Ce s-a schimbat în KanbanCord, de la cele mai noi: funcții noi și îmbunătățiri ale botului, site-ului și activității Discord.",
+    "title": "Noutăți",
+    "intro": "Ce s-a schimbat în KanbanCord, de la cele mai noi.",
+    "englishOnly": "Noutățile sunt scrise doar în engleză."
   },
   "support": {
     "metaTitle": "Susține",

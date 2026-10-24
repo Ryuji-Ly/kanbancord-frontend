@@ -4,6 +4,7 @@
     "site": "Webbplats",
     "breadcrumbs": "Brödsmulor",
     "guides": "Guider",
+    "updates": "Nyheter",
     "faq": "Vanliga frågor",
     "open": "Öppna KanbanCord",
     "about": "Om",
@@ -85,6 +86,13 @@
     "story3": "Som student arbetade jag med den till och från, med en hel del prokrastinering emellan. Ungefär ett år in i bygget fick jag veta att det finns en annan bot med exakt samma namn, gjord av j4asper. Våra Discord-applikationer skapades med bara sex dagars mellanrum: <other>deras</other> den 30 oktober 2024, min den 5 november 2024. Om du söker efter KanbanCord i Discord kan du mycket väl hitta deras; den här webbplatsen, och boten du kan lägga till härifrån, är de som är gjorda av {operator}.",
     "story4": "Det överlägset svåraste var grunden: hur tavlor, kolumner, uppgifter och behörigheter skulle passa ihop med Discords egna servrar, roller och medlemmar. Att få domänmodellerna rätt krävde mycket experimenterande och ombyggnad: att skära bort det som inte behövdes och lägga till de tabeller och fält som min vision krävde, allteftersom jag kom på mer som kanbanverktyget kunde göra. Ärligt talat var det ungefär 80 % av arbetet. När strukturen väl var på plats föll resten på plats förvånansvärt snabbt: med en stabil design blev generativ AI verkligen till hjälp för att bygga funktioner, eftersom den följde den befintliga strukturen och det blev mycket färre stora fel att hitta och rätta för hand.",
     "story5": "Hela projektet är öppen källkod: <bot>boten</bot>, <website>webbplatsen</website> och <api>API:t</api> har var sitt repository på GitHub."
+  },
+  "updates": {
+    "metaTitle": "Nyheter",
+    "metaDescription": "Vad som har ändrats i KanbanCord, det senaste först: nya funktioner och förbättringar av boten, webbplatsen och Discord-aktiviteten.",
+    "title": "Nyheter",
+    "intro": "Vad som har ändrats i KanbanCord, det senaste först.",
+    "englishOnly": "Nyheterna skrivs bara på engelska."
   },
   "support": {
     "metaTitle": "Stöd",

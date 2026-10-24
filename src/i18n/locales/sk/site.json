@@ -4,6 +4,7 @@
     "site": "Stránka",
     "breadcrumbs": "Omrvinková navigácia",
     "guides": "Návody",
+    "updates": "Novinky",
     "faq": "Časté otázky",
     "open": "Otvoriť KanbanCord",
     "about": "O projekte",
@@ -85,6 +86,13 @@
     "story3": "Popri štúdiu práca postupovala po kúskoch, s poriadnou dávkou odkladania. Asi rok po začiatku sa ukázalo, že existuje iný bot s presne rovnakým názvom od j4asper. Naše aplikácie na Discorde vznikli len šesť dní po sebe: <other>tá druhá</other> 30. októbra 2024, moja 5. novembra 2024. Ak budeš v Discorde hľadať KanbanCord, pokojne môžeš naraziť na ten druhý; tento web a bot, ktorého odtiaľto môžeš pridať, sú tie od {operator}.",
     "story4": "Zďaleka najťažší bol základ: ako majú nástenky, stĺpce, úlohy a oprávnenia zapadnúť do vlastných serverov, rolí a členov Discordu. Kým boli doménové modely tak, ako majú byť, trvalo to množstvo experimentov a prerábok: odstraňovanie toho, čo nebolo treba, a pridávanie tabuliek a polí, ktoré si vyžadovala moja predstava, ako pribúdali ďalšie nápady, čo by kanban nástroj mohol vedieť. Úprimne, bolo to asi 80 % práce. Keď sa štruktúra ustálila, zvyšok išiel prekvapivo rýchlo: so solídnym návrhom sa generatívna AI stala pri tvorbe funkcií naozaj užitočnou, pretože sa držala existujúcej štruktúry a veľkých chýb, ktoré bolo treba hľadať a opravovať ručne, bolo oveľa menej.",
     "story5": "Celý projekt je open source: <bot>bot</bot>, <website>web</website> aj <api>API</api> majú každý vlastný repozitár na GitHube."
+  },
+  "updates": {
+    "metaTitle": "Novinky",
+    "metaDescription": "Čo sa v KanbanCorde zmenilo, od najnovšieho: nové funkcie a vylepšenia bota, webu a aktivity Discordu.",
+    "title": "Novinky",
+    "intro": "Čo sa v KanbanCorde zmenilo, od najnovšieho.",
+    "englishOnly": "Novinky sú písané iba v angličtine."
   },
   "support": {
     "metaTitle": "Podpora",

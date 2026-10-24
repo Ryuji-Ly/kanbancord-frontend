@@ -4,6 +4,7 @@
     "site": "Trang web",
     "breadcrumbs": "Đường dẫn",
     "guides": "Hướng dẫn",
+    "updates": "Cập nhật",
     "faq": "Câu hỏi thường gặp",
     "open": "Mở KanbanCord",
     "about": "Giới thiệu",
@@ -85,6 +86,13 @@
     "story3": "Là sinh viên, tôi làm nó lúc có lúc không, xen giữa khá nhiều lần trì hoãn. Khoảng một năm sau khi bắt đầu, tôi phát hiện có một bot khác trùng tên y hệt, do j4asper tạo. Hai ứng dụng Discord của chúng tôi được tạo cách nhau chỉ sáu ngày: <other>của họ</other> vào ngày 30 tháng 10 năm 2024, của tôi vào ngày 5 tháng 11 năm 2024. Nếu bạn tìm KanbanCord trong Discord, rất có thể bạn sẽ gặp bot của họ; trang web này và bot bạn thêm từ đây là do {operator} làm.",
     "story4": "Phần khó nhất là phần nền móng: làm sao để bảng, cột, công việc và quyền khớp với máy chủ, vai trò và thành viên của chính Discord. Để mô hình miền đúng, tôi phải thử nghiệm và làm lại rất nhiều: bỏ đi những gì không cần và thêm các bảng dữ liệu cùng trường mà tầm nhìn của tôi đòi hỏi, khi tôi liên tục nghĩ ra thêm những điều công cụ kanban có thể làm. Thành thật mà nói, đó là khoảng 80% công sức. Khi cấu trúc đã ổn định, phần còn lại ghép lại nhanh đến bất ngờ: với một thiết kế vững chắc, AI tạo sinh thực sự hữu ích cho việc xây dựng tính năng, vì nó bám theo cấu trúc sẵn có và có ít lỗi lớn hơn hẳn phải tự tìm và sửa.",
     "story5": "Toàn bộ dự án là mã nguồn mở: <bot>bot</bot>, <website>trang web</website> và <api>API</api> đều có kho lưu trữ riêng trên GitHub."
+  },
+  "updates": {
+    "metaTitle": "Cập nhật",
+    "metaDescription": "Những thay đổi của KanbanCord, mới nhất trước: tính năng mới và cải tiến cho bot, trang web và Hoạt động Discord.",
+    "title": "Cập nhật",
+    "intro": "Những thay đổi của KanbanCord, mới nhất trước.",
+    "englishOnly": "Các bản cập nhật chỉ được viết bằng tiếng Anh."
   },
   "support": {
     "metaTitle": "Ủng hộ",

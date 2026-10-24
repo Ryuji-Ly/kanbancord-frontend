@@ -4,6 +4,7 @@
     "site": "Webhely",
     "breadcrumbs": "Morzsamenü",
     "guides": "Útmutatók",
+    "updates": "Újdonságok",
     "faq": "GYIK",
     "open": "KanbanCord megnyitása",
     "about": "Rólunk",
@@ -85,6 +86,13 @@
     "story3": "Diákként időnként dolgoztam rajta, közben bőven halogatva. Nagyjából egy évvel a kezdés után megtudtam, hogy létezik egy másik bot pontosan ugyanezzel a névvel, j4asper készítette. A Discord-alkalmazásainkat mindössze hat nap különbséggel hozták létre: <other>az övét</other> 2024. október 30-án, az enyémet 2024. november 5-én. Ha rákeresel a KanbanCordra a Discordban, könnyen lehet, hogy az övébe futsz bele; ez a webhely és az innen hozzáadható bot {operator} munkája.",
     "story4": "Messze a legnehezebb rész az alapozás volt: hogyan illeszkedjenek a táblák, oszlopok, feladatok és jogosultságok a Discord saját szervereihez, rangjaihoz és tagjaihoz. A tartománymodellek helyes kialakítása rengeteg kísérletezést és újraépítést igényelt: kivágtam, ami nem kellett, és hozzáadtam a táblákat és mezőket, amelyeket az elképzelésem megkívánt, miközben folyton újabb dolgok jutottak eszembe, amire a kanbaneszköz képes lehetne. Őszintén szólva ez volt a munka nagyjából 80%-a. Amint a szerkezet kialakult, a többi meglepően gyorsan összeállt: szilárd tervvel a generatív MI valóban hasznos lett a funkciók építésében, mert követte a meglévő szerkezetet, és sokkal kevesebb nagy hibát kellett kézzel megtalálni és kijavítani.",
     "story5": "Az egész projekt nyílt forráskódú: a <bot>bot</bot>, a <website>webhely</website> és az <api>API</api> mind saját tárolóval rendelkezik a GitHubon."
+  },
+  "updates": {
+    "metaTitle": "Újdonságok",
+    "metaDescription": "Mi változott a KanbanCordban, a legújabbal kezdve: új funkciók és fejlesztések a botban, a webhelyen és a Discord-tevékenységben.",
+    "title": "Újdonságok",
+    "intro": "Mi változott a KanbanCordban, a legújabbal kezdve.",
+    "englishOnly": "Az újdonságok csak angolul olvashatók."
   },
   "support": {
     "metaTitle": "Támogatás",
