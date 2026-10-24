@@ -55,7 +55,8 @@
     "namePlaceholder": "Název sloupce...",
     "options": "Možnosti sloupce",
     "delete": "Smazat sloupec",
-    "addTask": "+ Přidat úkol"
+    "addTask": "+ Přidat úkol",
+    "showAll": "Zobrazit vše ({count})"
   },
   "pickers": {
     "searchUser": "Hledat uživatele",

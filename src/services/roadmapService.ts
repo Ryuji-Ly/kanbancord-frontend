@@ -1,15 +1,13 @@
 import { apiUrl, parseError } from '../api/http'
 import { apiFetch } from '../api/session'
 
-export type RoadmapChip = { name: string; color: string | null }
-
 export type RoadmapTask = {
   id: string
   columnId: string
   title: string
   description?: string | null
-  labels?: RoadmapChip[]
-  priority?: RoadmapChip | null
+  labelIds?: string[]
+  priorityId?: string | null
 }
 
 export type Roadmap = {
@@ -17,7 +15,10 @@ export type Roadmap = {
   description: string | null
   /** The column anyone signed in may add an issue to; null when the board has none. */
   issuesColumnId: string | null
-  columns: { id: string; name: string }[]
+  columns: { id: string; name: string; color: string | null }[]
+  labels: { id: string; name: string; color: string }[]
+  /** Most urgent first: position 1 is P1. */
+  priorities: { id: string; name: string; color: string | null; position: number }[]
   tasks: RoadmapTask[]
 }
 

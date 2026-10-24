@@ -53,7 +53,8 @@
     "namePlaceholder": "Nombre de la columna…",
     "options": "Opciones de la columna",
     "delete": "Eliminar columna",
-    "addTask": "+ Añadir tarea"
+    "addTask": "+ Añadir tarea",
+    "showAll": "Mostrar todo ({count})"
   },
   "pickers": {
     "searchUser": "Buscar miembro",

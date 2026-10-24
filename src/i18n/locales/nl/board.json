@@ -51,7 +51,8 @@
     "namePlaceholder": "Kolomnaam...",
     "options": "Kolomopties",
     "delete": "Kolom verwijderen",
-    "addTask": "+ Taak toevoegen"
+    "addTask": "+ Taak toevoegen",
+    "showAll": "Alles tonen ({count})"
   },
   "pickers": {
     "searchUser": "Gebruiker zoeken",

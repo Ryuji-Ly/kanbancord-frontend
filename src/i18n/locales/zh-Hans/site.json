@@ -106,6 +106,7 @@
     "loading": "正在加载路线图...",
     "unavailable": "路线图暂时无法查看。",
     "emptyColumn": "暂无内容",
+    "noDetails": "没有详细信息。",
     "addTitle": "报告问题或想法",
     "addIntro": "发现了错误或有想法？把它添加到 Issues 列。每小时可以添加一条。",
     "signInIntro": "任何人都可以查看路线图。登录后即可在 Issues 列添加错误或想法。",

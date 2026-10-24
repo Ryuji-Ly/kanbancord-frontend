@@ -1,4 +1,4 @@
-import { useState, type CSSProperties, type DragEvent } from 'react'
+import { useEffect, useState, type CSSProperties, type DragEvent } from 'react'
 import { t } from '../../../i18n'
 import type { BoardColumnEntry } from '../../../services/boardColumnsService'
 import type { LabelEntry, PriorityEntry } from '../../../services/boardsService'
@@ -40,6 +40,29 @@ type BoardColumnProps = {
   onTaskDrop: (event: DragEvent<HTMLElement>) => void
 }
 
+/** How tall a column's tasks may be, in screen heights, before the rest is folded away. */
+const FOLD_SCREENS = 3
+
+/**
+ * Whether a list is taller than {@link FOLD_SCREENS} screens, kept up to date as it or the window
+ * changes size.
+ */
+function useTallerThanScreens(element: HTMLElement | null): boolean {
+  const [tall, setTall] = useState(false)
+  useEffect(() => {
+    if (!element) return
+    const check = () => setTall(element.scrollHeight > FOLD_SCREENS * window.innerHeight)
+    const observer = new ResizeObserver(check)
+    observer.observe(element)
+    window.addEventListener('resize', check)
+    return () => {
+      observer.disconnect()
+      window.removeEventListener('resize', check)
+    }
+  }, [element])
+  return Boolean(element) && tall
+}
+
 export function BoardColumn({
   column,
   tasks,
@@ -73,6 +96,12 @@ export function BoardColumn({
 }: BoardColumnProps) {
   const [editingName, setEditingName] = useState<string | null>(null)
   const editing = canEdit && editingName !== null
+  // A very long column (a Done column with a hundred tasks, say) is folded at three screens, with a
+  // button at the bottom to show the rest.
+  const [list, setList] = useState<HTMLUListElement | null>(null)
+  const tall = useTallerThanScreens(list)
+  const [unfolded, setUnfolded] = useState(false)
+  const folded = tall && !unfolded
 
   function finishRename() {
     const trimmed = editingName?.trim() ?? ''
@@ -160,7 +189,11 @@ export function BoardColumn({
           onDrop={onTaskDrop}
         >
           {tasks.length > 0 ? (
-            <ul className="kc-column-task-list">
+            <ul
+              ref={setList}
+              className={['kc-column-task-list', folded ? 'kc-column-task-list--folded' : ''].filter(Boolean).join(' ')}
+              style={folded ? ({ '--kc-fold-height': `${FOLD_SCREENS * 100}vh` } as CSSProperties) : undefined}
+            >
               {tasks.map((task) => (
                 <TaskCard
                   key={task.taskId}
@@ -182,6 +215,11 @@ export function BoardColumn({
               ))}
             </ul>
           ) : null}
+          {folded && (
+            <button type="button" className="kc-column-unfold-btn" data-no-column-drag="true" onClick={() => setUnfolded(true)}>
+              {t('board.column.showAll', { count: tasks.length })}
+            </button>
+          )}
         </div>
 
         {canCreateTask && (

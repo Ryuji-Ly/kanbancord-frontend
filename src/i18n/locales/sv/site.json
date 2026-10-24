@@ -106,6 +106,7 @@
     "loading": "Läser in färdplanen...",
     "unavailable": "Färdplanen är inte tillgänglig just nu.",
     "emptyColumn": "Inget än",
+    "noDetails": "Inga detaljer.",
     "addTitle": "Rapportera ett problem eller en idé",
     "addIntro": "Hittat en bugg eller har en idé? Lägg till den i kolumnen Issues. Du kan lägga till en per timme.",
     "signInIntro": "Alla kan läsa färdplanen. Logga in för att lägga till en bugg eller en idé i kolumnen Issues.",

@@ -51,7 +51,8 @@
     "namePlaceholder": "Oszlop neve...",
     "options": "Oszlop beállításai",
     "delete": "Oszlop törlése",
-    "addTask": "+ Feladat hozzáadása"
+    "addTask": "+ Feladat hozzáadása",
+    "showAll": "Az összes megjelenítése ({count})"
   },
   "pickers": {
     "searchUser": "Felhasználó keresése",

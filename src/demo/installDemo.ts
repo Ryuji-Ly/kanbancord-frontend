@@ -381,7 +381,7 @@ const ROUTES: [string, RegExp, Handler][] = [
   })],
   ['GET', /^\/api\/public\/roadmap$/, () => DEMO_ROADMAP],
   ['POST', /^\/api\/public\/roadmap\/issues$/, (_m, { body }) => {
-    const issue = { id: String(Date.now()), columnId: '1', labels: [], ...(body as { title: string; description?: string }) }
+    const issue = { id: String(Date.now()), columnId: '1', labelIds: [], ...(body as { title: string; description?: string }) }
     DEMO_ROADMAP.tasks = [issue, ...DEMO_ROADMAP.tasks]
     return issue
   }],
@@ -453,21 +453,28 @@ const DEMO_ROADMAP = {
   description: 'What is next for KanbanCord',
   issuesColumnId: '1',
   columns: [
-    { id: '1', name: 'Issues' },
-    { id: '2', name: 'To Do' },
-    { id: '3', name: 'In Progress' },
-    { id: '4', name: 'Done' },
+    { id: '1', name: 'Issues', color: null },
+    { id: '2', name: 'To Do', color: null },
+    { id: '3', name: 'In Progress', color: null },
+    { id: '4', name: 'Done', color: null },
+  ],
+  labels: [
+    { id: '1', name: 'Bug', color: '#ef4444' },
+    { id: '2', name: 'Feature', color: '#3b82f6' },
+    { id: '3', name: 'Website', color: '#10b981' },
+  ],
+  priorities: [
+    { id: '1', name: 'High', color: '#ea580c', position: 1 },
+    { id: '2', name: 'Medium', color: '#ca8a04', position: 2 },
   ],
   tasks: [
-    { id: '11', columnId: '1', title: 'Due date picker is hard to use on phones', labels: [{ name: 'Bug', color: '#ef4444' }] },
-    { id: '21', columnId: '2', title: 'Import from CSV or a pasted list', labels: [{ name: 'Feature', color: '#3b82f6' }],
-      priority: { name: 'High', color: '#ea580c' }, description: 'Paste a list, **one task per line**, into a column.' },
-    { id: '22', columnId: '2', title: 'Per-assignee completion', labels: [{ name: 'Feature', color: '#3b82f6' }] },
-    { id: '31', columnId: '3', title: 'Public roadmap', labels: [{ name: 'Website', color: '#10b981' }],
-      priority: { name: 'Medium', color: '#ca8a04' } },
-    { id: '41', columnId: '4', title: 'Updates page', labels: [{ name: 'Website', color: '#10b981' }] },
-    { id: '42', columnId: '4', title: 'Board import and export', labels: [{ name: 'Feature', color: '#3b82f6' }] },
-  ] as { id: string; columnId: string; title: string; description?: string; labels: { name: string; color: string }[]; priority?: { name: string; color: string } }[],
+    { id: '11', columnId: '1', title: 'Due date picker is hard to use on phones', labelIds: ['1'] },
+    { id: '21', columnId: '2', title: 'Import from CSV or a pasted list', labelIds: ['2'], priorityId: '1',
+      description: 'Paste a list, **one task per line**, into a column.' },
+    { id: '22', columnId: '2', title: 'Per-assignee completion', labelIds: ['2'] },
+    { id: '31', columnId: '3', title: 'Public roadmap', labelIds: ['3'], priorityId: '2' },
+    ...Array.from({ length: 40 }, (_, i) => ({ id: String(100 + i), columnId: '4', title: `Shipped change ${i + 1}`, labelIds: ['2'] })),
+  ] as { id: string; columnId: string; title: string; description?: string; labelIds?: string[]; priorityId?: string }[],
 }
 
 function route(method: string, path: string) {

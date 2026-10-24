@@ -106,6 +106,7 @@
     "loading": "Cargando la hoja de ruta...",
     "unavailable": "La hoja de ruta no está disponible en este momento.",
     "emptyColumn": "Nada por ahora",
+    "noDetails": "Sin detalles.",
     "addTitle": "Reportar un problema o una idea",
     "addIntro": "¿Encontraste un error o tienes una idea? Agrégalo a la columna Issues. Puedes agregar uno por hora.",
     "signInIntro": "Cualquiera puede leer la hoja de ruta. Inicia sesión para agregar un error o una idea a su columna Issues.",

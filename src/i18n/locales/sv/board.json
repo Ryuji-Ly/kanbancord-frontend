@@ -51,7 +51,8 @@
     "namePlaceholder": "Kolumnens namn...",
     "options": "Kolumnalternativ",
     "delete": "Ta bort kolumn",
-    "addTask": "+ Lägg till en uppgift"
+    "addTask": "+ Lägg till en uppgift",
+    "showAll": "Visa alla ({count})"
   },
   "pickers": {
     "searchUser": "Sök användare",

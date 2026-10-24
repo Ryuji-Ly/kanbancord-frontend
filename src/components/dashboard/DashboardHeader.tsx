@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { ActivityPresence } from '../../activity/ActivityPresence'
 import { UserMenu } from '../../features/account/UserMenu'
 import { t } from '../../i18n'
@@ -38,6 +39,10 @@ export function DashboardHeader({
           <p className="kc-subtitle">{subtitle}</p>
         </div>
       </button>
+      <nav className="kc-topbar-links" aria-label={t('site.nav.news')}>
+        <Link to="/updates">{t('site.nav.updates')}</Link>
+        <Link to="/roadmap">{t('site.nav.roadmap')}</Link>
+      </nav>
 
       <div className="kc-user-block">
         <ActivityPresence selfId={me?.userId} />

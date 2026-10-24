@@ -51,7 +51,8 @@
     "namePlaceholder": "Sütun adı…",
     "options": "Sütun seçenekleri",
     "delete": "Sütunu sil",
-    "addTask": "+ Görev ekle"
+    "addTask": "+ Görev ekle",
+    "showAll": "Tümünü göster ({count})"
   },
   "pickers": {
     "searchUser": "Üye ara",

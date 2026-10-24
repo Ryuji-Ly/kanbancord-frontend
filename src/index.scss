@@ -4669,76 +4669,13 @@ select.kc-input {
   font-size: 0.9rem;
 }
 
-/* The roadmap: the board's columns side by side, scrolling sideways when they do not fit. */
+/* The roadmap is drawn with the board page's columns; it only needs room around it. */
 .kc-roadmap-board {
-  display: flex;
-  gap: 14px;
-  align-items: flex-start;
   margin: 24px 0;
-  overflow-x: auto;
-  padding-bottom: 8px;
 }
 
-.kc-roadmap-column {
-  flex: 0 0 280px;
-  padding: 12px;
-  border: 1px solid var(--kc-border);
-  border-radius: 12px;
-  background: var(--kc-panel);
-
-  h2 {
-    margin: 0 0 10px;
-    font-size: 1rem;
-  }
-
-  ul {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-}
-
-.kc-roadmap-count {
-  margin-left: 6px;
-  color: var(--kc-text-dim);
-  font-weight: 400;
-}
-
-.kc-roadmap-card {
-  border: 1px solid var(--kc-border);
-  border-radius: 10px;
-  background: var(--kc-surface);
-}
-
-.kc-roadmap-card-head {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  width: 100%;
-  padding: 10px 12px;
-  border: 0;
-  background: none;
-  color: var(--kc-heading);
-  font: inherit;
-  text-align: left;
-  cursor: pointer;
-
-  &:disabled {
-    cursor: default;
-  }
-}
-
-.kc-roadmap-card-title {
-  font-weight: 600;
-  line-height: 1.35;
-}
-
-.kc-roadmap-card-details {
-  padding: 0 12px 10px;
-  font-size: 0.92rem;
+.kc-roadmap-details {
+  max-width: 640px;
 }
 
 .kc-roadmap-chips {
@@ -4772,5 +4709,75 @@ select.kc-input {
 
   .kc-field {
     width: 100%;
+  }
+}
+
+/* A column folded at three screens: its tasks fade out at the bottom, above a button for the rest. */
+.kc-column-task-list--folded {
+  max-height: var(--kc-fold-height, 300vh);
+  overflow: hidden;
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 120px), transparent);
+}
+
+.kc-column-unfold-btn {
+  width: 100%;
+  margin-top: 8px;
+  padding: 8px;
+  border: 1px dashed var(--kc-border);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--kc-heading);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:hover {
+    background: color-mix(in srgb, var(--kc-accent) 12%, transparent);
+  }
+}
+
+/* Updates and Roadmap beside the brand in the app's own header; in the user menu on narrow screens. */
+.kc-topbar-links {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-right: auto;
+
+  a {
+    color: var(--kc-text-dim);
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover {
+      color: var(--kc-heading);
+    }
+  }
+}
+
+.kc-user-menu-list .kc-user-menu-narrow {
+  display: none;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  border-radius: 6px;
+  color: var(--kc-text-soft);
+  font-size: 0.92rem;
+  text-decoration: none;
+
+  &:hover,
+  &:focus-visible {
+    background: color-mix(in srgb, var(--kc-accent) 16%, transparent);
+    color: var(--kc-text-strong);
+    outline: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .kc-topbar-links {
+    display: none;
+  }
+
+  .kc-user-menu-list .kc-user-menu-narrow {
+    display: flex;
   }
 }

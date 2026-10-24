@@ -1,53 +1,82 @@
-import { useState, type CSSProperties, type FormEvent } from 'react'
+import { useMemo, useState, type CSSProperties, type FormEvent } from 'react'
+import { createPortal } from 'react-dom'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { readableError } from '../../api/http'
 import { useSession } from '../../api/session'
+import { BoardColumn } from '../../features/board/components/BoardColumn'
 import { Markdown } from '../../features/board/components/Markdown'
 import { formatLocale, t } from '../../i18n'
 import { startDiscordLogin } from '../../services/authService'
-import { addRoadmapIssue, fetchRoadmap, IssueLimitError, type RoadmapChip, type RoadmapTask } from '../../services/roadmapService'
+import type { BoardColumnEntry } from '../../services/boardColumnsService'
+import type { LabelEntry, PriorityEntry } from '../../services/boardsService'
+import { addRoadmapIssue, fetchRoadmap, IssueLimitError, type Roadmap } from '../../services/roadmapService'
+import type { TaskEntry } from '../../services/tasksService'
 import { PublicLayout } from '../PublicLayout'
 
 const ROADMAP_KEY = ['roadmap'] as const
+const none = () => {}
 
-function Chip({ chip, priority = false }: { chip: RoadmapChip; priority?: boolean }) {
-  return (
-    <span className={`kc-roadmap-chip${priority ? ' kc-roadmap-chip--priority' : ''}`} style={chip.color ? ({ '--chip': chip.color } as CSSProperties) : undefined}>
-      {chip.name}
-    </span>
-  )
+/**
+ * The roadmap as the board page's own columns and cards, read-only: the same entries the board
+ * page draws, made from what the API shares publicly.
+ */
+function boardOf(roadmap: Roadmap) {
+  const columns: BoardColumnEntry[] = roadmap.columns.map((column, index) => ({
+    columnId: Number(column.id), boardId: 0, name: column.name, position: index + 1, color: column.color,
+    wipLimit: null, createdAt: '', updatedAt: '',
+  }))
+  const labels = new Map<string, LabelEntry>((roadmap.labels ?? []).map((label) => [label.id,
+    { labelId: Number(label.id), boardId: 0, name: label.name, color: label.color }]))
+  const prioritiesById = new Map<number, PriorityEntry>((roadmap.priorities ?? []).map((level) => [Number(level.id),
+    { priorityId: Number(level.id), boardId: 0, name: level.name, color: level.color, position: level.position }]))
+  const tasks: TaskEntry[] = roadmap.tasks.map((task, index) => ({
+    taskId: Number(task.id), boardId: 0, columnId: Number(task.columnId), title: task.title,
+    description: task.description ?? null, position: index, priorityId: task.priorityId ? Number(task.priorityId) : null,
+    dueDate: null, isArchived: false, metadata: null, createdBy: null, createdAt: '', updatedAt: '', completedAt: null,
+  }))
+  const labelsByTaskId = new Map<number, { label: LabelEntry }[]>(roadmap.tasks.map((task) => [Number(task.id),
+    (task.labelIds ?? []).map((id) => labels.get(id)).filter((label): label is LabelEntry => Boolean(label)).map((label) => ({ label }))]))
+  return { columns, tasks, labelsByTaskId, prioritiesById }
 }
 
-/** A task on the roadmap; its details open in place. */
-function RoadmapCard({ task }: { task: RoadmapTask }) {
-  const [open, setOpen] = useState(false)
-  const chips = [...(task.labels ?? [])]
-  const hasDetails = Boolean(task.description?.trim())
-  return (
-    <li className="kc-roadmap-card">
-      <button
-        type="button"
-        className="kc-roadmap-card-head"
-        aria-expanded={hasDetails ? open : undefined}
-        disabled={!hasDetails}
-        onClick={() => setOpen((value) => !value)}
-      >
-        {(chips.length > 0 || task.priority) && (
-          <span className="kc-roadmap-chips">
-            {task.priority && <Chip chip={task.priority} priority />}
-            {chips.map((chip) => (
-              <Chip key={chip.name} chip={chip} />
-            ))}
-          </span>
-        )}
-        <span className="kc-roadmap-card-title">{task.title}</span>
-      </button>
-      {open && hasDetails && (
-        <div className="kc-roadmap-card-details">
-          <Markdown>{task.description ?? ''}</Markdown>
+/** A task's details, read-only: its labels, priority and description. */
+function TaskDetails({ task, labels, priority, onClose }: {
+  task: TaskEntry
+  labels: LabelEntry[]
+  priority: PriorityEntry | null
+  onClose: () => void
+}) {
+  return createPortal(
+    <div className="kc-modal-overlay" role="dialog" aria-modal="true" aria-label={task.title} onClick={onClose}>
+      <div className="kc-modal kc-roadmap-details" onClick={(event) => event.stopPropagation()}>
+        <div className="kc-modal-header">
+          <h3 className="kc-modal-title" lang="en">{task.title}</h3>
         </div>
-      )}
-    </li>
+        <div className="kc-modal-body" lang="en">
+          {(labels.length > 0 || priority) && (
+            <p className="kc-roadmap-chips">
+              {priority && (
+                <span className="kc-roadmap-chip kc-roadmap-chip--priority" style={{ '--chip': priority.color ?? undefined } as CSSProperties}>
+                  {t('board.priority.rank', { position: priority.position })} {priority.name}
+                </span>
+              )}
+              {labels.map((label) => (
+                <span key={label.labelId} className="kc-roadmap-chip" style={{ '--chip': label.color } as CSSProperties}>
+                  {label.name}
+                </span>
+              ))}
+            </p>
+          )}
+          {task.description?.trim() ? <Markdown>{task.description}</Markdown> : <p className="kc-muted">{t('site.roadmap.noDetails')}</p>}
+        </div>
+        <div className="kc-modal-footer">
+          <button type="button" className="kc-btn kc-btn-ghost" onClick={onClose}>
+            {t('common.close')}
+          </button>
+        </div>
+      </div>
+    </div>,
+    document.body,
   )
 }
 
@@ -131,12 +160,15 @@ function AddIssue() {
 }
 
 /**
- * KanbanCord's own board, for everyone: what is being worked on, planned and done. Anyone can read
- * it; anyone signed in can add an issue to its Issues column.
+ * KanbanCord's own board, for everyone, drawn like any board: what is being worked on, planned and
+ * done. Anyone can read it and open a task; anyone signed in can add an issue to its Issues column.
  */
 export function RoadmapPage() {
   const query = useQuery({ queryKey: ROADMAP_KEY, queryFn: fetchRoadmap, staleTime: 60_000 })
   const roadmap = query.data
+  const board = useMemo(() => (roadmap ? boardOf(roadmap) : null), [roadmap])
+  const [openTaskId, setOpenTaskId] = useState<number | null>(null)
+  const openTask = board?.tasks.find((task) => task.taskId === openTaskId) ?? null
 
   return (
     <PublicLayout title={t('site.roadmap.metaTitle')} description={t('site.roadmap.metaDescription')} path="/roadmap" wide>
@@ -144,29 +176,52 @@ export function RoadmapPage() {
       <p>{t('site.roadmap.intro')}</p>
       {query.isPending && <p className="kc-muted">{t('site.roadmap.loading')}</p>}
       {(query.isError || (query.isSuccess && !roadmap)) && <p className="kc-muted">{t('site.roadmap.unavailable')}</p>}
-      {roadmap && (
+      {roadmap && board && (
         <>
-          <div className="kc-roadmap-board" lang="en">
-            {roadmap.columns.map((column) => {
-              const tasks = roadmap.tasks.filter((task) => task.columnId === column.id)
-              return (
-                <section key={column.id} className="kc-roadmap-column" aria-label={column.name}>
-                  <h2>
-                    {column.name} <span className="kc-roadmap-count">{tasks.length}</span>
-                  </h2>
-                  {tasks.length > 0 ? (
-                    <ul>
-                      {tasks.map((task) => (
-                        <RoadmapCard key={task.id} task={task} />
-                      ))}
-                    </ul>
-                  ) : (
-                    <p className="kc-muted">{t('site.roadmap.emptyColumn')}</p>
-                  )}
-                </section>
-              )
-            })}
-          </div>
+          <section className="kc-board-page-columns kc-roadmap-board" aria-label={roadmap.name} lang="en">
+            {board.columns.map((column) => (
+              <BoardColumn
+                key={column.columnId}
+                column={column}
+                tasks={board.tasks.filter((task) => task.columnId === column.columnId)}
+                assigneesByTaskId={{}}
+                labelsByTaskId={board.labelsByTaskId}
+                prioritiesById={board.prioritiesById}
+                rolesByTaskId={new Map()}
+                selectedTaskId={openTaskId}
+                canEdit={false}
+                canDelete={false}
+                canMove={false}
+                canCreateTask={false}
+                canMoveTasks={false}
+                menuOpen={false}
+                isDragPlaceholder={false}
+                draggedTaskId={null}
+                draggedTaskHeight={null}
+                isTaskDropTarget={false}
+                justDragged={() => false}
+                onRename={none}
+                onToggleMenu={none}
+                onRequestDelete={none}
+                onAddTask={none}
+                onOpenTask={(task) => setOpenTaskId(task.taskId)}
+                onColumnDragStart={none}
+                onColumnDragEnd={none}
+                onTaskDragStart={none}
+                onTaskDragEnd={none}
+                onTaskDragOver={none}
+                onTaskDrop={none}
+              />
+            ))}
+          </section>
+          {openTask && (
+            <TaskDetails
+              task={openTask}
+              labels={(board.labelsByTaskId.get(openTask.taskId) ?? []).map((entry) => entry.label)}
+              priority={openTask.priorityId === null ? null : (board.prioritiesById.get(openTask.priorityId) ?? null)}
+              onClose={() => setOpenTaskId(null)}
+            />
+          )}
           {roadmap.issuesColumnId && <AddIssue />}
         </>
       )}

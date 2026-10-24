@@ -106,6 +106,7 @@
     "loading": "A carregar o roteiro...",
     "unavailable": "O roteiro não está disponível neste momento.",
     "emptyColumn": "Nada por agora",
+    "noDetails": "Sem detalhes.",
     "addTitle": "Comunicar um problema ou uma ideia",
     "addIntro": "Encontrou um erro ou tem uma ideia? Adicione-o à coluna Issues. Pode adicionar um por hora.",
     "signInIntro": "Qualquer pessoa pode ler o roteiro. Inicie sessão para adicionar um erro ou uma ideia à coluna Issues.",
