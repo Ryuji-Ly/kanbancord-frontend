@@ -173,5 +173,59 @@
     "archive": "Archiválás",
     "restore": "Visszaállítás",
     "archivedNote": "Ez a feladat archiválva van: nincs a táblán, és visszaállításig nem módosítható."
+  },
+  "import": {
+    "title": "Feladatok importálása",
+    "titleFor": "Feladatok importálása ide: {name}",
+    "intro": "Illessz be egy listát vagy táblázatot, vagy válassz fájlt. Soronként egy feladat, felsorolásjellel, számmal vagy jelölőnégyzettel vagy anélkül; a behúzott tételek ellenőrzőlistává válnak, a címsorok oszlopot kezdenek, a kipipált tételek pedig az utolsó oszlopba kerülnek. Táblázatkezelőből, CSV-ből vagy Markdownból származó táblázatok és KanbanCord-táblafájlok is működnek.",
+    "source": "Honnan jönnek a feladatok",
+    "paste": "Beillesztés",
+    "file": "Fájl",
+    "placeholder": "- Első feladat\n- [x] Már kész\n  - Egy ellenőrzőlista-tétel\n# Másik oszlop\n- Második feladat",
+    "chooseFile": "Válassz szöveges, Markdown, CSV vagy táblafájlt",
+    "format": "Formátum",
+    "formats": {
+      "AUTO": "Felismerés",
+      "LIST": "Lista",
+      "CSV": "CSV",
+      "TSV": "Táblázatcellák (TSV)",
+      "MARKDOWN": "Markdown-táblázat",
+      "KANBANCORD": "KanbanCord-táblafájl"
+    },
+    "defaultColumn": "Az oszlop nélküli feladatok ide kerülnek",
+    "createColumns": "Azoknak az oszlopoknak a létrehozása, amelyek még nincsenek a táblán",
+    "fields": "Mit tartalmaz a táblázat egyes oszlopa",
+    "fieldNames": {
+      "TITLE": "Cím",
+      "DESCRIPTION": "Leírás",
+      "COLUMN": "Oszlop",
+      "DUE": "Határidő",
+      "PRIORITY": "Prioritás",
+      "LABELS": "Címkék",
+      "IGNORE": "Kihagyás"
+    },
+    "preview": "Előnézet",
+    "empty": "Illessz be egy listát vagy válassz fájlt, hogy lásd, mi lesz importálva.",
+    "previewFailed": "Az előnézet nem készült el",
+    "summary": "Feladatok: {tasks} · Oszlopok: {columns}",
+    "newColumn": "új",
+    "more": "és még: {count}",
+    "import": "Importálás ({count})",
+    "importing": "Importálás…",
+    "imported": "Importált feladatok: {count}",
+    "failed": "A feladatokat nem sikerült importálni",
+    "notes": {
+      "TOO_MANY": "Kihagyott feladatok, mert egyszerre legfeljebb 500 lehet: {count}",
+      "TITLE_SHORTENED": "200 karakterre rövidített címek, a teljes szöveg a leírásban: {count}",
+      "COLUMNS_NOT_CREATED": "A választott oszlopba tett feladatok, mert az oszlopukat nem hozhatod létre: {count}",
+      "TOO_MANY_COLUMNS": "A választott oszlopba tett feladatok, mert egy import legfeljebb 20 oszlopot hoz létre: {count}",
+      "DUE_DATES_OFF": "Kihagyott határidők, mert ezen a táblán ki vannak kapcsolva: {count}",
+      "DUE_UNREADABLE": "Olvashatatlan határidők (így írd: 2026-10-20 vagy 2026-10-20 18:00): {count}",
+      "PRIORITIES_OFF": "Kihagyott prioritások, mert ezen a táblán ki vannak kapcsolva: {count}",
+      "PRIORITY_UNKNOWN": "A táblán nem létező prioritások, kihagyva: {count}",
+      "LABELS_OFF": "Kihagyott címkék, mert ezen a táblán ki vannak kapcsolva: {count}",
+      "LABEL_UNKNOWN": "A táblán nem létező címkék, kihagyva: {count}",
+      "LABELS_NOT_ALLOWED": "Kihagyott címkék, mert nem adhatsz címkét a feladatokhoz: {count}"
+    }
   }
 }

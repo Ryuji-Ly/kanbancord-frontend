@@ -46,6 +46,7 @@
     "tickTitle": "勾選任務",
     "tick": "在貼文選單中選擇一個任務，它只會為你開啟，然後把它移到 Done。或者使用 <code>/task move task:... column:Done</code>。如果你的伺服器有附按鈕的<postsFeeds>更新推播</postsFeeds>，每則更新都會為每一欄顯示一個按鈕，勾選只要點一下。",
     "archive": "Done 太長了？<code>/column archive-tasks column:Done</code> 會一次把其中的所有任務移出看板。已封存的任務會保留所有內容：用 <code>/task restore</code> 還原某個任務，或在網站上用「已封存的任務」篩選找到它們。",
+    "import": "清單已經記在別處？一次全部匯入：在網站上從看板的 ⋯ 選單選擇<strong>Import tasks</strong>，或在 Discord 中使用 <code>/task import</code>。每行貼上一項，帶不帶項目符號或核取方塊都可以，也可以貼上試算表的儲存格；標題會成為欄，已勾選的項目會放進 Done。加入之前會先顯示預覽。",
     "sharedTitle": "共用的，而非個人的",
     "shared": "看板屬於伺服器，而不是某個人，並且遵循你的 Discord 身分組：該看到的人看得到，由你決定誰可以修改。這讓它很適合團隊任務、社群活動企劃、遊戲伺服器的建造清單或讀書會的作業。",
     "moreTitle": "當待辦清單不夠用時",

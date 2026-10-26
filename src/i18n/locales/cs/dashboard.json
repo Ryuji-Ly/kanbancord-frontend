@@ -35,7 +35,8 @@
     "pinned": "Připnuto",
     "settings": "Nastavení nástěnky",
     "export": "Export",
-    "exportNotAllowed": "Úkoly této nástěnky nevidíš, takže ji nemůžeš exportovat."
+    "exportNotAllowed": "Úkoly této nástěnky nevidíš, takže ji nemůžeš exportovat.",
+    "importTasks": "Importovat úkoly"
   },
   "boardModal": {
     "defaultColumns": {

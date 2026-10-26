@@ -169,5 +169,59 @@
     "archive": "アーカイブ",
     "restore": "復元",
     "archivedNote": "このタスクはアーカイブ済みです。ボードには表示されず、復元するまで変更できません。"
+  },
+  "import": {
+    "title": "タスクをインポート",
+    "titleFor": "{name}にタスクをインポート",
+    "intro": "リストや表を貼り付けるか、ファイルを選んでください。1行に1タスクで、箇条書き・番号・チェックボックスの有無は問いません。字下げした項目はチェックリストになり、見出しで列が始まり、チェック済みの項目は最後の列に入ります。表計算・CSV・Markdownの表や、KanbanCordのボードファイルも使えます。",
+    "source": "タスクの取り込み元",
+    "paste": "貼り付け",
+    "file": "ファイル",
+    "placeholder": "- 最初のタスク\n- [x] 完了済み\n  - チェックリストの項目\n# 別の列\n- 2番目のタスク",
+    "chooseFile": "テキスト、Markdown、CSV、またはボードのファイルを選択",
+    "format": "形式",
+    "formats": {
+      "AUTO": "自動判別",
+      "LIST": "リスト",
+      "CSV": "CSV",
+      "TSV": "表計算のセル（TSV）",
+      "MARKDOWN": "Markdownの表",
+      "KANBANCORD": "KanbanCordのボードファイル"
+    },
+    "defaultColumn": "列のないタスクの追加先",
+    "createColumns": "このボードにまだない列を作成する",
+    "fields": "表の各列の内容",
+    "fieldNames": {
+      "TITLE": "タイトル",
+      "DESCRIPTION": "説明",
+      "COLUMN": "列",
+      "DUE": "期限",
+      "PRIORITY": "優先度",
+      "LABELS": "ラベル",
+      "IGNORE": "取り込まない"
+    },
+    "preview": "プレビュー",
+    "empty": "リストを貼り付けるかファイルを選ぶと、取り込まれる内容が表示されます。",
+    "previewFailed": "プレビューを作成できませんでした",
+    "summary": "タスク：{tasks}・列：{columns}",
+    "newColumn": "新規",
+    "more": "ほか{count}件",
+    "import": "インポート（{count}）",
+    "importing": "インポート中…",
+    "imported": "インポートしたタスク：{count}",
+    "failed": "タスクをインポートできませんでした",
+    "notes": {
+      "TOO_MANY": "一度に500件までのため取り込まなかったタスク：{count}",
+      "TITLE_SHORTENED": "200文字に短縮したタイトル（全文は説明に記載）：{count}",
+      "COLUMNS_NOT_CREATED": "列を作成する権限がないため、選んだ列に入れたタスク：{count}",
+      "TOO_MANY_COLUMNS": "1回のインポートで作れる列は20までのため、選んだ列に入れたタスク：{count}",
+      "DUE_DATES_OFF": "このボードで期限がオフのため取り込まなかった期限：{count}",
+      "DUE_UNREADABLE": "読み取れなかった期限（2026-10-20 や 2026-10-20 18:00 の形で）：{count}",
+      "PRIORITIES_OFF": "このボードで優先度がオフのため取り込まなかった優先度：{count}",
+      "PRIORITY_UNKNOWN": "このボードにないため取り込まなかった優先度：{count}",
+      "LABELS_OFF": "このボードでラベルがオフのため取り込まなかったラベル：{count}",
+      "LABEL_UNKNOWN": "このボードにないため取り込まなかったラベル：{count}",
+      "LABELS_NOT_ALLOWED": "タスクにラベルを付ける権限がないため取り込まなかったラベル：{count}"
+    }
   }
 }

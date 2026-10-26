@@ -35,7 +35,8 @@
     "pinned": "已釘選",
     "settings": "看板設定",
     "export": "匯出",
-    "exportNotAllowed": "你無法檢視此看板的任務，因此無法匯出。"
+    "exportNotAllowed": "你無法檢視此看板的任務，因此無法匯出。",
+    "importTasks": "匯入任務"
   },
   "boardModal": {
     "defaultColumns": {

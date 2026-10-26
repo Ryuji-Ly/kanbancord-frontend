@@ -102,5 +102,6 @@
   "changeCount_few": "{count} изменения",
   "changeCount_many": "{count} изменений",
   "changeCount_other": "{count} изменения",
-  "columnTasksArchived": "архивировал(а) все задачи: {column} ({count})"
+  "columnTasksArchived": "архивировал(а) все задачи: {column} ({count})",
+  "tasksImported": "импортировал(а) задачи: {board} ({count})"
 }

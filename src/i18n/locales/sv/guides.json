@@ -46,6 +46,7 @@
     "tickTitle": "Bocka av uppgifter",
     "tick": "Välj en uppgift i inläggets meny för att öppna den bara för dig och flytta den sedan till Done. Eller använd <code>/task move task:... column:Done</code>. Om din server har ett <postsFeeds>uppdateringsflöde</postsFeeds> med knappar visar varje uppdatering en knapp per kolumn, så att bocka av är ett klick.",
     "archive": "Blir Done för lång? <code>/column archive-tasks column:Done</code> tar bort alla uppgifter i den från tavlan på en gång. Arkiverade uppgifter behåller allt: ta tillbaka en med <code>/task restore</code>, eller hitta dem på webbplatsen med filtret Arkiverade uppgifter.",
+    "import": "Har du redan listan någon annanstans? Ta in den på en gång: välj <strong>Import tasks</strong> i tavlans ⋯-meny på webbplatsen eller använd <code>/task import</code> i Discord. Klistra in en punkt per rad, med eller utan punkter eller kryssrutor, eller celler från ett kalkylark; rubriker blir kolumner och ikryssade punkter hamnar i Done. Du ser en förhandsvisning först.",
     "sharedTitle": "Delad, inte personlig",
     "shared": "En tavla tillhör servern, inte en person, och följer dina Discord-roller: de som ska se den ser den, och du bestämmer vem som får ändra den. Det gör den till ett bra val för ett teams uppgifter, en communitys evenemangsplanering, en spelservers bygglista eller en studiegrupps uppgifter.",
     "moreTitle": "När en att göra-lista inte räcker",

@@ -24,7 +24,9 @@ Discord through the bot; the website is there for the big picture and the finer 
 - **Archiving**: take a task, or every task in a column, off the board while keeping it; the Archived tasks filter
   shows them, and opening one restores it.
 - **Pinned boards**: pin boards from any server to the top of the dashboard, from a board's ⋯ menu (which also holds
-  its settings, export, archive and delete). Pins are saved with the account, so they follow you to every device.
+  its settings, export, import, archive and delete). Pins are saved with the account, so they follow you to every device.
+- **Importing tasks** into a board: a pasted list (bullets, numbers, checkboxes, headings as columns), spreadsheet cells,
+  CSV or Markdown tables, or a board file, with a preview of where each task goes before anything is added.
 - **Tasks in full**: descriptions with checklists, images and videos, assignees, labels, priorities, due dates and
   comments.
 - **Settings for each server and board**: features and simple mode, labels and priority levels, update feeds and what

@@ -92,6 +92,37 @@ let feeds = [
   },
 ]
 
+/** A rough stand-in for the API's reading of a list: one task per line, headings as columns. */
+function demoImportPlan(body: unknown) {
+  const text = String((body as { text?: string } | null)?.text ?? '')
+  let column = data.COLUMNS[0].name
+  const tasks: { title: string; column: string }[] = []
+  for (const raw of text.split('\n')) {
+    const line = raw.trim()
+    if (!line) continue
+    const heading = line.match(/^#{1,6}\s+(.+)$/)
+    if (heading) {
+      column = heading[1]
+      continue
+    }
+    const done = /^[-*+]\s+\[[xX]]/.test(line)
+    const title = line.replace(/^([-*+]|\d+[.)])\s+/, '').replace(/^\[[ xX]]\s*/, '')
+    tasks.push({ title, column: done ? data.COLUMNS[data.COLUMNS.length - 1].name : column })
+  }
+  const names = [...new Set(tasks.map((task) => task.column))]
+  return {
+    format: 'LIST',
+    headers: [],
+    fields: [],
+    columns: names.map((name) => {
+      const existing = data.COLUMNS.find((entry) => entry.name.toLowerCase() === name.toLowerCase())
+      return { columnId: existing ? String(existing.columnId) : undefined, name, created: !existing, tasks: tasks.filter((task) => task.column === name).length }
+    }),
+    tasks,
+    notes: [],
+  }
+}
+
 /** Tasks archived in the demo, which leave the board until restored. */
 const archivedTaskIds = new Set<number>()
 
@@ -411,6 +442,7 @@ const ROUTES: [string, RegExp, Handler][] = [
     else archivedTaskIds.delete(Number(m[1]))
     return task && { ...task, isArchived: archived }
   }],
+  ['POST', /^\/api\/servers\/\d+\/boards\/\d+\/import-tasks(\/preview)?$/, (_m, { body }) => demoImportPlan(body)],
   ['POST', /^\/api\/servers\/\d+\/boards\/\d+\/columns\/(\d+)\/archive-tasks$/, (m) => {
     const tasks = data.TASKS.filter((task) => task.columnId === Number(m[1]) && !archivedTaskIds.has(task.taskId))
     tasks.forEach((task) => archivedTaskIds.add(task.taskId))

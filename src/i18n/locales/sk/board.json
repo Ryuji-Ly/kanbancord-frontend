@@ -181,5 +181,59 @@
     "archive": "Archivovať",
     "restore": "Obnoviť",
     "archivedNote": "Táto úloha je archivovaná: nie je na nástenke a nedá sa meniť, kým nebude obnovená."
+  },
+  "import": {
+    "title": "Importovať úlohy",
+    "titleFor": "Importovať úlohy do {name}",
+    "intro": "Vlož zoznam alebo tabuľku, alebo vyber súbor. Jedna úloha na riadok, s odrážkami, číslami či začiarkavacími políčkami alebo bez nich; odsadené položky sa stanú checklistom, nadpisy začínajú stĺpec a začiarknuté položky idú do posledného stĺpca. Fungujú aj tabuľky z tabuľkového editora, CSV alebo Markdownu a súbory nástenok KanbanCord.",
+    "source": "Odkiaľ úlohy pochádzajú",
+    "paste": "Vložiť",
+    "file": "Súbor",
+    "placeholder": "- Prvá úloha\n- [x] Už hotové\n  - Položka checklistu\n# Iný stĺpec\n- Druhá úloha",
+    "chooseFile": "Vyber textový, Markdown, CSV alebo súbor nástenky",
+    "format": "Formát",
+    "formats": {
+      "AUTO": "Rozpoznať",
+      "LIST": "Zoznam",
+      "CSV": "CSV",
+      "TSV": "Bunky tabuľky (TSV)",
+      "MARKDOWN": "Tabuľka v Markdowne",
+      "KANBANCORD": "Súbor nástenky KanbanCord"
+    },
+    "defaultColumn": "Úlohy bez stĺpca pôjdu do",
+    "createColumns": "Vytvoriť stĺpce, ktoré táto nástenka ešte nemá",
+    "fields": "Čo obsahuje každý stĺpec tabuľky",
+    "fieldNames": {
+      "TITLE": "Názov",
+      "DESCRIPTION": "Popis",
+      "COLUMN": "Stĺpec",
+      "DUE": "Termín",
+      "PRIORITY": "Priorita",
+      "LABELS": "Štítky",
+      "IGNORE": "Vynechať"
+    },
+    "preview": "Náhľad",
+    "empty": "Vlož zoznam alebo vyber súbor a uvidíš, čo sa naimportuje.",
+    "previewFailed": "Náhľad sa nepodarilo vytvoriť",
+    "summary": "Úlohy: {tasks} · Stĺpce: {columns}",
+    "newColumn": "nový",
+    "more": "a ďalšie: {count}",
+    "import": "Importovať ({count})",
+    "importing": "Importuje sa…",
+    "imported": "Importované úlohy: {count}",
+    "failed": "Úlohy sa nepodarilo naimportovať",
+    "notes": {
+      "TOO_MANY": "Vynechané úlohy, lebo naraz ide najviac 500: {count}",
+      "TITLE_SHORTENED": "Názvy skrátené na 200 znakov, celý text je v popise: {count}",
+      "COLUMNS_NOT_CREATED": "Úlohy dané do zvoleného stĺpca, lebo ich stĺpec nemôžeš vytvoriť: {count}",
+      "TOO_MANY_COLUMNS": "Úlohy dané do zvoleného stĺpca, lebo import vytvorí najviac 20 stĺpcov: {count}",
+      "DUE_DATES_OFF": "Vynechané termíny, lebo termíny sú na tejto nástenke vypnuté: {count}",
+      "DUE_UNREADABLE": "Nečitateľné termíny (píš ich ako 2026-10-20 alebo 2026-10-20 18:00): {count}",
+      "PRIORITIES_OFF": "Vynechané priority, lebo priority sú na tejto nástenke vypnuté: {count}",
+      "PRIORITY_UNKNOWN": "Priority, ktoré táto nástenka nemá, vynechané: {count}",
+      "LABELS_OFF": "Vynechané štítky, lebo štítky sú na tejto nástenke vypnuté: {count}",
+      "LABEL_UNKNOWN": "Štítky, ktoré táto nástenka nemá, vynechané: {count}",
+      "LABELS_NOT_ALLOWED": "Vynechané štítky, lebo nemôžeš pridávať štítky k úlohám: {count}"
+    }
   }
 }

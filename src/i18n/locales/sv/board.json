@@ -173,5 +173,59 @@
     "archive": "Arkivera",
     "restore": "Återställ",
     "archivedNote": "Den här uppgiften är arkiverad: den är inte på tavlan och kan inte ändras förrän den har återställts."
+  },
+  "import": {
+    "title": "Importera uppgifter",
+    "titleFor": "Importera uppgifter till {name}",
+    "intro": "Klistra in en lista eller tabell, eller välj en fil. En uppgift per rad, med eller utan punkter, nummer eller kryssrutor; indragna punkter blir en checklista, rubriker börjar en kolumn och ikryssade punkter hamnar i sista kolumnen. Tabeller från ett kalkylark, CSV eller Markdown och KanbanCord-tavelfiler fungerar också.",
+    "source": "Var uppgifterna kommer ifrån",
+    "paste": "Klistra in",
+    "file": "Fil",
+    "placeholder": "- Första uppgiften\n- [x] Redan klar\n  - En punkt i checklistan\n# En annan kolumn\n- Andra uppgiften",
+    "chooseFile": "Välj en text-, Markdown-, CSV- eller tavelfil",
+    "format": "Format",
+    "formats": {
+      "AUTO": "Avgör själv",
+      "LIST": "Lista",
+      "CSV": "CSV",
+      "TSV": "Kalkylarksceller (TSV)",
+      "MARKDOWN": "Markdown-tabell",
+      "KANBANCORD": "KanbanCord-tavelfil"
+    },
+    "defaultColumn": "Uppgifter utan kolumn hamnar i",
+    "createColumns": "Skapa kolumnerna som tavlan inte har än",
+    "fields": "Vad varje kolumn i tabellen innehåller",
+    "fieldNames": {
+      "TITLE": "Titel",
+      "DESCRIPTION": "Beskrivning",
+      "COLUMN": "Kolumn",
+      "DUE": "Förfallodatum",
+      "PRIORITY": "Prioritet",
+      "LABELS": "Etiketter",
+      "IGNORE": "Utelämna"
+    },
+    "preview": "Förhandsvisning",
+    "empty": "Klistra in en lista eller välj en fil för att se vad som importeras.",
+    "previewFailed": "Förhandsvisningen kunde inte skapas",
+    "summary": "Uppgifter: {tasks} · Kolumner: {columns}",
+    "newColumn": "ny",
+    "more": "och {count} till",
+    "import": "Importera ({count})",
+    "importing": "Importerar…",
+    "imported": "Importerade uppgifter: {count}",
+    "failed": "Uppgifterna kunde inte importeras",
+    "notes": {
+      "TOO_MANY": "Utelämnade uppgifter, eftersom högst 500 går åt gången: {count}",
+      "TITLE_SHORTENED": "Titlar förkortade till 200 tecken, med hela texten i beskrivningen: {count}",
+      "COLUMNS_NOT_CREATED": "Uppgifter lagda i den valda kolumnen, eftersom du inte får skapa deras kolumn: {count}",
+      "TOO_MANY_COLUMNS": "Uppgifter lagda i den valda kolumnen, eftersom en import skapar högst 20 kolumner: {count}",
+      "DUE_DATES_OFF": "Utelämnade förfallodatum, eftersom de är avstängda på tavlan: {count}",
+      "DUE_UNREADABLE": "Oläsbara förfallodatum (skriv dem som 2026-10-20 eller 2026-10-20 18:00): {count}",
+      "PRIORITIES_OFF": "Utelämnade prioriteter, eftersom de är avstängda på tavlan: {count}",
+      "PRIORITY_UNKNOWN": "Prioriteter som tavlan inte har, utelämnade: {count}",
+      "LABELS_OFF": "Utelämnade etiketter, eftersom de är avstängda på tavlan: {count}",
+      "LABEL_UNKNOWN": "Etiketter som tavlan inte har, utelämnade: {count}",
+      "LABELS_NOT_ALLOWED": "Utelämnade etiketter, eftersom du inte får lägga till etiketter på uppgifter: {count}"
+    }
   }
 }

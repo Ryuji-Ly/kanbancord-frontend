@@ -35,7 +35,8 @@
     "pinned": "Kitűzve",
     "settings": "Tábla beállításai",
     "export": "Exportálás",
-    "exportNotAllowed": "Nem látod ennek a táblának a feladatait, ezért nem exportálhatod."
+    "exportNotAllowed": "Nem látod ennek a táblának a feladatait, ezért nem exportálhatod.",
+    "importTasks": "Feladatok importálása"
   },
   "boardModal": {
     "defaultColumns": {

@@ -46,6 +46,7 @@
     "tickTitle": "Bifarea sarcinilor",
     "tick": "Alege o sarcină din meniul postării ca s-o deschizi doar pentru tine, apoi mut-o în Done. Sau folosește <code>/task move task:... column:Done</code>. Dacă serverul tău are un <postsFeeds>flux de actualizări</postsFeeds> cu butoane, fiecare actualizare arată câte un buton pentru fiecare coloană, așa că bifarea e un singur clic.",
     "archive": "Done devine prea lungă? <code>/column archive-tasks column:Done</code> scoate de pe panou toate sarcinile din ea dintr-odată. Sarcinile arhivate își păstrează totul: adu una înapoi cu <code>/task restore</code> sau găsește-le pe site cu filtrul Sarcini arhivate.",
+    "import": "Ții deja lista în altă parte? Adu-o dintr-odată: alege <strong>Import tasks</strong> din meniul ⋯ al panoului pe site sau folosește <code>/task import</code> în Discord. Lipește câte un element pe rând, cu sau fără buline ori casete, sau celulele dintr-o foaie de calcul; titlurile devin coloane, iar elementele bifate merg în Done. Vezi o previzualizare înainte să se adauge ceva.",
     "sharedTitle": "Comună, nu personală",
     "shared": "Un panou aparține serverului, nu unei persoane, și urmează rolurile tale din Discord: cine trebuie să-l vadă, îl vede, iar tu decizi cine îl poate schimba. Asta îl face potrivit pentru sarcinile unei echipe, planificarea evenimentelor unei comunități, lista de construcții a unui server de joc sau temele unui grup de studiu.",
     "moreTitle": "Când o listă de sarcini nu mai ajunge",

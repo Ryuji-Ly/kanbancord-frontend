@@ -35,7 +35,8 @@
     "pinned": "Sabitlendi",
     "settings": "Pano ayarları",
     "export": "Dışa aktar",
-    "exportNotAllowed": "Bu panonun görevlerini göremediğiniz için onu dışa aktaramazsınız."
+    "exportNotAllowed": "Bu panonun görevlerini göremediğiniz için onu dışa aktaramazsınız.",
+    "importTasks": "Görevleri içe aktar"
   },
   "boardModal": {
     "defaultColumns": {

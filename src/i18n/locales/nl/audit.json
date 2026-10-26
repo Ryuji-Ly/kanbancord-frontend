@@ -94,5 +94,6 @@
   "viaDiscord": "via Discord",
   "changeCount_one": "{count} wijziging",
   "changeCount_other": "{count} wijzigingen",
-  "columnTasksArchived": "archiveerde alle taken in {column} ({count})"
+  "columnTasksArchived": "archiveerde alle taken in {column} ({count})",
+  "tasksImported": "importeerde taken in {board} ({count})"
 }

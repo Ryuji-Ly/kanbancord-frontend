@@ -46,6 +46,7 @@
     "tickTitle": "Aufgaben abhaken",
     "tick": "Wähle eine Aufgabe im Menü des Posts, um sie nur für dich zu öffnen, und verschiebe sie dann nach Done. Oder führe <code>/task move task:... column:Done</code> aus. Hat dein Server einen <postsFeeds>Update-Feed</postsFeeds> mit Schaltflächen, zeigt jedes Update eine Schaltfläche pro Spalte, abhaken ist dann ein Klick.",
     "archive": "Wird Done zu lang? <code>/column archive-tasks column:Done</code> nimmt alle Aufgaben darin auf einmal vom Board. Archivierte Aufgaben behalten alles: Hol eine mit <code>/task restore</code> zurück, oder finde sie auf der Website über den Filter „Archivierte Aufgaben“.",
+    "import": "Du führst die Liste schon woanders? Hol sie auf einmal herein: Wähle <strong>Import tasks</strong> im ⋯-Menü des Boards auf der Website oder nutze <code>/task import</code> in Discord. Füge einen Punkt pro Zeile ein, mit oder ohne Aufzählungszeichen oder Kästchen, oder Zellen aus einer Tabelle; Überschriften werden zu Spalten und abgehakte Punkte kommen nach Done. Vorher siehst du eine Vorschau.",
     "sharedTitle": "Gemeinsam, nicht persönlich",
     "shared": "Ein Board gehört dem Server, nicht einer Person, und es folgt deinen Discord-Rollen: Alle, die es sehen sollen, können es sehen, und du entscheidest, wer es ändern darf. Damit passt es gut für die Aufgaben eines Teams, die Eventplanung einer Community, die Bauliste eines Gaming-Servers oder die Aufgaben einer Lerngruppe.",
     "moreTitle": "Wenn eine To-do-Liste nicht reicht",

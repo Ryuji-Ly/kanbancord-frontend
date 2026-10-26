@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type MouseEvent as ReactMouseEvent } from 'react'
 import { createPortal } from 'react-dom'
-import { FiArchive, FiDownload, FiMoreHorizontal, FiRotateCcw, FiSettings, FiTrash2, FiX } from 'react-icons/fi'
+import { FiArchive, FiDownload, FiMoreHorizontal, FiRotateCcw, FiSettings, FiTrash2, FiUpload, FiX } from 'react-icons/fi'
 import { LuPin, LuPinOff } from 'react-icons/lu'
 import { readableError } from '../../../api/http'
 import { t } from '../../../i18n'
@@ -8,6 +8,7 @@ import { Trans } from '../../../i18n/Trans'
 import { ConfirmDialog } from '../../../features/board/components/ConfirmDialog'
 import { useBoardSnapshot } from '../../../features/board/boardQueries'
 import { BoardExportSettings } from '../../../features/boardTransfer/BoardExportSettings'
+import { ImportTasksDialog } from '../../../features/boardTransfer/ImportTasksDialog'
 import { useServerMutations } from '../../../features/dashboard/serverMutations'
 import { usePinnedBoards } from '../../../features/dashboard/usePinnedBoards'
 import type { BoardEntry } from '../../../services/boardsService'
@@ -19,6 +20,8 @@ type BoardActionsMenuProps = {
   canOpenSettings: boolean
   canArchive: boolean
   canDelete: boolean
+  /** May add tasks, so may import them from a list or a file. */
+  canImport: boolean
   onOpenSettings: () => void
   /** The board was archived or restored. */
   onChanged?: () => void
@@ -28,11 +31,11 @@ type BoardActionsMenuProps = {
   showError: (text: string) => void
 }
 
-type Dialog = 'export' | 'archive' | 'delete'
+type Dialog = 'export' | 'import' | 'archive' | 'delete'
 
 /**
  * Everything one can do with a board besides opening it, behind one ⋯ button: pinning it to the
- * dashboard, its settings, exporting it, and archiving or deleting it. The settings stay about
+ * dashboard, its settings, exporting it, importing tasks into it, and archiving or deleting it. The settings stay about
  * configuring the board; the rest opens its own small dialog. Pinning is personal, so everyone who
  * can see the board gets the menu.
  */
@@ -42,6 +45,7 @@ export function BoardActionsMenu({
   canOpenSettings,
   canArchive,
   canDelete,
+  canImport,
   onOpenSettings,
   onChanged,
   onDeleted,
@@ -149,6 +153,14 @@ export function BoardActionsMenu({
               {t('dashboard.boards.export')}
             </button>
           </li>
+          {canImport && !board.isArchived && (
+            <li role="none">
+              <button type="button" role="menuitem" className="kc-actions-menu-item" onClick={choose(() => setDialog('import'))}>
+                <FiUpload aria-hidden="true" />
+                {t('dashboard.boards.importTasks')}
+              </button>
+            </li>
+          )}
           {canArchive && (
             <li role="none">
               <button type="button" role="menuitem" className="kc-actions-menu-item" onClick={choose(() => setDialog('archive'))}>
@@ -174,6 +186,15 @@ export function BoardActionsMenu({
       )}
 
       {dialog === 'export' && <ExportDialog serverId={serverId} board={board} onClose={() => setDialog(null)} />}
+      {dialog === 'import' && (
+        <ImportTasksDialog
+          serverId={serverId}
+          boardId={String(board.boardId)}
+          boardName={board.name}
+          onClose={() => setDialog(null)}
+          showToast={showToast}
+        />
+      )}
 
       {dialog === 'archive' && (
         <ConfirmDialog

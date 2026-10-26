@@ -181,5 +181,59 @@
     "archive": "Zarchiwizuj",
     "restore": "Przywróć",
     "archivedNote": "To zadanie jest zarchiwizowane: nie ma go na tablicy i nie można go zmienić, dopóki nie zostanie przywrócone."
+  },
+  "import": {
+    "title": "Importuj zadania",
+    "titleFor": "Importuj zadania do {name}",
+    "intro": "Wklej listę lub tabelę albo wybierz plik. Jedno zadanie w wierszu, z punktorami, numerami lub polami wyboru albo bez nich; wcięte punkty stają się listą kontrolną, nagłówki zaczynają kolumnę, a zaznaczone punkty trafiają do ostatniej kolumny. Działają też tabele z arkusza, CSV lub Markdown oraz pliki tablic KanbanCord.",
+    "source": "Skąd pochodzą zadania",
+    "paste": "Wklej",
+    "file": "Plik",
+    "placeholder": "- Pierwsze zadanie\n- [x] Już zrobione\n  - Punkt listy kontrolnej\n# Inna kolumna\n- Drugie zadanie",
+    "chooseFile": "Wybierz plik tekstowy, Markdown, CSV lub plik tablicy",
+    "format": "Format",
+    "formats": {
+      "AUTO": "Wykryj",
+      "LIST": "Lista",
+      "CSV": "CSV",
+      "TSV": "Komórki arkusza (TSV)",
+      "MARKDOWN": "Tabela Markdown",
+      "KANBANCORD": "Plik tablicy KanbanCord"
+    },
+    "defaultColumn": "Zadania bez kolumny trafiają do",
+    "createColumns": "Utwórz kolumny, których ta tablica jeszcze nie ma",
+    "fields": "Co zawiera każda kolumna tabeli",
+    "fieldNames": {
+      "TITLE": "Tytuł",
+      "DESCRIPTION": "Opis",
+      "COLUMN": "Kolumna",
+      "DUE": "Termin",
+      "PRIORITY": "Priorytet",
+      "LABELS": "Etykiety",
+      "IGNORE": "Pomiń"
+    },
+    "preview": "Podgląd",
+    "empty": "Wklej listę lub wybierz plik, aby zobaczyć, co zostanie zaimportowane.",
+    "previewFailed": "Nie udało się przygotować podglądu",
+    "summary": "Zadania: {tasks} · Kolumny: {columns}",
+    "newColumn": "nowa",
+    "more": "i jeszcze: {count}",
+    "import": "Importuj ({count})",
+    "importing": "Importowanie…",
+    "imported": "Zaimportowane zadania: {count}",
+    "failed": "Nie udało się zaimportować zadań",
+    "notes": {
+      "TOO_MANY": "Pominięte zadania, bo naraz można najwyżej 500: {count}",
+      "TITLE_SHORTENED": "Tytuły skrócone do 200 znaków, pełny tekst w opisie: {count}",
+      "COLUMNS_NOT_CREATED": "Zadania umieszczone w wybranej kolumnie, bo nie możesz utworzyć ich kolumny: {count}",
+      "TOO_MANY_COLUMNS": "Zadania umieszczone w wybranej kolumnie, bo import tworzy najwyżej 20 kolumn: {count}",
+      "DUE_DATES_OFF": "Pominięte terminy, bo terminy są na tej tablicy wyłączone: {count}",
+      "DUE_UNREADABLE": "Nieczytelne terminy (zapisz je jak 2026-10-20 lub 2026-10-20 18:00): {count}",
+      "PRIORITIES_OFF": "Pominięte priorytety, bo priorytety są na tej tablicy wyłączone: {count}",
+      "PRIORITY_UNKNOWN": "Priorytety, których ta tablica nie ma, pominięte: {count}",
+      "LABELS_OFF": "Pominięte etykiety, bo etykiety są na tej tablicy wyłączone: {count}",
+      "LABEL_UNKNOWN": "Etykiety, których ta tablica nie ma, pominięte: {count}",
+      "LABELS_NOT_ALLOWED": "Pominięte etykiety, bo nie możesz dodawać etykiet do zadań: {count}"
+    }
   }
 }

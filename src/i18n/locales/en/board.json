@@ -173,5 +173,59 @@
     "archive": "Archive",
     "restore": "Restore",
     "archivedNote": "This task is archived: it is off the board and cannot be changed until it is restored."
+  },
+  "import": {
+    "title": "Import tasks",
+    "titleFor": "Import tasks into {name}",
+    "intro": "Paste a list or a table, or choose a file. One task per line, with or without bullets, numbers or checkboxes; indented items become a checklist, headings start a column, and ticked items go to the last column. Tables from a spreadsheet, CSV or Markdown, and KanbanCord board files, work too.",
+    "source": "Where the tasks come from",
+    "paste": "Paste",
+    "file": "File",
+    "placeholder": "- First task\n- [x] Already done\n  - A checklist item\n# Another column\n- Second task",
+    "chooseFile": "Choose a text, Markdown, CSV or board file",
+    "format": "Format",
+    "formats": {
+      "AUTO": "Work it out",
+      "LIST": "List",
+      "CSV": "CSV",
+      "TSV": "Spreadsheet cells (TSV)",
+      "MARKDOWN": "Markdown table",
+      "KANBANCORD": "KanbanCord board file"
+    },
+    "defaultColumn": "Tasks without a column go to",
+    "createColumns": "Create the columns this board doesn't have yet",
+    "fields": "What each column of the table holds",
+    "fieldNames": {
+      "TITLE": "Title",
+      "DESCRIPTION": "Description",
+      "COLUMN": "Column",
+      "DUE": "Due Date",
+      "PRIORITY": "Priority",
+      "LABELS": "Labels",
+      "IGNORE": "Leave out"
+    },
+    "preview": "Preview",
+    "empty": "Paste a list or choose a file to see what will be imported.",
+    "previewFailed": "The preview could not be made",
+    "summary": "Tasks: {tasks} · Columns: {columns}",
+    "newColumn": "new",
+    "more": "and {count} more",
+    "import": "Import ({count})",
+    "importing": "Importing…",
+    "imported": "Tasks imported: {count}",
+    "failed": "The tasks could not be imported",
+    "notes": {
+      "TOO_MANY": "Tasks left out, as 500 is the most at once: {count}",
+      "TITLE_SHORTENED": "Titles shortened to 200 characters, with the full text in the description: {count}",
+      "COLUMNS_NOT_CREATED": "Tasks put in the chosen column, as you may not create their column: {count}",
+      "TOO_MANY_COLUMNS": "Tasks put in the chosen column, as an import creates at most 20 columns: {count}",
+      "DUE_DATES_OFF": "Due dates left out, as due dates are off on this board: {count}",
+      "DUE_UNREADABLE": "Due dates that could not be read (write them like 2026-10-20 or 2026-10-20 18:00): {count}",
+      "PRIORITIES_OFF": "Priorities left out, as priorities are off on this board: {count}",
+      "PRIORITY_UNKNOWN": "Priorities this board doesn't have, left out: {count}",
+      "LABELS_OFF": "Labels left out, as labels are off on this board: {count}",
+      "LABEL_UNKNOWN": "Labels this board doesn't have, left out: {count}",
+      "LABELS_NOT_ALLOWED": "Labels left out, as you may not add labels to tasks: {count}"
+    }
   }
 }

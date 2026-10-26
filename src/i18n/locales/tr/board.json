@@ -173,5 +173,59 @@
     "archive": "Arşivle",
     "restore": "Geri yükle",
     "archivedNote": "Bu görev arşivlendi: panoda değil ve geri yüklenene kadar değiştirilemez."
+  },
+  "import": {
+    "title": "Görevleri içe aktar",
+    "titleFor": "Görevleri {name} panosuna aktar",
+    "intro": "Bir liste veya tablo yapıştırın ya da bir dosya seçin. Her satıra bir görev, madde işaretli, numaralı veya onay kutulu ya da değil; girintili öğeler kontrol listesi olur, başlıklar bir sütun başlatır ve işaretli öğeler son sütuna gider. Bir elektronik tablodan, CSV veya Markdown biçimindeki tablolar ve KanbanCord pano dosyaları da olur.",
+    "source": "Görevlerin kaynağı",
+    "paste": "Yapıştır",
+    "file": "Dosya",
+    "placeholder": "- İlk görev\n- [x] Zaten bitti\n  - Bir kontrol listesi öğesi\n# Başka bir sütun\n- İkinci görev",
+    "chooseFile": "Bir metin, Markdown, CSV veya pano dosyası seçin",
+    "format": "Biçim",
+    "formats": {
+      "AUTO": "Algıla",
+      "LIST": "Liste",
+      "CSV": "CSV",
+      "TSV": "Tablo hücreleri (TSV)",
+      "MARKDOWN": "Markdown tablosu",
+      "KANBANCORD": "KanbanCord pano dosyası"
+    },
+    "defaultColumn": "Sütunu olmayan görevler şuraya gider",
+    "createColumns": "Bu panoda henüz olmayan sütunları oluştur",
+    "fields": "Tablonun her sütununda ne var",
+    "fieldNames": {
+      "TITLE": "Başlık",
+      "DESCRIPTION": "Açıklama",
+      "COLUMN": "Sütun",
+      "DUE": "Son tarih",
+      "PRIORITY": "Öncelik",
+      "LABELS": "Etiketler",
+      "IGNORE": "Dışarıda bırak"
+    },
+    "preview": "Önizleme",
+    "empty": "Neyin içe aktarılacağını görmek için bir liste yapıştırın veya bir dosya seçin.",
+    "previewFailed": "Önizleme oluşturulamadı",
+    "summary": "Görevler: {tasks} · Sütunlar: {columns}",
+    "newColumn": "yeni",
+    "more": "ve {count} tane daha",
+    "import": "İçe aktar ({count})",
+    "importing": "İçe aktarılıyor…",
+    "imported": "İçe aktarılan görevler: {count}",
+    "failed": "Görevler içe aktarılamadı",
+    "notes": {
+      "TOO_MANY": "Tek seferde en fazla 500 olabildiği için dışarıda kalan görevler: {count}",
+      "TITLE_SHORTENED": "200 karaktere kısaltılan başlıklar, tam metin açıklamada: {count}",
+      "COLUMNS_NOT_CREATED": "Sütunlarını oluşturamadığınız için seçilen sütuna konan görevler: {count}",
+      "TOO_MANY_COLUMNS": "Bir içe aktarma en fazla 20 sütun oluşturduğu için seçilen sütuna konan görevler: {count}",
+      "DUE_DATES_OFF": "Bu panoda kapalı olduğu için dışarıda kalan son tarihler: {count}",
+      "DUE_UNREADABLE": "Okunamayan son tarihler (2026-10-20 veya 2026-10-20 18:00 gibi yazın): {count}",
+      "PRIORITIES_OFF": "Bu panoda kapalı olduğu için dışarıda kalan öncelikler: {count}",
+      "PRIORITY_UNKNOWN": "Bu panoda olmayan, dışarıda kalan öncelikler: {count}",
+      "LABELS_OFF": "Bu panoda kapalı olduğu için dışarıda kalan etiketler: {count}",
+      "LABEL_UNKNOWN": "Bu panoda olmayan, dışarıda kalan etiketler: {count}",
+      "LABELS_NOT_ALLOWED": "Görevlere etiket ekleyemediğiniz için dışarıda kalan etiketler: {count}"
+    }
   }
 }

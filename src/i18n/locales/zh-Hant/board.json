@@ -169,5 +169,59 @@
     "archive": "封存",
     "restore": "還原",
     "archivedNote": "此任務已封存：不在看板上，還原前無法變更。"
+  },
+  "import": {
+    "title": "匯入任務",
+    "titleFor": "將任務匯入{name}",
+    "intro": "貼上清單或表格，或選擇檔案。每行一個任務，可帶或不帶項目符號、編號或核取方塊；縮排的項目會成為檢查清單，標題會開始新的一欄，已勾選的項目會放進最後一欄。試算表、CSV 或 Markdown 表格以及 KanbanCord 看板檔案也可以。",
+    "source": "任務的來源",
+    "paste": "貼上",
+    "file": "檔案",
+    "placeholder": "- 第一個任務\n- [x] 已完成\n  - 檢查清單中的一項\n# 另一欄\n- 第二個任務",
+    "chooseFile": "選擇文字、Markdown、CSV 或看板檔案",
+    "format": "格式",
+    "formats": {
+      "AUTO": "自動判斷",
+      "LIST": "清單",
+      "CSV": "CSV",
+      "TSV": "試算表儲存格（TSV）",
+      "MARKDOWN": "Markdown 表格",
+      "KANBANCORD": "KanbanCord 看板檔案"
+    },
+    "defaultColumn": "沒有欄的任務放到",
+    "createColumns": "建立此看板還沒有的欄",
+    "fields": "表格每一欄的內容",
+    "fieldNames": {
+      "TITLE": "標題",
+      "DESCRIPTION": "描述",
+      "COLUMN": "欄",
+      "DUE": "截止日期",
+      "PRIORITY": "優先順序",
+      "LABELS": "標籤",
+      "IGNORE": "不匯入"
+    },
+    "preview": "預覽",
+    "empty": "貼上清單或選擇檔案，即可看到將匯入的內容。",
+    "previewFailed": "無法產生預覽",
+    "summary": "任務：{tasks} · 欄：{columns}",
+    "newColumn": "新",
+    "more": "另外 {count} 個",
+    "import": "匯入（{count}）",
+    "importing": "正在匯入…",
+    "imported": "已匯入的任務：{count}",
+    "failed": "無法匯入任務",
+    "notes": {
+      "TOO_MANY": "因一次最多 500 個而未匯入的任務：{count}",
+      "TITLE_SHORTENED": "縮短為 200 個字元的標題（全文放在描述中）：{count}",
+      "COLUMNS_NOT_CREATED": "因你無權建立其所在欄而放入所選欄的任務：{count}",
+      "TOO_MANY_COLUMNS": "因一次匯入最多建立 20 欄而放入所選欄的任務：{count}",
+      "DUE_DATES_OFF": "因此看板關閉了截止日期而未匯入的截止日期：{count}",
+      "DUE_UNREADABLE": "無法讀取的截止日期（請寫成 2026-10-20 或 2026-10-20 18:00）：{count}",
+      "PRIORITIES_OFF": "因此看板關閉了優先順序而未匯入的優先順序：{count}",
+      "PRIORITY_UNKNOWN": "此看板沒有、因而未匯入的優先順序：{count}",
+      "LABELS_OFF": "因此看板關閉了標籤而未匯入的標籤：{count}",
+      "LABEL_UNKNOWN": "此看板沒有、因而未匯入的標籤：{count}",
+      "LABELS_NOT_ALLOWED": "因你無權為任務加上標籤而未匯入的標籤：{count}"
+    }
   }
 }

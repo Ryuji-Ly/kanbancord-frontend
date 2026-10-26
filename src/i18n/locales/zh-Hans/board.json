@@ -169,5 +169,59 @@
     "archive": "归档",
     "restore": "恢复",
     "archivedNote": "此任务已归档：不在看板上，恢复之前无法更改。"
+  },
+  "import": {
+    "title": "导入任务",
+    "titleFor": "将任务导入{name}",
+    "intro": "粘贴列表或表格，或选择文件。每行一个任务，可带或不带项目符号、编号或复选框；缩进的项目会成为清单，标题会开始一个新列，已勾选的项目会放进最后一列。电子表格、CSV 或 Markdown 表格以及 KanbanCord 看板文件也可以。",
+    "source": "任务的来源",
+    "paste": "粘贴",
+    "file": "文件",
+    "placeholder": "- 第一个任务\n- [x] 已完成\n  - 清单中的一项\n# 另一列\n- 第二个任务",
+    "chooseFile": "选择文本、Markdown、CSV 或看板文件",
+    "format": "格式",
+    "formats": {
+      "AUTO": "自动识别",
+      "LIST": "列表",
+      "CSV": "CSV",
+      "TSV": "电子表格单元格（TSV）",
+      "MARKDOWN": "Markdown 表格",
+      "KANBANCORD": "KanbanCord 看板文件"
+    },
+    "defaultColumn": "没有列的任务放到",
+    "createColumns": "创建此看板还没有的列",
+    "fields": "表格每一列的内容",
+    "fieldNames": {
+      "TITLE": "标题",
+      "DESCRIPTION": "描述",
+      "COLUMN": "列",
+      "DUE": "截止日期",
+      "PRIORITY": "优先级",
+      "LABELS": "标签",
+      "IGNORE": "不导入"
+    },
+    "preview": "预览",
+    "empty": "粘贴列表或选择文件，即可看到将导入的内容。",
+    "previewFailed": "无法生成预览",
+    "summary": "任务：{tasks} · 列：{columns}",
+    "newColumn": "新",
+    "more": "另外 {count} 个",
+    "import": "导入（{count}）",
+    "importing": "正在导入…",
+    "imported": "已导入的任务：{count}",
+    "failed": "无法导入任务",
+    "notes": {
+      "TOO_MANY": "因一次最多 500 个而未导入的任务：{count}",
+      "TITLE_SHORTENED": "缩短到 200 个字符的标题（全文放在描述中）：{count}",
+      "COLUMNS_NOT_CREATED": "因你无权创建其所在列而放入所选列的任务：{count}",
+      "TOO_MANY_COLUMNS": "因一次导入最多创建 20 列而放入所选列的任务：{count}",
+      "DUE_DATES_OFF": "因此看板关闭了截止日期而未导入的截止日期：{count}",
+      "DUE_UNREADABLE": "无法读取的截止日期（请写成 2026-10-20 或 2026-10-20 18:00）：{count}",
+      "PRIORITIES_OFF": "因此看板关闭了优先级而未导入的优先级：{count}",
+      "PRIORITY_UNKNOWN": "此看板没有、因而未导入的优先级：{count}",
+      "LABELS_OFF": "因此看板关闭了标签而未导入的标签：{count}",
+      "LABEL_UNKNOWN": "此看板没有、因而未导入的标签：{count}",
+      "LABELS_NOT_ALLOWED": "因你无权给任务添加标签而未导入的标签：{count}"
+    }
   }
 }

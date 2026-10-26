@@ -94,5 +94,6 @@
   "viaDiscord": "via Discord",
   "changeCount_one": "{count} ändring",
   "changeCount_other": "{count} ändringar",
-  "columnTasksArchived": "arkiverade alla uppgifter i {column} ({count})"
+  "columnTasksArchived": "arkiverade alla uppgifter i {column} ({count})",
+  "tasksImported": "importerade uppgifter till {board} ({count})"
 }

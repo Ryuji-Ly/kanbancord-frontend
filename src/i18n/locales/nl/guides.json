@@ -46,6 +46,7 @@
     "tickTitle": "Taken afvinken",
     "tick": "Kies een taak in het menu van de post om hem alleen voor jezelf te openen en verplaats hem dan naar Done. Of gebruik <code>/task move task:... column:Done</code>. Heeft je server een <postsFeeds>updatefeed</postsFeeds> met knoppen, dan toont elke update een knop per kolom, zodat afvinken één klik is.",
     "archive": "Wordt Done te lang? <code>/column archive-tasks column:Done</code> haalt alle taken erin in één keer van het bord. Gearchiveerde taken houden alles: haal er een terug met <code>/task restore</code>, of vind ze op de website met het filter Gearchiveerde taken.",
+    "import": "Houd je de lijst al ergens anders bij? Haal hem in één keer binnen: kies <strong>Import tasks</strong> in het ⋯-menu van het bord op de website, of gebruik <code>/task import</code> in Discord. Plak één punt per regel, met of zonder opsommingstekens of vinkjes, of cellen uit een spreadsheet; koppen worden kolommen en aangevinkte punten gaan naar Done. Je ziet eerst een voorbeeld.",
     "sharedTitle": "Gedeeld, niet persoonlijk",
     "shared": "Een bord is van de server, niet van één persoon, en volgt je Discord-rollen: wie het moet zien, ziet het, en jij bepaalt wie het mag wijzigen. Dat maakt het een goede keuze voor de taken van een team, de evenementenplanning van een community, de bouwlijst van een gameserver of de opdrachten van een studiegroep.",
     "moreTitle": "Als een takenlijst niet genoeg is",

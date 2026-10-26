@@ -169,5 +169,59 @@
     "archive": "보관",
     "restore": "복원",
     "archivedNote": "보관된 작업이에요. 보드에 표시되지 않으며 복원하기 전에는 변경할 수 없어요."
+  },
+  "import": {
+    "title": "작업 가져오기",
+    "titleFor": "{name}에 작업 가져오기",
+    "intro": "목록이나 표를 붙여 넣거나 파일을 선택하세요. 한 줄에 작업 하나이며, 글머리 기호·번호·체크박스는 있어도 없어도 돼요. 들여 쓴 항목은 체크리스트가 되고, 제목은 열을 시작하며, 체크된 항목은 마지막 열로 가요. 스프레드시트·CSV·Markdown 표와 KanbanCord 보드 파일도 돼요.",
+    "source": "작업을 가져올 곳",
+    "paste": "붙여 넣기",
+    "file": "파일",
+    "placeholder": "- 첫 번째 작업\n- [x] 이미 완료\n  - 체크리스트 항목\n# 다른 열\n- 두 번째 작업",
+    "chooseFile": "텍스트, Markdown, CSV 또는 보드 파일 선택",
+    "format": "형식",
+    "formats": {
+      "AUTO": "자동 인식",
+      "LIST": "목록",
+      "CSV": "CSV",
+      "TSV": "스프레드시트 셀 (TSV)",
+      "MARKDOWN": "Markdown 표",
+      "KANBANCORD": "KanbanCord 보드 파일"
+    },
+    "defaultColumn": "열이 없는 작업을 넣을 곳",
+    "createColumns": "이 보드에 아직 없는 열 만들기",
+    "fields": "표의 각 열에 담긴 내용",
+    "fieldNames": {
+      "TITLE": "제목",
+      "DESCRIPTION": "설명",
+      "COLUMN": "열",
+      "DUE": "마감일",
+      "PRIORITY": "우선순위",
+      "LABELS": "라벨",
+      "IGNORE": "제외"
+    },
+    "preview": "미리 보기",
+    "empty": "목록을 붙여 넣거나 파일을 고르면 가져올 내용이 보여요.",
+    "previewFailed": "미리 보기를 만들 수 없어요",
+    "summary": "작업: {tasks} · 열: {columns}",
+    "newColumn": "새 열",
+    "more": "외 {count}개",
+    "import": "가져오기 ({count})",
+    "importing": "가져오는 중…",
+    "imported": "가져온 작업: {count}",
+    "failed": "작업을 가져올 수 없어요",
+    "notes": {
+      "TOO_MANY": "한 번에 최대 500개라서 제외한 작업: {count}",
+      "TITLE_SHORTENED": "200자로 줄인 제목 (전체 내용은 설명에 있어요): {count}",
+      "COLUMNS_NOT_CREATED": "열을 만들 권한이 없어서 선택한 열에 넣은 작업: {count}",
+      "TOO_MANY_COLUMNS": "한 번에 최대 20개 열만 만들 수 있어서 선택한 열에 넣은 작업: {count}",
+      "DUE_DATES_OFF": "이 보드에서 마감일이 꺼져 있어 제외한 마감일: {count}",
+      "DUE_UNREADABLE": "읽을 수 없는 마감일 (2026-10-20 또는 2026-10-20 18:00 형식으로): {count}",
+      "PRIORITIES_OFF": "이 보드에서 우선순위가 꺼져 있어 제외한 우선순위: {count}",
+      "PRIORITY_UNKNOWN": "이 보드에 없어서 제외한 우선순위: {count}",
+      "LABELS_OFF": "이 보드에서 라벨이 꺼져 있어 제외한 라벨: {count}",
+      "LABEL_UNKNOWN": "이 보드에 없어서 제외한 라벨: {count}",
+      "LABELS_NOT_ALLOWED": "작업에 라벨을 추가할 권한이 없어 제외한 라벨: {count}"
+    }
   }
 }

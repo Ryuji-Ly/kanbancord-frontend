@@ -35,7 +35,8 @@
     "pinned": "Fijado",
     "settings": "Configuración del tablero",
     "export": "Exportar",
-    "exportNotAllowed": "No puedes ver las tareas de este tablero, así que no puedes exportarlo."
+    "exportNotAllowed": "No puedes ver las tareas de este tablero, así que no puedes exportarlo.",
+    "importTasks": "Importar tareas"
   },
   "boardModal": {
     "defaultColumns": {

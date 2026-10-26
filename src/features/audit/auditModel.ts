@@ -176,6 +176,14 @@ export function describeAuditEntry(entry: AuditEntry, lookups: AuditLookups): Au
     }
     case 'COLUMN_MOVED':
       return { summary: t('audit.reordered', { thing: named(noun('BOARD_COLUMN')) }), fields }
+    case 'TASKS_IMPORTED':
+      return {
+        summary: t('audit.tasksImported', {
+          board: t('audit.named', { noun: noun('BOARD'), name: String(snapshot?.name ?? entry.boardName ?? '?') }),
+          count: String(snapshot?.count ?? '?'),
+        }),
+        fields: [],
+      }
     case 'COLUMN_TASKS_ARCHIVED':
       return {
         summary: t('audit.columnTasksArchived', { column: named(noun('BOARD_COLUMN')), count: String(snapshot?.count ?? '?') }),

@@ -102,5 +102,6 @@
   "changeCount_few": "{count} zmeny",
   "changeCount_other": "{count} zmien",
   "changeCount_many": "{count} zmien",
-  "columnTasksArchived": "archivoval(a) všetky úlohy: {column} ({count})"
+  "columnTasksArchived": "archivoval(a) všetky úlohy: {column} ({count})",
+  "tasksImported": "importoval(a) úlohy: {board} ({count})"
 }

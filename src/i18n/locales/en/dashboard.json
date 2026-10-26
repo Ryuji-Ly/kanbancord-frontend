@@ -35,7 +35,8 @@
     "pinned": "Pinned",
     "settings": "Board settings",
     "export": "Export",
-    "exportNotAllowed": "You can't see this board's tasks, so you can't export it."
+    "exportNotAllowed": "You can't see this board's tasks, so you can't export it.",
+    "importTasks": "Import tasks"
   },
   "boardModal": {
     "defaultColumns": {

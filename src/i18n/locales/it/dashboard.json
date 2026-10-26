@@ -35,7 +35,8 @@
     "pinned": "Fissata",
     "settings": "Impostazioni della bacheca",
     "export": "Esporta",
-    "exportNotAllowed": "Non puoi vedere le attività di questa bacheca, quindi non puoi esportarla."
+    "exportNotAllowed": "Non puoi vedere le attività di questa bacheca, quindi non puoi esportarla.",
+    "importTasks": "Importa attività"
   },
   "boardModal": {
     "defaultColumns": {

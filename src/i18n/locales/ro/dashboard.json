@@ -35,7 +35,8 @@
     "pinned": "Fixat",
     "settings": "Setările panoului",
     "export": "Export",
-    "exportNotAllowed": "Nu poți vedea sarcinile acestui panou, așa că nu îl poți exporta."
+    "exportNotAllowed": "Nu poți vedea sarcinile acestui panou, așa că nu îl poți exporta.",
+    "importTasks": "Importă sarcini"
   },
   "boardModal": {
     "defaultColumns": {

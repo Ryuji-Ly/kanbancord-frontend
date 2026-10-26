@@ -173,5 +173,59 @@
     "archive": "Archiveren",
     "restore": "Herstellen",
     "archivedNote": "Deze taak is gearchiveerd: niet meer op het bord, en pas te wijzigen na herstellen."
+  },
+  "import": {
+    "title": "Taken importeren",
+    "titleFor": "Taken importeren in {name}",
+    "intro": "Plak een lijst of tabel, of kies een bestand. Eén taak per regel, met of zonder opsommingstekens, nummers of vinkjes; ingesprongen punten worden een checklist, koppen beginnen een kolom en aangevinkte punten gaan naar de laatste kolom. Tabellen uit een spreadsheet, CSV of Markdown en KanbanCord-bordbestanden werken ook.",
+    "source": "Waar de taken vandaan komen",
+    "paste": "Plakken",
+    "file": "Bestand",
+    "placeholder": "- Eerste taak\n- [x] Al klaar\n  - Een punt van de checklist\n# Andere kolom\n- Tweede taak",
+    "chooseFile": "Kies een tekst-, Markdown-, CSV- of bordbestand",
+    "format": "Indeling",
+    "formats": {
+      "AUTO": "Zelf bepalen",
+      "LIST": "Lijst",
+      "CSV": "CSV",
+      "TSV": "Spreadsheetcellen (TSV)",
+      "MARKDOWN": "Markdown-tabel",
+      "KANBANCORD": "KanbanCord-bordbestand"
+    },
+    "defaultColumn": "Taken zonder kolom gaan naar",
+    "createColumns": "De kolommen aanmaken die dit bord nog niet heeft",
+    "fields": "Wat elke kolom van de tabel bevat",
+    "fieldNames": {
+      "TITLE": "Titel",
+      "DESCRIPTION": "Beschrijving",
+      "COLUMN": "Kolom",
+      "DUE": "Deadline",
+      "PRIORITY": "Prioriteit",
+      "LABELS": "Labels",
+      "IGNORE": "Weglaten"
+    },
+    "preview": "Voorbeeld",
+    "empty": "Plak een lijst of kies een bestand om te zien wat er wordt geïmporteerd.",
+    "previewFailed": "Het voorbeeld kon niet worden gemaakt",
+    "summary": "Taken: {tasks} · Kolommen: {columns}",
+    "newColumn": "nieuw",
+    "more": "en nog {count}",
+    "import": "Importeren ({count})",
+    "importing": "Importeren…",
+    "imported": "Taken geïmporteerd: {count}",
+    "failed": "De taken konden niet worden geïmporteerd",
+    "notes": {
+      "TOO_MANY": "Weggelaten taken, omdat 500 per keer het maximum is: {count}",
+      "TITLE_SHORTENED": "Titels ingekort tot 200 tekens, met de hele tekst in de beschrijving: {count}",
+      "COLUMNS_NOT_CREATED": "Taken in de gekozen kolom gezet, omdat je hun kolom niet mag aanmaken: {count}",
+      "TOO_MANY_COLUMNS": "Taken in de gekozen kolom gezet, omdat een import hoogstens 20 kolommen aanmaakt: {count}",
+      "DUE_DATES_OFF": "Weggelaten deadlines, omdat deadlines op dit bord uit staan: {count}",
+      "DUE_UNREADABLE": "Onleesbare deadlines (schrijf ze als 2026-10-20 of 2026-10-20 18:00): {count}",
+      "PRIORITIES_OFF": "Weggelaten prioriteiten, omdat prioriteiten op dit bord uit staan: {count}",
+      "PRIORITY_UNKNOWN": "Prioriteiten die dit bord niet heeft, weggelaten: {count}",
+      "LABELS_OFF": "Weggelaten labels, omdat labels op dit bord uit staan: {count}",
+      "LABEL_UNKNOWN": "Labels die dit bord niet heeft, weggelaten: {count}",
+      "LABELS_NOT_ALLOWED": "Weggelaten labels, omdat je geen labels aan taken mag toevoegen: {count}"
+    }
   }
 }

@@ -46,6 +46,7 @@
     "tickTitle": "Odškrtávání úkolů",
     "tick": "Vyber úkol v nabídce příspěvku, otevře se jen tobě, a přesuň ho do Done. Nebo použij <code>/task move task:... column:Done</code>. Pokud má tvůj server <postsFeeds>feed aktualizací</postsFeeds> s tlačítky, každá aktualizace ukazuje tlačítko pro každý sloupec, takže odškrtnutí je jedno kliknutí.",
     "archive": "Done se moc prodlužuje? <code>/column archive-tasks column:Done</code> najednou odebere z nástěnky všechny jeho úkoly. Archivované úkoly si ponechají vše: jeden vrátíš pomocí <code>/task restore</code>, nebo je najdeš na webu přes filtr Archivované úkoly.",
+    "import": "Seznam už vedeš jinde? Přenes ho najednou: vyber <strong>Import tasks</strong> v nabídce ⋯ nástěnky na webu, nebo použij <code>/task import</code> v Discordu. Vlož jednu položku na řádek, s odrážkami či zaškrtávacími poli nebo bez nich, nebo buňky z tabulky; nadpisy se stanou sloupci a zaškrtnuté položky půjdou do Done. Nejdřív uvidíš náhled.",
     "sharedTitle": "Sdílený, ne osobní",
     "shared": "Nástěnka patří serveru, ne jednomu člověku, a řídí se tvými rolemi v Discordu: kdo ji má vidět, ten ji vidí, a ty rozhoduješ, kdo ji smí měnit. Proto se hodí na úkoly týmu, plánování akcí komunity, seznam staveb herního serveru nebo úkoly studijní skupiny.",
     "moreTitle": "Když seznam úkolů nestačí",

@@ -35,7 +35,8 @@
     "pinned": "고정됨",
     "settings": "보드 설정",
     "export": "내보내기",
-    "exportNotAllowed": "이 보드의 작업을 볼 수 없어서 내보낼 수 없어요."
+    "exportNotAllowed": "이 보드의 작업을 볼 수 없어서 내보낼 수 없어요.",
+    "importTasks": "작업 가져오기"
   },
   "boardModal": {
     "defaultColumns": {

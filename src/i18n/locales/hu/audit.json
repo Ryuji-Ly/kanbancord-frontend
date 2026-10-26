@@ -94,5 +94,6 @@
   "viaDiscord": "Discordon át",
   "changeCount_one": "{count} módosítás",
   "changeCount_other": "{count} módosítás",
-  "columnTasksArchived": "archiválta az összes feladatot: {column} ({count})"
+  "columnTasksArchived": "archiválta az összes feladatot: {column} ({count})",
+  "tasksImported": "feladatokat importált: {board} ({count})"
 }

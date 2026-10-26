@@ -46,6 +46,7 @@
     "tickTitle": "Spunta le attività",
     "tick": "Scegli un'attività dal menu del messaggio per aprirla in privato, poi spostala in Done. Oppure esegui <code>/task move task:... column:Done</code>. Se il tuo server ha un <postsFeeds>feed di aggiornamenti</postsFeeds> con pulsanti, ogni aggiornamento mostra un pulsante per colonna, quindi spuntare un'attività richiede un solo clic.",
     "archive": "Done si allunga troppo? <code>/column archive-tasks column:Done</code> toglie tutte le sue attività dalla bacheca in un colpo. Le attività archiviate conservano tutto: riportane una con <code>/task restore</code>, o trovale sul sito con il filtro Attività archiviate.",
+    "import": "Tieni già l’elenco altrove? Portalo dentro in un colpo: scegli <strong>Import tasks</strong> nel menu ⋯ della bacheca sul sito, oppure usa <code>/task import</code> su Discord. Incolla una voce per riga, con o senza punti o caselle, o le celle di un foglio di calcolo; i titoli diventano colonne e le voci spuntate vanno in Done. Prima di aggiungere qualcosa vedi un’anteprima.",
     "sharedTitle": "Condivisa, non personale",
     "shared": "Una bacheca appartiene al server, non a una singola persona, e segue i tuoi ruoli di Discord: chi deve vederla la vede, e sei tu a decidere chi può modificarla. Per questo è adatta alle attività di un team, all'organizzazione degli eventi di una community, alla lista di costruzioni di un server di gioco o ai compiti di un gruppo di studio.",
     "moreTitle": "Quando una lista di cose da fare non basta",

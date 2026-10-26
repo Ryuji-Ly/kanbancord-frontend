@@ -94,5 +94,6 @@
   "viaDiscord": "über Discord",
   "changeCount_one": "{count} Änderung",
   "changeCount_other": "{count} Änderungen",
-  "columnTasksArchived": "hat alle Aufgaben in {column} archiviert ({count})"
+  "columnTasksArchived": "hat alle Aufgaben in {column} archiviert ({count})",
+  "tasksImported": "hat Aufgaben in {board} importiert ({count})"
 }

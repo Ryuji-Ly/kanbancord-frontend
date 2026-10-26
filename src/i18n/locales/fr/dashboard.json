@@ -35,7 +35,8 @@
     "pinned": "Épinglé",
     "settings": "Paramètres du tableau",
     "export": "Exporter",
-    "exportNotAllowed": "Tu ne peux pas voir les tâches de ce tableau, tu ne peux donc pas l’exporter."
+    "exportNotAllowed": "Tu ne peux pas voir les tâches de ce tableau, tu ne peux donc pas l’exporter.",
+    "importTasks": "Importer des tâches"
   },
   "boardModal": {
     "defaultColumns": {

@@ -35,7 +35,8 @@
     "pinned": "Angeheftet",
     "settings": "Board-Einstellungen",
     "export": "Exportieren",
-    "exportNotAllowed": "Du kannst die Aufgaben dieses Boards nicht sehen und es daher nicht exportieren."
+    "exportNotAllowed": "Du kannst die Aufgaben dieses Boards nicht sehen und es daher nicht exportieren.",
+    "importTasks": "Aufgaben importieren"
   },
   "boardModal": {
     "defaultColumns": {

@@ -181,5 +181,59 @@
     "archive": "Archivovat",
     "restore": "Obnovit",
     "archivedNote": "Tento úkol je archivovaný: není na nástěnce a nelze ho měnit, dokud nebude obnoven."
+  },
+  "import": {
+    "title": "Importovat úkoly",
+    "titleFor": "Importovat úkoly do {name}",
+    "intro": "Vlož seznam nebo tabulku, nebo vyber soubor. Jeden úkol na řádek, s odrážkami, čísly či zaškrtávacími poli, nebo bez nich; odsazené položky se stanou checklistem, nadpisy začínají sloupec a zaškrtnuté položky jdou do posledního sloupce. Fungují i tabulky z tabulkového editoru, CSV nebo Markdownu a soubory nástěnek KanbanCord.",
+    "source": "Odkud úkoly pocházejí",
+    "paste": "Vložit",
+    "file": "Soubor",
+    "placeholder": "- První úkol\n- [x] Už hotovo\n  - Položka checklistu\n# Jiný sloupec\n- Druhý úkol",
+    "chooseFile": "Vyber textový, Markdown, CSV nebo soubor nástěnky",
+    "format": "Formát",
+    "formats": {
+      "AUTO": "Rozpoznat",
+      "LIST": "Seznam",
+      "CSV": "CSV",
+      "TSV": "Buňky tabulky (TSV)",
+      "MARKDOWN": "Tabulka v Markdownu",
+      "KANBANCORD": "Soubor nástěnky KanbanCord"
+    },
+    "defaultColumn": "Úkoly bez sloupce půjdou do",
+    "createColumns": "Vytvořit sloupce, které tato nástěnka ještě nemá",
+    "fields": "Co obsahuje každý sloupec tabulky",
+    "fieldNames": {
+      "TITLE": "Název",
+      "DESCRIPTION": "Popis",
+      "COLUMN": "Sloupec",
+      "DUE": "Termín",
+      "PRIORITY": "Priorita",
+      "LABELS": "Štítky",
+      "IGNORE": "Vynechat"
+    },
+    "preview": "Náhled",
+    "empty": "Vlož seznam nebo vyber soubor a uvidíš, co se naimportuje.",
+    "previewFailed": "Náhled se nepodařilo vytvořit",
+    "summary": "Úkoly: {tasks} · Sloupce: {columns}",
+    "newColumn": "nový",
+    "more": "a další: {count}",
+    "import": "Importovat ({count})",
+    "importing": "Importuje se…",
+    "imported": "Importované úkoly: {count}",
+    "failed": "Úkoly se nepodařilo naimportovat",
+    "notes": {
+      "TOO_MANY": "Vynechané úkoly, protože najednou jde nejvýš 500: {count}",
+      "TITLE_SHORTENED": "Názvy zkrácené na 200 znaků, celý text je v popisu: {count}",
+      "COLUMNS_NOT_CREATED": "Úkoly dané do zvoleného sloupce, protože jejich sloupec nemůžeš vytvořit: {count}",
+      "TOO_MANY_COLUMNS": "Úkoly dané do zvoleného sloupce, protože import vytvoří nejvýš 20 sloupců: {count}",
+      "DUE_DATES_OFF": "Vynechané termíny, protože termíny jsou na této nástěnce vypnuté: {count}",
+      "DUE_UNREADABLE": "Nečitelné termíny (piš je jako 2026-10-20 nebo 2026-10-20 18:00): {count}",
+      "PRIORITIES_OFF": "Vynechané priority, protože priority jsou na této nástěnce vypnuté: {count}",
+      "PRIORITY_UNKNOWN": "Priority, které tato nástěnka nemá, vynechány: {count}",
+      "LABELS_OFF": "Vynechané štítky, protože štítky jsou na této nástěnce vypnuté: {count}",
+      "LABEL_UNKNOWN": "Štítky, které tato nástěnka nemá, vynechány: {count}",
+      "LABELS_NOT_ALLOWED": "Vynechané štítky, protože nemůžeš přidávat štítky k úkolům: {count}"
+    }
   }
 }

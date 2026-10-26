@@ -35,7 +35,8 @@
     "pinned": "Vastgemaakt",
     "settings": "Bordinstellingen",
     "export": "Exporteren",
-    "exportNotAllowed": "Je kunt de taken van dit bord niet zien, dus je kunt het niet exporteren."
+    "exportNotAllowed": "Je kunt de taken van dit bord niet zien, dus je kunt het niet exporteren.",
+    "importTasks": "Taken importeren"
   },
   "boardModal": {
     "defaultColumns": {

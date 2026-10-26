@@ -94,5 +94,6 @@
   "viaDiscord": "Discord'dan",
   "changeCount_one": "{count} değişiklik",
   "changeCount_other": "{count} değişiklik",
-  "columnTasksArchived": "arşivledi: {column} içindeki tüm görevler ({count})"
+  "columnTasksArchived": "arşivledi: {column} içindeki tüm görevler ({count})",
+  "tasksImported": "görevleri içe aktardı: {board} ({count})"
 }

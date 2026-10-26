@@ -177,5 +177,59 @@
     "archive": "Arhivează",
     "restore": "Restaurează",
     "archivedNote": "Această sarcină este arhivată: nu mai e pe panou și nu poate fi modificată până nu e restaurată."
+  },
+  "import": {
+    "title": "Importă sarcini",
+    "titleFor": "Importă sarcini în {name}",
+    "intro": "Lipește o listă sau un tabel, ori alege un fișier. O sarcină pe rând, cu sau fără buline, numere sau casete; elementele indentate devin o listă de verificare, titlurile încep o coloană, iar elementele bifate merg în ultima coloană. Merg și tabele dintr-o foaie de calcul, CSV sau Markdown și fișierele de panou KanbanCord.",
+    "source": "De unde vin sarcinile",
+    "paste": "Lipește",
+    "file": "Fișier",
+    "placeholder": "- Prima sarcină\n- [x] Deja gata\n  - Un element din listă\n# Altă coloană\n- A doua sarcină",
+    "chooseFile": "Alege un fișier text, Markdown, CSV sau de panou",
+    "format": "Format",
+    "formats": {
+      "AUTO": "Detectează",
+      "LIST": "Listă",
+      "CSV": "CSV",
+      "TSV": "Celule de foaie de calcul (TSV)",
+      "MARKDOWN": "Tabel Markdown",
+      "KANBANCORD": "Fișier de panou KanbanCord"
+    },
+    "defaultColumn": "Sarcinile fără coloană merg în",
+    "createColumns": "Creează coloanele pe care panoul nu le are încă",
+    "fields": "Ce conține fiecare coloană a tabelului",
+    "fieldNames": {
+      "TITLE": "Titlu",
+      "DESCRIPTION": "Descriere",
+      "COLUMN": "Coloană",
+      "DUE": "Termen limită",
+      "PRIORITY": "Prioritate",
+      "LABELS": "Etichete",
+      "IGNORE": "Omite"
+    },
+    "preview": "Previzualizare",
+    "empty": "Lipește o listă sau alege un fișier ca să vezi ce va fi importat.",
+    "previewFailed": "Previzualizarea nu a putut fi făcută",
+    "summary": "Sarcini: {tasks} · Coloane: {columns}",
+    "newColumn": "nouă",
+    "more": "și încă {count}",
+    "import": "Importă ({count})",
+    "importing": "Se importă…",
+    "imported": "Sarcini importate: {count}",
+    "failed": "Sarcinile nu au putut fi importate",
+    "notes": {
+      "TOO_MANY": "Sarcini omise, fiindcă maximul este 500 deodată: {count}",
+      "TITLE_SHORTENED": "Titluri scurtate la 200 de caractere, cu textul complet în descriere: {count}",
+      "COLUMNS_NOT_CREATED": "Sarcini puse în coloana aleasă, fiindcă nu poți crea coloana lor: {count}",
+      "TOO_MANY_COLUMNS": "Sarcini puse în coloana aleasă, fiindcă un import creează cel mult 20 de coloane: {count}",
+      "DUE_DATES_OFF": "Termene omise, fiindcă sunt dezactivate pe acest panou: {count}",
+      "DUE_UNREADABLE": "Termene care nu au putut fi citite (scrie-le ca 2026-10-20 sau 2026-10-20 18:00): {count}",
+      "PRIORITIES_OFF": "Priorități omise, fiindcă sunt dezactivate pe acest panou: {count}",
+      "PRIORITY_UNKNOWN": "Priorități pe care panoul nu le are, omise: {count}",
+      "LABELS_OFF": "Etichete omise, fiindcă sunt dezactivate pe acest panou: {count}",
+      "LABEL_UNKNOWN": "Etichete pe care panoul nu le are, omise: {count}",
+      "LABELS_NOT_ALLOWED": "Etichete omise, fiindcă nu poți adăuga etichete la sarcini: {count}"
+    }
   }
 }
