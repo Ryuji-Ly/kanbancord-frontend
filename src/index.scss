@@ -1001,6 +1001,12 @@ pre {
     list-style: none;
     margin: 0;
     padding: 0;
+
+    // A folded list has a height limit, and flex items would shrink to fit it: cards cannot shrink
+    // below their content, but the empty slot where a dragged task would land was squashed flat.
+    > * {
+      flex-shrink: 0;
+    }
   }
 
   .kc-column-task-dropzone {
