@@ -46,6 +46,7 @@
     "tickTitle": "Feladatok kipipálása",
     "tick": "Válassz egy feladatot a bejegyzés menüjében, hogy csak magadnak nyisd meg, majd helyezd át a Done oszlopba. Vagy használd a <code>/task move task:... column:Done</code> parancsot. Ha a szerverednek van gombokkal ellátott <postsFeeds>frissítési hírfolyama</postsFeeds>, minden frissítés oszloponként egy gombot mutat, így a kipipálás egyetlen kattintás.",
     "archive": "Túl hosszú lett a Done? A <code>/column archive-tasks column:Done</code> egyszerre leveszi a tábláról az összes feladatát. Az archivált feladatok mindent megtartanak: egyet a <code>/task restore</code> paranccsal hozhatsz vissza, vagy megtalálod őket a weboldalon az Archivált feladatok szűrővel.",
+    "import": "Máshol vezeted már a listát? Hozd át egyszerre: válaszd az <strong>Import tasks</strong> lehetőséget a tábla ⋯ menüjében a weboldalon, vagy használd a <code>/task import</code> parancsot a Discordban. Illessz be soronként egy tételt, felsorolásjellel vagy jelölőnégyzettel vagy anélkül, vagy egy táblázat celláit; a címsorok oszlopok lesznek, a kipipált tételek pedig a Done oszlopba kerülnek. Előbb előnézetet látsz.",
     "sharedTitle": "Közös, nem személyes",
     "shared": "A tábla a szerveré, nem egy emberé, és a Discord-rangjaidat követi: aki lássa, az látja, és te döntöd el, ki módosíthatja. Ezért jó választás egy csapat feladataihoz, egy közösség eseménytervezéséhez, egy játékszerver építési listájához vagy egy tanulócsoport feladataihoz.",
     "moreTitle": "Ha egy teendőlista már nem elég",

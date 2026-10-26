@@ -90,5 +90,6 @@
   "viaDiscordHint": "透過 Discord 中的斜線指令完成",
   "viaDiscord": "透過 Discord",
   "changeCount_other": "{count} 項變更",
-  "columnTasksArchived": "封存了{column}中的所有任務（{count}）"
+  "columnTasksArchived": "封存了{column}中的所有任務（{count}）",
+  "tasksImported": "向{board}匯入了任務（{count}）"
 }

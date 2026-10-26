@@ -378,6 +378,7 @@ export function BoardPage() {
               canOpenSettings={canOpenSettings}
               canArchive={settingsAccess.archive}
               canDelete={settingsAccess.delete}
+              canImport={abilities.createTask}
               onOpenSettings={() => setShowSettings(true)}
               onChanged={() => void queryClient.invalidateQueries({ queryKey: boardKeys.all(serverId, boardId) })}
               onDeleted={() => navigate('/')}

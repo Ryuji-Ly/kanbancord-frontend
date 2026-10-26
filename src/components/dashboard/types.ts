@@ -34,6 +34,8 @@ export type BoardCapability = {
   canDelete: boolean
   /** May change the board's labels or priority levels. */
   canManageCatalog: boolean
+  /** May add tasks, so also import them. */
+  canCreateTask: boolean
 }
 
 export type BoardModalConfig = {

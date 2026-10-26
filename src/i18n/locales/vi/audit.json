@@ -90,5 +90,6 @@
   "viaDiscordHint": "Thực hiện bằng lệnh gạch chéo trong Discord",
   "viaDiscord": "qua Discord",
   "changeCount_other": "{count} thay đổi",
-  "columnTasksArchived": "đã lưu trữ mọi công việc trong {column} ({count})"
+  "columnTasksArchived": "đã lưu trữ mọi công việc trong {column} ({count})",
+  "tasksImported": "đã nhập công việc vào {board} ({count})"
 }

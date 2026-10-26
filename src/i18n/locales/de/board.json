@@ -173,5 +173,59 @@
     "archive": "Archivieren",
     "restore": "Wiederherstellen",
     "archivedNote": "Diese Aufgabe ist archiviert: Sie ist nicht mehr auf dem Board und kann erst nach dem Wiederherstellen geändert werden."
+  },
+  "import": {
+    "title": "Aufgaben importieren",
+    "titleFor": "Aufgaben in {name} importieren",
+    "intro": "Füge eine Liste oder Tabelle ein oder wähle eine Datei. Eine Aufgabe pro Zeile, mit oder ohne Aufzählungszeichen, Nummern oder Kästchen; eingerückte Punkte werden zur Checkliste, Überschriften beginnen eine Spalte, und abgehakte Punkte kommen in die letzte Spalte. Tabellen aus einer Tabellenkalkulation, CSV oder Markdown sowie KanbanCord-Board-Dateien gehen auch.",
+    "source": "Woher die Aufgaben kommen",
+    "paste": "Einfügen",
+    "file": "Datei",
+    "placeholder": "- Erste Aufgabe\n- [x] Schon erledigt\n  - Ein Punkt der Checkliste\n# Andere Spalte\n- Zweite Aufgabe",
+    "chooseFile": "Wähle eine Text-, Markdown-, CSV- oder Board-Datei",
+    "format": "Format",
+    "formats": {
+      "AUTO": "Automatisch erkennen",
+      "LIST": "Liste",
+      "CSV": "CSV",
+      "TSV": "Tabellenzellen (TSV)",
+      "MARKDOWN": "Markdown-Tabelle",
+      "KANBANCORD": "KanbanCord-Board-Datei"
+    },
+    "defaultColumn": "Aufgaben ohne Spalte kommen in",
+    "createColumns": "Spalten anlegen, die dieses Board noch nicht hat",
+    "fields": "Was jede Spalte der Tabelle enthält",
+    "fieldNames": {
+      "TITLE": "Titel",
+      "DESCRIPTION": "Beschreibung",
+      "COLUMN": "Spalte",
+      "DUE": "Fälligkeitsdatum",
+      "PRIORITY": "Priorität",
+      "LABELS": "Labels",
+      "IGNORE": "Weglassen"
+    },
+    "preview": "Vorschau",
+    "empty": "Füge eine Liste ein oder wähle eine Datei, um zu sehen, was importiert wird.",
+    "previewFailed": "Die Vorschau konnte nicht erstellt werden",
+    "summary": "Aufgaben: {tasks} · Spalten: {columns}",
+    "newColumn": "neu",
+    "more": "und {count} weitere",
+    "import": "Importieren ({count})",
+    "importing": "Wird importiert…",
+    "imported": "Aufgaben importiert: {count}",
+    "failed": "Die Aufgaben konnten nicht importiert werden",
+    "notes": {
+      "TOO_MANY": "Weggelassene Aufgaben, da höchstens 500 auf einmal gehen: {count}",
+      "TITLE_SHORTENED": "Auf 200 Zeichen gekürzte Titel, der ganze Text steht in der Beschreibung: {count}",
+      "COLUMNS_NOT_CREATED": "Aufgaben in der gewählten Spalte, da du ihre Spalte nicht anlegen darfst: {count}",
+      "TOO_MANY_COLUMNS": "Aufgaben in der gewählten Spalte, da ein Import höchstens 20 Spalten anlegt: {count}",
+      "DUE_DATES_OFF": "Weggelassene Fälligkeitsdaten, da sie auf diesem Board aus sind: {count}",
+      "DUE_UNREADABLE": "Nicht lesbare Fälligkeitsdaten (schreibe sie wie 2026-10-20 oder 2026-10-20 18:00): {count}",
+      "PRIORITIES_OFF": "Weggelassene Prioritäten, da sie auf diesem Board aus sind: {count}",
+      "PRIORITY_UNKNOWN": "Weggelassene Prioritäten, die dieses Board nicht hat: {count}",
+      "LABELS_OFF": "Weggelassene Labels, da sie auf diesem Board aus sind: {count}",
+      "LABEL_UNKNOWN": "Weggelassene Labels, die dieses Board nicht hat: {count}",
+      "LABELS_NOT_ALLOWED": "Weggelassene Labels, da du Aufgaben keine Labels geben darfst: {count}"
+    }
   }
 }

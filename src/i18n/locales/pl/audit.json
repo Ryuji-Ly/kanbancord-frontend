@@ -102,5 +102,6 @@
   "changeCount_few": "{count} zmiany",
   "changeCount_many": "{count} zmian",
   "changeCount_other": "{count} zmiany",
-  "columnTasksArchived": "zarchiwizował(a) wszystkie zadania: {column} ({count})"
+  "columnTasksArchived": "zarchiwizował(a) wszystkie zadania: {column} ({count})",
+  "tasksImported": "zaimportował(a) zadania: {board} ({count})"
 }

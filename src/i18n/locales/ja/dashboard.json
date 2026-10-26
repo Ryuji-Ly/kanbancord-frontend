@@ -35,7 +35,8 @@
     "pinned": "ピン留め済み",
     "settings": "ボードの設定",
     "export": "エクスポート",
-    "exportNotAllowed": "このボードのタスクを表示できないため、エクスポートできません。"
+    "exportNotAllowed": "このボードのタスクを表示できないため、エクスポートできません。",
+    "importTasks": "タスクをインポート"
   },
   "boardModal": {
     "defaultColumns": {

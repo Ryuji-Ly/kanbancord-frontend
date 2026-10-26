@@ -35,7 +35,8 @@
     "pinned": "Fixado",
     "settings": "Definições do quadro",
     "export": "Exportar",
-    "exportNotAllowed": "Não podes ver as tarefas deste quadro, por isso não o podes exportar."
+    "exportNotAllowed": "Não podes ver as tarefas deste quadro, por isso não o podes exportar.",
+    "importTasks": "Importar tarefas"
   },
   "boardModal": {
     "defaultColumns": {

@@ -35,7 +35,8 @@
     "pinned": "Pripnuté",
     "settings": "Nastavenia nástenky",
     "export": "Export",
-    "exportNotAllowed": "Úlohy tejto nástenky nevidíš, takže ju nemôžeš exportovať."
+    "exportNotAllowed": "Úlohy tejto nástenky nevidíš, takže ju nemôžeš exportovať.",
+    "importTasks": "Importovať úlohy"
   },
   "boardModal": {
     "defaultColumns": {

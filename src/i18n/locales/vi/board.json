@@ -169,5 +169,59 @@
     "archive": "Lưu trữ",
     "restore": "Khôi phục",
     "archivedNote": "Công việc này đã được lưu trữ: không còn trên bảng và không thể thay đổi cho đến khi được khôi phục."
+  },
+  "import": {
+    "title": "Nhập công việc",
+    "titleFor": "Nhập công việc vào {name}",
+    "intro": "Dán một danh sách hoặc bảng, hoặc chọn một tệp. Mỗi dòng một công việc, có hoặc không có gạch đầu dòng, số hay ô đánh dấu; mục thụt vào trở thành danh sách kiểm tra, tiêu đề bắt đầu một cột, và mục đã đánh dấu vào cột cuối cùng. Bảng từ bảng tính, CSV hoặc Markdown và tệp bảng KanbanCord cũng dùng được.",
+    "source": "Nguồn của công việc",
+    "paste": "Dán",
+    "file": "Tệp",
+    "placeholder": "- Công việc đầu tiên\n- [x] Đã xong\n  - Một mục kiểm tra\n# Cột khác\n- Công việc thứ hai",
+    "chooseFile": "Chọn tệp văn bản, Markdown, CSV hoặc tệp bảng",
+    "format": "Định dạng",
+    "formats": {
+      "AUTO": "Tự nhận biết",
+      "LIST": "Danh sách",
+      "CSV": "CSV",
+      "TSV": "Ô bảng tính (TSV)",
+      "MARKDOWN": "Bảng Markdown",
+      "KANBANCORD": "Tệp bảng KanbanCord"
+    },
+    "defaultColumn": "Công việc không có cột sẽ vào",
+    "createColumns": "Tạo các cột bảng này chưa có",
+    "fields": "Mỗi cột của bảng chứa gì",
+    "fieldNames": {
+      "TITLE": "Tiêu đề",
+      "DESCRIPTION": "Mô tả",
+      "COLUMN": "Cột",
+      "DUE": "Hạn chót",
+      "PRIORITY": "Mức ưu tiên",
+      "LABELS": "Nhãn",
+      "IGNORE": "Bỏ qua"
+    },
+    "preview": "Xem trước",
+    "empty": "Dán một danh sách hoặc chọn tệp để xem những gì sẽ được nhập.",
+    "previewFailed": "Không tạo được bản xem trước",
+    "summary": "Công việc: {tasks} · Cột: {columns}",
+    "newColumn": "mới",
+    "more": "và {count} việc khác",
+    "import": "Nhập ({count})",
+    "importing": "Đang nhập…",
+    "imported": "Đã nhập công việc: {count}",
+    "failed": "Không nhập được công việc",
+    "notes": {
+      "TOO_MANY": "Công việc bị bỏ qua vì mỗi lần tối đa 500: {count}",
+      "TITLE_SHORTENED": "Tiêu đề rút gọn còn 200 ký tự, toàn văn nằm trong mô tả: {count}",
+      "COLUMNS_NOT_CREATED": "Công việc đưa vào cột đã chọn vì bạn không được tạo cột của chúng: {count}",
+      "TOO_MANY_COLUMNS": "Công việc đưa vào cột đã chọn vì một lần nhập tạo tối đa 20 cột: {count}",
+      "DUE_DATES_OFF": "Hạn chót bị bỏ qua vì bảng này đã tắt hạn chót: {count}",
+      "DUE_UNREADABLE": "Hạn chót không đọc được (viết như 2026-10-20 hoặc 2026-10-20 18:00): {count}",
+      "PRIORITIES_OFF": "Mức ưu tiên bị bỏ qua vì bảng này đã tắt: {count}",
+      "PRIORITY_UNKNOWN": "Mức ưu tiên bảng này không có, đã bỏ qua: {count}",
+      "LABELS_OFF": "Nhãn bị bỏ qua vì bảng này đã tắt nhãn: {count}",
+      "LABEL_UNKNOWN": "Nhãn bảng này không có, đã bỏ qua: {count}",
+      "LABELS_NOT_ALLOWED": "Nhãn bị bỏ qua vì bạn không được thêm nhãn cho công việc: {count}"
+    }
   }
 }

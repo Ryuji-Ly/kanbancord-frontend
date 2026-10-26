@@ -718,8 +718,128 @@ pre {
   }
 }
 
-.kc-board-export-dialog {
+.kc-modal.kc-board-export-dialog {
   max-width: 520px;
+}
+
+/* Importing tasks: the source, the options, then a preview of where everything goes. */
+.kc-modal.kc-import-dialog {
+  max-width: 720px;
+}
+
+.kc-import-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.kc-import-source {
+  display: flex;
+  gap: 6px;
+}
+
+.kc-import-text {
+  width: 100%;
+  min-height: 160px;
+  resize: vertical;
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.85rem;
+}
+
+.kc-import-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.kc-import-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+}
+
+.kc-import-fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+  margin: 0;
+  padding: 10px;
+  border: 1px solid var(--kc-border);
+  border-radius: 8px;
+
+  legend {
+    padding: 0 4px;
+  }
+}
+
+.kc-import-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.85rem;
+
+  span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--kc-muted);
+  }
+}
+
+.kc-import-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 10px;
+  border-top: 1px solid var(--kc-border);
+
+  h4 {
+    margin: 0;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+.kc-import-columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.kc-import-column {
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: var(--kc-card);
+
+  ul {
+    margin: 6px 0 0;
+    padding-left: 18px;
+    font-size: 0.85rem;
+  }
+}
+
+.kc-import-column-name {
+  font-weight: 600;
+  color: var(--kc-heading);
+}
+
+.kc-import-new {
+  margin-left: 6px;
+  padding: 1px 6px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  background: color-mix(in srgb, var(--kc-accent-2) 25%, transparent);
+  color: var(--kc-text-strong);
+}
+
+.kc-import-notes {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 0.85rem;
 }
 
 /* Pinned boards, from any server, above the selected server. */

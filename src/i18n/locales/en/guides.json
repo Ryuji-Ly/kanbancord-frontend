@@ -46,6 +46,7 @@
     "tickTitle": "Tick tasks off",
     "tick": "Pick a task from the post's menu to open it privately, then move it to Done. Or run <code>/task move task:... column:Done</code>. If your server has an <postsFeeds>update feed</postsFeeds> with buttons, each update shows a button per column, so ticking a task off is one click.",
     "archive": "Done getting long? <code>/column archive-tasks column:Done</code> takes every task in it off the board at once. Archived tasks keep everything: bring one back with <code>/task restore</code>, or find them on the website with the Archived tasks filter.",
+    "import": "Already keep the list somewhere? Bring it in at once: choose <strong>Import tasks</strong> in the board's ⋯ menu on the website, or use <code>/task import</code> in Discord. Paste one item per line, with or without bullets or checkboxes, or a spreadsheet's cells; headings become columns and ticked items go to Done. You see a preview before anything is added.",
     "sharedTitle": "Shared, not personal",
     "shared": "A board belongs to the server, not to one person, and it follows your Discord roles: everyone who should see it can, and you decide who may change it. That makes it a good fit for a team's tasks, a community's event planning, a game server's build list, or a study group's assignments.",
     "moreTitle": "When a to-do list is not enough",

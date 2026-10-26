@@ -363,6 +363,7 @@ export function ServerWorkspace({ serverId, server, showError, showToast }: Serv
         canOpenSettings={Boolean(capability && (capability.canEditDetails || capability.canEditPermissions || capability.canManageCatalog))}
         canArchive={Boolean(capability?.canArchive)}
         canDelete={Boolean(capability?.canDelete)}
+        canImport={Boolean(capability?.canCreateTask)}
         onOpenSettings={() => setSettingsBoardId(String(board.boardId))}
         showToast={showToast}
         showError={showError}

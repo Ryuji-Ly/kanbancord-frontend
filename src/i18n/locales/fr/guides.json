@@ -46,6 +46,7 @@
     "tickTitle": "Cocher les tâches",
     "tick": "Choisis une tâche dans le menu de la publication pour l'ouvrir juste pour toi, puis déplace-la dans Done. Ou lance <code>/task move task:... column:Done</code>. Si ton serveur a un <postsFeeds>flux de mises à jour</postsFeeds> avec boutons, chaque mise à jour montre un bouton par colonne : cocher une tâche se fait en un clic.",
     "archive": "Done devient trop long ? <code>/column archive-tasks column:Done</code> retire d'un coup toutes ses tâches du tableau. Les tâches archivées gardent tout : ramène-en une avec <code>/task restore</code>, ou retrouve-les sur le site avec le filtre Tâches archivées.",
+    "import": "Tu tiens déjà la liste ailleurs ? Fais-la venir d’un coup : choisis <strong>Import tasks</strong> dans le menu ⋯ du tableau sur le site, ou utilise <code>/task import</code> dans Discord. Colle un élément par ligne, avec ou sans puces ou cases, ou les cellules d’un tableur ; les titres deviennent des colonnes et les éléments cochés vont dans Done. Un aperçu s’affiche avant tout ajout.",
     "sharedTitle": "Partagée, pas personnelle",
     "shared": "Un tableau appartient au serveur, pas à une personne, et il suit tes rôles Discord : tous ceux qui doivent le voir le voient, et c'est toi qui décides qui peut le modifier. Il convient donc bien aux tâches d'une équipe, à l'organisation d'événements d'une communauté, à la liste de constructions d'un serveur de jeu ou aux devoirs d'un groupe d'étude.",
     "moreTitle": "Quand une liste de tâches ne suffit plus",

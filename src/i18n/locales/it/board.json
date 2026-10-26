@@ -177,5 +177,59 @@
     "archive": "Archivia",
     "restore": "Ripristina",
     "archivedNote": "Questa attività è archiviata: non è più sulla bacheca e non si può modificare finché non viene ripristinata."
+  },
+  "import": {
+    "title": "Importa attività",
+    "titleFor": "Importa attività in {name}",
+    "intro": "Incolla un elenco o una tabella, oppure scegli un file. Un’attività per riga, con o senza punti, numeri o caselle; le voci rientrate diventano una checklist, i titoli iniziano una colonna e le voci spuntate vanno nell’ultima colonna. Funzionano anche tabelle da un foglio di calcolo, CSV o Markdown e i file di bacheca di KanbanCord.",
+    "source": "Da dove vengono le attività",
+    "paste": "Incolla",
+    "file": "File",
+    "placeholder": "- Prima attività\n- [x] Già fatta\n  - Una voce della checklist\n# Altra colonna\n- Seconda attività",
+    "chooseFile": "Scegli un file di testo, Markdown, CSV o di bacheca",
+    "format": "Formato",
+    "formats": {
+      "AUTO": "Rileva",
+      "LIST": "Elenco",
+      "CSV": "CSV",
+      "TSV": "Celle di un foglio di calcolo (TSV)",
+      "MARKDOWN": "Tabella Markdown",
+      "KANBANCORD": "File di bacheca KanbanCord"
+    },
+    "defaultColumn": "Le attività senza colonna vanno in",
+    "createColumns": "Crea le colonne che questa bacheca non ha ancora",
+    "fields": "Cosa contiene ogni colonna della tabella",
+    "fieldNames": {
+      "TITLE": "Titolo",
+      "DESCRIPTION": "Descrizione",
+      "COLUMN": "Colonna",
+      "DUE": "Scadenza",
+      "PRIORITY": "Priorità",
+      "LABELS": "Etichette",
+      "IGNORE": "Escludi"
+    },
+    "preview": "Anteprima",
+    "empty": "Incolla un elenco o scegli un file per vedere cosa verrà importato.",
+    "previewFailed": "Non è stato possibile creare l’anteprima",
+    "summary": "Attività: {tasks} · Colonne: {columns}",
+    "newColumn": "nuova",
+    "more": "e altre {count}",
+    "import": "Importa ({count})",
+    "importing": "Importazione…",
+    "imported": "Attività importate: {count}",
+    "failed": "Non è stato possibile importare le attività",
+    "notes": {
+      "TOO_MANY": "Attività escluse, perché il massimo è 500 alla volta: {count}",
+      "TITLE_SHORTENED": "Titoli accorciati a 200 caratteri, con il testo intero nella descrizione: {count}",
+      "COLUMNS_NOT_CREATED": "Attività messe nella colonna scelta, perché non puoi creare la loro colonna: {count}",
+      "TOO_MANY_COLUMNS": "Attività messe nella colonna scelta, perché un’importazione crea al massimo 20 colonne: {count}",
+      "DUE_DATES_OFF": "Scadenze escluse, perché sono disattivate in questa bacheca: {count}",
+      "DUE_UNREADABLE": "Scadenze non leggibili (scrivile come 2026-10-20 o 2026-10-20 18:00): {count}",
+      "PRIORITIES_OFF": "Priorità escluse, perché sono disattivate in questa bacheca: {count}",
+      "PRIORITY_UNKNOWN": "Priorità che questa bacheca non ha, escluse: {count}",
+      "LABELS_OFF": "Etichette escluse, perché sono disattivate in questa bacheca: {count}",
+      "LABEL_UNKNOWN": "Etichette che questa bacheca non ha, escluse: {count}",
+      "LABELS_NOT_ALLOWED": "Etichette escluse, perché non puoi aggiungere etichette alle attività: {count}"
+    }
   }
 }

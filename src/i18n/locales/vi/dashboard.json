@@ -35,7 +35,8 @@
     "pinned": "Đã ghim",
     "settings": "Cài đặt bảng",
     "export": "Xuất",
-    "exportNotAllowed": "Bạn không xem được công việc của bảng này nên không thể xuất nó."
+    "exportNotAllowed": "Bạn không xem được công việc của bảng này nên không thể xuất nó.",
+    "importTasks": "Nhập công việc"
   },
   "boardModal": {
     "defaultColumns": {

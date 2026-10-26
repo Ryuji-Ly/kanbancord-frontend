@@ -98,5 +98,6 @@
   "changeCount_one": "{count} modificare",
   "changeCount_few": "{count} modificări",
   "changeCount_other": "{count} de modificări",
-  "columnTasksArchived": "a arhivat toate sarcinile: {column} ({count})"
+  "columnTasksArchived": "a arhivat toate sarcinile: {column} ({count})",
+  "tasksImported": "a importat sarcini: {board} ({count})"
 }

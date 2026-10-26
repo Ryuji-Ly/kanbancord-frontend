@@ -35,7 +35,8 @@
     "pinned": "Przypięta",
     "settings": "Ustawienia tablicy",
     "export": "Eksport",
-    "exportNotAllowed": "Nie widzisz zadań tej tablicy, więc nie możesz jej wyeksportować."
+    "exportNotAllowed": "Nie widzisz zadań tej tablicy, więc nie możesz jej wyeksportować.",
+    "importTasks": "Importuj zadania"
   },
   "boardModal": {
     "defaultColumns": {

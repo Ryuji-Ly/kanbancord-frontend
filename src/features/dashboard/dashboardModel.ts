@@ -60,6 +60,7 @@ export function boardCapabilities(
         canManageCatalog:
           (features.LABELS && Boolean(keys.CREATE_LABEL || keys.EDIT_LABEL || keys.DELETE_LABEL)) ||
           (features.PRIORITIES && Boolean(keys.MANAGE_PRIORITIES)),
+        canCreateTask: Boolean(keys.CREATE_TASK),
       },
     ]),
   )

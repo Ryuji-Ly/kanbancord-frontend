@@ -177,5 +177,59 @@
     "archive": "Arquivar",
     "restore": "Restaurar",
     "archivedNote": "Esta tarefa está arquivada: saiu do quadro e não pode ser alterada até ser restaurada."
+  },
+  "import": {
+    "title": "Importar tarefas",
+    "titleFor": "Importar tarefas para {name}",
+    "intro": "Cole uma lista ou uma tabela, ou escolha um arquivo. Uma tarefa por linha, com ou sem marcadores, números ou caixas de seleção; itens recuados viram uma checklist, títulos começam uma coluna e itens marcados vão para a última coluna. Também funcionam tabelas de uma planilha, CSV ou Markdown e arquivos de quadro do KanbanCord.",
+    "source": "De onde vêm as tarefas",
+    "paste": "Colar",
+    "file": "Arquivo",
+    "placeholder": "- Primeira tarefa\n- [x] Já feita\n  - Um item da checklist\n# Outra coluna\n- Segunda tarefa",
+    "chooseFile": "Escolha um arquivo de texto, Markdown, CSV ou de quadro",
+    "format": "Formato",
+    "formats": {
+      "AUTO": "Detectar",
+      "LIST": "Lista",
+      "CSV": "CSV",
+      "TSV": "Células de planilha (TSV)",
+      "MARKDOWN": "Tabela Markdown",
+      "KANBANCORD": "Arquivo de quadro do KanbanCord"
+    },
+    "defaultColumn": "Tarefas sem coluna vão para",
+    "createColumns": "Criar as colunas que este quadro ainda não tem",
+    "fields": "O que cada coluna da tabela contém",
+    "fieldNames": {
+      "TITLE": "Título",
+      "DESCRIPTION": "Descrição",
+      "COLUMN": "Coluna",
+      "DUE": "Prazo",
+      "PRIORITY": "Prioridade",
+      "LABELS": "Etiquetas",
+      "IGNORE": "Deixar de fora"
+    },
+    "preview": "Prévia",
+    "empty": "Cole uma lista ou escolha um arquivo para ver o que será importado.",
+    "previewFailed": "Não foi possível gerar a prévia",
+    "summary": "Tarefas: {tasks} · Colunas: {columns}",
+    "newColumn": "nova",
+    "more": "e mais {count}",
+    "import": "Importar ({count})",
+    "importing": "Importando…",
+    "imported": "Tarefas importadas: {count}",
+    "failed": "Não foi possível importar as tarefas",
+    "notes": {
+      "TOO_MANY": "Tarefas deixadas de fora, já que o máximo é 500 por vez: {count}",
+      "TITLE_SHORTENED": "Títulos encurtados para 200 caracteres, com o texto completo na descrição: {count}",
+      "COLUMNS_NOT_CREATED": "Tarefas colocadas na coluna escolhida, já que você não pode criar a coluna delas: {count}",
+      "TOO_MANY_COLUMNS": "Tarefas colocadas na coluna escolhida, já que uma importação cria no máximo 20 colunas: {count}",
+      "DUE_DATES_OFF": "Prazos deixados de fora, já que estão desativados neste quadro: {count}",
+      "DUE_UNREADABLE": "Prazos que não puderam ser lidos (escreva como 2026-10-20 ou 2026-10-20 18:00): {count}",
+      "PRIORITIES_OFF": "Prioridades deixadas de fora, já que estão desativadas neste quadro: {count}",
+      "PRIORITY_UNKNOWN": "Prioridades que este quadro não tem, deixadas de fora: {count}",
+      "LABELS_OFF": "Etiquetas deixadas de fora, já que estão desativadas neste quadro: {count}",
+      "LABEL_UNKNOWN": "Etiquetas que este quadro não tem, deixadas de fora: {count}",
+      "LABELS_NOT_ALLOWED": "Etiquetas deixadas de fora, já que você não pode adicionar etiquetas a tarefas: {count}"
+    }
   }
 }

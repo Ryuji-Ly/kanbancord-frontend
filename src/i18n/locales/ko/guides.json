@@ -46,6 +46,7 @@
     "tickTitle": "작업 완료하기",
     "tick": "게시물 메뉴에서 작업을 골라 나만 보이게 연 다음 Done으로 옮기세요. 또는 <code>/task move task:... column:Done</code>을 실행하세요. 서버에 버튼이 있는 <postsFeeds>업데이트 피드</postsFeeds>가 있다면 업데이트마다 열별 버튼이 있어서, 클릭 한 번으로 작업을 완료할 수 있어요.",
     "archive": "Done이 너무 길어졌나요? <code>/column archive-tasks column:Done</code>로 그 안의 작업을 한 번에 보드에서 내릴 수 있어요. 보관된 작업은 내용이 그대로 남아요. <code>/task restore</code>로 하나씩 되돌리거나, 웹사이트의 보관된 작업 필터에서 찾을 수 있어요.",
+    "import": "목록을 이미 다른 곳에 두고 있나요? 한 번에 가져오세요. 웹사이트에서 보드의 ⋯ 메뉴에서 <strong>Import tasks</strong>를 고르거나, Discord에서 <code>/task import</code>를 쓰면 돼요. 한 줄에 항목 하나씩, 글머리 기호나 체크박스는 있어도 없어도 되고 스프레드시트 셀도 붙여 넣을 수 있어요. 제목은 열이 되고 체크된 항목은 Done으로 가요. 추가하기 전에 미리 보기가 보여요.",
     "sharedTitle": "개인용이 아닌 공유용",
     "shared": "보드는 한 사람이 아니라 서버의 것이고, Discord 역할을 따라요. 봐야 할 사람은 모두 볼 수 있고, 누가 바꿀 수 있는지는 직접 정해요. 그래서 팀의 작업, 커뮤니티의 이벤트 준비, 게임 서버의 건축 목록, 스터디 그룹의 과제에 잘 맞아요.",
     "moreTitle": "할 일 목록만으로 부족할 때",

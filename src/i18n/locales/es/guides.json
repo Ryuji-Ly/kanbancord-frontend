@@ -46,6 +46,7 @@
     "tickTitle": "Tacha tareas",
     "tick": "Elige una tarea en el menú de la publicación para abrirla en privado y muévela a Done. O ejecuta <code>/task move task:... column:Done</code>. Si tu servidor tiene un <postsFeeds>feed de novedades</postsFeeds> con botones, cada novedad muestra un botón por columna, así que tachar una tarea es un clic.",
     "archive": "¿Done se está alargando? <code>/column archive-tasks column:Done</code> saca todas sus tareas del tablero de una vez. Las tareas archivadas lo conservan todo: recupera una con <code>/task restore</code>, o encuéntralas en la web con el filtro Tareas archivadas.",
+    "import": "¿Ya llevas la lista en otro sitio? Tráela de una vez: elige <strong>Import tasks</strong> en el menú ⋯ del tablero en la web, o usa <code>/task import</code> en Discord. Pega un elemento por línea, con o sin viñetas o casillas, o las celdas de una hoja de cálculo; los títulos pasan a ser columnas y los elementos marcados van a Done. Ves una vista previa antes de que se añada nada.",
     "sharedTitle": "Compartida, no personal",
     "shared": "Un tablero pertenece al servidor, no a una persona, y sigue tus roles de Discord: todos los que deben verlo lo ven, y tú decides quién puede cambiarlo. Eso lo hace ideal para las tareas de un equipo, la organización de eventos de una comunidad, la lista de construcciones de un servidor de juego o los trabajos de un grupo de estudio.",
     "moreTitle": "Cuando una lista de tareas no basta",

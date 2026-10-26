@@ -35,7 +35,8 @@
     "pinned": "已固定",
     "settings": "看板设置",
     "export": "导出",
-    "exportNotAllowed": "你无法查看此看板的任务，因此无法导出它。"
+    "exportNotAllowed": "你无法查看此看板的任务，因此无法导出它。",
+    "importTasks": "导入任务"
   },
   "boardModal": {
     "defaultColumns": {

@@ -98,5 +98,6 @@
   "changeCount_one": "{count} alteração",
   "changeCount_other": "{count} alterações",
   "changeCount_many": "{count} alterações",
-  "columnTasksArchived": "arquivou todas as tarefas: {column} ({count})"
+  "columnTasksArchived": "arquivou todas as tarefas: {column} ({count})",
+  "tasksImported": "importou tarefas: {board} ({count})"
 }

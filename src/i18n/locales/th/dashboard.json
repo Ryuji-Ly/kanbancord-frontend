@@ -35,7 +35,8 @@
     "pinned": "ปักหมุดแล้ว",
     "settings": "การตั้งค่าบอร์ด",
     "export": "ส่งออก",
-    "exportNotAllowed": "คุณดูงานของบอร์ดนี้ไม่ได้ จึงส่งออกไม่ได้"
+    "exportNotAllowed": "คุณดูงานของบอร์ดนี้ไม่ได้ จึงส่งออกไม่ได้",
+    "importTasks": "นำเข้างาน"
   },
   "boardModal": {
     "defaultColumns": {

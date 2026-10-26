@@ -177,5 +177,59 @@
     "archive": "Archiver",
     "restore": "Restaurer",
     "archivedNote": "Cette tâche est archivée : elle n'est plus sur le tableau et ne peut pas être modifiée avant d'être restaurée."
+  },
+  "import": {
+    "title": "Importer des tâches",
+    "titleFor": "Importer des tâches dans {name}",
+    "intro": "Colle une liste ou un tableau, ou choisis un fichier. Une tâche par ligne, avec ou sans puces, numéros ou cases ; les éléments en retrait deviennent une checklist, les titres commencent une colonne et les éléments cochés vont dans la dernière colonne. Les tableaux d’un tableur, en CSV ou en Markdown, et les fichiers de tableau KanbanCord fonctionnent aussi.",
+    "source": "D’où viennent les tâches",
+    "paste": "Coller",
+    "file": "Fichier",
+    "placeholder": "- Première tâche\n- [x] Déjà faite\n  - Un élément de checklist\n# Autre colonne\n- Deuxième tâche",
+    "chooseFile": "Choisis un fichier texte, Markdown, CSV ou de tableau",
+    "format": "Format",
+    "formats": {
+      "AUTO": "Détecter",
+      "LIST": "Liste",
+      "CSV": "CSV",
+      "TSV": "Cellules de tableur (TSV)",
+      "MARKDOWN": "Tableau Markdown",
+      "KANBANCORD": "Fichier de tableau KanbanCord"
+    },
+    "defaultColumn": "Les tâches sans colonne vont dans",
+    "createColumns": "Créer les colonnes que ce tableau n’a pas encore",
+    "fields": "Ce que contient chaque colonne du tableau",
+    "fieldNames": {
+      "TITLE": "Titre",
+      "DESCRIPTION": "Description",
+      "COLUMN": "Colonne",
+      "DUE": "Date d'échéance",
+      "PRIORITY": "Priorité",
+      "LABELS": "Étiquettes",
+      "IGNORE": "Ignorer"
+    },
+    "preview": "Aperçu",
+    "empty": "Colle une liste ou choisis un fichier pour voir ce qui sera importé.",
+    "previewFailed": "L’aperçu n’a pas pu être créé",
+    "summary": "Tâches : {tasks} · Colonnes : {columns}",
+    "newColumn": "nouvelle",
+    "more": "et {count} de plus",
+    "import": "Importer ({count})",
+    "importing": "Importation…",
+    "imported": "Tâches importées : {count}",
+    "failed": "Les tâches n’ont pas pu être importées",
+    "notes": {
+      "TOO_MANY": "Tâches laissées de côté, 500 au plus à la fois : {count}",
+      "TITLE_SHORTENED": "Titres raccourcis à 200 caractères, le texte entier dans la description : {count}",
+      "COLUMNS_NOT_CREATED": "Tâches mises dans la colonne choisie, car tu ne peux pas créer leur colonne : {count}",
+      "TOO_MANY_COLUMNS": "Tâches mises dans la colonne choisie, car un import crée au plus 20 colonnes : {count}",
+      "DUE_DATES_OFF": "Dates d’échéance laissées de côté, car elles sont désactivées sur ce tableau : {count}",
+      "DUE_UNREADABLE": "Dates d’échéance illisibles (écris-les comme 2026-10-20 ou 2026-10-20 18:00) : {count}",
+      "PRIORITIES_OFF": "Priorités laissées de côté, car elles sont désactivées sur ce tableau : {count}",
+      "PRIORITY_UNKNOWN": "Priorités que ce tableau n’a pas, laissées de côté : {count}",
+      "LABELS_OFF": "Étiquettes laissées de côté, car elles sont désactivées sur ce tableau : {count}",
+      "LABEL_UNKNOWN": "Étiquettes que ce tableau n’a pas, laissées de côté : {count}",
+      "LABELS_NOT_ALLOWED": "Étiquettes laissées de côté, car tu ne peux pas en ajouter aux tâches : {count}"
+    }
   }
 }

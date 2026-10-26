@@ -35,7 +35,8 @@
     "pinned": "Fäst",
     "settings": "Tavlans inställningar",
     "export": "Exportera",
-    "exportNotAllowed": "Du kan inte se tavlans uppgifter och kan därför inte exportera den."
+    "exportNotAllowed": "Du kan inte se tavlans uppgifter och kan därför inte exportera den.",
+    "importTasks": "Importera uppgifter"
   },
   "boardModal": {
     "defaultColumns": {
