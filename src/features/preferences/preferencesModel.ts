@@ -20,12 +20,17 @@ export type AccessibilityPreference = {
 /** Features the user hides for themselves; true means hidden. Everyone else still sees them. */
 export type SimpleViewPreference = Partial<Record<Exclude<FeatureKey, 'PERMISSIONS'>, boolean>>
 
+/** A board pinned to the top of the dashboard; ids are strings, as Discord ids do not fit a number. */
+export type PinnedBoard = { serverId: string; boardId: string }
+
 export type Preferences = {
   /** The website's language, or 'auto' to follow the browser (and Discord, in the Activity). */
   language?: string
   theme?: ThemePreference
   accessibility?: AccessibilityPreference
   simpleView?: SimpleViewPreference
+  /** Boards shown at the top of the dashboard, from any server, in the order they were pinned. */
+  pinnedBoards?: PinnedBoard[]
 }
 
 export const TEXT_SCALES: { value: number; label: MessageKey }[] = [

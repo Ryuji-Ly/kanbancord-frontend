@@ -23,6 +23,8 @@ Discord through the bot; the website is there for the big picture and the finer 
   assignee and due date. Changes appear live for everyone, in Discord too. Long columns fold at two screens.
 - **Archiving**: take a task, or every task in a column, off the board while keeping it; the Archived tasks filter
   shows them, and opening one restores it.
+- **Pinned boards**: pin boards from any server to the top of the dashboard, from a board's ⋯ menu (which also holds
+  its settings, export, archive and delete). Pins are saved with the account, so they follow you to every device.
 - **Tasks in full**: descriptions with checklists, images and videos, assignees, labels, priorities, due dates and
   comments.
 - **Settings for each server and board**: features and simple mode, labels and priority levels, update feeds and what

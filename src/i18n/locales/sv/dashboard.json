@@ -28,7 +28,14 @@
     "all": "Alla",
     "loading": "Läser in tavlor...",
     "none": "Inga tavlor än.",
-    "noMatch": "Inga tavlor matchar den aktuella sökningen eller filtret."
+    "noMatch": "Inga tavlor matchar den aktuella sökningen eller filtret.",
+    "actions": "Åtgärder för {name}",
+    "pin": "Fäst i översikten",
+    "unpin": "Lossa från översikten",
+    "pinned": "Fäst",
+    "settings": "Tavlans inställningar",
+    "export": "Exportera",
+    "exportNotAllowed": "Du kan inte se tavlans uppgifter och kan därför inte exportera den."
   },
   "boardModal": {
     "defaultColumns": {
@@ -109,5 +116,9 @@
     "loginFailed": "OAuth-inloggningen misslyckades",
     "loggedOut": "Du är utloggad.",
     "expired": "Sessionen har gått ut. Logga in igen."
+  },
+  "pinned": {
+    "title": "Fästa tavlor",
+    "unpin": "Lossa {name}"
   }
 }

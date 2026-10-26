@@ -28,7 +28,14 @@
     "all": "Mind",
     "loading": "Táblák betöltése...",
     "none": "Még nincsenek táblák.",
-    "noMatch": "Egy tábla sem felel meg a jelenlegi keresésnek vagy szűrőnek."
+    "noMatch": "Egy tábla sem felel meg a jelenlegi keresésnek vagy szűrőnek.",
+    "actions": "Műveletek: {name}",
+    "pin": "Kitűzés az irányítópultra",
+    "unpin": "Levétel az irányítópultról",
+    "pinned": "Kitűzve",
+    "settings": "Tábla beállításai",
+    "export": "Exportálás",
+    "exportNotAllowed": "Nem látod ennek a táblának a feladatait, ezért nem exportálhatod."
   },
   "boardModal": {
     "defaultColumns": {
@@ -109,5 +116,9 @@
     "loginFailed": "Az OAuth-bejelentkezés sikertelen",
     "loggedOut": "Sikeres kijelentkezés.",
     "expired": "A munkamenet lejárt. Jelentkezz be újra."
+  },
+  "pinned": {
+    "title": "Kitűzött táblák",
+    "unpin": "Levétel: {name}"
   }
 }

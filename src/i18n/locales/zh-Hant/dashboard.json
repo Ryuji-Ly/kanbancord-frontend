@@ -28,7 +28,14 @@
     "all": "全部",
     "loading": "正在載入看板...",
     "none": "還沒有看板。",
-    "noMatch": "沒有符合目前搜尋或篩選的看板。"
+    "noMatch": "沒有符合目前搜尋或篩選的看板。",
+    "actions": "{name}的操作",
+    "pin": "釘選到儀表板",
+    "unpin": "從儀表板取消釘選",
+    "pinned": "已釘選",
+    "settings": "看板設定",
+    "export": "匯出",
+    "exportNotAllowed": "你無法檢視此看板的任務，因此無法匯出。"
   },
   "boardModal": {
     "defaultColumns": {
@@ -108,5 +115,9 @@
     "loginFailed": "OAuth 登入失敗",
     "loggedOut": "已登出。",
     "expired": "工作階段已過期。請重新登入。"
+  },
+  "pinned": {
+    "title": "已釘選的看板",
+    "unpin": "取消釘選{name}"
   }
 }

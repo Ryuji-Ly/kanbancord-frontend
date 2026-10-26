@@ -21,6 +21,8 @@ import type { PermissionPreset } from '../../components/dashboard/permissions/pe
 import { buildInheritedBoardPermissionDrafts } from '../../components/dashboard/boards/boardPermissionDraft'
 import { permissionRankWeight } from '../../components/dashboard/permissionRank'
 import { ServerOverviewPanel } from '../../components/dashboard/ServerOverviewPanel'
+import { BoardActionsMenu } from '../../components/dashboard/boards/BoardActionsMenu'
+import { usePinnedBoards } from './usePinnedBoards'
 import type { BoardModalConfig, DeleteGroupTarget } from '../../components/dashboard/types'
 import {
   serverKeys,
@@ -97,6 +99,7 @@ export function ServerWorkspace({ serverId, server, showError, showToast }: Serv
   const rankWeight = actorRankWeight(access)
   const features = featuresQuery.data ?? NO_FEATURES
   const capabilities = useMemo(() => boardCapabilities(access, featuresQuery.data), [access, featuresQuery.data])
+  const { isPinned } = usePinnedBoards()
 
   // ── Permission list ─────────────────────────────────────────────────────
   const [showSettings, setShowSettings] = useState(false)
@@ -350,9 +353,21 @@ export function ServerWorkspace({ serverId, server, showError, showToast }: Serv
   // An existing board's settings open in the same dialog as on the board page.
   const [settingsBoardId, setSettingsBoardId] = useState<string | null>(null)
 
-  function openBoardSettings(board: BoardEntry) {
+  /** A board's ⋯ menu: pinning for everyone, the rest as the user's permissions allow. */
+  function boardActions(board: BoardEntry) {
     const capability = capabilities[String(board.boardId)]
-    if (capability && Object.values(capability).some(Boolean)) setSettingsBoardId(String(board.boardId))
+    return (
+      <BoardActionsMenu
+        serverId={serverId}
+        board={board}
+        canOpenSettings={Boolean(capability && (capability.canEditDetails || capability.canEditPermissions || capability.canManageCatalog))}
+        canArchive={Boolean(capability?.canArchive)}
+        canDelete={Boolean(capability?.canDelete)}
+        onOpenSettings={() => setSettingsBoardId(String(board.boardId))}
+        showToast={showToast}
+        showError={showError}
+      />
+    )
   }
 
   function closeBoardEditor() {
@@ -498,12 +513,12 @@ export function ServerWorkspace({ serverId, server, showError, showToast }: Serv
         boards={boardsQuery.data ?? []}
         boardsLoading={boardsQuery.isPending}
         canCreateBoard={Boolean(access?.server.CREATE_BOARD)}
-        boardCapabilities={capabilities}
+        isBoardPinned={(board) => isPinned(serverId, board.boardId)}
+        renderBoardActions={boardActions}
         onOpenSettings={settingsSections.length > 0 ? () => setShowSettings(true) : undefined}
         onOpenCreateBoard={() => void openCreateBoard()}
         onOpenImportBoard={() => setImporting(true)}
         onOpenBoard={(board) => navigate(`/boards/${board.boardId}?serverId=${encodeURIComponent(serverId)}`)}
-        onOpenBoardSettings={openBoardSettings}
       />
 
       <Suspense fallback={null}>

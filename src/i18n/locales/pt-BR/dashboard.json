@@ -28,7 +28,14 @@
     "all": "Todos",
     "loading": "Carregando os quadros...",
     "none": "Nenhum quadro ainda.",
-    "noMatch": "Nenhum quadro corresponde à pesquisa ou ao filtro."
+    "noMatch": "Nenhum quadro corresponde à pesquisa ou ao filtro.",
+    "actions": "Ações de {name}",
+    "pin": "Fixar no painel",
+    "unpin": "Desafixar do painel",
+    "pinned": "Fixado",
+    "settings": "Configurações do quadro",
+    "export": "Exportar",
+    "exportNotAllowed": "Você não pode ver as tarefas deste quadro, então não pode exportá-lo."
   },
   "boardModal": {
     "defaultColumns": {
@@ -110,5 +117,9 @@
     "loginFailed": "O login com OAuth falhou",
     "loggedOut": "Você saiu.",
     "expired": "A sessão expirou. Entre de novo."
+  },
+  "pinned": {
+    "title": "Quadros fixados",
+    "unpin": "Desafixar {name}"
   }
 }

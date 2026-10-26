@@ -28,7 +28,14 @@
     "all": "Tous",
     "loading": "Chargement des tableaux…",
     "none": "Aucun tableau pour l'instant.",
-    "noMatch": "Aucun tableau ne correspond à la recherche ou au filtre."
+    "noMatch": "Aucun tableau ne correspond à la recherche ou au filtre.",
+    "actions": "Actions pour {name}",
+    "pin": "Épingler au tableau de bord",
+    "unpin": "Désépingler du tableau de bord",
+    "pinned": "Épinglé",
+    "settings": "Paramètres du tableau",
+    "export": "Exporter",
+    "exportNotAllowed": "Tu ne peux pas voir les tâches de ce tableau, tu ne peux donc pas l’exporter."
   },
   "boardModal": {
     "defaultColumns": {
@@ -110,5 +117,9 @@
     "loginFailed": "La connexion OAuth a échoué",
     "loggedOut": "Déconnexion réussie.",
     "expired": "Session expirée. Reconnecte-toi."
+  },
+  "pinned": {
+    "title": "Tableaux épinglés",
+    "unpin": "Désépingler {name}"
   }
 }

@@ -28,7 +28,14 @@
     "all": "전체",
     "loading": "보드를 불러오는 중…",
     "none": "아직 보드가 없어요.",
-    "noMatch": "검색이나 필터에 맞는 보드가 없어요."
+    "noMatch": "검색이나 필터에 맞는 보드가 없어요.",
+    "actions": "{name} 작업",
+    "pin": "대시보드에 고정",
+    "unpin": "대시보드에서 고정 해제",
+    "pinned": "고정됨",
+    "settings": "보드 설정",
+    "export": "내보내기",
+    "exportNotAllowed": "이 보드의 작업을 볼 수 없어서 내보낼 수 없어요."
   },
   "boardModal": {
     "defaultColumns": {
@@ -108,5 +115,9 @@
     "loginFailed": "OAuth 로그인에 실패했어요",
     "loggedOut": "로그아웃했어요.",
     "expired": "세션이 만료되었어요. 다시 로그인해 주세요."
+  },
+  "pinned": {
+    "title": "고정한 보드",
+    "unpin": "{name} 고정 해제"
   }
 }

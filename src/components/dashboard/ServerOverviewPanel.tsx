@@ -1,8 +1,8 @@
+import type { ReactNode } from 'react'
 import { FiSettings } from 'react-icons/fi'
 import { t } from '../../i18n'
 import type { DiscordGuild } from '../../types/auth'
 import type { BoardEntry } from '../../services/boardsService'
-import type { BoardCapability } from './types'
 import { BoardsSection } from './boards/BoardsSection'
 
 type ServerOverviewPanelProps = {
@@ -10,13 +10,13 @@ type ServerOverviewPanelProps = {
   boards: BoardEntry[]
   boardsLoading: boolean
   canCreateBoard: boolean
-  boardCapabilities: Record<string, BoardCapability>
+  isBoardPinned: (board: BoardEntry) => boolean
+  renderBoardActions: (board: BoardEntry) => ReactNode
   /** Opens the server settings; the cog is shown only when given. */
   onOpenSettings?: () => void
   onOpenCreateBoard: () => void
   onOpenImportBoard: () => void
   onOpenBoard: (board: BoardEntry) => void
-  onOpenBoardSettings: (board: BoardEntry) => void
 }
 
 export function ServerOverviewPanel({
@@ -24,12 +24,12 @@ export function ServerOverviewPanel({
   boards,
   boardsLoading,
   canCreateBoard,
-  boardCapabilities,
+  isBoardPinned,
+  renderBoardActions,
   onOpenSettings,
   onOpenCreateBoard,
   onOpenImportBoard,
   onOpenBoard,
-  onOpenBoardSettings,
 }: ServerOverviewPanelProps) {
   if (!selectedServer) return null
 
@@ -57,11 +57,11 @@ export function ServerOverviewPanel({
         boards={boards}
         loading={boardsLoading}
         canCreateBoard={canCreateBoard}
-        boardCapabilities={boardCapabilities}
+        isPinned={isBoardPinned}
+        renderActions={renderBoardActions}
         onOpenCreate={onOpenCreateBoard}
         onOpenImport={onOpenImportBoard}
         onOpenBoard={onOpenBoard}
-        onOpenSettings={onOpenBoardSettings}
       />
     </section>
   )

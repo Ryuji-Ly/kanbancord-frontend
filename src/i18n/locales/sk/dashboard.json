@@ -28,7 +28,14 @@
     "all": "Všetky",
     "loading": "Načítavajú sa nástenky…",
     "none": "Zatiaľ žiadne nástenky.",
-    "noMatch": "Hľadaniu alebo filtru nezodpovedá žiadna nástenka."
+    "noMatch": "Hľadaniu alebo filtru nezodpovedá žiadna nástenka.",
+    "actions": "Akcie pre {name}",
+    "pin": "Pripnúť do prehľadu",
+    "unpin": "Odopnúť z prehľadu",
+    "pinned": "Pripnuté",
+    "settings": "Nastavenia nástenky",
+    "export": "Export",
+    "exportNotAllowed": "Úlohy tejto nástenky nevidíš, takže ju nemôžeš exportovať."
   },
   "boardModal": {
     "defaultColumns": {
@@ -111,5 +118,9 @@
     "loginFailed": "Prihlásenie cez OAuth zlyhalo",
     "loggedOut": "Odhlásenie prebehlo.",
     "expired": "Relácia vypršala. Prihlás sa znova."
+  },
+  "pinned": {
+    "title": "Pripnuté nástenky",
+    "unpin": "Odopnúť {name}"
   }
 }

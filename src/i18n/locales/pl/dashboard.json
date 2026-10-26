@@ -28,7 +28,14 @@
     "all": "Wszystkie",
     "loading": "Wczytywanie tablic...",
     "none": "Nie ma jeszcze tablic.",
-    "noMatch": "Żadna tablica nie pasuje do bieżącego wyszukiwania lub filtra."
+    "noMatch": "Żadna tablica nie pasuje do bieżącego wyszukiwania lub filtra.",
+    "actions": "Działania dla {name}",
+    "pin": "Przypnij do panelu",
+    "unpin": "Odepnij od panelu",
+    "pinned": "Przypięta",
+    "settings": "Ustawienia tablicy",
+    "export": "Eksport",
+    "exportNotAllowed": "Nie widzisz zadań tej tablicy, więc nie możesz jej wyeksportować."
   },
   "boardModal": {
     "defaultColumns": {
@@ -111,5 +118,9 @@
     "loginFailed": "Logowanie OAuth nie powiodło się",
     "loggedOut": "Wylogowano.",
     "expired": "Sesja wygasła. Zaloguj się ponownie."
+  },
+  "pinned": {
+    "title": "Przypięte tablice",
+    "unpin": "Odepnij {name}"
   }
 }

@@ -28,7 +28,14 @@
     "all": "All",
     "loading": "Loading boards...",
     "none": "No boards yet.",
-    "noMatch": "No boards match the current search/filter."
+    "noMatch": "No boards match the current search/filter.",
+    "actions": "Actions for {name}",
+    "pin": "Pin to dashboard",
+    "unpin": "Unpin from dashboard",
+    "pinned": "Pinned",
+    "settings": "Board settings",
+    "export": "Export",
+    "exportNotAllowed": "You can't see this board's tasks, so you can't export it."
   },
   "boardModal": {
     "defaultColumns": {
@@ -109,5 +116,9 @@
     "loginFailed": "OAuth login failed",
     "loggedOut": "Logged out successfully.",
     "expired": "Session expired. Please login again."
+  },
+  "pinned": {
+    "title": "Pinned boards",
+    "unpin": "Unpin {name}"
   }
 }

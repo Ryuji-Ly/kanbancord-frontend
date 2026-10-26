@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useState, type ReactNode } from 'react'
 import { t } from '../../../i18n'
 import type { BoardEntry } from '../../../services/boardsService'
 import { BoardCard } from './BoardCard'
@@ -6,34 +6,27 @@ import { CreateBoardButton } from './CreateBoardButton'
 
 type BoardVisibilityFilter = 'active' | 'archived' | 'all'
 
-type BoardCapability = {
-  canEditDetails: boolean
-  canEditPermissions: boolean
-  canArchive: boolean
-  canDelete: boolean
-  canManageCatalog: boolean
-}
-
 type BoardsSectionProps = {
   boards: BoardEntry[]
   loading: boolean
   canCreateBoard: boolean
-  boardCapabilities: Record<string, BoardCapability>
+  isPinned: (board: BoardEntry) => boolean
+  /** Each board's ⋯ menu. */
+  renderActions: (board: BoardEntry) => ReactNode
   onOpenCreate: () => void
   onOpenImport: () => void
   onOpenBoard: (board: BoardEntry) => void
-  onOpenSettings: (board: BoardEntry) => void
 }
 
 export function BoardsSection({
   boards,
   loading,
   canCreateBoard,
-  boardCapabilities,
+  isPinned,
+  renderActions,
   onOpenCreate,
   onOpenImport,
   onOpenBoard,
-  onOpenSettings,
 }: BoardsSectionProps) {
   const [search, setSearch] = useState('')
   const [visibilityFilter, setVisibilityFilter] = useState<BoardVisibilityFilter>('active')
@@ -96,30 +89,15 @@ export function BoardsSection({
         <p className="kc-muted">{t('dashboard.boards.noMatch')}</p>
       ) : (
         <div className="kc-board-grid">
-          {visibleBoards.map((board) => {
-            const capability = boardCapabilities[String(board.boardId)] ?? {
-              canEditDetails: false,
-              canEditPermissions: false,
-              canArchive: false,
-              canDelete: false,
-              canManageCatalog: false,
-            }
-            return (
-              <BoardCard
-                key={board.boardId}
-                board={board}
-                onOpenBoard={onOpenBoard}
-                canConfigure={
-                  capability.canEditDetails ||
-                  capability.canEditPermissions ||
-                  capability.canArchive ||
-                  capability.canDelete ||
-                  capability.canManageCatalog
-                }
-                onOpenSettings={onOpenSettings}
-              />
-            )
-          })}
+          {visibleBoards.map((board) => (
+            <BoardCard
+              key={board.boardId}
+              board={board}
+              pinned={isPinned(board)}
+              actions={renderActions(board)}
+              onOpenBoard={onOpenBoard}
+            />
+          ))}
         </div>
       )}
     </div>

@@ -1,15 +1,20 @@
-import { FiSettings } from 'react-icons/fi'
+import type { ReactNode } from 'react'
+import { LuPin } from 'react-icons/lu'
 import { t } from '../../../i18n'
 import type { BoardEntry } from '../../../services/boardsService'
 
 type BoardCardProps = {
   board: BoardEntry
-  canConfigure: boolean
+  /** Pinned to the top of the dashboard: marked beside the name. */
+  pinned: boolean
+  /** The board's ⋯ menu. */
+  actions: ReactNode
+  /** Shown where boards from several servers are listed together, such as the pinned boards. */
+  serverName?: string
   onOpenBoard: (board: BoardEntry) => void
-  onOpenSettings: (board: BoardEntry) => void
 }
 
-export function BoardCard({ board, canConfigure, onOpenBoard, onOpenSettings }: BoardCardProps) {
+export function BoardCard({ board, pinned, actions, serverName, onOpenBoard }: BoardCardProps) {
   return (
     <article
       className="kc-board-card kc-board-card--clickable"
@@ -25,23 +30,18 @@ export function BoardCard({ board, canConfigure, onOpenBoard, onOpenSettings }: 
     >
       <div className="kc-board-card-head">
         <div>
-          <h4 className="kc-board-card-title">{board.name}</h4>
-          <p className="kc-board-card-meta">{board.isArchived ? t('dashboard.boards.archivedBoard') : t('dashboard.boards.activeBoard')}</p>
+          <h4 className="kc-board-card-title">
+            {pinned && (
+              <LuPin className="kc-board-card-pin" aria-label={t('dashboard.boards.pinned')} role="img" />
+            )}
+            {board.name}
+          </h4>
+          <p className="kc-board-card-meta">
+            {serverName && `${serverName} · `}
+            {board.isArchived ? t('dashboard.boards.archivedBoard') : t('dashboard.boards.activeBoard')}
+          </p>
         </div>
-        {canConfigure && (
-          <button
-            type="button"
-            className="kc-btn kc-btn-ghost kc-board-card-settings"
-            aria-label={t('dashboard.boards.configure', { name: board.name })}
-            title={t('dashboard.boards.configure', { name: board.name })}
-            onClick={(e) => {
-              e.stopPropagation()
-              onOpenSettings(board)
-            }}
-          >
-            <FiSettings aria-hidden="true" />
-          </button>
-        )}
+        {actions}
       </div>
       <p className="kc-board-card-description">{board.description?.trim() || t('dashboard.boards.noDescription')}</p>
     </article>

@@ -28,7 +28,14 @@
     "all": "Todos",
     "loading": "Cargando los tableros…",
     "none": "Aún no hay tableros.",
-    "noMatch": "Ningún tablero coincide con la búsqueda o el filtro."
+    "noMatch": "Ningún tablero coincide con la búsqueda o el filtro.",
+    "actions": "Acciones de {name}",
+    "pin": "Fijar en el panel",
+    "unpin": "Quitar del panel",
+    "pinned": "Fijado",
+    "settings": "Ajustes del tablero",
+    "export": "Exportar",
+    "exportNotAllowed": "No puedes ver las tareas de este tablero, así que no puedes exportarlo."
   },
   "boardModal": {
     "defaultColumns": {
@@ -110,5 +117,9 @@
     "loginFailed": "El inicio de sesión con OAuth ha fallado",
     "loggedOut": "Sesión cerrada.",
     "expired": "La sesión ha caducado. Vuelve a iniciar sesión."
+  },
+  "pinned": {
+    "title": "Tableros fijados",
+    "unpin": "Dejar de fijar {name}"
   }
 }

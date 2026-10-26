@@ -630,30 +630,115 @@ pre {
     line-height: 1.5;
   }
 
-  // Cog / settings button — independent pastel-cyan accent
-  &-settings {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 34px;
-    min-width: 34px;
-    height: 34px;
-    padding: 0;
-    line-height: 1;
-    background: color-mix(in srgb, var(--kc-accent-2) 18%, transparent);
-    color: var(--kc-text-strong);
-    border-color: color-mix(in srgb, var(--kc-accent-2) 35%, transparent);
-
-    &:hover {
-      background: color-mix(in srgb, var(--kc-accent-2) 32%, transparent);
-      color: var(--kc-on-accent-2);
-      outline: 1px solid color-mix(in srgb, var(--kc-accent-2) 50%, transparent);
-      border-color: color-mix(in srgb, var(--kc-accent-2) 50%, transparent);
-    }
-  }
-
   &--clickable {
     cursor: pointer;
+  }
+}
+
+/* A pinned board's mark beside its name. */
+.kc-board-card-pin {
+  margin-right: 6px;
+  vertical-align: -2px;
+  color: var(--kc-accent-2);
+}
+
+/* A board's ⋯ menu, on its card and on the board page: the actions besides opening it. */
+.kc-actions-menu {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.kc-actions-menu-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  min-width: 34px;
+  height: 34px;
+  padding: 0;
+  line-height: 1;
+  font-size: 1.05rem;
+  background: color-mix(in srgb, var(--kc-accent-2) 18%, transparent);
+  color: var(--kc-text-strong);
+  border-color: color-mix(in srgb, var(--kc-accent-2) 35%, transparent);
+
+  &:hover,
+  &[aria-expanded='true'] {
+    background: color-mix(in srgb, var(--kc-accent-2) 32%, transparent);
+    color: var(--kc-on-accent-2);
+    outline: 1px solid color-mix(in srgb, var(--kc-accent-2) 50%, transparent);
+    border-color: color-mix(in srgb, var(--kc-accent-2) 50%, transparent);
+  }
+}
+
+.kc-actions-menu-list {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  z-index: 200;
+  list-style: none;
+  margin: 0;
+  padding: 4px;
+  min-width: 200px;
+  background: var(--kc-nav);
+  border: 1px solid var(--kc-border);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--kc-shadow) 40%, transparent);
+}
+
+.kc-actions-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 10px;
+  background: transparent;
+  border: none;
+  border-radius: 5px;
+  text-align: left;
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+  color: var(--kc-text);
+  cursor: pointer;
+
+  svg {
+    flex-shrink: 0;
+    color: var(--kc-muted);
+  }
+
+  &:hover,
+  &:focus-visible {
+    background: var(--kc-card-hover);
+  }
+
+  &--danger,
+  &--danger svg {
+    color: var(--kc-danger-text);
+  }
+}
+
+.kc-board-export-dialog {
+  max-width: 520px;
+}
+
+/* Pinned boards, from any server, above the selected server. */
+.kc-pinned-boards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.kc-pinned-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 1rem;
+  color: var(--kc-heading);
+
+  svg {
+    color: var(--kc-accent-2);
   }
 }
 
@@ -2547,11 +2632,8 @@ pre {
   }
 }
 
-.kc-board-settings-btn {
+.kc-board-subbar > .kc-actions-menu {
   margin-left: auto;
-  width: 34px;
-  height: 34px;
-  font-size: 1.05rem;
 }
 
 .kc-field-error {
@@ -4126,7 +4208,7 @@ html[data-kc-reduce-motion="on"] {
 }
 
 // The settings cog stays at the far end, after the filters.
-.kc-task-filters + .kc-board-settings-btn {
+.kc-task-filters + .kc-actions-menu {
   margin-left: 0;
 }
 

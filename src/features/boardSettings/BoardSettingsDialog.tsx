@@ -17,7 +17,6 @@ import {
   useServerPermissions,
   useServerRoles,
 } from '../server/serverQueries'
-import { BoardExportSettings } from '../boardTransfer/BoardExportSettings'
 import { BoardFeaturesSettings } from './BoardFeaturesSettings'
 import { BoardNotificationsSettings } from './BoardNotificationsSettings'
 import { BoardThreadsSettings } from './BoardThreadsSettings'
@@ -36,12 +35,12 @@ type BoardSettingsDialogProps = {
 
 /**
  * A board's settings: details, permissions, simple mode, notifications, checking who may do what,
- * labels, priority levels, exporting it, and archiving or deleting it.
+ * labels and priority levels. Pinning, exporting, archiving and deleting are in the board's ⋯ menu.
  * The same dialog opens from the board page and from the dashboard. Each part shows only what the
  * user may change; simple mode, labels and priorities save as they change, details and permissions
  * on Save.
  */
-export function BoardSettingsDialog({ serverId, boardId, onClose, onDeleted, showToast, showError }: BoardSettingsDialogProps) {
+export function BoardSettingsDialog({ serverId, boardId, onClose, showToast, showError }: BoardSettingsDialogProps) {
   const queryClient = useQueryClient()
   const snapshotQuery = useBoardSnapshot(serverId, boardId)
   const snapshot = snapshotQuery.data
@@ -67,8 +66,7 @@ export function BoardSettingsDialog({ serverId, boardId, onClose, onDeleted, sho
   const loading = snapshotQuery.isPending || permissionsLoading
   const initialPermissions: PermissionEntry[] =
     showPermissions && serverRules.data && boardRules.data ? mergeBoardPermissionDrafts(serverRules.data, boardRules.data) : []
-  const saving =
-    serverMutations.saveBoard.isPending || serverMutations.setBoardArchived.isPending || serverMutations.removeBoard.isPending
+  const saving = serverMutations.saveBoard.isPending
 
   function refreshBoard() {
     void queryClient.invalidateQueries({ queryKey: boardKeys.all(serverId, boardId) })
@@ -88,6 +86,7 @@ export function BoardSettingsDialog({ serverId, boardId, onClose, onDeleted, sho
 
   const board = snapshot?.board ?? null
   const archived = Boolean(board?.isArchived)
+  const none = () => {}
 
   return (
     <BoardModal
@@ -104,8 +103,8 @@ export function BoardSettingsDialog({ serverId, boardId, onClose, onDeleted, sho
       actorRankWeight={actorRankWeight(serverAccess.data)}
       canEditDetails={access.editDetails}
       canEditPermissions={access.editPermissions}
-      canArchive={access.archive}
-      canDelete={access.delete}
+      canArchive={false}
+      canDelete={false}
       loading={loading}
       saving={saving}
       onClose={close}
@@ -131,34 +130,8 @@ export function BoardSettingsDialog({ serverId, boardId, onClose, onDeleted, sho
           },
         )
       }}
-      onArchive={(nextArchived) =>
-        serverMutations.setBoardArchived.mutate(
-          { boardId, archived: nextArchived },
-          {
-            onSuccess: () => {
-              refreshBoard()
-              showToast(nextArchived ? t('dashboard.workspace.boardArchived') : t('dashboard.workspace.boardRestored'), 'success')
-              onClose()
-            },
-            onError: (error) =>
-              showError(
-                t(nextArchived ? 'dashboard.workspace.archiveFailed' : 'dashboard.workspace.restoreFailed', {
-                  error: readableError(error, t('board.page.unknownError')),
-                }),
-              ),
-          },
-        )
-      }
-      onDelete={() =>
-        serverMutations.removeBoard.mutate(boardId, {
-          onSuccess: () => {
-            showToast(t('dashboard.workspace.boardDeleted'), 'success')
-            onDeleted()
-          },
-          onError: (error) =>
-            showError(t('dashboard.workspace.deleteBoardFailed', { error: readableError(error, t('board.page.unknownError')) })),
-        })
-      }
+      onArchive={none}
+      onDelete={none}
     >
       {snapshot && !archived && access.editDetails && (
         <BoardFeaturesSettings serverId={serverId} boardId={boardId} snapshot={snapshot} />
@@ -190,9 +163,6 @@ export function BoardSettingsDialog({ serverId, boardId, onClose, onDeleted, sho
           canManage={access.managePriorities}
           mutations={catalogMutations}
         />
-      )}
-      {snapshot && snapshot.permissions.VIEW_TASK?.allowed && (
-        <BoardExportSettings serverId={serverId} boardId={boardId} snapshot={snapshot} />
       )}
     </BoardModal>
   )

@@ -28,7 +28,14 @@
     "all": "Toate",
     "loading": "Se încarcă panourile...",
     "none": "Niciun panou încă.",
-    "noMatch": "Niciun panou nu corespunde căutării sau filtrului curent."
+    "noMatch": "Niciun panou nu corespunde căutării sau filtrului curent.",
+    "actions": "Acțiuni pentru {name}",
+    "pin": "Fixează în tabloul de bord",
+    "unpin": "Anulează fixarea din tabloul de bord",
+    "pinned": "Fixat",
+    "settings": "Setările panoului",
+    "export": "Export",
+    "exportNotAllowed": "Nu poți vedea sarcinile acestui panou, așa că nu îl poți exporta."
   },
   "boardModal": {
     "defaultColumns": {
@@ -110,5 +117,9 @@
     "loginFailed": "Autentificarea OAuth a eșuat",
     "loggedOut": "Te-ai deconectat.",
     "expired": "Sesiunea a expirat. Autentifică-te din nou."
+  },
+  "pinned": {
+    "title": "Panouri fixate",
+    "unpin": "Anulează fixarea pentru {name}"
   }
 }

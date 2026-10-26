@@ -1,7 +1,7 @@
 import { Suspense, useEffect, useMemo, useState } from 'react'
 import { filtersFromParams, isFiltering, matchesFilters, paramsWithFilters, type BoardFilters } from '../features/board/boardFilters'
 import { BoardFilterBar } from '../features/board/components/BoardFilterBar'
-import { FiSettings } from 'react-icons/fi'
+import { useQueryClient } from '@tanstack/react-query'
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { readableError } from '../api/http'
 import { t } from '../i18n'
@@ -10,6 +10,7 @@ import { signOut, useSession } from '../api/session'
 import type { BoardColumnEntry } from '../services/boardColumnsService'
 import type { TaskEntry } from '../services/tasksService'
 import { DashboardHeader } from '../components/dashboard/DashboardHeader'
+import { BoardActionsMenu } from '../components/dashboard/boards/BoardActionsMenu'
 import { ToastStack } from '../components/dashboard/ToastStack'
 import { useToasts } from '../hooks/useToasts'
 import {
@@ -30,6 +31,7 @@ import {
   type TaskDraft,
 } from '../features/board/boardModel'
 import {
+  boardKeys,
   taskFieldsFromDraft,
   useArchivedTasks,
   useBoardCatalogMutations,
@@ -88,7 +90,10 @@ export function BoardPage() {
     () => (shown.ASSIGNEES ? rolesByTask(snapshot, new Map(roles.map((role) => [String(role.roleId), role]))) : new Map()),
     [snapshot, roles, shown.ASSIGNEES],
   )
-  const canOpenSettings = hasAnySetting(boardSettingsAccess(snapshot?.permissions, snapshot?.features))
+  // Archiving and deleting are in the ⋯ menu, so they alone do not make the settings worth opening.
+  const settingsAccess = boardSettingsAccess(snapshot?.permissions, snapshot?.features)
+  const canOpenSettings = hasAnySetting({ ...settingsAccess, archive: false, delete: false })
+  const queryClient = useQueryClient()
   const ready = Boolean(snapshot && me)
 
   useBoardRealtime(serverId, boardId, ready, setRevokedReason)
@@ -366,16 +371,19 @@ export function BoardPage() {
               totalCount={totalTaskCount}
             />
           )}
-          {ready && canOpenSettings && (
-            <button
-              type="button"
-              className="kc-icon-btn kc-board-settings-btn"
-              aria-label={t('board.page.settings')}
-              title={t('board.page.settings')}
-              onClick={() => setShowSettings(true)}
-            >
-              <FiSettings aria-hidden="true" />
-            </button>
+          {ready && board && (
+            <BoardActionsMenu
+              serverId={serverId}
+              board={board}
+              canOpenSettings={canOpenSettings}
+              canArchive={settingsAccess.archive}
+              canDelete={settingsAccess.delete}
+              onOpenSettings={() => setShowSettings(true)}
+              onChanged={() => void queryClient.invalidateQueries({ queryKey: boardKeys.all(serverId, boardId) })}
+              onDeleted={() => navigate('/')}
+              showToast={showToast}
+              showError={(text) => showToast(text, 'error')}
+            />
           )}
         </div>
 

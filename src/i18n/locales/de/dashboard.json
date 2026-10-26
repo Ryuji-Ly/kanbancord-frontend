@@ -28,7 +28,14 @@
     "all": "Alle",
     "loading": "Boards werden geladen …",
     "none": "Noch keine Boards.",
-    "noMatch": "Keine Boards passen zur Suche oder zum Filter."
+    "noMatch": "Keine Boards passen zur Suche oder zum Filter.",
+    "actions": "Aktionen für {name}",
+    "pin": "Ans Dashboard anheften",
+    "unpin": "Vom Dashboard lösen",
+    "pinned": "Angeheftet",
+    "settings": "Board-Einstellungen",
+    "export": "Exportieren",
+    "exportNotAllowed": "Du kannst die Aufgaben dieses Boards nicht sehen und es daher nicht exportieren."
   },
   "boardModal": {
     "defaultColumns": {
@@ -109,5 +116,9 @@
     "loginFailed": "Anmeldung über OAuth fehlgeschlagen",
     "loggedOut": "Erfolgreich abgemeldet.",
     "expired": "Sitzung abgelaufen. Bitte melde dich erneut an."
+  },
+  "pinned": {
+    "title": "Angeheftete Boards",
+    "unpin": "{name} lösen"
   }
 }

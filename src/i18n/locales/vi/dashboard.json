@@ -28,7 +28,14 @@
     "all": "Tất cả",
     "loading": "Đang tải bảng...",
     "none": "Chưa có bảng nào.",
-    "noMatch": "Không có bảng nào khớp với tìm kiếm hoặc bộ lọc hiện tại."
+    "noMatch": "Không có bảng nào khớp với tìm kiếm hoặc bộ lọc hiện tại.",
+    "actions": "Thao tác cho {name}",
+    "pin": "Ghim vào trang tổng quan",
+    "unpin": "Bỏ ghim khỏi trang tổng quan",
+    "pinned": "Đã ghim",
+    "settings": "Cài đặt bảng",
+    "export": "Xuất",
+    "exportNotAllowed": "Bạn không xem được công việc của bảng này nên không thể xuất nó."
   },
   "boardModal": {
     "defaultColumns": {
@@ -108,5 +115,9 @@
     "loginFailed": "Đăng nhập OAuth thất bại",
     "loggedOut": "Đăng xuất thành công.",
     "expired": "Phiên đã hết hạn. Vui lòng đăng nhập lại."
+  },
+  "pinned": {
+    "title": "Bảng đã ghim",
+    "unpin": "Bỏ ghim {name}"
   }
 }

@@ -28,7 +28,14 @@
     "all": "Tümü",
     "loading": "Panolar yükleniyor…",
     "none": "Henüz pano yok.",
-    "noMatch": "Aramanızla veya filtrenizle eşleşen pano yok."
+    "noMatch": "Aramanızla veya filtrenizle eşleşen pano yok.",
+    "actions": "{name} için işlemler",
+    "pin": "Kontrol paneline sabitle",
+    "unpin": "Kontrol panelinden kaldır",
+    "pinned": "Sabitlendi",
+    "settings": "Pano ayarları",
+    "export": "Dışa aktar",
+    "exportNotAllowed": "Bu panonun görevlerini göremediğiniz için onu dışa aktaramazsınız."
   },
   "boardModal": {
     "defaultColumns": {
@@ -109,5 +116,9 @@
     "loginFailed": "OAuth ile giriş başarısız oldu",
     "loggedOut": "Çıkış yapıldı.",
     "expired": "Oturumun süresi doldu. Lütfen tekrar giriş yapın."
+  },
+  "pinned": {
+    "title": "Sabitlenmiş panolar",
+    "unpin": "Sabitlemeyi kaldır: {name}"
   }
 }

@@ -9,6 +9,7 @@ import { fetchMyServers } from '../services/meService'
 import { fetchUserGuilds, filterManageableGuilds } from '../services/discordGuildsService'
 import { DashboardHeader } from '../components/dashboard/DashboardHeader'
 import { ServersGridSection } from '../components/dashboard/ServersGridSection'
+import { PinnedBoardsRow } from '../components/dashboard/PinnedBoardsRow'
 import { SidebarServerRail } from '../components/dashboard/SidebarServerRail'
 import { ToastStack } from '../components/dashboard/ToastStack'
 import type { ApiServer } from '../components/dashboard/types'
@@ -115,6 +116,8 @@ export function DashboardPage() {
         <main className="kc-content">
           {banner && <p className={`kc-banner${banner.type === 'success' ? ' kc-banner--success' : ''}`}>{banner.text}</p>}
 
+
+          {session.isAuthenticated && serversLoaded && <PinnedBoardsRow servers={botServers} />}
 
           {session.isAuthenticated && selectedServer && (
             <ServerWorkspace

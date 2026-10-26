@@ -28,7 +28,14 @@
     "all": "Alle",
     "loading": "Borden laden...",
     "none": "Nog geen borden.",
-    "noMatch": "Geen borden die passen bij de huidige zoekopdracht of filter."
+    "noMatch": "Geen borden die passen bij de huidige zoekopdracht of filter.",
+    "actions": "Acties voor {name}",
+    "pin": "Vastmaken aan dashboard",
+    "unpin": "Losmaken van dashboard",
+    "pinned": "Vastgemaakt",
+    "settings": "Bordinstellingen",
+    "export": "Exporteren",
+    "exportNotAllowed": "Je kunt de taken van dit bord niet zien, dus je kunt het niet exporteren."
   },
   "boardModal": {
     "defaultColumns": {
@@ -109,5 +116,9 @@
     "loginFailed": "Inloggen via OAuth mislukt",
     "loggedOut": "Uitgelogd.",
     "expired": "Sessie verlopen. Log opnieuw in."
+  },
+  "pinned": {
+    "title": "Vastgemaakte borden",
+    "unpin": "{name} losmaken"
   }
 }

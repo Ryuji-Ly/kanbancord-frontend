@@ -28,7 +28,14 @@
     "all": "Všechny",
     "loading": "Načítání nástěnek...",
     "none": "Zatím žádné nástěnky.",
-    "noMatch": "Aktuálnímu hledání nebo filtru neodpovídá žádná nástěnka."
+    "noMatch": "Aktuálnímu hledání nebo filtru neodpovídá žádná nástěnka.",
+    "actions": "Akce pro {name}",
+    "pin": "Připnout do přehledu",
+    "unpin": "Odepnout z přehledu",
+    "pinned": "Připnuto",
+    "settings": "Nastavení nástěnky",
+    "export": "Export",
+    "exportNotAllowed": "Úkoly této nástěnky nevidíš, takže ji nemůžeš exportovat."
   },
   "boardModal": {
     "defaultColumns": {
@@ -111,5 +118,9 @@
     "loginFailed": "Přihlášení přes OAuth selhalo",
     "loggedOut": "Odhlášení proběhlo.",
     "expired": "Relace vypršela. Přihlas se znovu."
+  },
+  "pinned": {
+    "title": "Připnuté nástěnky",
+    "unpin": "Odepnout {name}"
   }
 }

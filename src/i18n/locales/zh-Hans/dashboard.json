@@ -28,7 +28,14 @@
     "all": "全部",
     "loading": "正在加载看板...",
     "none": "还没有看板。",
-    "noMatch": "没有符合当前搜索或筛选的看板。"
+    "noMatch": "没有符合当前搜索或筛选的看板。",
+    "actions": "{name}的操作",
+    "pin": "固定到控制面板",
+    "unpin": "从控制面板取消固定",
+    "pinned": "已固定",
+    "settings": "看板设置",
+    "export": "导出",
+    "exportNotAllowed": "你无法查看此看板的任务，因此无法导出它。"
   },
   "boardModal": {
     "defaultColumns": {
@@ -108,5 +115,9 @@
     "loginFailed": "OAuth 登录失败",
     "loggedOut": "已退出登录。",
     "expired": "会话已过期。请重新登录。"
+  },
+  "pinned": {
+    "title": "已固定的看板",
+    "unpin": "取消固定{name}"
   }
 }
