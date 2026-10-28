@@ -607,12 +607,19 @@ pre {
     align-items: flex-start;
     justify-content: space-between;
     gap: 12px;
+
+    // The name may shrink and wrap, so a long name without spaces cannot push the ⋯ button out of the card.
+    > div:first-child {
+      flex: 1;
+      min-width: 0;
+    }
   }
 
   &-title {
     margin: 0 0 4px;
     font-size: 0.98rem;
     color: var(--kc-heading);
+    overflow-wrap: anywhere;
   }
 
   &-meta {
@@ -649,6 +656,7 @@ pre {
 }
 
 .kc-actions-menu-btn {
+  flex-shrink: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -877,6 +885,8 @@ pre {
 
   h2 {
     margin: 0;
+    min-width: 0;
+    overflow-wrap: anywhere;
     font-size: 1.45rem;
     font-weight: 800;
     letter-spacing: 0.01em;
