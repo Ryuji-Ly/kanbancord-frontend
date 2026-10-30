@@ -88,6 +88,7 @@
     "when": "<code>when</code>은 <code>today</code>, <code>tomorrow</code>, <code>in 3 days</code>, <code>in 2 weeks</code>, <code>in 5 hours</code>, 또는 <code>2026-10-01</code>이나 <code>2026-10-01 17:00</code> 같은 날짜를 이해해요. 날짜만 쓰면 그날이 끝날 때가 마감이에요. 마감일을 없애려면 <code>none</code>을 쓰세요. Discord에서 입력하는 시간은 UTC 기준이에요. Discord는 마감일을 읽는 사람 각자의 시간대로 보여 주고, 웹사이트에서는 내 시간대로 날짜를 골라요.",
     "remindersTitle": "알림",
     "reminders": "작업에 관련된 사람은 마감이 하루 안으로 다가왔을 때, 그리고 기한이 지났을 때 다시 DM을 받아요. 각 알림은 마감일마다 한 번씩만 가요. 날짜를 바꾸면 알림이 다시 시작돼요. 보드의 마지막 열에 있는 작업은 완료된 것으로 보고 알림을 보내지 않아요.",
+    "times": "기본값은 하루 전입니다. 서버를 관리하는 사람은 <code>/kanbancord reminders</code>로 다른 시점을 고를 수 있고, 보드는 <code>/board reminders</code>로 자체 시점을 가질 수 있으며, 누구나 <code>/notifications reminders:</code>로 모든 보드 또는 한 보드에 대해 자신의 시점을 고를 수 있습니다. 웹사이트에서는 서버와 보드의 알림 설정, 설정 → 알림, 보드의 ⋯ 메뉴 → 내 알림에 같은 설정이 있습니다. 여러 시점이 한꺼번에 지나면 가장 늦은 것만 보냅니다.",
     "who": "누가 알림을 받나요? 작업 소식을 받는 모든 사람이에요. <assignTasks>작업에 배정된</assignTasks> 사람, 작업을 만든 사람, 그리고 작업을 팔로우하는 사람이에요. 각자 <code>/notifications</code>나 웹사이트에서 다른 DM과 함께 알림을 끌 수 있어요.",
     "feed": "<postsFeeds>업데이트 피드</postsFeeds>도 작업 관련자를 멘션하며 채널에 알림을 게시할 수 있어요. 새 피드에서는 꺼져 있으니, 웹사이트의 피드 설정에서 켜세요.",
     "seeingTitle": "다가오는 마감 보기",

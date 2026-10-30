@@ -5123,6 +5123,62 @@ select.kc-input {
   gap: 8px;
 }
 
+// Reminder times before a due date: chips that can be removed, and a row to add one.
+.kc-reminder-times {
+  display: grid;
+  gap: 8px;
+}
+
+.kc-reminder-chips {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+
+  li {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    padding: 2px 4px 2px 10px;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--kc-accent) 35%, transparent);
+    background: color-mix(in srgb, var(--kc-accent) 10%, transparent);
+    color: var(--kc-text);
+    font-size: 0.88rem;
+  }
+}
+
+.kc-reminder-add {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+
+  input {
+    width: 5.5rem;
+  }
+
+  select {
+    width: auto;
+  }
+}
+
+.kc-reminder-limit {
+  margin: 0;
+  font-size: 0.8rem;
+}
+
+.kc-reminder-subhead {
+  margin: 12px 0 4px;
+  font-size: 0.9rem;
+  color: var(--kc-heading);
+}
+
+.kc-modal.kc-reminders-dialog {
+  max-width: 520px;
+}
+
 // Notes above a board's columns (banners, the label summary, suggestions), as one row of the page.
 .kc-board-notes {
   display: grid;

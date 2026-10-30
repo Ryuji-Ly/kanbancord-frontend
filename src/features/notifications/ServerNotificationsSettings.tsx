@@ -5,6 +5,7 @@ import type { BoardEntry } from '../../services/boardsService'
 import { ConfirmDialog } from '../board/components/ConfirmDialog'
 import { ChannelSelect } from './ChannelSelect'
 import { FeedCard } from './FeedCard'
+import { ServerRemindersSection } from './RemindersSettings'
 import { useServerNotificationMutations, useServerNotifications } from './notificationQueries'
 
 type ServerNotificationsSettingsProps = {
@@ -44,6 +45,8 @@ export function ServerNotificationsSettings({ serverId, boards }: ServerNotifica
           {t('notifications.server.noChannels')}
         </p>
       )}
+
+      <ServerRemindersSection serverId={serverId} />
 
       <section className="kc-appearance-section">
         <h4>{t('notifications.server.audit')}</h4>

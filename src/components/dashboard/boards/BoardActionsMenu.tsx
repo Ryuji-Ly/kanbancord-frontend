@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type MouseEvent as ReactMouseEvent } from 'react'
 import { createPortal } from 'react-dom'
-import { FiArchive, FiDownload, FiMoreHorizontal, FiRotateCcw, FiSettings, FiTrash2, FiUpload, FiX } from 'react-icons/fi'
+import { FiArchive, FiBell, FiDownload, FiMoreHorizontal, FiRotateCcw, FiSettings, FiTrash2, FiUpload, FiX } from 'react-icons/fi'
 import { LuPin, LuPinOff } from 'react-icons/lu'
 import { readableError } from '../../../api/http'
 import { t } from '../../../i18n'
@@ -11,6 +11,7 @@ import { BoardExportSettings } from '../../../features/boardTransfer/BoardExport
 import { ImportTasksDialog } from '../../../features/boardTransfer/ImportTasksDialog'
 import { useServerMutations } from '../../../features/dashboard/serverMutations'
 import { usePinnedBoards } from '../../../features/dashboard/usePinnedBoards'
+import { MyBoardRemindersDialog } from '../../../features/notifications/RemindersSettings'
 import type { BoardEntry } from '../../../services/boardsService'
 
 type BoardActionsMenuProps = {
@@ -31,7 +32,7 @@ type BoardActionsMenuProps = {
   showError: (text: string) => void
 }
 
-type Dialog = 'export' | 'import' | 'archive' | 'delete'
+type Dialog = 'export' | 'import' | 'archive' | 'delete' | 'reminders'
 
 /**
  * Everything one can do with a board besides opening it, behind one ⋯ button: pinning it to the
@@ -147,6 +148,14 @@ export function BoardActionsMenu({
               </button>
             </li>
           )}
+          {!board.isArchived && (
+            <li role="none">
+              <button type="button" role="menuitem" className="kc-actions-menu-item" onClick={choose(() => setDialog('reminders'))}>
+                <FiBell aria-hidden="true" />
+                {t('notifications.reminders.menu')}
+              </button>
+            </li>
+          )}
           <li role="none">
             <button type="button" role="menuitem" className="kc-actions-menu-item" onClick={choose(() => setDialog('export'))}>
               <FiDownload aria-hidden="true" />
@@ -185,6 +194,14 @@ export function BoardActionsMenu({
         </ul>
       )}
 
+      {dialog === 'reminders' && (
+        <MyBoardRemindersDialog
+          serverId={serverId}
+          boardId={String(board.boardId)}
+          boardName={board.name}
+          onClose={() => setDialog(null)}
+        />
+      )}
       {dialog === 'export' && <ExportDialog serverId={serverId} board={board} onClose={() => setDialog(null)} />}
       {dialog === 'import' && (
         <ImportTasksDialog

@@ -25,6 +25,9 @@ export function DueDatesGuide() {
       <h2>{t('guides.dueDates.remindersTitle')}</h2>
       <p>{t('guides.dueDates.reminders')}</p>
       <p>
+        <GuideText k="guides.dueDates.times" />
+      </p>
+      <p>
         <GuideText k="guides.dueDates.who" />
       </p>
       <p>
