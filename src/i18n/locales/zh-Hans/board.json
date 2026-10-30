@@ -239,5 +239,12 @@
     "askBoardEditor": "这只在这个看板上关闭了。能编辑看板的人可以在 {where} 中开启。",
     "guide": "功能如何运作",
     "quote": "“{text}”"
+  },
+  "labelSummary": {
+    "progress": "{label}：已完成 {done}/{total}",
+    "open": "仍未完成：{people}",
+    "person": "{name}（{count}）",
+    "unassigned": "未分配（{count}）",
+    "none": "{label}：还没有任务"
   }
 }

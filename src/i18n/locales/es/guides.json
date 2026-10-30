@@ -118,6 +118,7 @@
     ],
     "filterTitle": "Filtra por ellas",
     "filter": "En la <website>web</website>, la barra de búsqueda de un tablero filtra las tareas por etiqueta, por prioridad, por responsable y por fecha límite, así que «todos los errores de prioridad alta» están a dos clics.",
+    "progress": "Al filtrar por una etiqueta, el tablero indica cuántas de sus tareas están hechas (en la última columna o archivadas) y quién tiene aún tareas abiertas. En Discord, <code>/label list</code> muestra lo mismo para cada etiqueta.",
     "filterAlt": "Un tablero filtrado por las tareas con la etiqueta Code, que muestra cada tarea con sus etiquetas de colores y su distintivo de prioridad.",
     "filterCaption": "Todas las tareas con la etiqueta Code, con su prioridad a la derecha."
   },

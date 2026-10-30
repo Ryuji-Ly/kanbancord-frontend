@@ -118,6 +118,7 @@
     ],
     "filterTitle": "Filtrera på dem",
     "filter": "På <website>webbplatsen</website> filtrerar en tavlas sökfält uppgifter efter etikett, prioritet, tilldelad och förfallodatum, så ”alla buggar med hög prioritet” är två klick bort.",
+    "progress": "Filtrerad på en etikett visar tavlan hur många av etikettens uppgifter som är klara (i sista kolumnen, eller arkiverade) och vem som fortfarande har öppna. I Discord visar <code>/label list</code> samma sak för varje etikett.",
     "filterAlt": "En tavla filtrerad på uppgifter med etiketten Code, där varje uppgift visar sina färgade etiketter och sitt prioritetsmärke.",
     "filterCaption": "Alla uppgifter med etiketten Code, med prioriteten till höger."
   },

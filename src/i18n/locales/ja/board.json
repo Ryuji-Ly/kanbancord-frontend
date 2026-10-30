@@ -239,5 +239,12 @@
     "askBoardEditor": "このボードでのみオフになっています。ボードを編集できる人が {where} でオンにできます。",
     "guide": "機能のしくみ",
     "quote": "「{text}」"
+  },
+  "labelSummary": {
+    "progress": "{label}：{total} 件中 {done} 件完了",
+    "open": "未完了：{people}",
+    "person": "{name}（{count}）",
+    "unassigned": "担当者なし（{count}）",
+    "none": "{label}：まだタスクがありません"
   }
 }

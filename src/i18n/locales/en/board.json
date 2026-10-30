@@ -243,5 +243,12 @@
     "askBoardEditor": "This is off for this board only. Someone who can edit the board can switch it on in {where}.",
     "guide": "How features work",
     "quote": "“{text}”"
+  },
+  "labelSummary": {
+    "progress": "{label}: {done} of {total} done",
+    "open": "Still open: {people}",
+    "person": "{name} ({count})",
+    "unassigned": "unassigned ({count})",
+    "none": "{label}: no tasks yet"
   }
 }

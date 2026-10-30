@@ -243,5 +243,12 @@
     "askBoardEditor": "Dit staat alleen voor dit bord uit. Iemand die het bord mag bewerken, kan het aanzetten in {where}.",
     "guide": "Zo werken functies",
     "quote": "‘{text}’"
+  },
+  "labelSummary": {
+    "progress": "{label}: {done} van {total} klaar",
+    "open": "Nog open: {people}",
+    "person": "{name} ({count})",
+    "unassigned": "niet toegewezen ({count})",
+    "none": "{label}: nog geen taken"
   }
 }
