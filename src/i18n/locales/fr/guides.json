@@ -20,7 +20,7 @@
     "move": "À mesure que le travail avance, déplace les tâches sur le tableau avec <code>/task move</code>, par exemple vers <strong>Done</strong> pour les cocher sur ta liste. <code>/task view</code> montre une tâche en entier, avec un menu pour tout ce que tu peux en faire : modifier, déplacer, assigner, fixer une échéance, commenter, suivre ou supprimer.",
     "view": "<code>/board view</code> montre le tableau entier, et <code>/board list</code> tous les tableaux du serveur.",
     "featuresTitle": "5. Choisir ce que tes tâches peuvent avoir",
-    "features": "Les nouveaux serveurs démarrent en <strong>mode simple</strong> : des tableaux, des colonnes, et des tâches avec un titre et une description. C'est souvent tout ce qu'il faut à une petite liste de tâches. Quand tu veux plus, un gestionnaire du serveur peut activer les responsables, les dates d'échéance avec rappels, les priorités, les étiquettes, les commentaires et les permissions personnalisées avec <code>/kanbancord features</code>. En désactiver une la masque sans rien supprimer.",
+    "features": "Les nouveaux serveurs démarrent en <strong>mode simple</strong> : des tableaux, des colonnes, et des tâches avec un titre et une description. C'est souvent tout ce qu'il faut à une petite liste de tâches. Quand tu veux plus, un gestionnaire du serveur peut activer les responsables, les dates d'échéance avec rappels, les priorités, les étiquettes, les commentaires et les permissions personnalisées avec <code>/kanbancord features</code>. En désactiver une la masque sans rien supprimer. Voir <features>activer des fonctionnalités</features> pour le site et pour garder un tableau simple.",
     "postTitle": "6. Montrer le tableau à tout le monde",
     "post": "Lance <code>/board post</code> dans un salon pour publier tout le tableau en un seul message, qui se met à jour dès que quelque chose change. Voir <postsFeeds>Publications de tableaux et flux de mises à jour</postsFeeds> pour les autres façons de tenir ton équipe informée.",
     "nextTitle": "Et ensuite",
@@ -120,6 +120,30 @@
     "filter": "Sur le <website>site</website>, la barre de recherche d'un tableau filtre les tâches par étiquette, par priorité, par responsable et par date d'échéance, pour que « tous les bugs prioritaires » soient à deux clics.",
     "filterAlt": "Un tableau filtré sur les tâches portant l'étiquette Code, chaque tâche montrant ses étiquettes colorées et sa priorité.",
     "filterCaption": "Chaque tâche étiquetée Code, avec sa priorité à droite."
+  },
+  "features": {
+    "title": "Activer des fonctionnalités : étiquettes, échéances, responsables et plus",
+    "description": "KanbanCord démarre en mode simple. Activez responsables, dates d'échéance, priorités, étiquettes, commentaires et permissions personnalisées pour un serveur, ou gardez un tableau simple, dans Discord ou sur le site.",
+    "summary": "Le mode simple, et activer davantage quand vous en avez besoin.",
+    "intro": "Les nouveaux serveurs démarrent en mode simple : tableaux, colonnes et tâches avec un titre et une description. Tout le reste est facultatif, pour que personne n'ait à apprendre ce qui ne sert pas. Quand vos tableaux ont besoin de plus, activez-le. Désactiver une fonctionnalité la masque sans rien supprimer.",
+    "whatTitle": "Ce que vous pouvez activer",
+    "what": [
+      "<strong>Responsables</strong> : des personnes et des rôles sur les tâches, qui en sont prévenus. Voir <assignTasks>assigner des tâches</assignTasks>.",
+      "<strong>Dates d'échéance</strong>, avec des rappels avant l'échéance. Voir <dueDates>échéances et rappels</dueDates>.",
+      "<strong>Priorités</strong> et <strong>Étiquettes</strong>, pour trier et filtrer les tâches. Voir <labelsPriorities>étiquettes et priorités</labelsPriorities>.",
+      "<strong>Commentaires</strong>, pour discuter d'une tâche sur la tâche elle-même.",
+      "<strong>Permissions personnalisées</strong>, pour régler finement qui peut faire quoi. Voir <permissions>rôles et permissions</permissions>."
+    ],
+    "discordTitle": "Dans Discord",
+    "discord": "Lancez <code>/kanbancord features</code> et choisissez les fonctionnalités dans le menu. <strong>Everything on</strong> les active toutes, <strong>Simple mode</strong> les désactive toutes.",
+    "websiteTitle": "Sur le site",
+    "website": "Dans le tableau de bord, ouvrez le serveur, puis <strong>Paramètres du serveur → Fonctionnalités</strong>. Activez ce dont vous avez besoin, ou cliquez sur <strong>Tout activer</strong>.",
+    "whoTitle": "Qui peut activer des fonctionnalités",
+    "who": "Toute personne ayant <strong>Gérer le serveur</strong> ou <strong>Administrateur</strong> dans Discord. Avec les permissions personnalisées, celles à qui les règles donnent <strong>Gérer les permissions du serveur</strong>. Les autres voient une fonctionnalité dès qu'elle est activée.",
+    "boardTitle": "Garder un tableau simple",
+    "board": "Un tableau peut garder des fonctionnalités désactivées pendant que le reste du serveur les utilise : ouvrez le tableau, puis <strong>⋯ → Paramètres du tableau → Mode simple</strong>, et désactivez ce dont il n'a pas besoin. Toute personne qui peut modifier le tableau peut changer cela. Ce que le serveur a désactivé l'est sur tous les tableaux.",
+    "suggestionsTitle": "Suggestions",
+    "suggestions": "Quand un tableau semble faire une fonctionnalité à la main, KanbanCord la suggère : des marqueurs comme <code>[M]</code> ou <code>[Bug]</code> au début des titres (Étiquettes), <code>P1</code> ou <code>high prio</code> (Priorités), des échéances écrites dans les titres (Dates d'échéance) ou des noms sur les tâches (Responsables). La suggestion s'affiche au-dessus du tableau sur le site, et dans la réponse privée après <code>/task create</code> ou <code>/task edit</code>, avec un bouton pour les personnes qui peuvent l'activer. Masquez-la et elle ne revient plus sur ce tableau. Rien ne s'active jamais tout seul."
   },
   "postsFeeds": {
     "title": "Tenir ton équipe informée : publications de tableaux et flux de mises à jour",

@@ -231,5 +231,21 @@
       "LABEL_UNKNOWN": "Etichette che questa bacheca non ha, escluse: {count}",
       "LABELS_NOT_ALLOWED": "Etichette escluse, perché non puoi aggiungere etichette alle attività: {count}"
     }
+  },
+  "suggestions": {
+    "title": "Suggerimento per questa bacheca",
+    "dismiss": "Ignora",
+    "labelsTags": "Diverse attività iniziano con tag come {examples}. Le Etichette lo fanno per te, a colori, e permettono di filtrare la bacheca.",
+    "labelsColumns": "Colonne come {examples} ordinano le attività per categoria. Le Etichette possono farlo al loro posto, così le colonne mostrano a che punto è ogni attività, e permettono di filtrare.",
+    "priorities": "Diverse attività sono segnate con {examples}. Le Priorità lo fanno per te e permettono di filtrare la bacheca.",
+    "dueDates": "Diverse attività hanno scadenze scritte dentro, come {examples}. Le Scadenze lo fanno per te e avvisano le persone coinvolte prima della scadenza.",
+    "assigneesNames": "Diverse attività dicono chi se ne occupa, come {examples}. Gli Assegnatari lo fanno per te, e chi è assegnato riceve avvisi sulle proprie attività.",
+    "assigneesColumns": "Colonne come {examples} hanno nomi di persone. Gli Assegnatari mostrano chi fa cosa, così le colonne mostrano a che punto è ogni attività.",
+    "turnOn": "Attiva: {feature}",
+    "turnedOn": "Attivato: {feature}",
+    "askManager": "Chi ha {manageServer} può attivarlo, in {where} o con /kanbancord features su Discord.",
+    "askBoardEditor": "È disattivato solo per questa bacheca. Chi può modificare la bacheca può attivarlo in {where}.",
+    "guide": "Come funzionano le funzioni",
+    "quote": "«{text}»"
   }
 }

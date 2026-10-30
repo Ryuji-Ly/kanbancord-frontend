@@ -231,5 +231,21 @@
       "LABEL_UNKNOWN": "Etichete pe care panoul nu le are, omise: {count}",
       "LABELS_NOT_ALLOWED": "Etichete omise, fiindcă nu poți adăuga etichete la sarcini: {count}"
     }
+  },
+  "suggestions": {
+    "title": "Sugestie pentru acest panou",
+    "dismiss": "Închide",
+    "labelsTags": "Mai multe sarcini încep cu etichete scrise de mână, ca {examples}. Etichete fac asta pentru tine, colorat, și poți filtra panoul după ele.",
+    "labelsColumns": "Coloane ca {examples} împart sarcinile pe categorii. Etichete pot prelua asta, ca să arate coloanele cât de departe e fiecare sarcină, și poți filtra după ele.",
+    "priorities": "Mai multe sarcini sunt marcate {examples}. Priorități fac asta pentru tine și poți filtra panoul după ele.",
+    "dueDates": "Mai multe sarcini au termene scrise în ele, ca {examples}. Termene limită fac asta pentru tine și le amintesc celor de pe sarcină înainte de termen.",
+    "assigneesNames": "Mai multe sarcini spun cine le face, ca {examples}. Responsabili fac asta pentru tine, iar cei atribuiți află de sarcinile lor.",
+    "assigneesColumns": "Coloane ca {examples} poartă nume de persoane. Responsabili arată cine ce face, ca să arate coloanele cât de departe e fiecare sarcină.",
+    "turnOn": "Activează: {feature}",
+    "turnedOn": "Activat: {feature}",
+    "askManager": "Cine are {manageServer} poate activa asta, în {where} sau cu /kanbancord features în Discord.",
+    "askBoardEditor": "Este dezactivat doar pentru acest panou. Cine poate edita panoul îl poate activa în {where}.",
+    "guide": "Cum funcționează funcțiile",
+    "quote": "„{text}”"
   }
 }

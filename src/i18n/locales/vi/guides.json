@@ -20,7 +20,7 @@
     "move": "Khi công việc tiến triển, di chuyển chúng trên bảng bằng <code>/task move</code>, chẳng hạn sang <strong>Done</strong> để gạch khỏi danh sách. <code>/task view</code> hiển thị toàn bộ công việc, kèm menu cho mọi thao tác bạn có thể làm: sửa, di chuyển, giao việc, đặt hạn chót, bình luận, theo dõi hoặc xóa.",
     "view": "<code>/board view</code> hiển thị toàn bộ bảng, và <code>/board list</code> hiển thị mọi bảng của máy chủ.",
     "featuresTitle": "5. Chọn những gì công việc có thể có",
-    "features": "Máy chủ mới bắt đầu ở <strong>chế độ đơn giản</strong>: bảng, cột và công việc có tiêu đề cùng mô tả. Với một danh sách việc nhỏ, chừng đó thường là đủ. Khi muốn nhiều hơn, người quản lý máy chủ có thể bật người phụ trách, hạn chót có nhắc nhở, mức ưu tiên, nhãn, bình luận và quyền tùy chỉnh bằng <code>/kanbancord features</code>. Tắt lại chỉ ẩn tính năng, không xóa gì.",
+    "features": "Máy chủ mới bắt đầu ở <strong>chế độ đơn giản</strong>: bảng, cột và công việc có tiêu đề cùng mô tả. Với một danh sách việc nhỏ, chừng đó thường là đủ. Khi muốn nhiều hơn, người quản lý máy chủ có thể bật người phụ trách, hạn chót có nhắc nhở, mức ưu tiên, nhãn, bình luận và quyền tùy chỉnh bằng <code>/kanbancord features</code>. Tắt lại chỉ ẩn tính năng, không xóa gì. Xem <features>bật tính năng</features> để làm trên trang web và để giữ một bảng đơn giản.",
     "postTitle": "6. Cho mọi người xem bảng",
     "post": "Dùng <code>/board post</code> trong một kênh để đăng toàn bộ bảng thành một tin nhắn duy nhất, tự cập nhật mỗi khi có thay đổi. Xem <postsFeeds>bài đăng bảng và luồng cập nhật</postsFeeds> để biết những cách khác giữ cho nhóm luôn nắm tình hình.",
     "nextTitle": "Bước tiếp theo",
@@ -120,6 +120,30 @@
     "filter": "Trên <website>trang web</website>, thanh tìm kiếm của bảng lọc công việc theo nhãn, mức ưu tiên, người phụ trách và hạn chót, nên “mọi lỗi có mức ưu tiên cao” chỉ cách hai cú nhấp.",
     "filterAlt": "Một bảng được lọc theo công việc có nhãn Code, mỗi công việc hiển thị nhãn màu và huy hiệu mức ưu tiên.",
     "filterCaption": "Mọi công việc có nhãn Code, mức ưu tiên ở bên phải."
+  },
+  "features": {
+    "title": "Bật tính năng: nhãn, hạn chót, người phụ trách và hơn thế",
+    "description": "KanbanCord bắt đầu ở chế độ đơn giản. Bật người phụ trách, hạn chót, mức ưu tiên, nhãn, bình luận và quyền tùy chỉnh cho máy chủ, hoặc giữ một bảng đơn giản, trên Discord hoặc trang web.",
+    "summary": "Chế độ đơn giản, và bật thêm khi bạn cần.",
+    "intro": "Máy chủ mới bắt đầu ở chế độ đơn giản: bảng, cột, và công việc có tiêu đề và mô tả. Mọi thứ khác đều tùy chọn, để không ai phải học những gì họ không dùng. Khi bảng của bạn cần thêm, hãy bật nó. Tắt một tính năng chỉ ẩn nó và không xóa gì cả.",
+    "whatTitle": "Những gì bạn có thể bật",
+    "what": [
+      "<strong>Người phụ trách</strong>: người và vai trò trên công việc, họ sẽ nhận tin. Xem <assignTasks>giao công việc</assignTasks>.",
+      "<strong>Hạn chót</strong>, có nhắc nhở trước khi đến hạn. Xem <dueDates>hạn chót và nhắc nhở</dueDates>.",
+      "<strong>Mức ưu tiên</strong> và <strong>Nhãn</strong>, để sắp xếp và lọc công việc. Xem <labelsPriorities>nhãn và mức ưu tiên</labelsPriorities>.",
+      "<strong>Bình luận</strong>, để thảo luận ngay trên công việc.",
+      "<strong>Quyền tùy chỉnh</strong>, để tinh chỉnh ai được làm gì. Xem <permissions>vai trò và quyền</permissions>."
+    ],
+    "discordTitle": "Trên Discord",
+    "discord": "Chạy <code>/kanbancord features</code> và chọn tính năng trong menu. <strong>Everything on</strong> bật tất cả, <strong>Simple mode</strong> tắt tất cả.",
+    "websiteTitle": "Trên trang web",
+    "website": "Trên bảng điều khiển, mở máy chủ, rồi vào <strong>Cài đặt máy chủ → Tính năng</strong>. Bật những gì bạn cần, hoặc nhấn <strong>Bật tất cả</strong>.",
+    "whoTitle": "Ai có thể bật tính năng",
+    "who": "Bất kỳ ai có quyền <strong>Quản Lý Máy Chủ</strong> hoặc <strong>Quản Trị Viên</strong> trên Discord. Khi bật quyền tùy chỉnh, là người được quy tắc cấp <strong>Quản lý quyền máy chủ</strong>. Mọi người khác thấy tính năng ngay khi nó được bật.",
+    "boardTitle": "Giữ một bảng đơn giản",
+    "board": "Một bảng có thể tắt tính năng trong khi phần còn lại của máy chủ vẫn dùng: mở bảng, rồi <strong>⋯ → Cài đặt bảng → Chế độ đơn giản</strong>, và tắt những gì bảng không cần. Ai có thể chỉnh sửa bảng đều đổi được. Tính năng máy chủ đã tắt thì tắt trên mọi bảng.",
+    "suggestionsTitle": "Gợi ý",
+    "suggestions": "Khi một bảng có vẻ đang làm thủ công một tính năng, KanbanCord sẽ gợi ý tính năng đó: thẻ như <code>[M]</code> hoặc <code>[Bug]</code> ở đầu tiêu đề (Nhãn), <code>P1</code> hoặc <code>high prio</code> (Mức ưu tiên), hạn ghi trong tiêu đề (Hạn chót), hoặc tên trên công việc (Người phụ trách). Gợi ý hiện phía trên bảng trên trang web và trong phản hồi riêng sau <code>/task create</code> hoặc <code>/task edit</code>, có nút cho những ai được bật tính năng. Bỏ qua thì nó không quay lại trên bảng đó. Không có gì tự bật."
   },
   "postsFeeds": {
     "title": "Giữ nhóm nắm tình hình: bài đăng bảng và luồng cập nhật",

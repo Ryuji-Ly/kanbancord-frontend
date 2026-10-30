@@ -20,7 +20,7 @@
     "move": "Naarmate het werk vordert, verplaats je taken over het bord met <code>/task move</code>, bijvoorbeeld naar <strong>Done</strong> om ze van je lijst af te strepen. <code>/task view</code> toont een volledige taak, met een menu voor alles wat je ermee kunt doen: bewerken, verplaatsen, toewijzen, een deadline instellen, reageren, volgen of verwijderen.",
     "view": "<code>/board view</code> toont het hele bord, en <code>/board list</code> alle borden van de server.",
     "featuresTitle": "5. Kies wat je taken kunnen hebben",
-    "features": "Nieuwe servers beginnen in de <strong>eenvoudige modus</strong>: borden, kolommen, en taken met een titel en beschrijving. Voor een kleine takenlijst is dat vaak alles wat nodig is. Wil je meer, dan kan iemand die de server beheert toegewezen personen, deadlines met herinneringen, prioriteiten, labels, opmerkingen en aangepaste rechten aanzetten met <code>/kanbancord features</code>. Weer uitzetten verbergt de functie zonder iets te verwijderen.",
+    "features": "Nieuwe servers beginnen in de <strong>eenvoudige modus</strong>: borden, kolommen, en taken met een titel en beschrijving. Voor een kleine takenlijst is dat vaak alles wat nodig is. Wil je meer, dan kan iemand die de server beheert toegewezen personen, deadlines met herinneringen, prioriteiten, labels, opmerkingen en aangepaste rechten aanzetten met <code>/kanbancord features</code>. Weer uitzetten verbergt de functie zonder iets te verwijderen. Zie <features>functies aanzetten</features> voor de website en om één bord eenvoudig te houden.",
     "postTitle": "6. Laat het bord aan iedereen zien",
     "post": "Gebruik <code>/board post</code> in een kanaal om het hele bord te posten als één bericht dat zichzelf bijwerkt zodra er iets verandert. Zie <postsFeeds>bordposts en updatefeeds</postsFeeds> voor de andere manieren om je team op de hoogte te houden.",
     "nextTitle": "Volgende stappen",
@@ -120,6 +120,30 @@
     "filter": "Op de <website>website</website> filtert de zoekbalk van een bord taken op label, prioriteit, toegewezen persoon en deadline, dus “alle bugs met hoge prioriteit” is twee klikken weg.",
     "filterAlt": "Een bord gefilterd op taken met het label Code, met bij elke taak de gekleurde labels en de prioriteitsbadge.",
     "filterCaption": "Alle taken met het label Code, met hun prioriteit rechts."
+  },
+  "features": {
+    "title": "Functies aanzetten: labels, deadlines, toegewezen personen en meer",
+    "description": "KanbanCord begint in eenvoudige modus. Zet toegewezen personen, deadlines, prioriteiten, labels, opmerkingen en aangepaste rechten aan voor een server, of houd één bord eenvoudig, in Discord of op de website.",
+    "summary": "De eenvoudige modus, en meer aanzetten als je het nodig hebt.",
+    "intro": "Nieuwe servers beginnen in eenvoudige modus: borden, kolommen en taken met een titel en beschrijving. Al het andere is optioneel, zodat niemand hoeft te leren wat hij niet gebruikt. Hebben je borden meer nodig, zet het dan aan. Een functie uitzetten verbergt hem alleen en verwijdert niets.",
+    "whatTitle": "Wat je kunt aanzetten",
+    "what": [
+      "<strong>Toegewezen personen</strong>: mensen en rollen op taken, die erover horen. Zie <assignTasks>taken toewijzen</assignTasks>.",
+      "<strong>Deadlines</strong>, met herinneringen voordat een taak verloopt. Zie <dueDates>deadlines en herinneringen</dueDates>.",
+      "<strong>Prioriteiten</strong> en <strong>Labels</strong>, om taken te ordenen en te filteren. Zie <labelsPriorities>labels en prioriteiten</labelsPriorities>.",
+      "<strong>Opmerkingen</strong>, om een taak op de taak zelf te bespreken.",
+      "<strong>Aangepaste rechten</strong>, om precies te regelen wie wat mag. Zie <permissions>rollen en rechten</permissions>."
+    ],
+    "discordTitle": "In Discord",
+    "discord": "Gebruik <code>/kanbancord features</code> en kies de functies in het menu. <strong>Everything on</strong> zet ze allemaal aan, <strong>Simple mode</strong> allemaal uit.",
+    "websiteTitle": "Op de website",
+    "website": "Open op het dashboard de server, dan <strong>Serverinstellingen → Functies</strong>. Zet aan wat je nodig hebt, of druk op <strong>Alles aanzetten</strong>.",
+    "whoTitle": "Wie functies mag aanzetten",
+    "who": "Iedereen met <strong>Server beheren</strong> of <strong>Beheerder</strong> in Discord. Met aangepaste rechten: wie <strong>Serverrechten beheren</strong> van de regels krijgt. Alle anderen zien een functie zodra die aanstaat.",
+    "boardTitle": "Eén bord eenvoudig houden",
+    "board": "Een bord kan functies uit laten terwijl de rest van de server ze gebruikt: open het bord, dan <strong>⋯ → Bordinstellingen → Eenvoudige modus</strong>, en zet uit wat het niet nodig heeft. Wie het bord mag bewerken, kan dit veranderen. Wat de server uit heeft staan, staat op elk bord uit.",
+    "suggestionsTitle": "Suggesties",
+    "suggestions": "Als een bord een functie met de hand lijkt na te doen, stelt KanbanCord die functie voor: tags zoals <code>[M]</code> of <code>[Bug]</code> aan het begin van titels (Labels), <code>P1</code> of <code>high prio</code> (Prioriteiten), deadlines in titels (Deadlines) of namen op taken (Toegewezen personen). De suggestie staat boven het bord op de website, en in het privéantwoord na <code>/task create</code> of <code>/task edit</code>, met een knop voor wie de functie mag aanzetten. Verberg je hem, dan komt hij op dat bord niet terug. Er gaat nooit iets vanzelf aan."
   },
   "postsFeeds": {
     "title": "Je team op de hoogte houden: bordposts en updatefeeds",

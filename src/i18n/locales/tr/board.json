@@ -227,5 +227,21 @@
       "LABEL_UNKNOWN": "Bu panoda olmayan, dışarıda kalan etiketler: {count}",
       "LABELS_NOT_ALLOWED": "Görevlere etiket ekleyemediğiniz için dışarıda kalan etiketler: {count}"
     }
+  },
+  "suggestions": {
+    "title": "Bu pano için öneri",
+    "dismiss": "Kapat",
+    "labelsTags": "Birçok görev {examples} gibi etiketlerle başlıyor. Etiketler bunu sizin için renkli olarak yapar ve panoyu bunlara göre süzmenizi sağlar.",
+    "labelsColumns": "{examples} gibi sütunlar görevleri kategorilere ayırıyor. Etiketler bunu üstlenebilir; böylece sütunlar her görevin ne durumda olduğunu gösterir ve bunlara göre süzebilirsiniz.",
+    "priorities": "Birçok görev {examples} ile işaretlenmiş. Öncelikler bunu sizin için yapar ve panoyu bunlara göre süzmenizi sağlar.",
+    "dueDates": "Birçok görevde {examples} gibi yazılı tarihler var. Son tarihler bunu sizin için yapar ve görevdeki kişilere süre dolmadan hatırlatır.",
+    "assigneesNames": "Birçok görev {examples} gibi kimin yapacağını söylüyor. Atananlar bunu sizin için yapar ve atanan kişiler görevlerinden haberdar olur.",
+    "assigneesColumns": "{examples} gibi sütunlar kişilerin adını taşıyor. Atananlar kimin ne yaptığını gösterir; böylece sütunlar her görevin ne durumda olduğunu gösterir.",
+    "turnOn": "Aç: {feature}",
+    "turnedOn": "Açıldı: {feature}",
+    "askManager": "{manageServer} iznine sahip biri bunu {where} bölümünden ya da Discord'da /kanbancord features ile açabilir.",
+    "askBoardEditor": "Bu yalnızca bu panoda kapalı. Panoyu düzenleyebilen biri bunu {where} bölümünden açabilir.",
+    "guide": "Özellikler nasıl çalışır",
+    "quote": "“{text}”"
   }
 }

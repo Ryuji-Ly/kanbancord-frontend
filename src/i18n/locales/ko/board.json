@@ -223,5 +223,21 @@
       "LABEL_UNKNOWN": "이 보드에 없어서 제외한 라벨: {count}",
       "LABELS_NOT_ALLOWED": "작업에 라벨을 추가할 권한이 없어 제외한 라벨: {count}"
     }
+  },
+  "suggestions": {
+    "title": "이 보드를 위한 제안",
+    "dismiss": "닫기",
+    "labelsTags": "여러 작업이 {examples} 같은 태그로 시작합니다. 라벨을 쓰면 색깔로 같은 일을 하고, 보드를 필터링할 수도 있습니다.",
+    "labelsColumns": "{examples} 같은 열이 작업을 분류하고 있습니다. 라벨에 맡기면 열로 각 작업의 진행 상황을 보여 줄 수 있고, 필터링도 됩니다.",
+    "priorities": "여러 작업에 {examples} 표시가 있습니다. 우선순위를 쓰면 같은 일을 하고, 보드를 필터링할 수도 있습니다.",
+    "dueDates": "여러 작업에 {examples} 같은 기한이 적혀 있습니다. 마감일을 쓰면 같은 일을 하고, 기한 전에 담당자에게 알림도 보냅니다.",
+    "assigneesNames": "여러 작업에 {examples}처럼 누가 하는지 적혀 있습니다. 담당자를 쓰면 같은 일을 하고, 배정된 사람이 자기 작업 소식을 받습니다.",
+    "assigneesColumns": "{examples} 같은 열이 사람 이름으로 되어 있습니다. 담당자로 누가 무엇을 하는지 보여 주면, 열로 각 작업의 진행 상황을 보여 줄 수 있습니다.",
+    "turnOn": "켜기: {feature}",
+    "turnedOn": "켬: {feature}",
+    "askManager": "'{manageServer}' 권한이 있는 사람이 {where}에서 또는 Discord의 /kanbancord features로 켤 수 있습니다.",
+    "askBoardEditor": "이 보드에서만 꺼져 있습니다. 보드를 편집할 수 있는 사람이 {where}에서 켤 수 있습니다.",
+    "guide": "기능 작동 방식",
+    "quote": "“{text}”"
   }
 }

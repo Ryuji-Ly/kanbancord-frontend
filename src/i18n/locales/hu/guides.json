@@ -20,7 +20,7 @@
     "move": "Ahogy halad a munka, helyezd át a feladatokat a táblán a <code>/task move</code> paranccsal, például a <strong>Done</strong> oszlopba, hogy kihúzd őket a listádról. A <code>/task view</code> a teljes feladatot mutatja, egy menüvel mindenhez, amit tehetsz vele: szerkesztés, áthelyezés, hozzárendelés, határidő beállítása, hozzászólás, követés vagy törlés.",
     "view": "A <code>/board view</code> az egész táblát mutatja, a <code>/board list</code> pedig a szerver összes tábláját.",
     "featuresTitle": "5. Válaszd ki, mi lehet a feladataidon",
-    "features": "Az új szerverek <strong>egyszerű módban</strong> indulnak: táblák, oszlopok, és feladatok címmel és leírással. Egy kis teendőlistához gyakran ennyi elég. Ha többre van szükséged, a szerver egy kezelője bekapcsolhatja a felelősöket, az emlékeztetős határidőket, a prioritásokat, a címkéket, a hozzászólásokat és az egyéni jogosultságokat a <code>/kanbancord features</code> paranccsal. A visszakapcsolás elrejti a funkciót, semmit sem töröl.",
+    "features": "Az új szerverek <strong>egyszerű módban</strong> indulnak: táblák, oszlopok, és feladatok címmel és leírással. Egy kis teendőlistához gyakran ennyi elég. Ha többre van szükséged, a szerver egy kezelője bekapcsolhatja a felelősöket, az emlékeztetős határidőket, a prioritásokat, a címkéket, a hozzászólásokat és az egyéni jogosultságokat a <code>/kanbancord features</code> paranccsal. A visszakapcsolás elrejti a funkciót, semmit sem töröl. Lásd: <features>funkciók bekapcsolása</features> a weboldalhoz és ahhoz, hogy egy tábla egyszerű maradjon.",
     "postTitle": "6. Mutasd meg a táblát mindenkinek",
     "post": "Futtasd a <code>/board post</code> parancsot egy csatornában, hogy az egész táblát egyetlen üzenetként tedd közzé, amely magától frissül, valahányszor valami változik. A csapatod tájékoztatásának további módjaiért lásd a <postsFeeds>táblabejegyzések és frissítési hírfolyamok</postsFeeds> útmutatót.",
     "nextTitle": "Következő lépések",
@@ -120,6 +120,30 @@
     "filter": "A <website>webhelyen</website> a tábla keresősávja címke, prioritás, felelős és határidő szerint szűri a feladatokat, így „az összes magas prioritású hiba” két kattintásnyira van.",
     "filterAlt": "A Code címkéjű feladatokra szűrt tábla, minden feladaton a színes címkéivel és a prioritási jelvénnyel.",
     "filterCaption": "Az összes Code címkéjű feladat, jobb oldalon a prioritásukkal."
+  },
+  "features": {
+    "title": "Funkciók bekapcsolása: címkék, határidők, felelősök és más",
+    "description": "A KanbanCord egyszerű módban indul. Kapcsold be a felelősöket, határidőket, prioritásokat, címkéket, hozzászólásokat és egyéni jogosultságokat egy szerveren, vagy tarts egyszerűnek egy táblát, a Discordon vagy a weboldalon.",
+    "summary": "Az egyszerű mód, és több bekapcsolása, amikor szükség van rá.",
+    "intro": "Az új szerverek egyszerű módban indulnak: táblák, oszlopok, és feladatok címmel és leírással. Minden más választható, így senkinek sem kell megtanulnia, amit nem használ. Ha a tábláitoknak több kell, kapcsoljátok be. Egy funkció kikapcsolása csak elrejti, semmit sem töröl.",
+    "whatTitle": "Mit kapcsolhatsz be",
+    "what": [
+      "<strong>Felelősök</strong>: emberek és szerepkörök a feladatokon, akik értesülnek róluk. Lásd: <assignTasks>feladatok kiosztása</assignTasks>.",
+      "<strong>Határidők</strong>, emlékeztetőkkel a lejárat előtt. Lásd: <dueDates>határidők és emlékeztetők</dueDates>.",
+      "<strong>Prioritások</strong> és <strong>Címkék</strong>, a feladatok rendezéséhez és szűréséhez. Lásd: <labelsPriorities>címkék és prioritások</labelsPriorities>.",
+      "<strong>Hozzászólások</strong>, hogy magán a feladaton beszéljétek meg.",
+      "<strong>Egyéni jogosultságok</strong>, hogy pontosan beállítsd, ki mit tehet. Lásd: <permissions>szerepkörök és jogosultságok</permissions>."
+    ],
+    "discordTitle": "A Discordon",
+    "discord": "Futtasd a <code>/kanbancord features</code> parancsot, és válaszd ki a funkciókat a menüben. Az <strong>Everything on</strong> mindet bekapcsolja, a <strong>Simple mode</strong> mindet kikapcsolja.",
+    "websiteTitle": "A weboldalon",
+    "website": "A vezérlőpulton nyisd meg a szervert, majd <strong>Szerverbeállítások → Funkciók</strong>. Kapcsold be, amire szükséged van, vagy nyomd meg: <strong>Minden bekapcsolása</strong>.",
+    "whoTitle": "Ki kapcsolhat be funkciókat",
+    "who": "Bárki, akinek <strong>Szerver kezelése</strong> vagy <strong>Adminisztrátor</strong> jogosultsága van a Discordon. Egyéni jogosultságokkal az, akinek a szabályok <strong>Szerverjogosultságok kezelése</strong> jogot adnak. Mindenki más azonnal látja a funkciót, amint be van kapcsolva.",
+    "boardTitle": "Egy tábla egyszerűen",
+    "board": "Egy tábla kikapcsolva tarthat funkciókat, miközben a szerver többi része használja őket: nyisd meg a táblát, majd <strong>⋯ → Tábla beállításai → Egyszerű mód</strong>, és kapcsold ki, amire nincs szüksége. Ezt bárki módosíthatja, aki szerkesztheti a táblát. Ami a szerveren ki van kapcsolva, az minden táblán ki van kapcsolva.",
+    "suggestionsTitle": "Javaslatok",
+    "suggestions": "Ha egy tábla úgy tűnik, kézzel csinál meg egy funkciót, a KanbanCord javasolja azt: jelölések, mint <code>[M]</code> vagy <code>[Bug]</code> a címek elején (Címkék), <code>P1</code> vagy <code>high prio</code> (Prioritások), címekbe írt határidők (Határidők) vagy nevek a feladatokon (Felelősök). A javaslat a tábla fölött jelenik meg a weboldalon, és a <code>/task create</code> vagy <code>/task edit</code> utáni privát válaszban, egy gombbal azoknak, akik bekapcsolhatják a funkciót. Ha elveted, azon a táblán nem jön vissza. Semmi sem kapcsol be magától."
   },
   "postsFeeds": {
     "title": "A csapatod naprakészen tartása: táblabejegyzések és frissítési hírfolyamok",

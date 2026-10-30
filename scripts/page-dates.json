@@ -20,51 +20,55 @@
     "lastmod": "2026-09-25"
   },
   "/guides": {
-    "hash": "d08430d6e06e5878",
-    "lastmod": "2026-10-18"
+    "hash": "1c957aa3b00af140",
+    "lastmod": "2026-10-30"
   },
   "/guides/getting-started": {
-    "hash": "bf1a9d4b1da32466",
-    "lastmod": "2026-10-18"
+    "hash": "0733e53b1ea06e38",
+    "lastmod": "2026-10-30"
   },
   "/guides/discord-to-do-list": {
-    "hash": "aee9621db86c5a92",
-    "lastmod": "2026-10-26"
+    "hash": "01d76aee68827669",
+    "lastmod": "2026-10-30"
   },
   "/guides/assign-tasks": {
-    "hash": "faf77d372b6c60ea",
-    "lastmod": "2026-10-18"
+    "hash": "00dc67c2809aa197",
+    "lastmod": "2026-10-30"
   },
   "/guides/due-dates-and-reminders": {
-    "hash": "ad5a47507a82e59a",
-    "lastmod": "2026-10-18"
+    "hash": "a19420e2de628e63",
+    "lastmod": "2026-10-30"
   },
   "/guides/labels-and-priorities": {
-    "hash": "246a1f1ebd5be550",
-    "lastmod": "2026-10-18"
+    "hash": "e72b4267c19d0dae",
+    "lastmod": "2026-10-30"
   },
   "/guides/board-posts-and-feeds": {
-    "hash": "b8d16309f57172d8",
-    "lastmod": "2026-10-18"
+    "hash": "34787d0110289180",
+    "lastmod": "2026-10-30"
   },
   "/guides/feeds-and-threads": {
-    "hash": "0e3dad0abc0fccb6",
-    "lastmod": "2026-10-18"
+    "hash": "4af7812032dc0563",
+    "lastmod": "2026-10-30"
   },
   "/guides/roles-and-permissions": {
-    "hash": "44ce5f4384a57f08",
-    "lastmod": "2026-10-18"
+    "hash": "a57475ec37179b32",
+    "lastmod": "2026-10-30"
   },
   "/guides/website-board": {
-    "hash": "1987a0e2f54bcfb4",
-    "lastmod": "2026-10-18"
+    "hash": "8b58173c5c093388",
+    "lastmod": "2026-10-30"
   },
   "/guides/discord-activity": {
-    "hash": "3ab6c3cb74cc33d2",
-    "lastmod": "2026-10-18"
+    "hash": "83dd964f1ca1240f",
+    "lastmod": "2026-10-30"
   },
   "/updates": {
-    "hash": "a7238b472f8179e4",
-    "lastmod": "2026-10-28"
+    "hash": "2b0a8b738ff30903",
+    "lastmod": "2026-10-30"
+  },
+  "/guides/features-and-simple-mode": {
+    "hash": "8342c62486b99ee9",
+    "lastmod": "2026-10-30"
   }
 }

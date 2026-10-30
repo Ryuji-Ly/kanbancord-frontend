@@ -20,7 +20,7 @@
     "move": "Allteftersom arbetet går framåt flyttar du uppgifter på tavlan med <code>/task move</code>, till exempel till <strong>Done</strong> för att stryka dem från listan. <code>/task view</code> visar en hel uppgift, med en meny för allt du kan göra med den: redigera, flytta, tilldela, sätta ett förfallodatum, kommentera, följa eller ta bort.",
     "view": "<code>/board view</code> visar hela tavlan och <code>/board list</code> alla serverns tavlor.",
     "featuresTitle": "5. Välj vad dina uppgifter kan ha",
-    "features": "Nya servrar börjar i <strong>enkelt läge</strong>: tavlor, kolumner och uppgifter med titel och beskrivning. För en liten att göra-lista är det ofta allt som behövs. När du vill ha mer kan någon som hanterar servern slå på tilldelade, förfallodatum med påminnelser, prioriteter, etiketter, kommentarer och anpassade behörigheter med <code>/kanbancord features</code>. Att stänga av dem igen döljer dem utan att ta bort något.",
+    "features": "Nya servrar börjar i <strong>enkelt läge</strong>: tavlor, kolumner och uppgifter med titel och beskrivning. För en liten att göra-lista är det ofta allt som behövs. När du vill ha mer kan någon som hanterar servern slå på tilldelade, förfallodatum med påminnelser, prioriteter, etiketter, kommentarer och anpassade behörigheter med <code>/kanbancord features</code>. Att stänga av dem igen döljer dem utan att ta bort något. Se <features>slå på funktioner</features> för webbplatsen och för att hålla en tavla enkel.",
     "postTitle": "6. Visa tavlan för alla",
     "post": "Använd <code>/board post</code> i en kanal för att publicera hela tavlan som ett enda meddelande som uppdaterar sig självt när något ändras. Se <postsFeeds>tavelinlägg och uppdateringsflöden</postsFeeds> för andra sätt att hålla teamet uppdaterat.",
     "nextTitle": "Nästa steg",
@@ -120,6 +120,30 @@
     "filter": "På <website>webbplatsen</website> filtrerar en tavlas sökfält uppgifter efter etikett, prioritet, tilldelad och förfallodatum, så ”alla buggar med hög prioritet” är två klick bort.",
     "filterAlt": "En tavla filtrerad på uppgifter med etiketten Code, där varje uppgift visar sina färgade etiketter och sitt prioritetsmärke.",
     "filterCaption": "Alla uppgifter med etiketten Code, med prioriteten till höger."
+  },
+  "features": {
+    "title": "Slå på funktioner: etiketter, förfallodatum, tilldelade och mer",
+    "description": "KanbanCord börjar i enkelt läge. Slå på tilldelade, förfallodatum, prioriteter, etiketter, kommentarer och anpassade behörigheter för en server, eller håll en tavla enkel, i Discord eller på webbplatsen.",
+    "summary": "Enkelt läge, och att slå på mer när du behöver det.",
+    "intro": "Nya servrar börjar i enkelt läge: tavlor, kolumner och uppgifter med titel och beskrivning. Allt annat är valfritt, så att ingen behöver lära sig det de inte använder. När era tavlor behöver mer slår ni på det. Att stänga av en funktion döljer den och raderar ingenting.",
+    "whatTitle": "Vad du kan slå på",
+    "what": [
+      "<strong>Tilldelade</strong>: personer och roller på uppgifter, som får höra om dem. Se <assignTasks>tilldela uppgifter</assignTasks>.",
+      "<strong>Förfallodatum</strong>, med påminnelser innan en uppgift förfaller. Se <dueDates>förfallodatum och påminnelser</dueDates>.",
+      "<strong>Prioriteter</strong> och <strong>Etiketter</strong>, för att sortera och filtrera uppgifter. Se <labelsPriorities>etiketter och prioriteter</labelsPriorities>.",
+      "<strong>Kommentarer</strong>, för att diskutera en uppgift på själva uppgiften.",
+      "<strong>Anpassade behörigheter</strong>, för att finjustera vem som får göra vad. Se <permissions>roller och behörigheter</permissions>."
+    ],
+    "discordTitle": "I Discord",
+    "discord": "Kör <code>/kanbancord features</code> och välj funktionerna i menyn. <strong>Everything on</strong> slår på alla, <strong>Simple mode</strong> stänger av alla.",
+    "websiteTitle": "På webbplatsen",
+    "website": "Öppna servern i instrumentpanelen, sedan <strong>Serverinställningar → Funktioner</strong>. Slå på det du behöver, eller tryck på <strong>Slå på allt</strong>.",
+    "whoTitle": "Vem som får slå på funktioner",
+    "who": "Alla med <strong>Hantera server</strong> eller <strong>Administratör</strong> i Discord. Med anpassade behörigheter: den som reglerna ger <strong>Hantera serverbehörigheter</strong>. Alla andra ser en funktion så fort den är på.",
+    "boardTitle": "Håll en tavla enkel",
+    "board": "En tavla kan hålla funktioner avstängda medan resten av servern använder dem: öppna tavlan, sedan <strong>⋯ → Tavlans inställningar → Enkelt läge</strong>, och stäng av det den inte behöver. Den som får redigera tavlan kan ändra det. Det servern har avstängt är avstängt på varje tavla.",
+    "suggestionsTitle": "Förslag",
+    "suggestions": "När en tavla verkar göra en funktion för hand föreslår KanbanCord funktionen: taggar som <code>[M]</code> eller <code>[Bug]</code> i början av titlar (Etiketter), <code>P1</code> eller <code>high prio</code> (Prioriteter), tidsfrister i titlar (Förfallodatum) eller namn på uppgifter (Tilldelade). Förslaget visas ovanför tavlan på webbplatsen och i det privata svaret efter <code>/task create</code> eller <code>/task edit</code>, med en knapp för den som får slå på funktionen. Avfärdar du det kommer det inte tillbaka på den tavlan. Ingenting slås någonsin på av sig självt."
   },
   "postsFeeds": {
     "title": "Håll teamet uppdaterat: tavelinlägg och uppdateringsflöden",

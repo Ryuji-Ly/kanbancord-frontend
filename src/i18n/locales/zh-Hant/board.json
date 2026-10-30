@@ -223,5 +223,21 @@
       "LABEL_UNKNOWN": "此看板沒有、因而未匯入的標籤：{count}",
       "LABELS_NOT_ALLOWED": "因你無權為任務加上標籤而未匯入的標籤：{count}"
     }
+  },
+  "suggestions": {
+    "title": "給這個看板的建議",
+    "dismiss": "關閉",
+    "labelsTags": "有幾個任務以 {examples} 這樣的標記開頭。標籤可以幫你做到這件事，有顏色，還能依它們篩選看板。",
+    "labelsColumns": "{examples} 這樣的欄把任務依類別分開。改用標籤，欄就能顯示每個任務的進度，還能依標籤篩選。",
+    "priorities": "有幾個任務標著 {examples}。優先順序可以幫你做到這件事，還能依它們篩選看板。",
+    "dueDates": "有幾個任務裡寫著期限，例如 {examples}。截止日期可以幫你做到這件事，並在到期前提醒任務相關的人。",
+    "assigneesNames": "有幾個任務寫明了由誰來做，例如 {examples}。負責人可以幫你做到這件事，被指派的人會收到自己任務的消息。",
+    "assigneesColumns": "{examples} 這樣的欄是以人名命名的。負責人可以顯示誰做什麼，這樣欄就能顯示每個任務的進度。",
+    "turnOn": "開啟：{feature}",
+    "turnedOn": "已開啟：{feature}",
+    "askManager": "擁有「{manageServer}」權限的人可以在 {where} 中開啟，或在 Discord 中使用 /kanbancord features。",
+    "askBoardEditor": "這只在這個看板上關閉了。能編輯看板的人可以在 {where} 中開啟。",
+    "guide": "功能如何運作",
+    "quote": "「{text}」"
   }
 }

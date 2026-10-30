@@ -49,6 +49,7 @@ import { ConfirmDialog } from '../features/board/components/ConfirmDialog'
 import { CreateTaskModal } from '../features/board/components/CreateTaskModal'
 import { usePreferences } from '../features/preferences/usePreferences'
 import { TaskPanel } from '../features/board/components/TaskPanel'
+import { FeatureSuggestions } from '../features/board/components/FeatureSuggestions'
 import { lazyNamed } from '../components/lazyNamed'
 
 // Opens on a click: loaded then.
@@ -411,6 +412,10 @@ export function BoardPage() {
                 {t('board.page.backToBoard')}
               </button>
             </p>
+          )}
+
+          {ready && board && !board.isArchived && !showingArchived && (
+            <FeatureSuggestions serverId={serverId} boardId={boardId} showToast={showToast} />
           )}
 
           {ready && board && (

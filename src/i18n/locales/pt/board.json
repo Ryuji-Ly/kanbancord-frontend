@@ -231,5 +231,21 @@
       "LABEL_UNKNOWN": "Etiquetas que este quadro não tem, deixadas de fora: {count}",
       "LABELS_NOT_ALLOWED": "Etiquetas deixadas de fora, já que não podes adicionar etiquetas a tarefas: {count}"
     }
+  },
+  "suggestions": {
+    "title": "Sugestão para este quadro",
+    "dismiss": "Dispensar",
+    "labelsTags": "Várias tarefas começam com marcas como {examples}. As Etiquetas fazem isso por si, com cores, e permitem filtrar o quadro.",
+    "labelsColumns": "Colunas como {examples} organizam as tarefas por categoria. As Etiquetas podem fazê-lo, para que as colunas mostrem o progresso de cada tarefa, e permitem filtrar.",
+    "priorities": "Várias tarefas estão marcadas com {examples}. As Prioridades fazem isso por si e permitem filtrar o quadro.",
+    "dueDates": "Várias tarefas têm prazos escritos, como {examples}. Os Prazos fazem isso por si e lembram quem está na tarefa antes de o prazo chegar.",
+    "assigneesNames": "Várias tarefas dizem quem as faz, como {examples}. Os Responsáveis fazem isso por si, e quem está atribuído recebe avisos das suas tarefas.",
+    "assigneesColumns": "Colunas como {examples} têm nomes de pessoas. Os Responsáveis mostram quem faz o quê, para que as colunas mostrem o progresso de cada tarefa.",
+    "turnOn": "Ativar: {feature}",
+    "turnedOn": "Ativado: {feature}",
+    "askManager": "Quem tem {manageServer} pode ativar isto, em {where} ou com /kanbancord features no Discord.",
+    "askBoardEditor": "Está desativado só neste quadro. Quem pode editar o quadro pode ativá-lo em {where}.",
+    "guide": "Como funcionam as funcionalidades",
+    "quote": "«{text}»"
   }
 }

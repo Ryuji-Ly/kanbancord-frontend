@@ -231,5 +231,21 @@
       "LABEL_UNKNOWN": "Etiquetas que este tablero no tiene, dejadas fuera: {count}",
       "LABELS_NOT_ALLOWED": "Etiquetas dejadas fuera, ya que no puedes añadir etiquetas a las tareas: {count}"
     }
+  },
+  "suggestions": {
+    "title": "Sugerencia para este tablero",
+    "dismiss": "Descartar",
+    "labelsTags": "Varias tareas empiezan con marcas como {examples}. Las Etiquetas lo hacen por ti, con colores, y permiten filtrar el tablero.",
+    "labelsColumns": "Columnas como {examples} ordenan las tareas por categorías. Las Etiquetas pueden hacerlo, para que las columnas muestren cómo va cada tarea, y permiten filtrar.",
+    "priorities": "Varias tareas están marcadas con {examples}. Las Prioridades lo hacen por ti y permiten filtrar el tablero.",
+    "dueDates": "Varias tareas llevan plazos escritos, como {examples}. Las Fechas límite lo hacen por ti y avisan a quienes están en la tarea antes de que venza.",
+    "assigneesNames": "Varias tareas dicen quién las hace, como {examples}. Los Responsables lo hacen por ti, y quienes están asignados reciben avisos de sus tareas.",
+    "assigneesColumns": "Columnas como {examples} llevan nombres de personas. Los Responsables muestran quién hace qué, para que las columnas muestren cómo va cada tarea.",
+    "turnOn": "Activar: {feature}",
+    "turnedOn": "Activado: {feature}",
+    "askManager": "Quien tenga {manageServer} puede activarlo, en {where} o con /kanbancord features en Discord.",
+    "askBoardEditor": "Está desactivado solo en este tablero. Quien pueda editar el tablero puede activarlo en {where}.",
+    "guide": "Cómo funcionan las funciones",
+    "quote": "«{text}»"
   }
 }

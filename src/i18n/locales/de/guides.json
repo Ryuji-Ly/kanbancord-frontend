@@ -20,7 +20,7 @@
     "move": "Wenn die Arbeit vorankommt, schiebst du Aufgaben mit <code>/task move</code> über das Board, zum Beispiel nach <strong>Done</strong>, um sie auf deiner To-do-Liste abzuhaken. <code>/task view</code> zeigt eine Aufgabe vollständig, mit einem Menü für alles, was du mit ihr tun darfst: bearbeiten, verschieben, zuweisen, ein Fälligkeitsdatum setzen, kommentieren, folgen oder löschen.",
     "view": "<code>/board view</code> zeigt das ganze Board und <code>/board list</code> alle Boards auf dem Server.",
     "featuresTitle": "5. Festlegen, was deine Aufgaben haben können",
-    "features": "Neue Server starten im <strong>einfachen Modus</strong>: Boards, Spalten und Aufgaben mit Titel und Beschreibung. Mehr braucht eine kleine To-do-Liste oft nicht. Wenn du mehr willst, kann ein Server-Manager mit <code>/kanbancord features</code> Zuständige, Fälligkeitsdaten mit Erinnerungen, Prioritäten, Labels, Kommentare und eigene Berechtigungen einschalten. Schaltet man etwas wieder aus, wird es ausgeblendet, ohne dass etwas gelöscht wird.",
+    "features": "Neue Server starten im <strong>einfachen Modus</strong>: Boards, Spalten und Aufgaben mit Titel und Beschreibung. Mehr braucht eine kleine To-do-Liste oft nicht. Wenn du mehr willst, kann ein Server-Manager mit <code>/kanbancord features</code> Zuständige, Fälligkeitsdaten mit Erinnerungen, Prioritäten, Labels, Kommentare und eigene Berechtigungen einschalten. Schaltet man etwas wieder aus, wird es ausgeblendet, ohne dass etwas gelöscht wird. Siehe <features>Funktionen einschalten</features> für die Website und um ein Board einfach zu halten.",
     "postTitle": "6. Das Board allen zeigen",
     "post": "Führe <code>/board post</code> in einem Kanal aus, um das ganze Board als eine Nachricht zu posten, die sich bei jeder Änderung selbst aktualisiert. Unter <postsFeeds>Board-Posts und Update-Feeds</postsFeeds> findest du weitere Wege, dein Team auf dem Laufenden zu halten.",
     "nextTitle": "Wie geht es weiter",
@@ -120,6 +120,30 @@
     "filter": "Auf der <website>Website</website> filtert die Suchleiste eines Boards Aufgaben nach Label, nach Priorität, nach Zuständigen und nach Fälligkeitsdatum, sodass „jeder Bug mit hoher Priorität“ zwei Klicks entfernt ist.",
     "filterAlt": "Ein Board, gefiltert nach Aufgaben mit dem Label Code, wobei jede Aufgabe ihre farbigen Labels und ihre Priorität zeigt.",
     "filterCaption": "Jede Aufgabe mit dem Label Code, rechts ihre Priorität."
+  },
+  "features": {
+    "title": "Funktionen einschalten: Labels, Fälligkeitsdaten, Zuständige und mehr",
+    "description": "KanbanCord startet im einfachen Modus. Schalte Zuständige, Fälligkeitsdaten, Prioritäten, Labels, Kommentare und eigene Berechtigungen für einen Server ein oder halte ein Board einfach, in Discord oder auf der Website.",
+    "summary": "Der einfache Modus, und mehr einschalten, wenn du es brauchst.",
+    "intro": "Neue Server starten im einfachen Modus: Boards, Spalten und Aufgaben mit Titel und Beschreibung. Alles andere ist optional, damit niemand lernen muss, was er nicht nutzt. Brauchen eure Boards mehr, schaltet es ein. Ausschalten blendet eine Funktion nur aus und löscht nichts.",
+    "whatTitle": "Was du einschalten kannst",
+    "what": [
+      "<strong>Zuständige</strong>: Personen und Rollen an Aufgaben, die davon erfahren. Siehe <assignTasks>Aufgaben zuweisen</assignTasks>.",
+      "<strong>Fälligkeitsdaten</strong>, mit Erinnerungen, bevor eine Aufgabe fällig ist. Siehe <dueDates>Fälligkeitsdaten und Erinnerungen</dueDates>.",
+      "<strong>Prioritäten</strong> und <strong>Labels</strong>, um Aufgaben zu ordnen und zu filtern. Siehe <labelsPriorities>Labels und Prioritäten</labelsPriorities>.",
+      "<strong>Kommentare</strong>, um eine Aufgabe direkt an der Aufgabe zu besprechen.",
+      "<strong>Eigene Berechtigungen</strong>, um genau festzulegen, wer was darf. Siehe <permissions>Rollen und Berechtigungen</permissions>."
+    ],
+    "discordTitle": "In Discord",
+    "discord": "Führe <code>/kanbancord features</code> aus und wähle die Funktionen im Menü. <strong>Everything on</strong> schaltet alle ein, <strong>Simple mode</strong> alle aus.",
+    "websiteTitle": "Auf der Website",
+    "website": "Öffne im Dashboard den Server, dann <strong>Servereinstellungen → Funktionen</strong>. Schalte ein, was du brauchst, oder drücke <strong>Alles einschalten</strong>.",
+    "whoTitle": "Wer Funktionen einschalten darf",
+    "who": "Alle mit <strong>Server verwalten</strong> oder <strong>Administrator</strong> in Discord. Mit eigenen Berechtigungen alle, denen die Regeln <strong>Server-Berechtigungen verwalten</strong> geben. Alle anderen sehen eine Funktion, sobald sie an ist.",
+    "boardTitle": "Ein Board einfach halten",
+    "board": "Ein Board kann Funktionen ausgeschaltet lassen, während der Rest des Servers sie nutzt: Öffne das Board, dann <strong>⋯ → Board-Einstellungen → Einfacher Modus</strong>, und schalte aus, was es nicht braucht. Das darf ändern, wer das Board bearbeiten darf. Was der Server ausgeschaltet hat, ist auf jedem Board aus.",
+    "suggestionsTitle": "Vorschläge",
+    "suggestions": "Sieht es so aus, als würde ein Board eine Funktion von Hand nachbauen, schlägt KanbanCord sie vor: Markierungen wie <code>[M]</code> oder <code>[Bug]</code> am Anfang von Titeln (Labels), <code>P1</code> oder <code>high prio</code> (Prioritäten), Fristen in Titeln (Fälligkeitsdaten) oder Namen an Aufgaben (Zuständige). Der Vorschlag erscheint über dem Board auf der Website und in der privaten Antwort nach <code>/task create</code> oder <code>/task edit</code>, mit einem Knopf für alle, die die Funktion einschalten dürfen. Blendest du ihn aus, kommt er auf diesem Board nicht wieder. Von selbst wird nie etwas eingeschaltet."
   },
   "postsFeeds": {
     "title": "Dein Team auf dem Laufenden halten: Board-Posts und Update-Feeds",

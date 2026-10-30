@@ -20,7 +20,7 @@
     "move": "À medida que o trabalho avança, move as tarefas pelo quadro com <code>/task move</code>, por exemplo para <strong>Done</strong> para as dares como feitas. <code>/task view</code> mostra uma tarefa completa, com um menu para tudo o que podes fazer com ela: editar, mover, atribuir, definir um prazo, comentar, seguir ou eliminar.",
     "view": "<code>/board view</code> mostra o quadro inteiro, e <code>/board list</code> todos os quadros do servidor.",
     "featuresTitle": "5. Escolher o que as tuas tarefas podem ter",
-    "features": "Os servidores novos começam em <strong>modo simples</strong>: quadros, colunas, e tarefas com título e descrição. Muitas vezes é tudo o que uma pequena lista de tarefas precisa. Quando quiseres mais, um gestor do servidor pode ativar responsáveis, prazos com lembretes, prioridades, etiquetas, comentários e permissões personalizadas com <code>/kanbancord features</code>. Desativar uma esconde-a sem apagar nada.",
+    "features": "Os servidores novos começam em <strong>modo simples</strong>: quadros, colunas, e tarefas com título e descrição. Muitas vezes é tudo o que uma pequena lista de tarefas precisa. Quando quiseres mais, um gestor do servidor pode ativar responsáveis, prazos com lembretes, prioridades, etiquetas, comentários e permissões personalizadas com <code>/kanbancord features</code>. Desativar uma esconde-a sem apagar nada. Veja <features>ativar funcionalidades</features> para o site e para manter um quadro simples.",
     "postTitle": "6. Mostrar o quadro a todos",
     "post": "Usa <code>/board post</code> num canal para publicar o quadro inteiro numa só mensagem, que se atualiza sempre que algo muda. Vê <postsFeeds>Publicações de quadros e feeds de atualizações</postsFeeds> para outras formas de manter a tua equipa a par.",
     "nextTitle": "E agora",
@@ -120,6 +120,30 @@
     "filter": "No <website>site</website>, a barra de pesquisa de um quadro filtra as tarefas por etiqueta, por prioridade, por responsável e por prazo, para que «todos os bugs de prioridade alta» fiquem a dois cliques.",
     "filterAlt": "Um quadro filtrado pelas tarefas com a etiqueta Code, cada uma com as suas etiquetas coloridas e a sua prioridade.",
     "filterCaption": "Todas as tarefas com a etiqueta Code, com a prioridade à direita."
+  },
+  "features": {
+    "title": "Ativar funcionalidades: etiquetas, prazos, responsáveis e mais",
+    "description": "O KanbanCord começa em modo simples. Ative responsáveis, prazos, prioridades, etiquetas, comentários e permissões personalizadas para um servidor, ou mantenha um quadro simples, no Discord ou no site.",
+    "summary": "O modo simples, e ativar mais quando precisar.",
+    "intro": "Os servidores novos começam em modo simples: quadros, colunas e tarefas com título e descrição. Tudo o resto é opcional, para que ninguém tenha de aprender o que não usa. Quando os seus quadros precisarem de mais, ative-o. Desativar uma funcionalidade só a esconde e não apaga nada.",
+    "whatTitle": "O que pode ativar",
+    "what": [
+      "<strong>Responsáveis</strong>: pessoas e cargos nas tarefas, que recebem avisos. Veja <assignTasks>atribuir tarefas</assignTasks>.",
+      "<strong>Prazos</strong>, com lembretes antes de o prazo chegar. Veja <dueDates>prazos e lembretes</dueDates>.",
+      "<strong>Prioridades</strong> e <strong>Etiquetas</strong>, para ordenar e filtrar tarefas. Veja <labelsPriorities>etiquetas e prioridades</labelsPriorities>.",
+      "<strong>Comentários</strong>, para discutir uma tarefa na própria tarefa.",
+      "<strong>Permissões personalizadas</strong>, para afinar quem pode fazer o quê. Veja <permissions>cargos e permissões</permissions>."
+    ],
+    "discordTitle": "No Discord",
+    "discord": "Execute <code>/kanbancord features</code> e escolha as funcionalidades no menu. <strong>Everything on</strong> ativa todas, <strong>Simple mode</strong> desativa todas.",
+    "websiteTitle": "No site",
+    "website": "No painel, abra o servidor e depois <strong>Definições do servidor → Funcionalidades</strong>. Ative o que precisar ou carregue em <strong>Ativar tudo</strong>.",
+    "whoTitle": "Quem pode ativar funcionalidades",
+    "who": "Quem tiver <strong>Gerir servidor</strong> ou <strong>Administrador</strong> no Discord. Com permissões personalizadas, quem as regras derem <strong>Gerir as permissões do servidor</strong>. Os restantes veem uma funcionalidade assim que está ativa.",
+    "boardTitle": "Manter um quadro simples",
+    "board": "Um quadro pode manter funcionalidades desativadas enquanto o resto do servidor as usa: abra o quadro, depois <strong>⋯ → Definições do quadro → Modo simples</strong>, e desative o que não precisar. Quem pode editar o quadro pode mudar isto. O que o servidor tem desativado fica desativado em todos os quadros.",
+    "suggestionsTitle": "Sugestões",
+    "suggestions": "Quando um quadro parece fazer uma funcionalidade à mão, o KanbanCord sugere-a: marcas como <code>[M]</code> ou <code>[Bug]</code> no início dos títulos (Etiquetas), <code>P1</code> ou <code>high prio</code> (Prioridades), prazos escritos nos títulos (Prazos) ou nomes nas tarefas (Responsáveis). A sugestão aparece acima do quadro no site e na resposta privada após <code>/task create</code> ou <code>/task edit</code>, com um botão para quem pode ativar a funcionalidade. Se a dispensar, não volta nesse quadro. Nada é ativado sozinho."
   },
   "postsFeeds": {
     "title": "Manter a tua equipa a par: publicações de quadros e feeds de atualizações",

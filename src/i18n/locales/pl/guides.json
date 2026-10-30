@@ -20,7 +20,7 @@
     "move": "W miarę postępów przenoś zadania po tablicy poleceniem <code>/task move</code>, na przykład do <strong>Done</strong>, aby skreślić je z listy. <code>/task view</code> pokazuje całe zadanie wraz z menu wszystkiego, co możesz z nim zrobić: edytować, przenieść, przypisać, ustawić termin, skomentować, obserwować lub usunąć.",
     "view": "<code>/board view</code> pokazuje całą tablicę, a <code>/board list</code> wszystkie tablice serwera.",
     "featuresTitle": "5. Wybierz, co mogą mieć twoje zadania",
-    "features": "Nowe serwery zaczynają w <strong>trybie prostym</strong>: tablice, kolumny i zadania z tytułem i opisem. Dla małej listy zadań to często wszystko, czego trzeba. Gdy zechcesz więcej, osoba zarządzająca serwerem może włączyć osoby przypisane, terminy z przypomnieniami, priorytety, etykiety, komentarze i uprawnienia niestandardowe poleceniem <code>/kanbancord features</code>. Ponowne wyłączenie ukrywa funkcję, niczego nie usuwając.",
+    "features": "Nowe serwery zaczynają w <strong>trybie prostym</strong>: tablice, kolumny i zadania z tytułem i opisem. Dla małej listy zadań to często wszystko, czego trzeba. Gdy zechcesz więcej, osoba zarządzająca serwerem może włączyć osoby przypisane, terminy z przypomnieniami, priorytety, etykiety, komentarze i uprawnienia niestandardowe poleceniem <code>/kanbancord features</code>. Ponowne wyłączenie ukrywa funkcję, niczego nie usuwając. Zobacz <features>włączanie funkcji</features>, aby zrobić to na stronie lub zostawić jedną tablicę prostą.",
     "postTitle": "6. Pokaż tablicę wszystkim",
     "post": "Użyj <code>/board post</code> na kanale, aby opublikować całą tablicę jako jedną wiadomość, która aktualizuje się sama przy każdej zmianie. Inne sposoby informowania zespołu opisuje poradnik <postsFeeds>posty tablic i strumienie aktualizacji</postsFeeds>.",
     "nextTitle": "Co dalej",
@@ -120,6 +120,30 @@
     "filter": "Na <website>stronie</website> pasek wyszukiwania tablicy filtruje zadania po etykiecie, priorytecie, osobie przypisanej i terminie, więc „wszystkie błędy o wysokim priorytecie” są dwa kliknięcia dalej.",
     "filterAlt": "Tablica przefiltrowana do zadań z etykietą Code; każde zadanie pokazuje kolorowe etykiety i odznakę priorytetu.",
     "filterCaption": "Wszystkie zadania z etykietą Code, z priorytetem po prawej."
+  },
+  "features": {
+    "title": "Włączanie funkcji: etykiety, terminy, osoby przypisane i więcej",
+    "description": "KanbanCord zaczyna w trybie prostym. Włącz osoby przypisane, terminy, priorytety, etykiety, komentarze i uprawnienia niestandardowe dla serwera albo zostaw jedną tablicę prostą, w Discordzie lub na stronie.",
+    "summary": "Tryb prosty i włączanie więcej, gdy tego potrzebujesz.",
+    "intro": "Nowe serwery zaczynają w trybie prostym: tablice, kolumny i zadania z tytułem i opisem. Cała reszta jest opcjonalna, żeby nikt nie musiał uczyć się tego, czego nie używa. Gdy Twoje tablice potrzebują więcej, włącz to. Wyłączenie funkcji tylko ją ukrywa i niczego nie usuwa.",
+    "whatTitle": "Co możesz włączyć",
+    "what": [
+      "<strong>Osoby przypisane</strong>: osoby i role przy zadaniach, które dostają o nich powiadomienia. Zobacz <assignTasks>przypisywanie zadań</assignTasks>.",
+      "<strong>Terminy</strong>, z przypomnieniami przed upływem terminu. Zobacz <dueDates>terminy i przypomnienia</dueDates>.",
+      "<strong>Priorytety</strong> i <strong>Etykiety</strong>, do porządkowania i filtrowania zadań. Zobacz <labelsPriorities>etykiety i priorytety</labelsPriorities>.",
+      "<strong>Komentarze</strong>, by omawiać zadanie przy samym zadaniu.",
+      "<strong>Uprawnienia niestandardowe</strong>, by dokładnie ustalić, kto co może. Zobacz <permissions>role i uprawnienia</permissions>."
+    ],
+    "discordTitle": "W Discordzie",
+    "discord": "Użyj <code>/kanbancord features</code> i wybierz funkcje w menu. <strong>Everything on</strong> włącza wszystkie, <strong>Simple mode</strong> wyłącza wszystkie.",
+    "websiteTitle": "Na stronie",
+    "website": "W panelu otwórz serwer, potem <strong>Ustawienia serwera → Funkcje</strong>. Włącz to, czego potrzebujesz, albo kliknij <strong>Włącz wszystko</strong>.",
+    "whoTitle": "Kto może włączać funkcje",
+    "who": "Każda osoba z uprawnieniem <strong>Zarządzanie serwerem</strong> lub <strong>Administrator</strong> w Discordzie. Przy uprawnieniach niestandardowych: osoby, którym reguły dają <strong>Zarządzanie uprawnieniami serwera</strong>. Pozostali widzą funkcję, gdy tylko zostanie włączona.",
+    "boardTitle": "Prosta tablica",
+    "board": "Tablica może mieć funkcje wyłączone, choć reszta serwera ich używa: otwórz tablicę, potem <strong>⋯ → Ustawienia tablicy → Tryb prosty</strong>, i wyłącz to, czego nie potrzebuje. Może to zmienić każda osoba, która może edytować tablicę. To, co serwer ma wyłączone, jest wyłączone na każdej tablicy.",
+    "suggestionsTitle": "Sugestie",
+    "suggestions": "Gdy tablica wygląda, jakby robiła jakąś funkcję ręcznie, KanbanCord ją podpowiada: znaczniki takie jak <code>[M]</code> czy <code>[Bug]</code> na początku tytułów (Etykiety), <code>P1</code> lub <code>high prio</code> (Priorytety), terminy wpisane w tytuły (Terminy) albo imiona przy zadaniach (Osoby przypisane). Sugestia pojawia się nad tablicą na stronie i w prywatnej odpowiedzi po <code>/task create</code> lub <code>/task edit</code>, z przyciskiem dla osób, które mogą włączyć funkcję. Po odrzuceniu nie wraca na tej tablicy. Nic nie włącza się samo."
   },
   "postsFeeds": {
     "title": "Informowanie zespołu: posty tablic i strumienie aktualizacji",

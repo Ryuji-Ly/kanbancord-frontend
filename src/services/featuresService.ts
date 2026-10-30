@@ -107,3 +107,35 @@ export async function updateBoardFeatures(
   if (!response.ok) throw new Error(await parseError(response))
   return response.json() as Promise<Record<BoardFeatureKey, boolean>>
 }
+
+/**
+ * A feature the board seems to be doing by hand, such as tags in task titles for labels, worked out by the API
+ * from the board as it is. `scope` says where it is off: for the server, or only for this board. `canEnable`
+ * says whether the user may switch it on there.
+ */
+export type FeatureSuggestion = {
+  feature: BoardFeatureKey
+  /** What was noticed: TAGS or COLUMNS (labels), MARKS (priorities), DATES (due dates), NAMES or COLUMNS (assignees). */
+  signal: 'TAGS' | 'COLUMNS' | 'MARKS' | 'DATES' | 'NAMES'
+  /** Up to three examples, as written on the board. */
+  examples: string[]
+  count: number
+  scope: 'SERVER' | 'BOARD'
+  canEnable: boolean
+}
+
+export async function fetchFeatureSuggestions(serverId: string, boardId: string): Promise<FeatureSuggestion[]> {
+  const response = await apiFetch(`/api/servers/${serverId}/boards/${boardId}/feature-suggestions`)
+  if (!response.ok) throw new Error(await parseError(response))
+  return ((await response.json()) as { suggestions: FeatureSuggestion[] }).suggestions ?? []
+}
+
+/** Hides the suggestions for these features on the board, for everyone. */
+export async function dismissFeatureSuggestions(serverId: string, boardId: string, features: BoardFeatureKey[]): Promise<void> {
+  const response = await apiFetch(`/api/servers/${serverId}/boards/${boardId}/feature-suggestions/dismiss`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ features }),
+  })
+  if (!response.ok) throw new Error(await parseError(response))
+}

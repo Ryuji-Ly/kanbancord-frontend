@@ -227,5 +227,21 @@
       "LABEL_UNKNOWN": "Labels die dit bord niet heeft, weggelaten: {count}",
       "LABELS_NOT_ALLOWED": "Weggelaten labels, omdat je geen labels aan taken mag toevoegen: {count}"
     }
+  },
+  "suggestions": {
+    "title": "Suggestie voor dit bord",
+    "dismiss": "Verbergen",
+    "labelsTags": "Meerdere taken beginnen met tags zoals {examples}. Labels doen dat voor je, in kleur, en je kunt het bord erop filteren.",
+    "labelsColumns": "Kolommen zoals {examples} delen taken in categorieën in. Labels kunnen dat overnemen, zodat kolommen laten zien hoe ver elke taak is, en je kunt erop filteren.",
+    "priorities": "Meerdere taken zijn gemarkeerd met {examples}. Prioriteiten doen dat voor je, en je kunt het bord erop filteren.",
+    "dueDates": "In meerdere taken staan deadlines, zoals {examples}. Deadlines doen dat voor je en herinneren de mensen op een taak voordat die verloopt.",
+    "assigneesNames": "Meerdere taken zeggen wie ze doet, zoals {examples}. Toegewezen personen doen dat voor je, en wie is toegewezen hoort over de eigen taken.",
+    "assigneesColumns": "Kolommen zoals {examples} zijn naar mensen vernoemd. Toegewezen personen laten zien wie wat doet, zodat kolommen laten zien hoe ver elke taak is.",
+    "turnOn": "Aanzetten: {feature}",
+    "turnedOn": "Aangezet: {feature}",
+    "askManager": "Iemand met {manageServer} kan dit aanzetten, in {where} of met /kanbancord features in Discord.",
+    "askBoardEditor": "Dit staat alleen voor dit bord uit. Iemand die het bord mag bewerken, kan het aanzetten in {where}.",
+    "guide": "Zo werken functies",
+    "quote": "‘{text}’"
   }
 }
