@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { readableError } from '../../api/http'
 import { t } from '../../i18n'
@@ -27,6 +27,11 @@ type FeaturesSettingsProps = {
 export function FeaturesSettings({ serverId, features }: FeaturesSettingsProps) {
   const queryClient = useQueryClient()
   const [error, setError] = useState('')
+  const errorRef = useRef<HTMLDivElement>(null)
+  // A refused change flips the switch back; make sure the reason is seen, not left above the fold.
+  useEffect(() => {
+    if (error) errorRef.current?.scrollIntoView({ block: 'nearest', behavior: 'smooth' })
+  }, [error])
 
   const update = useMutation({
     mutationFn: (changes: Partial<ServerFeatures>) => updateServerFeatures(serverId, changes),
@@ -71,7 +76,14 @@ export function FeaturesSettings({ serverId, features }: FeaturesSettingsProps) 
   return (
     <div className="kc-features">
       <p className="kc-muted">{t('settings.features.intro')}</p>
-      {error && <p className="kc-banner">{error}</p>}
+      {error && (
+        <div ref={errorRef} className="kc-banner kc-features-error" role="alert">
+          <span>{error}</span>
+          <button type="button" className="kc-btn kc-btn-small kc-btn-ghost" onClick={() => window.location.reload()}>
+            {t('common.reloadPage')}
+          </button>
+        </div>
+      )}
 
       <div className="kc-features-presets">
         <button

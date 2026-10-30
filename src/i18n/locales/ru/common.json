@@ -55,5 +55,6 @@
   "adding": "Добавление…",
   "savingDots": "Сохранение…",
   "changeNotSaved": "Не удалось сохранить изменение",
-  "loadingEllipsis": "Загрузка…"
+  "loadingEllipsis": "Загрузка…",
+  "reloadPage": "Перезагрузить страницу"
 }

@@ -55,5 +55,6 @@
   "adding": "Ekleniyor…",
   "savingDots": "Kaydediliyor…",
   "changeNotSaved": "Değişiklik kaydedilemedi",
-  "loadingEllipsis": "Yükleniyor…"
+  "loadingEllipsis": "Yükleniyor…",
+  "reloadPage": "Sayfayı yeniden yükle"
 }

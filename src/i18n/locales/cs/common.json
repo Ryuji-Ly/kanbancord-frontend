@@ -55,5 +55,6 @@
   "adding": "Přidávání…",
   "savingDots": "Ukládání...",
   "changeNotSaved": "Změnu se nepodařilo uložit",
-  "loadingEllipsis": "Načítání…"
+  "loadingEllipsis": "Načítání…",
+  "reloadPage": "Načíst stránku znovu"
 }

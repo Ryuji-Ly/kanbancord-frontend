@@ -516,7 +516,16 @@ export function ServerWorkspace({ serverId, server, showError, showToast }: Serv
         canCreateBoard={Boolean(access?.server.CREATE_BOARD)}
         isBoardPinned={(board) => isPinned(serverId, board.boardId)}
         renderBoardActions={boardActions}
-        onOpenSettings={settingsSections.length > 0 ? () => setShowSettings(true) : undefined}
+        onOpenSettings={
+          settingsSections.length > 0
+            ? () => {
+                // What the user may do and which features are on can change in Discord at any time:
+                // settings always open with the latest, not with what was loaded with the page.
+                void queryClient.invalidateQueries({ queryKey: serverKeys.all(serverId) })
+                setShowSettings(true)
+              }
+            : undefined
+        }
         onOpenCreateBoard={() => void openCreateBoard()}
         onOpenImportBoard={() => setImporting(true)}
         onOpenBoard={(board) => navigate(`/boards/${board.boardId}?serverId=${encodeURIComponent(serverId)}`)}

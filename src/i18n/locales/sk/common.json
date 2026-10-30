@@ -55,5 +55,6 @@
   "adding": "Pridáva sa…",
   "savingDots": "Ukladá sa…",
   "changeNotSaved": "Zmenu sa nepodarilo uložiť",
-  "loadingEllipsis": "Načítava sa…"
+  "loadingEllipsis": "Načítava sa…",
+  "reloadPage": "Znova načítať stránku"
 }

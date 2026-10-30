@@ -55,5 +55,6 @@
   "adding": "Se adaugă…",
   "savingDots": "Se salvează...",
   "changeNotSaved": "Modificarea nu a putut fi salvată",
-  "loadingEllipsis": "Se încarcă…"
+  "loadingEllipsis": "Se încarcă…",
+  "reloadPage": "Reîncarcă pagina"
 }

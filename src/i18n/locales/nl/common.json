@@ -55,5 +55,6 @@
   "adding": "Toevoegen…",
   "savingDots": "Opslaan...",
   "changeNotSaved": "De wijziging kon niet worden opgeslagen",
-  "loadingEllipsis": "Laden…"
+  "loadingEllipsis": "Laden…",
+  "reloadPage": "Pagina herladen"
 }

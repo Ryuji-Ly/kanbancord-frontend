@@ -55,5 +55,6 @@
   "adding": "Lägger till…",
   "savingDots": "Sparar...",
   "changeNotSaved": "Ändringen kunde inte sparas",
-  "loadingEllipsis": "Läser in…"
+  "loadingEllipsis": "Läser in…",
+  "reloadPage": "Ladda om sidan"
 }

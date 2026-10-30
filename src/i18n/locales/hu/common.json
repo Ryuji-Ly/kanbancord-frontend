@@ -55,5 +55,6 @@
   "adding": "Hozzáadás…",
   "savingDots": "Mentés...",
   "changeNotSaved": "A módosítást nem sikerült menteni",
-  "loadingEllipsis": "Betöltés…"
+  "loadingEllipsis": "Betöltés…",
+  "reloadPage": "Oldal újratöltése"
 }

@@ -55,5 +55,6 @@
   "adding": "추가하는 중…",
   "savingDots": "저장 중…",
   "changeNotSaved": "변경 사항을 저장하지 못했어요",
-  "loadingEllipsis": "불러오는 중…"
+  "loadingEllipsis": "불러오는 중…",
+  "reloadPage": "페이지 새로고침"
 }

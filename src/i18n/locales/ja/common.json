@@ -55,5 +55,6 @@
   "adding": "追加中…",
   "savingDots": "保存中...",
   "changeNotSaved": "変更を保存できませんでした",
-  "loadingEllipsis": "読み込み中…"
+  "loadingEllipsis": "読み込み中…",
+  "reloadPage": "ページを再読み込み"
 }

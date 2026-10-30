@@ -55,5 +55,6 @@
   "adding": "正在添加…",
   "savingDots": "正在保存...",
   "changeNotSaved": "无法保存更改",
-  "loadingEllipsis": "加载中…"
+  "loadingEllipsis": "加载中…",
+  "reloadPage": "重新加载页面"
 }

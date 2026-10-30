@@ -55,5 +55,6 @@
   "adding": "กำลังเพิ่ม…",
   "savingDots": "กำลังบันทึก...",
   "changeNotSaved": "ไม่สามารถบันทึกการเปลี่ยนแปลงได้",
-  "loadingEllipsis": "กำลังโหลด…"
+  "loadingEllipsis": "กำลังโหลด…",
+  "reloadPage": "โหลดหน้าใหม่"
 }

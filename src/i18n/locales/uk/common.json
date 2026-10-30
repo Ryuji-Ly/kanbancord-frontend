@@ -55,5 +55,6 @@
   "adding": "Додавання…",
   "savingDots": "Збереження...",
   "changeNotSaved": "Не вдалося зберегти зміну",
-  "loadingEllipsis": "Завантаження…"
+  "loadingEllipsis": "Завантаження…",
+  "reloadPage": "Перезавантажити сторінку"
 }

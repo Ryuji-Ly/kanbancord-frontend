@@ -55,5 +55,6 @@
   "adding": "正在新增…",
   "savingDots": "正在儲存...",
   "changeNotSaved": "無法儲存變更",
-  "loadingEllipsis": "載入中…"
+  "loadingEllipsis": "載入中…",
+  "reloadPage": "重新載入頁面"
 }

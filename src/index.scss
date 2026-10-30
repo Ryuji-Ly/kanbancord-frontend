@@ -5113,3 +5113,12 @@ select.kc-input {
     display: flex;
   }
 }
+
+// A refused feature change: the reason, and a way to load the page afresh.
+.kc-features-error {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}

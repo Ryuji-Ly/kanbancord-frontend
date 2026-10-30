@@ -55,5 +55,6 @@
   "adding": "Agregando…",
   "savingDots": "Guardando…",
   "changeNotSaved": "No se pudo guardar el cambio",
-  "loadingEllipsis": "Cargando…"
+  "loadingEllipsis": "Cargando…",
+  "reloadPage": "Recargar la página"
 }
