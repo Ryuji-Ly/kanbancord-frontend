@@ -7,6 +7,7 @@ import type { ApiServer } from '../../components/dashboard/types'
 import { fetchMyServers } from '../../services/meService'
 import { categoryLabel, eventLabel, type DmMode, type ServerMode } from '../../services/notificationsService'
 import { useMyNotifications, useSaveMyNotifications } from './notificationQueries'
+import { MyRemindersSection } from './RemindersSettings'
 
 const DM_MODES: { value: DmMode; label: MessageKey; description: MessageKey }[] = [
   { value: 'UNLESS_PINGED', label: 'notifications.mine.unlessPinged', description: 'notifications.mine.unlessPingedHint' },
@@ -117,6 +118,8 @@ export function MyNotificationsSettings() {
           />
         </ul>
       </section>
+
+      <MyRemindersSection />
 
       <section className="kc-appearance-section">
         <h4>{t('notifications.mine.perServer')}</h4>

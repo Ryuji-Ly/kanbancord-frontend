@@ -34,6 +34,23 @@ const allowed = (keys: string[]) =>
 
 let features = { ...data.FEATURES }
 const dismissedSuggestions = new Set<string>()
+// Reminder times: the server's, each board's own and the demo user's own.
+let serverReminders: number[] = [1440]
+const boardReminders = new Map<string, number[]>()
+let myReminders: number[] | null = null
+const myBoardReminders = new Map<string, number[]>()
+const minutesOf = (body: unknown) => (body as { minutes?: number[] | null }).minutes ?? null
+const boardTimes = (boardId: string) => boardReminders.get(boardId) ?? serverReminders
+const myTimes = () => ({
+  everywhere: myReminders,
+  boards: [...myBoardReminders].map(([boardId, minutes]) => ({
+    boardId: Number(boardId),
+    boardName: data.BOARDS.find((board) => String(board.boardId) === boardId)?.name ?? boardId,
+    serverId: data.SERVER_ID,
+    serverName: 'Pixel Forge',
+    minutes,
+  })),
+})
 const DEMO_SUGGESTIONS = [
   { feature: 'LABELS', signal: 'TAGS', examples: ['[M]', '[US1-T3]', '[S]'], count: 9, scope: 'SERVER', canEnable: true },
   { feature: 'PRIORITIES', signal: 'MARKS', examples: ['[E]', '[D]'], count: 9, scope: 'SERVER', canEnable: true },
@@ -52,7 +69,7 @@ const EVENTS: [string, string, string, boolean, boolean | null, boolean, boolean
   ['TASK_DUE', 'TASKS', 'Due date changed', true, true, true, true],
   ['TASK_PRIORITY', 'TASKS', 'Priority changed', true, false, true, false],
   ['TASK_ARCHIVED', 'TASKS', 'Task archived or restored', true, false, true, false],
-  ['DUE_SOON', 'TASKS', 'Due within a day (reminder)', false, true, true, true],
+  ['DUE_SOON', 'TASKS', 'Due soon (reminder)', false, true, true, true],
   ['OVERDUE', 'TASKS', 'Overdue (reminder)', false, true, true, true],
   ['USER_ASSIGNED', 'PEOPLE', 'Someone assigned', true, true, true, true],
   ['USER_UNASSIGNED', 'PEOPLE', 'Someone unassigned', true, true, true, true],
@@ -417,6 +434,33 @@ const ROUTES: [string, RegExp, Handler][] = [
   ['PUT', /^\/api\/servers\/\d+\/features\/open-permissions$/, (_m, { body }) =>
     ({ enabled: (openPermissions = Boolean((body as { enabled: boolean }).enabled)) })],
   ['PUT', /^\/api\/servers\/\d+\/features$/, (_m, { body }) => (features = { ...features, ...(body as object) })],
+  ['GET', /^\/api\/servers\/\d+\/reminders$/, () => ({ minutes: serverReminders, effective: serverReminders })],
+  ['PUT', /^\/api\/servers\/\d+\/reminders$/, (_m, { body }) => {
+    serverReminders = minutesOf(body) ?? [1440]
+    return { minutes: serverReminders, effective: serverReminders }
+  }],
+  ['GET', /^\/api\/servers\/\d+\/boards\/(\d+)\/reminders$/, (m) => ({ minutes: boardReminders.get(m[1]) ?? null, effective: boardTimes(m[1]) })],
+  ['PUT', /^\/api\/servers\/\d+\/boards\/(\d+)\/reminders$/, (m, { body }) => {
+    const minutes = minutesOf(body)
+    if (minutes) boardReminders.set(m[1], minutes)
+    else boardReminders.delete(m[1])
+    return { minutes, effective: boardTimes(m[1]) }
+  }],
+  ['GET', /^\/api\/servers\/\d+\/boards\/(\d+)\/reminders\/mine$/, (m) => ({
+    minutes: myBoardReminders.get(m[1]) ?? null,
+    effective: myBoardReminders.get(m[1]) ?? myReminders ?? boardTimes(m[1]),
+  })],
+  ['PUT', /^\/api\/servers\/\d+\/boards\/(\d+)\/reminders\/mine$/, (m, { body }) => {
+    const minutes = minutesOf(body)
+    if (minutes) myBoardReminders.set(m[1], minutes)
+    else myBoardReminders.delete(m[1])
+    return { minutes, effective: minutes ?? myReminders ?? boardTimes(m[1]) }
+  }],
+  ['GET', /^\/api\/me\/reminders$/, () => myTimes()],
+  ['PUT', /^\/api\/me\/reminders$/, (_m, { body }) => {
+    myReminders = minutesOf(body)
+    return myTimes()
+  }],
   // Suggestions for whatever is switched off, as the API would make them for a board using tags by hand.
   ['GET', /^\/api\/servers\/\d+\/boards\/\d+\/feature-suggestions$/, () => ({
     suggestions: DEMO_SUGGESTIONS.filter((suggestion) => !features[suggestion.feature] && !dismissedSuggestions.has(suggestion.feature)),

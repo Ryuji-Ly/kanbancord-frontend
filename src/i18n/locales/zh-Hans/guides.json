@@ -88,6 +88,7 @@
     "when": "<code>when</code> 可以理解 <code>today</code>、<code>tomorrow</code>、<code>in 3 days</code>、<code>in 2 weeks</code>、<code>in 5 hours</code>，或 <code>2026-10-01</code>、<code>2026-10-01 17:00</code> 这样的日期。只写日期表示当天结束时到期。用 <code>none</code> 移除截止日期。你在 Discord 中输入的时间是 UTC 时间；之后 Discord 会按阅读者的时区显示每个截止日期，而在网站上你按自己的时区选择日期。",
     "remindersTitle": "提醒",
     "reminders": "任务的相关人员会在距离到期不足一天时收到私信，逾期时再收到一次。每条提醒在每个截止日期只发送一次：更改日期后，提醒会重新开始。看板最后一列中的任务视为已完成，不会收到提醒。",
+    "times": "默认是提前一天。服务器管理者可以用 <code>/kanbancord reminders</code> 选择其他时间，看板可以用 <code>/board reminders</code> 设置自己的时间，任何人都可以用 <code>/notifications reminders:</code> 为所有看板或某个看板选择自己的时间。在网站上，同样的设置位于服务器和看板的通知设置、设置 → 通知，以及看板的 ⋯ 菜单 → 你的提醒。若同时已过多个时间，只发送最晚的那个。",
     "who": "谁会收到提醒？所有会收到该任务通知的人：<assignTasks>被分配到该任务</assignTasks>的人、创建者和关注者。每个人都可以在 <code>/notifications</code> 或网站上，连同其他私信一起关闭提醒。",
     "feed": "<postsFeeds>更新推送</postsFeeds>也可以在频道中发布提醒，并提及任务相关的人。新推送默认关闭这项功能；请在网站上的推送设置中开启。",
     "seeingTitle": "查看即将到期的任务",

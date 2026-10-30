@@ -88,6 +88,7 @@
     "when": "<code>when</code> 可以理解 <code>today</code>、<code>tomorrow</code>、<code>in 3 days</code>、<code>in 2 weeks</code>、<code>in 5 hours</code>，或 <code>2026-10-01</code>、<code>2026-10-01 17:00</code> 這樣的日期。只寫日期表示當天結束時到期。用 <code>none</code> 移除截止日期。你在 Discord 中輸入的時間是 UTC 時間；之後 Discord 會依閱讀者的時區顯示每個截止日期，而在網站上你依自己的時區選擇日期。",
     "remindersTitle": "提醒",
     "reminders": "任務的相關人員會在距離到期不到一天時收到私訊，逾期時再收到一次。每則提醒在每個截止日期只傳送一次：變更日期後，提醒會重新開始。看板最後一欄中的任務視為已完成，不會收到提醒。",
+    "times": "預設是提前一天。伺服器管理者可以用 <code>/kanbancord reminders</code> 選擇其他時間，看板可以用 <code>/board reminders</code> 設定自己的時間，任何人都可以用 <code>/notifications reminders:</code> 為所有看板或某個看板選擇自己的時間。在網站上，同樣的設定位於伺服器和看板的通知設定、設定 → 通知，以及看板的 ⋯ 選單 → 你的提醒。若同時已過多個時間，只傳送最晚的那個。",
     "who": "誰會收到提醒？所有會收到該任務通知的人：<assignTasks>被指派到該任務</assignTasks>的人、建立者和追蹤者。每個人都可以在 <code>/notifications</code> 或網站上，連同其他私訊一起關閉提醒。",
     "feed": "<postsFeeds>更新推播</postsFeeds>也可以在頻道中張貼提醒，並提及任務相關的人。新推播預設關閉這項功能；請在網站上的推播設定中開啟。",
     "seeingTitle": "查看即將到期的任務",
