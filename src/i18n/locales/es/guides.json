@@ -20,7 +20,7 @@
     "move": "A medida que avanza el trabajo, mueve las tareas por el tablero con <code>/task move</code>, por ejemplo a <strong>Done</strong> para tacharlas de tu lista. <code>/task view</code> muestra una tarea completa, con un menú para todo lo que puedes hacer con ella: editarla, moverla, asignarla, ponerle fecha límite, comentarla, seguirla o eliminarla.",
     "view": "<code>/board view</code> muestra el tablero entero, y <code>/board list</code> todos los tableros del servidor.",
     "featuresTitle": "5. Elige qué pueden tener tus tareas",
-    "features": "Los servidores nuevos empiezan en <strong>modo simple</strong>: tableros, columnas y tareas con título y descripción. Muchas veces es todo lo que necesita una lista de tareas pequeña. Cuando quieras más, un gestor del servidor puede activar responsables, fechas límite con recordatorios, prioridades, etiquetas, comentarios y permisos personalizados con <code>/kanbancord features</code>. Volver a desactivar algo lo oculta sin eliminar nada.",
+    "features": "Los servidores nuevos empiezan en <strong>modo simple</strong>: tableros, columnas y tareas con título y descripción. Muchas veces es todo lo que necesita una lista de tareas pequeña. Cuando quieras más, un gestor del servidor puede activar responsables, fechas límite con recordatorios, prioridades, etiquetas, comentarios y permisos personalizados con <code>/kanbancord features</code>. Volver a desactivar algo lo oculta sin eliminar nada. Consulta <features>activar funciones</features> para la web y para mantener un tablero simple.",
     "postTitle": "6. Muestra el tablero a todos",
     "post": "Ejecuta <code>/board post</code> en un canal para publicar el tablero entero como un único mensaje que se actualiza solo cada vez que algo cambia. Consulta <postsFeeds>publicaciones de tableros y feeds de novedades</postsFeeds> para las demás formas de mantener a tu equipo al día.",
     "nextTitle": "Y ahora qué",
@@ -120,6 +120,30 @@
     "filter": "En la <website>web</website>, la barra de búsqueda de un tablero filtra las tareas por etiqueta, por prioridad, por responsable y por fecha límite, así que «todos los errores de prioridad alta» están a dos clics.",
     "filterAlt": "Un tablero filtrado por las tareas con la etiqueta Code, que muestra cada tarea con sus etiquetas de colores y su distintivo de prioridad.",
     "filterCaption": "Todas las tareas con la etiqueta Code, con su prioridad a la derecha."
+  },
+  "features": {
+    "title": "Activar funciones: etiquetas, fechas límite, responsables y más",
+    "description": "KanbanCord empieza en modo simple. Activa responsables, fechas límite, prioridades, etiquetas, comentarios y permisos personalizados para un servidor, o mantén un tablero simple, en Discord o en la web.",
+    "summary": "El modo simple, y activar más cuando lo necesites.",
+    "intro": "Los servidores nuevos empiezan en modo simple: tableros, columnas y tareas con título y descripción. Todo lo demás es opcional, para que nadie tenga que aprender lo que no usa. Cuando tus tableros necesiten más, actívalo. Desactivar una función solo la oculta y no borra nada.",
+    "whatTitle": "Qué puedes activar",
+    "what": [
+      "<strong>Responsables</strong>: personas y roles en las tareas, que reciben avisos. Consulta <assignTasks>asignar tareas</assignTasks>.",
+      "<strong>Fechas límite</strong>, con recordatorios antes de que venza una tarea. Consulta <dueDates>fechas límite y recordatorios</dueDates>.",
+      "<strong>Prioridades</strong> y <strong>Etiquetas</strong>, para ordenar y filtrar tareas. Consulta <labelsPriorities>etiquetas y prioridades</labelsPriorities>.",
+      "<strong>Comentarios</strong>, para hablar de una tarea en la propia tarea.",
+      "<strong>Permisos personalizados</strong>, para ajustar quién puede hacer qué. Consulta <permissions>roles y permisos</permissions>."
+    ],
+    "discordTitle": "En Discord",
+    "discord": "Usa <code>/kanbancord features</code> y elige las funciones en el menú. <strong>Everything on</strong> las activa todas y <strong>Simple mode</strong> las desactiva todas.",
+    "websiteTitle": "En la web",
+    "website": "En el panel, abre el servidor y luego <strong>Ajustes del servidor → Funciones</strong>. Activa lo que necesites o pulsa <strong>Activar todo</strong>.",
+    "whoTitle": "Quién puede activar funciones",
+    "who": "Quien tenga <strong>Gestionar servidor</strong> o <strong>Administrador</strong> en Discord. Con permisos personalizados, quien reciba <strong>Gestionar los permisos del servidor</strong> según las reglas. El resto ve una función en cuanto está activada.",
+    "boardTitle": "Mantener un tablero simple",
+    "board": "Un tablero puede mantener funciones desactivadas mientras el resto del servidor las usa: abre el tablero, luego <strong>⋯ → Ajustes del tablero → Modo simple</strong>, y desactiva lo que no necesite. Puede cambiarlo quien pueda editar el tablero. Lo que el servidor tiene desactivado lo está en todos los tableros.",
+    "suggestionsTitle": "Sugerencias",
+    "suggestions": "Cuando parece que un tablero hace una función a mano, KanbanCord la sugiere: marcas como <code>[M]</code> o <code>[Bug]</code> al principio de los títulos (Etiquetas), <code>P1</code> o <code>high prio</code> (Prioridades), plazos escritos en los títulos (Fechas límite) o nombres en las tareas (Responsables). La sugerencia aparece encima del tablero en la web y en la respuesta privada tras <code>/task create</code> o <code>/task edit</code>, con un botón para quien pueda activar la función. Si la descartas, no vuelve en ese tablero. Nada se activa nunca por sí solo."
   },
   "postsFeeds": {
     "title": "Mantén a tu equipo al día: publicaciones de tableros y feeds de novedades",

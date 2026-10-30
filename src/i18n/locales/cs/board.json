@@ -235,5 +235,21 @@
       "LABEL_UNKNOWN": "Štítky, které tato nástěnka nemá, vynechány: {count}",
       "LABELS_NOT_ALLOWED": "Vynechané štítky, protože nemůžeš přidávat štítky k úkolům: {count}"
     }
+  },
+  "suggestions": {
+    "title": "Návrh pro tuto nástěnku",
+    "dismiss": "Zavřít",
+    "labelsTags": "Několik úkolů začíná značkami jako {examples}. Štítky to udělají za vás, barevně, a nástěnku podle nich můžete filtrovat.",
+    "labelsColumns": "Sloupce jako {examples} třídí úkoly do kategorií. Štítky to mohou převzít, aby sloupce ukazovaly, jak daleko každý úkol je, a můžete podle nich filtrovat.",
+    "priorities": "Několik úkolů je označeno {examples}. Priority to udělají za vás a nástěnku podle nich můžete filtrovat.",
+    "dueDates": "V několika úkolech jsou napsané termíny, třeba {examples}. Termíny to udělají za vás a připomenou lidem u úkolu, než vyprší.",
+    "assigneesNames": "Několik úkolů uvádí, kdo je dělá, třeba {examples}. Řešitelé to udělají za vás a přiřazení lidé dostanou zprávy o svých úkolech.",
+    "assigneesColumns": "Sloupce jako {examples} jsou pojmenované po lidech. Řešitelé ukážou, kdo co dělá, aby sloupce ukazovaly, jak daleko každý úkol je.",
+    "turnOn": "Zapnout: {feature}",
+    "turnedOn": "Zapnuto: {feature}",
+    "askManager": "Zapnout to může kdokoli s oprávněním {manageServer}, v {where} nebo příkazem /kanbancord features v Discordu.",
+    "askBoardEditor": "Je to vypnuté jen pro tuto nástěnku. Kdo může nástěnku upravovat, může to zapnout v {where}.",
+    "guide": "Jak funkce fungují",
+    "quote": "„{text}“"
   }
 }

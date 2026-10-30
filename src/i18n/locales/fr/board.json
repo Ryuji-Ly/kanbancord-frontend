@@ -231,5 +231,21 @@
       "LABEL_UNKNOWN": "Étiquettes que ce tableau n’a pas, laissées de côté : {count}",
       "LABELS_NOT_ALLOWED": "Étiquettes laissées de côté, car tu ne peux pas en ajouter aux tâches : {count}"
     }
+  },
+  "suggestions": {
+    "title": "Suggestion pour ce tableau",
+    "dismiss": "Masquer",
+    "labelsTags": "Plusieurs tâches commencent par des marqueurs comme {examples}. Les Étiquettes le font pour vous, en couleur, et permettent de filtrer le tableau.",
+    "labelsColumns": "Des colonnes comme {examples} classent les tâches par catégorie. Les Étiquettes peuvent s'en charger, pour que les colonnes montrent où en est chaque tâche, et permettent de filtrer.",
+    "priorities": "Plusieurs tâches sont marquées {examples}. Les Priorités le font pour vous et permettent de filtrer le tableau.",
+    "dueDates": "Plusieurs tâches contiennent des échéances, comme {examples}. Les Dates d'échéance le font pour vous et rappellent l'échéance aux personnes concernées avant qu'elle n'arrive.",
+    "assigneesNames": "Plusieurs tâches indiquent qui s'en occupe, comme {examples}. Les Responsables le font pour vous, et les personnes assignées sont prévenues de leurs tâches.",
+    "assigneesColumns": "Des colonnes comme {examples} portent des noms de personnes. Les Responsables montrent qui fait quoi, pour que les colonnes montrent où en est chaque tâche.",
+    "turnOn": "Activer : {feature}",
+    "turnedOn": "Activé : {feature}",
+    "askManager": "Une personne avec la permission {manageServer} peut l'activer, dans {where} ou avec /kanbancord features dans Discord.",
+    "askBoardEditor": "C'est désactivé pour ce tableau seulement. Une personne qui peut modifier le tableau peut l'activer dans {where}.",
+    "guide": "Comment fonctionnent les fonctionnalités",
+    "quote": "« {text} »"
   }
 }

@@ -33,6 +33,13 @@ const allowed = (keys: string[]) =>
   Object.fromEntries(keys.map((key) => [key, { allowed: true, sourceTier: 'ROLE', sourceScopeType: 'SERVER' }]))
 
 let features = { ...data.FEATURES }
+const dismissedSuggestions = new Set<string>()
+const DEMO_SUGGESTIONS = [
+  { feature: 'LABELS', signal: 'TAGS', examples: ['[M]', '[US1-T3]', '[S]'], count: 9, scope: 'SERVER', canEnable: true },
+  { feature: 'PRIORITIES', signal: 'MARKS', examples: ['[E]', '[D]'], count: 9, scope: 'SERVER', canEnable: true },
+  { feature: 'DUE_DATES', signal: 'DATES', examples: ['by Friday', 'Deadline'], count: 4, scope: 'SERVER', canEnable: false },
+  { feature: 'ASSIGNEES', signal: 'NAMES', examples: ['@sam', 'Rudra'], count: 5, scope: 'BOARD', canEnable: false },
+] as const
 let openPermissions = false
 
 const EVENTS: [string, string, string, boolean, boolean | null, boolean, boolean][] = [
@@ -410,6 +417,14 @@ const ROUTES: [string, RegExp, Handler][] = [
   ['PUT', /^\/api\/servers\/\d+\/features\/open-permissions$/, (_m, { body }) =>
     ({ enabled: (openPermissions = Boolean((body as { enabled: boolean }).enabled)) })],
   ['PUT', /^\/api\/servers\/\d+\/features$/, (_m, { body }) => (features = { ...features, ...(body as object) })],
+  // Suggestions for whatever is switched off, as the API would make them for a board using tags by hand.
+  ['GET', /^\/api\/servers\/\d+\/boards\/\d+\/feature-suggestions$/, () => ({
+    suggestions: DEMO_SUGGESTIONS.filter((suggestion) => !features[suggestion.feature] && !dismissedSuggestions.has(suggestion.feature)),
+  })],
+  ['POST', /^\/api\/servers\/\d+\/boards\/\d+\/feature-suggestions\/dismiss$/, (_m, { body }) => {
+    for (const feature of (body as { features: string[] }).features) dismissedSuggestions.add(feature)
+    return undefined
+  }],
   ['GET', /^\/api\/servers\/\d+\/permissions\/mine$/, () => ({
     server: Object.fromEntries(data.SERVER_KEYS.map((key) => [key, true])),
     boards: Object.fromEntries(data.BOARDS.map((board) => [board.boardId, Object.fromEntries(data.BOARD_KEYS.map((key) => [key, true]))])),

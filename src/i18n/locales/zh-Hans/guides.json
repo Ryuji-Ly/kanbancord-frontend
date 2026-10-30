@@ -20,7 +20,7 @@
     "move": "随着工作推进，用 <code>/task move</code> 在看板上移动任务，比如移到 <strong>Done</strong> 把它从清单上划掉。<code>/task view</code> 显示完整任务，并附带一个菜单，包含你能对它做的一切：编辑、移动、分配、设置截止日期、评论、关注或删除。",
     "view": "<code>/board view</code> 显示整个看板，<code>/board list</code> 显示服务器的所有看板。",
     "featuresTitle": "5. 选择任务可以包含什么",
-    "features": "新服务器从<strong>简洁模式</strong>开始：看板、列，以及带标题和描述的任务。对于小型待办清单，这往往就够了。需要更多时，服务器管理者可以用 <code>/kanbancord features</code> 开启负责人、带提醒的截止日期、优先级、标签、评论和自定义权限。再关闭只会隐藏功能，不会删除任何东西。",
+    "features": "新服务器从<strong>简洁模式</strong>开始：看板、列，以及带标题和描述的任务。对于小型待办清单，这往往就够了。需要更多时，服务器管理者可以用 <code>/kanbancord features</code> 开启负责人、带提醒的截止日期、优先级、标签、评论和自定义权限。再关闭只会隐藏功能，不会删除任何东西。 网站上的设置方法以及如何让某个看板保持简洁，参见<features>开启功能</features>。",
     "postTitle": "6. 让所有人看到看板",
     "post": "在频道中使用 <code>/board post</code>，把整个看板发布为一条消息，每当有变化它都会自动更新。让团队随时了解进展的其他方式，请参阅<postsFeeds>看板帖子和更新推送</postsFeeds>。",
     "nextTitle": "下一步",
@@ -120,6 +120,30 @@
     "filter": "在<website>网站</website>上，看板的搜索栏可以按标签、优先级、负责人和截止日期筛选任务，所以“所有高优先级缺陷”只需点两下。",
     "filterAlt": "按 Code 标签筛选的看板，每个任务都显示彩色标签和优先级徽章。",
     "filterCaption": "所有带 Code 标签的任务，优先级显示在右侧。"
+  },
+  "features": {
+    "title": "开启功能：标签、截止日期、负责人等",
+    "description": "KanbanCord 从简洁模式开始。为服务器开启负责人、截止日期、优先级、标签、评论和自定义权限，或让某个看板保持简洁，在 Discord 或网站上都可以。",
+    "summary": "简洁模式，以及需要时开启更多功能。",
+    "intro": "新服务器从简洁模式开始：看板、列，以及带标题和描述的任务。其他一切都是可选的，这样没人需要学习用不到的东西。当你的看板需要更多时，就开启它。关闭功能只会隐藏它，不会删除任何东西。",
+    "whatTitle": "可以开启什么",
+    "what": [
+      "<strong>负责人</strong>：为任务指定人员和角色，他们会收到消息。参见<assignTasks>分配任务</assignTasks>。",
+      "<strong>截止日期</strong>，到期前会提醒。参见<dueDates>截止日期和提醒</dueDates>。",
+      "<strong>优先级</strong>和<strong>标签</strong>，用于整理和筛选任务。参见<labelsPriorities>标签和优先级</labelsPriorities>。",
+      "<strong>评论</strong>，直接在任务上讨论。",
+      "<strong>自定义权限</strong>，精细设置谁能做什么。参见<permissions>角色和权限</permissions>。"
+    ],
+    "discordTitle": "在 Discord 中",
+    "discord": "运行 <code>/kanbancord features</code>，在菜单中选择功能。<strong>Everything on</strong> 全部开启，<strong>Simple mode</strong> 全部关闭。",
+    "websiteTitle": "在网站上",
+    "website": "在控制面板中打开服务器，然后进入 <strong>服务器设置 → 功能</strong>。开启你需要的，或点击 <strong>全部开启</strong>。",
+    "whoTitle": "谁可以开启功能",
+    "who": "在 Discord 中拥有<strong>管理服务器</strong>或<strong>管理员</strong>权限的人。开启自定义权限后，是规则赋予<strong>管理服务器权限</strong>的人。其他人在功能开启后立即就能看到。",
+    "boardTitle": "让某个看板保持简洁",
+    "board": "即使服务器的其他地方在用某些功能，看板也可以把它们关掉：打开看板，然后在 <strong>⋯ → 看板设置 → 简洁模式</strong> 中关闭不需要的功能。能编辑看板的人都可以更改。服务器关闭的功能在每个看板上都是关闭的。",
+    "suggestionsTitle": "建议",
+    "suggestions": "当看板看起来在手动实现某个功能时，KanbanCord 会建议该功能：标题开头的 <code>[M]</code> 或 <code>[Bug]</code> 这类标记（标签）、<code>P1</code> 或 <code>high prio</code>（优先级）、写在标题里的期限（截止日期），或任务上的名字（负责人）。建议会显示在网站上看板的上方，以及 <code>/task create</code> 或 <code>/task edit</code> 之后的私密回复中，能开启功能的人会看到一个按钮。关闭后，它不会在该看板上再出现。任何功能都不会自动开启。"
   },
   "postsFeeds": {
     "title": "让团队随时了解进展：看板帖子和更新推送",

@@ -227,5 +227,21 @@
       "LABEL_UNKNOWN": "A táblán nem létező címkék, kihagyva: {count}",
       "LABELS_NOT_ALLOWED": "Kihagyott címkék, mert nem adhatsz címkét a feladatokhoz: {count}"
     }
+  },
+  "suggestions": {
+    "title": "Javaslat ehhez a táblához",
+    "dismiss": "Elvetés",
+    "labelsTags": "Több feladat olyan jelölésekkel kezdődik, mint {examples}. A(z) Címkék ezt elvégzik helyetted, színesen, és szűrhetsz is rájuk.",
+    "labelsColumns": "Az olyan oszlopok, mint {examples}, kategóriákba sorolják a feladatokat. A(z) Címkék átvehetik ezt, így az oszlopok azt mutathatják, hol tart egy feladat, és szűrhetsz is rájuk.",
+    "priorities": "Több feladat így van jelölve: {examples}. A(z) Prioritások ezt elvégzik helyetted, és szűrhetsz is rájuk.",
+    "dueDates": "Több feladatba határidő van írva, például {examples}. A(z) Határidők ezt elvégzik helyetted, és lejárat előtt emlékeztetik a feladat résztvevőit.",
+    "assigneesNames": "Több feladat megírja, ki csinálja, például {examples}. A(z) Felelősök ezt elvégzik helyetted, és a hozzárendeltek értesülnek a feladataikról.",
+    "assigneesColumns": "Az olyan oszlopok, mint {examples}, emberekről vannak elnevezve. A(z) Felelősök megmutatják, ki mit csinál, így az oszlopok azt mutathatják, hol tart egy feladat.",
+    "turnOn": "Bekapcsolás: {feature}",
+    "turnedOn": "Bekapcsolva: {feature}",
+    "askManager": "Akinek van {manageServer} jogosultsága, bekapcsolhatja itt: {where}, vagy a /kanbancord features paranccsal a Discordon.",
+    "askBoardEditor": "Ez csak ezen a táblán van kikapcsolva. Aki szerkesztheti a táblát, itt kapcsolhatja be: {where}.",
+    "guide": "Hogyan működnek a funkciók",
+    "quote": "„{text}”"
   }
 }

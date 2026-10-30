@@ -20,7 +20,7 @@
     "move": "일이 진행되면 <code>/task move</code>로 작업을 보드에서 옮기세요. 예를 들어 <strong>Done</strong>으로 옮기면 할 일 목록에서 지운 셈이에요. <code>/task view</code>는 작업 전체를 보여 주고, 수정, 이동, 배정, 마감일 설정, 댓글, 팔로우, 삭제 등 그 작업에 할 수 있는 모든 것을 메뉴로 제공해요.",
     "view": "<code>/board view</code>는 보드 전체를, <code>/board list</code>는 서버의 모든 보드를 보여 줘요.",
     "featuresTitle": "5. 작업에 넣을 항목 고르기",
-    "features": "새 서버는 <strong>간단 모드</strong>로 시작해요. 보드, 열, 그리고 제목과 설명이 있는 작업이에요. 작은 할 일 목록에는 대개 이걸로 충분해요. 더 필요해지면 서버 관리자가 <code>/kanbancord features</code>로 담당자, 알림이 있는 마감일, 우선순위, 라벨, 댓글, 사용자 지정 권한을 켤 수 있어요. 다시 끄면 아무것도 삭제하지 않고 숨기기만 해요.",
+    "features": "새 서버는 <strong>간단 모드</strong>로 시작해요. 보드, 열, 그리고 제목과 설명이 있는 작업이에요. 작은 할 일 목록에는 대개 이걸로 충분해요. 더 필요해지면 서버 관리자가 <code>/kanbancord features</code>로 담당자, 알림이 있는 마감일, 우선순위, 라벨, 댓글, 사용자 지정 권한을 켤 수 있어요. 다시 끄면 아무것도 삭제하지 않고 숨기기만 해요. 웹사이트에서 켜는 방법과 보드 하나를 간단하게 유지하는 방법은 <features>기능 켜기</features>를 참고하세요.",
     "postTitle": "6. 모두에게 보드 보여 주기",
     "post": "채널에서 <code>/board post</code>를 실행하면 보드 전체가 하나의 메시지로 게시되고, 무언가 바뀔 때마다 스스로 업데이트돼요. 팀에 소식을 전하는 다른 방법은 <postsFeeds>보드 게시물과 업데이트 피드</postsFeeds>를 보세요.",
     "nextTitle": "다음 단계",
@@ -120,6 +120,30 @@
     "filter": "<website>웹사이트</website>에서는 보드의 검색창으로 라벨, 우선순위, 담당자, 마감일별로 작업을 필터할 수 있어서, “우선순위 높은 버그 전부”를 클릭 두 번으로 볼 수 있어요.",
     "filterAlt": "Code 라벨이 붙은 작업으로 필터한 보드. 각 작업에 색상 라벨과 우선순위 배지가 보여요.",
     "filterCaption": "Code 라벨이 붙은 모든 작업. 오른쪽에 우선순위가 있어요."
+  },
+  "features": {
+    "title": "기능 켜기: 라벨, 마감일, 담당자 등",
+    "description": "KanbanCord는 간단 모드로 시작합니다. 서버에서 담당자, 마감일, 우선순위, 라벨, 댓글, 사용자 지정 권한을 켜거나, 보드 하나만 간단하게 유지하세요. Discord나 웹사이트에서 할 수 있습니다.",
+    "summary": "간단 모드, 그리고 필요할 때 기능을 더 켜는 방법.",
+    "intro": "새 서버는 간단 모드로 시작합니다: 보드, 열, 그리고 제목과 설명이 있는 작업. 나머지는 모두 선택 사항이라 쓰지 않는 것을 배울 필요가 없습니다. 보드에 더 필요해지면 켜세요. 기능을 끄면 숨겨질 뿐 아무것도 삭제되지 않습니다.",
+    "whatTitle": "켤 수 있는 것",
+    "what": [
+      "<strong>담당자</strong>: 작업에 사람과 역할을 지정하고 알림을 보냅니다. <assignTasks>작업 배정</assignTasks>을 참고하세요.",
+      "<strong>마감일</strong>: 기한 전에 알림을 보냅니다. <dueDates>마감일과 알림</dueDates>을 참고하세요.",
+      "<strong>우선순위</strong>와 <strong>라벨</strong>: 작업을 정리하고 필터링합니다. <labelsPriorities>라벨과 우선순위</labelsPriorities>를 참고하세요.",
+      "<strong>댓글</strong>: 작업 위에서 바로 이야기합니다.",
+      "<strong>사용자 지정 권한</strong>: 누가 무엇을 할 수 있는지 세밀하게 정합니다. <permissions>역할과 권한</permissions>을 참고하세요."
+    ],
+    "discordTitle": "Discord에서",
+    "discord": "<code>/kanbancord features</code>를 실행하고 메뉴에서 기능을 고르세요. <strong>Everything on</strong>은 모두 켜고, <strong>Simple mode</strong>는 모두 끕니다.",
+    "websiteTitle": "웹사이트에서",
+    "website": "대시보드에서 서버를 열고 <strong>서버 설정 → 기능</strong>로 가세요. 필요한 것을 켜거나 <strong>모두 켜기</strong>를 누르세요.",
+    "whoTitle": "기능을 켤 수 있는 사람",
+    "who": "Discord에서 <strong>서버 관리하기</strong> 또는 <strong>관리자</strong> 권한이 있는 사람입니다. 사용자 지정 권한이 켜져 있으면 규칙으로 <strong>서버 권한 관리하기</strong>를 받은 사람입니다. 다른 사람들은 기능이 켜지는 즉시 볼 수 있습니다.",
+    "boardTitle": "보드 하나를 간단하게",
+    "board": "서버의 나머지가 기능을 쓰는 동안에도 보드는 기능을 꺼 둘 수 있습니다: 보드를 열고 <strong>⋯ → 보드 설정 → 간단 모드</strong>에서 필요 없는 것을 끄세요. 보드를 편집할 수 있는 사람이면 바꿀 수 있습니다. 서버에서 꺼진 기능은 모든 보드에서 꺼져 있습니다.",
+    "suggestionsTitle": "제안",
+    "suggestions": "보드가 어떤 기능을 손으로 흉내 내는 것 같으면 KanbanCord가 그 기능을 제안합니다: 제목 앞의 <code>[M]</code>이나 <code>[Bug]</code> 같은 태그(라벨), <code>P1</code>이나 <code>high prio</code>(우선순위), 제목에 적힌 기한(마감일), 작업에 적힌 이름(담당자) 등. 제안은 웹사이트의 보드 위와 <code>/task create</code> 또는 <code>/task edit</code> 후의 비공개 답장에 나타나며, 기능을 켤 수 있는 사람에게는 버튼이 있습니다. 닫으면 그 보드에서는 다시 나타나지 않습니다. 저절로 켜지는 것은 없습니다."
   },
   "postsFeeds": {
     "title": "팀에 소식 전하기: 보드 게시물과 업데이트 피드",

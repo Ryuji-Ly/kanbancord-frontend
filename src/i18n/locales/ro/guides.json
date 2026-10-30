@@ -20,7 +20,7 @@
     "move": "Pe măsură ce munca avansează, mută sarcinile pe panou cu <code>/task move</code>, de exemplu în <strong>Done</strong> ca să le tai de pe listă. <code>/task view</code> arată o sarcină întreagă, cu un meniu pentru tot ce poți face cu ea: editare, mutare, atribuire, setarea unui termen, comentarii, urmărire sau ștergere.",
     "view": "<code>/board view</code> arată tot panoul, iar <code>/board list</code> toate panourile serverului.",
     "featuresTitle": "5. Alege ce pot avea sarcinile tale",
-    "features": "Serverele noi încep în <strong>modul simplu</strong>: panouri, coloane și sarcini cu titlu și descriere. Pentru o listă mică de sarcini, adesea e tot ce trebuie. Când vrei mai mult, cineva care gestionează serverul poate activa responsabili, termene limită cu mementouri, priorități, etichete, comentarii și permisiuni personalizate cu <code>/kanbancord features</code>. Dezactivarea le ascunde din nou, fără să șteargă nimic.",
+    "features": "Serverele noi încep în <strong>modul simplu</strong>: panouri, coloane și sarcini cu titlu și descriere. Pentru o listă mică de sarcini, adesea e tot ce trebuie. Când vrei mai mult, cineva care gestionează serverul poate activa responsabili, termene limită cu mementouri, priorități, etichete, comentarii și permisiuni personalizate cu <code>/kanbancord features</code>. Dezactivarea le ascunde din nou, fără să șteargă nimic. Vezi <features>activarea funcțiilor</features> pentru site și pentru a păstra un panou simplu.",
     "postTitle": "6. Arată panoul tuturor",
     "post": "Folosește <code>/board post</code> într-un canal ca să publici tot panoul ca un singur mesaj care se actualizează singur de fiecare dată când se schimbă ceva. Vezi <postsFeeds>postări de panou și fluxuri de actualizări</postsFeeds> pentru celelalte moduri de a ține echipa la curent.",
     "nextTitle": "Pașii următori",
@@ -120,6 +120,30 @@
     "filter": "Pe <website>site</website>, bara de căutare a unui panou filtrează sarcinile după etichetă, prioritate, responsabil și termen, așa că „toate erorile cu prioritate mare” sunt la două clicuri distanță.",
     "filterAlt": "Un panou filtrat după sarcinile cu eticheta Code, fiecare cu etichetele colorate și insigna de prioritate.",
     "filterCaption": "Toate sarcinile cu eticheta Code, cu prioritatea în dreapta."
+  },
+  "features": {
+    "title": "Activarea funcțiilor: etichete, termene, responsabili și altele",
+    "description": "KanbanCord pornește în modul simplu. Activează responsabili, termene limită, priorități, etichete, comentarii și permisiuni personalizate pentru un server, sau păstrează simplu un panou, în Discord sau pe site.",
+    "summary": "Modul simplu și activarea a mai mult când ai nevoie.",
+    "intro": "Serverele noi pornesc în modul simplu: panouri, coloane și sarcini cu titlu și descriere. Tot restul e opțional, ca nimeni să nu fie nevoit să învețe ce nu folosește. Când panourile voastre au nevoie de mai mult, activați. Dezactivarea unei funcții doar o ascunde și nu șterge nimic.",
+    "whatTitle": "Ce poți activa",
+    "what": [
+      "<strong>Responsabili</strong>: persoane și roluri pe sarcini, care află de ele. Vezi <assignTasks>atribuirea sarcinilor</assignTasks>.",
+      "<strong>Termene limită</strong>, cu mementouri înainte de termen. Vezi <dueDates>termene și mementouri</dueDates>.",
+      "<strong>Priorități</strong> și <strong>Etichete</strong>, pentru a ordona și filtra sarcinile. Vezi <labelsPriorities>etichete și priorități</labelsPriorities>.",
+      "<strong>Comentarii</strong>, pentru a discuta o sarcină chiar pe sarcină.",
+      "<strong>Permisiuni personalizate</strong>, pentru a stabili exact cine ce poate face. Vezi <permissions>roluri și permisiuni</permissions>."
+    ],
+    "discordTitle": "În Discord",
+    "discord": "Rulează <code>/kanbancord features</code> și alege funcțiile din meniu. <strong>Everything on</strong> le activează pe toate, <strong>Simple mode</strong> le dezactivează pe toate.",
+    "websiteTitle": "Pe site",
+    "website": "În panoul de control, deschide serverul, apoi <strong>Setările serverului → Funcții</strong>. Activează ce îți trebuie sau apasă <strong>Activează tot</strong>.",
+    "whoTitle": "Cine poate activa funcții",
+    "who": "Oricine are <strong>Gestionează serverul</strong> sau <strong>Administrator</strong> în Discord. Cu permisiuni personalizate, cei cărora regulile le dau <strong>Gestionează permisiunile serverului</strong>. Toți ceilalți văd o funcție imediat ce este activă.",
+    "boardTitle": "Un panou simplu",
+    "board": "Un panou poate ține funcții dezactivate în timp ce restul serverului le folosește: deschide panoul, apoi <strong>⋯ → Setările panoului → Mod simplu</strong>, și dezactivează ce nu îi trebuie. Poate schimba asta oricine poate edita panoul. Ce e dezactivat pe server e dezactivat pe fiecare panou.",
+    "suggestionsTitle": "Sugestii",
+    "suggestions": "Când un panou pare să facă o funcție de mână, KanbanCord o sugerează: etichete ca <code>[M]</code> sau <code>[Bug]</code> la începutul titlurilor (Etichete), <code>P1</code> sau <code>high prio</code> (Priorități), termene scrise în titluri (Termene limită) sau nume pe sarcini (Responsabili). Sugestia apare deasupra panoului pe site și în răspunsul privat după <code>/task create</code> sau <code>/task edit</code>, cu un buton pentru cei care pot activa funcția. Dacă o închizi, nu mai revine pe acel panou. Nimic nu se activează niciodată singur."
   },
   "postsFeeds": {
     "title": "Echipa la curent: postări de panou și fluxuri de actualizări",

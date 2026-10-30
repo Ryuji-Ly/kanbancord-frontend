@@ -227,5 +227,21 @@
       "LABEL_UNKNOWN": "Labels this board doesn't have, left out: {count}",
       "LABELS_NOT_ALLOWED": "Labels left out, as you may not add labels to tasks: {count}"
     }
+  },
+  "suggestions": {
+    "title": "Suggestion for this board",
+    "dismiss": "Dismiss",
+    "labelsTags": "Several tasks start with tags like {examples}. Labels can do that for you, in colour, and let you filter the board by them.",
+    "labelsColumns": "Columns like {examples} sort tasks into categories. Labels can do that instead, so columns can show how far each task is, and you can filter by them.",
+    "priorities": "Several tasks are marked {examples}. Priorities can do that for you, and let you filter the board by them.",
+    "dueDates": "Several tasks have deadlines written in them, like {examples}. Due dates can do that for you, and remind the people on a task before it is due.",
+    "assigneesNames": "Several tasks say who does them, like {examples}. Assignees can do that for you, and the people assigned hear about their tasks.",
+    "assigneesColumns": "Columns like {examples} are named after people. Assignees can show who does what, so columns can show how far each task is.",
+    "turnOn": "Turn on: {feature}",
+    "turnedOn": "Switched on: {feature}",
+    "askManager": "Someone with {manageServer} can switch this on, in {where} or with /kanbancord features in Discord.",
+    "askBoardEditor": "This is off for this board only. Someone who can edit the board can switch it on in {where}.",
+    "guide": "How features work",
+    "quote": "“{text}”"
   }
 }

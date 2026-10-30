@@ -223,5 +223,21 @@
       "LABEL_UNKNOWN": "このボードにないため取り込まなかったラベル：{count}",
       "LABELS_NOT_ALLOWED": "タスクにラベルを付ける権限がないため取り込まなかったラベル：{count}"
     }
+  },
+  "suggestions": {
+    "title": "このボードへの提案",
+    "dismiss": "閉じる",
+    "labelsTags": "いくつかのタスクが {examples} のようなタグで始まっています。ラベルを使えば色付きで同じことができ、ボードを絞り込むこともできます。",
+    "labelsColumns": "{examples} のような列でタスクを分類しています。ラベルに任せれば、列で各タスクの進み具合を表せて、絞り込みもできます。",
+    "priorities": "いくつかのタスクに {examples} と書かれています。優先度を使えば同じことができ、ボードを絞り込むこともできます。",
+    "dueDates": "いくつかのタスクに {examples} のような期限が書かれています。期限を使えば同じことができ、期限前に担当者へリマインドも届きます。",
+    "assigneesNames": "いくつかのタスクに {examples} のように担当者が書かれています。担当者を使えば同じことができ、割り当てられた人に通知が届きます。",
+    "assigneesColumns": "{examples} のような列が人の名前になっています。担当者で誰が何をするかを示せば、列で各タスクの進み具合を表せます。",
+    "turnOn": "オンにする：{feature}",
+    "turnedOn": "オンにしました：{feature}",
+    "askManager": "「{manageServer}」の権限を持つ人が、{where} または Discord の /kanbancord features でオンにできます。",
+    "askBoardEditor": "このボードでのみオフになっています。ボードを編集できる人が {where} でオンにできます。",
+    "guide": "機能のしくみ",
+    "quote": "「{text}」"
   }
 }

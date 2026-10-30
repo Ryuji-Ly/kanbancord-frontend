@@ -227,5 +227,21 @@
       "LABEL_UNKNOWN": "Etiketter som tavlan inte har, utelämnade: {count}",
       "LABELS_NOT_ALLOWED": "Utelämnade etiketter, eftersom du inte får lägga till etiketter på uppgifter: {count}"
     }
+  },
+  "suggestions": {
+    "title": "Förslag för den här tavlan",
+    "dismiss": "Avfärda",
+    "labelsTags": "Flera uppgifter börjar med taggar som {examples}. Etiketter gör det åt dig, i färg, och du kan filtrera tavlan på dem.",
+    "labelsColumns": "Kolumner som {examples} sorterar uppgifter i kategorier. Etiketter kan göra det i stället, så att kolumnerna visar hur långt varje uppgift har kommit, och du kan filtrera på dem.",
+    "priorities": "Flera uppgifter är märkta med {examples}. Prioriteter gör det åt dig, och du kan filtrera tavlan på dem.",
+    "dueDates": "Flera uppgifter har tidsfrister inskrivna, som {examples}. Förfallodatum gör det åt dig och påminner dem som har uppgiften innan den förfaller.",
+    "assigneesNames": "Flera uppgifter säger vem som gör dem, som {examples}. Tilldelade gör det åt dig, och de tilldelade får höra om sina uppgifter.",
+    "assigneesColumns": "Kolumner som {examples} är döpta efter personer. Tilldelade visar vem som gör vad, så att kolumnerna visar hur långt varje uppgift har kommit.",
+    "turnOn": "Slå på: {feature}",
+    "turnedOn": "Påslaget: {feature}",
+    "askManager": "Den som har {manageServer} kan slå på det, i {where} eller med /kanbancord features i Discord.",
+    "askBoardEditor": "Det är bara avstängt för den här tavlan. Den som får redigera tavlan kan slå på det i {where}.",
+    "guide": "Så fungerar funktioner",
+    "quote": "”{text}”"
   }
 }

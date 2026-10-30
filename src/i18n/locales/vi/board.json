@@ -223,5 +223,21 @@
       "LABEL_UNKNOWN": "Nhãn bảng này không có, đã bỏ qua: {count}",
       "LABELS_NOT_ALLOWED": "Nhãn bị bỏ qua vì bạn không được thêm nhãn cho công việc: {count}"
     }
+  },
+  "suggestions": {
+    "title": "Gợi ý cho bảng này",
+    "dismiss": "Bỏ qua",
+    "labelsTags": "Nhiều công việc bắt đầu bằng thẻ như {examples}. Nhãn có thể làm việc đó cho bạn, có màu, và cho phép lọc bảng theo chúng.",
+    "labelsColumns": "Các cột như {examples} đang chia công việc theo loại. Nhãn có thể đảm nhận việc đó, để cột cho thấy mỗi công việc đã đến đâu, và bạn có thể lọc theo chúng.",
+    "priorities": "Nhiều công việc được đánh dấu {examples}. Mức ưu tiên có thể làm việc đó cho bạn và cho phép lọc bảng theo chúng.",
+    "dueDates": "Nhiều công việc có ghi hạn, như {examples}. Hạn chót có thể làm việc đó cho bạn và nhắc những người trong công việc trước khi đến hạn.",
+    "assigneesNames": "Nhiều công việc ghi ai làm, như {examples}. Người phụ trách có thể làm việc đó cho bạn, và người được giao sẽ nhận tin về công việc của mình.",
+    "assigneesColumns": "Các cột như {examples} được đặt theo tên người. Người phụ trách cho thấy ai làm gì, để cột cho thấy mỗi công việc đã đến đâu.",
+    "turnOn": "Bật: {feature}",
+    "turnedOn": "Đã bật: {feature}",
+    "askManager": "Người có quyền {manageServer} có thể bật tính năng này trong {where} hoặc bằng /kanbancord features trên Discord.",
+    "askBoardEditor": "Tính năng này chỉ tắt cho bảng này. Người có thể chỉnh sửa bảng có thể bật nó trong {where}.",
+    "guide": "Cách tính năng hoạt động",
+    "quote": "“{text}”"
   }
 }

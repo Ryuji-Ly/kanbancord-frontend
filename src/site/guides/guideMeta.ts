@@ -18,6 +18,7 @@ export const GUIDE_META: GuideMeta[] = [
   { slug: 'assign-tasks', key: 'assignTasks' },
   { slug: 'due-dates-and-reminders', key: 'dueDates' },
   { slug: 'labels-and-priorities', key: 'labelsPriorities' },
+  { slug: 'features-and-simple-mode', key: 'features' },
   { slug: 'board-posts-and-feeds', key: 'postsFeeds' },
   { slug: 'feeds-and-threads', key: 'feedsThreads' },
   { slug: 'roles-and-permissions', key: 'permissions' },

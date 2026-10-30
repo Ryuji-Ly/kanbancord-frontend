@@ -20,7 +20,7 @@
     "move": "As work progresses, move tasks across the board with <code>/task move</code>, for example to <strong>Done</strong> to tick them off your to-do list. <code>/task view</code> shows a task in full, with a menu for everything you may do to it: edit, move, assign, set a due date, comment, follow or delete.",
     "view": "<code>/board view</code> shows the whole board, and <code>/board list</code> every board in the server.",
     "featuresTitle": "5. Choose what your tasks can have",
-    "features": "New servers start in <strong>simple mode</strong>: boards, columns, and tasks with a title and a description. That is often all a small to-do list needs. When you want more, a server manager can switch on assignees, due dates with reminders, priorities, labels, comments and custom permissions with <code>/kanbancord features</code>. Switching one off again hides it without deleting anything.",
+    "features": "New servers start in <strong>simple mode</strong>: boards, columns, and tasks with a title and a description. That is often all a small to-do list needs. When you want more, a server manager can switch on assignees, due dates with reminders, priorities, labels, comments and custom permissions with <code>/kanbancord features</code>. Switching one off again hides it without deleting anything. See <features>switching on features</features> for the website and for keeping one board simple.",
     "postTitle": "6. Show the board to everyone",
     "post": "Run <code>/board post</code> in a channel to post the whole board as one message that updates itself whenever anything changes. See <postsFeeds>board posts and update feeds</postsFeeds> for the other ways to keep your team up to date.",
     "nextTitle": "Where to next",
@@ -120,6 +120,30 @@
     "filter": "On the <website>website</website>, a board's search bar filters tasks by label, by priority, by who is assigned and by due date, so “every high-priority bug” is two clicks away.",
     "filterAlt": "A board filtered to tasks with the Code label, showing each task with its coloured labels and priority badge.",
     "filterCaption": "Every task labelled Code, with its priority on the right."
+  },
+  "features": {
+    "title": "Switching on features: labels, due dates, assignees and more",
+    "description": "KanbanCord starts in simple mode. Switch on assignees, due dates, priorities, labels, comments and custom permissions for a server, or keep one board simple, in Discord or on the website.",
+    "summary": "Simple mode, and switching on more when you need it.",
+    "intro": "New servers start in simple mode: boards, columns, and tasks with a title and a description. Everything else is optional, so nobody has to learn what they do not use. When your boards need more, switch it on. Switching a feature off again hides it and deletes nothing.",
+    "whatTitle": "What you can switch on",
+    "what": [
+      "<strong>Assignees</strong>: people and roles on tasks, who hear about them. See <assignTasks>assigning tasks</assignTasks>.",
+      "<strong>Due dates</strong>, with reminders before a task is due. See <dueDates>due dates and reminders</dueDates>.",
+      "<strong>Priorities</strong> and <strong>labels</strong>, to sort and filter tasks by. See <labelsPriorities>labels and priorities</labelsPriorities>.",
+      "<strong>Comments</strong>, to discuss a task on the task itself.",
+      "<strong>Custom permissions</strong>, to fine-tune who may do what. See <permissions>roles and permissions</permissions>."
+    ],
+    "discordTitle": "In Discord",
+    "discord": "Run <code>/kanbancord features</code> and choose the features in the menu. <strong>Everything on</strong> switches on all of them; <strong>Simple mode</strong> switches them all off.",
+    "websiteTitle": "On the website",
+    "website": "On the dashboard, open the server, then <strong>Server settings → Features</strong>. Switch on what you need, or press <strong>Enable everything</strong>.",
+    "whoTitle": "Who can switch features on",
+    "who": "Anyone with <strong>Manage Server</strong> or <strong>Administrator</strong> in Discord. With custom permissions on, whoever the rules give <strong>Manage Server Permissions</strong>. Everyone else sees a feature as soon as it is on.",
+    "boardTitle": "Keep one board simple",
+    "board": "A board can keep features off while the rest of the server uses them: open the board, then <strong>⋯ → Board settings → Simple mode</strong>, and switch off what it does not need. Anyone who may edit the board can change this. A feature the server has off is off on every board.",
+    "suggestionsTitle": "Suggestions",
+    "suggestions": "When a board seems to do a feature by hand, KanbanCord suggests the feature: tags like <code>[M]</code> or <code>[Bug]</code> at the start of titles (labels), <code>P1</code> or <code>high prio</code> (priorities), deadlines written into titles (due dates), or names on tasks (assignees). The suggestion shows above the board on the website, and on the private reply after <code>/task create</code> or <code>/task edit</code>, with a button for those who may switch the feature on. Dismiss it and it does not come back on that board. Nothing is ever switched on by itself."
   },
   "postsFeeds": {
     "title": "Keeping your team up to date: board posts and update feeds",

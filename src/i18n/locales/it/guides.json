@@ -20,7 +20,7 @@
     "move": "Man mano che il lavoro procede, sposta le attività sulla bacheca con <code>/task move</code>, ad esempio in <strong>Done</strong> per spuntarle dalla lista. <code>/task view</code> mostra un'attività per intero, con un menu per tutto ciò che puoi farci: modificarla, spostarla, assegnarla, impostare una scadenza, commentarla, seguirla o eliminarla.",
     "view": "<code>/board view</code> mostra l'intera bacheca, e <code>/board list</code> tutte le bacheche del server.",
     "featuresTitle": "5. Scegli cosa possono avere le tue attività",
-    "features": "I nuovi server partono in <strong>modalità semplice</strong>: bacheche, colonne e attività con titolo e descrizione. Spesso è tutto ciò che serve a una piccola lista di cose da fare. Quando vuoi di più, chi gestisce il server può attivare assegnatari, scadenze con promemoria, priorità, etichette, commenti e permessi personalizzati con <code>/kanbancord features</code>. Disattivarne una di nuovo la nasconde senza eliminare niente.",
+    "features": "I nuovi server partono in <strong>modalità semplice</strong>: bacheche, colonne e attività con titolo e descrizione. Spesso è tutto ciò che serve a una piccola lista di cose da fare. Quando vuoi di più, chi gestisce il server può attivare assegnatari, scadenze con promemoria, priorità, etichette, commenti e permessi personalizzati con <code>/kanbancord features</code>. Disattivarne una di nuovo la nasconde senza eliminare niente. Vedi <features>attivare funzioni</features> per il sito e per mantenere semplice una bacheca.",
     "postTitle": "6. Mostra la bacheca a tutti",
     "post": "Esegui <code>/board post</code> in un canale per pubblicare l'intera bacheca come un unico messaggio che si aggiorna da solo ogni volta che cambia qualcosa. Vedi <postsFeeds>messaggi della bacheca e feed di aggiornamenti</postsFeeds> per gli altri modi di tenere aggiornato il tuo team.",
     "nextTitle": "E poi",
@@ -120,6 +120,30 @@
     "filter": "Sul <website>sito web</website>, la barra di ricerca di una bacheca filtra le attività per etichetta, per priorità, per assegnatario e per scadenza, così “tutti i bug ad alta priorità” sono a due clic di distanza.",
     "filterAlt": "Una bacheca filtrata sulle attività con l'etichetta Code, che mostra ogni attività con le sue etichette colorate e il badge della priorità.",
     "filterCaption": "Tutte le attività con l'etichetta Code, con la priorità a destra."
+  },
+  "features": {
+    "title": "Attivare funzioni: etichette, scadenze, assegnatari e altro",
+    "description": "KanbanCord parte in modalità semplice. Attiva assegnatari, scadenze, priorità, etichette, commenti e permessi personalizzati per un server, o mantieni semplice una bacheca, su Discord o sul sito.",
+    "summary": "La modalità semplice, e attivare di più quando serve.",
+    "intro": "I nuovi server partono in modalità semplice: bacheche, colonne e attività con titolo e descrizione. Tutto il resto è facoltativo, così nessuno deve imparare ciò che non usa. Quando alle tue bacheche serve di più, attivalo. Disattivare una funzione la nasconde e non elimina nulla.",
+    "whatTitle": "Cosa puoi attivare",
+    "what": [
+      "<strong>Assegnatari</strong>: persone e ruoli sulle attività, che ne vengono avvisati. Vedi <assignTasks>assegnare attività</assignTasks>.",
+      "<strong>Scadenze</strong>, con promemoria prima della scadenza. Vedi <dueDates>scadenze e promemoria</dueDates>.",
+      "<strong>Priorità</strong> ed <strong>Etichette</strong>, per ordinare e filtrare le attività. Vedi <labelsPriorities>etichette e priorità</labelsPriorities>.",
+      "<strong>Commenti</strong>, per discutere un'attività sull'attività stessa.",
+      "<strong>Permessi personalizzati</strong>, per decidere nel dettaglio chi può fare cosa. Vedi <permissions>ruoli e permessi</permissions>."
+    ],
+    "discordTitle": "Su Discord",
+    "discord": "Esegui <code>/kanbancord features</code> e scegli le funzioni nel menu. <strong>Everything on</strong> le attiva tutte, <strong>Simple mode</strong> le disattiva tutte.",
+    "websiteTitle": "Sul sito",
+    "website": "Nella dashboard apri il server, poi <strong>Impostazioni del server → Funzioni</strong>. Attiva ciò che ti serve o premi <strong>Attiva tutto</strong>.",
+    "whoTitle": "Chi può attivare le funzioni",
+    "who": "Chiunque abbia <strong>Gestisci server</strong> o <strong>Amministratore</strong> su Discord. Con i permessi personalizzati, chi riceve <strong>Gestisci i permessi del server</strong> dalle regole. Tutti gli altri vedono una funzione appena è attiva.",
+    "boardTitle": "Mantenere semplice una bacheca",
+    "board": "Una bacheca può tenere disattivate delle funzioni mentre il resto del server le usa: apri la bacheca, poi <strong>⋯ → Impostazioni della bacheca → Modalità semplice</strong>, e disattiva ciò che non le serve. Può cambiarlo chi può modificare la bacheca. Ciò che il server ha disattivato resta disattivato su ogni bacheca.",
+    "suggestionsTitle": "Suggerimenti",
+    "suggestions": "Quando una bacheca sembra fare una funzione a mano, KanbanCord la suggerisce: tag come <code>[M]</code> o <code>[Bug]</code> all'inizio dei titoli (Etichette), <code>P1</code> o <code>high prio</code> (Priorità), scadenze scritte nei titoli (Scadenze) o nomi sulle attività (Assegnatari). Il suggerimento appare sopra la bacheca sul sito e nella risposta privata dopo <code>/task create</code> o <code>/task edit</code>, con un pulsante per chi può attivare la funzione. Se lo ignori, non torna su quella bacheca. Nulla si attiva mai da solo."
   },
   "postsFeeds": {
     "title": "Tenere aggiornato il tuo team: messaggi della bacheca e feed di aggiornamenti",

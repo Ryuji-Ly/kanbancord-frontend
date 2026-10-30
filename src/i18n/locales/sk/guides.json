@@ -20,7 +20,7 @@
     "move": "Ako práca napreduje, presúvaj úlohy po nástenke príkazom <code>/task move</code>, napríklad do <strong>Done</strong>, čím ich odškrtneš zo zoznamu. <code>/task view</code> ukáže celú úlohu s ponukou všetkého, čo s ňou môžeš robiť: upraviť, presunúť, priradiť, nastaviť termín, komentovať, sledovať alebo odstrániť.",
     "view": "<code>/board view</code> ukáže celú nástenku a <code>/board list</code> všetky nástenky na serveri.",
     "featuresTitle": "5. Vyber, čo môžu mať tvoje úlohy",
-    "features": "Nové servery začínajú v <strong>jednoduchom režime</strong>: nástenky, stĺpce a úlohy s názvom a popisom. Malému zoznamu úloh to často stačí. Keď budeš chcieť viac, správca servera môže príkazom <code>/kanbancord features</code> zapnúť riešiteľov, termíny s pripomienkami, priority, štítky, komentáre a vlastné oprávnenia. Opätovné vypnutie ich len skryje, nič neodstráni.",
+    "features": "Nové servery začínajú v <strong>jednoduchom režime</strong>: nástenky, stĺpce a úlohy s názvom a popisom. Malému zoznamu úloh to často stačí. Keď budeš chcieť viac, správca servera môže príkazom <code>/kanbancord features</code> zapnúť riešiteľov, termíny s pripomienkami, priority, štítky, komentáre a vlastné oprávnenia. Opätovné vypnutie ich len skryje, nič neodstráni. Pozrite <features>zapínanie funkcií</features> pre web a pre jednoduchú nástenku.",
     "postTitle": "6. Ukáž nástenku všetkým",
     "post": "Spusti <code>/board post</code> v kanáli a celá nástenka sa uverejní ako jedna správa, ktorá sa sama aktualizuje pri každej zmene. Ďalšie spôsoby, ako držať tím v obraze, nájdeš v <postsFeeds>príspevkoch nástenok a feedoch noviniek</postsFeeds>.",
     "nextTitle": "Čo ďalej",
@@ -120,6 +120,30 @@
     "filter": "Na <website>webe</website> filtruje vyhľadávací riadok nástenky úlohy podľa štítka, priority, riešiteľa aj termínu, takže „všetky chyby s vysokou prioritou“ sú na dve kliknutia.",
     "filterAlt": "Nástenka vyfiltrovaná na úlohy so štítkom Code, každá úloha s farebnými štítkami a odznakom priority.",
     "filterCaption": "Všetky úlohy so štítkom Code, s prioritou vpravo."
+  },
+  "features": {
+    "title": "Zapínanie funkcií: štítky, termíny, riešitelia a ďalšie",
+    "description": "KanbanCord začína v jednoduchom režime. Zapnite riešiteľov, termíny, priority, štítky, komentáre a vlastné oprávnenia pre server, alebo nechajte jednu nástenku jednoduchú, v Discorde alebo na webe.",
+    "summary": "Jednoduchý režim a zapínanie ďalšieho, keď to potrebujete.",
+    "intro": "Nové servery začínajú v jednoduchom režime: nástenky, stĺpce a úlohy s názvom a popisom. Všetko ostatné je voliteľné, takže sa nikto nemusí učiť, čo nepoužíva. Keď vaše nástenky potrebujú viac, zapnite to. Vypnutie funkcie ju len skryje a nič nezmaže.",
+    "whatTitle": "Čo môžete zapnúť",
+    "what": [
+      "<strong>Riešitelia</strong>: ľudia a roly pri úlohách, ktorí sa o nich dozvedajú. Pozrite <assignTasks>priraďovanie úloh</assignTasks>.",
+      "<strong>Termíny</strong>, s pripomenutím pred termínom. Pozrite <dueDates>termíny a pripomenutia</dueDates>.",
+      "<strong>Priority</strong> a <strong>Štítky</strong>, na triedenie a filtrovanie úloh. Pozrite <labelsPriorities>štítky a priority</labelsPriorities>.",
+      "<strong>Komentáre</strong>, na diskusiu priamo pri úlohe.",
+      "<strong>Vlastné oprávnenia</strong>, na presné nastavenie, kto čo smie. Pozrite <permissions>roly a oprávnenia</permissions>."
+    ],
+    "discordTitle": "V Discorde",
+    "discord": "Spustite <code>/kanbancord features</code> a vyberte funkcie v ponuke. <strong>Everything on</strong> zapne všetky, <strong>Simple mode</strong> všetky vypne.",
+    "websiteTitle": "Na webe",
+    "website": "V prehľade otvorte server, potom <strong>Nastavenia servera → Funkcie</strong>. Zapnite, čo potrebujete, alebo kliknite na <strong>Zapnúť všetko</strong>.",
+    "whoTitle": "Kto môže zapínať funkcie",
+    "who": "Každý s oprávnením <strong>Spravovať server</strong> alebo <strong>Správca</strong> v Discorde. S vlastnými oprávneniami ten, komu pravidlá dajú <strong>Spravovať oprávnenia servera</strong>. Všetci ostatní funkciu uvidia, hneď ako je zapnutá.",
+    "boardTitle": "Jednoduchá nástenka",
+    "board": "Nástenka môže mať funkcie vypnuté, aj keď ich zvyšok servera používa: otvorte nástenku, potom <strong>⋯ → Nastavenia nástenky → Jednoduchý režim</strong>, a vypnite, čo nepotrebuje. Zmeniť to môže každý, kto smie nástenku upravovať. Čo má server vypnuté, je vypnuté na každej nástenke.",
+    "suggestionsTitle": "Návrhy",
+    "suggestions": "Keď to vyzerá, že nástenka robí nejakú funkciu ručne, KanbanCord ju navrhne: značky ako <code>[M]</code> alebo <code>[Bug]</code> na začiatku názvov (Štítky), <code>P1</code> alebo <code>high prio</code> (Priority), termíny napísané v názvoch (Termíny) alebo mená pri úlohách (Riešitelia). Návrh sa ukáže nad nástenkou na webe a v súkromnej odpovedi po <code>/task create</code> alebo <code>/task edit</code>, s tlačidlom pre tých, ktorí funkciu smú zapnúť. Keď ho zavriete, na tej nástenke sa už nevráti. Nič sa nikdy nezapne samo."
   },
   "postsFeeds": {
     "title": "Ako držať tím v obraze: príspevky nástenok a feedy noviniek",

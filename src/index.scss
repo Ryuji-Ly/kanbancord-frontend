@@ -908,6 +908,63 @@ pre {
   text-transform: uppercase;
 }
 
+// A hint above the columns: the board seems to do an optional feature by hand.
+.kc-feature-suggestions {
+  background: var(--kc-card);
+  border: 1px solid color-mix(in srgb, var(--kc-accent) 35%, transparent);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 0.9rem;
+  color: var(--kc-text);
+  max-width: 760px;
+
+  ul {
+    list-style: none;
+    margin: 6px 0;
+    padding: 0;
+    display: grid;
+    gap: 8px;
+  }
+
+  li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 12px;
+
+    p {
+      margin: 0;
+      flex: 1 1 280px;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    // Who can switch it on goes under the sentence, not beside it.
+    p.kc-muted {
+      flex-basis: 100%;
+      font-size: 0.85rem;
+    }
+  }
+}
+
+.kc-feature-suggestions-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  color: var(--kc-heading);
+
+  .kc-btn {
+    flex: 0 0 auto;
+    width: auto;
+  }
+}
+
+.kc-feature-suggestions-guide {
+  color: var(--kc-link);
+  font-size: 0.85rem;
+}
+
 .kc-board-page-columns {
   display: flex;
   gap: 12px;

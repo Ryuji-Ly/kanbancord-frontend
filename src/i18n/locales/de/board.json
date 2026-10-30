@@ -227,5 +227,21 @@
       "LABEL_UNKNOWN": "Weggelassene Labels, die dieses Board nicht hat: {count}",
       "LABELS_NOT_ALLOWED": "Weggelassene Labels, da du Aufgaben keine Labels geben darfst: {count}"
     }
+  },
+  "suggestions": {
+    "title": "Vorschlag für dieses Board",
+    "dismiss": "Ausblenden",
+    "labelsTags": "Mehrere Aufgaben beginnen mit Markierungen wie {examples}. Labels erledigen das für dich, farbig, und du kannst das Board danach filtern.",
+    "labelsColumns": "Spalten wie {examples} sortieren Aufgaben nach Kategorien. Labels können das übernehmen, damit Spalten zeigen, wie weit jede Aufgabe ist, und du kannst danach filtern.",
+    "priorities": "Mehrere Aufgaben sind mit {examples} markiert. Prioritäten erledigen das für dich, und du kannst das Board danach filtern.",
+    "dueDates": "In mehreren Aufgaben stehen Fristen, etwa {examples}. Fälligkeitsdaten erledigen das für dich und erinnern die Beteiligten, bevor eine Aufgabe fällig ist.",
+    "assigneesNames": "Mehrere Aufgaben nennen, wer sie erledigt, etwa {examples}. Zuständige erledigen das für dich, und wer zugewiesen ist, erfährt von den eigenen Aufgaben.",
+    "assigneesColumns": "Spalten wie {examples} sind nach Personen benannt. Zuständige zeigen, wer was macht, damit Spalten zeigen, wie weit jede Aufgabe ist.",
+    "turnOn": "Einschalten: {feature}",
+    "turnedOn": "Eingeschaltet: {feature}",
+    "askManager": "Wer {manageServer} darf, kann das einschalten: unter {where} oder mit /kanbancord features in Discord.",
+    "askBoardEditor": "Das ist nur für dieses Board aus. Wer das Board bearbeiten darf, kann es unter {where} einschalten.",
+    "guide": "So funktionieren Funktionen",
+    "quote": "„{text}“"
   }
 }

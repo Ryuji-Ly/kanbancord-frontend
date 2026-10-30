@@ -20,7 +20,7 @@
     "move": "İşler ilerledikçe görevleri <code>/task move</code> ile panoda taşıyın; örneğin yapılacaklar listenizden düşmek için <strong>Done</strong> sütununa. <code>/task view</code>, görevin tamamını, onunla yapabileceğiniz her şeyi içeren bir menüyle gösterir: düzenleme, taşıma, atama, son tarih belirleme, yorum yapma, takip etme veya silme.",
     "view": "<code>/board view</code> panonun tamamını, <code>/board list</code> ise sunucudaki tüm panoları gösterir.",
     "featuresTitle": "5. Görevlerinizde nelerin olacağını seçin",
-    "features": "Yeni sunucular <strong>sade mod</strong> ile başlar: panolar, sütunlar ve başlığı ile açıklaması olan görevler. Küçük bir yapılacaklar listesi için çoğu zaman bu yeterlidir. Daha fazlasına ihtiyaç duyduğunuzda bir sunucu yöneticisi <code>/kanbancord features</code> ile atananları, hatırlatmalı son tarihleri, öncelikleri, etiketleri, yorumları ve özel izinleri açabilir. Bir özelliği yeniden kapatmak onu hiçbir şey silmeden gizler.",
+    "features": "Yeni sunucular <strong>sade mod</strong> ile başlar: panolar, sütunlar ve başlığı ile açıklaması olan görevler. Küçük bir yapılacaklar listesi için çoğu zaman bu yeterlidir. Daha fazlasına ihtiyaç duyduğunuzda bir sunucu yöneticisi <code>/kanbancord features</code> ile atananları, hatırlatmalı son tarihleri, öncelikleri, etiketleri, yorumları ve özel izinleri açabilir. Bir özelliği yeniden kapatmak onu hiçbir şey silmeden gizler. Web sitesi ve bir panoyu sade tutmak için <features>özellikleri açmak</features> rehberine bakın.",
     "postTitle": "6. Panoyu herkese gösterin",
     "post": "Panonun tamamını, herhangi bir şey değiştiğinde kendini güncelleyen tek bir mesaj olarak yayınlamak için bir kanalda <code>/board post</code> komutunu çalıştırın. Ekibinizi bilgilendirmenin diğer yolları için <postsFeeds>pano gönderileri ve güncelleme akışları</postsFeeds> kılavuzuna bakın.",
     "nextTitle": "Sırada ne var",
@@ -120,6 +120,30 @@
     "filter": "<website>Web sitesinde</website> bir panonun arama çubuğu görevleri etikete, önceliğe, atanana ve son tarihe göre filtreler; böylece “yüksek öncelikli tüm hatalar” iki tıklama uzağınızdadır.",
     "filterAlt": "Code etiketli görevlere göre filtrelenmiş bir pano; her görev renkli etiketleri ve öncelik rozetiyle gösteriliyor.",
     "filterCaption": "Code etiketli tüm görevler; öncelikleri sağda."
+  },
+  "features": {
+    "title": "Özellikleri açmak: etiketler, son tarihler, atananlar ve daha fazlası",
+    "description": "KanbanCord sade modda başlar. Bir sunucu için atananları, son tarihleri, öncelikleri, etiketleri, yorumları ve özel izinleri açın ya da bir panoyu sade tutun; Discord'da veya web sitesinde.",
+    "summary": "Sade mod ve gerektiğinde daha fazlasını açmak.",
+    "intro": "Yeni sunucular sade modda başlar: panolar, sütunlar ve başlığı ile açıklaması olan görevler. Geri kalan her şey isteğe bağlıdır; böylece kimse kullanmadığı şeyi öğrenmek zorunda kalmaz. Panolarınız daha fazlasına ihtiyaç duyduğunda açın. Bir özelliği kapatmak onu yalnızca gizler, hiçbir şey silmez.",
+    "whatTitle": "Neleri açabilirsiniz",
+    "what": [
+      "<strong>Atananlar</strong>: görevlerdeki kişiler ve roller; görevlerinden haberdar olurlar. Bkz. <assignTasks>görev atama</assignTasks>.",
+      "<strong>Son tarihler</strong>, süre dolmadan hatırlatmalarla. Bkz. <dueDates>son tarihler ve hatırlatmalar</dueDates>.",
+      "<strong>Öncelikler</strong> ve <strong>Etiketler</strong>, görevleri sıralamak ve süzmek için. Bkz. <labelsPriorities>etiketler ve öncelikler</labelsPriorities>.",
+      "<strong>Yorumlar</strong>, bir görevi görevin üzerinde konuşmak için.",
+      "<strong>Özel izinler</strong>, kimin neyi yapabileceğini ince ayarlamak için. Bkz. <permissions>roller ve izinler</permissions>."
+    ],
+    "discordTitle": "Discord'da",
+    "discord": "<code>/kanbancord features</code> komutunu çalıştırın ve menüden özellikleri seçin. <strong>Everything on</strong> hepsini açar, <strong>Simple mode</strong> hepsini kapatır.",
+    "websiteTitle": "Web sitesinde",
+    "website": "Kontrol panelinde sunucuyu açın, ardından <strong>Sunucu ayarları → Özellikler</strong>. İhtiyacınız olanı açın ya da <strong>Tümünü aç</strong> düğmesine basın.",
+    "whoTitle": "Özellikleri kim açabilir",
+    "who": "Discord'da <strong>Sunucuyu Yönet</strong> ya da <strong>Yönetici</strong> iznine sahip herkes. Özel izinler açıkken, kuralların <strong>Sunucu izinlerini yönet</strong> verdiği kişiler. Diğer herkes bir özelliği açılır açılmaz görür.",
+    "boardTitle": "Bir panoyu sade tutmak",
+    "board": "Sunucunun geri kalanı kullanırken bir pano bazı özellikleri kapalı tutabilir: panoyu açın, ardından <strong>⋯ → Pano ayarları → Sade mod</strong>, ve ihtiyaç duymadığını kapatın. Panoyu düzenleyebilen herkes bunu değiştirebilir. Sunucuda kapalı olan her panoda kapalıdır.",
+    "suggestionsTitle": "Öneriler",
+    "suggestions": "Bir pano bir özelliği elle yapıyor gibi göründüğünde KanbanCord o özelliği önerir: başlıkların başındaki <code>[M]</code> ya da <code>[Bug]</code> gibi etiketler (Etiketler), <code>P1</code> ya da <code>high prio</code> (Öncelikler), başlıklara yazılmış tarihler (Son tarihler) veya görevlerdeki isimler (Atananlar). Öneri web sitesinde panonun üstünde ve <code>/task create</code> ya da <code>/task edit</code> sonrasındaki özel yanıtta, özelliği açabilenler için bir düğmeyle görünür. Kapatırsanız o panoda bir daha gelmez. Hiçbir şey kendiliğinden açılmaz."
   },
   "postsFeeds": {
     "title": "Ekibinizi bilgilendirmek: pano gönderileri ve güncelleme akışları",

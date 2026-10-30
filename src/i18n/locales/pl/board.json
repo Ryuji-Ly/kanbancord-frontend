@@ -235,5 +235,21 @@
       "LABEL_UNKNOWN": "Etykiety, których ta tablica nie ma, pominięte: {count}",
       "LABELS_NOT_ALLOWED": "Pominięte etykiety, bo nie możesz dodawać etykiet do zadań: {count}"
     }
+  },
+  "suggestions": {
+    "title": "Sugestia dla tej tablicy",
+    "dismiss": "Odrzuć",
+    "labelsTags": "Kilka zadań zaczyna się od znaczników takich jak {examples}. Etykiety zrobią to za Ciebie, w kolorze, i pozwolą filtrować tablicę.",
+    "labelsColumns": "Kolumny takie jak {examples} dzielą zadania na kategorie. Etykiety mogą to przejąć, a kolumny pokażą, na jakim etapie jest każde zadanie; można też według nich filtrować.",
+    "priorities": "Kilka zadań jest oznaczonych jako {examples}. Priorytety zrobią to za Ciebie i pozwolą filtrować tablicę.",
+    "dueDates": "W kilku zadaniach są wpisane terminy, np. {examples}. Terminy zrobią to za Ciebie i przypomną osobom przy zadaniu, zanim minie termin.",
+    "assigneesNames": "Kilka zadań mówi, kto je wykonuje, np. {examples}. Osoby przypisane zrobią to za Ciebie, a przypisane osoby dostaną powiadomienia o swoich zadaniach.",
+    "assigneesColumns": "Kolumny takie jak {examples} noszą imiona osób. Osoby przypisane pokażą, kto co robi, a kolumny pokażą, na jakim etapie jest każde zadanie.",
+    "turnOn": "Włącz: {feature}",
+    "turnedOn": "Włączono: {feature}",
+    "askManager": "Osoba z uprawnieniem {manageServer} może to włączyć w {where} albo poleceniem /kanbancord features w Discordzie.",
+    "askBoardEditor": "To jest wyłączone tylko na tej tablicy. Osoba, która może edytować tablicę, może to włączyć w {where}.",
+    "guide": "Jak działają funkcje",
+    "quote": "„{text}”"
   }
 }

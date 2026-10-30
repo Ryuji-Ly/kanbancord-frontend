@@ -235,5 +235,21 @@
       "LABEL_UNKNOWN": "Štítky, ktoré táto nástenka nemá, vynechané: {count}",
       "LABELS_NOT_ALLOWED": "Vynechané štítky, lebo nemôžeš pridávať štítky k úlohám: {count}"
     }
+  },
+  "suggestions": {
+    "title": "Návrh pre túto nástenku",
+    "dismiss": "Zavrieť",
+    "labelsTags": "Niekoľko úloh začína značkami ako {examples}. Štítky to urobia za vás, farebne, a nástenku podľa nich môžete filtrovať.",
+    "labelsColumns": "Stĺpce ako {examples} triedia úlohy do kategórií. Štítky to môžu prevziať, aby stĺpce ukazovali, ako ďaleko je každá úloha, a môžete podľa nich filtrovať.",
+    "priorities": "Niekoľko úloh je označených {examples}. Priority to urobia za vás a nástenku podľa nich môžete filtrovať.",
+    "dueDates": "V niekoľkých úlohách sú napísané termíny, napríklad {examples}. Termíny to urobia za vás a pripomenú ľuďom pri úlohe, kým termín uplynie.",
+    "assigneesNames": "Niekoľko úloh uvádza, kto ich robí, napríklad {examples}. Riešitelia to urobia za vás a priradení ľudia dostanú správy o svojich úlohách.",
+    "assigneesColumns": "Stĺpce ako {examples} sú pomenované podľa ľudí. Riešitelia ukážu, kto čo robí, aby stĺpce ukazovali, ako ďaleko je každá úloha.",
+    "turnOn": "Zapnúť: {feature}",
+    "turnedOn": "Zapnuté: {feature}",
+    "askManager": "Zapnúť to môže ktokoľvek s oprávnením {manageServer}, v {where} alebo príkazom /kanbancord features v Discorde.",
+    "askBoardEditor": "Je to vypnuté len pre túto nástenku. Kto môže nástenku upravovať, môže to zapnúť v {where}.",
+    "guide": "Ako funkcie fungujú",
+    "quote": "„{text}“"
   }
 }
