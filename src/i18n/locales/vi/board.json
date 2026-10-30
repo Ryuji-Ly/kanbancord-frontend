@@ -239,5 +239,12 @@
     "askBoardEditor": "Tính năng này chỉ tắt cho bảng này. Người có thể chỉnh sửa bảng có thể bật nó trong {where}.",
     "guide": "Cách tính năng hoạt động",
     "quote": "“{text}”"
+  },
+  "labelSummary": {
+    "progress": "{label}: xong {done}/{total}",
+    "open": "Còn mở: {people}",
+    "person": "{name} ({count})",
+    "unassigned": "chưa giao ({count})",
+    "none": "{label}: chưa có công việc"
   }
 }

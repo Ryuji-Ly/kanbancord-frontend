@@ -119,6 +119,7 @@
     ],
     "filterTitle": "Filtruj podle nich",
     "filter": "Na <website>webu</website> filtruje vyhledávací lišta nástěnky úkoly podle štítku, priority, řešitele a termínu, takže „všechny chyby s vysokou prioritou“ jsou na dvě kliknutí.",
+    "progress": "Když nástěnku filtrujete podle štítku, ukáže, kolik jeho úkolů je hotových (v posledním sloupci nebo archivovaných) a kdo má ještě otevřené. V Discordu ukáže totéž pro každý štítek <code>/label list</code>.",
     "filterAlt": "Nástěnka vyfiltrovaná na úkoly se štítkem Code; každý úkol ukazuje barevné štítky a odznak priority.",
     "filterCaption": "Všechny úkoly se štítkem Code, s prioritou vpravo."
   },

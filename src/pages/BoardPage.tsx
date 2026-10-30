@@ -16,6 +16,7 @@ import { useToasts } from '../hooks/useToasts'
 import {
   archivedTaskAbilities,
   assigneeDirectory,
+  labelProgress,
   boardAbilities,
   boardSettingsAccess,
   groupTasksByColumn,
@@ -49,6 +50,7 @@ import { ConfirmDialog } from '../features/board/components/ConfirmDialog'
 import { CreateTaskModal } from '../features/board/components/CreateTaskModal'
 import { usePreferences } from '../features/preferences/usePreferences'
 import { TaskPanel } from '../features/board/components/TaskPanel'
+import { LabelSummary } from '../features/board/components/LabelSummary'
 import { FeatureSuggestions } from '../features/board/components/FeatureSuggestions'
 import { lazyNamed } from '../components/lazyNamed'
 
@@ -133,7 +135,14 @@ export function BoardPage() {
   const selectedTask = selectedOnBoard ?? archivedTasks.find((task) => task.taskId === selectedTaskId) ?? null
 
   const canAssign = abilities.assignSelf || abilities.assignOthers
-  const membersQuery = useServerMembers(serverId, Boolean(me) && (canAssign || selectedTask !== null))
+  const filteredLabel = shown.LABELS && filters.label
+    ? (snapshot?.labels ?? []).find((label) => String(label.labelId) === filters.label) ?? null
+    : null
+  // Names for the label summary too, which says who still has its open tasks.
+  const membersQuery = useServerMembers(
+    serverId,
+    Boolean(me) && (canAssign || selectedTask !== null || (filteredLabel !== null && shown.ASSIGNEES)),
+  )
   const members = useMemo(() => toAssigneeMembers(membersQuery.data ?? []), [membersQuery.data])
   const directory = useMemo(() => assigneeDirectory(members, me), [members, me])
   const assigneesByTaskId = useMemo(() => {
@@ -399,23 +408,37 @@ export function BoardPage() {
 
           {loadError && <p className="kc-banner">{loadError}</p>}
 
-          {ready && board?.isArchived && (
-            <p className="kc-banner kc-banner--success">
-              {t('board.page.archivedBanner')}
-            </p>
-          )}
+          {/* Everything above the columns in one row of the page's grid, so the columns keep the rest. */}
+          {ready && (
+            <div className="kc-board-notes">
+              {ready && board?.isArchived && (
+                <p className="kc-banner kc-banner--success">
+                  {t('board.page.archivedBanner')}
+                </p>
+              )}
 
-          {ready && showingArchived && (
-            <p className="kc-banner kc-banner--success kc-archived-tasks-banner">
-              <span>{archivedQuery.isPending ? t('board.page.loadingArchived') : t('board.page.showingArchived')}</span>
-              <button type="button" className="kc-btn kc-btn-small kc-btn-ghost" onClick={() => setFilters({ ...filters, archived: '' })}>
-                {t('board.page.backToBoard')}
-              </button>
-            </p>
-          )}
+              {ready && showingArchived && (
+                <p className="kc-banner kc-banner--success kc-archived-tasks-banner">
+                  <span>{archivedQuery.isPending ? t('board.page.loadingArchived') : t('board.page.showingArchived')}</span>
+                  <button type="button" className="kc-btn kc-btn-small kc-btn-ghost" onClick={() => setFilters({ ...filters, archived: '' })}>
+                    {t('board.page.backToBoard')}
+                  </button>
+                </p>
+              )}
 
-          {ready && board && !board.isArchived && !showingArchived && (
-            <FeatureSuggestions serverId={serverId} boardId={boardId} showToast={showToast} />
+              {ready && snapshot && filteredLabel && !showingArchived && (
+                <LabelSummary
+                  label={filteredLabel}
+                  progress={labelProgress(snapshot, filteredLabel.labelId)}
+                  directory={directory}
+                  showPeople={shown.ASSIGNEES}
+                />
+              )}
+
+              {ready && board && !board.isArchived && !showingArchived && (
+                <FeatureSuggestions serverId={serverId} boardId={boardId} showToast={showToast} />
+              )}
+            </div>
           )}
 
           {ready && board && (

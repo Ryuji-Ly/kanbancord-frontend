@@ -119,6 +119,7 @@
     ],
     "filterTitle": "Bunlara göre filtreleyin",
     "filter": "<website>Web sitesinde</website> bir panonun arama çubuğu görevleri etikete, önceliğe, atanana ve son tarihe göre filtreler; böylece “yüksek öncelikli tüm hatalar” iki tıklama uzağınızdadır.",
+    "progress": "Bir etikete göre süzüldüğünde pano, etiketin görevlerinden kaçının bittiğini (son sütunda ya da arşivlenmiş) ve kimin hâlâ açık görevi olduğunu gösterir. Discord'da <code>/label list</code> aynısını her etiket için gösterir.",
     "filterAlt": "Code etiketli görevlere göre filtrelenmiş bir pano; her görev renkli etiketleri ve öncelik rozetiyle gösteriliyor.",
     "filterCaption": "Code etiketli tüm görevler; öncelikleri sağda."
   },

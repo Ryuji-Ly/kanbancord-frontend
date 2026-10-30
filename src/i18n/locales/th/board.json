@@ -239,5 +239,12 @@
     "askBoardEditor": "ฟีเจอร์นี้ปิดเฉพาะบอร์ดนี้ ผู้ที่แก้ไขบอร์ดได้สามารถเปิดได้ใน {where}",
     "guide": "ฟีเจอร์ทำงานอย่างไร",
     "quote": "“{text}”"
+  },
+  "labelSummary": {
+    "progress": "{label}: เสร็จแล้ว {done} จาก {total}",
+    "open": "ยังเปิดอยู่: {people}",
+    "person": "{name} ({count})",
+    "unassigned": "ยังไม่มีผู้รับผิดชอบ ({count})",
+    "none": "{label}: ยังไม่มีงาน"
   }
 }

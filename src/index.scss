@@ -5178,3 +5178,24 @@ select.kc-input {
 .kc-modal.kc-reminders-dialog {
   max-width: 520px;
 }
+
+// Notes above a board's columns (banners, the label summary, suggestions), as one row of the page.
+.kc-board-notes {
+  display: grid;
+  gap: 10px;
+
+  &:empty {
+    display: none;
+  }
+}
+
+// While the board is filtered by a label: how many of its tasks are done and who has the open ones.
+.kc-label-summary {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  font-size: 0.9rem;
+  color: var(--kc-text);
+  overflow-wrap: anywhere;
+}

@@ -119,6 +119,7 @@
     ],
     "filterTitle": "Filtruj po nich",
     "filter": "Na <website>stronie</website> pasek wyszukiwania tablicy filtruje zadania po etykiecie, priorytecie, osobie przypisanej i terminie, więc „wszystkie błędy o wysokim priorytecie” są dwa kliknięcia dalej.",
+    "progress": "Po przefiltrowaniu według etykiety tablica pokazuje, ile zadań z tą etykietą jest ukończonych (w ostatniej kolumnie lub zarchiwizowanych) i kto ma jeszcze otwarte. W Discordzie <code>/label list</code> pokazuje to samo dla każdej etykiety.",
     "filterAlt": "Tablica przefiltrowana do zadań z etykietą Code; każde zadanie pokazuje kolorowe etykiety i odznakę priorytetu.",
     "filterCaption": "Wszystkie zadania z etykietą Code, z priorytetem po prawej."
   },

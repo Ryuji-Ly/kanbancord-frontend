@@ -554,3 +554,43 @@ export function searchMembers(members: AssigneeMember[], query: string, exclude:
 export function priorityStyle(color: string | null | undefined): CSSProperties {
   return { '--kc-priority-color': color ?? 'var(--kc-neutral-tag)' } as CSSProperties
 }
+
+// ── Label progress ───────────────────────────────────────────────────────────
+
+export type LabelProgress = {
+  total: number
+  /** In the board's last column, or archived. */
+  done: number
+  /** Who has the open tasks, most first: user id and how many. */
+  people: { userId: string; count: number }[]
+  /** Open tasks nobody is assigned to. */
+  unassigned: number
+}
+
+/**
+ * How far a label's tasks are. Archived tasks are not in the snapshot, but their labels are: a label on a task
+ * the snapshot does not have is on an archived task, which counts as done.
+ */
+export function labelProgress(
+  snapshot: Pick<BoardSnapshot, 'columns' | 'tasks' | 'taskLabels' | 'assignments'>,
+  labelId: number,
+): LabelProgress {
+  const onBoard = new Map(snapshot.tasks.map((task) => [task.taskId, task]))
+  const lastColumn = sortColumns(snapshot.columns).at(-1)?.columnId
+  const progress: LabelProgress = { total: 0, done: 0, people: [], unassigned: 0 }
+  const people = new Map<string, number>()
+  for (const taskLabel of snapshot.taskLabels) {
+    if (taskLabel.labelId !== labelId) continue
+    progress.total += 1
+    const task = onBoard.get(taskLabel.taskId)
+    if (!task || task.columnId === lastColumn) {
+      progress.done += 1
+      continue
+    }
+    const assignees = snapshot.assignments.filter((assignment) => assignment.taskId === task.taskId)
+    if (assignees.length === 0) progress.unassigned += 1
+    assignees.forEach((assignment) => people.set(String(assignment.userId), (people.get(String(assignment.userId)) ?? 0) + 1))
+  }
+  progress.people = [...people].map(([userId, count]) => ({ userId, count })).sort((a, b) => b.count - a.count)
+  return progress
+}

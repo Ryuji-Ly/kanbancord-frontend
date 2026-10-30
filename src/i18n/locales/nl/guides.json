@@ -119,6 +119,7 @@
     ],
     "filterTitle": "Erop filteren",
     "filter": "Op de <website>website</website> filtert de zoekbalk van een bord taken op label, prioriteit, toegewezen persoon en deadline, dus “alle bugs met hoge prioriteit” is twee klikken weg.",
+    "progress": "Gefilterd op een label laat het bord zien hoeveel taken van dat label klaar zijn (in de laatste kolom, of gearchiveerd) en wie nog open taken heeft. In Discord toont <code>/label list</code> hetzelfde voor elk label.",
     "filterAlt": "Een bord gefilterd op taken met het label Code, met bij elke taak de gekleurde labels en de prioriteitsbadge.",
     "filterCaption": "Alle taken met het label Code, met hun prioriteit rechts."
   },

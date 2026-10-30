@@ -119,6 +119,7 @@
     ],
     "filterTitle": "Filtrer avec",
     "filter": "Sur le <website>site</website>, la barre de recherche d'un tableau filtre les tâches par étiquette, par priorité, par responsable et par date d'échéance, pour que « tous les bugs prioritaires » soient à deux clics.",
+    "progress": "Filtré par une étiquette, le tableau indique combien de ses tâches sont terminées (dans la dernière colonne, ou archivées) et qui en a encore d'ouvertes. Dans Discord, <code>/label list</code> montre la même chose pour chaque étiquette.",
     "filterAlt": "Un tableau filtré sur les tâches portant l'étiquette Code, chaque tâche montrant ses étiquettes colorées et sa priorité.",
     "filterCaption": "Chaque tâche étiquetée Code, avec sa priorité à droite."
   },

@@ -243,5 +243,12 @@
     "askBoardEditor": "Bu yalnızca bu panoda kapalı. Panoyu düzenleyebilen biri bunu {where} bölümünden açabilir.",
     "guide": "Özellikler nasıl çalışır",
     "quote": "“{text}”"
+  },
+  "labelSummary": {
+    "progress": "{label}: {total} görevden {done} tanesi bitti",
+    "open": "Hâlâ açık: {people}",
+    "person": "{name} ({count})",
+    "unassigned": "atanmamış ({count})",
+    "none": "{label}: henüz görev yok"
   }
 }

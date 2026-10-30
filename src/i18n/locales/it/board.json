@@ -247,5 +247,12 @@
     "askBoardEditor": "È disattivato solo per questa bacheca. Chi può modificare la bacheca può attivarlo in {where}.",
     "guide": "Come funzionano le funzioni",
     "quote": "«{text}»"
+  },
+  "labelSummary": {
+    "progress": "{label}: {done} di {total} completate",
+    "open": "Ancora aperte: {people}",
+    "person": "{name} ({count})",
+    "unassigned": "non assegnate ({count})",
+    "none": "{label}: ancora nessuna attività"
   }
 }

@@ -251,5 +251,12 @@
     "askBoardEditor": "Це вимкнено лише для цієї дошки. Той, хто може редагувати дошку, може увімкнути це в розділі {where}.",
     "guide": "Як працюють функції",
     "quote": "«{text}»"
+  },
+  "labelSummary": {
+    "progress": "{label}: готово {done} з {total}",
+    "open": "Ще відкриті: {people}",
+    "person": "{name} ({count})",
+    "unassigned": "без виконавця ({count})",
+    "none": "{label}: поки немає завдань"
   }
 }

@@ -247,5 +247,12 @@
     "askBoardEditor": "Está desactivado solo en este tablero. Quien pueda editar el tablero puede activarlo en {where}.",
     "guide": "Cómo funcionan las funciones",
     "quote": "«{text}»"
+  },
+  "labelSummary": {
+    "progress": "{label}: {done} de {total} hechas",
+    "open": "Aún abiertas: {people}",
+    "person": "{name} ({count})",
+    "unassigned": "sin asignar ({count})",
+    "none": "{label}: todavía no hay tareas"
   }
 }

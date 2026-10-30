@@ -243,5 +243,12 @@
     "askBoardEditor": "Ez csak ezen a táblán van kikapcsolva. Aki szerkesztheti a táblát, itt kapcsolhatja be: {where}.",
     "guide": "Hogyan működnek a funkciók",
     "quote": "„{text}”"
+  },
+  "labelSummary": {
+    "progress": "{label}: {done}/{total} kész",
+    "open": "Még nyitott: {people}",
+    "person": "{name} ({count})",
+    "unassigned": "nincs felelős ({count})",
+    "none": "{label}: még nincs feladat"
   }
 }

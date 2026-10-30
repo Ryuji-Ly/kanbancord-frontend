@@ -251,5 +251,12 @@
     "askBoardEditor": "To jest wyłączone tylko na tej tablicy. Osoba, która może edytować tablicę, może to włączyć w {where}.",
     "guide": "Jak działają funkcje",
     "quote": "„{text}”"
+  },
+  "labelSummary": {
+    "progress": "{label}: ukończone {done} z {total}",
+    "open": "Wciąż otwarte: {people}",
+    "person": "{name} ({count})",
+    "unassigned": "nieprzypisane ({count})",
+    "none": "{label}: jeszcze brak zadań"
   }
 }

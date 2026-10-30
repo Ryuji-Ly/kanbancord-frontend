@@ -119,6 +119,7 @@
     ],
     "filterTitle": "Lọc theo chúng",
     "filter": "Trên <website>trang web</website>, thanh tìm kiếm của bảng lọc công việc theo nhãn, mức ưu tiên, người phụ trách và hạn chót, nên “mọi lỗi có mức ưu tiên cao” chỉ cách hai cú nhấp.",
+    "progress": "Khi lọc theo một nhãn, bảng cho biết bao nhiêu công việc của nhãn đó đã xong (ở cột cuối, hoặc đã lưu trữ) và ai vẫn còn việc đang mở. Trên Discord, <code>/label list</code> cho thấy điều tương tự cho mọi nhãn.",
     "filterAlt": "Một bảng được lọc theo công việc có nhãn Code, mỗi công việc hiển thị nhãn màu và huy hiệu mức ưu tiên.",
     "filterCaption": "Mọi công việc có nhãn Code, mức ưu tiên ở bên phải."
   },

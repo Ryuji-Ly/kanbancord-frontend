@@ -243,5 +243,12 @@
     "askBoardEditor": "Det är bara avstängt för den här tavlan. Den som får redigera tavlan kan slå på det i {where}.",
     "guide": "Så fungerar funktioner",
     "quote": "”{text}”"
+  },
+  "labelSummary": {
+    "progress": "{label}: {done} av {total} klara",
+    "open": "Fortfarande öppna: {people}",
+    "person": "{name} ({count})",
+    "unassigned": "ej tilldelade ({count})",
+    "none": "{label}: inga uppgifter än"
   }
 }

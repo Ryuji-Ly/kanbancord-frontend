@@ -119,6 +119,7 @@
     ],
     "filterTitle": "Danach filtern",
     "filter": "Auf der <website>Website</website> filtert die Suchleiste eines Boards Aufgaben nach Label, nach Priorität, nach Zuständigen und nach Fälligkeitsdatum, sodass „jeder Bug mit hoher Priorität“ zwei Klicks entfernt ist.",
+    "progress": "Ist das Board nach einem Label gefiltert, zeigt es, wie viele Aufgaben des Labels erledigt sind (in der letzten Spalte oder archiviert) und wer noch offene hat. In Discord zeigt <code>/label list</code> dasselbe für jedes Label.",
     "filterAlt": "Ein Board, gefiltert nach Aufgaben mit dem Label Code, wobei jede Aufgabe ihre farbigen Labels und ihre Priorität zeigt.",
     "filterCaption": "Jede Aufgabe mit dem Label Code, rechts ihre Priorität."
   },

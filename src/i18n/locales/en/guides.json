@@ -119,6 +119,7 @@
     ],
     "filterTitle": "Filter by them",
     "filter": "On the <website>website</website>, a board's search bar filters tasks by label, by priority, by who is assigned and by due date, so “every high-priority bug” is two clicks away.",
+    "progress": "Filtered by a label, the board says how many of the label's tasks are done (in the last column, or archived) and who still has open ones. In Discord, <code>/label list</code> shows the same for every label.",
     "filterAlt": "A board filtered to tasks with the Code label, showing each task with its coloured labels and priority badge.",
     "filterCaption": "Every task labelled Code, with its priority on the right."
   },

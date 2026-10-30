@@ -251,5 +251,12 @@
     "askBoardEditor": "Je to vypnuté jen pro tuto nástěnku. Kdo může nástěnku upravovat, může to zapnout v {where}.",
     "guide": "Jak funkce fungují",
     "quote": "„{text}“"
+  },
+  "labelSummary": {
+    "progress": "{label}: hotovo {done} z {total}",
+    "open": "Stále otevřené: {people}",
+    "person": "{name} ({count})",
+    "unassigned": "nepřiřazené ({count})",
+    "none": "{label}: zatím žádné úkoly"
   }
 }

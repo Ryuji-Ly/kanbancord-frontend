@@ -251,5 +251,12 @@
     "askBoardEditor": "Это выключено только для этой доски. Тот, кто может редактировать доску, может включить это в разделе {where}.",
     "guide": "Как работают функции",
     "quote": "«{text}»"
+  },
+  "labelSummary": {
+    "progress": "{label}: готово {done} из {total}",
+    "open": "Ещё открыты: {people}",
+    "person": "{name} ({count})",
+    "unassigned": "без исполнителя ({count})",
+    "none": "{label}: пока нет задач"
   }
 }

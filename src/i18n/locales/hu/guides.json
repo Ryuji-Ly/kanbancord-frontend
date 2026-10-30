@@ -119,6 +119,7 @@
     ],
     "filterTitle": "Szűrj rájuk",
     "filter": "A <website>webhelyen</website> a tábla keresősávja címke, prioritás, felelős és határidő szerint szűri a feladatokat, így „az összes magas prioritású hiba” két kattintásnyira van.",
+    "progress": "Címkére szűrve a tábla megmutatja, a címke feladatai közül hány kész (az utolsó oszlopban vagy archiválva), és kinek van még nyitott feladata. A Discordon a <code>/label list</code> ugyanezt mutatja minden címkére.",
     "filterAlt": "A Code címkéjű feladatokra szűrt tábla, minden feladaton a színes címkéivel és a prioritási jelvénnyel.",
     "filterCaption": "Az összes Code címkéjű feladat, jobb oldalon a prioritásukkal."
   },

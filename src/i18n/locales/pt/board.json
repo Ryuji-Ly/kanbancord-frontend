@@ -247,5 +247,12 @@
     "askBoardEditor": "Está desativado só neste quadro. Quem pode editar o quadro pode ativá-lo em {where}.",
     "guide": "Como funcionam as funcionalidades",
     "quote": "«{text}»"
+  },
+  "labelSummary": {
+    "progress": "{label}: {done} de {total} concluídas",
+    "open": "Ainda abertas: {people}",
+    "person": "{name} ({count})",
+    "unassigned": "sem responsável ({count})",
+    "none": "{label}: ainda sem tarefas"
   }
 }
