@@ -243,5 +243,12 @@
     "askBoardEditor": "Das ist nur für dieses Board aus. Wer das Board bearbeiten darf, kann es unter {where} einschalten.",
     "guide": "So funktionieren Funktionen",
     "quote": "„{text}“"
+  },
+  "labelSummary": {
+    "progress": "{label}: {done} von {total} erledigt",
+    "open": "Noch offen: {people}",
+    "person": "{name} ({count})",
+    "unassigned": "nicht zugewiesen ({count})",
+    "none": "{label}: noch keine Aufgaben"
   }
 }

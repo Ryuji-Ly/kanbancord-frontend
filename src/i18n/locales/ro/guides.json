@@ -118,6 +118,7 @@
     ],
     "filterTitle": "Filtrează după ele",
     "filter": "Pe <website>site</website>, bara de căutare a unui panou filtrează sarcinile după etichetă, prioritate, responsabil și termen, așa că „toate erorile cu prioritate mare” sunt la două clicuri distanță.",
+    "progress": "Filtrat după o etichetă, panoul arată câte dintre sarcinile ei sunt finalizate (în ultima coloană sau arhivate) și cine mai are sarcini deschise. În Discord, <code>/label list</code> arată același lucru pentru fiecare etichetă.",
     "filterAlt": "Un panou filtrat după sarcinile cu eticheta Code, fiecare cu etichetele colorate și insigna de prioritate.",
     "filterCaption": "Toate sarcinile cu eticheta Code, cu prioritatea în dreapta."
   },

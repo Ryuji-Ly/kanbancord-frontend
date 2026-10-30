@@ -33,6 +33,9 @@ export function LabelsPrioritiesGuide() {
       <p>
         <GuideText k="guides.labelsPriorities.filter" />
       </p>
+      <p>
+        <GuideText k="guides.labelsPriorities.progress" />
+      </p>
 
       <GuideImage
         src="/images/guides/filters.webp"

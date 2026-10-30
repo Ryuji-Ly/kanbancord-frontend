@@ -247,5 +247,12 @@
     "askBoardEditor": "C'est désactivé pour ce tableau seulement. Une personne qui peut modifier le tableau peut l'activer dans {where}.",
     "guide": "Comment fonctionnent les fonctionnalités",
     "quote": "« {text} »"
+  },
+  "labelSummary": {
+    "progress": "{label} : {done} sur {total} terminées",
+    "open": "Encore ouvertes : {people}",
+    "person": "{name} ({count})",
+    "unassigned": "non assignées ({count})",
+    "none": "{label} : aucune tâche pour l'instant"
   }
 }

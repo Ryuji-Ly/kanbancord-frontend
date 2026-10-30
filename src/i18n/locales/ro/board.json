@@ -247,5 +247,12 @@
     "askBoardEditor": "Este dezactivat doar pentru acest panou. Cine poate edita panoul îl poate activa în {where}.",
     "guide": "Cum funcționează funcțiile",
     "quote": "„{text}”"
+  },
+  "labelSummary": {
+    "progress": "{label}: {done} din {total} finalizate",
+    "open": "Încă deschise: {people}",
+    "person": "{name} ({count})",
+    "unassigned": "neatribuite ({count})",
+    "none": "{label}: încă nicio sarcină"
   }
 }

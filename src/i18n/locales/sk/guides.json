@@ -118,6 +118,7 @@
     ],
     "filterTitle": "Filtruj podľa nich",
     "filter": "Na <website>webe</website> filtruje vyhľadávací riadok nástenky úlohy podľa štítka, priority, riešiteľa aj termínu, takže „všetky chyby s vysokou prioritou“ sú na dve kliknutia.",
+    "progress": "Keď nástenku filtrujete podľa štítka, ukáže, koľko jeho úloh je hotových (v poslednom stĺpci alebo archivovaných) a kto má ešte otvorené. V Discorde ukáže to isté pre každý štítok <code>/label list</code>.",
     "filterAlt": "Nástenka vyfiltrovaná na úlohy so štítkom Code, každá úloha s farebnými štítkami a odznakom priority.",
     "filterCaption": "Všetky úlohy so štítkom Code, s prioritou vpravo."
   },

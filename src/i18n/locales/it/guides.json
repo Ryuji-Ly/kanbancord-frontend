@@ -118,6 +118,7 @@
     ],
     "filterTitle": "Filtra in base a esse",
     "filter": "Sul <website>sito web</website>, la barra di ricerca di una bacheca filtra le attività per etichetta, per priorità, per assegnatario e per scadenza, così “tutti i bug ad alta priorità” sono a due clic di distanza.",
+    "progress": "Filtrata per etichetta, la bacheca indica quante attività dell'etichetta sono completate (nell'ultima colonna o archiviate) e chi ne ha ancora di aperte. Su Discord, <code>/label list</code> mostra lo stesso per ogni etichetta.",
     "filterAlt": "Una bacheca filtrata sulle attività con l'etichetta Code, che mostra ogni attività con le sue etichette colorate e il badge della priorità.",
     "filterCaption": "Tutte le attività con l'etichetta Code, con la priorità a destra."
   },

@@ -118,6 +118,7 @@
     ],
     "filterTitle": "Filtrar por elas",
     "filter": "No <website>site</website>, a barra de pesquisa de um quadro filtra as tarefas por etiqueta, por prioridade, por responsável e por prazo, para que «todos os bugs de prioridade alta» fiquem a dois cliques.",
+    "progress": "Filtrado por uma etiqueta, o quadro indica quantas das suas tarefas estão concluídas (na última coluna, ou arquivadas) e quem ainda tem tarefas abertas. No Discord, <code>/label list</code> mostra o mesmo para cada etiqueta.",
     "filterAlt": "Um quadro filtrado pelas tarefas com a etiqueta Code, cada uma com as suas etiquetas coloridas e a sua prioridade.",
     "filterCaption": "Todas as tarefas com a etiqueta Code, com a prioridade à direita."
   },
