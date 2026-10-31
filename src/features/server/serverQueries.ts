@@ -1,5 +1,5 @@
-import { useEffect } from 'react'
-import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { useEffect, useState } from 'react'
+import { keepPreviousData, useQuery, useQueryClient, type QueryClient } from '@tanstack/react-query'
 import { fetchBoards } from '../../services/boardsService'
 import { fetchServerFeatures } from '../../services/featuresService'
 import {
@@ -9,7 +9,7 @@ import {
   fetchServerRoles,
 } from '../../services/permissionsService'
 import { serverTopic, subscribeRealtime, type RealtimeEvent } from '../../services/realtimeService'
-import { fetchServerMembers } from '../../services/serverMembersService'
+import { fetchServerMembers, searchServerMembers, type ServerMemberEntry } from '../../services/serverMembersService'
 
 /** Everything cached for one server shares the prefix, so one invalidation refreshes all of it. */
 export const serverKeys = {
@@ -76,6 +76,42 @@ export function useServerMembers(serverId: string, enabled = true) {
     enabled: enabled && Boolean(serverId),
     staleTime: 5 * 60_000,
   })
+}
+
+/** Searching starts from this many characters, and waits this long after the last keystroke. */
+export const MEMBER_SEARCH_MIN = 2
+const MEMBER_SEARCH_DELAY_MS = 300
+
+/**
+ * Everyone in the server whose name matches `query`, including people not in the member list yet (found through
+ * Discord). Empty until the query is long enough.
+ */
+export function useMemberSearch(serverId: string, query: string) {
+  const trimmed = query.trim()
+  const [settled, setSettled] = useState(trimmed)
+  useEffect(() => {
+    const timer = window.setTimeout(() => setSettled(trimmed), MEMBER_SEARCH_DELAY_MS)
+    return () => window.clearTimeout(timer)
+  }, [trimmed])
+  const enabled = Boolean(serverId) && settled.length >= MEMBER_SEARCH_MIN && settled === trimmed
+  return useQuery({
+    queryKey: [...serverKeys.members(serverId), 'search', settled],
+    queryFn: () => searchServerMembers(serverId, settled),
+    enabled,
+    staleTime: 60_000,
+    placeholderData: keepPreviousData,
+    select: (found) => (trimmed.length >= MEMBER_SEARCH_MIN ? found : []),
+  })
+}
+
+/**
+ * Adds someone picked from a search to the cached member list, so their name shows straight away; the server
+ * stores them when the pick is saved.
+ */
+export function rememberMember(queryClient: QueryClient, serverId: string, member: ServerMemberEntry) {
+  queryClient.setQueryData<ServerMemberEntry[]>(serverKeys.members(serverId), (members) =>
+    members && !members.some((entry) => entry.userId === member.userId) ? [...members, member] : members,
+  )
 }
 
 /** The permission catalog changes only with a deployment. */

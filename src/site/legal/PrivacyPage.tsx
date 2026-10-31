@@ -40,9 +40,11 @@ export function PrivacyPage() {
       <h3>When a server adds the bot</h3>
       <p>
         To know who may do what on a server's boards, the bot copies the server's name and icon, its roles and their
-        Discord permissions, its text channels, and for every member: their Discord id, username, display name, avatar,
-        server nickname, roles and when they joined. <strong>This includes members who never use {SITE.name}.</strong> It
-        is kept up to date as the server changes, and a member's entry is removed when they leave the server.
+        Discord permissions, and its text channels. Of its members, we keep only the people who use {SITE.name} on that
+        server, or whom someone picks for something there (assigns a task to, or names in a permission rule): their
+        Discord id, username, display name, avatar, server nickname, roles and when they joined. Other members are not
+        stored; they are looked up in Discord when needed, such as when someone searches for a person to assign. What we
+        keep is kept up to date as the server changes.
       </p>
 
       <h3>What you create</h3>
@@ -82,8 +84,8 @@ export function PrivacyPage() {
           legitimate interest in running a safe, reliable service (Article 6(1)(f)).
         </li>
         <li>
-          <strong>Server member data</strong>, for members who have not used {SITE.name}: so a server's permissions and
-          assignments work for everyone in it. This is the legitimate interest of the server that added the bot, and ours
+          <strong>Server member data</strong>, for members someone picked who have not used {SITE.name} themselves: so a
+          server's assignments and permission rules work for them. This is the legitimate interest of the server that added the bot, and ours
           in providing it (Article 6(1)(f)). You can object: see "Your rights" below.
         </li>
         <li>
@@ -136,7 +138,15 @@ export function PrivacyPage() {
       <ul>
         <li>Sessions end 30 days after they were last used, or when you sign out, and are deleted 30 days after that.</li>
         <li>Your stored Discord access token is deleted when your last session ends.</li>
-        <li>A server member's entry is removed when they leave the server.</li>
+        <li>
+          A server member's entry is removed when they leave the server, and within two days once nothing on the server
+          needs it: they never used {SITE.name} there, and nothing is assigned to them or names them.
+        </li>
+        <li>
+          Your Discord id, name and avatar are deleted within two days once you are in no server with the bot and have
+          no website session, unless something you made or appear in (a task, comment, upload or audit log entry) still
+          shows them.
+        </li>
         <li>
           Boards, tasks, comments and the audit log are kept while the server uses {SITE.name}, since they are the
           server's work. A server's administrators decide what is deleted.

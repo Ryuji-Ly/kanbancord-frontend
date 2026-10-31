@@ -16,6 +16,7 @@ import {
 } from '../../services/permissionsService'
 import type { DiscordGuild } from '../../types/auth'
 import { NO_FEATURES } from '../../services/featuresService'
+import { mergeMembers } from '../../services/serverMembersService'
 import type { ServerSettingsSection } from '../serverSettings/ServerSettingsDialog'
 import type { PermissionPreset } from '../../components/dashboard/permissions/permissionPresets'
 import { buildInheritedBoardPermissionDrafts } from '../../components/dashboard/boards/boardPermissionDraft'
@@ -25,7 +26,9 @@ import { BoardActionsMenu } from '../../components/dashboard/boards/BoardActions
 import { usePinnedBoards } from './usePinnedBoards'
 import type { BoardModalConfig, DeleteGroupTarget } from '../../components/dashboard/types'
 import {
+  rememberMember,
   serverKeys,
+  useMemberSearch,
   useServerAccess,
   useServerBoards,
   useServerCatalog,
@@ -235,9 +238,10 @@ export function ServerWorkspace({ serverId, server, showError, showToast }: Serv
       .filter((role) => !query || role.name.toLowerCase().includes(query) || role.roleId.includes(query))
   }, [modalSearch, serverRoles, existingSubjectIds])
 
+  const foundMembers = useMemberSearch(serverId, deferredModalSearch).data
   const filteredMembers = useMemo(() => {
     const query = deferredModalSearch.toLowerCase()
-    return serverMembers
+    return mergeMembers(serverMembers, foundMembers)
       .filter((member) => !existingSubjectIds.USER.has(member.userId))
       .filter((member) => {
         if (!query) return true
@@ -249,7 +253,7 @@ export function ServerWorkspace({ serverId, server, showError, showToast }: Serv
         )
       })
       .slice(0, 50)
-  }, [deferredModalSearch, serverMembers, existingSubjectIds])
+  }, [deferredModalSearch, serverMembers, foundMembers, existingSubjectIds])
 
   const grantableCatalogEntries = useMemo(() => {
     if (!modalSubject) return []
@@ -559,6 +563,8 @@ export function ServerWorkspace({ serverId, server, showError, showToast }: Serv
         onClose={() => setShowAddModal(false)}
         onSearchChange={setModalSearch}
         onSelectSubject={(type, id, display) => {
+          const picked = type === 'USER' ? foundMembers?.find((member) => member.userId === id) : undefined
+          if (picked) rememberMember(queryClient, serverId, picked)
           setModalSubject({ type, id, display })
           setModalPermStates({})
         }}
@@ -594,6 +600,7 @@ export function ServerWorkspace({ serverId, server, showError, showToast }: Serv
 
       {boardEditor && (
         <BoardModal
+          serverId={serverId}
           key={`${boardEditor.config.mode}:${boardEditor.config.board?.boardId ?? 'new'}:${boardEditor.loading ? 'loading' : 'ready'}`}
           show
           mode={boardEditor.config.mode}

@@ -175,6 +175,7 @@ export function CreateTaskModal({
                 <AssigneePicker
                   assignees={assigneeIds.map((id) => resolveAssignee(directory, id))}
                   candidates={members}
+                  serverId={serverId}
                   searchable={canAssignOthers}
                   canRemove={() => canAssignOthers}
                   onRemove={(assignee) => setAssigneeIds((prev) => prev.filter((id) => id !== assignee.userId))}

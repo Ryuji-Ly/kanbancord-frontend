@@ -91,6 +91,7 @@ export function BoardSettingsDialog({ serverId, boardId, onClose, showToast, sho
 
   return (
     <BoardModal
+      serverId={serverId}
       key={loading ? 'loading' : 'ready'}
       show
       mode="edit"

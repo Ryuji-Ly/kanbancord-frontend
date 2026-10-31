@@ -253,6 +253,19 @@ const members = data.PEOPLE.map((person, index) => ({
   joinedAt: data.at(-200),
 }))
 
+/** People in the server who never used KanbanCord: not in the member list, only found by searching. */
+const discordOnly = [
+  { userId: '100000000000000007', username: 'robin.k', displayName: 'Robin', nickname: null },
+  { userId: '100000000000000008', username: 'kai', displayName: 'Kai', nickname: 'Kai (QA)' },
+].map((person) => ({ id: null, serverId: data.SERVER_ID, ...person, avatarUrl: null, joinedAt: data.at(-90) }))
+
+function searchMembers(query: string) {
+  const needle = query.trim().toLowerCase()
+  const matches = (person: { username: string; displayName: string; nickname: string | null }) =>
+    [person.username, person.displayName, person.nickname ?? ''].some((name) => name.toLowerCase().includes(needle))
+  return [...members.filter(matches), ...discordOnly.filter((person) => !members.some((m) => m.userId === person.userId) && matches(person))]
+}
+
 /** Boards' own settings for the demo's feed, by board id. */
 const boardOverrides: Record<number, { events: Record<string, boolean>; mentions: Record<string, boolean> }> = {}
 
@@ -484,6 +497,7 @@ const ROUTES: [string, RegExp, Handler][] = [
   ['GET', /^\/api\/servers\/\d+\/permissions$/, (_m, { query }) => (query.get('scopeType') === 'BOARD' ? [] : serverRules)],
   ['GET', /^\/api\/servers\/\d+\/roles$/, () => data.ROLES.map((role) => ({ ...role, serverId: data.SERVER_ID }))],
   ['GET', /^\/api\/servers\/\d+\/members$/, () => members],
+  ['GET', /^\/api\/servers\/\d+\/members\/search$/, (_m, { query }) => searchMembers(query.get('q') ?? '')],
   ['GET', /^\/api\/servers\/\d+\/boards$/, (_m, { query }) => ({
     content: data.BOARDS.filter((board) => query.get('archived') === null || String(board.isArchived) === query.get('archived')),
   })],

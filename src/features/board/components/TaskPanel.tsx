@@ -353,6 +353,7 @@ export function TaskPanel({
             <AssigneePicker
               assignees={assignees}
               candidates={members}
+              serverId={serverId}
               searchable={abilities.assignOthers}
               canRemove={(assignee) => canManageAssignee(assignee.userId)}
               onRemove={(assignee) => reportError(onUnassign(assignee))}

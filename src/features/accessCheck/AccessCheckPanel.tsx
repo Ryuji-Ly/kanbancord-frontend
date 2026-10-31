@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { FiCheck, FiX } from 'react-icons/fi'
 import { readableError } from '../../api/http'
 import { t, tOr, type MessageKey } from '../../i18n'
@@ -11,7 +11,8 @@ import {
   type CheckedRule,
   type KeyCheck,
 } from '../../services/permissionsService'
-import { useServerMembers, useServerRoles } from '../server/serverQueries'
+import { mergeMembers } from '../../services/serverMembersService'
+import { rememberMember, useMemberSearch, useServerMembers, useServerRoles } from '../server/serverQueries'
 
 type AccessCheckPanelProps = {
   serverId: string
@@ -80,6 +81,8 @@ export function AccessCheckPanel({ serverId, board, boards = [] }: AccessCheckPa
   const [search, setSearch] = useState('')
   const [scope, setScope] = useState(board?.boardId ?? '')
   const [show, setShow] = useState<'all' | 'allowed' | 'denied'>('all')
+  const queryClient = useQueryClient()
+  const found = useMemberSearch(serverId, search).data
 
   const roles = useMemo(
     () => [...(rolesQuery.data ?? [])].sort((a, b) => (b.position ?? 0) - (a.position ?? 0)),
@@ -104,12 +107,12 @@ export function AccessCheckPanel({ serverId, board, boards = [] }: AccessCheckPa
   const matches = useMemo(() => {
     const term = search.trim().toLowerCase()
     if (!term) return []
-    return (membersQuery.data ?? [])
+    return mergeMembers(membersQuery.data ?? [], found)
       .filter((member) =>
         [member.displayName, member.nickname, member.username].some((name) => name?.toLowerCase().includes(term)),
       )
       .slice(0, 8)
-  }, [search, membersQuery.data])
+  }, [search, membersQuery.data, found])
 
   // The roles shown: those asked for, or the member's own as the check found them.
   const currentRoleIds =
@@ -171,6 +174,7 @@ export function AccessCheckPanel({ serverId, board, boards = [] }: AccessCheckPa
                     <button
                       type="button"
                       onClick={() => {
+                        rememberMember(queryClient, serverId, member)
                         setWho({ kind: 'member', userId: member.userId })
                         setSearch('')
                       }}
