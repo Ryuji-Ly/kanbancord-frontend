@@ -1,4 +1,7 @@
-import { useMemo, useRef, useState, type ReactNode } from 'react'
+import { useDeferredValue, useMemo, useRef, useState, type ReactNode } from 'react'
+import { useQueryClient } from '@tanstack/react-query'
+import { rememberMember, useMemberSearch } from '../../../features/server/serverQueries'
+import { mergeMembers } from '../../../services/serverMembersService'
 import { SectionNav } from '../../SectionNav'
 import { AddEntryModal } from '../AddEntryModal'
 import { DeleteGroupModal } from '../DeleteGroupModal'
@@ -37,6 +40,7 @@ function defaultColumns(): string[] {
 type BoardModalProps = {
   show: boolean
   mode: 'create' | 'edit'
+  serverId: string
   board: BoardEntry | null
   initialName: string
   initialDescription: string
@@ -66,6 +70,7 @@ type BoardModalProps = {
 export function BoardModal({
   show,
   mode,
+  serverId,
   board,
   initialName,
   initialDescription,
@@ -91,6 +96,7 @@ export function BoardModal({
   const canEditPermissionsInModal = canEditPermissions && !isArchivedMode
 
   const bodyRef = useRef<HTMLDivElement | null>(null)
+  const queryClient = useQueryClient()
   const [name, setName] = useState(initialName)
   const [description, setDescription] = useState(initialDescription)
   const [draftPermissions, setDraftPermissions] = useState<PermissionEntry[]>(() => cloneBoardPermissionDrafts(initialPermissions))
@@ -178,9 +184,11 @@ export function BoardModal({
     return available.filter((role) => role.name.toLowerCase().includes(q) || role.roleId.includes(q))
   }, [existingSubjectIds, modalSearch, serverRoles])
 
+  const deferredSearch = useDeferredValue(modalSearch)
+  const foundMembers = useMemberSearch(serverId, deferredSearch).data
   const filteredMembers = useMemo(() => {
     const q = modalSearch.toLowerCase()
-    const available = serverMembers.filter((member) => !existingSubjectIds.USER.has(member.userId))
+    const available = mergeMembers(serverMembers, foundMembers).filter((member) => !existingSubjectIds.USER.has(member.userId))
     if (!q) return available
     return available.filter((member) => {
       const displayName = member.displayName ?? member.nickname ?? t('dashboard.boardModal.userNumber', { id: member.userId })
@@ -190,7 +198,7 @@ export function BoardModal({
         member.userId.includes(q)
       )
     })
-  }, [existingSubjectIds, modalSearch, serverMembers])
+  }, [existingSubjectIds, modalSearch, serverMembers, foundMembers])
 
   const grantableCatalogEntries = useMemo(() => {
     if (!modalSubjectType || !modalSubjectId) return []
@@ -222,6 +230,8 @@ export function BoardModal({
   }
 
   function selectModalSubject(subjectType: string, subjectId: string, display: string) {
+    const picked = subjectType === 'USER' ? foundMembers?.find((member) => member.userId === subjectId) : undefined
+    if (picked) rememberMember(queryClient, serverId, picked)
     setModalSubjectType(subjectType)
     setModalSubjectId(subjectId)
     setModalSubjectDisplay(display)
