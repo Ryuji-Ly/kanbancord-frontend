@@ -1008,19 +1008,14 @@ pre {
   z-index: 5;
   overflow-x: auto;
   overflow-y: hidden;
-  padding: 4px 0;
-  background: color-mix(in srgb, var(--kc-ink) 70%, transparent);
-  border-radius: 6px;
-  scrollbar-width: auto;
+  // Looks like the page's own scrollbar: the same width and track. The 1px spacer inside sits above the
+  // scrollbar, so the background is the track colour too, to make them one strip.
+  background: var(--kc-bg);
   scrollbar-color: var(--kc-surface-alt) transparent;
-
-  &::-webkit-scrollbar {
-    height: 10px;
-  }
 
   &::-webkit-scrollbar-thumb {
     background: var(--kc-surface-alt);
-    border-radius: 5px;
+    border-radius: 4px;
 
     &:hover {
       background: var(--kc-surface-hover);
