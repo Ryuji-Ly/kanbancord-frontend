@@ -46,6 +46,7 @@ import { useBoardDragAndDrop } from '../features/board/useBoardDragAndDrop'
 import { useBoardRealtime } from '../features/board/useBoardRealtime'
 import { AddColumn } from '../features/board/components/AddColumn'
 import { BoardColumn } from '../features/board/components/BoardColumn'
+import { BoardRow } from '../features/board/components/BoardRow'
 import { ConfirmDialog } from '../features/board/components/ConfirmDialog'
 import { CreateTaskModal } from '../features/board/components/CreateTaskModal'
 import { usePreferences } from '../features/preferences/usePreferences'
@@ -442,7 +443,10 @@ export function BoardPage() {
           )}
 
           {ready && board && (
-            <section className="kc-board-page-columns" aria-label={t('board.page.columns')}>
+            <BoardRow
+              label={t('board.page.columns')}
+              dragging={drag.draggedColumnId !== null || drag.draggedTaskId !== null}
+            >
               {openMenuColumnId !== null && (
                 <div className="kc-column-menu-backdrop" onClick={() => setOpenMenuColumnId(null)} />
               )}
@@ -508,7 +512,7 @@ export function BoardPage() {
               ))}
 
               {abilities.createColumn && <AddColumn onAdd={addColumn} />}
-            </section>
+            </BoardRow>
           )}
         </main>
 

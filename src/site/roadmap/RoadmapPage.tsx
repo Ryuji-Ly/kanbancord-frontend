@@ -5,6 +5,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { readableError } from '../../api/http'
 import { useSession } from '../../api/session'
 import { BoardColumn } from '../../features/board/components/BoardColumn'
+import { BoardRow } from '../../features/board/components/BoardRow'
 import { Markdown } from '../../features/board/components/Markdown'
 import { formatLocale, t } from '../../i18n'
 import { startDiscordLogin } from '../../services/authService'
@@ -211,7 +212,7 @@ export function RoadmapPage() {
       {(query.isError || (query.isSuccess && !roadmap)) && <p className="kc-muted">{t('site.roadmap.unavailable')}</p>}
       {roadmap && board && (
         <>
-          <section className="kc-board-page-columns kc-roadmap-board" aria-label={roadmap.name} lang="en">
+          <BoardRow className="kc-roadmap-board" label={roadmap.name} lang="en">
             {board.columns.map((column) => (
               <BoardColumn
                 key={column.columnId}
@@ -248,7 +249,7 @@ export function RoadmapPage() {
                 onTaskDrop={none}
               />
             ))}
-          </section>
+          </BoardRow>
           {openTask && (
             <TaskDetails
               task={openTask}

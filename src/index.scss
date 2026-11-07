@@ -94,6 +94,12 @@
 // ── Reset & Base ──────────────────────────────────────────────────────────────
 * { box-sizing: border-box; }
 
+// Scrollbars in the theme's colours instead of the browser's grey. Inherited, so it covers every scrolling area
+// that does not choose its own.
+html {
+  scrollbar-color: var(--kc-surface-alt) var(--kc-bg);
+}
+
 body {
   margin: 0;
   background: var(--kc-bg);
@@ -983,6 +989,42 @@ pre {
   // Fixed column width keeps layout consistent regardless of viewport and count.
   .kc-muted {
     flex: 0 0 auto;
+  }
+
+  &--panning {
+    cursor: grabbing;
+    user-select: none;
+  }
+}
+
+.kc-board-row {
+  min-width: 0;
+}
+
+// The board's scrollbar, kept at the bottom of the window while the board is on screen (see BoardRow).
+.kc-board-scrollbar {
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 4px 0;
+  background: color-mix(in srgb, var(--kc-ink) 70%, transparent);
+  border-radius: 6px;
+  scrollbar-width: auto;
+  scrollbar-color: var(--kc-surface-alt) transparent;
+
+  &::-webkit-scrollbar {
+    height: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--kc-surface-alt);
+    border-radius: 5px;
+
+    &:hover {
+      background: var(--kc-surface-hover);
+    }
   }
 }
 
