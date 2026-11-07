@@ -991,14 +991,21 @@ pre {
     flex: 0 0 auto;
   }
 
-  &--panning {
-    cursor: grabbing;
-    user-select: none;
-  }
+}
+
+// Set on whatever is being dragged to pan the board (see BoardRow).
+.kc-board-panning {
+  cursor: grabbing;
+  user-select: none;
 }
 
 .kc-board-row {
   min-width: 0;
+}
+
+// Room at the bottom of the page so the fixed scrollbar never covers the end of a column.
+.kc-board-row--fixed-bar {
+  padding-bottom: 16px;
 }
 
 // The board's scrollbar, kept at the bottom of the window while the board is on screen (see BoardRow).
@@ -1020,6 +1027,23 @@ pre {
     &:hover {
       background: var(--kc-surface-hover);
     }
+  }
+
+  // On the board page: always at the bottom of the window, lined up with the board (left and width set inline).
+  &--fixed {
+    position: fixed;
+    bottom: 0;
+  }
+}
+
+// Touch screens swipe the board, so they get no fixed bar and no room for one.
+@media (hover: none) and (pointer: coarse) {
+  .kc-board-scrollbar--fixed {
+    display: none;
+  }
+
+  .kc-board-row--fixed-bar {
+    padding-bottom: 0;
   }
 }
 

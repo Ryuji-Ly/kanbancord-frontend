@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useMemo, useState } from 'react'
+import { Suspense, useEffect, useMemo, useRef, useState } from 'react'
 import { filtersFromParams, isFiltering, matchesFilters, paramsWithFilters, type BoardFilters } from '../features/board/boardFilters'
 import { BoardFilterBar } from '../features/board/components/BoardFilterBar'
 import { useQueryClient } from '@tanstack/react-query'
@@ -172,6 +172,8 @@ export function BoardPage() {
   const totalTaskCount = listedTasks.length
   const shownTaskCount = filtering ? listedTasks.filter(taskMatches).length : totalTaskCount
 
+  // The whole page is somewhere to press and drag the board sideways.
+  const pageRef = useRef<HTMLDivElement>(null)
   const drag = useBoardDragAndDrop({
     columns,
     tasksByColumn,
@@ -356,7 +358,7 @@ export function BoardPage() {
 
   return (
     <>
-      <div className="kc-dashboard-root" onDragOver={drag.rowDragOver} onDrop={drag.rowDrop}>
+      <div ref={pageRef} className="kc-dashboard-root" onDragOver={drag.rowDragOver} onDrop={drag.rowDrop}>
         <DashboardHeader
           isAuthenticated={Boolean(me)}
           me={me}
@@ -446,6 +448,8 @@ export function BoardPage() {
             <BoardRow
               label={t('board.page.columns')}
               dragging={drag.draggedColumnId !== null || drag.draggedTaskId !== null}
+              fixedScrollbar
+              panSurface={pageRef}
             >
               {openMenuColumnId !== null && (
                 <div className="kc-column-menu-backdrop" onClick={() => setOpenMenuColumnId(null)} />
