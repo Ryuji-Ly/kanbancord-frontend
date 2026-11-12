@@ -433,6 +433,7 @@ const ROUTES: [string, RegExp, Handler][] = [
     return merged
   }],
   ['GET', /^\/api\/me\/sessions$/, () => []],
+  ['PUT', /^\/api\/me\/time-zone$/, (_m, { body }) => ({ timeZone: (body as { timeZone: string }).timeZone, chosen: false })],
   ['GET', /^\/api\/me\/notifications$/, () => ({
     dmMode: 'UNLESS_PINGED',
     events: flags((event) => Boolean(event[4])),

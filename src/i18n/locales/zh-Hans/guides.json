@@ -85,7 +85,7 @@
     "setTitle": "设置截止日期",
     "set": "创建任务时，表单会询问何时到期。对于已有的任务：",
     "setCommand": "/task due board:Sprint task:Fix login when:tomorrow",
-    "when": "<code>when</code> 可以理解 <code>today</code>、<code>tomorrow</code>、<code>in 3 days</code>、<code>in 2 weeks</code>、<code>in 5 hours</code>，或 <code>2026-10-01</code>、<code>2026-10-01 17:00</code> 这样的日期。只写日期表示当天结束时到期。用 <code>none</code> 移除截止日期。你在 Discord 中输入的时间是 UTC 时间；之后 Discord 会按阅读者的时区显示每个截止日期，而在网站上你按自己的时区选择日期。",
+    "when": "<code>when</code> 可以理解 <code>today</code>、<code>tomorrow</code>、<code>in 3 days</code>、<code>in 2 weeks</code>、<code>in 5 hours</code>，或 <code>2026-10-01</code>、<code>2026-10-01 17:00</code> 这样的日期。只写日期表示当天结束时到期。用 <code>none</code> 移除截止日期。你在 Discord 中输入的时间按你自己的时区计算：网站会根据你的设备保存时区，你也可以用 <code>/notifications timezone:</code> 选择。在此之前按 UTC 时间计算。之后 Discord 会按阅读者的时区显示每个截止日期，而在网站上你按自己的时区选择日期。",
     "remindersTitle": "提醒",
     "reminders": "任务的相关人员会在距离到期不足一天时收到私信，逾期时再收到一次。每条提醒在每个截止日期只发送一次：更改日期后，提醒会重新开始。看板最后一列中的任务视为已完成，不会收到提醒。",
     "times": "默认是提前一天。服务器管理者可以用 <code>/kanbancord reminders</code> 选择其他时间，看板可以用 <code>/board reminders</code> 设置自己的时间，任何人都可以用 <code>/notifications reminders:</code> 为所有看板或某个看板选择自己的时间。在网站上，同样的设置位于服务器和看板的通知设置、设置 → 通知，以及看板的 ⋯ 菜单 → 你的提醒。若同时已过多个时间，只发送最晚的那个。",

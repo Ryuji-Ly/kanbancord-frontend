@@ -33,6 +33,19 @@ export async function patchPreferences(changes: Record<string, unknown>): Promis
   return response.json() as Promise<Record<string, unknown>>
 }
 
+/**
+ * Tells the API this device's time zone (such as Europe/Berlin). It is kept for reading times typed in Discord,
+ * unless the person chose one there.
+ */
+export async function saveDetectedTimeZone(timeZone: string): Promise<void> {
+  const response = await apiFetch('/api/me/time-zone', {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ timeZone, detected: true }),
+  })
+  if (!response.ok) throw new Error(await parseError(response))
+}
+
 /** Asks the developer for the website in another language (a language tag such as pt-BR). */
 export async function requestLanguage(language: string, note: string | null): Promise<void> {
   const response = await apiFetch('/api/me/language-requests', {

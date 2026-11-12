@@ -2,6 +2,7 @@ import { lazy, Suspense, useEffect } from 'react'
 import { useQueryClient } from '@tanstack/react-query'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { useSession } from './api/session'
+import { useDeviceTimeZone } from './features/session/useDeviceTimeZone'
 import { useUserRealtime } from './features/session/useUserRealtime'
 import { useApplyPreferences } from './features/preferences/usePreferences'
 import { DashboardPage } from './pages/DashboardPage'
@@ -19,6 +20,7 @@ function App() {
   const queryClient = useQueryClient()
   useUserRealtime()
   useApplyPreferences()
+  useDeviceTimeZone()
 
   // Nothing loaded for one user may be shown after they sign out or their session ends.
   useEffect(() => {

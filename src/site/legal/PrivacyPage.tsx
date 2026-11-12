@@ -56,6 +56,10 @@ export function PrivacyPage() {
         </li>
         <li>Your preferences (theme, accessibility, simple view) and notification settings.</li>
         <li>
+          Your time zone, such as Europe/Berlin: taken from your device when you use the website, or chosen with
+          /notifications in Discord, so times you type in Discord are read in your own time.
+        </li>
+        <li>
           Images and videos you upload to a task. These are stored on Imgur, not by us, and are viewable by anyone who
           has the link. We keep a record of each upload so it can be removed.
         </li>

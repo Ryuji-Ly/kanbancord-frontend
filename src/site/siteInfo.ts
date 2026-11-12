@@ -26,7 +26,7 @@ export const SITE = {
     api: 'https://github.com/Ryuji-Ly/kanbancord-api',
   },
   /** When the Privacy Policy last changed. */
-  privacyUpdated: '31 October 2026',
+  privacyUpdated: '12 November 2026',
   /** When the Terms of Service last changed. */
   termsUpdated: '25 September 2026',
 }
