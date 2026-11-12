@@ -1,5 +1,6 @@
 import { t } from '../../i18n'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { fromLocalInput } from '../../api/http'
 import { useOptimisticCache } from '../../api/useOptimisticCache'
 import { fetchBoardSnapshot, type BoardSnapshot } from '../../services/boardsService'
 import { createColumn, deleteColumn, moveColumn, updateColumn, type BoardColumnEntry } from '../../services/boardColumnsService'
@@ -94,7 +95,7 @@ export function taskFieldsFromDraft(draft: TaskDraft, fallbackTitle = ''): TaskF
     title: draft.title.trim() || fallbackTitle,
     description: draft.description.trim() || null,
     priorityId: draft.priorityId,
-    dueDate: draft.dueDate || null,
+    dueDate: draft.dueDate ? fromLocalInput(draft.dueDate) : null,
   }
 }
 

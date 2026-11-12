@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react'
-import { parseServerTime } from '../../api/http'
+import { parseServerTime, toLocalInput } from '../../api/http'
 import { formatLocale, t } from '../../i18n'
 import type { BoardSnapshot, LabelEntry } from '../../services/boardsService'
 import { NO_FEATURES, type FeatureKey, type ServerFeatures } from '../../services/featuresService'
@@ -464,7 +464,7 @@ export function draftFromTask(task: TaskEntry): TaskDraft {
     title: task.title ?? '',
     description: task.description ?? '',
     priorityId: task.priorityId ?? null,
-    dueDate: task.dueDate ? task.dueDate.slice(0, 16) : '',
+    dueDate: task.dueDate ? toLocalInput(task.dueDate) : '',
   }
 }
 

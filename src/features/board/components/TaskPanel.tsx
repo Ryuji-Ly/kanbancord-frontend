@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { FiBell, FiBellOff } from 'react-icons/fi'
+import { parseServerTime } from '../../../api/http'
 import { formatLocale, t } from '../../../i18n'
 import type { LabelEntry, PriorityEntry } from '../../../services/boardsService'
 import type { ServerRoleEntry } from '../../../services/permissionsService'
@@ -304,7 +305,7 @@ export function TaskPanel({
                 {shownDueDate && (
                   <div className="kc-task-panel-field">
                     <span className="kc-field-label">{t('board.fields.dueDateTitle')}</span>
-                    <p className="kc-task-panel-value">{new Date(shownDueDate).toLocaleString(formatLocale())}</p>
+                    <p className="kc-task-panel-value">{parseServerTime(shownDueDate).toLocaleString(formatLocale())}</p>
                   </div>
                 )}
               </div>
