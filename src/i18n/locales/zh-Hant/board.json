@@ -59,7 +59,10 @@
     "delete": "刪除欄",
     "addTask": "+ 新增任務",
     "showAll": "顯示全部（{count}）",
-    "archiveTasks": "封存所有任務"
+    "archiveTasks": "封存所有任務",
+    "countsAsDone": "視為完成",
+    "countsAsDoneDefault": "視為完成（最後一欄）",
+    "doneDefaultHint": "在你標記某一欄之前，最後一欄視為完成：其中的任務不會收到截止日期提醒。"
   },
   "pickers": {
     "searchUser": "搜尋使用者",

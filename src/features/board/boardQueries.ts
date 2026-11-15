@@ -120,6 +120,14 @@ export function useBoardMutations(serverId: string, boardId: string) {
     ...settle,
   })
 
+  const setColumnDone = useMutation({
+    mutationFn: ({ column, done }: { column: BoardColumnEntry; done: boolean }) =>
+      updateColumn(serverId, boardId, column.columnId, column.name, { countsAsDone: done }),
+    onMutate: ({ column, done }) => board.apply((snapshot) => replaceColumn(snapshot, { ...column, countsAsDone: done })),
+    onError: (_error, _variables, context) => board.rollback(context),
+    ...settle,
+  })
+
   const addColumn = useMutation({
     mutationFn: ({ name }: { name: string; optimisticId: number }) =>
       createColumn(serverId, boardId, name),
@@ -340,6 +348,7 @@ export function useBoardMutations(serverId: string, boardId: string) {
 
   return {
     renameColumn,
+    setColumnDone,
     addColumn,
     removeColumn,
     reorderColumn,

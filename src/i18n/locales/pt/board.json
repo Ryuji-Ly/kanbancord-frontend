@@ -63,7 +63,10 @@
     "delete": "Eliminar coluna",
     "addTask": "+ Adicionar tarefa",
     "showAll": "Mostrar tudo ({count})",
-    "archiveTasks": "Arquivar todas as tarefas"
+    "archiveTasks": "Arquivar todas as tarefas",
+    "countsAsDone": "Conta como concluída",
+    "countsAsDoneDefault": "Conta como concluída (última coluna)",
+    "doneDefaultHint": "Até marcares uma coluna, a última conta como concluída: as tarefas nela não recebem lembretes de prazo."
   },
   "pickers": {
     "searchUser": "Procurar membro",

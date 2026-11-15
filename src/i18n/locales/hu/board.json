@@ -61,7 +61,10 @@
     "delete": "Oszlop törlése",
     "addTask": "+ Feladat hozzáadása",
     "showAll": "Az összes megjelenítése ({count})",
-    "archiveTasks": "Összes feladat archiválása"
+    "archiveTasks": "Összes feladat archiválása",
+    "countsAsDone": "Késznek számít",
+    "countsAsDoneDefault": "Késznek számít (utolsó oszlop)",
+    "doneDefaultHint": "Amíg nem jelölsz meg oszlopot, az utolsó számít késznek: a benne lévő feladatok nem kapnak határidő-emlékeztetőt."
   },
   "pickers": {
     "searchUser": "Felhasználó keresése",

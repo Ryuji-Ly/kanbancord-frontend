@@ -59,7 +59,10 @@
     "delete": "Xóa cột",
     "addTask": "+ Thêm công việc",
     "showAll": "Hiện tất cả ({count})",
-    "archiveTasks": "Lưu trữ mọi công việc"
+    "archiveTasks": "Lưu trữ mọi công việc",
+    "countsAsDone": "Tính là xong",
+    "countsAsDoneDefault": "Tính là xong (cột cuối)",
+    "doneDefaultHint": "Cho đến khi bạn đánh dấu một cột, cột cuối được tính là xong: các việc trong đó không nhận nhắc hạn chót."
   },
   "pickers": {
     "searchUser": "Tìm người dùng",

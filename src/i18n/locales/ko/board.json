@@ -59,7 +59,10 @@
     "delete": "열 삭제",
     "addTask": "+ 작업 추가",
     "showAll": "모두 보기 ({count})",
-    "archiveTasks": "모든 작업 보관"
+    "archiveTasks": "모든 작업 보관",
+    "countsAsDone": "완료로 취급",
+    "countsAsDoneDefault": "완료로 취급 (마지막 열)",
+    "doneDefaultHint": "열을 표시하기 전까지는 마지막 열이 완료로 취급되고, 그 열의 작업에는 마감일 알림이 가지 않아요."
   },
   "pickers": {
     "searchUser": "멤버 검색",

@@ -65,7 +65,10 @@
     "delete": "Usuń kolumnę",
     "addTask": "+ Dodaj zadanie",
     "showAll": "Pokaż wszystko ({count})",
-    "archiveTasks": "Zarchiwizuj wszystkie zadania"
+    "archiveTasks": "Zarchiwizuj wszystkie zadania",
+    "countsAsDone": "Liczy się jako ukończone",
+    "countsAsDoneDefault": "Liczy się jako ukończone (ostatnia kolumna)",
+    "doneDefaultHint": "Dopóki nie oznaczysz żadnej kolumny, za ukończoną liczy się ostatnia: zadania w niej nie dostają przypomnień o terminie."
   },
   "pickers": {
     "searchUser": "Szukaj użytkownika",

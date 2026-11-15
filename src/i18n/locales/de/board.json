@@ -61,7 +61,10 @@
     "delete": "Spalte löschen",
     "addTask": "+ Aufgabe hinzufügen",
     "showAll": "Alle anzeigen ({count})",
-    "archiveTasks": "Alle Aufgaben archivieren"
+    "archiveTasks": "Alle Aufgaben archivieren",
+    "countsAsDone": "Zählt als erledigt",
+    "countsAsDoneDefault": "Zählt als erledigt (letzte Spalte)",
+    "doneDefaultHint": "Solange du keine Spalte markierst, zählt die letzte als erledigt: Ihre Aufgaben bekommen keine Erinnerungen an das Fälligkeitsdatum."
   },
   "pickers": {
     "searchUser": "Mitglied suchen",

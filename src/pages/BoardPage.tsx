@@ -19,6 +19,7 @@ import {
   labelProgress,
   boardAbilities,
   boardSettingsAccess,
+  doneColumnIds,
   groupTasksByColumn,
   hasAnySetting,
   labelsByTask,
@@ -81,6 +82,7 @@ export function BoardPage() {
   const abilities = useMemo(() => withSimpleView(boardAbilities(snapshot), simpleView), [snapshot, simpleView])
   const shown = abilities.features
   const columns = useMemo(() => sortColumns(snapshot?.columns ?? []), [snapshot])
+  const doneColumns = useMemo(() => doneColumnIds(columns), [columns])
   const tasksByColumn = useMemo(() => groupTasksByColumn(snapshot?.tasks ?? []), [snapshot])
   // Features that are off, for the server or in the user's simple view, show nothing on the board.
   const labelsByTaskId = useMemo(() => (shown.LABELS ? labelsByTask(snapshot) : new Map()), [snapshot, shown.LABELS])
@@ -219,6 +221,18 @@ export function BoardPage() {
         onError: () => showToast(t('board.toast.updateColumnFailed'), 'error'),
       },
     )
+  }
+
+  /** Marking a column replaces the default, where the last column counts as done. */
+  function toggleColumnDone(column: BoardColumnEntry) {
+    mutations.setColumnDone.mutate(
+      { column, done: !column.countsAsDone },
+      {
+        onSuccess: () => showToast(t('board.toast.columnUpdated'), 'success'),
+        onError: () => showToast(t('board.toast.updateColumnFailed'), 'error'),
+      },
+    )
+    setOpenMenuColumnId(null)
   }
 
   function addColumn(name: string) {
@@ -486,6 +500,8 @@ export function BoardPage() {
                   draggedTaskHeight={drag.draggedTaskHeight}
                   isTaskDropTarget={drag.taskDropColumnId === column.columnId}
                   justDragged={drag.justDragged}
+                  doneState={column.countsAsDone ? 'marked' : doneColumns.has(column.columnId) ? 'default' : null}
+                  onToggleDone={() => toggleColumnDone(column)}
                   onRename={(name) => renameColumn(column, name)}
                   onToggleMenu={() => setOpenMenuColumnId((prev) => (prev === column.columnId ? null : column.columnId))}
                   onRequestDelete={() => {

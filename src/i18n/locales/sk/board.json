@@ -65,7 +65,10 @@
     "delete": "Odstrániť stĺpec",
     "addTask": "+ Pridať úlohu",
     "showAll": "Zobraziť všetko ({count})",
-    "archiveTasks": "Archivovať všetky úlohy"
+    "archiveTasks": "Archivovať všetky úlohy",
+    "countsAsDone": "Počíta sa ako hotové",
+    "countsAsDoneDefault": "Počíta sa ako hotové (posledný stĺpec)",
+    "doneDefaultHint": "Kým neoznačíš niektorý stĺpec, ako hotový sa počíta posledný: jeho úlohy nedostávajú pripomienky termínu."
   },
   "pickers": {
     "searchUser": "Hľadať člena",

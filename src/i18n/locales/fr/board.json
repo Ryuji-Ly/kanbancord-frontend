@@ -63,7 +63,10 @@
     "delete": "Supprimer la colonne",
     "addTask": "+ Ajouter une tâche",
     "showAll": "Tout afficher ({count})",
-    "archiveTasks": "Archiver toutes les tâches"
+    "archiveTasks": "Archiver toutes les tâches",
+    "countsAsDone": "Compte comme terminée",
+    "countsAsDoneDefault": "Compte comme terminée (dernière colonne)",
+    "doneDefaultHint": "Tant que tu ne marques aucune colonne, la dernière compte comme terminée : ses tâches ne reçoivent pas de rappels d'échéance."
   },
   "pickers": {
     "searchUser": "Chercher un membre",
