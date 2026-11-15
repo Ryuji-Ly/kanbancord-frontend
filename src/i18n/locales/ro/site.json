@@ -118,7 +118,18 @@
     "submitting": "Se adaugă...",
     "added": "Mulțumim! Acum e pe panou.",
     "wait": "Poți adăuga alta la {time}.",
-    "failed": "Nu s-a putut adăuga"
+    "failed": "Nu s-a putut adăuga",
+    "comments": "Comentarii",
+    "noComments": "Încă nu există comentarii.",
+    "commentsUnavailable": "Comentariile nu au putut fi încărcate.",
+    "commentLabel": "Adaugă un comentariu",
+    "commentPublic": "Comentariile sunt publice și arată numele tău de pe Discord.",
+    "commentSubmit": "Comentează",
+    "commentSubmitting": "Se trimite...",
+    "commentSignIn": "Conectează-te cu Discord ca să comentezi",
+    "commentWait": "Poți comenta din nou la {time}.",
+    "commentFailed": "Comentariul nu a putut fi adăugat",
+    "commentEdited": "editat"
   },
   "support": {
     "metaTitle": "Susține",

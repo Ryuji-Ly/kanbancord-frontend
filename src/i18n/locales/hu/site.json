@@ -118,7 +118,18 @@
     "submitting": "Hozzáadás...",
     "added": "Köszönjük! Már a táblán van.",
     "wait": "{time}-kor adhatsz hozzá újat.",
-    "failed": "Nem sikerült hozzáadni"
+    "failed": "Nem sikerült hozzáadni",
+    "comments": "Hozzászólások",
+    "noComments": "Még nincs hozzászólás.",
+    "commentsUnavailable": "A hozzászólásokat nem sikerült betölteni.",
+    "commentLabel": "Hozzászólás írása",
+    "commentPublic": "A hozzászólások nyilvánosak, és a Discord-neved látszik rajtuk.",
+    "commentSubmit": "Hozzászólok",
+    "commentSubmitting": "Küldés...",
+    "commentSignIn": "Jelentkezz be Discorddal a hozzászóláshoz",
+    "commentWait": "{time}-kor szólhatsz hozzá újra.",
+    "commentFailed": "A hozzászólást nem sikerült hozzáadni",
+    "commentEdited": "szerkesztve"
   },
   "support": {
     "metaTitle": "Támogatás",

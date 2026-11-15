@@ -137,6 +137,11 @@ export function PrivacyPage() {
         Economic Area, they rely on the EU–US Data Privacy Framework or the European Commission's standard contractual
         clauses.
       </p>
+      <p>
+        What you add to the public <a href="/roadmap">roadmap</a> is public: anyone can read the issues added there and
+        the comments on them, and each comment shows its writer's Discord name. The board's own feeds and direct
+        messages tell the developer and the people taking part in that issue.
+      </p>
 
       <h2>How long we keep it</h2>
       <ul>

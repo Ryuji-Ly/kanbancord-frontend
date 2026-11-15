@@ -118,7 +118,18 @@
     "submitting": "Přidává se...",
     "added": "Díky! Už je na nástěnce.",
     "wait": "Další můžete přidat v {time}.",
-    "failed": "Nepodařilo se přidat"
+    "failed": "Nepodařilo se přidat",
+    "comments": "Komentáře",
+    "noComments": "Zatím žádné komentáře.",
+    "commentsUnavailable": "Komentáře se nepodařilo načíst.",
+    "commentLabel": "Přidat komentář",
+    "commentPublic": "Komentáře jsou veřejné a ukazují tvé jméno na Discordu.",
+    "commentSubmit": "Komentovat",
+    "commentSubmitting": "Odesílám...",
+    "commentSignIn": "Přihlas se přes Discord a komentuj",
+    "commentWait": "Znovu komentovat můžeš v {time}.",
+    "commentFailed": "Komentář se nepodařilo přidat",
+    "commentEdited": "upraveno"
   },
   "support": {
     "metaTitle": "Podpořit",

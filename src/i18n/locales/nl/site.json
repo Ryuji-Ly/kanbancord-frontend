@@ -118,7 +118,18 @@
     "submitting": "Toevoegen...",
     "added": "Bedankt! Het staat nu op het bord.",
     "wait": "Je kunt om {time} weer iets toevoegen.",
-    "failed": "Het kon niet worden toegevoegd"
+    "failed": "Het kon niet worden toegevoegd",
+    "comments": "Reacties",
+    "noComments": "Nog geen reacties.",
+    "commentsUnavailable": "De reacties konden niet worden geladen.",
+    "commentLabel": "Reageer",
+    "commentPublic": "Reacties zijn openbaar en tonen je Discord-naam.",
+    "commentSubmit": "Reageren",
+    "commentSubmitting": "Bezig met versturen...",
+    "commentSignIn": "Log in met Discord om te reageren",
+    "commentWait": "Je kunt om {time} weer reageren.",
+    "commentFailed": "De reactie kon niet worden toegevoegd",
+    "commentEdited": "bewerkt"
   },
   "support": {
     "metaTitle": "Steunen",

@@ -5037,6 +5037,53 @@ select.kc-input {
   max-width: 640px;
 }
 
+// Comments under a roadmap task: a divider from the task, then each comment with who wrote it and when.
+.kc-roadmap-comments {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--kc-border);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  h4 {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--kc-heading);
+  }
+}
+
+.kc-roadmap-comment {
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: var(--kc-card);
+
+  p {
+    margin: 0.25em 0;
+  }
+}
+
+.kc-roadmap-comment-meta {
+  font-size: 0.8rem;
+  color: var(--kc-text-dim);
+}
+
+.kc-roadmap-comment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+
+  .kc-field {
+    width: 100%;
+  }
+}
+
+.kc-roadmap-comment-note {
+  margin: 0;
+  font-size: 0.8rem;
+}
+
 .kc-roadmap-chips {
   display: flex;
   flex-wrap: wrap;

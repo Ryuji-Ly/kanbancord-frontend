@@ -118,7 +118,18 @@
     "submitting": "Dodawanie...",
     "added": "Dziękujemy! Jest już na tablicy.",
     "wait": "Kolejny możesz dodać o {time}.",
-    "failed": "Nie udało się dodać"
+    "failed": "Nie udało się dodać",
+    "comments": "Komentarze",
+    "noComments": "Nie ma jeszcze komentarzy.",
+    "commentsUnavailable": "Nie udało się wczytać komentarzy.",
+    "commentLabel": "Dodaj komentarz",
+    "commentPublic": "Komentarze są publiczne i pokazują twoją nazwę z Discorda.",
+    "commentSubmit": "Skomentuj",
+    "commentSubmitting": "Wysyłanie...",
+    "commentSignIn": "Zaloguj się przez Discorda, aby komentować",
+    "commentWait": "Możesz znów skomentować o {time}.",
+    "commentFailed": "Nie udało się dodać komentarza",
+    "commentEdited": "edytowano"
   },
   "support": {
     "metaTitle": "Wesprzyj",

@@ -118,7 +118,18 @@
     "submitting": "Ekleniyor…",
     "added": "Teşekkürler! Artık panoda.",
     "wait": "Bir sonrakini {time} saatinde ekleyebilirsin.",
-    "failed": "Eklenemedi"
+    "failed": "Eklenemedi",
+    "comments": "Yorumlar",
+    "noComments": "Henüz yorum yok.",
+    "commentsUnavailable": "Yorumlar yüklenemedi.",
+    "commentLabel": "Yorum ekleyin",
+    "commentPublic": "Yorumlar herkese açıktır ve Discord adınızı gösterir.",
+    "commentSubmit": "Yorum yap",
+    "commentSubmitting": "Gönderiliyor...",
+    "commentSignIn": "Yorum yapmak için Discord ile giriş yapın",
+    "commentWait": "Saat {time} itibarıyla yeniden yorum yapabilirsiniz.",
+    "commentFailed": "Yorum eklenemedi",
+    "commentEdited": "düzenlendi"
   },
   "support": {
     "metaTitle": "Destek ol",

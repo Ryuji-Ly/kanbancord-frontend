@@ -118,7 +118,18 @@
     "submitting": "Añadiendo...",
     "added": "¡Gracias! Ya está en el tablero.",
     "wait": "Podrás añadir otro a las {time}.",
-    "failed": "No se pudo añadir"
+    "failed": "No se pudo añadir",
+    "comments": "Comentarios",
+    "noComments": "Aún no hay comentarios.",
+    "commentsUnavailable": "No se pudieron cargar los comentarios.",
+    "commentLabel": "Añade un comentario",
+    "commentPublic": "Los comentarios son públicos y muestran tu nombre de Discord.",
+    "commentSubmit": "Comentar",
+    "commentSubmitting": "Enviando...",
+    "commentSignIn": "Inicia sesión con Discord para comentar",
+    "commentWait": "Puedes volver a comentar a las {time}.",
+    "commentFailed": "No se pudo añadir el comentario",
+    "commentEdited": "editado"
   },
   "support": {
     "metaTitle": "Apoyar",

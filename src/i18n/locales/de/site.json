@@ -118,7 +118,18 @@
     "submitting": "Wird hinzugefügt …",
     "added": "Danke! Es steht jetzt auf dem Board.",
     "wait": "Du kannst um {time} wieder etwas hinzufügen.",
-    "failed": "Es konnte nicht hinzugefügt werden"
+    "failed": "Es konnte nicht hinzugefügt werden",
+    "comments": "Kommentare",
+    "noComments": "Noch keine Kommentare.",
+    "commentsUnavailable": "Die Kommentare konnten nicht geladen werden.",
+    "commentLabel": "Kommentar schreiben",
+    "commentPublic": "Kommentare sind öffentlich und zeigen deinen Discord-Namen.",
+    "commentSubmit": "Kommentieren",
+    "commentSubmitting": "Wird gesendet...",
+    "commentSignIn": "Mit Discord anmelden, um zu kommentieren",
+    "commentWait": "Du kannst um {time} wieder kommentieren.",
+    "commentFailed": "Der Kommentar konnte nicht hinzugefügt werden",
+    "commentEdited": "bearbeitet"
   },
   "support": {
     "metaTitle": "Unterstützen",
