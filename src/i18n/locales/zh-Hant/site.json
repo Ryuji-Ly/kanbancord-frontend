@@ -118,7 +118,18 @@
     "submitting": "正在新增...",
     "added": "謝謝！已經新增到看板上。",
     "wait": "你可以在 {time} 再新增一則。",
-    "failed": "無法新增"
+    "failed": "無法新增",
+    "comments": "留言",
+    "noComments": "還沒有留言。",
+    "commentsUnavailable": "無法載入留言。",
+    "commentLabel": "新增留言",
+    "commentPublic": "留言是公開的，會顯示你的 Discord 名稱。",
+    "commentSubmit": "留言",
+    "commentSubmitting": "正在傳送...",
+    "commentSignIn": "使用 Discord 登入後留言",
+    "commentWait": "你可以在 {time} 再次留言。",
+    "commentFailed": "無法新增留言",
+    "commentEdited": "已編輯"
   },
   "support": {
     "metaTitle": "支持",

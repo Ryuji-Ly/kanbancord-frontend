@@ -118,7 +118,18 @@
     "submitting": "追加しています...",
     "added": "ありがとうございます！ボードに追加されました。",
     "wait": "{time}にまた追加できます。",
-    "failed": "追加できませんでした"
+    "failed": "追加できませんでした",
+    "comments": "コメント",
+    "noComments": "まだコメントはありません。",
+    "commentsUnavailable": "コメントを読み込めませんでした。",
+    "commentLabel": "コメントを追加",
+    "commentPublic": "コメントは公開され、Discord の名前が表示されます。",
+    "commentSubmit": "コメントする",
+    "commentSubmitting": "送信中...",
+    "commentSignIn": "Discord でサインインしてコメント",
+    "commentWait": "{time} にもう一度コメントできます。",
+    "commentFailed": "コメントを追加できませんでした",
+    "commentEdited": "編集済み"
   },
   "support": {
     "metaTitle": "支援",

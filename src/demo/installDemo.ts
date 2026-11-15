@@ -493,6 +493,13 @@ const ROUTES: [string, RegExp, Handler][] = [
     DEMO_ROADMAP.tasks = [issue, ...DEMO_ROADMAP.tasks]
     return issue
   }],
+  ['GET', /^\/api\/public\/roadmap\/tasks\/(\d+)\/comments$/, (m) => DEMO_ROADMAP_COMMENTS[m[1]] ?? []],
+  ['POST', /^\/api\/public\/roadmap\/tasks\/(\d+)\/comments$/, (m, { body }) => {
+    const comment = { id: String(Date.now()), authorName: me.globalName ?? me.username, content: (body as { content: string }).content,
+      createdAt: new Date().toISOString().slice(0, 19), edited: false }
+    DEMO_ROADMAP_COMMENTS[m[1]] = [...(DEMO_ROADMAP_COMMENTS[m[1]] ?? []), comment]
+    return comment
+  }],
   ['GET', /^\/api\/servers\/\d+\/permissions\/catalog$/, () => catalog],
   ['POST', /^\/api\/servers\/\d+\/permissions\/presets$/, (_m, { body }) => applyServerPreset(body as { preset: PermissionPreset; staffRoleId?: string | null })],
   ['GET', /^\/api\/servers\/\d+\/permissions$/, (_m, { query }) => (query.get('scopeType') === 'BOARD' ? [] : serverRules)],
@@ -610,6 +617,14 @@ const DEMO_ROADMAP = {
     { id: '31', columnId: '3', title: 'Public roadmap', labelIds: ['3'], priorityId: '2' },
     ...Array.from({ length: 40 }, (_, i) => ({ id: String(100 + i), columnId: '4', title: `Shipped change ${i + 1}`, labelIds: ['2'] })),
   ] as { id: string; columnId: string; title: string; description?: string; labelIds?: string[]; priorityId?: string }[],
+  commentsOn: true,
+}
+
+const DEMO_ROADMAP_COMMENTS: Record<string, { id: string; authorName: string; content: string; createdAt: string; edited: boolean }[]> = {
+  '11': [
+    { id: '1', authorName: 'Robin', content: 'The calendar opens off screen on my phone.', createdAt: '2026-11-10T09:12:00', edited: false },
+    { id: '2', authorName: 'Ryuji', content: 'Thanks! Planned for **December**.', createdAt: '2026-11-10T11:40:00', edited: true },
+  ],
 }
 
 function route(method: string, path: string) {

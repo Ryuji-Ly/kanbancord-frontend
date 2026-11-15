@@ -118,7 +118,18 @@
     "submitting": "Adding...",
     "added": "Thank you! It is on the board now.",
     "wait": "You can add another one at {time}.",
-    "failed": "It could not be added"
+    "failed": "It could not be added",
+    "comments": "Comments",
+    "noComments": "No comments yet.",
+    "commentsUnavailable": "Comments could not be loaded.",
+    "commentLabel": "Add a comment",
+    "commentPublic": "Comments are public and show your Discord name.",
+    "commentSubmit": "Comment",
+    "commentSubmitting": "Sending...",
+    "commentSignIn": "Sign in with Discord to comment",
+    "commentWait": "You can comment again at {time}.",
+    "commentFailed": "The comment could not be added",
+    "commentEdited": "edited"
   },
   "support": {
     "metaTitle": "Support",

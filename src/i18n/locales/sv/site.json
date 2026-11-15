@@ -118,7 +118,18 @@
     "submitting": "Lägger till...",
     "added": "Tack! Den finns nu på tavlan.",
     "wait": "Du kan lägga till en till kl. {time}.",
-    "failed": "Det gick inte att lägga till"
+    "failed": "Det gick inte att lägga till",
+    "comments": "Kommentarer",
+    "noComments": "Inga kommentarer än.",
+    "commentsUnavailable": "Kommentarerna kunde inte läsas in.",
+    "commentLabel": "Skriv en kommentar",
+    "commentPublic": "Kommentarer är offentliga och visar ditt Discord-namn.",
+    "commentSubmit": "Kommentera",
+    "commentSubmitting": "Skickar...",
+    "commentSignIn": "Logga in med Discord för att kommentera",
+    "commentWait": "Du kan kommentera igen kl. {time}.",
+    "commentFailed": "Kommentaren kunde inte läggas till",
+    "commentEdited": "redigerad"
   },
   "support": {
     "metaTitle": "Stöd",

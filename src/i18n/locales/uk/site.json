@@ -118,7 +118,18 @@
     "submitting": "Додавання...",
     "added": "Дякуємо! Тепер це на дошці.",
     "wait": "Додати ще можна буде о {time}.",
-    "failed": "Не вдалося додати"
+    "failed": "Не вдалося додати",
+    "comments": "Коментарі",
+    "noComments": "Коментарів ще немає.",
+    "commentsUnavailable": "Не вдалося завантажити коментарі.",
+    "commentLabel": "Додати коментар",
+    "commentPublic": "Коментарі видно всім, разом із вашим ім'ям у Discord.",
+    "commentSubmit": "Надіслати",
+    "commentSubmitting": "Надсилання...",
+    "commentSignIn": "Увійдіть через Discord, щоб коментувати",
+    "commentWait": "Коментувати знову можна о {time}.",
+    "commentFailed": "Не вдалося додати коментар",
+    "commentEdited": "змінено"
   },
   "support": {
     "metaTitle": "Підтримати",

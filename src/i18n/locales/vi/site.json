@@ -118,7 +118,18 @@
     "submitting": "Đang thêm...",
     "added": "Cảm ơn bạn! Mục này đã có trên bảng.",
     "wait": "Bạn có thể thêm mục khác lúc {time}.",
-    "failed": "Không thể thêm"
+    "failed": "Không thể thêm",
+    "comments": "Bình luận",
+    "noComments": "Chưa có bình luận nào.",
+    "commentsUnavailable": "Không tải được bình luận.",
+    "commentLabel": "Thêm bình luận",
+    "commentPublic": "Bình luận là công khai và hiển thị tên Discord của bạn.",
+    "commentSubmit": "Bình luận",
+    "commentSubmitting": "Đang gửi...",
+    "commentSignIn": "Đăng nhập bằng Discord để bình luận",
+    "commentWait": "Bạn có thể bình luận lại lúc {time}.",
+    "commentFailed": "Không thêm được bình luận",
+    "commentEdited": "đã sửa"
   },
   "support": {
     "metaTitle": "Ủng hộ",

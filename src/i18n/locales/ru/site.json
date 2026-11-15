@@ -118,7 +118,18 @@
     "submitting": "Добавление…",
     "added": "Спасибо! Теперь это на доске.",
     "wait": "Добавить ещё можно будет в {time}.",
-    "failed": "Не удалось добавить"
+    "failed": "Не удалось добавить",
+    "comments": "Комментарии",
+    "noComments": "Комментариев пока нет.",
+    "commentsUnavailable": "Не удалось загрузить комментарии.",
+    "commentLabel": "Добавить комментарий",
+    "commentPublic": "Комментарии видны всем, вместе с вашим именем в Discord.",
+    "commentSubmit": "Отправить",
+    "commentSubmitting": "Отправка...",
+    "commentSignIn": "Войдите через Discord, чтобы комментировать",
+    "commentWait": "Комментировать снова можно в {time}.",
+    "commentFailed": "Не удалось добавить комментарий",
+    "commentEdited": "изменено"
   },
   "support": {
     "metaTitle": "Поддержать",

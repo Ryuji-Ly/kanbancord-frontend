@@ -118,7 +118,18 @@
     "submitting": "กำลังเพิ่ม...",
     "added": "ขอบคุณ! อยู่บนบอร์ดแล้ว",
     "wait": "เพิ่มรายการถัดไปได้เวลา {time}",
-    "failed": "เพิ่มไม่ได้"
+    "failed": "เพิ่มไม่ได้",
+    "comments": "ความคิดเห็น",
+    "noComments": "ยังไม่มีความคิดเห็น",
+    "commentsUnavailable": "โหลดความคิดเห็นไม่ได้",
+    "commentLabel": "เพิ่มความคิดเห็น",
+    "commentPublic": "ความคิดเห็นเป็นแบบสาธารณะและแสดงชื่อ Discord ของคุณ",
+    "commentSubmit": "แสดงความคิดเห็น",
+    "commentSubmitting": "กำลังส่ง...",
+    "commentSignIn": "ลงชื่อเข้าใช้ด้วย Discord เพื่อแสดงความคิดเห็น",
+    "commentWait": "คุณแสดงความคิดเห็นได้อีกครั้งเวลา {time}",
+    "commentFailed": "เพิ่มความคิดเห็นไม่ได้",
+    "commentEdited": "แก้ไขแล้ว"
   },
   "support": {
     "metaTitle": "สนับสนุน",

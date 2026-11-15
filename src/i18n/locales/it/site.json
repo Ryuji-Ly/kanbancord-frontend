@@ -118,7 +118,18 @@
     "submitting": "Aggiunta...",
     "added": "Grazie! Ora è sulla bacheca.",
     "wait": "Potrai aggiungerne un altro alle {time}.",
-    "failed": "Impossibile aggiungerlo"
+    "failed": "Impossibile aggiungerlo",
+    "comments": "Commenti",
+    "noComments": "Ancora nessun commento.",
+    "commentsUnavailable": "Non è stato possibile caricare i commenti.",
+    "commentLabel": "Aggiungi un commento",
+    "commentPublic": "I commenti sono pubblici e mostrano il tuo nome Discord.",
+    "commentSubmit": "Commenta",
+    "commentSubmitting": "Invio...",
+    "commentSignIn": "Accedi con Discord per commentare",
+    "commentWait": "Potrai commentare di nuovo alle {time}.",
+    "commentFailed": "Non è stato possibile aggiungere il commento",
+    "commentEdited": "modificato"
   },
   "support": {
     "metaTitle": "Sostieni",

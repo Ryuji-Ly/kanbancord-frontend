@@ -118,7 +118,18 @@
     "submitting": "正在添加...",
     "added": "谢谢！已经添加到看板上。",
     "wait": "你可以在 {time} 再添加一条。",
-    "failed": "无法添加"
+    "failed": "无法添加",
+    "comments": "评论",
+    "noComments": "还没有评论。",
+    "commentsUnavailable": "无法加载评论。",
+    "commentLabel": "添加评论",
+    "commentPublic": "评论是公开的，会显示你的 Discord 名称。",
+    "commentSubmit": "评论",
+    "commentSubmitting": "正在发送...",
+    "commentSignIn": "使用 Discord 登录后评论",
+    "commentWait": "你可以在 {time} 再次评论。",
+    "commentFailed": "无法添加评论",
+    "commentEdited": "已编辑"
   },
   "support": {
     "metaTitle": "支持",

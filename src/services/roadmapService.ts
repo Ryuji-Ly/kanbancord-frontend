@@ -8,6 +8,16 @@ export type RoadmapTask = {
   description?: string | null
   labelIds?: string[]
   priorityId?: string | null
+  commentCount?: number
+}
+
+/** A comment on a roadmap task: public, with its writer's Discord name. */
+export type RoadmapComment = {
+  id: string
+  authorName: string
+  content: string
+  createdAt: string
+  edited: boolean
 }
 
 export type Roadmap = {
@@ -20,6 +30,8 @@ export type Roadmap = {
   /** Most urgent first: position 1 is P1. */
   priorities: { id: string; name: string; color: string | null; position: number }[]
   tasks: RoadmapTask[]
+  /** Whether tasks have comments, which anyone may read and anyone signed in may write. */
+  commentsOn?: boolean
 }
 
 /** The roadmap, readable without signing in; null while none is set up. */
@@ -39,6 +51,28 @@ export class IssueLimitError extends Error {
     this.name = 'IssueLimitError'
     this.nextAt = nextAt
   }
+}
+
+/** A task's comments, oldest first; readable without signing in. */
+export async function fetchRoadmapComments(taskId: number): Promise<RoadmapComment[]> {
+  const response = await fetch(apiUrl(`/api/public/roadmap/tasks/${taskId}/comments`))
+  if (!response.ok) throw new Error(await parseError(response))
+  return (await response.json()) as RoadmapComment[]
+}
+
+/** Comments on, as the person signed in; a limit like issues', with IssueLimitError saying when the next may go. */
+export async function addRoadmapComment(taskId: number, content: string): Promise<RoadmapComment> {
+  const response = await apiFetch(`/api/public/roadmap/tasks/${taskId}/comments`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ content }),
+  })
+  if (response.status === 429) {
+    const seconds = Number(response.headers.get('Retry-After')) || 3600
+    throw new IssueLimitError(await parseError(response), new Date(Date.now() + seconds * 1000))
+  }
+  if (!response.ok) throw new Error(await parseError(response))
+  return (await response.json()) as RoadmapComment
 }
 
 export async function addRoadmapIssue(input: { title: string; description: string }): Promise<RoadmapTask> {

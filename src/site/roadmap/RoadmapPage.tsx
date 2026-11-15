@@ -2,7 +2,8 @@ import { useEffect, useMemo, useState, type CSSProperties, type FormEvent } from
 import { FiMessageSquare } from 'react-icons/fi'
 import { createPortal } from 'react-dom'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
-import { readableError } from '../../api/http'
+import { useSearchParams } from 'react-router-dom'
+import { parseServerTime, readableError } from '../../api/http'
 import { useSession } from '../../api/session'
 import { BoardColumn } from '../../features/board/components/BoardColumn'
 import { BoardRow } from '../../features/board/components/BoardRow'
@@ -11,7 +12,14 @@ import { formatLocale, t } from '../../i18n'
 import { startDiscordLogin } from '../../services/authService'
 import type { BoardColumnEntry } from '../../services/boardColumnsService'
 import type { LabelEntry, PriorityEntry } from '../../services/boardsService'
-import { addRoadmapIssue, fetchRoadmap, IssueLimitError, type Roadmap } from '../../services/roadmapService'
+import {
+  addRoadmapComment,
+  addRoadmapIssue,
+  fetchRoadmap,
+  fetchRoadmapComments,
+  IssueLimitError,
+  type Roadmap,
+} from '../../services/roadmapService'
 import type { TaskEntry } from '../../services/tasksService'
 import { PublicLayout } from '../PublicLayout'
 
@@ -41,11 +49,94 @@ function boardOf(roadmap: Roadmap) {
   return { columns, tasks, labelsByTaskId, prioritiesById }
 }
 
-/** A task's details, read-only: its labels, priority and description. */
-function TaskDetails({ task, labels, priority, onClose }: {
+/**
+ * A task's comments, public with their writers' Discord names, and a box to add one: for those signed in, or a way
+ * to sign in for everyone else. Written in any language, so not marked as English like the board.
+ */
+function RoadmapComments({ taskId }: { taskId: number }) {
+  const session = useSession()
+  const queryClient = useQueryClient()
+  const key = [...ROADMAP_KEY, 'comments', taskId]
+  const comments = useQuery({ queryKey: key, queryFn: () => fetchRoadmapComments(taskId) })
+  const [content, setContent] = useState('')
+  const [busy, setBusy] = useState(false)
+  const [message, setMessage] = useState<string | null>(null)
+
+  async function submit(event: FormEvent) {
+    event.preventDefault()
+    if (!content.trim()) return
+    setBusy(true)
+    setMessage(null)
+    try {
+      await addRoadmapComment(taskId, content.trim())
+      setContent('')
+      void queryClient.invalidateQueries({ queryKey: ROADMAP_KEY })
+    } catch (error) {
+      if (error instanceof IssueLimitError) {
+        const time = error.nextAt.toLocaleTimeString(formatLocale(), { hour: '2-digit', minute: '2-digit' })
+        setMessage(t('site.roadmap.commentWait', { time }))
+      } else {
+        setMessage(readableError(error, t('site.roadmap.commentFailed')))
+      }
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  return (
+    <section className="kc-roadmap-comments" aria-label={t('site.roadmap.comments')}>
+      <h4>{t('site.roadmap.comments')}</h4>
+      {comments.isError && <p className="kc-muted">{t('site.roadmap.commentsUnavailable')}</p>}
+      {comments.data?.length === 0 && <p className="kc-muted">{t('site.roadmap.noComments')}</p>}
+      {comments.data?.map((comment) => (
+        <article key={comment.id} className="kc-roadmap-comment">
+          <p className="kc-roadmap-comment-meta">
+            <strong>{comment.authorName}</strong>
+            {' · '}
+            {parseServerTime(comment.createdAt).toLocaleString(formatLocale(), { dateStyle: 'medium', timeStyle: 'short' })}
+            {comment.edited && ` · ${t('site.roadmap.commentEdited')}`}
+          </p>
+          <Markdown>{comment.content}</Markdown>
+        </article>
+      ))}
+      {session.status === 'signedIn' ? (
+        <form onSubmit={(event) => void submit(event)} className="kc-roadmap-comment-form">
+          <label className="kc-field">
+            <span className="kc-field-label">{t('site.roadmap.commentLabel')}</span>
+            <textarea
+              className="kc-input"
+              rows={3}
+              value={content}
+              maxLength={2000}
+              disabled={busy}
+              onChange={(e) => setContent(e.target.value)}
+            />
+          </label>
+          <p className="kc-muted kc-roadmap-comment-note">{t('site.roadmap.commentPublic')}</p>
+          {message && <p className="kc-banner">{message}</p>}
+          <button type="submit" className="kc-btn kc-btn-primary" disabled={busy || !content.trim()}>
+            {busy ? t('site.roadmap.commentSubmitting') : t('site.roadmap.commentSubmit')}
+          </button>
+        </form>
+      ) : session.status === 'signedOut' ? (
+        <button
+          type="button"
+          className="kc-btn kc-btn-ghost"
+          onClick={() => startDiscordLogin((text) => text && setMessage(text), `/roadmap?task=${taskId}`)}
+        >
+          {t('site.roadmap.commentSignIn')}
+        </button>
+      ) : null}
+    </section>
+  )
+}
+
+/** A task's details, read-only: its labels, priority and description, and its comments when the board has them. */
+function TaskDetails({ task, labels, priority, commentsOn, onClose }: {
   task: TaskEntry
   labels: LabelEntry[]
   priority: PriorityEntry | null
+  commentsOn: boolean
   onClose: () => void
 }) {
   return createPortal(
@@ -54,7 +145,8 @@ function TaskDetails({ task, labels, priority, onClose }: {
         <div className="kc-modal-header">
           <h3 className="kc-modal-title" lang="en">{task.title}</h3>
         </div>
-        <div className="kc-modal-body" lang="en">
+        <div className="kc-modal-body">
+          <div lang="en">
           {(labels.length > 0 || priority) && (
             <p className="kc-roadmap-chips">
               {priority && (
@@ -70,6 +162,8 @@ function TaskDetails({ task, labels, priority, onClose }: {
             </p>
           )}
           {task.description?.trim() ? <Markdown>{task.description}</Markdown> : <p className="kc-muted">{t('site.roadmap.noDetails')}</p>}
+          </div>
+          {commentsOn && <RoadmapComments taskId={task.taskId} />}
         </div>
         <div className="kc-modal-footer">
           <button type="button" className="kc-btn kc-btn-ghost" onClick={onClose}>
@@ -191,7 +285,11 @@ export function RoadmapPage() {
   const query = useQuery({ queryKey: ROADMAP_KEY, queryFn: fetchRoadmap, staleTime: 60_000 })
   const roadmap = query.data
   const board = useMemo(() => (roadmap ? boardOf(roadmap) : null), [roadmap])
-  const [openTaskId, setOpenTaskId] = useState<number | null>(null)
+  // The open task is in the address (?task=12), so a link can open it: the direct messages about comments do.
+  const [searchParams, setSearchParams] = useSearchParams()
+  const openTaskId = Number(searchParams.get('task')) || null
+  const setOpenTaskId = (taskId: number | null) =>
+    setSearchParams(taskId === null ? {} : { task: String(taskId) }, { replace: true })
   const openTask = board?.tasks.find((task) => task.taskId === openTaskId) ?? null
   const [reporting, setReporting] = useState(false)
   const canReport = Boolean(roadmap?.issuesColumnId)
@@ -255,6 +353,7 @@ export function RoadmapPage() {
               task={openTask}
               labels={(board.labelsByTaskId.get(openTask.taskId) ?? []).map((entry) => entry.label)}
               priority={openTask.priorityId === null ? null : (board.prioritiesById.get(openTask.priorityId) ?? null)}
+              commentsOn={Boolean(roadmap.commentsOn)}
               onClose={() => setOpenTaskId(null)}
             />
           )}

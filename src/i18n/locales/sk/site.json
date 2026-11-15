@@ -118,7 +118,18 @@
     "submitting": "Pridáva sa…",
     "added": "Ďakujeme! Už je na nástenke.",
     "wait": "Ďalší môžete pridať o {time}.",
-    "failed": "Nepodarilo sa pridať"
+    "failed": "Nepodarilo sa pridať",
+    "comments": "Komentáre",
+    "noComments": "Zatiaľ žiadne komentáre.",
+    "commentsUnavailable": "Komentáre sa nepodarilo načítať.",
+    "commentLabel": "Pridať komentár",
+    "commentPublic": "Komentáre sú verejné a ukazujú tvoje meno na Discorde.",
+    "commentSubmit": "Komentovať",
+    "commentSubmitting": "Odosiela sa...",
+    "commentSignIn": "Prihlás sa cez Discord a komentuj",
+    "commentWait": "Znova komentovať môžeš o {time}.",
+    "commentFailed": "Komentár sa nepodarilo pridať",
+    "commentEdited": "upravené"
   },
   "support": {
     "metaTitle": "Podpora",
