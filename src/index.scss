@@ -1715,6 +1715,13 @@ pre {
     letter-spacing: 0.01em;
   }
 
+  // Who created the task and when: under the heading, since it cannot be changed.
+  &-meta {
+    margin: 2px 0 0;
+    font-size: 0.78rem;
+    color: var(--kc-text-dim);
+  }
+
   &-body {
     flex: 1;
     overflow-y: auto;

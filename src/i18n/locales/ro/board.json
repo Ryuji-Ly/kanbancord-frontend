@@ -179,7 +179,9 @@
     "noTaskSelected": "Nu este selectată nicio sarcină.",
     "archive": "Arhivează",
     "restore": "Restaurează",
-    "archivedNote": "Această sarcină este arhivată: nu mai e pe panou și nu poate fi modificată până nu e restaurată."
+    "archivedNote": "Această sarcină este arhivată: nu mai e pe panou și nu poate fi modificată până nu e restaurată.",
+    "createdBy": "Creată de {name} · {date}",
+    "created": "Creată pe {date}"
   },
   "import": {
     "title": "Importă sarcini",

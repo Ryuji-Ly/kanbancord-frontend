@@ -179,7 +179,9 @@
     "noTaskSelected": "Nenhuma tarefa selecionada.",
     "archive": "Arquivar",
     "restore": "Restaurar",
-    "archivedNote": "Esta tarefa está arquivada: saiu do quadro e não pode ser alterada até ser restaurada."
+    "archivedNote": "Esta tarefa está arquivada: saiu do quadro e não pode ser alterada até ser restaurada.",
+    "createdBy": "Criada por {name} · {date}",
+    "created": "Criada em {date}"
   },
   "import": {
     "title": "Importar tarefas",

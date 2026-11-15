@@ -179,7 +179,9 @@
     "noTaskSelected": "Aucune tâche sélectionnée.",
     "archive": "Archiver",
     "restore": "Restaurer",
-    "archivedNote": "Cette tâche est archivée : elle n'est plus sur le tableau et ne peut pas être modifiée avant d'être restaurée."
+    "archivedNote": "Cette tâche est archivée : elle n'est plus sur le tableau et ne peut pas être modifiée avant d'être restaurée.",
+    "createdBy": "Créée par {name} · {date}",
+    "created": "Créée le {date}"
   },
   "import": {
     "title": "Importer des tâches",

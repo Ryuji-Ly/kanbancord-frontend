@@ -183,7 +183,9 @@
     "noTaskSelected": "Nie wybrano zadania.",
     "archive": "Zarchiwizuj",
     "restore": "Przywróć",
-    "archivedNote": "To zadanie jest zarchiwizowane: nie ma go na tablicy i nie można go zmienić, dopóki nie zostanie przywrócone."
+    "archivedNote": "To zadanie jest zarchiwizowane: nie ma go na tablicy i nie można go zmienić, dopóki nie zostanie przywrócone.",
+    "createdBy": "Utworzone przez: {name} · {date}",
+    "created": "Utworzone {date}"
   },
   "import": {
     "title": "Importuj zadania",

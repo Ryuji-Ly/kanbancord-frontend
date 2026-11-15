@@ -17,6 +17,11 @@ import { Markdown } from './Markdown'
 import { MarkdownEditor } from './MarkdownEditor'
 import { TaskComments } from './TaskComments'
 
+/** "3 Nov 2026", in the reader's language; the full time is in the tooltip. */
+function createdOn(createdAt: string): string {
+  return parseServerTime(createdAt).toLocaleDateString(formatLocale(), { day: 'numeric', month: 'short', year: 'numeric' })
+}
+
 type TaskPanelProps = {
   serverId: string
   boardId: string
@@ -25,6 +30,8 @@ type TaskPanelProps = {
   abilities: BoardAbilities
   assignees: AssigneeMember[]
   members: AssigneeMember[]
+  /** Who created the task, to show under the heading; null when not known. */
+  creatorName: string | null
   priorities: PriorityEntry[]
   /** Every label of the board. */
   labels: LabelEntry[]
@@ -65,6 +72,7 @@ export function TaskPanel({
   abilities,
   assignees,
   members,
+  creatorName,
   priorities,
   labels,
   taskLabels,
@@ -155,7 +163,14 @@ export function TaskPanel({
       }}
     >
       <div className="kc-task-panel-header">
-        <h3 className="kc-task-panel-title">{t('board.panel.title')}</h3>
+        <div>
+          <h3 className="kc-task-panel-title">{t('board.panel.title')}</h3>
+          <p className="kc-task-panel-meta" title={parseServerTime(task.createdAt).toLocaleString(formatLocale())}>
+            {creatorName
+              ? t('board.panel.createdBy', { name: creatorName, date: createdOn(task.createdAt) })
+              : t('board.panel.created', { date: createdOn(task.createdAt) })}
+          </p>
+        </div>
         <div className="kc-task-panel-header-actions">
           <button
             type="button"

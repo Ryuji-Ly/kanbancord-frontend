@@ -27,6 +27,7 @@ import {
   rolesByTask,
   withSimpleView,
   resolveAssignee,
+  resolveAssigneeDisplayName,
   sortColumns,
   toAssigneeMembers,
   type AssigneeMember,
@@ -148,6 +149,15 @@ export function BoardPage() {
   )
   const members = useMemo(() => toAssigneeMembers(membersQuery.data ?? []), [membersQuery.data])
   const directory = useMemo(() => assigneeDirectory(members, me), [members, me])
+
+  /** A task's creator by name: from the snapshot, which also names non-members, else from the server's members. */
+  function creatorName(userId: string | null): string | null {
+    if (!userId) return null
+    const listed = snapshot?.creators?.find((creator) => creator.userId === String(userId))
+    if (listed) return listed.name
+    const member = directory.get(String(userId))
+    return member ? resolveAssigneeDisplayName(member) : null
+  }
   const assigneesByTaskId = useMemo(() => {
     const groups: Record<number, AssigneeMember[]> = {}
     for (const assignment of shown.ASSIGNEES ? (snapshot?.assignments ?? []) : []) {
@@ -554,6 +564,7 @@ export function BoardPage() {
             abilities={selectedTask.isArchived ? archivedTaskAbilities(abilities) : abilities}
             assignees={assigneesByTaskId[selectedTask.taskId] ?? []}
             members={members}
+            creatorName={creatorName(selectedTask.createdBy)}
             priorities={snapshot?.priorities ?? []}
             labels={snapshot?.labels ?? []}
             taskLabels={labelsByTaskId.get(selectedTask.taskId) ?? []}

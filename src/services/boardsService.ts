@@ -141,6 +141,8 @@ export type BoardSnapshot = {
   features: ServerFeatures
   /** Which optional features the server has on; a board can only switch off what is on here. */
   serverFeatures: ServerFeatures
+  /** Who created the board's tasks, by name: they need not be members, such as people who reported a roadmap issue. */
+  creators?: { userId: string; name: string }[]
 }
 
 /** Follows or unfollows a whole board: its followers hear about every task on it. */

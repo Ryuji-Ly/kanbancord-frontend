@@ -175,7 +175,9 @@
     "noTaskSelected": "Ingen uppgift är vald.",
     "archive": "Arkivera",
     "restore": "Återställ",
-    "archivedNote": "Den här uppgiften är arkiverad: den är inte på tavlan och kan inte ändras förrän den har återställts."
+    "archivedNote": "Den här uppgiften är arkiverad: den är inte på tavlan och kan inte ändras förrän den har återställts.",
+    "createdBy": "Skapad av {name} · {date}",
+    "created": "Skapad {date}"
   },
   "import": {
     "title": "Importera uppgifter",

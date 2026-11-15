@@ -179,7 +179,9 @@
     "noTaskSelected": "No hay ninguna tarea seleccionada.",
     "archive": "Archivar",
     "restore": "Restaurar",
-    "archivedNote": "Esta tarea está archivada: no está en el tablero y no se puede cambiar hasta restaurarla."
+    "archivedNote": "Esta tarea está archivada: no está en el tablero y no se puede cambiar hasta restaurarla.",
+    "createdBy": "Creada por {name} · {date}",
+    "created": "Creada el {date}"
   },
   "import": {
     "title": "Importar tareas",

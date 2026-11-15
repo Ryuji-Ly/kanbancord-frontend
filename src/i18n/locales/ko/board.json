@@ -171,7 +171,9 @@
     "noTaskSelected": "선택한 작업이 없어요.",
     "archive": "보관",
     "restore": "복원",
-    "archivedNote": "보관된 작업이에요. 보드에 표시되지 않으며 복원하기 전에는 변경할 수 없어요."
+    "archivedNote": "보관된 작업이에요. 보드에 표시되지 않으며 복원하기 전에는 변경할 수 없어요.",
+    "createdBy": "만든 사람: {name} · {date}",
+    "created": "만든 날짜: {date}"
   },
   "import": {
     "title": "작업 가져오기",

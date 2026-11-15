@@ -171,7 +171,9 @@
     "noTaskSelected": "未选择任务。",
     "archive": "归档",
     "restore": "恢复",
-    "archivedNote": "此任务已归档：不在看板上，恢复之前无法更改。"
+    "archivedNote": "此任务已归档：不在看板上，恢复之前无法更改。",
+    "createdBy": "创建者：{name} · {date}",
+    "created": "创建于 {date}"
   },
   "import": {
     "title": "导入任务",

@@ -183,7 +183,9 @@
     "noTaskSelected": "Nie je vybraná žiadna úloha.",
     "archive": "Archivovať",
     "restore": "Obnoviť",
-    "archivedNote": "Táto úloha je archivovaná: nie je na nástenke a nedá sa meniť, kým nebude obnovená."
+    "archivedNote": "Táto úloha je archivovaná: nie je na nástenke a nedá sa meniť, kým nebude obnovená.",
+    "createdBy": "Vytvorené používateľom {name} · {date}",
+    "created": "Vytvorené {date}"
   },
   "import": {
     "title": "Importovať úlohy",

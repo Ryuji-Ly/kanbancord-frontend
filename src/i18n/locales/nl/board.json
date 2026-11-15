@@ -175,7 +175,9 @@
     "noTaskSelected": "Er is geen taak geselecteerd.",
     "archive": "Archiveren",
     "restore": "Herstellen",
-    "archivedNote": "Deze taak is gearchiveerd: niet meer op het bord, en pas te wijzigen na herstellen."
+    "archivedNote": "Deze taak is gearchiveerd: niet meer op het bord, en pas te wijzigen na herstellen.",
+    "createdBy": "Gemaakt door {name} · {date}",
+    "created": "Gemaakt op {date}"
   },
   "import": {
     "title": "Taken importeren",

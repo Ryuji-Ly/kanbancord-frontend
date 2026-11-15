@@ -183,7 +183,9 @@
     "noTaskSelected": "Není vybrán žádný úkol.",
     "archive": "Archivovat",
     "restore": "Obnovit",
-    "archivedNote": "Tento úkol je archivovaný: není na nástěnce a nelze ho měnit, dokud nebude obnoven."
+    "archivedNote": "Tento úkol je archivovaný: není na nástěnce a nelze ho měnit, dokud nebude obnoven.",
+    "createdBy": "Vytvořeno uživatelem {name} · {date}",
+    "created": "Vytvořeno {date}"
   },
   "import": {
     "title": "Importovat úkoly",

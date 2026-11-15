@@ -171,7 +171,9 @@
     "noTaskSelected": "タスクが選択されていません。",
     "archive": "アーカイブ",
     "restore": "復元",
-    "archivedNote": "このタスクはアーカイブ済みです。ボードには表示されず、復元するまで変更できません。"
+    "archivedNote": "このタスクはアーカイブ済みです。ボードには表示されず、復元するまで変更できません。",
+    "createdBy": "作成者: {name} · {date}",
+    "created": "作成日: {date}"
   },
   "import": {
     "title": "タスクをインポート",

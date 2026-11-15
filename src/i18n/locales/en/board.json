@@ -175,7 +175,9 @@
     "noTaskSelected": "No task is selected.",
     "archive": "Archive",
     "restore": "Restore",
-    "archivedNote": "This task is archived: it is off the board and cannot be changed until it is restored."
+    "archivedNote": "This task is archived: it is off the board and cannot be changed until it is restored.",
+    "createdBy": "Created by {name} · {date}",
+    "created": "Created {date}"
   },
   "import": {
     "title": "Import tasks",

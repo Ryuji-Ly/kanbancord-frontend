@@ -175,7 +175,9 @@
     "noTaskSelected": "Nincs kiválasztott feladat.",
     "archive": "Archiválás",
     "restore": "Visszaállítás",
-    "archivedNote": "Ez a feladat archiválva van: nincs a táblán, és visszaállításig nem módosítható."
+    "archivedNote": "Ez a feladat archiválva van: nincs a táblán, és visszaállításig nem módosítható.",
+    "createdBy": "Létrehozta: {name} · {date}",
+    "created": "Létrehozva: {date}"
   },
   "import": {
     "title": "Feladatok importálása",

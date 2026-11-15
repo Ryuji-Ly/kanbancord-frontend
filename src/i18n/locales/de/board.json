@@ -175,7 +175,9 @@
     "noTaskSelected": "Keine Aufgabe ausgewählt.",
     "archive": "Archivieren",
     "restore": "Wiederherstellen",
-    "archivedNote": "Diese Aufgabe ist archiviert: Sie ist nicht mehr auf dem Board und kann erst nach dem Wiederherstellen geändert werden."
+    "archivedNote": "Diese Aufgabe ist archiviert: Sie ist nicht mehr auf dem Board und kann erst nach dem Wiederherstellen geändert werden.",
+    "createdBy": "Erstellt von {name} · {date}",
+    "created": "Erstellt am {date}"
   },
   "import": {
     "title": "Aufgaben importieren",

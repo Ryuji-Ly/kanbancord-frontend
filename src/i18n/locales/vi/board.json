@@ -171,7 +171,9 @@
     "noTaskSelected": "Chưa chọn công việc nào.",
     "archive": "Lưu trữ",
     "restore": "Khôi phục",
-    "archivedNote": "Công việc này đã được lưu trữ: không còn trên bảng và không thể thay đổi cho đến khi được khôi phục."
+    "archivedNote": "Công việc này đã được lưu trữ: không còn trên bảng và không thể thay đổi cho đến khi được khôi phục.",
+    "createdBy": "Tạo bởi {name} · {date}",
+    "created": "Tạo ngày {date}"
   },
   "import": {
     "title": "Nhập công việc",

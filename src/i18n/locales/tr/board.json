@@ -175,7 +175,9 @@
     "noTaskSelected": "Seçili görev yok.",
     "archive": "Arşivle",
     "restore": "Geri yükle",
-    "archivedNote": "Bu görev arşivlendi: panoda değil ve geri yüklenene kadar değiştirilemez."
+    "archivedNote": "Bu görev arşivlendi: panoda değil ve geri yüklenene kadar değiştirilemez.",
+    "createdBy": "Oluşturan: {name} · {date}",
+    "created": "Oluşturulma: {date}"
   },
   "import": {
     "title": "Görevleri içe aktar",

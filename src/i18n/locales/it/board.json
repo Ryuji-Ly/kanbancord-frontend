@@ -179,7 +179,9 @@
     "noTaskSelected": "Nessuna attività selezionata.",
     "archive": "Archivia",
     "restore": "Ripristina",
-    "archivedNote": "Questa attività è archiviata: non è più sulla bacheca e non si può modificare finché non viene ripristinata."
+    "archivedNote": "Questa attività è archiviata: non è più sulla bacheca e non si può modificare finché non viene ripristinata.",
+    "createdBy": "Creata da {name} · {date}",
+    "created": "Creata il {date}"
   },
   "import": {
     "title": "Importa attività",
