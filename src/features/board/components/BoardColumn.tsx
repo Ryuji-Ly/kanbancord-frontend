@@ -22,6 +22,12 @@ type BoardColumnProps = {
   canMoveTasks: boolean
   /** Whether the column's menu offers archiving all of its tasks. */
   canArchiveTasks: boolean
+  /**
+   * Whether its tasks count as done: marked so, or the last column while no column is marked. Left out where
+   * it cannot be changed (the roadmap).
+   */
+  doneState?: 'marked' | 'default' | null
+  onToggleDone?: () => void
   menuOpen: boolean
   /** The column being dragged renders as an empty slot where it would land. */
   isDragPlaceholder: boolean
@@ -80,6 +86,8 @@ export function BoardColumn({
   canCreateTask,
   canMoveTasks,
   canArchiveTasks,
+  doneState = null,
+  onToggleDone,
   menuOpen,
   isDragPlaceholder,
   draggedTaskId,
@@ -158,7 +166,7 @@ export function BoardColumn({
           </h3>
         )}
 
-        {(canDelete || canArchiveTasks) && (
+        {(canDelete || canArchiveTasks || (canEdit && onToggleDone)) && (
           <div className="kc-column-menu-wrap" data-no-column-drag="true">
             <button
               className="kc-column-menu-btn"
@@ -173,6 +181,20 @@ export function BoardColumn({
             </button>
             {menuOpen && (
               <ul className="kc-column-menu-dropdown" role="menu">
+                {canEdit && onToggleDone && (
+                  <li role="none">
+                    <button
+                      role="menuitemcheckbox"
+                      aria-checked={doneState !== null}
+                      className="kc-column-menu-item"
+                      title={doneState === 'default' ? t('board.column.doneDefaultHint') : undefined}
+                      onClick={onToggleDone}
+                    >
+                      {doneState !== null ? '✓ ' : ''}
+                      {t(doneState === 'default' ? 'board.column.countsAsDoneDefault' : 'board.column.countsAsDone')}
+                    </button>
+                  </li>
+                )}
                 {canArchiveTasks && (
                   <li role="none">
                     <button role="menuitem" className="kc-column-menu-item" onClick={onRequestArchiveTasks}>

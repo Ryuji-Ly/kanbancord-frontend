@@ -59,7 +59,10 @@
     "delete": "删除列",
     "addTask": "+ 添加任务",
     "showAll": "显示全部（{count}）",
-    "archiveTasks": "归档所有任务"
+    "archiveTasks": "归档所有任务",
+    "countsAsDone": "视为完成",
+    "countsAsDoneDefault": "视为完成（最后一列）",
+    "doneDefaultHint": "在你标记某一列之前，最后一列视为完成：其中的任务不会收到截止日期提醒。"
   },
   "pickers": {
     "searchUser": "搜索用户",

@@ -61,7 +61,10 @@
     "delete": "Sütunu sil",
     "addTask": "+ Görev ekle",
     "showAll": "Tümünü göster ({count})",
-    "archiveTasks": "Tüm görevleri arşivle"
+    "archiveTasks": "Tüm görevleri arşivle",
+    "countsAsDone": "Tamamlanmış sayılır",
+    "countsAsDoneDefault": "Tamamlanmış sayılır (son sütun)",
+    "doneDefaultHint": "Bir sütun işaretleyene kadar son sütun tamamlanmış sayılır: içindeki görevler son tarih hatırlatıcısı almaz."
   },
   "pickers": {
     "searchUser": "Üye ara",

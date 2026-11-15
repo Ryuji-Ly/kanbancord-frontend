@@ -61,7 +61,10 @@
     "delete": "Delete column",
     "addTask": "+ Add a task",
     "showAll": "Show all ({count})",
-    "archiveTasks": "Archive all tasks"
+    "archiveTasks": "Archive all tasks",
+    "countsAsDone": "Counts as done",
+    "countsAsDoneDefault": "Counts as done (last column)",
+    "doneDefaultHint": "Until you mark a column, the last one counts as done: its tasks get no due-date reminders."
   },
   "pickers": {
     "searchUser": "Search user",

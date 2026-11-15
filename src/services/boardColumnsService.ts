@@ -8,6 +8,8 @@ export type BoardColumnEntry = {
   position: number | null
   color: string | null
   wipLimit: number | null
+  /** Marked as done. Whether its tasks count as done also depends on the other columns: see doneColumnIds. */
+  countsAsDone?: boolean
   createdAt: string
   updatedAt: string
 }
@@ -44,6 +46,7 @@ export async function updateColumn(
     position?: number | null
     color?: string | null
     wipLimit?: number | null
+    countsAsDone?: boolean
   },
 ): Promise<BoardColumnEntry> {
   const response = await apiFetch(`/api/servers/${serverId}/boards/${boardId}/columns/${columnId}`, {
@@ -55,6 +58,7 @@ export async function updateColumn(
       position: options?.position ?? undefined,
       color: options?.color ?? undefined,
       wipLimit: options?.wipLimit ?? undefined,
+      countsAsDone: options?.countsAsDone,
     }),
   })
   if (!response.ok) throw new Error(await parseError(response))

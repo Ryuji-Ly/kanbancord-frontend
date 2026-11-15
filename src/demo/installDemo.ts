@@ -517,6 +517,14 @@ const ROUTES: [string, RegExp, Handler][] = [
     return task && { ...task, isArchived: archived }
   }],
   ['POST', /^\/api\/servers\/\d+\/boards\/\d+\/import-tasks(\/preview)?$/, (_m, { body }) => demoImportPlan(body)],
+  ['PUT', /^\/api\/servers\/\d+\/boards\/\d+\/columns\/(\d+)$/, (m, { body }) => {
+    const column = data.COLUMNS.find((entry) => entry.columnId === Number(m[1]))
+    const changes = body as { name: string; countsAsDone?: boolean }
+    if (!column) return null
+    column.name = changes.name
+    if (changes.countsAsDone !== undefined) Object.assign(column, { countsAsDone: changes.countsAsDone })
+    return column
+  }],
   ['POST', /^\/api\/servers\/\d+\/boards\/\d+\/columns\/(\d+)\/archive-tasks$/, (m) => {
     const tasks = data.TASKS.filter((task) => task.columnId === Number(m[1]) && !archivedTaskIds.has(task.taskId))
     tasks.forEach((task) => archivedTaskIds.add(task.taskId))

@@ -63,7 +63,10 @@
     "delete": "Elimina la colonna",
     "addTask": "+ Aggiungi un'attività",
     "showAll": "Mostra tutto ({count})",
-    "archiveTasks": "Archivia tutte le attività"
+    "archiveTasks": "Archivia tutte le attività",
+    "countsAsDone": "Conta come completata",
+    "countsAsDoneDefault": "Conta come completata (ultima colonna)",
+    "doneDefaultHint": "Finché non segni una colonna, conta come completata l'ultima: le sue attività non ricevono promemoria di scadenza."
   },
   "pickers": {
     "searchUser": "Cerca un utente",

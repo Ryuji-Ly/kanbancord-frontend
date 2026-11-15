@@ -59,7 +59,10 @@
     "delete": "列を削除",
     "addTask": "＋ タスクを追加",
     "showAll": "すべて表示（{count}）",
-    "archiveTasks": "すべてのタスクをアーカイブ"
+    "archiveTasks": "すべてのタスクをアーカイブ",
+    "countsAsDone": "完了扱い",
+    "countsAsDoneDefault": "完了扱い（最後の列）",
+    "doneDefaultHint": "列に印を付けるまでは、最後の列が完了扱いになり、そのタスクには期限のリマインダーが届きません。"
   },
   "pickers": {
     "searchUser": "ユーザーを検索",

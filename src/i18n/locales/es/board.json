@@ -63,7 +63,10 @@
     "delete": "Eliminar columna",
     "addTask": "+ Añadir tarea",
     "showAll": "Mostrar todo ({count})",
-    "archiveTasks": "Archivar todas las tareas"
+    "archiveTasks": "Archivar todas las tareas",
+    "countsAsDone": "Cuenta como hecha",
+    "countsAsDoneDefault": "Cuenta como hecha (última columna)",
+    "doneDefaultHint": "Hasta que marques una columna, la última cuenta como hecha: sus tareas no reciben recordatorios de fecha límite."
   },
   "pickers": {
     "searchUser": "Buscar miembro",

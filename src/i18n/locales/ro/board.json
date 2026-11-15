@@ -63,7 +63,10 @@
     "delete": "Șterge coloana",
     "addTask": "+ Adaugă o sarcină",
     "showAll": "Afișează tot ({count})",
-    "archiveTasks": "Arhivează toate sarcinile"
+    "archiveTasks": "Arhivează toate sarcinile",
+    "countsAsDone": "Contează ca terminată",
+    "countsAsDoneDefault": "Contează ca terminată (ultima coloană)",
+    "doneDefaultHint": "Până marchezi o coloană, ultima contează ca terminată: sarcinile din ea nu primesc mementouri de termen."
   },
   "pickers": {
     "searchUser": "Caută utilizator",

@@ -557,9 +557,19 @@ export function priorityStyle(color: string | null | undefined): CSSProperties {
 
 // ── Label progress ───────────────────────────────────────────────────────────
 
+/**
+ * The columns whose tasks count as done (no due reminders, done in label progress): the ones marked so, or the
+ * board's last column when none is. The API's rule, in DoneColumns.
+ */
+export function doneColumnIds(columns: BoardColumnEntry[]): Set<number> {
+  const marked = columns.filter((column) => column.countsAsDone)
+  const done = marked.length > 0 ? marked : sortColumns(columns).slice(-1)
+  return new Set(done.map((column) => column.columnId))
+}
+
 export type LabelProgress = {
   total: number
-  /** In the board's last column, or archived. */
+  /** In a column that counts as done, or archived. */
   done: number
   /** Who has the open tasks, most first: user id and how many. */
   people: { userId: string; count: number }[]
@@ -576,14 +586,14 @@ export function labelProgress(
   labelId: number,
 ): LabelProgress {
   const onBoard = new Map(snapshot.tasks.map((task) => [task.taskId, task]))
-  const lastColumn = sortColumns(snapshot.columns).at(-1)?.columnId
+  const done = doneColumnIds(snapshot.columns)
   const progress: LabelProgress = { total: 0, done: 0, people: [], unassigned: 0 }
   const people = new Map<string, number>()
   for (const taskLabel of snapshot.taskLabels) {
     if (taskLabel.labelId !== labelId) continue
     progress.total += 1
     const task = onBoard.get(taskLabel.taskId)
-    if (!task || task.columnId === lastColumn) {
+    if (!task || done.has(task.columnId)) {
       progress.done += 1
       continue
     }

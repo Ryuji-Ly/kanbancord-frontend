@@ -65,7 +65,10 @@
     "delete": "Smazat sloupec",
     "addTask": "+ Přidat úkol",
     "showAll": "Zobrazit vše ({count})",
-    "archiveTasks": "Archivovat všechny úkoly"
+    "archiveTasks": "Archivovat všechny úkoly",
+    "countsAsDone": "Počítá se jako hotové",
+    "countsAsDoneDefault": "Počítá se jako hotové (poslední sloupec)",
+    "doneDefaultHint": "Dokud neoznačíš nějaký sloupec, počítá se jako hotový poslední: jeho úkoly nedostávají připomínky termínu."
   },
   "pickers": {
     "searchUser": "Hledat uživatele",
