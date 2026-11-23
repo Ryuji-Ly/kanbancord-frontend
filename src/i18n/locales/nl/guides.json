@@ -71,7 +71,7 @@
     "panelCaption": "Een taak die is toegewezen aan twee mensen en een hele rol.",
     "loopTitle": "Iedereen op de hoogte houden",
     "loop": "Mensen krijgen een direct bericht over taken die aan hen zijn toegewezen: als ze worden toegewezen, als de taak wordt verplaatst, als de deadline verandert, als iemand reageert en meer. Ieder kiest zelf wat hij of zij krijgt met <code>/notifications</code>, en niemand hoort over eigen wijzigingen. Heeft een updatefeed iemand al vermeld in een kanaal dat die persoon kan zien, dan kan het directe bericht over hetzelfde worden overgeslagen.",
-    "follow": "Niet toegewezen, maar wil je een taak in de gaten houden? <strong>Volg</strong> hem via het menu, de website of de knop Follow onder een feedpost, en je hoort erover net als de toegewezen personen.",
+    "follow": "Niet toegewezen, maar wil je een taak in de gaten houden? <strong>Volg</strong> hem via het menu, de website of de knop Follow onder een feedpost, en je hoort erover net als de toegewezen personen. Volg een heel bord via het ⋯-menu, of met /board follow in Discord. Een bord volgen is als elke taak erop volgen, ook nieuwe.",
     "whoTitle": "Wie wie mag toewijzen",
     "who": "Standaard kan iedereen die berichten kan versturen taken aan zichzelf toewijzen, en moderators (Berichten beheren) kunnen ze aan anderen toewijzen. Servers kunnen dit wijzigen, per bord en per rol; zie <permissions>rollen en rechten</permissions>."
   },

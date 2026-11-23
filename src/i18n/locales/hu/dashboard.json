@@ -36,7 +36,12 @@
     "settings": "Tábla beállításai",
     "export": "Exportálás",
     "exportNotAllowed": "Nem látod ennek a táblának a feladatait, ezért nem exportálhatod.",
-    "importTasks": "Feladatok importálása"
+    "importTasks": "Feladatok importálása",
+    "follow": "Tábla követése",
+    "unfollow": "Tábla követésének leállítása",
+    "followed": "Most követed ezt a táblát: minden feladatáról értesülsz.",
+    "unfollowed": "Már nem követed ezt a táblát.",
+    "followFailed": "A követést nem sikerült módosítani"
   },
   "boardModal": {
     "defaultColumns": {

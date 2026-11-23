@@ -36,7 +36,12 @@
     "settings": "Tavlans inställningar",
     "export": "Exportera",
     "exportNotAllowed": "Du kan inte se tavlans uppgifter och kan därför inte exportera den.",
-    "importTasks": "Importera uppgifter"
+    "importTasks": "Importera uppgifter",
+    "follow": "Följ tavlan",
+    "unfollow": "Sluta följa tavlan",
+    "followed": "Du följer den här tavlan nu: du får höra om alla dess uppgifter.",
+    "unfollowed": "Du följer inte längre den här tavlan.",
+    "followFailed": "Följandet kunde inte ändras"
   },
   "boardModal": {
     "defaultColumns": {

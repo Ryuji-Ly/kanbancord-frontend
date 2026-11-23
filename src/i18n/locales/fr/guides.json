@@ -71,7 +71,7 @@
     "panelCaption": "Une tâche assignée à deux personnes et à un rôle entier.",
     "loopTitle": "Tenir tout le monde informé",
     "loop": "Les gens sont avertis par message privé des tâches qui leur sont assignées : quand on les assigne, quand la tâche est déplacée, quand son échéance change, quand quelqu'un commente, et plus encore. Chacun choisit ce qu'il reçoit avec <code>/notifications</code>, et personne n'est jamais averti de ses propres changements. Si un flux de mises à jour a déjà mentionné quelqu'un dans un salon qu'il voit, il peut se passer du message privé pour la même chose.",
-    "follow": "Pas assigné, mais tu veux garder un œil sur une tâche ? <strong>Suis-la</strong> depuis son menu, depuis le site, ou avec le bouton Follow d'une publication de flux, et tu en seras averti comme ses responsables.",
+    "follow": "Pas assigné, mais tu veux garder un œil sur une tâche ? <strong>Suis-la</strong> depuis son menu, depuis le site, ou avec le bouton Follow d'une publication de flux, et tu en seras averti comme ses responsables. Suis un tableau entier depuis son menu ⋯, ou avec /board follow dans Discord. Suivre un tableau revient à suivre chacune de ses tâches, y compris les nouvelles.",
     "whoTitle": "Qui peut assigner qui",
     "who": "Par défaut, tous ceux qui peuvent envoyer des messages peuvent s'assigner eux-mêmes, et les modérateurs (« Gérer les messages ») peuvent assigner les autres. Les serveurs peuvent changer cela, par tableau et par rôle ; voir <permissions>Rôles et permissions</permissions>."
   },

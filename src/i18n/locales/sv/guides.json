@@ -71,7 +71,7 @@
     "panelCaption": "En uppgift tilldelad till två personer och en hel roll.",
     "loopTitle": "Hålla alla informerade",
     "loop": "Folk får ett direktmeddelande om uppgifter de har tilldelats: när de tilldelas, när uppgiften flyttas, när förfallodatumet ändras, när någon kommenterar och mer. Var och en väljer själv vad de får med <code>/notifications</code>, och ingen får höra om sina egna ändringar. Om ett uppdateringsflöde redan har nämnt någon i en kanal som personen kan se kan direktmeddelandet om samma sak hoppas över.",
-    "follow": "Inte tilldelad, men vill hålla koll på en uppgift? <strong>Följ</strong> den från dess meny, på webbplatsen eller med knappen Follow under ett flödesinlägg, så får du höra om den precis som de tilldelade.",
+    "follow": "Inte tilldelad, men vill hålla koll på en uppgift? <strong>Följ</strong> den från dess meny, på webbplatsen eller med knappen Follow under ett flödesinlägg, så får du höra om den precis som de tilldelade. Följ en hel tavla från dess ⋯-meny, eller med /board follow i Discord. Att följa en tavla är som att följa var och en av dess uppgifter, även nya.",
     "whoTitle": "Vem som får tilldela vem",
     "who": "Som standard kan alla som kan skicka meddelanden tilldela sig själva uppgifter, och moderatorer (Hantera meddelanden) kan tilldela dem till andra. Servrar kan ändra detta per tavla och per roll; se <permissions>roller och behörigheter</permissions>."
   },

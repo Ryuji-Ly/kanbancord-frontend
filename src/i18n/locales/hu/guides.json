@@ -71,7 +71,7 @@
     "panelCaption": "Két emberhez és egy egész ranghoz rendelt feladat.",
     "loopTitle": "Mindenki képben tartása",
     "loop": "Az emberek közvetlen üzenetet kapnak a hozzájuk rendelt feladatokról: amikor hozzájuk rendelik őket, amikor a feladatot áthelyezik, amikor a határidő változik, amikor valaki hozzászól, és így tovább. Mindenki maga választja ki a <code>/notifications</code> paranccsal, mit kap, és senki sem kap értesítést a saját módosításairól. Ha egy frissítési hírfolyam már megemlített valakit egy általa látható csatornában, az ugyanarról szóló közvetlen üzenet elmaradhat.",
-    "follow": "Nem vagy hozzárendelve, de szemmel tartanál egy feladatot? <strong>Kövesd</strong> a menüjéből, a webhelyről vagy egy hírfolyam-bejegyzés Follow gombjával, és ugyanúgy értesülsz róla, mint a felelősök.",
+    "follow": "Nem vagy hozzárendelve, de szemmel tartanál egy feladatot? <strong>Kövesd</strong> a menüjéből, a webhelyről vagy egy hírfolyam-bejegyzés Follow gombjával, és ugyanúgy értesülsz róla, mint a felelősök. Egy egész táblát a ⋯ menüjéből követhetsz, vagy a /board follow paranccsal a Discordban. Egy tábla követése olyan, mintha minden feladatát követnéd, az újakat is.",
     "whoTitle": "Ki kit rendelhet hozzá",
     "who": "Alapértelmezés szerint mindenki, aki üzenetet küldhet, magához rendelhet feladatokat, a moderátorok (Üzenetek kezelése) pedig másokhoz is. A szerverek ezt táblánként és rangonként módosíthatják; lásd a <permissions>rangok és jogosultságok</permissions> útmutatót."
   },

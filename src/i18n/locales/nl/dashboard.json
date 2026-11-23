@@ -36,7 +36,12 @@
     "settings": "Bordinstellingen",
     "export": "Exporteren",
     "exportNotAllowed": "Je kunt de taken van dit bord niet zien, dus je kunt het niet exporteren.",
-    "importTasks": "Taken importeren"
+    "importTasks": "Taken importeren",
+    "follow": "Bord volgen",
+    "unfollow": "Bord niet meer volgen",
+    "followed": "Je volgt dit bord nu: je hoort over al zijn taken.",
+    "unfollowed": "Je volgt dit bord niet meer.",
+    "followFailed": "Volgen kon niet worden gewijzigd"
   },
   "boardModal": {
     "defaultColumns": {

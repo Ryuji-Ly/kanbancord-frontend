@@ -71,7 +71,7 @@
     "panelCaption": "Một công việc giao cho hai người và cả một vai trò.",
     "loopTitle": "Giữ mọi người nắm tình hình",
     "loop": "Mọi người nhận tin nhắn trực tiếp về công việc được giao cho họ: khi được giao, khi công việc được di chuyển, khi hạn chót thay đổi, khi có người bình luận và hơn thế. Mỗi người tự chọn những gì nhận bằng <code>/notifications</code>, và không ai nhận thông báo về thay đổi của chính mình. Nếu luồng cập nhật đã nhắc đến ai đó trong kênh họ xem được, tin nhắn trực tiếp về cùng việc đó có thể được bỏ qua.",
-    "follow": "Không được giao nhưng muốn theo sát một công việc? <strong>Theo dõi</strong> nó từ menu, trên trang web hoặc bằng nút Follow dưới bài đăng của luồng, và bạn sẽ nhận thông báo như người phụ trách.",
+    "follow": "Không được giao nhưng muốn theo sát một công việc? <strong>Theo dõi</strong> nó từ menu, trên trang web hoặc bằng nút Follow dưới bài đăng của luồng, và bạn sẽ nhận thông báo như người phụ trách. Theo dõi cả bảng từ menu ⋯ của bảng, hoặc bằng /board follow trong Discord. Theo dõi một bảng giống như theo dõi từng việc trong đó, kể cả việc mới.",
     "whoTitle": "Ai được giao việc cho ai",
     "who": "Theo mặc định, ai gửi được tin nhắn đều có thể tự nhận việc, và điều hành viên (Quản Lý Tin Nhắn) có thể giao việc cho người khác. Máy chủ có thể thay đổi điều này theo từng bảng và từng vai trò; xem <permissions>vai trò và quyền</permissions>."
   },

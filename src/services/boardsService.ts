@@ -131,6 +131,8 @@ export type BoardSnapshot = {
   priorities: PriorityEntry[]
   /** The tasks on this board you follow. */
   followedTaskIds?: number[]
+  /** Whether you follow the whole board, which counts as following each of its tasks. */
+  followingBoard?: boolean
   permissions: PermissionDecisionMap
   /**
    * Which optional features are on for this board: on for the server and not switched off by the
@@ -139,6 +141,12 @@ export type BoardSnapshot = {
   features: ServerFeatures
   /** Which optional features the server has on; a board can only switch off what is on here. */
   serverFeatures: ServerFeatures
+}
+
+/** Follows or unfollows a whole board: its followers hear about every task on it. */
+export async function setBoardFollowing(serverId: string, boardId: string, follow: boolean): Promise<void> {
+  const response = await apiFetch(`/api/servers/${serverId}/boards/${boardId}/follow`, { method: follow ? 'PUT' : 'DELETE' })
+  if (!response.ok) throw new Error(await parseError(response))
 }
 
 export async function fetchBoardSnapshot(

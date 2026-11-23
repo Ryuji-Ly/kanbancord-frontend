@@ -71,7 +71,7 @@
     "panelCaption": "Úkol přiřazený dvěma lidem a celé roli.",
     "loopTitle": "Všichni v obraze",
     "loop": "Lidé dostávají soukromou zprávu o úkolech, které jim byly přiřazeny: když jsou přiřazeni, když se úkol přesune, když se změní termín, když někdo okomentuje a další. Každý si sám volí, co dostává, příkazem <code>/notifications</code>, a nikdo se nedozví o vlastních změnách. Pokud feed aktualizací někoho už zmínil v kanálu, který ten člověk vidí, soukromá zpráva o téže věci se může vynechat.",
-    "follow": "Nejsi přiřazen, ale chceš úkol sledovat? <strong>Sleduj</strong> ho z jeho nabídky, na webu nebo tlačítkem Follow pod příspěvkem feedu a budeš o něm dostávat zprávy jako řešitelé.",
+    "follow": "Nejsi přiřazen, ale chceš úkol sledovat? <strong>Sleduj</strong> ho z jeho nabídky, na webu nebo tlačítkem Follow pod příspěvkem feedu a budeš o něm dostávat zprávy jako řešitelé. Celou nástěnku můžeš sledovat z její nabídky ⋯, nebo příkazem /board follow v Discordu. Sledovat nástěnku je jako sledovat každý její úkol, i nové.",
     "whoTitle": "Kdo smí přiřazovat koho",
     "who": "Ve výchozím stavu si každý, kdo smí posílat zprávy, může přiřazovat úkoly sám sobě a moderátoři (Spravovat zprávy) je mohou přiřazovat ostatním. Servery to mohou změnit pro každou nástěnku a roli; viz <permissions>role a oprávnění</permissions>."
   },

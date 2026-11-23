@@ -36,7 +36,12 @@
     "settings": "Cài đặt bảng",
     "export": "Xuất",
     "exportNotAllowed": "Bạn không xem được công việc của bảng này nên không thể xuất nó.",
-    "importTasks": "Nhập công việc"
+    "importTasks": "Nhập công việc",
+    "follow": "Theo dõi bảng",
+    "unfollow": "Bỏ theo dõi bảng",
+    "followed": "Bạn đang theo dõi bảng này: bạn sẽ biết về mọi việc trong đó.",
+    "unfollowed": "Bạn không còn theo dõi bảng này.",
+    "followFailed": "Không thay đổi được việc theo dõi"
   },
   "boardModal": {
     "defaultColumns": {

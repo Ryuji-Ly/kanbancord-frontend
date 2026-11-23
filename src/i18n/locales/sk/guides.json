@@ -71,7 +71,7 @@
     "panelCaption": "Úloha priradená dvom ľuďom a celej role.",
     "loopTitle": "Držať ľudí v obraze",
     "loop": "Ľudia sa o úlohách, ktoré majú priradené, dozvedajú zo súkromných správ: keď ich priradia, keď sa úloha presunie, keď sa zmení jej termín, keď niekto napíše komentár a pri ďalších zmenách. Každý si vyberá, čo dostáva, cez <code>/notifications</code>, a o vlastných zmenách nikto nikdy nedostane správu. Ak niekoho už označil feed noviniek v kanáli, ktorý vidí, súkromnú správu o tom istom môže vynechať.",
-    "follow": "Úloha ti nie je priradená, ale chceš ju sledovať? <strong>Sleduj</strong> ju z jej ponuky, z webu alebo tlačidlom Follow v príspevku feedu a budeš o nej dostávať správy ako jej riešitelia.",
+    "follow": "Úloha ti nie je priradená, ale chceš ju sledovať? <strong>Sleduj</strong> ju z jej ponuky, z webu alebo tlačidlom Follow v príspevku feedu a budeš o nej dostávať správy ako jej riešitelia. Celú nástenku môžeš sledovať z jej ponuky ⋯ alebo príkazom /board follow v Discorde. Sledovať nástenku je ako sledovať každú jej úlohu, aj nové.",
     "whoTitle": "Kto môže koho priraďovať",
     "who": "Predvolene sa môže sám priradiť každý, kto môže posielať správy, a moderátori (Spravovať správy) môžu priraďovať iných. Servery to môžu zmeniť pre každú nástenku a rolu; pozri <permissions>roly a oprávnenia</permissions>."
   },

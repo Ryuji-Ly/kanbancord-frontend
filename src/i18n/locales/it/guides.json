@@ -71,7 +71,7 @@
     "panelCaption": "Un'attività assegnata a due persone e a un intero ruolo.",
     "loopTitle": "Tenere tutti aggiornati",
     "loop": "Le persone ricevono un messaggio diretto sulle attività che sono state loro assegnate: quando vengono assegnate, quando l'attività viene spostata, quando cambia la scadenza, quando qualcuno commenta e altro ancora. Ognuno sceglie cosa ricevere con <code>/notifications</code>, e nessuno viene mai avvisato delle proprie modifiche. Se un feed di aggiornamenti ha già menzionato qualcuno in un canale che può vedere, può saltare il messaggio diretto sulla stessa cosa.",
-    "follow": "Non sei assegnato, ma vuoi tenere d'occhio un'attività? <strong>Seguila</strong> dal suo menu, dal sito web o con il pulsante Follow su un messaggio del feed, e verrai avvisato come i suoi assegnatari.",
+    "follow": "Non sei assegnato, ma vuoi tenere d'occhio un'attività? <strong>Seguila</strong> dal suo menu, dal sito web o con il pulsante Follow su un messaggio del feed, e verrai avvisato come i suoi assegnatari. Segui un'intera bacheca dal suo menu ⋯, oppure con /board follow in Discord. Seguire una bacheca è come seguire ogni sua attività, anche quelle nuove.",
     "whoTitle": "Chi può assegnare chi",
     "who": "Per impostazione predefinita, chiunque possa inviare messaggi può assegnarsi un'attività, e i moderatori (Gestisci messaggi) possono assegnarla ad altri. I server possono cambiarlo, per bacheca e per ruolo; vedi <permissions>ruoli e permessi</permissions>."
   },

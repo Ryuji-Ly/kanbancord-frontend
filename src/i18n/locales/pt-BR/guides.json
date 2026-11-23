@@ -71,7 +71,7 @@
     "panelCaption": "Uma tarefa atribuída a duas pessoas e a um cargo inteiro.",
     "loopTitle": "Mantendo todos informados",
     "loop": "As pessoas recebem uma mensagem direta sobre as tarefas atribuídas a elas: quando são atribuídas, quando a tarefa é movida, quando o prazo muda, quando alguém comenta e mais. Cada pessoa escolhe o que recebe com <code>/notifications</code>, e ninguém é avisado das próprias alterações. Se um feed de atualizações já mencionou alguém em um canal que essa pessoa pode ver, ela pode pular a mensagem direta sobre a mesma coisa.",
-    "follow": "Não está atribuído, mas quer acompanhar uma tarefa? <strong>Siga</strong> a tarefa pelo menu dela, pelo site ou com o botão Follow em uma publicação do feed, e você vai ser avisado como os responsáveis.",
+    "follow": "Não está atribuído, mas quer acompanhar uma tarefa? <strong>Siga</strong> a tarefa pelo menu dela, pelo site ou com o botão Follow em uma publicação do feed, e você vai ser avisado como os responsáveis. Siga um quadro inteiro pelo menu ⋯ dele, ou com /board follow no Discord. Seguir um quadro é como seguir cada uma das tarefas dele, inclusive as novas.",
     "whoTitle": "Quem pode atribuir quem",
     "who": "Por padrão, todos que podem enviar mensagens podem atribuir tarefas a si mesmos, e os moderadores (Gerenciar mensagens) podem atribuir a outras pessoas. Os servidores podem mudar isso, por quadro e por cargo; veja <permissions>cargos e permissões</permissions>."
   },

@@ -71,7 +71,7 @@
     "panelCaption": "A task assigned to two people and a whole role.",
     "loopTitle": "Keeping people in the loop",
     "loop": "People hear about the tasks they are assigned to by direct message: when they are assigned, when the task moves, when its due date changes, when someone comments, and more. Everyone chooses what they get with <code>/notifications</code>, and nobody is ever told about their own changes. If an update feed already mentioned someone in a channel they can see, they can skip the direct message about the same thing.",
-    "follow": "Not assigned, but want to keep an eye on a task? <strong>Follow</strong> it from its menu, from the website, or with the Follow button on a feed post, and you will hear about it like its assignees do.",
+    "follow": "Not assigned, but want to keep an eye on a task? <strong>Follow</strong> it from its menu, from the website, or with the Follow button on a feed post, and you will hear about it like its assignees do. Follow a whole board from its ⋯ menu, or with /board follow in Discord. Following a board counts as following each of its tasks, new ones included.",
     "whoTitle": "Who may assign whom",
     "who": "By default, everyone who can send messages may assign themselves, and moderators (Manage Messages) may assign others. Servers can change that, per board and per role; see <permissions>roles and permissions</permissions>."
   },

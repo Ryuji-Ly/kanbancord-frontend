@@ -406,6 +406,14 @@ export function BoardPage() {
               canArchive={settingsAccess.archive}
               canDelete={settingsAccess.delete}
               canImport={abilities.createTask}
+              following={Boolean(snapshot?.followingBoard)}
+              onToggleFollow={() => {
+                const follow = !snapshot?.followingBoard
+                mutations.followBoard.mutate(follow, {
+                  onSuccess: () => showToast(t(follow ? 'dashboard.boards.followed' : 'dashboard.boards.unfollowed'), 'success'),
+                  onError: () => showToast(t('dashboard.boards.followFailed'), 'error'),
+                })
+              }}
               onOpenSettings={() => setShowSettings(true)}
               onChanged={() => void queryClient.invalidateQueries({ queryKey: boardKeys.all(serverId, boardId) })}
               onDeleted={() => navigate('/')}
