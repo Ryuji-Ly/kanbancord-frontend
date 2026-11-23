@@ -36,7 +36,12 @@
     "settings": "Board-Einstellungen",
     "export": "Exportieren",
     "exportNotAllowed": "Du kannst die Aufgaben dieses Boards nicht sehen und es daher nicht exportieren.",
-    "importTasks": "Aufgaben importieren"
+    "importTasks": "Aufgaben importieren",
+    "follow": "Board folgen",
+    "unfollow": "Board nicht mehr folgen",
+    "followed": "Du folgst diesem Board jetzt: Du erfährst von all seinen Aufgaben.",
+    "unfollowed": "Du folgst diesem Board nicht mehr.",
+    "followFailed": "Das Folgen konnte nicht geändert werden"
   },
   "boardModal": {
     "defaultColumns": {

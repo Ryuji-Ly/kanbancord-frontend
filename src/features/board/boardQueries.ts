@@ -2,7 +2,7 @@ import { t } from '../../i18n'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { fromLocalInput } from '../../api/http'
 import { useOptimisticCache } from '../../api/useOptimisticCache'
-import { fetchBoardSnapshot, type BoardSnapshot } from '../../services/boardsService'
+import { fetchBoardSnapshot, setBoardFollowing, type BoardSnapshot } from '../../services/boardsService'
 import { createColumn, deleteColumn, moveColumn, updateColumn, type BoardColumnEntry } from '../../services/boardColumnsService'
 import {
   assignTaskRole,
@@ -334,6 +334,13 @@ export function useBoardMutations(serverId: string, boardId: string) {
     ...settle,
   })
 
+  const followBoard = useMutation({
+    mutationFn: (following: boolean) => setBoardFollowing(serverId, boardId, following),
+    onMutate: (following) => board.apply((snapshot) => ({ ...snapshot, followingBoard: following })),
+    onError: (_error, _variables, context) => board.rollback(context),
+    ...settle,
+  })
+
   const unassign = useMutation({
     mutationFn: ({ taskId, assignmentId }: { taskId: number; assignmentId: number }) =>
       deleteTaskAssignment(serverId, boardId, taskId, assignmentId),
@@ -365,6 +372,7 @@ export function useBoardMutations(serverId: string, boardId: string) {
     assign,
     unassign,
     follow,
+    followBoard,
   }
 }
 

@@ -150,6 +150,8 @@ function demoImportPlan(body: unknown) {
 /** Tasks archived in the demo, which leave the board until restored. */
 const archivedTaskIds = new Set<number>()
 
+const followedBoards = new Set<number>()
+
 function snapshot(boardId: number) {
   const board = data.BOARDS.find((entry) => entry.boardId === boardId)
   if (!board) return null
@@ -167,6 +169,7 @@ function snapshot(boardId: number) {
     taskLabels: main ? data.TASK_LABELS : [],
     priorities: data.PRIORITIES.map((level) => ({ ...level, boardId })),
     followedTaskIds: main ? [data.FEATURED_TASK] : [],
+    followingBoard: followedBoards.has(boardId),
     permissions: allowed(data.BOARD_KEYS),
     features,
     serverFeatures: features,
@@ -524,6 +527,8 @@ const ROUTES: [string, RegExp, Handler][] = [
     return task && { ...task, isArchived: archived }
   }],
   ['POST', /^\/api\/servers\/\d+\/boards\/\d+\/import-tasks(\/preview)?$/, (_m, { body }) => demoImportPlan(body)],
+  ['PUT', /^\/api\/servers\/\d+\/boards\/(\d+)\/follow$/, (m) => (followedBoards.add(Number(m[1])), { following: true })],
+  ['DELETE', /^\/api\/servers\/\d+\/boards\/(\d+)\/follow$/, (m) => (followedBoards.delete(Number(m[1])), { following: false })],
   ['PUT', /^\/api\/servers\/\d+\/boards\/\d+\/columns\/(\d+)$/, (m, { body }) => {
     const column = data.COLUMNS.find((entry) => entry.columnId === Number(m[1]))
     const changes = body as { name: string; countsAsDone?: boolean }

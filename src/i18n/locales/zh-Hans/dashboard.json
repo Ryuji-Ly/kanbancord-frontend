@@ -36,7 +36,12 @@
     "settings": "看板设置",
     "export": "导出",
     "exportNotAllowed": "你无法查看此看板的任务，因此无法导出它。",
-    "importTasks": "导入任务"
+    "importTasks": "导入任务",
+    "follow": "关注看板",
+    "unfollow": "取消关注看板",
+    "followed": "你已关注这个看板：它的所有任务都会通知你。",
+    "unfollowed": "你已不再关注这个看板。",
+    "followFailed": "无法更改关注"
   },
   "boardModal": {
     "defaultColumns": {

@@ -36,7 +36,12 @@
     "settings": "Pano ayarları",
     "export": "Dışa aktar",
     "exportNotAllowed": "Bu panonun görevlerini göremediğiniz için onu dışa aktaramazsınız.",
-    "importTasks": "Görevleri içe aktar"
+    "importTasks": "Görevleri içe aktar",
+    "follow": "Panoyu takip et",
+    "unfollow": "Panoyu takip etmeyi bırak",
+    "followed": "Artık bu panoyu takip ediyorsunuz: tüm görevlerinden haberdar olursunuz.",
+    "unfollowed": "Artık bu panoyu takip etmiyorsunuz.",
+    "followFailed": "Takip değiştirilemedi"
   },
   "boardModal": {
     "defaultColumns": {

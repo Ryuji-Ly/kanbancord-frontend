@@ -36,7 +36,12 @@
     "settings": "Nastavenia nástenky",
     "export": "Export",
     "exportNotAllowed": "Úlohy tejto nástenky nevidíš, takže ju nemôžeš exportovať.",
-    "importTasks": "Importovať úlohy"
+    "importTasks": "Importovať úlohy",
+    "follow": "Sledovať nástenku",
+    "unfollow": "Prestať sledovať nástenku",
+    "followed": "Teraz sleduješ túto nástenku: dozvieš sa o všetkých jej úlohách.",
+    "unfollowed": "Túto nástenku už nesleduješ.",
+    "followFailed": "Sledovanie sa nepodarilo zmeniť"
   },
   "boardModal": {
     "defaultColumns": {

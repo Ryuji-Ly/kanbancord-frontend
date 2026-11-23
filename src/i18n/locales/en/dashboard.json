@@ -36,7 +36,12 @@
     "settings": "Board settings",
     "export": "Export",
     "exportNotAllowed": "You can't see this board's tasks, so you can't export it.",
-    "importTasks": "Import tasks"
+    "importTasks": "Import tasks",
+    "follow": "Follow board",
+    "unfollow": "Unfollow board",
+    "followed": "You follow this board now: you hear about all of its tasks.",
+    "unfollowed": "You no longer follow this board.",
+    "followFailed": "Following could not be changed"
   },
   "boardModal": {
     "defaultColumns": {

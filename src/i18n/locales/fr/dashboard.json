@@ -36,7 +36,12 @@
     "settings": "Paramètres du tableau",
     "export": "Exporter",
     "exportNotAllowed": "Tu ne peux pas voir les tâches de ce tableau, tu ne peux donc pas l’exporter.",
-    "importTasks": "Importer des tâches"
+    "importTasks": "Importer des tâches",
+    "follow": "Suivre le tableau",
+    "unfollow": "Ne plus suivre le tableau",
+    "followed": "Tu suis ce tableau : toutes ses tâches te seront signalées.",
+    "unfollowed": "Tu ne suis plus ce tableau.",
+    "followFailed": "Le suivi n'a pas pu être modifié"
   },
   "boardModal": {
     "defaultColumns": {

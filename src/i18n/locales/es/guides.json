@@ -71,7 +71,7 @@
     "panelCaption": "Una tarea asignada a dos personas y a un rol entero.",
     "loopTitle": "Mantener a todos al tanto",
     "loop": "Las personas se enteran por mensaje directo de las tareas que tienen asignadas: cuando se las asignan, cuando la tarea se mueve, cuando cambia su fecha límite, cuando alguien comenta y más. Cada uno elige qué recibe con <code>/notifications</code>, y a nadie se le avisa nunca de sus propios cambios. Si un feed de novedades ya mencionó a alguien en un canal que puede ver, puede ahorrarse el mensaje directo sobre lo mismo.",
-    "follow": "¿No estás asignado, pero quieres estar pendiente de una tarea? <strong>Síguela</strong> desde su menú, desde la web o con el botón Follow de una publicación del feed, y te enterarás de ella igual que sus responsables.",
+    "follow": "¿No estás asignado, pero quieres estar pendiente de una tarea? <strong>Síguela</strong> desde su menú, desde la web o con el botón Follow de una publicación del feed, y te enterarás de ella igual que sus responsables. Sigue un tablero entero desde su menú ⋯, o con /board follow en Discord. Seguir un tablero es como seguir cada una de sus tareas, también las nuevas.",
     "whoTitle": "Quién puede asignar a quién",
     "who": "Por defecto, todos los que pueden enviar mensajes pueden asignarse a sí mismos, y los moderadores (Gestionar mensajes) pueden asignar a otros. Los servidores pueden cambiarlo, por tablero y por rol; consulta <permissions>roles y permisos</permissions>."
   },

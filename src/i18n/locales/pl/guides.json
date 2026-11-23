@@ -71,7 +71,7 @@
     "panelCaption": "Zadanie przypisane do dwóch osób i całej roli.",
     "loopTitle": "Wszyscy na bieżąco",
     "loop": "Ludzie dostają wiadomość prywatną o przypisanych im zadaniach: gdy zostają przypisani, gdy zadanie zostanie przeniesione, gdy zmieni się termin, gdy ktoś skomentuje i nie tylko. Każdy sam wybiera, co dostaje, poleceniem <code>/notifications</code>, i nikt nie dostaje powiadomień o własnych zmianach. Jeśli strumień aktualizacji już oznaczył kogoś na kanale, który ta osoba widzi, wiadomość prywatna w tej samej sprawie może zostać pominięta.",
-    "follow": "Nie jesteś przypisany, ale chcesz śledzić zadanie? <strong>Obserwuj</strong> je z jego menu, na stronie lub przyciskiem Follow pod postem strumienia, a dostaniesz powiadomienia jak osoby przypisane.",
+    "follow": "Nie jesteś przypisany, ale chcesz śledzić zadanie? <strong>Obserwuj</strong> je z jego menu, na stronie lub przyciskiem Follow pod postem strumienia, a dostaniesz powiadomienia jak osoby przypisane. Obserwuj całą tablicę z jej menu ⋯ albo komendą /board follow w Discordzie. Obserwowanie tablicy to jak obserwowanie każdego jej zadania, także nowych.",
     "whoTitle": "Kto może przypisywać kogo",
     "who": "Domyślnie każdy, kto może wysyłać wiadomości, może przypisywać zadania sobie, a moderatorzy (Zarządzanie wiadomościami) mogą przypisywać je innym. Serwery mogą to zmienić dla każdej tablicy i roli; zobacz <permissions>role i uprawnienia</permissions>."
   },

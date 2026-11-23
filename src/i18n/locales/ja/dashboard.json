@@ -36,7 +36,12 @@
     "settings": "ボードの設定",
     "export": "エクスポート",
     "exportNotAllowed": "このボードのタスクを表示できないため、エクスポートできません。",
-    "importTasks": "タスクをインポート"
+    "importTasks": "タスクをインポート",
+    "follow": "ボードをフォロー",
+    "unfollow": "ボードのフォローをやめる",
+    "followed": "このボードをフォローしました。すべてのタスクについて通知が届きます。",
+    "unfollowed": "このボードのフォローをやめました。",
+    "followFailed": "フォローを変更できませんでした"
   },
   "boardModal": {
     "defaultColumns": {

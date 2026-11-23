@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type MouseEvent as ReactMouseEvent } from 'react'
 import { createPortal } from 'react-dom'
-import { FiArchive, FiBell, FiDownload, FiMoreHorizontal, FiRotateCcw, FiSettings, FiTrash2, FiUpload, FiX } from 'react-icons/fi'
+import { FiArchive, FiBell, FiBellOff, FiDownload, FiEye, FiMoreHorizontal, FiRotateCcw, FiSettings, FiTrash2, FiUpload, FiX } from 'react-icons/fi'
 import { LuPin, LuPinOff } from 'react-icons/lu'
 import { readableError } from '../../../api/http'
 import { t } from '../../../i18n'
@@ -23,6 +23,9 @@ type BoardActionsMenuProps = {
   canDelete: boolean
   /** May add tasks, so may import them from a list or a file. */
   canImport: boolean
+  /** Whether you follow the whole board; with onToggleFollow, the menu offers following it (the board page does). */
+  following?: boolean
+  onToggleFollow?: () => void
   onOpenSettings: () => void
   /** The board was archived or restored. */
   onChanged?: () => void
@@ -47,6 +50,8 @@ export function BoardActionsMenu({
   canArchive,
   canDelete,
   canImport,
+  following = false,
+  onToggleFollow,
   onOpenSettings,
   onChanged,
   onDeleted,
@@ -137,6 +142,14 @@ export function BoardActionsMenu({
               <button type="button" role="menuitem" className="kc-actions-menu-item" onClick={choose(() => togglePin(serverId, board.boardId))}>
                 {pinned ? <LuPinOff aria-hidden="true" /> : <LuPin aria-hidden="true" />}
                 {pinned ? t('dashboard.boards.unpin') : t('dashboard.boards.pin')}
+              </button>
+            </li>
+          )}
+          {onToggleFollow && !board.isArchived && (
+            <li role="none">
+              <button type="button" role="menuitem" className="kc-actions-menu-item" onClick={choose(onToggleFollow)}>
+                {following ? <FiBellOff aria-hidden="true" /> : <FiEye aria-hidden="true" />}
+                {following ? t('dashboard.boards.unfollow') : t('dashboard.boards.follow')}
               </button>
             </li>
           )}

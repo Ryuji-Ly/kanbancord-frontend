@@ -71,7 +71,7 @@
     "panelCaption": "Eine Aufgabe, zugewiesen an zwei Personen und eine ganze Rolle.",
     "loopTitle": "Alle auf dem Laufenden halten",
     "loop": "Leute erfahren per Direktnachricht von den Aufgaben, die ihnen zugewiesen sind: wenn sie zugewiesen werden, wenn die Aufgabe verschoben wird, wenn sich ihr Fälligkeitsdatum ändert, wenn jemand kommentiert und mehr. Jeder wählt mit <code>/notifications</code> selbst, was er bekommt, und niemand wird je über seine eigenen Änderungen benachrichtigt. Hat ein Update-Feed jemanden schon in einem Kanal erwähnt, den diese Person sehen kann, kann sie die Direktnachricht zum selben Ereignis überspringen.",
-    "follow": "Nicht zugewiesen, willst eine Aufgabe aber im Blick behalten? <strong>Folge</strong> ihr über ihr Menü, auf der Website oder mit der Schaltfläche „Follow“ in einem Feed-Post, und du erfährst von ihr wie ihre Zuständigen.",
+    "follow": "Nicht zugewiesen, willst eine Aufgabe aber im Blick behalten? <strong>Folge</strong> ihr über ihr Menü, auf der Website oder mit der Schaltfläche „Follow“ in einem Feed-Post, und du erfährst von ihr wie ihre Zuständigen. Folge einem ganzen Board über sein ⋯-Menü oder mit /board follow in Discord. Einem Board zu folgen ist wie jeder seiner Aufgaben zu folgen, auch neuen.",
     "whoTitle": "Wer wen zuweisen darf",
     "who": "Standardmäßig dürfen sich alle, die Nachrichten senden können, selbst zuweisen, und Moderatoren („Nachrichten verwalten“) dürfen andere zuweisen. Server können das ändern, je Board und je Rolle; siehe <permissions>Rollen und Berechtigungen</permissions>."
   },

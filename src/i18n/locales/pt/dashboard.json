@@ -36,7 +36,12 @@
     "settings": "Definições do quadro",
     "export": "Exportar",
     "exportNotAllowed": "Não podes ver as tarefas deste quadro, por isso não o podes exportar.",
-    "importTasks": "Importar tarefas"
+    "importTasks": "Importar tarefas",
+    "follow": "Seguir quadro",
+    "unfollow": "Deixar de seguir o quadro",
+    "followed": "Agora segues este quadro: vais saber de todas as tarefas dele.",
+    "unfollowed": "Já não segues este quadro.",
+    "followFailed": "Não foi possível mudar o seguimento"
   },
   "boardModal": {
     "defaultColumns": {

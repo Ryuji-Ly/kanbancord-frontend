@@ -71,7 +71,7 @@
     "panelCaption": "İki kişiye ve bir rolün tamamına atanmış bir görev.",
     "loopTitle": "Kişileri bilgilendirmek",
     "loop": "Kişiler atandıkları görevler hakkında doğrudan mesajla bilgilendirilir: atandıklarında, görev taşındığında, son tarihi değiştiğinde, biri yorum yaptığında ve daha fazlası. Herkes neleri alacağını <code>/notifications</code> ile seçer ve kimseye kendi değişiklikleri bildirilmez. Bir güncelleme akışı, birinden görebildiği bir kanalda zaten bahsettiyse, o kişi aynı konudaki doğrudan mesajı atlayabilir.",
-    "follow": "Atanmadınız ama bir görevi izlemek mi istiyorsunuz? Görevi menüsünden, web sitesinden veya bir akış gönderisindeki Follow düğmesiyle <strong>takip edin</strong>; atananlar gibi siz de bilgilendirilirsiniz.",
+    "follow": "Atanmadınız ama bir görevi izlemek mi istiyorsunuz? Görevi menüsünden, web sitesinden veya bir akış gönderisindeki Follow düğmesiyle <strong>takip edin</strong>; atananlar gibi siz de bilgilendirilirsiniz. Bütün bir panoyu ⋯ menüsünden ya da Discord'da /board follow ile takip edin. Bir panoyu takip etmek, yeniler dahil her görevini takip etmek gibidir.",
     "whoTitle": "Kim kimi atayabilir",
     "who": "Varsayılan olarak mesaj gönderebilen herkes kendini atayabilir; moderatörler (Mesajları Yönet) ise başkalarını atayabilir. Sunucular bunu pano ve rol bazında değiştirebilir; bkz. <permissions>roller ve izinler</permissions>."
   },

@@ -36,7 +36,12 @@
     "settings": "Configuración del tablero",
     "export": "Exportar",
     "exportNotAllowed": "No puedes ver las tareas de este tablero, así que no puedes exportarlo.",
-    "importTasks": "Importar tareas"
+    "importTasks": "Importar tareas",
+    "follow": "Seguir tablero",
+    "unfollow": "Dejar de seguir el tablero",
+    "followed": "Ahora sigues este tablero: te enterarás de todas sus tareas.",
+    "unfollowed": "Ya no sigues este tablero.",
+    "followFailed": "No se pudo cambiar el seguimiento"
   },
   "boardModal": {
     "defaultColumns": {

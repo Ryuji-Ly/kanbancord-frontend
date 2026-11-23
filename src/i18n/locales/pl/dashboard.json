@@ -36,7 +36,12 @@
     "settings": "Ustawienia tablicy",
     "export": "Eksport",
     "exportNotAllowed": "Nie widzisz zadań tej tablicy, więc nie możesz jej wyeksportować.",
-    "importTasks": "Importuj zadania"
+    "importTasks": "Importuj zadania",
+    "follow": "Obserwuj tablicę",
+    "unfollow": "Przestań obserwować tablicę",
+    "followed": "Obserwujesz tę tablicę: dowiesz się o wszystkich jej zadaniach.",
+    "unfollowed": "Nie obserwujesz już tej tablicy.",
+    "followFailed": "Nie udało się zmienić obserwowania"
   },
   "boardModal": {
     "defaultColumns": {

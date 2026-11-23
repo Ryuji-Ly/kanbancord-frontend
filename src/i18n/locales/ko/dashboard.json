@@ -36,7 +36,12 @@
     "settings": "보드 설정",
     "export": "내보내기",
     "exportNotAllowed": "이 보드의 작업을 볼 수 없어서 내보낼 수 없어요.",
-    "importTasks": "작업 가져오기"
+    "importTasks": "작업 가져오기",
+    "follow": "보드 팔로우",
+    "unfollow": "보드 팔로우 취소",
+    "followed": "이제 이 보드를 팔로우해요. 모든 작업 소식을 받아요.",
+    "unfollowed": "이 보드를 더 이상 팔로우하지 않아요.",
+    "followFailed": "팔로우를 바꾸지 못했어요"
   },
   "boardModal": {
     "defaultColumns": {

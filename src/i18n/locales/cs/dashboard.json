@@ -36,7 +36,12 @@
     "settings": "Nastavení nástěnky",
     "export": "Export",
     "exportNotAllowed": "Úkoly této nástěnky nevidíš, takže ji nemůžeš exportovat.",
-    "importTasks": "Importovat úkoly"
+    "importTasks": "Importovat úkoly",
+    "follow": "Sledovat nástěnku",
+    "unfollow": "Přestat sledovat nástěnku",
+    "followed": "Teď sleduješ tuto nástěnku: dozvíš se o všech jejích úkolech.",
+    "unfollowed": "Tuto nástěnku už nesleduješ.",
+    "followFailed": "Sledování se nepodařilo změnit"
   },
   "boardModal": {
     "defaultColumns": {

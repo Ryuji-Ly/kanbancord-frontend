@@ -71,7 +71,7 @@
     "panelCaption": "O sarcină atribuită la două persoane și unui rol întreg.",
     "loopTitle": "Toată lumea la curent",
     "loop": "Oamenii primesc un mesaj direct despre sarcinile atribuite lor: când sunt atribuiți, când sarcina este mutată, când se schimbă termenul, când comentează cineva și altele. Fiecare alege singur ce primește cu <code>/notifications</code> și nimeni nu este anunțat despre propriile modificări. Dacă un flux de actualizări a menționat deja pe cineva într-un canal pe care acea persoană îl vede, mesajul direct despre același lucru poate fi sărit.",
-    "follow": "Nu ești atribuit, dar vrei să ții ochii pe o sarcină? <strong>Urmărește-o</strong> din meniul ei, de pe site sau cu butonul Follow sub o postare din flux și vei fi anunțat la fel ca responsabilii.",
+    "follow": "Nu ești atribuit, dar vrei să ții ochii pe o sarcină? <strong>Urmărește-o</strong> din meniul ei, de pe site sau cu butonul Follow sub o postare din flux și vei fi anunțat la fel ca responsabilii. Urmărește un panou întreg din meniul lui ⋯ sau cu /board follow în Discord. A urmări un panou înseamnă a urmări fiecare sarcină din el, inclusiv pe cele noi.",
     "whoTitle": "Cine pe cine poate atribui",
     "who": "Implicit, oricine poate trimite mesaje își poate atribui sarcini, iar moderatorii (Gestionează mesajele) le pot atribui altora. Serverele pot schimba asta, pe panouri și pe roluri; vezi <permissions>roluri și permisiuni</permissions>."
   },
